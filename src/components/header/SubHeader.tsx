@@ -7,7 +7,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import CurvedLogo from "@/../public/logo/curved-logo.svg";
 
-export default function SubHeader() {
+type HeaderProps = {
+  onOpenQuickMenu: () => void;
+};
+
+export default function SubHeader({ onOpenQuickMenu }: HeaderProps) {
     return (
         <motion.header
             initial={{ y: "-100%", opacity: 0 }}
@@ -32,6 +36,7 @@ export default function SubHeader() {
                     </div>
 
                     <div
+                        onClick={onOpenQuickMenu}
                         className="px-3 md:px-[20px] h-[45px] md:h-[50px] flex items-center justify-center rounded-lg text-[#5A9BD3] font-bold hover:text-white cursor-pointer transition-all duration-300 hover:bg-[#5A9BD3] bg-[#ffffff]/10 gap-1 md:gap-2 whitespace-nowrap"
                     >
                         <ListIcon
