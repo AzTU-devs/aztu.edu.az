@@ -17,10 +17,8 @@ type HeaderProps = {
   onOpenQuickMenu: () => void;
 };
 
-
 export default function Header({ onOpenQuickMenu }: HeaderProps) {
 
-  const [isQuickMenuOpen, setIsQuickMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
   const isDropdownOpen = Boolean(activeMenu);
@@ -28,7 +26,8 @@ export default function Header({ onOpenQuickMenu }: HeaderProps) {
   const activeColor = "#224b8e";
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-gradient-to-b from-black/40 to-transparent">
+    <header className="fixed top-0 left-0 w-full z-50 
+bg-gradient-to-b from-[#0b1e3a]/90 via-[#0b1e3a]/60 to-transparent">
       <nav className="flex items-center justify-between w-full px-[120px] py-[20px]">
         <div>
           {isDropdownOpen ? (

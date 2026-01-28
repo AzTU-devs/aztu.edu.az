@@ -8,6 +8,8 @@ import Slider from "@/components/home/slider/Slider";
 import Projects from "@/components/home/projects/Projects";
 import HeaderChanger from "@/components/header/HeaderChanger";
 import Announcements from "@/components/home/announcements.tsx/Announcements";
+import HeroSection from "@/components/home/heroSection/HeroSection";
+import ResponsiveHeader from "@/components/header/ResponsiveHeader";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,8 +25,9 @@ export default function Home() {
   return (
     <>
       <HeaderChanger />
+      {/* <ResponsiveHeader /> */}
       <main>
-        <Slider />
+        <HeroSection />
         <News />
         <Announcements />
         {/* <Projects /> */}

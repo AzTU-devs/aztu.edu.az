@@ -3,8 +3,28 @@ import News1 from "@/../public/news/news-1.png";
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { useEffect, useState } from "react";
+import { getNews, NewsInterface } from "@/services/newsService/newsService";
 
 export default function News() {
+    // const [end, setEnd] = useState(5);
+    // const [start, setStart] = useState(0);
+    // const [news, setNews] = useState<NewsInterface[]>([]);
+    // const [loading, setLoading] = useState(false);
+
+    // useEffect(() => {
+    //     setLoading(true);
+    //     getNews(start, end)
+    //         .then((res) => {
+    //             if (Array.isArray(res)) {
+    //                 setNews(res);
+    //             }
+    //         })
+    //         .finally(() => {
+    //             setLoading(false);
+    //         })
+    // }, []);
+
     const news = [
         {
             title: "Çankaya Universitetinin professoru AzTU-da seminar keçirib",
