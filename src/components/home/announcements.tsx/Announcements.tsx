@@ -1,6 +1,5 @@
 import { AnnouncementInterface, getAnnouncements } from '@/services/announcementService/announcementService';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { tree } from 'next/dist/build/templates/app-page';
 import { useEffect, useState } from 'react';
 
 export default function Announcements() {
@@ -18,7 +17,7 @@ export default function Announcements() {
                     setAnnouncements(res);
                     console.log(res);
                 } else {
-                    setAnnouncements([]);
+                    setAnnouncements([]); 
                 }
             })
             .finally(() => {
