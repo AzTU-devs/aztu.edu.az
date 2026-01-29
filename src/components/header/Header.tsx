@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
 import { AnimatePresence } from "framer-motion";
 import ListIcon from '@mui/icons-material/List';
@@ -12,6 +12,7 @@ import SchoolIcon from "@mui/icons-material/School";
 import ConnectedTvIcon from '@mui/icons-material/ConnectedTv';
 import AzTULogoDark from "@/../public/logo/aztu-logo-dark.png";
 import AzTULogoLight from "@/../public/logo/aztu-logo-light.png";
+import { getMenus, MenuInterface } from "@/services/menu/menuService";
 
 type HeaderProps = {
   onOpenQuickMenu: () => void;
@@ -19,7 +20,30 @@ type HeaderProps = {
 
 export default function Header({ onOpenQuickMenu }: HeaderProps) {
 
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [menus, setMenus] = useState<MenuInterface[]>([]);
+
+  const langCode = "az";
+
+  useEffect(() => {
+    setLoading(true);
+
+    getMenus(langCode)
+      .then((res) => {
+        if (Array.isArray(res)) {
+          setMenus(res);
+        } else {
+          setMenus([]);
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+      })
+  }, []);
+
+  console.log(menus);
+
+  const [activeMenu, setActiveMenu] = useState<MenuInterface | null>(null);
 
   const isDropdownOpen = Boolean(activeMenu);
 
@@ -110,22 +134,24 @@ bg-gradient-to-b from-[#0b1e3a]/90 via-[#0b1e3a]/60 to-transparent">
 
           <div className="flex items-center justify-end">
             <ul className="flex items-center">
-              {[
-                { key: "about", label: "Haqqımızda" },
-                { key: "structure", label: "Struktur" },
-                { key: "education", label: "Təhsil" },
-                { key: "social", label: "Sosial" },
-                { key: "media", label: "Media" },
-              ].map((item) => (
+              {
+              // [
+              //   { key: "about", label: "Haqqımızda" },
+              //   { key: "structure", label: "Struktur" },
+              //   { key: "education", label: "Təhsil" },
+              //   { key: "social", label: "Sosial" },
+              //   { key: "media", label: "Media" },
+              // ]
+              menus.map((item) => (
                 <li
-                  key={item.key}
-                  onMouseEnter={() => setActiveMenu(item.key)}
+                  key={item.menu_id}
+                  onMouseEnter={() => setActiveMenu(item)}
                   className={`text-[20px] font-bold mr-[30px] p-[10px] rounded-[20px] transition-all duration-300 cursor-pointer ${isDropdownOpen
                     ? "text-[#224b8e] hover:text-white hover:bg-[#224b8e]"
                     : "text-white hover:text-[#1a2355] hover:bg-white"
                     }`}
                 >
-                  {item.label}
+                  {item.title}
                 </li>
               ))}
             </ul>
@@ -173,15 +199,8 @@ bg-gradient-to-b from-[#0b1e3a]/90 via-[#0b1e3a]/60 to-transparent">
             className="absolute top-full left-0 w-full"
           >
             <Dropdown
-              title={activeMenu}
-              elements={[
-                { title: "Item 1", url: "#" },
-                { title: "Item 2", url: "#" },
-                { title: "Item 3", url: "#" },
-                { title: "Item 4", url: "#" },
-                { title: "Item 5", url: "#" },
-                { title: "Item 6", url: "#" },
-              ]}
+              title={activeMenu.title}
+              elements={activeMenu.menu_items}
             />
           </div>
         )}
