@@ -3,15 +3,19 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import AzTU from "@/../public/aztu.png";
+import { MenuInterface, MenuItemInterface } from "@/services/menu/menuService";
 
 type DropdownItem = {
-    title: string;
+    item_id: number;
     url: string;
+    display_order: number;
+    title: string;
+    created_at: string;
 };
 
 type Props = {
     title: string;
-    elements: DropdownItem[];
+    elements: MenuItemInterface[];
 };
 
 export default function Dropdown({ title, elements }: Props) {
