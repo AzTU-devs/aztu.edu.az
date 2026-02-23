@@ -10,9 +10,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import PersonIcon from "@mui/icons-material/Person";
 import SchoolIcon from "@mui/icons-material/School";
 import ConnectedTvIcon from "@mui/icons-material/ConnectedTv";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import AzTULogoDark from "@/../public/logo/aztu-logo-dark.png";
 import AzTULogoLight from "@/../public/logo/aztu-logo-light.png";
 import { NAV_SECTIONS, NavSection } from "@/config/navigation";
+import { useTheme } from "@/context/ThemeContext";
 
 type HeaderProps = {
   onOpenQuickMenu: () => void;
@@ -21,6 +24,7 @@ type HeaderProps = {
 
 export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
   const [activeSection, setActiveSection] = useState<NavSection | null>(null);
+  const { theme, toggleTheme } = useTheme();
 
   const isOpen = Boolean(activeSection);
 
@@ -28,7 +32,7 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
         isOpen
-          ? "bg-white border-b border-gray-200"
+          ? "bg-white dark:bg-[#0f172a] border-b border-gray-200 dark:border-gray-700"
           : "bg-gradient-to-b from-[#0b1e3a]/90 via-[#0b1e3a]/60 to-transparent"
       }`}
       onMouseLeave={() => setActiveSection(null)}
@@ -37,7 +41,12 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
         {/* Logo */}
         <div className="flex-shrink-0">
           {isOpen ? (
-            <Image src={AzTULogoDark} alt="AzTU" width={65} priority />
+            <Image
+              src={theme === "dark" ? AzTULogoLight : AzTULogoDark}
+              alt="AzTU"
+              width={65}
+              priority
+            />
           ) : (
             <Image src={AzTULogoLight} alt="AzTU" width={65} priority />
           )}
@@ -56,7 +65,7 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
                 key={label}
                 className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-bold transition-all duration-300 cursor-pointer ${
                   isOpen
-                    ? "bg-[#1a2355] text-white hover:bg-[#1a2355]/80"
+                    ? "bg-[#1a2355] dark:bg-[#1e3a5f] text-white hover:bg-[#1a2355]/80"
                     : "bg-white/10 text-white hover:bg-white/25"
                 }`}
               >
@@ -68,7 +77,7 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
             <button
               className={`rounded-lg w-10 h-10 flex items-center justify-center font-bold text-sm transition-all duration-300 cursor-pointer ${
                 isOpen
-                  ? "bg-[#1a2355] text-white"
+                  ? "bg-[#1a2355] dark:bg-[#1e3a5f] text-white"
                   : "bg-white/10 text-white hover:bg-white/25"
               }`}
             >
@@ -77,10 +86,29 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
 
             <button
               className={`rounded-lg w-10 h-10 flex items-center justify-center transition-all duration-300 cursor-pointer ${
-                isOpen ? "bg-[#1a2355]" : "bg-white/10 hover:bg-white/25"
+                isOpen
+                  ? "bg-[#1a2355] dark:bg-[#1e3a5f]"
+                  : "bg-white/10 hover:bg-white/25"
               }`}
             >
               <ShareIcon sx={{ color: "white", fontSize: 22 }} />
+            </button>
+
+            {/* Dark/Light mode toggle */}
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle dark mode"
+              className={`rounded-lg w-10 h-10 flex items-center justify-center transition-all duration-300 cursor-pointer ${
+                isOpen
+                  ? "bg-[#1a2355] dark:bg-[#1e3a5f] hover:bg-[#1a2355]/80"
+                  : "bg-white/10 hover:bg-white/25"
+              }`}
+            >
+              {theme === "dark" ? (
+                <LightModeIcon sx={{ color: "white", fontSize: 20 }} />
+              ) : (
+                <DarkModeIcon sx={{ color: "white", fontSize: 20 }} />
+              )}
             </button>
           </div>
 
@@ -96,15 +124,15 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
                     className={`relative text-[13px] xl:text-[14px] font-bold px-3 py-2 rounded-lg transition-all duration-200 cursor-pointer select-none ${
                       isOpen
                         ? isActive
-                          ? "text-[#1a2355]"
-                          : "text-[#1a2355]/70 hover:text-[#1a2355]"
+                          ? "text-[#1a2355] dark:text-white"
+                          : "text-[#1a2355]/70 dark:text-white/70 hover:text-[#1a2355] dark:hover:text-white"
                         : "text-white hover:bg-white/15"
                     }`}
                   >
                     {section.label}
                     {/* Active underline */}
                     {isActive && isOpen && (
-                      <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#1a2355] rounded-full" />
+                      <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#1a2355] dark:bg-white rounded-full" />
                     )}
                   </li>
                 );
@@ -114,7 +142,9 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
             <button
               onClick={onOpenSearch}
               className={`w-10 h-10 flex items-center justify-center rounded-lg ml-2 transition-all duration-300 cursor-pointer ${
-                isOpen ? "bg-[#1a2355]" : "bg-white/10 hover:bg-white/25"
+                isOpen
+                  ? "bg-[#1a2355] dark:bg-[#1e3a5f]"
+                  : "bg-white/10 hover:bg-white/25"
               }`}
             >
               <SearchIcon sx={{ color: "white", fontSize: 24 }} />

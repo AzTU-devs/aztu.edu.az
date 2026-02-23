@@ -50,7 +50,7 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
               className="
                 absolute left-[-15px] top-[15px]
                 sm:left-[-20px] sm:top-[20px]
-                z-50 bg-white p-[10px]
+                z-50 bg-white dark:bg-[#1e293b] p-[10px]
                 rounded-full cursor-pointer
               "
               onClick={onClose}
@@ -83,7 +83,7 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
                   <div
                     key={i}
                     className="
-                      px-4 py-2 bg-white rounded-[20px]
+                      px-4 py-2 bg-white dark:bg-[#1e293b] dark:text-white rounded-[20px]
                       my-3 font-bold cursor-pointer
                       transition-all
                       hover:bg-[#5A9BD3] hover:text-white
@@ -148,7 +148,7 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
                     key={i}
                     className="
                       flex items-center gap-2
-                      bg-white text-[#1a2355]
+                      bg-white dark:bg-[#1e293b] text-[#1a2355] dark:text-white
                       p-3 rounded-lg font-bold
                       cursor-pointer
                       w-full sm:w-1/3
