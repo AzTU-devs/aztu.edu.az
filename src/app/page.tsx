@@ -6,6 +6,7 @@ import Footer from "@/components/footer/Footer";
 import Loading from "@/components/loading/Loading";
 import Slider from "@/components/home/slider/Slider";
 import Projects from "@/components/home/projects/Projects";
+import Collaborators from "@/components/home/collaborators/Collaborators";
 import HeaderChanger from "@/components/header/HeaderChanger";
 import Announcements from "@/components/home/announcements.tsx/Announcements";
 import HeroSection from "@/components/home/heroSection/HeroSection";
@@ -30,7 +31,8 @@ export default function Home() {
         <HeroSection />
         <News />
         <Announcements />
-        {/* <Projects /> */}
+        <Projects />
+        <Collaborators />
       </main>
       <Footer />
       {isLoading && <Loading />}

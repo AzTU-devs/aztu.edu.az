@@ -1,76 +1,98 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import AzTU from "@/../public/aztu.png";
-import { MenuInterface, MenuItemInterface } from "@/services/menu/menuService";
-
-type DropdownItem = {
-    item_id: number;
-    url: string;
-    display_order: number;
-    title: string;
-    created_at: string;
-};
+import { NavSection } from "@/config/navigation";
 
 type Props = {
-    title: string;
-    elements: MenuItemInterface[];
+    section: NavSection;
 };
 
-export default function Dropdown({ title, elements }: Props) {
+export default function Dropdown({ section }: Props) {
+    const half = Math.ceil(section.items.length / 2);
+    const col1 = section.items.slice(0, half);
+    const col2 = section.items.slice(half);
+
     return (
         <motion.div
-            initial={{ y: -40, opacity: 0 }}
+            initial={{ y: -16, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -40, opacity: 0 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="fixed top-0 left-0 w-full h-[600px] bg-white shadow-xl z-[-20] flex items-center justify-start"
+            exit={{ y: -16, opacity: 0 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="w-full bg-white shadow-2xl border-t border-gray-100"
         >
-            <div className="flex items-start justify-start px-[20px] pt-[100px]">
-                <div className="w-full">
-                    <Image src={AzTU} alt="AzTU" className="rounded-[20px] w-full h-[300px]" />
+            <div className="flex items-stretch px-[80px] xl:px-[120px] py-8 gap-10">
+                {/* Left: university image */}
+                <div className="hidden lg:block w-[260px] xl:w-[300px] flex-shrink-0">
+                    <Image
+                        src={AzTU}
+                        alt="AzTU"
+                        className="w-full h-[220px] object-cover rounded-2xl"
+                    />
                 </div>
-                <div className="w-[50%] flex flex-col items-center justify-center">
-                    <h2 className="text-2xl font-bold text-[#1a2355] mb-8">
-                        {title}
-                    </h2>
+
+                {/* Right: 2-column link grid */}
+                <div className="flex-1 flex gap-4">
+                    {/* Column 1 */}
                     <motion.ul
                         initial="hidden"
                         animate="show"
                         variants={{
                             hidden: {},
-                            show: {
-                                transition: {
-                                    staggerChildren: 0.08,
-                                },
-                            },
+                            show: { transition: { staggerChildren: 0.04 } },
                         }}
-                        className="grid grid-flow-row auto-rows-max grid-cols-1 sm:grid-cols-2 gap-2"
+                        className="flex-1 flex flex-col"
                     >
-                        {elements.map((item, index) => (
+                        {col1.map((item) => (
                             <motion.li
-                                key={index}
+                                key={item.slug}
                                 variants={{
-                                    hidden: { y: -15, opacity: 0 },
-                                    show: { y: 0, opacity: 1 },
+                                    hidden: { x: -8, opacity: 0 },
+                                    show: { x: 0, opacity: 1 },
                                 }}
-                                className="flex items-center gap-3 py-[5px] my-[2px] px-[20px] rounded-[10px] bg-transparent hover:bg-[#f5f6f9] transition-colors duration-300 cursor-pointer group"
                             >
-                                <motion.span
-                                    className="w-3 h-3 bg-blue-500 rounded-full flex-shrink-0 transform transition-transform duration-300 group-hover:scale-150"
-                                />
-
-                                <a
-                                    href={item.url}
-                                    className="text-lg text-[#1a2355] hover:text-blue-600 transition-colors"
+                                <Link
+                                    href={`${section.basePath}/${item.slug}`}
+                                    className="block py-[9px] px-3 rounded-lg text-[15px] text-[#1a2355] font-medium hover:bg-[#f0f4ff] transition-colors duration-150"
                                 >
                                     {item.title}
-                                </a>
+                                </Link>
                             </motion.li>
                         ))}
                     </motion.ul>
 
+                    {/* Vertical divider */}
+                    <div className="w-px bg-gray-100 self-stretch flex-shrink-0" />
+
+                    {/* Column 2 */}
+                    <motion.ul
+                        initial="hidden"
+                        animate="show"
+                        variants={{
+                            hidden: {},
+                            show: { transition: { staggerChildren: 0.04, delayChildren: 0.06 } },
+                        }}
+                        className="flex-1 flex flex-col"
+                    >
+                        {col2.map((item) => (
+                            <motion.li
+                                key={item.slug}
+                                variants={{
+                                    hidden: { x: -8, opacity: 0 },
+                                    show: { x: 0, opacity: 1 },
+                                }}
+                            >
+                                <Link
+                                    href={`${section.basePath}/${item.slug}`}
+                                    className="block py-[9px] px-3 rounded-lg text-[15px] text-[#1a2355] font-medium hover:bg-[#f0f4ff] transition-colors duration-150"
+                                >
+                                    {item.title}
+                                </Link>
+                            </motion.li>
+                        ))}
+                    </motion.ul>
                 </div>
             </div>
         </motion.div>
