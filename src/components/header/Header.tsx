@@ -16,9 +16,10 @@ import { NAV_SECTIONS, NavSection } from "@/config/navigation";
 
 type HeaderProps = {
   onOpenQuickMenu: () => void;
+  onOpenSearch: () => void;
 };
 
-export default function Header({ onOpenQuickMenu }: HeaderProps) {
+export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
   const [activeSection, setActiveSection] = useState<NavSection | null>(null);
 
   const isOpen = Boolean(activeSection);
@@ -111,6 +112,7 @@ export default function Header({ onOpenQuickMenu }: HeaderProps) {
             </ul>
 
             <button
+              onClick={onOpenSearch}
               className={`w-10 h-10 flex items-center justify-center rounded-lg ml-2 transition-all duration-300 cursor-pointer ${
                 isOpen ? "bg-[#1a2355]" : "bg-white/10 hover:bg-white/25"
               }`}
