@@ -21,7 +21,7 @@ export default function Dropdown({ section }: Props) {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -16, opacity: 0 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="w-full bg-white shadow-2xl border-t border-gray-100"
+            className="w-full bg-white dark:bg-[#0f172a] shadow-2xl border-t border-gray-100 dark:border-gray-700"
         >
             <div className="flex items-stretch px-[80px] xl:px-[120px] py-8 gap-10">
                 {/* Left: university image */}
@@ -55,7 +55,7 @@ export default function Dropdown({ section }: Props) {
                             >
                                 <Link
                                     href={`${section.basePath}/${item.slug}`}
-                                    className="block py-[9px] px-3 rounded-lg text-[15px] text-[#1a2355] font-medium hover:bg-[#f0f4ff] transition-colors duration-150"
+                                    className="block py-[9px] px-3 rounded-lg text-[15px] text-[#1a2355] dark:text-white font-medium hover:bg-[#f0f4ff] dark:hover:bg-[#1e293b] transition-colors duration-150"
                                 >
                                     {item.title}
                                 </Link>
@@ -64,7 +64,7 @@ export default function Dropdown({ section }: Props) {
                     </motion.ul>
 
                     {/* Vertical divider */}
-                    <div className="w-px bg-gray-100 self-stretch flex-shrink-0" />
+                    <div className="w-px bg-gray-100 dark:bg-gray-700 self-stretch flex-shrink-0" />
 
                     {/* Column 2 */}
                     <motion.ul
@@ -86,7 +86,7 @@ export default function Dropdown({ section }: Props) {
                             >
                                 <Link
                                     href={`${section.basePath}/${item.slug}`}
-                                    className="block py-[9px] px-3 rounded-lg text-[15px] text-[#1a2355] font-medium hover:bg-[#f0f4ff] transition-colors duration-150"
+                                    className="block py-[9px] px-3 rounded-lg text-[15px] text-[#1a2355] dark:text-white font-medium hover:bg-[#f0f4ff] dark:hover:bg-[#1e293b] transition-colors duration-150"
                                 >
                                     {item.title}
                                 </Link>
