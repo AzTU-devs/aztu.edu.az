@@ -13,14 +13,14 @@ import SchoolIcon from "@mui/icons-material/School";
 import ConnectedTvIcon from "@mui/icons-material/ConnectedTv";
 import ShareIcon from "@mui/icons-material/Share";
 import AzTULogoDark from "@/../public/logo/aztu-logo-dark.png";
-import CurvedLogo from "@/../public/logo/curved-logo.svg";
 import { NAV_SECTIONS } from "@/config/navigation";
 
 type HeaderProps = {
     onOpenQuickMenu: () => void;
+    onOpenSearch: () => void;
 };
 
-export default function SubHeader({ onOpenQuickMenu }: HeaderProps) {
+export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
@@ -78,6 +78,7 @@ export default function SubHeader({ onOpenQuickMenu }: HeaderProps) {
                     {/* RIGHT: Search + Quick Menu */}
                     <div className="flex items-center gap-2">
                         <motion.button
+                            onClick={onOpenSearch}
                             whileHover={{ scale: 1.06 }}
                             whileTap={{ scale: 0.94 }}
                             transition={{ duration: 0.15 }}
@@ -102,16 +103,6 @@ export default function SubHeader({ onOpenQuickMenu }: HeaderProps) {
 
                 {/* Thin gradient accent line */}
                 <div className="h-[2px] bg-gradient-to-r from-transparent via-[#5A9BD3] to-transparent" />
-
-                {/* Curved logo — bottom center brand decoration
-                <div className="absolute left-1/2 bottom-[-14px] lg:bottom-[-20px] -translate-x-1/2 translate-y-1/2 z-10 w-28 lg:w-[170px]">
-                    <Image
-                        src={CurvedLogo}
-                        alt="AzTU"
-                        className="w-full h-auto"
-                        priority
-                    />
-                </div> */}
             </motion.header>
 
             {/* Overlay */}
@@ -145,7 +136,7 @@ export default function SubHeader({ onOpenQuickMenu }: HeaderProps) {
                             <Image src={AzTULogoDark} alt="AzTU" width={52} height={52} priority />
                             <button
                                 onClick={() => setIsDrawerOpen(false)}
-                                className="w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/25 transition-all text-white"
+                                className="w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/25 transition-all text-white cursor-pointer"
                                 aria-label="Close menu"
                             >
                                 <CloseIcon sx={{ fontSize: 22 }} />
@@ -161,16 +152,16 @@ export default function SubHeader({ onOpenQuickMenu }: HeaderProps) {
                             ].map(({ icon, label }) => (
                                 <button
                                     key={label}
-                                    className="flex items-center gap-1 rounded-lg px-2.5 py-1.5 text-xs font-bold text-white bg-white/10 hover:bg-white/25 transition-all"
+                                    className="flex items-center gap-1 rounded-lg px-2.5 py-1.5 text-xs font-bold text-white bg-white/10 hover:bg-white/25 transition-all cursor-pointer"
                                 >
                                     {icon}
                                     {label}
                                 </button>
                             ))}
-                            <button className="ml-auto rounded-lg w-8 h-8 flex items-center justify-center font-bold text-xs text-white bg-white/10 hover:bg-white/25 transition-all">
+                            <button className="ml-auto rounded-lg w-8 h-8 flex items-center justify-center font-bold text-xs text-white bg-white/10 hover:bg-white/25 transition-all cursor-pointer">
                                 EN
                             </button>
-                            <button className="rounded-lg w-8 h-8 flex items-center justify-center text-white bg-white/10 hover:bg-white/25 transition-all">
+                            <button className="rounded-lg w-8 h-8 flex items-center justify-center text-white bg-white/10 hover:bg-white/25 transition-all cursor-pointer">
                                 <ShareIcon sx={{ fontSize: 18 }} />
                             </button>
                         </div>
@@ -183,7 +174,7 @@ export default function SubHeader({ onOpenQuickMenu }: HeaderProps) {
                                     <div key={section.key} className="border-b border-gray-100">
                                         <button
                                             onClick={() => toggleSection(section.key)}
-                                            className="w-full flex items-center justify-between px-5 py-4 text-left text-[13px] font-bold text-[#1a2355] hover:bg-[#f0f4ff] transition-colors"
+                                            className="w-full flex items-center justify-between px-5 py-4 text-left text-[13px] font-bold text-[#1a2355] hover:bg-[#f0f4ff] transition-colors cursor-pointer"
                                         >
                                             {section.label}
                                             <motion.span
