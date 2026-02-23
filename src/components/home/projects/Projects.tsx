@@ -62,7 +62,7 @@ export default function Projects() {
     return (
         <section
             ref={sectionRef}
-            className="px-4 md:px-10 lg:px-20 py-16 bg-white relative overflow-hidden"
+            className="px-4 md:px-10 lg:px-20 py-16 bg-white dark:bg-[#0a1120] relative overflow-hidden"
         >
             {/* Background accent */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
@@ -78,7 +78,7 @@ export default function Projects() {
                     <p className="text-[#ee7c7e] text-xs font-bold uppercase tracking-[0.2em] mb-2">
                         Araşdırma &amp; İnnovasiya
                     </p>
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#1a2355] leading-tight">
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#1a2355] dark:text-white leading-tight">
                         Layihələr
                     </h2>
                 </div>
@@ -105,7 +105,7 @@ export default function Projects() {
                             delay: 0.1 + idx * 0.1,
                         }}
                         whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                        className={`group rounded-2xl border-2 p-6 flex flex-col gap-3 hover:shadow-xl transition-all duration-300 cursor-pointer ${project.color}`}
+                        className={`group rounded-2xl border-2 p-6 flex flex-col gap-3 hover:shadow-xl transition-all duration-300 cursor-pointer dark:border-opacity-30 ${project.color} dark:bg-[#1e293b]`}
                     >
                         <div className="flex items-center justify-between">
                             <span className={`text-xs font-bold ${project.accent} bg-white/70 px-3 py-1 rounded-full`}>

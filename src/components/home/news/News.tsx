@@ -27,7 +27,7 @@ export default function News() {
     return (
         <section
             ref={sectionRef}
-            className="px-4 md:px-10 lg:px-20 py-16 bg-gray-50 relative overflow-hidden"
+            className="px-4 md:px-10 lg:px-20 py-16 bg-gray-50 dark:bg-[#0f172a] relative overflow-hidden"
         >
             {/* Background decorations */}
             <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-[#1a2355]/4 pointer-events-none" />
@@ -44,7 +44,7 @@ export default function News() {
                     <p className="text-[#ee7c7e] text-xs font-bold uppercase tracking-[0.2em] mb-2">
                         Son Xəbərlər
                     </p>
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#1a2355] leading-tight">
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#1a2355] dark:text-white leading-tight">
                         Xəbərlər &amp;{" "}
                         <span className="text-[#ee7c7e]">Hadisələr</span>
                     </h2>
@@ -72,7 +72,7 @@ export default function News() {
                     className="lg:w-[52%]"
                 >
                     <Link href={`/news/${featured.id}`}>
-                        <div className="group bg-white rounded-3xl shadow-lg overflow-hidden h-full cursor-pointer hover:shadow-2xl transition-shadow duration-500">
+                        <div className="group bg-white dark:bg-[#1e293b] rounded-3xl shadow-lg overflow-hidden h-full cursor-pointer hover:shadow-2xl transition-shadow duration-500">
                             {/* Image */}
                             <div className="relative h-72 md:h-[22rem] overflow-hidden">
                                 <Image
@@ -107,13 +107,13 @@ export default function News() {
 
                             {/* Content */}
                             <div className="p-6 md:p-8">
-                                <h2 className="text-[#1a2355] font-bold text-xl md:text-2xl leading-snug mb-3 group-hover:text-[#ee7c7e] transition-colors duration-300">
+                                <h2 className="text-[#1a2355] dark:text-white font-bold text-xl md:text-2xl leading-snug mb-3 group-hover:text-[#ee7c7e] transition-colors duration-300">
                                     {featured.title}
                                 </h2>
-                                <p className="text-gray-500 text-sm leading-relaxed line-clamp-3 mb-5">
+                                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed line-clamp-3 mb-5">
                                     {featured.desc}
                                 </p>
-                                <div className="flex items-center gap-1 text-[#1a2355] font-semibold text-sm w-fit">
+                                <div className="flex items-center gap-1 text-[#1a2355] dark:text-[#5A9BD3] font-semibold text-sm w-fit">
                                     Ətraflı oxu
                                     <ChevronRightIcon
                                         sx={{ fontSize: 18 }}
@@ -141,7 +141,7 @@ export default function News() {
                             <Link href={`/news/${item.id}`}>
                                 <motion.div
                                     whileHover={{ y: -5, transition: { duration: 0.25 } }}
-                                    className="group bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer hover:shadow-xl transition-shadow duration-300 h-full flex flex-col"
+                                    className="group bg-white dark:bg-[#1e293b] rounded-2xl shadow-md overflow-hidden cursor-pointer hover:shadow-xl transition-shadow duration-300 h-full flex flex-col"
                                 >
                                     {/* Image */}
                                     <div className="relative h-44 overflow-hidden flex-shrink-0">
@@ -164,16 +164,16 @@ export default function News() {
 
                                     {/* Content */}
                                     <div className="p-4 flex flex-col gap-2 flex-1">
-                                        <div className="flex items-center gap-1 text-gray-400 text-xs">
+                                        <div className="flex items-center gap-1 text-gray-400 dark:text-gray-500 text-xs">
                                             <CalendarMonthIcon sx={{ fontSize: 13 }} />
                                             <span>
                                                 {item.date} {item.month}
                                             </span>
                                         </div>
-                                        <h3 className="text-[#1a2355] font-bold text-sm leading-snug flex-1 group-hover:text-[#ee7c7e] transition-colors duration-300 line-clamp-3">
+                                        <h3 className="text-[#1a2355] dark:text-white font-bold text-sm leading-snug flex-1 group-hover:text-[#ee7c7e] transition-colors duration-300 line-clamp-3">
                                             {item.title}
                                         </h3>
-                                        <div className="flex items-center gap-0.5 text-[#1a2355] font-semibold text-xs mt-1 w-fit">
+                                        <div className="flex items-center gap-0.5 text-[#1a2355] dark:text-[#5A9BD3] font-semibold text-xs mt-1 w-fit">
                                             Ətraflı oxu
                                             <ChevronRightIcon
                                                 sx={{ fontSize: 14 }}

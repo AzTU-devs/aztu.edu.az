@@ -12,13 +12,17 @@ import PersonIcon from "@mui/icons-material/Person";
 import SchoolIcon from "@mui/icons-material/School";
 import ConnectedTvIcon from "@mui/icons-material/ConnectedTv";
 import ShareIcon from "@mui/icons-material/Share";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import AzTULogoLight from "@/../public/logo/aztu-logo-light.png";
 import AzTULogoDark from "@/../public/logo/aztu-logo-dark.png";
 import { NAV_SECTIONS } from "@/config/navigation";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function ResponsiveHeader() {
     const [isOpen, setIsOpen] = useState(false);
     const [expandedSection, setExpandedSection] = useState<string | null>(null);
+    const { theme, toggleTheme } = useTheme();
 
     const toggleSection = (key: string) => {
         setExpandedSection((prev) => (prev === key ? null : key));
@@ -47,10 +51,23 @@ export default function ResponsiveHeader() {
                         />
                     </div>
 
-                    {/* Search Button */}
-                    <button className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/30 transition-all text-white">
-                        <SearchIcon sx={{ fontSize: 26 }} />
-                    </button>
+                    {/* Right buttons: theme toggle + search */}
+                    <div className="flex items-center gap-2">
+                        <button
+                            onClick={toggleTheme}
+                            aria-label="Toggle dark mode"
+                            className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/30 transition-all text-white"
+                        >
+                            {theme === "dark" ? (
+                                <LightModeIcon sx={{ fontSize: 22 }} />
+                            ) : (
+                                <DarkModeIcon sx={{ fontSize: 22 }} />
+                            )}
+                        </button>
+                        <button className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/30 transition-all text-white">
+                            <SearchIcon sx={{ fontSize: 26 }} />
+                        </button>
+                    </div>
                 </nav>
             </header>
 
@@ -78,7 +95,7 @@ export default function ResponsiveHeader() {
                         animate={{ x: 0 }}
                         exit={{ x: "-100%" }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="fixed top-0 left-0 h-full w-[320px] max-w-[90vw] z-[70] bg-white shadow-2xl flex flex-col overflow-hidden"
+                        className="fixed top-0 left-0 h-full w-[320px] max-w-[90vw] z-[70] bg-white dark:bg-[#0f172a] shadow-2xl flex flex-col overflow-hidden"
                     >
                         {/* Drawer header */}
                         <div className="flex items-center justify-between px-5 py-4 bg-[#0b1e3a]">
@@ -120,11 +137,11 @@ export default function ResponsiveHeader() {
                             {NAV_SECTIONS.map((section) => {
                                 const isExpanded = expandedSection === section.key;
                                 return (
-                                    <div key={section.key} className="border-b border-gray-100">
+                                    <div key={section.key} className="border-b border-gray-100 dark:border-gray-700">
                                         {/* Section header */}
                                         <button
                                             onClick={() => toggleSection(section.key)}
-                                            className="w-full flex items-center justify-between px-5 py-4 text-left text-[13px] font-bold text-[#1a2355] hover:bg-[#f0f4ff] transition-colors"
+                                            className="w-full flex items-center justify-between px-5 py-4 text-left text-[13px] font-bold text-[#1a2355] dark:text-white hover:bg-[#f0f4ff] dark:hover:bg-[#1e293b] transition-colors"
                                         >
                                             {section.label}
                                             <motion.span
@@ -132,7 +149,7 @@ export default function ResponsiveHeader() {
                                                 transition={{ duration: 0.2 }}
                                                 className="flex-shrink-0"
                                             >
-                                                <ExpandMoreIcon sx={{ fontSize: 20, color: "#1a2355" }} />
+                                                <ExpandMoreIcon sx={{ fontSize: 20, color: "inherit" }} />
                                             </motion.span>
                                         </button>
 
@@ -145,14 +162,14 @@ export default function ResponsiveHeader() {
                                                     animate={{ height: "auto", opacity: 1 }}
                                                     exit={{ height: 0, opacity: 0 }}
                                                     transition={{ duration: 0.22, ease: "easeInOut" }}
-                                                    className="overflow-hidden bg-[#f8faff]"
+                                                    className="overflow-hidden bg-[#f8faff] dark:bg-[#162032]"
                                                 >
                                                     {section.items.map((item) => (
                                                         <li key={item.slug}>
                                                             <Link
                                                                 href={`${section.basePath}/${item.slug}`}
                                                                 onClick={() => setIsOpen(false)}
-                                                                className="block px-7 py-3 text-[13px] text-[#1a2355]/80 hover:text-[#1a2355] hover:bg-[#e8eeff] transition-colors border-b border-gray-100/70 last:border-b-0"
+                                                                className="block px-7 py-3 text-[13px] text-[#1a2355]/80 dark:text-white/70 hover:text-[#1a2355] dark:hover:text-white hover:bg-[#e8eeff] dark:hover:bg-[#1e3a5f] transition-colors border-b border-gray-100/70 dark:border-gray-700/50 last:border-b-0"
                                                             >
                                                                 {item.title}
                                                             </Link>
