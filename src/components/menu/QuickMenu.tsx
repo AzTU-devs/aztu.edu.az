@@ -148,13 +148,16 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
               transition={{ duration: 0.4 }}
             >
               {/* Section tabs row */}
-              <div className="flex gap-2 flex-wrap mb-6">
+              <div className="flex justify-between gap-2 flex-wrap mb-6">
                 {RIGHT_SECTIONS.map((section) => {
                   const isActive = activeSection === section.title;
                   return (
                     <button
                       key={section.title}
                       onClick={() => setActiveSection(section.title)}
+                      style={{
+                        width: "calc(100% / 3 - 10px)"
+                      }}
                       className={`
                         px-5 py-2 rounded-full font-bold text-sm transition-all cursor-pointer
                         ${isActive

@@ -6,6 +6,8 @@ export interface NavSubItem {
 export interface NavItem {
     title: string;
     slug?: string;          // if set, item itself is a direct link
+    description?: string;
+    content?: string;
     subItems?: NavSubItem[]; // if set, renders as category header with sub-links
 }
 
