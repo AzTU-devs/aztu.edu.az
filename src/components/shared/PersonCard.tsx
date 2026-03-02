@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
@@ -15,6 +16,7 @@ interface Props {
   phone?: string;
   cvUrl?: string;
   size?: "sm" | "md" | "lg";
+  href?: string;
 }
 
 export default function PersonCard({
@@ -27,13 +29,14 @@ export default function PersonCard({
   phone,
   cvUrl,
   size = "md",
+  href,
 }: Props) {
   const avatarSize =
     size === "lg" ? "w-28 h-28" : size === "sm" ? "w-14 h-14" : "w-20 h-20";
   const iconSize = size === "lg" ? 48 : size === "sm" ? 24 : 36;
 
-  return (
-    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 p-5 flex flex-col items-center text-center gap-3 hover:shadow-md transition-shadow">
+  const cardContent = (
+    <div className={`bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 p-5 flex flex-col items-center text-center gap-3 hover:shadow-md transition-shadow${href ? " cursor-pointer hover:border-[#1a2355]/30 dark:hover:border-[#1a2355]/40" : ""}`}>
       {/* Avatar */}
       <div
         className={`${avatarSize} rounded-full bg-[#1a2355]/10 dark:bg-[#1a2355]/20 flex items-center justify-center overflow-hidden flex-shrink-0`}
@@ -108,4 +111,9 @@ export default function PersonCard({
       )}
     </div>
   );
+
+  if (href) {
+    return <Link href={href}>{cardContent}</Link>;
+  }
+  return cardContent;
 }
