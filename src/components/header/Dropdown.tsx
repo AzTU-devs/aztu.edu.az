@@ -11,10 +11,6 @@ type Props = {
 };
 
 export default function Dropdown({ section }: Props) {
-    const half = Math.ceil(section.items.length / 2);
-    const col1 = section.items.slice(0, half);
-    const col2 = section.items.slice(half);
-
     return (
         <motion.div
             initial={{ y: -16, opacity: 0 }}
@@ -33,66 +29,47 @@ export default function Dropdown({ section }: Props) {
                     />
                 </div>
 
-                {/* Right: 2-column link grid */}
-                <div className="flex-1 flex gap-4">
-                    {/* Column 1 */}
-                    <motion.ul
-                        initial="hidden"
-                        animate="show"
-                        variants={{
-                            hidden: {},
-                            show: { transition: { staggerChildren: 0.04 } },
-                        }}
-                        className="flex-1 flex flex-col"
-                    >
-                        {col1.map((item) => (
-                            <motion.li
-                                key={item.slug}
-                                variants={{
-                                    hidden: { x: -8, opacity: 0 },
-                                    show: { x: 0, opacity: 1 },
-                                }}
-                            >
+                {/* Right: hierarchical groups */}
+                <div className="flex-1 flex flex-wrap gap-x-10 gap-y-5 content-start">
+                    {section.items.map((item, idx) => (
+                        <motion.div
+                            key={item.title}
+                            initial={{ opacity: 0, y: -6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: idx * 0.05, duration: 0.18 }}
+                            className="min-w-[160px]"
+                        >
+                            {/* Category title — link if it has a slug, plain header otherwise */}
+                            {item.slug ? (
                                 <Link
                                     href={`${section.basePath}/${item.slug}`}
-                                    className="block py-[9px] px-3 rounded-lg text-[15px] text-[#1a2355] dark:text-white font-medium hover:bg-[#f0f4ff] dark:hover:bg-[#1e293b] transition-colors duration-150"
+                                    className="block text-[12px] font-bold uppercase tracking-wider text-[#1a2355] dark:text-white mb-2 hover:text-[#ee7c7e] dark:hover:text-[#ee7c7e] transition-colors"
                                 >
                                     {item.title}
                                 </Link>
-                            </motion.li>
-                        ))}
-                    </motion.ul>
-
-                    {/* Vertical divider */}
-                    <div className="w-px bg-gray-100 dark:bg-gray-700 self-stretch flex-shrink-0" />
-
-                    {/* Column 2 */}
-                    <motion.ul
-                        initial="hidden"
-                        animate="show"
-                        variants={{
-                            hidden: {},
-                            show: { transition: { staggerChildren: 0.04, delayChildren: 0.06 } },
-                        }}
-                        className="flex-1 flex flex-col"
-                    >
-                        {col2.map((item) => (
-                            <motion.li
-                                key={item.slug}
-                                variants={{
-                                    hidden: { x: -8, opacity: 0 },
-                                    show: { x: 0, opacity: 1 },
-                                }}
-                            >
-                                <Link
-                                    href={`${section.basePath}/${item.slug}`}
-                                    className="block py-[9px] px-3 rounded-lg text-[15px] text-[#1a2355] dark:text-white font-medium hover:bg-[#f0f4ff] dark:hover:bg-[#1e293b] transition-colors duration-150"
-                                >
+                            ) : (
+                                <span className="block text-[12px] font-bold uppercase tracking-wider text-[#1a2355] dark:text-white mb-2">
                                     {item.title}
-                                </Link>
-                            </motion.li>
-                        ))}
-                    </motion.ul>
+                                </span>
+                            )}
+
+                            {/* Sub-items */}
+                            {item.subItems && item.subItems.length > 0 && (
+                                <ul className="flex flex-col gap-0.5">
+                                    {item.subItems.map((sub) => (
+                                        <li key={sub.slug}>
+                                            <Link
+                                                href={`${section.basePath}/${sub.slug}`}
+                                                className="block py-[6px] px-2 rounded-lg text-[13px] text-[#1a2355]/75 dark:text-white/65 hover:bg-[#f0f4ff] dark:hover:bg-[#1e293b] hover:text-[#1a2355] dark:hover:text-white transition-colors duration-150"
+                                            >
+                                                {sub.title}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </motion.div>
+                    ))}
                 </div>
             </div>
         </motion.div>

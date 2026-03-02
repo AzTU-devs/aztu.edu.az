@@ -1,23 +1,40 @@
 "use client";
 
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CloseIcon from "@mui/icons-material/Close";
-import SchoolIcon from "@mui/icons-material/School";
-import PersonIcon from "@mui/icons-material/Person";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import TrendingUpIcon from "@mui/icons-material/TrendingUp";
-import ConnectedTvIcon from "@mui/icons-material/ConnectedTv";
-import ImportContactsIcon from "@mui/icons-material/ImportContacts";
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
 };
 
+const RIGHT_SECTIONS = [
+  {
+    title: "Platform",
+    items: ["LMS", "Internal Grant Competition", "Plan Report Information System"],
+  },
+  {
+    title: "Alumni",
+    items: ["Career", "Honorary Doctors", "Honorary Graduates", "Our Heroes"],
+  },
+  {
+    title: "Why AzTU?",
+    items: ["Infrastructure", "Startups", "Dual Degree Diplomas", "Scholarships"],
+  },
+];
+
+const LEFT_ITEMS = ["Ranking", "Accreditation", "Policies", "Reports", "FAQ"];
+
 export default function QuickMenu({ isOpen, onClose }: Props) {
+  const [activeSection, setActiveSection] = useState<string>(RIGHT_SECTIONS[0].title);
+
+  const active = RIGHT_SECTIONS.find((s) => s.title === activeSection)!;
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -28,10 +45,7 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
           exit={{ opacity: 0 }}
         >
           {/* Overlay */}
-          <div
-            className="absolute inset-0 bg-black/40"
-            onClick={onClose}
-          />
+          <div className="absolute inset-0 bg-black/40" onClick={onClose} />
 
           {/* MAIN CONTAINER */}
           <motion.div
@@ -75,11 +89,7 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
               </h2>
 
               <div>
-                {[
-                  "İxtisaslar İnformasiya Sistemi",
-                  "Daxili Qrant Müsabiqəsi",
-                  "Plan Hesabat İnformasiya Sistemi",
-                ].map((item, i) => (
+                {LEFT_ITEMS.map((item, i) => (
                   <div
                     key={i}
                     className="
@@ -137,58 +147,53 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.4 }}
             >
-              {/* Top Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                {[
-                  { icon: PersonIcon, text: "LMS" },
-                  { icon: SchoolIcon, text: "Alumni" },
-                  { icon: ConnectedTvIcon, text: "AzTU TV" },
-                ].map((item, i) => (
-                  <div
-                    key={i}
-                    className="
-                      flex items-center gap-2
-                      bg-white dark:bg-[#1e293b] text-[#1a2355] dark:text-white
-                      p-3 rounded-lg font-bold
-                      cursor-pointer
-                      w-full sm:w-1/3
-                      justify-center
-                    "
-                  >
-                    <item.icon sx={{ color: "#1a2355" }} />
-                    {item.text}
-                  </div>
-                ))}
+              {/* Section tabs row */}
+              <div className="flex gap-2 flex-wrap mb-6">
+                {RIGHT_SECTIONS.map((section) => {
+                  const isActive = activeSection === section.title;
+                  return (
+                    <button
+                      key={section.title}
+                      onClick={() => setActiveSection(section.title)}
+                      className={`
+                        px-5 py-2 rounded-full font-bold text-sm transition-all cursor-pointer
+                        ${isActive
+                          ? "bg-white text-[#1a2355]"
+                          : "bg-white/20 text-white hover:bg-white/40"
+                        }
+                      `}
+                    >
+                      {section.title}
+                    </button>
+                  );
+                })}
               </div>
 
-              {/* Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {[
-                  { icon: ImportContactsIcon, text: "Kitabxana" },
-                  { icon: TrendingUpIcon, text: "Karyera və Məşğulluq" },
-                  { icon: SchoolIcon, text: "Onlayn İmtahan" },
-                  { icon: ImportContactsIcon, text: "Onlayn Apellasiya" },
-                  { icon: TrendingUpIcon, text: "Elmi-Metodiki Şura" },
-                  { icon: SchoolIcon, text: "Təkrar ali təhsil" },
-                ].map((item, i) => (
-                  <div
-                    key={i}
-                    className="
-                      flex flex-col items-center justify-center
-                      h-[120px]
-                      text-white font-bold
-                      border border-white/40
-                      rounded-[20px]
-                      hover:bg-white hover:text-[#5A9BD3]
-                      transition cursor-pointer
-                      text-center
-                    "
-                  >
-                    <item.icon sx={{ fontSize: 30, color: "inherit" }} />
-                    {item.text}
-                  </div>
-                ))}
-              </div>
+              {/* Active section items */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeSection}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="flex flex-col gap-3"
+                >
+                  {active.items.map((item) => (
+                    <div
+                      key={item}
+                      className="
+                        px-6 py-4 rounded-2xl
+                        bg-white/20 text-white font-semibold
+                        hover:bg-white hover:text-[#1a2355]
+                        transition-colors cursor-pointer
+                      "
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
             </motion.div>
           </motion.div>
         </motion.div>

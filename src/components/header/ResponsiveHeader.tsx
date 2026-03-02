@@ -156,7 +156,7 @@ export default function ResponsiveHeader() {
                                         {/* Section items */}
                                         <AnimatePresence initial={false}>
                                             {isExpanded && (
-                                                <motion.ul
+                                                <motion.div
                                                     key="items"
                                                     initial={{ height: 0, opacity: 0 }}
                                                     animate={{ height: "auto", opacity: 1 }}
@@ -165,17 +165,37 @@ export default function ResponsiveHeader() {
                                                     className="overflow-hidden bg-[#f8faff] dark:bg-[#162032]"
                                                 >
                                                     {section.items.map((item) => (
-                                                        <li key={item.slug}>
-                                                            <Link
-                                                                href={`${section.basePath}/${item.slug}`}
-                                                                onClick={() => setIsOpen(false)}
-                                                                className="block px-7 py-3 text-[13px] text-[#1a2355]/80 dark:text-white/70 hover:text-[#1a2355] dark:hover:text-white hover:bg-[#e8eeff] dark:hover:bg-[#1e3a5f] transition-colors border-b border-gray-100/70 dark:border-gray-700/50 last:border-b-0"
-                                                            >
-                                                                {item.title}
-                                                            </Link>
-                                                        </li>
+                                                        <div key={item.title}>
+                                                            {/* Direct link item */}
+                                                            {item.slug && !item.subItems?.length ? (
+                                                                <Link
+                                                                    href={`${section.basePath}/${item.slug}`}
+                                                                    onClick={() => setIsOpen(false)}
+                                                                    className="block px-7 py-3 text-[13px] text-[#1a2355]/80 dark:text-white/70 hover:text-[#1a2355] dark:hover:text-white hover:bg-[#e8eeff] dark:hover:bg-[#1e3a5f] transition-colors border-b border-gray-100/70 dark:border-gray-700/50"
+                                                                >
+                                                                    {item.title}
+                                                                </Link>
+                                                            ) : (
+                                                                /* Category header + sub-items */
+                                                                <div className="border-b border-gray-100/70 dark:border-gray-700/50">
+                                                                    <span className="block px-7 pt-3 pb-1 text-[11px] font-bold uppercase tracking-wider text-[#1a2355]/50 dark:text-white/40">
+                                                                        {item.title}
+                                                                    </span>
+                                                                    {item.subItems?.map((sub) => (
+                                                                        <Link
+                                                                            key={sub.slug}
+                                                                            href={`${section.basePath}/${sub.slug}`}
+                                                                            onClick={() => setIsOpen(false)}
+                                                                            className="block px-9 py-2.5 text-[13px] text-[#1a2355]/80 dark:text-white/70 hover:text-[#1a2355] dark:hover:text-white hover:bg-[#e8eeff] dark:hover:bg-[#1e3a5f] transition-colors"
+                                                                        >
+                                                                            {sub.title}
+                                                                        </Link>
+                                                                    ))}
+                                                                </div>
+                                                            )}
+                                                        </div>
                                                     ))}
-                                                </motion.ul>
+                                                </motion.div>
                                             )}
                                         </AnimatePresence>
                                     </div>

@@ -1,22 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { use, useState } from "react";
 import SectionBlock from "@/components/shared/SectionBlock";
 import PersonCard from "@/components/shared/PersonCard";
 import ComingSoon from "@/components/shared/ComingSoon";
-import { Employee } from "@/types/faculty";
+import { getFacultyEmployees } from "@/data/staticFaculties";
 import SearchIcon from "@mui/icons-material/Search";
 
-export default function EmekdaslarPage() {
-  // When API is ready, fetch employees here
-  const employees: Employee[] = [
-    { id: 1, full_name: "Rzayeva Aynur Sabir qızı", position: "Metodist", photo_url: "https://ui-avatars.com/api/?name=Aynur+Rzayeva&background=ee7c7e&color=fff&size=200&bold=true", email: "a.rzayeva@aztu.edu.az" },
-    { id: 2, full_name: "Muradov Tərlan Zakir oğlu", position: "Laborant", photo_url: "https://ui-avatars.com/api/?name=Tarlan+Muradov&background=1a2355&color=fff&size=200&bold=true", email: "t.muradov@aztu.edu.az" },
-    { id: 3, full_name: "Hümbətova Fidan Elçin qızı", position: "Baş laborant", photo_url: "https://ui-avatars.com/api/?name=Fidan+Humbatova&background=c62828&color=fff&size=200&bold=true", email: "f.humbatova@aztu.edu.az" },
-    { id: 4, full_name: "Mustafayev Rauf Elnur oğlu", position: "Laborant", photo_url: "https://ui-avatars.com/api/?name=Rauf+Mustafayev&background=283593&color=fff&size=200&bold=true", email: "r.mustafayev@aztu.edu.az" },
-    { id: 5, full_name: "Əhmədova Günel Vasif qızı", position: "İnzibati işçi", photo_url: "https://ui-avatars.com/api/?name=Gunel+Ahmadova&background=6a1b9a&color=fff&size=200&bold=true", email: "g.ahmadova@aztu.edu.az" },
-    { id: 6, full_name: "Babaxanov Cavid Rauf oğlu", position: "Texnik", photo_url: "https://ui-avatars.com/api/?name=Cavid+Babaxanov&background=1b5e20&color=fff&size=200&bold=true", email: "c.babaxanov@aztu.edu.az" },
-  ];
+interface Props {
+  params: Promise<{ facultyId: string }>;
+}
+
+export default function EmekdaslarPage({ params }: Props) {
+  const { facultyId } = use(params);
+  const employees = getFacultyEmployees(Number(facultyId));
   const [search, setSearch] = useState("");
 
   const filtered = employees.filter(
@@ -29,15 +26,13 @@ export default function EmekdaslarPage() {
     <div className="space-y-6">
       <SectionBlock title="Əməkdaşlar" accent>
         <p className="text-sm text-gray-500 dark:text-slate-400 mb-6">
-          Fakültənin əməkdaşları. Hər birinin şəkli və ya adı üzərinə toxunduqda CV
-          məlumatları xarici PDF formasında açıla bilər.
+          Fakültənin əməkdaşları. Ətraflı məlumat üçün əməkdaşın kartına klikləyin.
         </p>
 
         {employees.length === 0 ? (
           <ComingSoon label="Əməkdaşlar haqqında məlumat əlavə ediləcək" />
         ) : (
           <>
-            {/* Search */}
             <div className="relative mb-6">
               <SearchIcon
                 sx={{ fontSize: 20, color: "#9ca3af" }}
@@ -62,6 +57,7 @@ export default function EmekdaslarPage() {
                   cvUrl={emp.cv_url}
                   email={emp.email}
                   size="sm"
+                  href={`/faculties/${facultyId}/haqqimizda/emekdaslar/${emp.id}`}
                 />
               ))}
             </div>
