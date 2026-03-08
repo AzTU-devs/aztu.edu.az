@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -82,14 +83,16 @@ export default function Projects() {
                         Layihələr
                     </h2>
                 </div>
-                <motion.button
-                    whileHover={{ scale: 1.04 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="group flex items-center gap-2 bg-[#1a2355] py-2.5 px-5 rounded-xl text-white font-bold cursor-pointer hover:bg-[#0b1330] transition-colors duration-300"
-                >
-                    Bütün Layihələr
-                    <ChevronRightIcon className="transition-transform duration-300 group-hover:translate-x-1.5" />
-                </motion.button>
+                <Link href="/projects">
+                    <motion.button
+                        whileHover={{ scale: 1.04 }}
+                        whileTap={{ scale: 0.97 }}
+                        className="group flex items-center gap-2 bg-[#1a2355] py-2.5 px-5 rounded-xl text-white font-bold cursor-pointer hover:bg-[#0b1330] transition-colors duration-300"
+                    >
+                        Bütün Layihələr
+                        <ChevronRightIcon className="transition-transform duration-300 group-hover:translate-x-1.5" />
+                    </motion.button>
+                </Link>
             </motion.div>
 
             {/* Project Cards */}
@@ -108,7 +111,7 @@ export default function Projects() {
                         className={`group rounded-2xl border-2 p-6 flex flex-col gap-3 hover:shadow-xl transition-all duration-300 cursor-pointer dark:border-opacity-30 ${project.color} dark:bg-[#1e293b]`}
                     >
                         <div className="flex items-center justify-between">
-                            <span className={`text-xs font-bold ${project.accent} bg-white/70 px-3 py-1 rounded-full`}>
+                            <span className={`text-xs font-bold ${project.accent} bg-white/70 dark:bg-white/10 px-3 py-1 rounded-full`}>
                                 {project.category}
                             </span>
                             <motion.div
@@ -120,16 +123,16 @@ export default function Projects() {
                             </motion.div>
                         </div>
 
-                        <h3 className="text-[#1a2355] font-bold text-base leading-snug group-hover:text-[#1a2355]/80 transition-colors duration-300">
+                        <h3 className="text-[#1a2355] dark:text-white font-bold text-base leading-snug group-hover:text-[#1a2355]/80 dark:group-hover:text-white/80 transition-colors duration-300">
                             {project.title}
                         </h3>
 
-                        <p className="text-gray-600 text-sm flex-1 leading-relaxed">
+                        <p className="text-gray-600 dark:text-gray-400 text-sm flex-1 leading-relaxed">
                             {project.description}
                         </p>
 
                         <div className="flex items-center justify-between mt-2">
-                            <div className="flex items-center gap-1 text-gray-400 text-sm">
+                            <div className="flex items-center gap-1 text-gray-400 dark:text-gray-500 text-sm">
                                 <CalendarMonthIcon sx={{ fontSize: 15 }} />
                                 <span>{project.year}</span>
                             </div>

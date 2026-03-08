@@ -1,3 +1,11 @@
+import type { StaticImageData } from "next/image";
+import Slide1 from "@/../public/slide-1.png";
+import Slide2 from "@/../public/slide-2.png";
+import Slide3 from "@/../public/slide-3.png";
+import Slide4 from "@/../public/slide-4.png";
+import News2 from "@/../public/news/news-2.png";
+import News4 from "@/../public/news/news-4.png";
+
 export interface NavSubItem {
     title: string;
     slug: string;
@@ -15,6 +23,7 @@ export interface NavSection {
     key: string;
     label: string;
     basePath: string;
+    image: StaticImageData;
     items: NavItem[];
 }
 
@@ -23,6 +32,7 @@ export const NAV_SECTIONS: NavSection[] = [
         key: "about",
         label: "ABOUT",
         basePath: "/about",
+        image: Slide1,
         items: [
             { title: "Vision & Mission", slug: "vision-mission" },
             { title: "History of AzTU", slug: "history" },
@@ -46,6 +56,7 @@ export const NAV_SECTIONS: NavSection[] = [
         key: "academics",
         label: "ACADEMICS",
         basePath: "/academics",
+        image: Slide2,
         items: [
             { title: "Faculties", slug: "faculties" },
             { title: "Cafedras", slug: "cafedras" },
@@ -64,6 +75,7 @@ export const NAV_SECTIONS: NavSection[] = [
         key: "administration",
         label: "ADMINISTRATION",
         basePath: "/administration",
+        image: Slide3,
         items: [
             {
                 title: "Departments",
@@ -79,6 +91,7 @@ export const NAV_SECTIONS: NavSection[] = [
         key: "students",
         label: "STUDENTS",
         basePath: "/students",
+        image: Slide4,
         items: [
             {
                 title: "Academic Calendar",
@@ -113,6 +126,7 @@ export const NAV_SECTIONS: NavSection[] = [
         key: "research",
         label: "RESEARCH",
         basePath: "/research",
+        image: News2,
         items: [
             { title: "Research Activities", slug: "activities" },
             { title: "Research Priorities", slug: "priorities" },
@@ -122,6 +136,7 @@ export const NAV_SECTIONS: NavSection[] = [
         key: "community",
         label: "COMMUNITY",
         basePath: "/community",
+        image: News4,
         items: [
             {
                 title: "Campus Life",

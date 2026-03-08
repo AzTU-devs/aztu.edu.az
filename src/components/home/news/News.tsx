@@ -2,27 +2,52 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import News1 from "@/../public/news/news-1.png";
-import News2 from "@/../public/news/news-2.png";
-import News3 from "@/../public/news/news-3.png";
-import News4 from "@/../public/news/news-4.png";
-import News5 from "@/../public/news/news-5.png";
+import { newsSlug } from "@/util/slugify";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { allNews, categoryColors } from "@/app/news/newsData";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchNewsList } from "@/redux/features/newsSlice";
+import type { AppDispatch, RootState } from "@/redux/store";
+import { API_BASE_URL } from "@/util/apiClient";
 
-const newsImages = [News1, News2, News3, News4, News5];
+const categoryColors: Record<string, string> = {
+    AzTU: "bg-[#1a2355]",
+    Elm: "bg-emerald-500",
+    Tələbə: "bg-violet-500",
+    Əməkdaşlıq: "bg-amber-500",
+    Qəbul: "bg-[#ee7c7e]",
+};
+
+function formatDate(iso: string) {
+    if (!iso) return "";
+    return new Date(iso).toLocaleDateString("az-AZ", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+    });
+}
+
+function stripHtml(html: string) {
+    return html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+}
 
 export default function News() {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
+    const dispatch = useDispatch<AppDispatch>();
+    const { list, listLoading } = useSelector((s: RootState) => s.news);
 
-    const featured = allNews[0];
-    const rest = allNews.slice(1, 5);
+    useEffect(() => {
+        if (list.length === 0) {
+            dispatch(fetchNewsList({ start: 0, end: 5, lang: "az" }));
+        }
+    }, [dispatch]);
+
+    const featured = list[0] ?? null;
+    const rest = list.slice(1, 5);
 
     return (
         <section
@@ -61,132 +86,117 @@ export default function News() {
                 </Link>
             </motion.div>
 
+            {/* Loading skeleton */}
+            {listLoading && list.length === 0 && (
+                <div className="flex flex-col lg:flex-row gap-6 animate-pulse">
+                    <div className="lg:w-[52%] bg-gray-200 dark:bg-slate-800 rounded-3xl h-[28rem]" />
+                    <div className="lg:w-[48%] grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        {[1, 2, 3, 4].map((i) => (
+                            <div key={i} className="bg-gray-200 dark:bg-slate-800 rounded-2xl h-48" />
+                        ))}
+                    </div>
+                </div>
+            )}
+
             {/* Main Layout */}
-            <div className="flex flex-col lg:flex-row gap-6 relative">
+            {!listLoading && featured && (
+                <div className="flex flex-col lg:flex-row gap-6 relative">
 
-                {/* ── Featured Card ── */}
-                <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-                    className="lg:w-[52%]"
-                >
-                    <Link href={`/news/${featured.id}`}>
-                        <div className="group bg-white dark:bg-[#1e293b] rounded-3xl shadow-lg overflow-hidden h-full cursor-pointer hover:shadow-2xl transition-shadow duration-500">
-                            {/* Image */}
-                            <div className="relative h-72 md:h-[22rem] overflow-hidden">
-                                <Image
-                                    src={newsImages[(featured.imageIndex - 1) % 5]}
-                                    alt={featured.title}
-                                    fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
-                                />
-                                {/* Gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-
-                                {/* Category badge */}
-                                <span
-                                    className={`absolute top-4 left-4 ${categoryColors[featured.category] ?? "bg-[#1a2355]"} text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow`}
-                                >
-                                    <LocalOfferIcon sx={{ fontSize: 12 }} />
-                                    {featured.category}
-                                </span>
-
-                                {/* Date + read time */}
-                                <div className="absolute bottom-4 left-4 flex items-center gap-2 flex-wrap">
-                                    <span className="flex items-center gap-1 text-white text-xs font-medium bg-black/35 backdrop-blur-sm px-2.5 py-1 rounded-full">
-                                        <CalendarMonthIcon sx={{ fontSize: 13 }} />
-                                        {featured.date} {featured.month} {featured.year}
-                                    </span>
-                                    <span className="flex items-center gap-1 text-white text-xs font-medium bg-black/35 backdrop-blur-sm px-2.5 py-1 rounded-full">
-                                        <AccessTimeIcon sx={{ fontSize: 13 }} />
-                                        {featured.readTime}
-                                    </span>
-                                </div>
-                            </div>
-
-                            {/* Content */}
-                            <div className="p-6 md:p-8">
-                                <h2 className="text-[#1a2355] dark:text-white font-bold text-xl md:text-2xl leading-snug mb-3 group-hover:text-[#ee7c7e] transition-colors duration-300">
-                                    {featured.title}
-                                </h2>
-                                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed line-clamp-3 mb-5">
-                                    {featured.desc}
-                                </p>
-                                <div className="flex items-center gap-1 text-[#1a2355] dark:text-[#5A9BD3] font-semibold text-sm w-fit">
-                                    Ətraflı oxu
-                                    <ChevronRightIcon
-                                        sx={{ fontSize: 18 }}
-                                        className="transition-transform duration-300 group-hover:translate-x-1"
+                    {/* Featured Card */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={isInView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+                        className="lg:w-[52%]"
+                    >
+                        <Link href={`/news/${newsSlug(featured.news_id, featured.title)}`}>
+                            <div className="group bg-white dark:bg-[#1e293b] rounded-3xl shadow-lg overflow-hidden h-full cursor-pointer hover:shadow-2xl transition-shadow duration-500">
+                                <div className="relative h-72 md:h-[22rem] overflow-hidden">
+                                    <Image
+                                        src={`${API_BASE_URL}/${featured.cover_image}`}
+                                        alt={featured.title}
+                                        fill
+                                        className="object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
                                     />
-                                </div>
-                            </div>
-                        </div>
-                    </Link>
-                </motion.div>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
-                {/* ── Small Cards 2×2 Grid ── */}
-                <div className="lg:w-[48%] grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    {rest.map((item, idx) => (
-                        <motion.div
-                            key={item.id}
-                            initial={{ opacity: 0, y: 35 }}
-                            animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{
-                                duration: 0.55,
-                                ease: "easeOut",
-                                delay: 0.18 + idx * 0.1,
-                            }}
-                        >
-                            <Link href={`/news/${item.id}`}>
-                                <motion.div
-                                    whileHover={{ y: -5, transition: { duration: 0.25 } }}
-                                    className="group bg-white dark:bg-[#1e293b] rounded-2xl shadow-md overflow-hidden cursor-pointer hover:shadow-xl transition-shadow duration-300 h-full flex flex-col"
-                                >
-                                    {/* Image */}
-                                    <div className="relative h-44 overflow-hidden flex-shrink-0">
-                                        <Image
-                                            src={newsImages[(item.imageIndex - 1) % 5]}
-                                            alt={item.title}
-                                            fill
-                                            className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                        />
-                                        {/* Subtle overlay */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                        {/* Category */}
-                                        <span
-                                            className={`absolute top-3 left-3 ${categoryColors[item.category] ?? "bg-[#1a2355]"} text-white text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow`}
-                                        >
-                                            <LocalOfferIcon sx={{ fontSize: 11 }} />
-                                            {item.category}
+                                    <span className={`absolute top-4 left-4 ${categoryColors[featured.cateogry_id] ?? "bg-[#1a2355]"} text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow`}>
+                                        <LocalOfferIcon sx={{ fontSize: 12 }} />
+                                        {featured.cateogry_id}
+                                    </span>
+
+                                    <div className="absolute bottom-4 left-4 flex items-center gap-2 flex-wrap">
+                                        <span className="flex items-center gap-1 text-white text-xs font-medium bg-black/35 backdrop-blur-sm px-2.5 py-1 rounded-full">
+                                            <CalendarMonthIcon sx={{ fontSize: 13 }} />
+                                            {formatDate(featured.created_at)}
                                         </span>
                                     </div>
+                                </div>
 
-                                    {/* Content */}
-                                    <div className="p-4 flex flex-col gap-2 flex-1">
-                                        <div className="flex items-center gap-1 text-gray-400 dark:text-gray-500 text-xs">
-                                            <CalendarMonthIcon sx={{ fontSize: 13 }} />
-                                            <span>
-                                                {item.date} {item.month}
+                                <div className="p-6 md:p-8">
+                                    <h2 className="text-[#1a2355] dark:text-white font-bold text-xl md:text-2xl leading-snug mb-3 group-hover:text-[#ee7c7e] transition-colors duration-300">
+                                        {featured.title}
+                                    </h2>
+                                    <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed line-clamp-3 mb-5">
+                                        {stripHtml(featured.html_content)}
+                                    </p>
+                                    <div className="flex items-center gap-1 text-[#1a2355] dark:text-[#5A9BD3] font-semibold text-sm w-fit">
+                                        Ətraflı oxu
+                                        <ChevronRightIcon sx={{ fontSize: 18 }} className="transition-transform duration-300 group-hover:translate-x-1" />
+                                    </div>
+                                </div>
+                            </div>
+                        </Link>
+                    </motion.div>
+
+                    {/* Small Cards 2×2 Grid */}
+                    <div className="lg:w-[48%] grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        {rest.map((item, idx) => (
+                            <motion.div
+                                key={item.news_id}
+                                initial={{ opacity: 0, y: 35 }}
+                                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.55, ease: "easeOut", delay: 0.18 + idx * 0.1 }}
+                            >
+                                <Link href={`/news/${newsSlug(item.news_id, item.title)}`}>
+                                    <motion.div
+                                        whileHover={{ y: -5, transition: { duration: 0.25 } }}
+                                        className="group bg-white dark:bg-[#1e293b] rounded-2xl shadow-md overflow-hidden cursor-pointer hover:shadow-xl transition-shadow duration-300 h-full flex flex-col"
+                                    >
+                                        <div className="relative h-44 overflow-hidden flex-shrink-0">
+                                            <Image
+                                                src={`${API_BASE_URL}/${item.cover_image}`}
+                                                alt={item.title}
+                                                fill
+                                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                            <span className={`absolute top-3 left-3 ${categoryColors[item.cateogry_id] ?? "bg-[#1a2355]"} text-white text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow`}>
+                                                <LocalOfferIcon sx={{ fontSize: 11 }} />
+                                                {item.cateogry_id}
                                             </span>
                                         </div>
-                                        <h3 className="text-[#1a2355] dark:text-white font-bold text-sm leading-snug flex-1 group-hover:text-[#ee7c7e] transition-colors duration-300 line-clamp-3">
-                                            {item.title}
-                                        </h3>
-                                        <div className="flex items-center gap-0.5 text-[#1a2355] dark:text-[#5A9BD3] font-semibold text-xs mt-1 w-fit">
-                                            Ətraflı oxu
-                                            <ChevronRightIcon
-                                                sx={{ fontSize: 14 }}
-                                                className="transition-transform duration-300 group-hover:translate-x-1"
-                                            />
+
+                                        <div className="p-4 flex flex-col gap-2 flex-1">
+                                            <div className="flex items-center gap-1 text-gray-400 dark:text-gray-500 text-xs">
+                                                <CalendarMonthIcon sx={{ fontSize: 13 }} />
+                                                <span>{formatDate(item.created_at)}</span>
+                                            </div>
+                                            <h3 className="text-[#1a2355] dark:text-white font-bold text-sm leading-snug flex-1 group-hover:text-[#ee7c7e] transition-colors duration-300 line-clamp-3">
+                                                {item.title}
+                                            </h3>
+                                            <div className="flex items-center gap-0.5 text-[#1a2355] dark:text-[#5A9BD3] font-semibold text-xs mt-1 w-fit">
+                                                Ətraflı oxu
+                                                <ChevronRightIcon sx={{ fontSize: 14 }} className="transition-transform duration-300 group-hover:translate-x-1" />
+                                            </div>
                                         </div>
-                                    </div>
-                                </motion.div>
-                            </Link>
-                        </motion.div>
-                    ))}
+                                    </motion.div>
+                                </Link>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
-            </div>
+            )}
         </section>
     );
 }
