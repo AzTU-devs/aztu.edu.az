@@ -15,7 +15,12 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
+  overflow-x: hidden;
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
@@ -39,4 +44,22 @@ body {
 
 .animate-marquee:hover {
   animation-play-state: paused;
+}
+
+/* Gallery slider thumbnail active state */
+.gallery-thumbs .swiper-slide-thumb-active > div {
+  opacity: 1;
+  outline: 2px solid #ee7c7e;
+  outline-offset: 2px;
+}
+
+.gallery-thumbs .swiper-slide > div {
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+/* Hide default Swiper navigation arrows (we use custom ones) */
+.swiper-button-next,
+.swiper-button-prev {
+  display: none;
 }

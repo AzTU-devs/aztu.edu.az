@@ -10,6 +10,7 @@ import Collaborators from "@/components/home/collaborators/Collaborators";
 import HeaderChanger from "@/components/header/HeaderChanger";
 import Announcements from "@/components/home/announcements.tsx/Announcements";
 import HeroSection from "@/components/home/heroSection/HeroSection";
+import StatsSection from "@/components/home/stats/StatsSection";
 
 function SectionReveal({
   children,
@@ -42,7 +43,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 800);
     return () => clearTimeout(timer);
   }, []);
 
@@ -52,6 +53,9 @@ export default function Home() {
       <main className="overflow-x-hidden">
         {/* Hero — no reveal wrapper, plays immediately */}
         <HeroSection />
+
+        {/* University metrics */}
+        <StatsSection />
 
         {/* News section */}
         <SectionReveal>
@@ -63,14 +67,14 @@ export default function Home() {
           <Announcements />
         </SectionReveal>
 
-        {/* Projects */}
-        <SectionReveal delay={0.05}>
-          <Projects />
-        </SectionReveal>
-
         {/* Collaborators */}
         <SectionReveal delay={0.05}>
           <Collaborators />
+        </SectionReveal>
+
+        {/* Projects */}
+        <SectionReveal delay={0.05}>
+          <Projects />
         </SectionReveal>
       </main>
 

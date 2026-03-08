@@ -1,24 +1,42 @@
-import apiClient from "@/util/apiClient";
+import apiClient, { Lang } from "@/util/apiClient";
+import type { NewsListItem, NewsDetail } from "@/types/news";
 
-export interface NewsInterface {
-    news_id: number;
-    cateogry_id: number;
-    display_order: number;
-    is_active: boolean;
-    title: string;
-    html_content: string;
-}
+export const getNewsList = async (
+    params: {
+        categoryId?: string;
+        start?: number;
+        end?: number;
+        lang?: Lang;
+    } = {}
+): Promise<NewsListItem[]> => {
+    const { categoryId, start = 0, end = 10, lang = "az" } = params;
 
-export const getNews = async (start: number, end: number) => {
-    try {
-        const response = await apiClient.get(`/api/news/public/all?start=${start}&en=${end}`);
+    const query = new URLSearchParams();
+    if (categoryId) query.set("category_id", categoryId);
+    query.set("start", String(start));
+    query.set("end", String(end));
+    query.set("lang", lang);
 
-        if (response.data.status_code === 200) {
-            return response.data.news;
-        } else if (response.data.status_code === 204) {
-            return "NO_CONTENT";
-        }
-    } catch (err: any) {
-        return "ERROR";
+    const response = await apiClient.get(`/api/news/public/all?${query.toString()}`, {
+        headers: { "Accept-Language": lang },
+    });
+
+    if (response.data.status_code === 200) {
+        return response.data.news as NewsListItem[];
     }
-}
+    return [];
+};
+
+export const getNewsById = async (
+    id: number,
+    lang: Lang = "az"
+): Promise<NewsDetail | null> => {
+    const response = await apiClient.get(`/api/news/${id}?lang=${lang}`, {
+        headers: { "Accept-Language": lang },
+    });
+
+    if (response.data.status_code === 200) {
+        return response.data.news as NewsDetail;
+    }
+    return null;
+};
