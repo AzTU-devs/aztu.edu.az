@@ -1,24 +1,48 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import CampaignIcon from "@mui/icons-material/Campaign";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import LabelIcon from "@mui/icons-material/Label";
-import {
-    allAnnouncements,
-    announcementCategoryColors,
-} from "@/app/announcements/announcementsData";
+
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site";
+
+const MONTHS_AZ = [
+    "Yanvar","Fevral","Mart","Aprel","May","İyun",
+    "İyul","Avqust","Sentyabr","Oktyabr","Noyabr","Dekabr",
+];
+
+function parseDate(iso: string) {
+    const d = new Date(iso);
+    return {
+        date: String(d.getUTCDate()).padStart(2, "0"),
+        month: MONTHS_AZ[d.getUTCMonth()],
+        year: String(d.getUTCFullYear()),
+    };
+}
+
+interface ApiAnnouncement {
+    id: number;
+    title: string;
+    html_content: string;
+    is_active: boolean;
+    created_at: string;
+    display_order: number;
+}
 
 export default function Announcements() {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
+    const [announcements, setAnnouncements] = useState<ApiAnnouncement[]>([]);
 
-    // Show first 4 from static data
-    const displayed = allAnnouncements.slice(0, 4);
+    useEffect(() => {
+        fetch(`${API_BASE}/api/announcement/public/all?start=0&end=4`)
+            .then((r) => r.json())
+            .then((data) => setAnnouncements(data.announcements ?? []))
+            .catch(() => {});
+    }, []);
 
     return (
         <section
@@ -60,69 +84,46 @@ export default function Announcements() {
 
             {/* Announcement Cards */}
             <div className="flex flex-wrap gap-5">
-                {displayed.map((announcement, idx) => (
-                    <motion.div
-                        key={announcement.id}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{
-                            duration: 0.55,
-                            ease: "easeOut",
-                            delay: 0.15 + idx * 0.1,
-                        }}
-                        whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                        className="flex-1 min-w-[260px] max-w-full md:max-w-none"
-                    >
-                        <Link href={`/announcements/${announcement.id}`}>
-                            <div className="group flex items-start gap-4 bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-4 md:p-5 h-full cursor-pointer hover:bg-white/20 transition-colors duration-300">
-                                {/* Date badge */}
-                                <div className="bg-white/15 border border-white/20 rounded-xl w-[76px] md:w-[84px] min-h-[70px] text-center font-bold text-white flex-shrink-0 flex flex-col items-center justify-center gap-0.5 p-2">
-                                    <CalendarMonthIcon sx={{ fontSize: 16, opacity: 0.7 }} />
-                                    <p className="text-xs leading-tight">
-                                        {announcement.date}
-                                    </p>
-                                    <p className="text-[10px] opacity-70 leading-tight">
-                                        {announcement.month}
-                                    </p>
-                                </div>
-
-                                {/* Content */}
-                                <div className="flex flex-col gap-2 flex-1 min-w-0">
-                                    {/* Badges row */}
-                                    <div className="flex items-center gap-2 flex-wrap">
-                                        <span
-                                            className={`${announcementCategoryColors[announcement.category] ?? "bg-white/20"} text-white text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1`}
-                                        >
-                                            <LabelIcon sx={{ fontSize: 10 }} />
-                                            {announcement.category}
-                                        </span>
-                                        {announcement.urgent && (
-                                            <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
-                                                <ErrorOutlineIcon sx={{ fontSize: 10 }} />
-                                                Təcili
-                                            </span>
-                                        )}
+                {announcements.map((announcement, idx) => {
+                    const { date, month } = parseDate(announcement.created_at);
+                    return (
+                        <motion.div
+                            key={announcement.id}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : {}}
+                            transition={{
+                                duration: 0.55,
+                                ease: "easeOut",
+                                delay: 0.15 + idx * 0.1,
+                            }}
+                            whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                            className="flex-1 min-w-[260px] max-w-full md:max-w-none"
+                        >
+                            <Link href={`/announcements/${announcement.id}`}>
+                                <div className="group flex items-start gap-4 bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-4 md:p-5 h-full cursor-pointer hover:bg-white/20 transition-colors duration-300">
+                                    {/* Date badge */}
+                                    <div className="bg-white/15 border border-white/20 rounded-xl w-[76px] md:w-[84px] min-h-[70px] text-center font-bold text-white flex-shrink-0 flex flex-col items-center justify-center gap-0.5 p-2">
+                                        <CalendarMonthIcon sx={{ fontSize: 16, opacity: 0.7 }} />
+                                        <p className="text-xs leading-tight">{date}</p>
+                                        <p className="text-[10px] opacity-70 leading-tight">{month}</p>
                                     </div>
 
-                                    <h3 className="text-white font-semibold text-sm leading-snug line-clamp-2 group-hover:text-white/80 transition-colors duration-200">
-                                        {announcement.title}
-                                    </h3>
+                                    {/* Content */}
+                                    <div className="flex flex-col gap-2 flex-1 min-w-0">
+                                        <h3 className="text-white font-semibold text-sm leading-snug line-clamp-2 group-hover:text-white/80 transition-colors duration-200">
+                                            {announcement.title}
+                                        </h3>
+                                    </div>
 
-                                    {announcement.deadline && (
-                                        <p className="text-white/50 text-[11px] font-medium">
-                                            Son tarix: {announcement.deadline}
-                                        </p>
-                                    )}
+                                    <ChevronRightIcon
+                                        sx={{ fontSize: 18 }}
+                                        className="text-white/30 flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white/60 mt-0.5"
+                                    />
                                 </div>
-
-                                <ChevronRightIcon
-                                    sx={{ fontSize: 18 }}
-                                    className="text-white/30 flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white/60 mt-0.5"
-                                />
-                            </div>
-                        </Link>
-                    </motion.div>
-                ))}
+                            </Link>
+                        </motion.div>
+                    );
+                })}
             </div>
         </section>
     );
