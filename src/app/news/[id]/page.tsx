@@ -279,9 +279,17 @@ export default function NewsDetailPage({
                 {detail && !detailLoading && (
                     <section className="px-4 md:px-10 lg:px-20 py-14">
                         <div className="flex flex-col lg:flex-row gap-10">
-
                             {/* ── Main article ── */}
                             <div className="flex-1 min-w-0">
+                                <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-60px" }}
+                                transition={{ duration: 0.55 }}
+                                className="text-gray-800 text-lg md:text-xl leading-relaxed font-medium border-l-4 border-[#1a2355] pl-6 mb-10 bg-blue-50/60 py-4 pr-4 rounded-r-xl"
+                            >
+                                {detail.az_title}
+                            </motion.p>
                                 <div
                                     className="prose prose-slate dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg"
                                     dangerouslySetInnerHTML={{ __html: detail.az_html_content }}

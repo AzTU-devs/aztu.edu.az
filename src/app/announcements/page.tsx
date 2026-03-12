@@ -3,20 +3,36 @@
 import Link from "next/link";
 import HeaderChanger from "@/components/header/HeaderChanger";
 import Footer from "@/components/footer/Footer";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import CampaignIcon from "@mui/icons-material/Campaign";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import LabelIcon from "@mui/icons-material/Label";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import PersonIcon from "@mui/icons-material/Person";
-import {
-    allAnnouncements,
-    announcementCategories,
-    announcementCategoryColors,
-} from "./announcementsData";
+
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site";
+
+const MONTHS_AZ = [
+    "Yanvar","Fevral","Mart","Aprel","May","İyun",
+    "İyul","Avqust","Sentyabr","Oktyabr","Noyabr","Dekabr",
+];
+
+function parseDate(iso: string) {
+    const d = new Date(iso);
+    return {
+        date: String(d.getUTCDate()).padStart(2, "0"),
+        month: MONTHS_AZ[d.getUTCMonth()],
+        year: String(d.getUTCFullYear()),
+    };
+}
+
+interface ApiAnnouncement {
+    id: number;
+    title: string;
+    html_content: string;
+    is_active: boolean;
+    created_at: string;
+    display_order: number;
+}
 
 const cardVariants = {
     hidden: { opacity: 0, y: 28 },
@@ -28,21 +44,17 @@ const cardVariants = {
 };
 
 export default function AnnouncementsPage() {
-    const [activeCategory, setActiveCategory] = useState("Hamısı");
+    const [announcements, setAnnouncements] = useState<ApiAnnouncement[]>([]);
 
-    const filtered =
-        activeCategory === "Hamısı"
-            ? allAnnouncements
-            : allAnnouncements.filter((a) => a.category === activeCategory);
+    useEffect(() => {
+        fetch(`${API_BASE}/api/announcement/public/all?start=0&end=100`)
+            .then((r) => r.json())
+            .then((data) => setAnnouncements(data.announcements ?? []))
+            .catch(() => {});
+    }, []);
 
-    // Pin urgent items first, then the rest
-    const sorted = [
-        ...filtered.filter((a) => a.urgent),
-        ...filtered.filter((a) => !a.urgent),
-    ];
-
-    const featured = sorted[0];
-    const rest = sorted.slice(1);
+    const featured = announcements[0];
+    const rest = announcements.slice(1);
 
     return (
         <>
@@ -96,42 +108,14 @@ export default function AnnouncementsPage() {
                     </motion.p>
                 </div>
 
-                {/* ── Category Filter ── */}
-                <div className="bg-white border-b border-gray-200 sticky top-0 z-20 shadow-sm">
-                    <div className="px-4 md:px-10 lg:px-20 flex items-center gap-2 overflow-x-auto py-3 scrollbar-hide">
-                        {announcementCategories.map((cat) => (
-                            <motion.button
-                                key={cat}
-                                onClick={() => setActiveCategory(cat)}
-                                whileTap={{ scale: 0.95 }}
-                                className={`flex-shrink-0 px-5 py-2 rounded-xl font-bold text-sm transition-all duration-300 cursor-pointer ${
-                                    activeCategory === cat
-                                        ? "bg-[#1a2355] text-white shadow"
-                                        : "bg-gray-100 text-[#1a2355] hover:bg-[#1a2355]/10"
-                                }`}
-                            >
-                                {cat}
-                            </motion.button>
-                        ))}
-                    </div>
-                </div>
-
                 <div className="px-4 md:px-10 lg:px-20 py-10">
 
                     {/* ── Empty state ── */}
-                    <AnimatePresence mode="wait">
-                        {filtered.length === 0 && (
-                            <motion.div
-                                key="empty"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                className="text-center py-24 text-gray-400 font-semibold text-lg"
-                            >
-                                Bu kateqoriyada elan tapılmadı.
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                    {announcements.length === 0 && (
+                        <div className="text-center py-24 text-gray-400 font-semibold text-lg">
+                            Elan tapılmadı.
+                        </div>
+                    )}
 
                     {featured && (
                         <>
@@ -145,63 +129,38 @@ export default function AnnouncementsPage() {
                                 <Link href={`/announcements/${featured.id}`}>
                                     <div className="group bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer hover:shadow-2xl transition-shadow duration-500">
                                         {/* Top accent bar */}
-                                        <div
-                                            className={`h-1.5 w-full ${announcementCategoryColors[featured.category] ?? "bg-[#1a2355]"}`}
-                                        />
+                                        <div className="h-1.5 w-full bg-[#1a2355]" />
 
                                         <div className="flex flex-col lg:flex-row gap-0">
                                             {/* Left: Date column */}
-                                            <div className="lg:w-40 flex-shrink-0 bg-[#1a2355] flex flex-col items-center justify-center p-6 gap-1">
-                                                <CalendarMonthIcon sx={{ color: "white", opacity: 0.6, fontSize: 22 }} />
-                                                <p className="text-white font-bold text-3xl leading-none">
-                                                    {featured.date}
-                                                </p>
-                                                <p className="text-white/70 text-sm font-medium">
-                                                    {featured.month}
-                                                </p>
-                                                <p className="text-white/50 text-xs">{featured.year}</p>
-                                            </div>
+                                            {(() => {
+                                                const { date, month, year } = parseDate(featured.created_at);
+                                                return (
+                                                    <div className="lg:w-40 flex-shrink-0 bg-[#1a2355] flex flex-col items-center justify-center p-6 gap-1">
+                                                        <CalendarMonthIcon sx={{ color: "white", opacity: 0.6, fontSize: 22 }} />
+                                                        <p className="text-white font-bold text-3xl leading-none">{date}</p>
+                                                        <p className="text-white/70 text-sm font-medium">{month}</p>
+                                                        <p className="text-white/50 text-xs">{year}</p>
+                                                    </div>
+                                                );
+                                            })()}
 
                                             {/* Right: Content */}
                                             <div className="flex flex-col justify-center px-7 py-7 gap-4 flex-1">
-                                                {/* Badges */}
-                                                <div className="flex flex-wrap items-center gap-2">
-                                                    <span
-                                                        className={`${announcementCategoryColors[featured.category] ?? "bg-[#1a2355]"} text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5`}
-                                                    >
-                                                        <LabelIcon sx={{ fontSize: 12 }} />
-                                                        {featured.category}
-                                                    </span>
-                                                    {featured.urgent && (
-                                                        <span className="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5">
-                                                            <ErrorOutlineIcon sx={{ fontSize: 12 }} />
-                                                            Təcili
-                                                        </span>
-                                                    )}
-                                                    <span className="text-gray-400 text-xs flex items-center gap-1">
-                                                        <PersonIcon sx={{ fontSize: 13 }} />
-                                                        {featured.department}
-                                                    </span>
-                                                </div>
-
                                                 {/* Title */}
                                                 <h2 className="text-[#1a2355] font-bold text-xl md:text-2xl leading-snug group-hover:underline decoration-[#1a2355]/30 underline-offset-4">
                                                     {featured.title}
                                                 </h2>
 
-                                                {/* Desc */}
-                                                <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">
-                                                    {featured.desc}
-                                                </p>
+                                                {featured.html_content && (
+                                                    <div
+                                                        className="text-gray-500 text-sm leading-relaxed line-clamp-2"
+                                                        dangerouslySetInnerHTML={{ __html: featured.html_content }}
+                                                    />
+                                                )}
 
                                                 {/* Footer row */}
                                                 <div className="flex flex-wrap items-center justify-between gap-3 mt-1">
-                                                    {featured.deadline && (
-                                                        <div className="flex items-center gap-1.5 text-xs font-semibold text-red-500 bg-red-50 px-3 py-1 rounded-lg">
-                                                            <AccessTimeIcon sx={{ fontSize: 14 }} />
-                                                            Son tarix: {featured.deadline}
-                                                        </div>
-                                                    )}
                                                     <div className="flex items-center gap-1 text-[#1a2355] font-bold text-sm ml-auto">
                                                         Ətraflı oxu
                                                         <ChevronRightIcon
@@ -236,77 +195,49 @@ export default function AnnouncementsPage() {
                     {/* ── Cards Grid ── */}
                     {rest.length > 0 && (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                            {rest.map((item, i) => (
-                                <motion.div
-                                    key={item.id}
-                                    custom={i}
-                                    variants={cardVariants}
-                                    initial="hidden"
-                                    animate="visible"
-                                    whileHover={{ y: -6, transition: { duration: 0.2 } }}
-                                    className="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col cursor-pointer group hover:shadow-xl transition-shadow duration-300"
-                                >
-                                    <Link href={`/announcements/${item.id}`} className="flex flex-col h-full">
-                                        {/* Category accent bar */}
-                                        <div
-                                            className={`h-1 w-full ${announcementCategoryColors[item.category] ?? "bg-[#1a2355]"}`}
-                                        />
+                            {rest.map((item, i) => {
+                                const { date, month, year } = parseDate(item.created_at);
+                                return (
+                                    <motion.div
+                                        key={item.id}
+                                        custom={i}
+                                        variants={cardVariants}
+                                        initial="hidden"
+                                        animate="visible"
+                                        whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                                        className="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col cursor-pointer group hover:shadow-xl transition-shadow duration-300"
+                                    >
+                                        <Link href={`/announcements/${item.id}`} className="flex flex-col h-full">
+                                            {/* Accent bar */}
+                                            <div className="h-1 w-full bg-[#1a2355]" />
 
-                                        <div className="p-5 flex flex-col gap-3 flex-1">
-                                            {/* Badges */}
-                                            <div className="flex flex-wrap gap-2">
-                                                <span
-                                                    className={`${announcementCategoryColors[item.category] ?? "bg-[#1a2355]"} text-white text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1`}
-                                                >
-                                                    <LabelIcon sx={{ fontSize: 10 }} />
-                                                    {item.category}
-                                                </span>
-                                                {item.urgent && (
-                                                    <span className="bg-red-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
-                                                        <ErrorOutlineIcon sx={{ fontSize: 10 }} />
-                                                        Təcili
-                                                    </span>
-                                                )}
-                                            </div>
-
-                                            {/* Date */}
-                                            <div className="flex items-center gap-1 text-gray-400 text-xs">
-                                                <CalendarMonthIcon sx={{ fontSize: 13 }} />
-                                                <span>
-                                                    {item.date} {item.month} {item.year}
-                                                </span>
-                                            </div>
-
-                                            {/* Title */}
-                                            <h3 className="text-[#1a2355] font-bold text-sm leading-snug flex-1 group-hover:underline decoration-[#1a2355]/30 underline-offset-2 line-clamp-3">
-                                                {item.title}
-                                            </h3>
-
-                                            {/* Deadline */}
-                                            {item.deadline && (
-                                                <div className="flex items-center gap-1 text-xs font-semibold text-red-500 bg-red-50 px-2.5 py-1 rounded-lg w-fit">
-                                                    <AccessTimeIcon sx={{ fontSize: 12 }} />
-                                                    {item.deadline}
+                                            <div className="p-5 flex flex-col gap-3 flex-1">
+                                                {/* Date */}
+                                                <div className="flex items-center gap-1 text-gray-400 text-xs">
+                                                    <CalendarMonthIcon sx={{ fontSize: 13 }} />
+                                                    <span>{date} {month} {year}</span>
                                                 </div>
-                                            )}
 
-                                            {/* Department + read more */}
-                                            <div className="flex items-center justify-between mt-auto pt-1">
-                                                <span className="text-gray-400 text-[10px] truncate max-w-[60%]">
-                                                    {item.department}
-                                                </span>
-                                                <div className="flex items-center gap-0.5 text-[#1a2355] font-semibold text-xs">
-                                                    Ətraflı
-                                                    <ChevronRightIcon
-                                                        sx={{ fontSize: 14 }}
-                                                        className="transition-transform duration-300 group-hover:translate-x-1"
-                                                    />
+                                                {/* Title */}
+                                                <h3 className="text-[#1a2355] font-bold text-sm leading-snug flex-1 group-hover:underline decoration-[#1a2355]/30 underline-offset-2 line-clamp-3">
+                                                    {item.title}
+                                                </h3>
+
+                                                {/* Read more */}
+                                                <div className="flex items-center justify-end mt-auto pt-1">
+                                                    <div className="flex items-center gap-0.5 text-[#1a2355] font-semibold text-xs">
+                                                        Ətraflı
+                                                        <ChevronRightIcon
+                                                            sx={{ fontSize: 14 }}
+                                                            className="transition-transform duration-300 group-hover:translate-x-1"
+                                                        />
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </Link>
-                                </motion.div>
-                            ))}
+                                        </Link>
+                                    </motion.div>
+                                );
+                            })}
                         </div>
                     )}
                 </div>
