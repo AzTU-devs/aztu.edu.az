@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from "react"
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward"
 
-const VIDEOS = [
+const LOCAL_VIDEOS = [
     "/heroVideos/video5.mp4",
     "/heroVideos/video1.mp4",
     "/heroVideos/video2.mp4",
@@ -11,14 +11,30 @@ const VIDEOS = [
 ]
 
 const AUTO_ADVANCE_INTERVAL = 8000
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site"
 
 export default function HeroSection() {
+    const [videos, setVideos] = useState<string[]>(LOCAL_VIDEOS)
     const [activeIndex, setActiveIndex] = useState(0)
     const [progress, setProgress] = useState(0)
     const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
     const thumbRefs = useRef<(HTMLVideoElement | null)[]>([])
     const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
     const progressRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+    // Try to fetch the active hero video from API
+    useEffect(() => {
+        fetch(`${API_BASE}/api/hero/public`)
+            .then((r) => r.json())
+            .then((data) => {
+                if (data.status_code === 200 && data.hero?.video) {
+                    const apiVideoUrl = `${API_BASE}/${data.hero.video}`
+                    // Prepend API video, keep local videos as fallback thumbnails
+                    setVideos([apiVideoUrl, ...LOCAL_VIDEOS])
+                }
+            })
+            .catch(() => {})
+    }, [])
 
     const clearTimers = () => {
         if (intervalRef.current) clearInterval(intervalRef.current)
@@ -42,19 +58,19 @@ export default function HeroSection() {
         startProgress()
         clearTimers()
         intervalRef.current = setInterval(() => {
-            setActiveIndex(prev => (prev + 1) % VIDEOS.length)
+            setActiveIndex(prev => (prev + 1) % videos.length)
             startProgress()
         }, AUTO_ADVANCE_INTERVAL)
-    }, [startProgress])
+    }, [startProgress, videos.length])
 
     useEffect(() => {
         startProgress()
         intervalRef.current = setInterval(() => {
-            setActiveIndex(prev => (prev + 1) % VIDEOS.length)
+            setActiveIndex(prev => (prev + 1) % videos.length)
             startProgress()
         }, AUTO_ADVANCE_INTERVAL)
         return clearTimers
-    }, [startProgress])
+    }, [startProgress, videos.length])
 
     // Play/reset active main video
     useEffect(() => {
@@ -74,7 +90,7 @@ export default function HeroSection() {
                 v.play().catch(() => {})
             }
         })
-    }, [])
+    }, [videos])
 
     const handleScroll = () => {
         window.scrollBy({ top: window.innerHeight, behavior: "smooth" })
@@ -82,7 +98,7 @@ export default function HeroSection() {
 
     return (
         <section className="w-full h-screen relative overflow-hidden">
-            {VIDEOS.map((src, i) => (
+            {videos.map((src, i) => (
                 <video
                     key={src}
                     ref={el => { videoRefs.current[i] = el }}
@@ -111,7 +127,7 @@ export default function HeroSection() {
 
                 <button
                     onClick={handleScroll}
-                    className="flex items-center justify-between gap-3 bg-white text-black font-semibold px-5 py-3 md:px-6 md:py-3.5 rounded-lg hover:bg-gray-200 transition-all duration-300 w-fit"
+                    className="flex items-center justify-between gap-3 bg-white text-black font-semibold px-5 py-3 md:px-6 md:py-3.5 rounded-lg hover:bg-gray-200 transition-all duration-300 w-fit cursor-pointer"
                 >
                     <span>Explore More</span>
                     <ArrowDownwardIcon fontSize="small" />
@@ -123,13 +139,13 @@ export default function HeroSection() {
                 className="absolute right-5 top-1/2 -translate-y-1/2 flex flex-col gap-4 items-center"
                 style={{ zIndex: 3 }}
             >
-                {VIDEOS.map((src, i) => (
+                {videos.map((src, i) => (
                     <div
                         key={i}
                         className="relative flex items-center justify-center"
                         style={{ width: "80px", height: "80px" }}
                     >
-                        {/* Animated progress ring — outside the clipped button */}
+                        {/* Animated progress ring */}
                         <svg
                             className="absolute inset-0 w-full h-full"
                             viewBox="0 0 80 80"
@@ -159,7 +175,7 @@ export default function HeroSection() {
                         <button
                             onClick={() => goTo(i)}
                             aria-label={`Switch to video ${i + 1}`}
-                            className="relative overflow-hidden focus:outline-none"
+                            className="relative overflow-hidden focus:outline-none cursor-pointer"
                             style={{
                                 width: "64px",
                                 height: "64px",
@@ -173,7 +189,7 @@ export default function HeroSection() {
                                 flexShrink: 0,
                             }}
                         >
-                            {/* Thumbnail video */}
+                            {/* Thumbnail video — use local video for thumbnails */}
                             <video
                                 ref={el => { thumbRefs.current[i] = el }}
                                 className="absolute inset-0 w-full h-full object-cover"
@@ -182,7 +198,7 @@ export default function HeroSection() {
                                 loop
                                 preload="metadata"
                             >
-                                <source src={src} type="video/mp4" />
+                                <source src={LOCAL_VIDEOS[i % LOCAL_VIDEOS.length]} type="video/mp4" />
                             </video>
 
                             {/* Dim overlay for inactive */}

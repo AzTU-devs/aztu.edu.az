@@ -1,64 +1,39 @@
 "use client";
 
-import { useRef } from "react";
 import Link from "next/link";
+import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import { getProjects, type ProjectItem } from "@/services/projectService/projectService";
+import { API_BASE_URL } from "@/util/apiClient";
 
-interface ProjectInterface {
-    title: string;
-    description: string;
-    category: string;
-    year: string;
-    color: string;
-    accent: string;
-}
-
-const projects: ProjectInterface[] = [
-    {
-        title: "Smart Campus Infrastructure",
-        description:
-            "Development of an integrated digital campus management system using IoT sensors and AI-driven analytics.",
-        category: "Digital Innovation",
-        year: "2024",
-        color: "bg-blue-50 border-blue-200",
-        accent: "text-blue-600",
-    },
-    {
-        title: "Renewable Energy Research",
-        description:
-            "Joint research project with international partners on solar and wind energy optimization for the Caspian region.",
-        category: "Energy",
-        year: "2024",
-        color: "bg-emerald-50 border-emerald-200",
-        accent: "text-emerald-600",
-    },
-    {
-        title: "AI in Engineering Education",
-        description:
-            "Integrating artificial intelligence tools and curricula into undergraduate and postgraduate engineering programs.",
-        category: "Education",
-        year: "2023",
-        color: "bg-purple-50 border-purple-200",
-        accent: "text-purple-600",
-    },
-    {
-        title: "Industrial Automation Lab",
-        description:
-            "Establishing a state-of-the-art industrial robotics and automation laboratory for student research and industry collaboration.",
-        category: "Research",
-        year: "2023",
-        color: "bg-orange-50 border-orange-200",
-        accent: "text-orange-600",
-    },
+const CARD_COLORS = [
+    { bg: "bg-blue-50 border-blue-200 dark:bg-[#1e293b] dark:border-blue-900/50", accent: "text-blue-600 dark:text-blue-400", icon: "#1a2355" },
+    { bg: "bg-emerald-50 border-emerald-200 dark:bg-[#1e293b] dark:border-emerald-900/50", accent: "text-emerald-600 dark:text-emerald-400", icon: "#047857" },
+    { bg: "bg-purple-50 border-purple-200 dark:bg-[#1e293b] dark:border-purple-900/50", accent: "text-purple-600 dark:text-purple-400", icon: "#7c3aed" },
+    { bg: "bg-orange-50 border-orange-200 dark:bg-[#1e293b] dark:border-orange-900/50", accent: "text-orange-600 dark:text-orange-400", icon: "#ea580c" },
 ];
+
+function formatYear(iso: string) {
+    if (!iso) return "";
+    return new Date(iso).getFullYear().toString();
+}
 
 export default function Projects() {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
+    const [projects, setProjects] = useState<ProjectItem[]>([]);
+
+    useEffect(() => {
+        getProjects({ start: 0, end: 4, lang: "az" }).then((res) => {
+            if (res && res !== "NO_CONTENT" && res !== "ERROR") {
+                setProjects(res.projects.slice(0, 4));
+            }
+        });
+    }, []);
 
     return (
         <section
@@ -95,55 +70,69 @@ export default function Projects() {
                 </Link>
             </motion.div>
 
+            {/* Loading skeleton */}
+            {projects.length === 0 && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 animate-pulse">
+                    {[1, 2, 3, 4].map((i) => (
+                        <div key={i} className="bg-gray-100 dark:bg-slate-800 rounded-2xl h-52" />
+                    ))}
+                </div>
+            )}
+
             {/* Project Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {projects.map((project, idx) => (
-                    <motion.div
-                        key={idx}
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{
-                            duration: 0.55,
-                            ease: "easeOut",
-                            delay: 0.1 + idx * 0.1,
-                        }}
-                        whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                        className={`group rounded-2xl border-2 p-6 flex flex-col gap-3 hover:shadow-xl transition-all duration-300 cursor-pointer dark:border-opacity-30 ${project.color} dark:bg-[#1e293b]`}
-                    >
-                        <div className="flex items-center justify-between">
-                            <span className={`text-xs font-bold ${project.accent} bg-white/70 dark:bg-white/10 px-3 py-1 rounded-full`}>
-                                {project.category}
-                            </span>
+            {projects.length > 0 && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {projects.map((project, idx) => {
+                        const colors = CARD_COLORS[idx % CARD_COLORS.length];
+                        return (
                             <motion.div
-                                initial={{ rotate: 0 }}
-                                whileHover={{ rotate: 12 }}
-                                transition={{ duration: 0.2 }}
+                                key={project.project_id}
+                                initial={{ opacity: 0, y: 40 }}
+                                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{
+                                    duration: 0.55,
+                                    ease: "easeOut",
+                                    delay: 0.1 + idx * 0.1,
+                                }}
+                                whileHover={{ y: -6, transition: { duration: 0.25 } }}
                             >
-                                <FolderOpenIcon sx={{ color: "#1a2355", opacity: 0.45, fontSize: 22 }} />
+                                <Link href={`/projects/${project.project_id}`}>
+                                    <div className={`group rounded-2xl border-2 p-6 flex flex-col gap-3 hover:shadow-xl transition-all duration-300 cursor-pointer ${colors.bg}`}>
+                                        <div className="flex items-center justify-between">
+                                            <motion.div
+                                                initial={{ rotate: 0 }}
+                                                whileHover={{ rotate: 12 }}
+                                                transition={{ duration: 0.2 }}
+                                            >
+                                                <FolderOpenIcon sx={{ color: colors.icon, opacity: 0.7, fontSize: 22 }} />
+                                            </motion.div>
+                                            <ArrowOutwardIcon
+                                                sx={{ fontSize: 16 }}
+                                                className={`${colors.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                                            />
+                                        </div>
+
+                                        <h3 className="text-[#1a2355] dark:text-white font-bold text-base leading-snug group-hover:text-[#1a2355]/80 dark:group-hover:text-white/80 transition-colors duration-300">
+                                            {project.title}
+                                        </h3>
+
+                                        {project.description && (
+                                            <p className="text-gray-600 dark:text-gray-400 text-sm flex-1 leading-relaxed line-clamp-3">
+                                                {project.description}
+                                            </p>
+                                        )}
+
+                                        <div className="flex items-center gap-1 text-gray-400 dark:text-gray-500 text-sm mt-auto pt-1">
+                                            <CalendarMonthIcon sx={{ fontSize: 15 }} />
+                                            <span>{formatYear(project.created_at)}</span>
+                                        </div>
+                                    </div>
+                                </Link>
                             </motion.div>
-                        </div>
-
-                        <h3 className="text-[#1a2355] dark:text-white font-bold text-base leading-snug group-hover:text-[#1a2355]/80 dark:group-hover:text-white/80 transition-colors duration-300">
-                            {project.title}
-                        </h3>
-
-                        <p className="text-gray-600 dark:text-gray-400 text-sm flex-1 leading-relaxed">
-                            {project.description}
-                        </p>
-
-                        <div className="flex items-center justify-between mt-2">
-                            <div className="flex items-center gap-1 text-gray-400 dark:text-gray-500 text-sm">
-                                <CalendarMonthIcon sx={{ fontSize: 15 }} />
-                                <span>{project.year}</span>
-                            </div>
-                            <ArrowOutwardIcon
-                                sx={{ fontSize: 16 }}
-                                className={`${project.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-                            />
-                        </div>
-                    </motion.div>
-                ))}
-            </div>
+                        );
+                    })}
+                </div>
+            )}
         </section>
     );
 }
