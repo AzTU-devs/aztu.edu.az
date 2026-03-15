@@ -1,67 +1,27 @@
 "use client";
 
-import { useRef } from "react";
+import Link from "next/link";
+import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import HandshakeIcon from "@mui/icons-material/Handshake";
-
-interface CollaboratorInterface {
-    name: string;
-    logo: string;
-    url: string;
-    acronym?: string;
-}
-
-const collaborators: CollaboratorInterface[] = [
-    {
-        name: "UNESCO",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/UNESCO_logo.svg/320px-UNESCO_logo.svg.png",
-        url: "https://www.unesco.org",
-    },
-    {
-        name: "ERASMUS+",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Erasmus%2B_Logo.svg/320px-Erasmus%2B_Logo.svg.png",
-        url: "https://erasmus-plus.ec.europa.eu",
-    },
-    {
-        name: "TÜBİTAK",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/T%C3%BCbitak_logo.svg/320px-T%C3%BCbitak_logo.svg.png",
-        url: "https://www.tubitak.gov.tr",
-    },
-    {
-        name: "SOCAR",
-        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/1/19/SOCAR_logo.svg/320px-SOCAR_logo.svg.png",
-        url: "https://www.socar.az",
-    },
-    {
-        name: "TEMPUS",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/320px-Flag_of_Europe.svg.png",
-        url: "https://eacea.ec.europa.eu/tempus",
-        acronym: "TEMPUS",
-    },
-    {
-        name: "Bologna Process",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/320px-Flag_of_Europe.svg.png",
-        url: "https://www.ehea.info",
-        acronym: "EHEA",
-    },
-    {
-        name: "British Council",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/British_Council_logo.svg/320px-British_Council_logo.svg.png",
-        url: "https://www.britishcouncil.org",
-    },
-    {
-        name: "DAAD",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/DAAD_logo.svg/320px-DAAD_logo.svg.png",
-        url: "https://www.daad.de",
-    },
-];
-
-const doubled = [...collaborators, ...collaborators];
+import { getCollaborations, type CollaborationItem } from "@/services/collaborationService/collaborationService";
+import { API_BASE_URL } from "@/util/apiClient";
 
 export default function Collaborators() {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
+    const [collaborations, setCollaborations] = useState<CollaborationItem[]>([]);
+
+    useEffect(() => {
+        getCollaborations({ start: 0, end: 30, lang: "az" }).then((res) => {
+            if (res && res !== "NO_CONTENT" && res !== "ERROR") {
+                setCollaborations(res.collaborations);
+            }
+        });
+    }, []);
+
+    const doubled = [...collaborations, ...collaborations];
 
     return (
         <section
@@ -87,14 +47,16 @@ export default function Collaborators() {
                         Əməkdaşlar
                     </h2>
                 </div>
-                <motion.button
-                    whileHover={{ scale: 1.04 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="group flex items-center gap-2 bg-[#1a2355] py-2.5 px-5 rounded-xl text-white font-bold cursor-pointer hover:bg-[#0b1330] transition-colors duration-300"
-                >
-                    Bütün Əməkdaşlar
-                    <ChevronRightIcon className="transition-transform duration-300 group-hover:translate-x-1.5" />
-                </motion.button>
+                <Link href="/beynelxalq/collaborations">
+                    <motion.button
+                        whileHover={{ scale: 1.04 }}
+                        whileTap={{ scale: 0.97 }}
+                        className="group flex items-center gap-2 bg-[#1a2355] py-2.5 px-5 rounded-xl text-white font-bold cursor-pointer hover:bg-[#0b1330] transition-colors duration-300"
+                    >
+                        Bütün Əməkdaşlar
+                        <ChevronRightIcon className="transition-transform duration-300 group-hover:translate-x-1.5" />
+                    </motion.button>
+                </Link>
             </motion.div>
 
             {/* Marquee Track */}
@@ -108,28 +70,39 @@ export default function Collaborators() {
                 <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-r from-gray-50 dark:from-[#0a1120] to-transparent pointer-events-none" />
                 <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-l from-gray-50 dark:from-[#0a1120] to-transparent pointer-events-none" />
 
-                <div className="flex animate-marquee gap-6 w-max">
-                    {doubled.map((collab, idx) => (
-                        <a
-                            key={idx}
-                            href={collab.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            title={collab.name}
-                            className="group flex-shrink-0 flex flex-col items-center justify-center gap-2 w-44 h-28 bg-white dark:bg-slate-800 rounded-2xl shadow-md px-4 hover:shadow-xl transition-all duration-300 border border-transparent hover:border-[#1a2355]/20 dark:hover:border-white/10"
-                        >
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                                src={collab.logo}
-                                alt={collab.name}
-                                className="max-h-11 max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300 scale-100 group-hover:scale-105"
-                            />
-                            <span className="text-[10px] font-bold text-gray-400 dark:text-gray-500 group-hover:text-[#1a2355] dark:group-hover:text-white text-center uppercase tracking-wide transition-colors duration-300">
-                                {collab.acronym ?? collab.name}
-                            </span>
-                        </a>
-                    ))}
-                </div>
+                {doubled.length > 0 ? (
+                    <div className="flex animate-marquee gap-6 w-max">
+                        {doubled.map((collab, idx) => (
+                            <a
+                                key={idx}
+                                href={collab.website_url || "#"}
+                                target={collab.website_url ? "_blank" : undefined}
+                                rel="noopener noreferrer"
+                                title={collab.name}
+                                className="group flex-shrink-0 flex flex-col items-center justify-center gap-2 w-44 h-28 bg-white dark:bg-slate-800 rounded-2xl shadow-md px-4 hover:shadow-xl transition-all duration-300 border border-transparent hover:border-[#1a2355]/20 dark:hover:border-white/10"
+                            >
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
+                                    src={`${API_BASE_URL}/${collab.logo}`}
+                                    alt={collab.name}
+                                    className="max-h-11 max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300 scale-100 group-hover:scale-105"
+                                    onError={(e) => {
+                                        (e.target as HTMLImageElement).style.display = "none";
+                                    }}
+                                />
+                                <span className="text-[10px] font-bold text-gray-400 dark:text-gray-500 group-hover:text-[#1a2355] dark:group-hover:text-white text-center uppercase tracking-wide transition-colors duration-300">
+                                    {collab.name}
+                                </span>
+                            </a>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="flex animate-pulse gap-6">
+                        {[1, 2, 3, 4, 5, 6].map((i) => (
+                            <div key={i} className="flex-shrink-0 w-44 h-28 bg-gray-200 dark:bg-slate-800 rounded-2xl" />
+                        ))}
+                    </div>
+                )}
             </motion.div>
         </section>
     );
