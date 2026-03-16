@@ -23,7 +23,7 @@ export interface NavSection {
     key: string;
     label: string;
     basePath: string;
-    image: StaticImageData;
+    image: StaticImageData | string;
     items: NavItem[];
 }
 

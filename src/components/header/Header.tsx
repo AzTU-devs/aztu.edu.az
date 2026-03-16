@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Dropdown from "./Dropdown";
 import { AnimatePresence } from "framer-motion";
 import ListIcon from "@mui/icons-material/List";
@@ -16,6 +16,7 @@ import AzTULogoDark from "@/../public/logo/aztu-logo-dark.png";
 import AzTULogoLight from "@/../public/logo/aztu-logo-light.png";
 import { NAV_SECTIONS, NavSection } from "@/config/navigation";
 import { useTheme } from "@/context/ThemeContext";
+import { getHeaderMenu } from "@/services/menu/menuService";
 
 type HeaderProps = {
   onOpenQuickMenu: () => void;
@@ -24,7 +25,31 @@ type HeaderProps = {
 
 export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
   const [activeSection, setActiveSection] = useState<NavSection | null>(null);
+  const [navSections, setNavSections] = useState<NavSection[]>(NAV_SECTIONS);
   const { theme, toggleTheme } = useTheme();
+
+  useEffect(() => {
+    getHeaderMenu("az").then((data) => {
+      if (!data?.sections?.length) return;
+      const mapped: NavSection[] = data.sections.map((apiSec) => {
+        const fallback = NAV_SECTIONS.find((s) => s.key === apiSec.key);
+        return {
+          key: apiSec.key,
+          label: apiSec.label,
+          basePath: apiSec.base_path,
+          image: apiSec.image_url ?? fallback?.image ?? NAV_SECTIONS[0].image,
+          items: apiSec.items.map((item) => ({
+            title: item.title,
+            slug: item.slug ?? undefined,
+            subItems: item.sub_items
+              ?.filter((s) => s.slug)
+              .map((s) => ({ title: s.title, slug: s.slug! })),
+          })),
+        };
+      });
+      setNavSections(mapped);
+    });
+  }, []);
 
   const isOpen = Boolean(activeSection);
 
@@ -115,7 +140,7 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
           {/* Nav row */}
           <div className="flex items-center gap-1">
             <ul className="flex items-center">
-              {NAV_SECTIONS.map((section) => {
+              {navSections.map((section) => {
                 const isActive = activeSection?.key === section.key;
                 return (
                   <li
