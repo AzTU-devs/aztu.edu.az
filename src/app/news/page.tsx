@@ -14,17 +14,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchNewsList } from "@/redux/features/newsSlice";
 import type { AppDispatch, RootState } from "@/redux/store";
 import { API_BASE_URL } from "@/util/apiClient";
+import { getNewsCategories, type NewsCategoryItem } from "@/services/newsService/newsService";
 
-// Category display labels — map API category_id to AZ label as needed
-const categories = ["Hamısı", "AzTU", "Elm", "Tələbə", "Əməkdaşlıq", "Qəbul"];
-
-const categoryColors: Record<string, string> = {
-    AzTU: "bg-[#1a2355]",
-    Elm: "bg-emerald-500",
-    Tələbə: "bg-violet-500",
-    Əməkdaşlıq: "bg-amber-500",
-    Qəbul: "bg-[#ee7c7e]",
-};
+const PALETTE = [
+    "bg-[#1a2355]",
+    "bg-emerald-500",
+    "bg-violet-500",
+    "bg-amber-500",
+    "bg-[#ee7c7e]",
+    "bg-cyan-500",
+    "bg-rose-500",
+    "bg-indigo-500",
+];
 
 function formatDate(iso: string) {
     if (!iso) return "";
@@ -49,46 +50,52 @@ const cardVariants = {
     }),
 };
 
-// Category ID used in the API for pagination
-const CATEGORY_API_MAP: Record<string, string | undefined> = {
-    Hamısı: undefined,
-    AzTU: "848749", // example; update to real category IDs from your API
-    Elm: undefined,
-    Tələbə: undefined,
-    Əməkdaşlıq: undefined,
-    Qəbul: undefined,
-};
+const ALL_CATEGORY_ID = "__all__";
 
 export default function NewsPage() {
     const dispatch = useDispatch<AppDispatch>();
     const { list, listLoading, listError } = useSelector((s: RootState) => s.news);
-    const [activeCategory, setActiveCategory] = useState("Hamısı");
+    const [categories, setCategories] = useState<NewsCategoryItem[]>([]);
+    const [activeCategoryId, setActiveCategoryId] = useState<string>(ALL_CATEGORY_ID);
     const [page, setPage] = useState(0);
     const PAGE_SIZE = 10;
 
     useEffect(() => {
+        getNewsCategories("az").then((cats) => setCategories(cats));
+    }, []);
+
+    useEffect(() => {
         dispatch(
             fetchNewsList({
-                categoryId: CATEGORY_API_MAP[activeCategory],
+                categoryId: activeCategoryId === ALL_CATEGORY_ID ? undefined : activeCategoryId,
                 start: 0,
                 end: PAGE_SIZE,
                 lang: "az",
             })
         );
         setPage(0);
-    }, [activeCategory, dispatch]);
+    }, [activeCategoryId, dispatch]);
 
     const handleLoadMore = () => {
         const nextPage = page + 1;
         dispatch(
             fetchNewsList({
-                categoryId: CATEGORY_API_MAP[activeCategory],
+                categoryId: activeCategoryId === ALL_CATEGORY_ID ? undefined : activeCategoryId,
                 start: nextPage * PAGE_SIZE,
                 end: (nextPage + 1) * PAGE_SIZE,
                 lang: "az",
             })
         );
         setPage(nextPage);
+    };
+
+    const categoryColor = (categoryId: string) => {
+        const idx = categories.findIndex((c) => c.category_id === categoryId);
+        return PALETTE[idx % PALETTE.length] ?? "bg-[#1a2355]";
+    };
+
+    const categoryLabel = (categoryId: string) => {
+        return categories.find((c) => c.category_id === categoryId)?.title ?? categoryId;
     };
 
     const featured = list[0];
@@ -133,18 +140,30 @@ export default function NewsPage() {
                 {/* Category Filter */}
                 <div className="bg-white dark:bg-[#1e293b] border-b border-gray-200 dark:border-slate-700 sticky top-0 z-20 shadow-sm">
                     <div className="px-4 md:px-10 lg:px-20 flex items-center gap-2 overflow-x-auto py-3 scrollbar-hide">
+                        <motion.button
+                            key="__all__"
+                            onClick={() => setActiveCategoryId(ALL_CATEGORY_ID)}
+                            whileTap={{ scale: 0.95 }}
+                            className={`flex-shrink-0 px-5 py-2 rounded-xl font-bold text-sm transition-all duration-300 cursor-pointer ${
+                                activeCategoryId === ALL_CATEGORY_ID
+                                    ? "bg-[#1a2355] text-white shadow"
+                                    : "bg-gray-100 dark:bg-slate-700 text-[#1a2355] dark:text-white hover:bg-[#1a2355]/10"
+                            }`}
+                        >
+                            Hamısı
+                        </motion.button>
                         {categories.map((cat) => (
                             <motion.button
-                                key={cat}
-                                onClick={() => setActiveCategory(cat)}
+                                key={cat.category_id}
+                                onClick={() => setActiveCategoryId(cat.category_id)}
                                 whileTap={{ scale: 0.95 }}
                                 className={`flex-shrink-0 px-5 py-2 rounded-xl font-bold text-sm transition-all duration-300 cursor-pointer ${
-                                    activeCategory === cat
+                                    activeCategoryId === cat.category_id
                                         ? "bg-[#1a2355] text-white shadow"
                                         : "bg-gray-100 dark:bg-slate-700 text-[#1a2355] dark:text-white hover:bg-[#1a2355]/10"
                                 }`}
                             >
-                                {cat}
+                                {cat.title}
                             </motion.button>
                         ))}
                     </div>
@@ -200,9 +219,9 @@ export default function NewsPage() {
                                         </div>
                                         <div className="flex flex-col justify-center px-8 py-8 gap-5 lg:w-1/2">
                                             <div className="flex items-center gap-3">
-                                                <span className={`${categoryColors[featured.cateogry_id] ?? "bg-[#1a2355]"} text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1`}>
+                                                <span className={`${categoryColor(featured.cateogry_id)} text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1`}>
                                                     <LocalOfferIcon sx={{ fontSize: 13 }} />
-                                                    {featured.cateogry_id}
+                                                    {categoryLabel(featured.cateogry_id)}
                                                 </span>
                                                 <span className="text-gray-400 dark:text-gray-500 text-sm flex items-center gap-1">
                                                     <CalendarMonthIcon sx={{ fontSize: 15 }} />
@@ -261,9 +280,9 @@ export default function NewsPage() {
                                                 fill
                                                 className="object-cover group-hover:scale-105 transition-transform duration-500"
                                             />
-                                            <span className={`absolute top-3 left-3 ${categoryColors[item.cateogry_id] ?? "bg-[#1a2355]"} text-white text-xs font-bold px-2 py-1 rounded-lg flex items-center gap-1`}>
+                                            <span className={`absolute top-3 left-3 ${categoryColor(item.cateogry_id)} text-white text-xs font-bold px-2 py-1 rounded-lg flex items-center gap-1`}>
                                                 <LocalOfferIcon sx={{ fontSize: 12 }} />
-                                                {item.cateogry_id}
+                                                {categoryLabel(item.cateogry_id)}
                                             </span>
                                         </div>
                                         <div className="p-5 flex flex-col gap-3 flex-1">

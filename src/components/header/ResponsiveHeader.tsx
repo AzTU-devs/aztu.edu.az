@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -16,13 +16,38 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import AzTULogoLight from "@/../public/logo/aztu-logo-light.png";
 import AzTULogoDark from "@/../public/logo/aztu-logo-dark.png";
-import { NAV_SECTIONS } from "@/config/navigation";
+import { NAV_SECTIONS, NavSection } from "@/config/navigation";
 import { useTheme } from "@/context/ThemeContext";
+import { getHeaderMenu } from "@/services/menu/menuService";
 
 export default function ResponsiveHeader() {
     const [isOpen, setIsOpen] = useState(false);
     const [expandedSection, setExpandedSection] = useState<string | null>(null);
+    const [navSections, setNavSections] = useState<NavSection[]>(NAV_SECTIONS);
     const { theme, toggleTheme } = useTheme();
+
+    useEffect(() => {
+        getHeaderMenu("az").then((data) => {
+            if (!data?.sections?.length) return;
+            const mapped: NavSection[] = data.sections.map((apiSec) => {
+                const fallback = NAV_SECTIONS.find((s) => s.key === apiSec.key);
+                return {
+                    key: apiSec.key,
+                    label: apiSec.label,
+                    basePath: apiSec.base_path,
+                    image: apiSec.image_url ?? fallback?.image ?? NAV_SECTIONS[0].image,
+                    items: apiSec.items.map((item) => ({
+                        title: item.title,
+                        slug: item.slug ?? undefined,
+                        subItems: item.sub_items
+                            ?.filter((s) => s.slug)
+                            .map((s) => ({ title: s.title, slug: s.slug! })),
+                    })),
+                };
+            });
+            setNavSections(mapped);
+        });
+    }, []);
 
     const toggleSection = (key: string) => {
         setExpandedSection((prev) => (prev === key ? null : key));
@@ -134,7 +159,7 @@ export default function ResponsiveHeader() {
 
                         {/* Nav sections */}
                         <nav className="flex-1 overflow-y-auto">
-                            {NAV_SECTIONS.map((section) => {
+                            {navSections.map((section) => {
                                 const isExpanded = expandedSection === section.key;
                                 return (
                                     <div key={section.key} className="border-b border-gray-100 dark:border-gray-700">
