@@ -16,7 +16,9 @@ import AzTULogoDark from "@/../public/logo/aztu-logo-dark.png";
 import AzTULogoLight from "@/../public/logo/aztu-logo-light.png";
 import { NAV_SECTIONS, NavSection } from "@/config/navigation";
 import { useTheme } from "@/context/ThemeContext";
+import { useLanguage } from "@/context/LanguageContext";
 import { getHeaderMenu } from "@/services/menu/menuService";
+import LanguageSwitcher from "@/components/shared/LanguageSwitcher";
 
 type HeaderProps = {
   onOpenQuickMenu: () => void;
@@ -27,9 +29,10 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
   const [activeSection, setActiveSection] = useState<NavSection | null>(null);
   const [navSections, setNavSections] = useState<NavSection[]>(NAV_SECTIONS);
   const { theme, toggleTheme } = useTheme();
+  const { lang } = useLanguage();
 
   useEffect(() => {
-    getHeaderMenu("az").then((data) => {
+    getHeaderMenu(lang).then((data) => {
       if (!data?.sections?.length) return;
       const mapped: NavSection[] = data.sections.map((apiSec) => {
         const fallback = NAV_SECTIONS.find((s) => s.key === apiSec.key);
@@ -49,7 +52,7 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
       });
       setNavSections(mapped);
     });
-  }, []);
+  }, [lang]);
 
   const isOpen = Boolean(activeSection);
 
@@ -99,15 +102,7 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
               </button>
             ))}
 
-            <button
-              className={`rounded-lg w-10 h-10 flex items-center justify-center font-bold text-sm transition-all duration-300 cursor-pointer ${
-                isOpen
-                  ? "bg-[#1a2355] dark:bg-[#1e3a5f] text-white"
-                  : "bg-white/10 text-white hover:bg-white/25"
-              }`}
-            >
-              EN
-            </button>
+            <LanguageSwitcher variant={isOpen ? "header-open" : "header-closed"} />
 
             <button
               className={`rounded-lg w-10 h-10 flex items-center justify-center transition-all duration-300 cursor-pointer ${
