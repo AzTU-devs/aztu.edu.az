@@ -19,6 +19,7 @@ import AzTULogoLight from "@/../public/logo/aztu-logo-light.png";
 import { NAV_SECTIONS } from "@/config/navigation";
 import { useTheme } from "@/context/ThemeContext";
 import LanguageSwitcher from "@/components/shared/LanguageSwitcher";
+import { useTranslation } from "@/hooks/useTranslation";
 
 type HeaderProps = {
     onOpenQuickMenu: () => void;
@@ -28,6 +29,7 @@ type HeaderProps = {
 export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [expandedSection, setExpandedSection] = useState<string | null>(null);
+    const t = useTranslation();
     const { theme, toggleTheme } = useTheme();
 
     const toggleSection = (key: string) =>
@@ -117,7 +119,7 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
                             className="flex items-center gap-1.5 px-4 h-10 rounded-full bg-gradient-to-br from-[#1a2355] to-[#3b6ea8] text-white font-semibold text-[13px] whitespace-nowrap cursor-pointer transition-shadow duration-200"
                         >
                             <ListIcon sx={{ fontSize: 17, color: "inherit" }} />
-                            Quick Menu
+                            {t.common.quickMenu}
                         </motion.button>
                     </div>
                 </nav>
@@ -167,9 +169,9 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
                         {/* Utility buttons */}
                         <div className="flex items-center gap-2 px-4 py-3 bg-[#1a2355]">
                             {[
-                                { icon: <PersonIcon sx={{ fontSize: 18 }} />, label: "LMS" },
-                                { icon: <SchoolIcon sx={{ fontSize: 18 }} />, label: "Alumni" },
-                                { icon: <ConnectedTvIcon sx={{ fontSize: 18 }} />, label: "AzTU TV" },
+                                { icon: <PersonIcon sx={{ fontSize: 18 }} />, label: t.common.lms },
+                                { icon: <SchoolIcon sx={{ fontSize: 18 }} />, label: t.common.alumni },
+                                { icon: <ConnectedTvIcon sx={{ fontSize: 18 }} />, label: t.common.aztuTv },
                             ].map(({ icon, label }) => (
                                 <button
                                     key={label}

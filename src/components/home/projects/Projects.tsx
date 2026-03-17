@@ -9,6 +9,7 @@ import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { getProjects, type ProjectItem } from "@/services/projectService/projectService";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTranslation } from "@/hooks/useTranslation";
 import { API_BASE_URL } from "@/util/apiClient";
 
 const CARD_COLORS = [
@@ -26,6 +27,7 @@ function formatYear(iso: string) {
 export default function Projects() {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
+    const t = useTranslation();
     const [projects, setProjects] = useState<ProjectItem[]>([]);
     const { lang } = useLanguage();
 
@@ -54,10 +56,10 @@ export default function Projects() {
             >
                 <div>
                     <p className="text-[#ee7c7e] text-xs font-bold uppercase tracking-[0.2em] mb-2">
-                        Araşdırma &amp; İnnovasiya
+                        {t.projects.sectionLabel}
                     </p>
                     <h2 className="text-3xl md:text-4xl font-bold text-[#1a2355] dark:text-white leading-tight">
-                        Layihələr
+                        {t.projects.sectionTitle}
                     </h2>
                 </div>
                 <Link href="/projects">
@@ -66,7 +68,7 @@ export default function Projects() {
                         whileTap={{ scale: 0.97 }}
                         className="group flex items-center gap-2 bg-[#1a2355] py-2.5 px-5 rounded-xl text-white font-bold cursor-pointer hover:bg-[#0b1330] transition-colors duration-300"
                     >
-                        Bütün Layihələr
+                        {t.projects.viewAll}
                         <ChevronRightIcon className="transition-transform duration-300 group-hover:translate-x-1.5" />
                     </motion.button>
                 </Link>

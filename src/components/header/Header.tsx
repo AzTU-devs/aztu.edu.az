@@ -19,6 +19,7 @@ import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { getHeaderMenu } from "@/services/menu/menuService";
 import LanguageSwitcher from "@/components/shared/LanguageSwitcher";
+import { useTranslation } from "@/hooks/useTranslation";
 
 type HeaderProps = {
   onOpenQuickMenu: () => void;
@@ -28,6 +29,7 @@ type HeaderProps = {
 export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
   const [activeSection, setActiveSection] = useState<NavSection | null>(null);
   const [navSections, setNavSections] = useState<NavSection[]>(NAV_SECTIONS);
+  const t = useTranslation();
   const { theme, toggleTheme } = useTheme();
   const { lang } = useLanguage();
 
@@ -85,9 +87,9 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
           {/* Utility row */}
           <div className="flex items-center gap-3">
             {[
-              { icon: <PersonIcon sx={{ fontSize: 20 }} />, label: "LMS" },
-              { icon: <SchoolIcon sx={{ fontSize: 20 }} />, label: "Alumni" },
-              { icon: <ConnectedTvIcon sx={{ fontSize: 20 }} />, label: "AzTU TV" },
+              { icon: <PersonIcon sx={{ fontSize: 20 }} />, label: t.common.lms },
+              { icon: <SchoolIcon sx={{ fontSize: 20 }} />, label: t.common.alumni },
+              { icon: <ConnectedTvIcon sx={{ fontSize: 20 }} />, label: t.common.aztuTv },
             ].map(({ icon, label }) => (
               <button
                 key={label}
@@ -175,7 +177,7 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
               className="flex items-center gap-2 px-4 h-10 rounded-lg bg-white/10 hover:bg-white/25 transition-all duration-300 cursor-pointer ml-1"
             >
               <ListIcon sx={{ color: "white", fontSize: 24 }} />
-              <span className="text-white font-bold text-sm">Quick Menu</span>
+              <span className="text-white font-bold text-sm">{t.common.quickMenu}</span>
             </button>
           </div>
         </div>

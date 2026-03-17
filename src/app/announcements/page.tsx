@@ -31,6 +31,7 @@ interface ApiAnnouncement {
     html_content: string;
     is_active: boolean;
     created_at: string;
+    published_date: string;
     display_order: number;
 }
 
@@ -134,7 +135,7 @@ export default function AnnouncementsPage() {
                                         <div className="flex flex-col lg:flex-row gap-0">
                                             {/* Left: Date column */}
                                             {(() => {
-                                                const { date, month, year } = parseDate(featured.created_at);
+                                                const { date, month, year } = parseDate(featured.published_date);
                                                 return (
                                                     <div className="lg:w-40 flex-shrink-0 bg-[#1a2355] flex flex-col items-center justify-center p-6 gap-1">
                                                         <CalendarMonthIcon sx={{ color: "white", opacity: 0.6, fontSize: 22 }} />
@@ -196,7 +197,7 @@ export default function AnnouncementsPage() {
                     {rest.length > 0 && (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                             {rest.map((item, i) => {
-                                const { date, month, year } = parseDate(item.created_at);
+                                const { date, month, year } = parseDate(item.published_date);
                                 return (
                                     <motion.div
                                         key={item.id}
