@@ -50,7 +50,7 @@ export default function Home() {
   return (
     <>
       <HeaderChanger />
-      <main className="overflow-x-hidden">
+      <main>
         {/* Hero — no reveal wrapper, plays immediately */}
         <HeroSection />
 
