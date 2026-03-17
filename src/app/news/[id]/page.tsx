@@ -459,7 +459,7 @@ export default function NewsDetailPage({
                                     <SwiperSlide key={i} style={{ width: "80px" }}>
                                         <div className="relative w-20 h-14 rounded-lg overflow-hidden cursor-pointer transition-all duration-200">
                                             <Image
-                                                src={`${API_BASE_URL}/${img}`}
+                                                src={`${img}`}
                                                 alt={`thumb ${i + 1}`}
                                                 fill
                                                 className="object-cover"
