@@ -1,7 +1,7 @@
 // --- News list item returned by /api/news/public/all ---
 export interface NewsListItem {
     news_id: number;
-    cateogry_id: string; // note: API typo retained
+    cateogry_id: string;
     display_order: number;
     is_active: boolean;
     title: string;
