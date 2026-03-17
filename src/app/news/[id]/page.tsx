@@ -424,12 +424,12 @@ export default function NewsDetailPage({
                                 navigation={{ prevEl: ".gallery-prev", nextEl: ".gallery-next" }}
                                 thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
                                 spaceBetween={16}
-                                className="rounded-2xl overflow-hidden"
+                                className="rounded-2xl overflow-hidden h-[55vh] md:h-[70vh]"
                             >
                                 {allImages.map((img, i) => (
                                     <SwiperSlide key={i}>
                                         <div
-                                            className="relative w-full h-[55vh] md:h-[70vh] cursor-zoom-in"
+                                            className="relative w-full h-full cursor-zoom-in"
                                             onClick={() => { setLightboxIndex(i); setLightboxOpen(true); }}
                                         >
                                             <Image
