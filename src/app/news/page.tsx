@@ -76,6 +76,8 @@ export default function NewsPage() {
         setPage(0);
     }, [activeCategoryId, dispatch]);
 
+    console.log(list);
+
     const handleLoadMore = () => {
         const nextPage = page + 1;
         dispatch(
@@ -144,11 +146,10 @@ export default function NewsPage() {
                             key="__all__"
                             onClick={() => setActiveCategoryId(ALL_CATEGORY_ID)}
                             whileTap={{ scale: 0.95 }}
-                            className={`flex-shrink-0 px-5 py-2 rounded-xl font-bold text-sm transition-all duration-300 cursor-pointer ${
-                                activeCategoryId === ALL_CATEGORY_ID
+                            className={`flex-shrink-0 px-5 py-2 rounded-xl font-bold text-sm transition-all duration-300 cursor-pointer ${activeCategoryId === ALL_CATEGORY_ID
                                     ? "bg-[#1a2355] text-white shadow"
                                     : "bg-gray-100 dark:bg-slate-700 text-[#1a2355] dark:text-white hover:bg-[#1a2355]/10"
-                            }`}
+                                }`}
                         >
                             Hamısı
                         </motion.button>
@@ -157,11 +158,10 @@ export default function NewsPage() {
                                 key={cat.category_id}
                                 onClick={() => setActiveCategoryId(cat.category_id)}
                                 whileTap={{ scale: 0.95 }}
-                                className={`flex-shrink-0 px-5 py-2 rounded-xl font-bold text-sm transition-all duration-300 cursor-pointer ${
-                                    activeCategoryId === cat.category_id
+                                className={`flex-shrink-0 px-5 py-2 rounded-xl font-bold text-sm transition-all duration-300 cursor-pointer ${activeCategoryId === cat.category_id
                                         ? "bg-[#1a2355] text-white shadow"
                                         : "bg-gray-100 dark:bg-slate-700 text-[#1a2355] dark:text-white hover:bg-[#1a2355]/10"
-                                }`}
+                                    }`}
                             >
                                 {cat.title}
                             </motion.button>
