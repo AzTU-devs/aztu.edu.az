@@ -18,6 +18,7 @@ import AzTULogoDark from "@/../public/logo/aztu-logo-dark.png";
 import AzTULogoLight from "@/../public/logo/aztu-logo-light.png";
 import { NAV_SECTIONS } from "@/config/navigation";
 import { useTheme } from "@/context/ThemeContext";
+import LanguageSwitcher from "@/components/shared/LanguageSwitcher";
 
 type HeaderProps = {
     onOpenQuickMenu: () => void;
@@ -178,9 +179,7 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
                                     {label}
                                 </button>
                             ))}
-                            <button className="ml-auto rounded-lg w-8 h-8 flex items-center justify-center font-bold text-xs text-white bg-white/10 hover:bg-white/25 transition-all cursor-pointer">
-                                EN
-                            </button>
+                            <LanguageSwitcher variant="drawer" />
                             <button className="rounded-lg w-8 h-8 flex items-center justify-center text-white bg-white/10 hover:bg-white/25 transition-all cursor-pointer">
                                 <ShareIcon sx={{ fontSize: 18 }} />
                             </button>

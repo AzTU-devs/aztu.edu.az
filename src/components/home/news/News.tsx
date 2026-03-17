@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchNewsList } from "@/redux/features/newsSlice";
 import type { AppDispatch, RootState } from "@/redux/store";
 import { API_BASE_URL } from "@/util/apiClient";
+import { useLanguage } from "@/context/LanguageContext";
 
 const categoryColors: Record<string, string> = {
     AzTU: "bg-[#1a2355]",
@@ -39,12 +40,11 @@ export default function News() {
     const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
     const dispatch = useDispatch<AppDispatch>();
     const { list, listLoading } = useSelector((s: RootState) => s.news);
+    const { lang } = useLanguage();
 
     useEffect(() => {
-        if (list.length === 0) {
-            dispatch(fetchNewsList({ start: 0, end: 5, lang: "az" }));
-        }
-    }, [dispatch]);
+        dispatch(fetchNewsList({ start: 0, end: 5, lang }));
+    }, [dispatch, lang]);
 
     const featured = list[0] ?? null;
     const rest = list.slice(1, 5);

@@ -7,19 +7,21 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import HandshakeIcon from "@mui/icons-material/Handshake";
 import { getCollaborations, type CollaborationItem } from "@/services/collaborationService/collaborationService";
 import { API_BASE_URL } from "@/util/apiClient";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Collaborators() {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
     const [collaborations, setCollaborations] = useState<CollaborationItem[]>([]);
+    const { lang } = useLanguage();
 
     useEffect(() => {
-        getCollaborations({ start: 0, end: 30, lang: "az" }).then((res) => {
+        getCollaborations({ start: 0, end: 30, lang }).then((res) => {
             if (res && res !== "NO_CONTENT" && res !== "ERROR") {
                 setCollaborations(res.collaborations);
             }
         });
-    }, []);
+    }, [lang]);
 
     const doubled = [...collaborations, ...collaborations];
 

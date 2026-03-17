@@ -9,6 +9,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { getQuickMenu, type QuickMenuData } from "@/services/menu/menuService";
+import { useLanguage } from "@/context/LanguageContext";
 
 type Props = {
     isOpen: boolean;
@@ -65,10 +66,11 @@ const STATIC_LEFT_ITEMS = [
 export default function QuickMenu({ isOpen, onClose }: Props) {
     const [menuData, setMenuData] = useState<QuickMenuData | null>(null);
     const [activeSection, setActiveSection] = useState<string>("");
+    const { lang } = useLanguage();
 
     useEffect(() => {
-        if (isOpen && !menuData) {
-            getQuickMenu("az").then((data) => {
+        if (isOpen) {
+            getQuickMenu(lang).then((data) => {
                 if (data) {
                     setMenuData(data);
                     if (data.right_sections?.length) {
@@ -77,7 +79,7 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
                 }
             });
         }
-    }, [isOpen, menuData]);
+    }, [isOpen, lang]);
 
     const rightSections = menuData?.right_sections?.length ? menuData.right_sections : STATIC_RIGHT_SECTIONS;
     const leftItems = menuData?.left_items?.length ? menuData.left_items : STATIC_LEFT_ITEMS;

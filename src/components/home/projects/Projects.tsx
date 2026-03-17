@@ -8,6 +8,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { getProjects, type ProjectItem } from "@/services/projectService/projectService";
+import { useLanguage } from "@/context/LanguageContext";
 import { API_BASE_URL } from "@/util/apiClient";
 
 const CARD_COLORS = [
@@ -26,14 +27,15 @@ export default function Projects() {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
     const [projects, setProjects] = useState<ProjectItem[]>([]);
+    const { lang } = useLanguage();
 
     useEffect(() => {
-        getProjects({ start: 0, end: 4, lang: "az" }).then((res) => {
+        getProjects({ start: 0, end: 4, lang }).then((res) => {
             if (res && res !== "NO_CONTENT" && res !== "ERROR") {
                 setProjects(res.projects.slice(0, 4));
             }
         });
-    }, []);
+    }, [lang]);
 
     return (
         <section

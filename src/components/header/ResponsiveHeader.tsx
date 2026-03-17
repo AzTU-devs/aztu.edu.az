@@ -18,16 +18,19 @@ import AzTULogoLight from "@/../public/logo/aztu-logo-light.png";
 import AzTULogoDark from "@/../public/logo/aztu-logo-dark.png";
 import { NAV_SECTIONS, NavSection } from "@/config/navigation";
 import { useTheme } from "@/context/ThemeContext";
+import { useLanguage } from "@/context/LanguageContext";
 import { getHeaderMenu } from "@/services/menu/menuService";
+import LanguageSwitcher from "@/components/shared/LanguageSwitcher";
 
 export default function ResponsiveHeader() {
     const [isOpen, setIsOpen] = useState(false);
     const [expandedSection, setExpandedSection] = useState<string | null>(null);
     const [navSections, setNavSections] = useState<NavSection[]>(NAV_SECTIONS);
     const { theme, toggleTheme } = useTheme();
+    const { lang } = useLanguage();
 
     useEffect(() => {
-        getHeaderMenu("az").then((data) => {
+        getHeaderMenu(lang).then((data) => {
             if (!data?.sections?.length) return;
             const mapped: NavSection[] = data.sections.map((apiSec) => {
                 const fallback = NAV_SECTIONS.find((s) => s.key === apiSec.key);
@@ -47,7 +50,7 @@ export default function ResponsiveHeader() {
             });
             setNavSections(mapped);
         });
-    }, []);
+    }, [lang]);
 
     const toggleSection = (key: string) => {
         setExpandedSection((prev) => (prev === key ? null : key));
@@ -149,9 +152,7 @@ export default function ResponsiveHeader() {
                                     {label}
                                 </button>
                             ))}
-                            <button className="ml-auto rounded-lg w-8 h-8 flex items-center justify-center font-bold text-xs text-white bg-white/10 hover:bg-white/25 transition-all">
-                                EN
-                            </button>
+                            <LanguageSwitcher variant="drawer" />
                             <button className="rounded-lg w-8 h-8 flex items-center justify-center text-white bg-white/10 hover:bg-white/25 transition-all">
                                 <ShareIcon sx={{ fontSize: 18 }} />
                             </button>

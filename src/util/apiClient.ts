@@ -4,15 +4,20 @@ export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export type Lang = "az" | "en";
 
+let _defaultLang: Lang = "az";
+
+export function setDefaultLang(lang: Lang) {
+    _defaultLang = lang;
+}
+
 const apiClient = axios.create({
     baseURL: API_BASE_URL,
 });
 
 apiClient.interceptors.request.use(
     (config) => {
-        // Default language is az; can be overridden per-request via params or header
         if (!config.headers["Accept-Language"]) {
-            config.headers["Accept-Language"] = "az";
+            config.headers["Accept-Language"] = _defaultLang;
         }
         return config;
     },
