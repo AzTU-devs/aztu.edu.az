@@ -137,6 +137,6 @@ const az = {
     defaultLabel: "Bu bölmə hazırlanır",
     subtitle: "Məlumat tezliklə əlavə olunacaq",
   },
-} as const;
+};
 
 export default az;
