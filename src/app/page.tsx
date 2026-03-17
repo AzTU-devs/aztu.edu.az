@@ -27,7 +27,7 @@ function SectionReveal({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.75, ease: "easeOut", delay }}
       className={className}

@@ -15,10 +15,6 @@
   --font-mono: var(--font-geist-mono);
 }
 
-html {
-  overflow-x: hidden;
-}
-
 body {
   overflow-x: hidden;
   background: var(--background);

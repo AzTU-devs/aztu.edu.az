@@ -10,7 +10,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import Prezidentaz from "@/../public/presidentaz.png";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import CurvedLogo from "@/../public/logo/curved-logo.svg";
+import CurvedLogoSvg from "./CurvedLogoSvg";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import CopyrightIcon from '@mui/icons-material/Copyright';
 import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
@@ -115,11 +115,15 @@ export default function Footer() {
     const universityName = footerData?.university_name ?? "Azerbaijan Technical University";
 
     return (
-        <footer className="relative mt-52 lg:mt-[100px]">
+        <footer className="relative mt-[60px] lg:mt-[100px]">
             <div className="relative z-10">
                 {/* Curved logo */}
                 <div className="absolute top-[-35px] md:top-[-55px] left-1/2 -translate-x-1/2 z-20 w-64 md:w-[400px]">
+<<<<<<< HEAD
                     <Image src={CurvedLogo} alt="AzTU" className="w-full h-auto" priority />
+=======
+                    <CurvedLogoSvg className="w-full h-auto" />
+>>>>>>> ab9c26b (fixed ui problems)
                 </div>
 
                 {/* Background */}
