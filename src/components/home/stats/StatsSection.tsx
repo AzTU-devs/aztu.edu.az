@@ -8,6 +8,7 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import PublicIcon from "@mui/icons-material/Public";
 import ScienceIcon from "@mui/icons-material/Science";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface Stat {
     icon: React.ElementType;
@@ -17,49 +18,13 @@ interface Stat {
     sublabel: string;
 }
 
-const stats: Stat[] = [
-    {
-        icon: SchoolIcon,
-        value: 6,
-        suffix: "",
-        label: "Fakültə",
-        sublabel: "Tədris fakültəsi",
-    },
-    {
-        icon: MenuBookIcon,
-        value: 50,
-        suffix: "+",
-        label: "İxtisas",
-        sublabel: "Bakalavr & magistr",
-    },
-    {
-        icon: GroupsIcon,
-        value: 15000,
-        suffix: "+",
-        label: "Tələbə",
-        sublabel: "Aktiv tələbə",
-    },
-    {
-        icon: EmojiEventsIcon,
-        value: 700,
-        suffix: "+",
-        label: "Müəllim",
-        sublabel: "Akademik heyət",
-    },
-    {
-        icon: PublicIcon,
-        value: 40,
-        suffix: "+",
-        label: "Tərəfdaş",
-        sublabel: "Beynəlxalq əməkdaşlıq",
-    },
-    {
-        icon: ScienceIcon,
-        value: 100,
-        suffix: "+",
-        label: "İllik Tarix",
-        sublabel: "1920-ci ildən bəri",
-    },
+const STAT_META = [
+    { icon: SchoolIcon,       value: 6,     suffix: "" },
+    { icon: MenuBookIcon,     value: 50,    suffix: "+" },
+    { icon: GroupsIcon,       value: 15000, suffix: "+" },
+    { icon: EmojiEventsIcon,  value: 700,   suffix: "+" },
+    { icon: PublicIcon,       value: 40,    suffix: "+" },
+    { icon: ScienceIcon,      value: 100,   suffix: "+" },
 ];
 
 function useCountUp(target: number, isInView: boolean, duration = 1800) {
@@ -127,8 +92,15 @@ function StatCard({ stat, index, isInView }: { stat: Stat; index: number; isInVi
 }
 
 export default function StatsSection() {
+    const t = useTranslation();
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-60px" });
+
+    const stats: Stat[] = STAT_META.map((meta, i) => ({
+        ...meta,
+        label: t.stats.items[i].label,
+        sublabel: t.stats.items[i].sublabel,
+    }));
 
     return (
         <section
@@ -155,10 +127,10 @@ export default function StatsSection() {
                 className="text-center pt-10 pb-2 px-4"
             >
                 <p className="text-[#ee7c7e] text-xs font-bold uppercase tracking-[0.22em]">
-                    AzTU Rəqəmlərlə
+                    {t.stats.sectionLabel}
                 </p>
                 <h2 className="text-white text-2xl md:text-3xl font-bold mt-1">
-                    Universitetimiz haqqında
+                    {t.stats.sectionTitle}
                 </h2>
             </motion.div>
 

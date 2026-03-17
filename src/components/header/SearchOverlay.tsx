@@ -2,20 +2,13 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "@/hooks/useTranslation";
 import { AnimatePresence, motion } from "framer-motion";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import AzTULogoDark from "@/../public/logo/aztu-logo-dark.png";
 
-const SUGGESTED_SEARCHES = [
-    "Qəbul şərtləri",
-    "Kafedra siyahısı",
-    "Tədris planı",
-    "Magistratura",
-    "Elmi jurnallar",
-    "Laboratoriyalar",
-];
 
 type Props = {
     isOpen: boolean;
@@ -23,6 +16,7 @@ type Props = {
 };
 
 export default function SearchOverlay({ isOpen, onClose }: Props) {
+    const t = useTranslation();
     const [searchQuery, setSearchQuery] = useState("");
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -82,7 +76,7 @@ export default function SearchOverlay({ isOpen, onClose }: Props) {
                         className="flex-1 flex flex-col items-center justify-center px-5 sm:px-10 -mt-10"
                     >
                         <p className="text-[#5A9BD3] text-[11px] font-bold uppercase tracking-[0.22em] mb-6 select-none">
-                            AzTU-da axtar
+                            {t.search.header}
                         </p>
 
                         {/* Input */}
@@ -96,7 +90,7 @@ export default function SearchOverlay({ isOpen, onClose }: Props) {
                                 type="text"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                placeholder="Axtarış sorğusu daxil edin…"
+                                placeholder={t.search.placeholder}
                                 className="w-full bg-white/[0.05] border border-white/[0.10] hover:border-white/[0.18] focus:border-[#5A9BD3]/60 focus:bg-white/[0.08] text-white placeholder-white/25 text-lg font-medium px-5 py-4 pl-14 pr-12 rounded-2xl outline-none transition-all duration-300 caret-[#5A9BD3]"
                             />
 
@@ -128,10 +122,10 @@ export default function SearchOverlay({ isOpen, onClose }: Props) {
                             className="mt-8 w-full max-w-2xl"
                         >
                             <p className="text-white/25 text-xs font-semibold uppercase tracking-widest mb-3 select-none">
-                                Populyar axtarışlar
+                                {t.search.popularLabel}
                             </p>
                             <div className="flex flex-wrap gap-2">
-                                {SUGGESTED_SEARCHES.map((term, i) => (
+                                {t.search.suggestions.map((term, i) => (
                                     <motion.button
                                         key={term}
                                         initial={{ opacity: 0, y: 8 }}

@@ -21,11 +21,13 @@ import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { getHeaderMenu } from "@/services/menu/menuService";
 import LanguageSwitcher from "@/components/shared/LanguageSwitcher";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function ResponsiveHeader() {
     const [isOpen, setIsOpen] = useState(false);
     const [expandedSection, setExpandedSection] = useState<string | null>(null);
     const [navSections, setNavSections] = useState<NavSection[]>(NAV_SECTIONS);
+    const t = useTranslation();
     const { theme, toggleTheme } = useTheme();
     const { lang } = useLanguage();
 
@@ -140,9 +142,9 @@ export default function ResponsiveHeader() {
                         {/* Utility buttons */}
                         <div className="flex items-center gap-2 px-4 py-3 bg-[#1a2355]">
                             {[
-                                { icon: <PersonIcon sx={{ fontSize: 18 }} />, label: "LMS" },
-                                { icon: <SchoolIcon sx={{ fontSize: 18 }} />, label: "Alumni" },
-                                { icon: <ConnectedTvIcon sx={{ fontSize: 18 }} />, label: "AzTU TV" },
+                                { icon: <PersonIcon sx={{ fontSize: 18 }} />, label: t.common.lms },
+                                { icon: <SchoolIcon sx={{ fontSize: 18 }} />, label: t.common.alumni },
+                                { icon: <ConnectedTvIcon sx={{ fontSize: 18 }} />, label: t.common.aztuTv },
                             ].map(({ icon, label }) => (
                                 <button
                                     key={label}

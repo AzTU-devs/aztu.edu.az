@@ -13,6 +13,7 @@ import { fetchNewsList } from "@/redux/features/newsSlice";
 import type { AppDispatch, RootState } from "@/redux/store";
 import { API_BASE_URL } from "@/util/apiClient";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const categoryColors: Record<string, string> = {
     AzTU: "bg-[#1a2355]",
@@ -38,6 +39,7 @@ function stripHtml(html: string) {
 export default function News() {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
+    const t = useTranslation();
     const dispatch = useDispatch<AppDispatch>();
     const { list, listLoading } = useSelector((s: RootState) => s.news);
     const { lang } = useLanguage();
@@ -67,11 +69,11 @@ export default function News() {
             >
                 <div>
                     <p className="text-[#ee7c7e] text-xs font-bold uppercase tracking-[0.2em] mb-2">
-                        Son Xəbərlər
+                        {t.news.sectionLabel}
                     </p>
                     <h2 className="text-3xl md:text-4xl font-bold text-[#1a2355] dark:text-white leading-tight">
-                        Xəbərlər &amp;{" "}
-                        <span className="text-[#ee7c7e]">Hadisələr</span>
+                        {t.news.sectionTitle} &amp;{" "}
+                        <span className="text-[#ee7c7e]">{t.news.sectionTitleAccent}</span>
                     </h2>
                 </div>
                 <Link href="/news">
@@ -80,7 +82,7 @@ export default function News() {
                         whileTap={{ scale: 0.97 }}
                         className="group flex items-center gap-2 bg-[#1a2355] py-2.5 px-5 rounded-xl text-white font-bold cursor-pointer hover:bg-[#0b1330] transition-colors duration-300"
                     >
-                        Bütün Xəbərlər
+                        {t.news.viewAll}
                         <ChevronRightIcon className="transition-transform duration-300 group-hover:translate-x-1.5" />
                     </motion.button>
                 </Link>
@@ -141,7 +143,7 @@ export default function News() {
                                         {stripHtml(featured.html_content)}
                                     </p>
                                     <div className="flex items-center gap-1 text-[#1a2355] dark:text-[#5A9BD3] font-semibold text-sm w-fit">
-                                        Ətraflı oxu
+                                        {t.news.readMore}
                                         <ChevronRightIcon sx={{ fontSize: 18 }} className="transition-transform duration-300 group-hover:translate-x-1" />
                                     </div>
                                 </div>
@@ -186,7 +188,7 @@ export default function News() {
                                                 {item.title}
                                             </h3>
                                             <div className="flex items-center gap-0.5 text-[#1a2355] dark:text-[#5A9BD3] font-semibold text-xs mt-1 w-fit">
-                                                Ətraflı oxu
+                                                {t.news.readMore}
                                                 <ChevronRightIcon sx={{ fontSize: 14 }} className="transition-transform duration-300 group-hover:translate-x-1" />
                                             </div>
                                         </div>

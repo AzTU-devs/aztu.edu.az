@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
+import { useTranslation } from "@/hooks/useTranslation";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -9,16 +10,11 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site";
 
-const MONTHS_AZ = [
-    "Yanvar","Fevral","Mart","Aprel","May","İyun",
-    "İyul","Avqust","Sentyabr","Oktyabr","Noyabr","Dekabr",
-];
-
-function parseDate(iso: string) {
+function parseDate(iso: string, months: readonly string[]) {
     const d = new Date(iso);
     return {
         date: String(d.getUTCDate()).padStart(2, "0"),
-        month: MONTHS_AZ[d.getUTCMonth()],
+        month: months[d.getUTCMonth()],
         year: String(d.getUTCFullYear()),
     };
 }
@@ -33,6 +29,7 @@ interface ApiAnnouncement {
 }
 
 export default function Announcements() {
+    const t = useTranslation();
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
     const [announcements, setAnnouncements] = useState<ApiAnnouncement[]>([]);
@@ -63,11 +60,11 @@ export default function Announcements() {
             >
                 <div>
                     <p className="text-white/50 text-xs font-bold uppercase tracking-[0.2em] mb-2">
-                        AzTU Elanları
+                        {t.announcements.sectionLabel}
                     </p>
                     <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight flex items-center gap-3">
                         <CampaignIcon sx={{ fontSize: 36, opacity: 0.85 }} />
-                        Elanlar
+                        {t.announcements.sectionTitle}
                     </h2>
                 </div>
                 <Link href="/announcements">
@@ -76,7 +73,7 @@ export default function Announcements() {
                         whileTap={{ scale: 0.97 }}
                         className="group flex items-center gap-2 bg-white py-2.5 px-5 rounded-xl text-[#1a2355] font-bold cursor-pointer hover:bg-gray-100 transition-colors duration-300"
                     >
-                        Bütün Elanlar
+                        {t.announcements.viewAll}
                         <ChevronRightIcon className="transition-transform duration-300 group-hover:translate-x-1.5" />
                     </motion.button>
                 </Link>
@@ -85,7 +82,7 @@ export default function Announcements() {
             {/* Announcement Cards */}
             <div className="flex flex-wrap gap-5">
                 {announcements.map((announcement, idx) => {
-                    const { date, month } = parseDate(announcement.created_at);
+                    const { date, month } = parseDate(announcement.created_at, t.announcements.months);
                     return (
                         <motion.div
                             key={announcement.id}

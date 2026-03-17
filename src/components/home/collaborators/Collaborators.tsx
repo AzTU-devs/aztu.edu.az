@@ -8,10 +8,12 @@ import HandshakeIcon from "@mui/icons-material/Handshake";
 import { getCollaborations, type CollaborationItem } from "@/services/collaborationService/collaborationService";
 import { API_BASE_URL } from "@/util/apiClient";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function Collaborators() {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
+    const t = useTranslation();
     const [collaborations, setCollaborations] = useState<CollaborationItem[]>([]);
     const { lang } = useLanguage();
 
@@ -42,11 +44,11 @@ export default function Collaborators() {
             >
                 <div>
                     <p className="text-[#ee7c7e] text-xs font-bold uppercase tracking-[0.2em] mb-2">
-                        Qlobal Tərəfdaşlar
+                        {t.collaborators.sectionLabel}
                     </p>
                     <h2 className="text-3xl md:text-4xl font-bold text-[#1a2355] dark:text-white leading-tight flex items-center gap-3">
                         <HandshakeIcon sx={{ fontSize: 34, opacity: 0.7 }} />
-                        Əməkdaşlar
+                        {t.collaborators.sectionTitle}
                     </h2>
                 </div>
                 <Link href="/beynelxalq/collaborations">
@@ -55,7 +57,7 @@ export default function Collaborators() {
                         whileTap={{ scale: 0.97 }}
                         className="group flex items-center gap-2 bg-[#1a2355] py-2.5 px-5 rounded-xl text-white font-bold cursor-pointer hover:bg-[#0b1330] transition-colors duration-300"
                     >
-                        Bütün Əməkdaşlar
+                        {t.collaborators.viewAll}
                         <ChevronRightIcon className="transition-transform duration-300 group-hover:translate-x-1.5" />
                     </motion.button>
                 </Link>

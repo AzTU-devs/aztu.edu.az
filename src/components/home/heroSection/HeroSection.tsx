@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react"
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward"
+import { useTranslation } from "@/hooks/useTranslation"
 
 const LOCAL_VIDEOS = [
     "/heroVideos/video5.mp4",
@@ -14,6 +15,7 @@ const AUTO_ADVANCE_INTERVAL = 8000
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site"
 
 export default function HeroSection() {
+    const t = useTranslation()
     const [videos, setVideos] = useState<string[]>(LOCAL_VIDEOS)
     const [activeIndex, setActiveIndex] = useState(0)
     const [progress, setProgress] = useState(0)
@@ -122,14 +124,14 @@ export default function HeroSection() {
                 style={{ zIndex: 3 }}
             >
                 <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-5 md:mb-6 leading-snug md:leading-tight">
-                    Discover Azerbaijan Technical University
+                    {t.hero.title}
                 </h1>
 
                 <button
                     onClick={handleScroll}
                     className="flex items-center justify-between gap-3 bg-white text-black font-semibold px-5 py-3 md:px-6 md:py-3.5 rounded-lg hover:bg-gray-200 transition-all duration-300 w-fit cursor-pointer"
                 >
-                    <span>Explore More</span>
+                    <span>{t.hero.button}</span>
                     <ArrowDownwardIcon fontSize="small" />
                 </button>
             </div>
@@ -174,7 +176,7 @@ export default function HeroSection() {
                         {/* Circular thumbnail button */}
                         <button
                             onClick={() => goTo(i)}
-                            aria-label={`Switch to video ${i + 1}`}
+                            aria-label={t.hero.videoAriaLabel(i + 1)}
                             className="relative overflow-hidden focus:outline-none cursor-pointer"
                             style={{
                                 width: "64px",

@@ -15,6 +15,8 @@ import { fetchNewsList } from "@/redux/features/newsSlice";
 import type { AppDispatch, RootState } from "@/redux/store";
 import { API_BASE_URL } from "@/util/apiClient";
 import { getNewsCategories, type NewsCategoryItem } from "@/services/newsService/newsService";
+import { useTranslation } from "@/hooks/useTranslation";
+import { useLanguage } from "@/context/LanguageContext";
 
 const PALETTE = [
     "bg-[#1a2355]",
@@ -53,6 +55,8 @@ const cardVariants = {
 const ALL_CATEGORY_ID = "__all__";
 
 export default function NewsPage() {
+    const t = useTranslation();
+    const { lang } = useLanguage();
     const dispatch = useDispatch<AppDispatch>();
     const { list, listLoading, listError } = useSelector((s: RootState) => s.news);
     const [categories, setCategories] = useState<NewsCategoryItem[]>([]);
@@ -61,8 +65,8 @@ export default function NewsPage() {
     const PAGE_SIZE = 10;
 
     useEffect(() => {
-        getNewsCategories("az").then((cats) => setCategories(cats));
-    }, []);
+        getNewsCategories(lang).then((cats) => setCategories(cats));
+    }, [lang]);
 
     useEffect(() => {
         dispatch(
@@ -70,11 +74,11 @@ export default function NewsPage() {
                 categoryId: activeCategoryId === ALL_CATEGORY_ID ? undefined : activeCategoryId,
                 start: 0,
                 end: PAGE_SIZE,
-                lang: "az",
+                lang,
             })
         );
         setPage(0);
-    }, [activeCategoryId, dispatch]);
+    }, [activeCategoryId, dispatch, lang]);
 
     console.log(list);
 
@@ -85,7 +89,7 @@ export default function NewsPage() {
                 categoryId: activeCategoryId === ALL_CATEGORY_ID ? undefined : activeCategoryId,
                 start: nextPage * PAGE_SIZE,
                 end: (nextPage + 1) * PAGE_SIZE,
-                lang: "az",
+                lang,
             })
         );
         setPage(nextPage);
@@ -119,7 +123,7 @@ export default function NewsPage() {
                         transition={{ duration: 0.5 }}
                         className="text-white/50 text-sm font-semibold uppercase tracking-widest mb-2"
                     >
-                        Azərbaycan Texniki Universiteti
+                        {t.news.breadcrumb}
                     </motion.p>
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
@@ -127,7 +131,7 @@ export default function NewsPage() {
                         transition={{ duration: 0.55, delay: 0.1 }}
                         className="text-3xl md:text-5xl font-bold text-white mb-3"
                     >
-                        Xəbərlər
+                        {t.news.pageTitle}
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -135,7 +139,7 @@ export default function NewsPage() {
                         transition={{ duration: 0.55, delay: 0.18 }}
                         className="text-white/70 text-base max-w-xl"
                     >
-                        AzTU-dakı ən son hadisələr, elmi nailiyyətlər və kampus yenilikləri ilə tanış olun.
+                        {t.news.pageDescription}
                     </motion.p>
                 </div>
 
@@ -151,7 +155,7 @@ export default function NewsPage() {
                                     : "bg-gray-100 dark:bg-slate-700 text-[#1a2355] dark:text-white hover:bg-[#1a2355]/10"
                                 }`}
                         >
-                            Hamısı
+                            {t.news.categoryAll}
                         </motion.button>
                         {categories.map((cat) => (
                             <motion.button
@@ -181,7 +185,7 @@ export default function NewsPage() {
                     {/* Error */}
                     {listError && !listLoading && (
                         <div className="text-center py-24 text-gray-400 font-semibold text-lg">
-                            Xəbərlər yüklənərkən xəta baş verdi.
+                            {t.news.errorMessage}
                         </div>
                     )}
 
@@ -194,7 +198,7 @@ export default function NewsPage() {
                                 exit={{ opacity: 0 }}
                                 className="text-center py-24 text-gray-400 font-semibold text-lg"
                             >
-                                Bu kateqoriyada xəbər tapılmadı.
+                                {t.news.noNews}
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -235,7 +239,7 @@ export default function NewsPage() {
                                                 {stripHtml(featured.html_content)}
                                             </p>
                                             <div className="flex items-center gap-1 text-[#1a2355] dark:text-[#5A9BD3] font-bold text-sm w-fit mt-2">
-                                                Ətraflı oxu
+                                                {t.news.readMore}
                                                 <ChevronRightIcon sx={{ fontSize: 18 }} className="transition-transform duration-300 group-hover:translate-x-1" />
                                             </div>
                                         </div>
@@ -251,7 +255,7 @@ export default function NewsPage() {
                                     className="flex items-center gap-4 mb-8"
                                 >
                                     <h2 className="text-xl font-bold text-[#1a2355] dark:text-white flex-shrink-0">
-                                        Digər xəbərlər
+                                        {t.news.otherNews}
                                     </h2>
                                     <div className="flex-1 h-px bg-gray-200 dark:bg-slate-700" />
                                 </motion.div>
@@ -297,7 +301,7 @@ export default function NewsPage() {
                                                 {stripHtml(item.html_content)}
                                             </p>
                                             <div className="flex items-center gap-0.5 text-[#1a2355] dark:text-[#5A9BD3] font-semibold text-xs mt-1 w-fit">
-                                                Ətraflı oxu
+                                                {t.news.readMore}
                                                 <ChevronRightIcon sx={{ fontSize: 14 }} className="transition-transform duration-300 group-hover:translate-x-1" />
                                             </div>
                                         </div>
@@ -325,11 +329,11 @@ export default function NewsPage() {
                                 {listLoading ? (
                                     <span className="flex items-center gap-2">
                                         <span className="w-4 h-4 rounded-full border-2 border-white border-t-transparent animate-spin" />
-                                        Yüklənir...
+                                        {t.news.loadMore}
                                     </span>
                                 ) : (
                                     <>
-                                        Daha çox yüklə
+                                        {t.news.loadMore}
                                         <ChevronRightIcon className="rotate-90 transition-transform duration-300 group-hover:translate-y-1" />
                                     </>
                                 )}

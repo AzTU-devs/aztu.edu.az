@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useTranslation } from "@/hooks/useTranslation";
+import { useLanguage } from "@/context/LanguageContext";
 import AzTU from "@/../public/aztu.png";
 import FirstLady from "@/../public/first_lady.png";
 import SchoolIcon from '@mui/icons-material/School';
@@ -48,45 +50,6 @@ interface FooterData {
     quick_icons?: { label: string; icon: string; url: string }[];
 }
 
-const STATIC_COLUMNS: FooterColumn[] = [
-    {
-        title: "Haqqımızda",
-        links: [
-            { label: "Universitetin tarixi", url: "/haqqimizda/history" },
-            { label: "Rektorun müraciəti", url: "/haqqimizda/rector-message" },
-            { label: "Fəxri məzunlarımız", url: "/haqqimizda/honorary-graduates" },
-            { label: "Fəxri doktorlarımız", url: "/haqqimizda/honorary-doctors" },
-            { label: "Qəhrəmanlarımız", url: "/haqqimizda/heroes" },
-            { label: "Şuralar", url: "/haqqimizda/councils" },
-            { label: "Kampus", url: "/haqqimizda/campus" },
-        ],
-    },
-    {
-        title: "Struktur",
-        links: [
-            { label: "Rəhbərlik", url: "/struktur/leadership" },
-            { label: "Fakültələr", url: "/faculties" },
-            { label: "Kafedralar", url: "/cafedras" },
-            { label: "Ömür boyu öyrənmə məktəbi", url: "/struktur/lifelong-learning" },
-            { label: "Yüksək Təhsil İnstitutu", url: "/struktur/higher-education" },
-            { label: "Şöbələr", url: "/struktur/departments" },
-            { label: "Kolleclər", url: "/struktur/colleges" },
-        ],
-    },
-    {
-        title: "Tədqiqat",
-        links: [
-            { label: "İnstitutlar", url: "/tedqiqat/institutes" },
-            { label: "Elmi-innovasiya strategiyası", url: "/tedqiqat/strategy" },
-            { label: "Fəaliyyət istiqamətləri", url: "/tedqiqat/directions" },
-            { label: "Tədqiqat və inkişaf şöbəsi", url: "/tedqiqat/r-and-d" },
-            { label: "İnnovasiyalar", url: "/tedqiqat/innovations" },
-            { label: "Kitabxana İnformasiya Mərkəzi", url: "/tedqiqat/library" },
-            { label: "Konfranslar", url: "/tedqiqat/conferences" },
-            { label: "Tələbə Elmi Cəmiyyəti", url: "/tedqiqat/student-science" },
-        ],
-    },
-];
 
 const STATIC_SOCIAL = [
     { platform: "facebook", url: "https://www.facebook.com/aztu.edu.az" },
@@ -96,10 +59,12 @@ const STATIC_SOCIAL = [
 ];
 
 export default function Footer() {
+    const t = useTranslation();
+    const { lang } = useLanguage();
     const [footerData, setFooterData] = useState<FooterData | null>(null);
 
     useEffect(() => {
-        fetch(`${API_BASE}/api/menu/footer?lang=az`)
+        fetch(`${API_BASE}/api/menu/footer?lang=${lang}`)
             .then((r) => r.json())
             .then((data) => {
                 if (data.status_code === 200 && data.data) {
@@ -107,9 +72,9 @@ export default function Footer() {
                 }
             })
             .catch(() => {});
-    }, []);
+    }, [lang]);
 
-    const columns = footerData?.columns?.length ? footerData.columns : STATIC_COLUMNS;
+    const columns = footerData?.columns?.length ? footerData.columns : t.footer.columns;
     const contact = footerData?.contact;
     const socialLinks = footerData?.social_links?.length ? footerData.social_links : STATIC_SOCIAL;
     const universityName = footerData?.university_name ?? "Azerbaijan Technical University";
@@ -172,7 +137,7 @@ export default function Footer() {
 
                             {/* Contact */}
                             <div className="flex flex-col items-center justify-center min-w-[250px] mt-8 lg:mt-0 text-center lg:text-left">
-                                <h2 className="font-200 text-lg md:text-[20px]">Əlaqə</h2>
+                                <h2 className="font-200 text-lg md:text-[20px]">{t.footer.contactTitle}</h2>
                                 <div className="bg-white/30 w-40 h-[2px] rounded-full my-4 mx-auto lg:mx-0" />
 
                                 {(contact?.phones ?? ["(+994 12) 539-13-05", "(+994 12) 538-33-83"]).map((phone, i) => (
@@ -192,7 +157,7 @@ export default function Footer() {
                                 ))}
 
                                 <div className="text-sm md:text-[14px] text-white/40 break-words mb-2 w-[300px] mx-auto lg:mx-0">
-                                    {contact?.address ?? "Adres: H.Cavid prospekti 25, Bakı, Azərbaycan AZ 1073 Azərbaycan Texniki Universiteti."}
+                                    {contact?.address ?? t.footer.defaultAddress}
                                 </div>
                                 <div className="text-sm md:text-[14px] text-white/40 mx-auto lg:mx-0">
                                     <a href={`mailto:${contact?.email ?? "aztu@aztu.edu.az"}`} className="hover:text-[#80c7ff] transition-colors duration-300">
@@ -226,9 +191,9 @@ export default function Footer() {
 
                             <div className="flex flex-wrap gap-4 justify-center">
                                 {[
-                                    { Icon: ImportContactsIcon, label: "e-Kitabxana", href: "/tedqiqat/library" },
-                                    { Icon: TrendingUpIcon, label: "Reytinqlər", href: "/haqqimizda/rankings" },
-                                    { Icon: SchoolIcon, label: "Qəbul", href: "/tehsil/admission" },
+                                    { Icon: ImportContactsIcon, label: t.footer.quickLinks[0].label, href: "/tedqiqat/library" },
+                                    { Icon: TrendingUpIcon, label: t.footer.quickLinks[1].label, href: "/haqqimizda/rankings" },
+                                    { Icon: SchoolIcon, label: t.footer.quickLinks[2].label, href: "/tehsil/admission" },
                                 ].map(({ Icon, label, href }) => (
                                     <Link
                                         key={label}
@@ -245,7 +210,7 @@ export default function Footer() {
                         {/* Copyright */}
                         <div className="flex items-center justify-center lg:justify-start bg-[#13365E]/90 p-4 md:p-[30px] mt-10 md:mt-[40px]">
                             <CopyrightIcon sx={{ color: "#ffffff", opacity: 0.4, fontSize: 20, marginRight: 2 }} />
-                            <p className="text-white/40 text-sm md:text-[14px]">{new Date().getFullYear()} Azerbaijan Technical University. All rights reserved.</p>
+                            <p className="text-white/40 text-sm md:text-[14px]">{t.footer.copyright(new Date().getFullYear())}</p>
                         </div>
                     </div>
                 </div>
