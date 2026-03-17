@@ -211,7 +211,7 @@ export default function NewsPage() {
                                     <div className="bg-white dark:bg-[#1e293b] rounded-2xl shadow-lg overflow-hidden mb-10 flex flex-col lg:flex-row cursor-pointer group">
                                         <div className="lg:w-1/2 w-full h-72 lg:h-auto relative flex-shrink-0 overflow-hidden">
                                             <Image
-                                                src={`${API_BASE_URL}/${featured.cover_image}`}
+                                                src={`${featured.cover_image}`}
                                                 alt={featured.title}
                                                 fill
                                                 className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -275,7 +275,7 @@ export default function NewsPage() {
                                     <Link href={`/news/${newsSlug(item.news_id, item.title)}`} className="flex flex-col h-full">
                                         <div className="h-48 relative overflow-hidden">
                                             <Image
-                                                src={`${API_BASE_URL}/${item.cover_image}`}
+                                                src={`${item.cover_image}`}
                                                 alt={item.title}
                                                 fill
                                                 className="object-cover group-hover:scale-105 transition-transform duration-500"
