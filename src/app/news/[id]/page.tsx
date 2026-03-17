@@ -141,7 +141,7 @@ export default function NewsDetailPage({
                             onClick={(e) => e.stopPropagation()}
                         >
                             <Image
-                                src={`${API_BASE_URL}/${allImages[lightboxIndex]}`}
+                                src={`${allImages[lightboxIndex]}`}
                                 alt={`Şəkil ${lightboxIndex + 1}`}
                                 fill
                                 className="object-contain"
@@ -243,7 +243,7 @@ export default function NewsDetailPage({
                                 >
                                     <motion.div style={{ y: heroImageY }} className="absolute inset-0 scale-110">
                                         <Image
-                                            src={`${API_BASE_URL}/${detail.cover_image}`}
+                                            src={`${detail.cover_image}`}
                                             alt={detail.az_title}
                                             fill
                                             className="object-cover"
@@ -433,7 +433,7 @@ export default function NewsDetailPage({
                                             onClick={() => { setLightboxIndex(i); setLightboxOpen(true); }}
                                         >
                                             <Image
-                                                src={`${API_BASE_URL}/${img}`}
+                                                src={`/${img}`}
                                                 alt={`${detail.az_title} — şəkil ${i + 1}`}
                                                 fill
                                                 className="object-cover"
@@ -506,7 +506,7 @@ export default function NewsDetailPage({
                                         <Link href={`/news/${newsSlug(item.news_id, item.title)}`}>
                                             <div className="h-48 relative overflow-hidden">
                                                 <Image
-                                                    src={`${API_BASE_URL}/${item.cover_image}`}
+                                                    src={`${item.cover_image}`}
                                                     alt={item.title}
                                                     fill
                                                     className="object-cover group-hover:scale-105 transition-transform duration-500"
