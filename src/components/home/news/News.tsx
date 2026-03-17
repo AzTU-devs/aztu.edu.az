@@ -113,7 +113,7 @@ export default function News() {
                             <div className="group bg-white dark:bg-[#1e293b] rounded-3xl shadow-lg overflow-hidden h-full cursor-pointer hover:shadow-2xl transition-shadow duration-500">
                                 <div className="relative h-72 md:h-[22rem] overflow-hidden">
                                     <Image
-                                        src={`${API_BASE_URL}/${featured.cover_image}`}
+                                        src={`${featured.cover_image}`}
                                         alt={featured.title}
                                         fill
                                         className="object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
@@ -165,7 +165,7 @@ export default function News() {
                                     >
                                         <div className="relative h-44 overflow-hidden flex-shrink-0">
                                             <Image
-                                                src={`${API_BASE_URL}/${item.cover_image}`}
+                                                src={`${item.cover_image}`}
                                                 alt={item.title}
                                                 fill
                                                 className="object-cover group-hover:scale-105 transition-transform duration-500"
