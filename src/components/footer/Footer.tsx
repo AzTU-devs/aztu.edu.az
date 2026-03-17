@@ -119,11 +119,7 @@ export default function Footer() {
             <div className="relative z-10">
                 {/* Curved logo */}
                 <div className="absolute top-[-35px] md:top-[-55px] left-1/2 -translate-x-1/2 z-20 w-64 md:w-[400px]">
-<<<<<<< HEAD
-                    <Image src={CurvedLogo} alt="AzTU" className="w-full h-auto" priority />
-=======
                     <CurvedLogoSvg className="w-full h-auto" />
->>>>>>> ab9c26b (fixed ui problems)
                 </div>
 
                 {/* Background */}
