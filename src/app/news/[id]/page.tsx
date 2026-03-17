@@ -433,7 +433,7 @@ export default function NewsDetailPage({
                                             onClick={() => { setLightboxIndex(i); setLightboxOpen(true); }}
                                         >
                                             <Image
-                                                src={`/${img}`}
+                                                src={`${img}`}
                                                 alt={`${detail.az_title} — şəkil ${i + 1}`}
                                                 fill
                                                 className="object-cover"
