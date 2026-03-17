@@ -137,6 +137,6 @@ const en = {
     defaultLabel: "This section is being prepared",
     subtitle: "Information will be added soon",
   },
-} as const;
+};
 
 export default en;
