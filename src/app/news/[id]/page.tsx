@@ -31,6 +31,13 @@ import type { AppDispatch, RootState } from "@/redux/store";
 import { API_BASE_URL } from "@/util/apiClient";
 import { parseNewsSlug, newsSlug } from "@/util/slugify";
 
+function decodeHtmlEntities(encoded: string): string {
+    if (typeof window === "undefined") return encoded;
+    const textarea = document.createElement("textarea");
+    textarea.innerHTML = encoded;
+    return textarea.value;
+}
+
 function formatDate(iso: string) {
     if (!iso) return "";
     return new Date(iso).toLocaleDateString("az-AZ", {
@@ -292,7 +299,7 @@ export default function NewsDetailPage({
                             </motion.p>
                                 <div
                                     className="prose prose-slate dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg"
-                                    dangerouslySetInnerHTML={{ __html: detail.az_html_content }}
+                                    dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(detail.az_html_content) }}
                                 />
 
                                 <motion.div
