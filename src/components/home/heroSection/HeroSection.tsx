@@ -12,17 +12,22 @@ const LOCAL_VIDEOS = [
 ]
 
 const AUTO_ADVANCE_INTERVAL = 8000
+const RING_CIRCUMFERENCE = 2 * Math.PI * 37
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site"
 
 export default function HeroSection() {
     const t = useTranslation()
     const [videos, setVideos] = useState<string[]>(LOCAL_VIDEOS)
     const [activeIndex, setActiveIndex] = useState(0)
-    const [progress, setProgress] = useState(0)
+    const [progressKey, setProgressKey] = useState(0)
     const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
     const thumbRefs = useRef<(HTMLVideoElement | null)[]>([])
     const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
-    const progressRef = useRef<ReturnType<typeof setInterval> | null>(null)
+    const videosLengthRef = useRef(LOCAL_VIDEOS.length)
+
+    useEffect(() => {
+        videosLengthRef.current = videos.length
+    }, [videos.length])
 
     // Try to fetch the active hero video from API
     useEffect(() => {
@@ -31,68 +36,50 @@ export default function HeroSection() {
             .then((data) => {
                 if (data.status_code === 200 && data.hero?.video) {
                     const apiVideoUrl = `${API_BASE}/${data.hero.video}`
-                    // Prepend API video, keep local videos as fallback thumbnails
                     setVideos([apiVideoUrl, ...LOCAL_VIDEOS])
                 }
             })
             .catch(() => {})
     }, [])
 
-    const clearTimers = () => {
-        if (intervalRef.current) clearInterval(intervalRef.current)
-        if (progressRef.current) clearInterval(progressRef.current)
-    }
-
-    const startProgress = useCallback(() => {
-        setProgress(0)
-        if (progressRef.current) clearInterval(progressRef.current)
-        const step = 100 / (AUTO_ADVANCE_INTERVAL / 50)
-        progressRef.current = setInterval(() => {
-            setProgress(prev => {
-                if (prev >= 100) return 100
-                return prev + step
-            })
-        }, 50)
+    const advance = useCallback(() => {
+        setActiveIndex(prev => (prev + 1) % videosLengthRef.current)
+        setProgressKey(k => k + 1)
     }, [])
+
+    const startAutoAdvance = useCallback(() => {
+        if (intervalRef.current) clearInterval(intervalRef.current)
+        intervalRef.current = setInterval(advance, AUTO_ADVANCE_INTERVAL)
+    }, [advance])
+
+    useEffect(() => {
+        startAutoAdvance()
+        return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
+    }, [startAutoAdvance])
+
+    // Only play the active video; pause all others
+    useEffect(() => {
+        videoRefs.current.forEach((video, i) => {
+            if (!video) return
+            if (i === activeIndex) {
+                video.currentTime = 0
+                video.play().catch(() => {})
+            } else {
+                video.pause()
+            }
+        })
+    }, [activeIndex])
+
+    // Play thumbnail videos once on mount (they are small 64px circles)
+    useEffect(() => {
+        thumbRefs.current.forEach(v => { if (v) v.play().catch(() => {}) })
+    }, [videos])
 
     const goTo = useCallback((index: number) => {
         setActiveIndex(index)
-        startProgress()
-        clearTimers()
-        intervalRef.current = setInterval(() => {
-            setActiveIndex(prev => (prev + 1) % videos.length)
-            startProgress()
-        }, AUTO_ADVANCE_INTERVAL)
-    }, [startProgress, videos.length])
-
-    useEffect(() => {
-        startProgress()
-        intervalRef.current = setInterval(() => {
-            setActiveIndex(prev => (prev + 1) % videos.length)
-            startProgress()
-        }, AUTO_ADVANCE_INTERVAL)
-        return clearTimers
-    }, [startProgress, videos.length])
-
-    // Play/reset active main video
-    useEffect(() => {
-        const video = videoRefs.current[activeIndex]
-        if (video) {
-            video.currentTime = 0
-            video.playbackRate = 1.5
-            video.play().catch(() => {})
-        }
-    }, [activeIndex])
-
-    // Keep thumbnail videos playing silently
-    useEffect(() => {
-        thumbRefs.current.forEach(v => {
-            if (v) {
-                v.playbackRate = 1.0
-                v.play().catch(() => {})
-            }
-        })
-    }, [videos])
+        setProgressKey(k => k + 1)
+        startAutoAdvance()
+    }, [startAutoAdvance])
 
     const handleScroll = () => {
         window.scrollBy({ top: window.innerHeight, behavior: "smooth" })
@@ -100,16 +87,31 @@ export default function HeroSection() {
 
     return (
         <section className="w-full h-screen relative overflow-hidden">
+            {/* CSS-driven progress ring — no JS timers touching React state */}
+            <style>{`
+                @keyframes hero-ring {
+                    from { stroke-dashoffset: ${RING_CIRCUMFERENCE}; }
+                    to   { stroke-dashoffset: 0; }
+                }
+                .hero-ring-progress {
+                    animation: hero-ring ${AUTO_ADVANCE_INTERVAL}ms linear forwards;
+                }
+            `}</style>
+
             {videos.map((src, i) => (
                 <video
                     key={src}
                     ref={el => { videoRefs.current[i] = el }}
                     className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
-                    style={{ opacity: i === activeIndex ? 1 : 0, zIndex: i === activeIndex ? 1 : 0 }}
+                    style={{
+                        opacity: i === activeIndex ? 1 : 0,
+                        zIndex: i === activeIndex ? 1 : 0,
+                        willChange: "opacity",
+                    }}
                     muted
                     playsInline
                     loop
-                    preload={i === 0 ? "auto" : "metadata"}
+                    preload={i === 0 ? "auto" : "none"}
                 >
                     <source src={src} type="video/mp4" />
                 </video>
@@ -147,7 +149,7 @@ export default function HeroSection() {
                         className="relative flex items-center justify-center"
                         style={{ width: "80px", height: "80px" }}
                     >
-                        {/* Animated progress ring */}
+                        {/* Progress ring — animated purely via CSS, no setInterval */}
                         <svg
                             className="absolute inset-0 w-full h-full"
                             viewBox="0 0 80 80"
@@ -161,14 +163,15 @@ export default function HeroSection() {
                             />
                             {i === activeIndex && (
                                 <circle
+                                    key={progressKey}
                                     cx="40" cy="40" r="37"
                                     fill="none"
                                     stroke="white"
                                     strokeWidth="2"
                                     strokeLinecap="round"
-                                    strokeDasharray={`${2 * Math.PI * 37}`}
-                                    strokeDashoffset={`${2 * Math.PI * 37 * (1 - progress / 100)}`}
-                                    style={{ transition: "stroke-dashoffset 0.05s linear" }}
+                                    strokeDasharray={RING_CIRCUMFERENCE}
+                                    strokeDashoffset={RING_CIRCUMFERENCE}
+                                    className="hero-ring-progress"
                                 />
                             )}
                         </svg>
@@ -191,7 +194,6 @@ export default function HeroSection() {
                                 flexShrink: 0,
                             }}
                         >
-                            {/* Thumbnail video — use local video for thumbnails */}
                             <video
                                 ref={el => { thumbRefs.current[i] = el }}
                                 className="absolute inset-0 w-full h-full object-cover"
@@ -203,7 +205,6 @@ export default function HeroSection() {
                                 <source src={LOCAL_VIDEOS[i % LOCAL_VIDEOS.length]} type="video/mp4" />
                             </video>
 
-                            {/* Dim overlay for inactive */}
                             <div
                                 className="absolute inset-0 transition-opacity duration-300"
                                 style={{
