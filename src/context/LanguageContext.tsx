@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { setDefaultLang } from "@/util/apiClient";
 import type { Lang } from "@/util/apiClient";
 
@@ -14,27 +15,37 @@ const LanguageContext = createContext<LanguageContextType>({
   toggleLang: () => {},
 });
 
+function getLangFromPathname(pathname: string): Lang | null {
+  const first = pathname.split("/").filter(Boolean)[0];
+  if (first === "az" || first === "en") return first;
+  return null;
+}
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const router = useRouter();
   const [lang, setLang] = useState<Lang>("az");
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem("aztu-lang") as Lang | null;
-    if (stored === "az" || stored === "en") {
-      setLang(stored);
-      setDefaultLang(stored);
+    const urlLang = getLangFromPathname(pathname);
+    if (urlLang) {
+      setLang(urlLang);
+      setDefaultLang(urlLang);
+      document.documentElement.lang = urlLang;
+      localStorage.setItem("aztu-lang", urlLang);
     }
-    setMounted(true);
-  }, []);
+  }, [pathname]);
 
-  useEffect(() => {
-    if (!mounted) return;
-    localStorage.setItem("aztu-lang", lang);
-    setDefaultLang(lang);
-    document.documentElement.lang = lang;
-  }, [lang, mounted]);
-
-  const toggleLang = () => setLang((l) => (l === "az" ? "en" : "az"));
+  const toggleLang = () => {
+    const newLang: Lang = lang === "az" ? "en" : "az";
+    const segments = pathname.split("/").filter(Boolean);
+    if (segments[0] === "az" || segments[0] === "en") {
+      segments[0] = newLang;
+    } else {
+      segments.unshift(newLang);
+    }
+    router.push("/" + segments.join("/"));
+  };
 
   return (
     <LanguageContext.Provider value={{ lang, toggleLang }}>

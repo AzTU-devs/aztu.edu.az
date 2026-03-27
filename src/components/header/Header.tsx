@@ -38,6 +38,16 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
       if (!data?.sections?.length) return;
       const mapped: NavSection[] = data.sections.map((apiSec) => {
         const fallback = NAV_SECTIONS.find((s) => s.key === apiSec.key);
+        // Normalise slug: strip leading slash then strip the base-path segment
+        // so the Dropdown can safely do `basePath + "/" + slug` without doubling.
+        // Handles: "/about/history", "about/history", "history" → "history"
+        const baseSeg = apiSec.base_path.replace(/^\/+/, "").replace(/\/+$/, "");
+        const normalizeSlug = (slug: string) => {
+          const s = slug.replace(/^\/+/, ""); // strip any leading slashes
+          if (s === baseSeg) return "";
+          if (s.startsWith(baseSeg + "/")) return s.slice(baseSeg.length + 1);
+          return s;
+        };
         return {
           key: apiSec.key,
           label: apiSec.label,
@@ -45,10 +55,10 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
           image: apiSec.image_url ?? fallback?.image ?? NAV_SECTIONS[0].image,
           items: apiSec.items.map((item) => ({
             title: item.title,
-            slug: item.slug ?? undefined,
+            slug: item.slug ? normalizeSlug(item.slug) : undefined,
             subItems: item.sub_items
               ?.filter((s) => s.slug)
-              .map((s) => ({ title: s.title, slug: s.slug! })),
+              .map((s) => ({ title: s.title, slug: normalizeSlug(s.slug!) })),
           })),
         };
       });
