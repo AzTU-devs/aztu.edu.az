@@ -13,6 +13,9 @@ export interface StaticCafedra {
   short_name: string;
   description: string;
   is_active: boolean;
+  purpose?: string;
+  main_directions?: string[];
+  stats?: { label: string; value: string }[];
 }
 
 export const STATIC_FACULTIES: StaticFaculty[] = [
@@ -92,7 +95,24 @@ export const STATIC_CAFEDRAS: StaticCafedra[] = [
     name: "Kibertəhlükəsizlik kafedras",
     short_name: "KTK",
     description:
-      "Şəbəkə təhlükəsizliyi, kriptoqrafiya, kiberhücumlara qarşı müdafiə metodları kafedras.",
+      "Kibertəhlükəsizlik kafedrası Azərbaycan Texniki Universiteti (AzTU) Elmi Şurasının 12 iyul 2022-ci il tarixli qərarı ilə yaradılmışdır. Kafedra regionda kibertəhlükəsizlik və informasiya təhlükəsizliyi sahəsində təhsil və elmi-tədqiqat üzrə qabaqcıl mərkəzə çevrilməyi qarşısına məqsəd qoymuşdur.",
+    purpose:
+      "Kafedranın missiyası innovativ və kreativ düşüncəyə malik, analitik bacarıqları inkişaf etmiş, müasir texnologiyalar əsasında effektiv həllər təqdim edə bilən yüksək ixtisaslı mütəxəssislər hazırlamaqdır. Bu mütəxəssislər informasiya təhlükəsizliyi sahəsində yeni yanaşmaların formalaşdırılması və cəmiyyətin rəqəmsal təhlükəsizliyinin təmin edilməsinə töhfə verirlər.",
+    main_directions: [
+      "İnformasiya təhlükəsizliyi üzrə müasir və beynəlxalq standartlara uyğun tədris proqramlarının hazırlanması və tətbiqi",
+      "Sənaye və dövlət qurumları ilə əməkdaşlıq çərçivəsində praktiki bacarıqlara malik mütəxəssislərin hazırlanması",
+      "Kritik informasiya infrastrukturunun qorunması üçün metod və texnologiyaların inkişaf etdirilməsi",
+      "Müxtəlif sektorlar üzrə informasiya təhlükəsizliyinin təmin edilməsi istiqamətində elmi tədqiqatların aparılması və innovativ həllərin işlənməsi",
+    ],
+    stats: [
+      { label: "Bakalavr proqramları", value: "1" },
+      { label: "Magistratura proqramları", value: "5" },
+      { label: "Doktorantura proqramları", value: "2+" },
+      { label: "Beynəlxalq əməkdaşlıq", value: "7+" },
+      { label: "Laboratoriyalar", value: "3" },
+      { label: "Layihə və patent", value: "1+" },
+      { label: "Sənaye əməkdaşlığı", value: "5+" },
+    ],
     is_active: true,
   },
   // Faculty 2 – MRF
@@ -197,6 +217,24 @@ export interface StaticEmployee {
   cv_url?: string;
 }
 
+export interface StaticCafedraHead {
+  cafedra_id: number;
+  full_name: string;
+  academic_degree?: string;
+  title: string;
+  photo_url?: string;
+  email?: string;
+  phone?: string;
+  office?: string;
+  reception_hours?: string;
+  bio?: string;
+  research_areas?: string[];
+  education?: { year: string; degree: string; institution: string }[];
+  scopus_url?: string;
+  wos_url?: string;
+  scholar_url?: string;
+}
+
 export const STATIC_FACULTY_EMPLOYEES: StaticEmployee[] = [
   // Faculty 1 – İTSM
   { id: 1001, faculty_id: 1, full_name: "Rzayeva Aynur Sabir qızı", position: "Metodist", photo_url: "https://ui-avatars.com/api/?name=Aynur+Rzayeva&background=ee7c7e&color=fff&size=200&bold=true", email: "a.rzayeva@aztu.edu.az", phone: "+994 12 598 34 56", bio: "Fakültənin tədris prosesinin metodiki cəhətdən təmin edilməsindən məsuldur. 10 ildən artıq pedaqoji fəaliyyəti var." },
@@ -236,9 +274,35 @@ export const STATIC_CAFEDRA_EMPLOYEES: StaticEmployee[] = [
   { id: 2005, cafedra_id: 102, full_name: "Qasımov Elnur Zakir oğlu", position: "Dosent", academic_degree: "Fəlsəfə doktoru", photo_url: "https://ui-avatars.com/api/?name=Elnur+Qasimov&background=37474f&color=fff&size=200&bold=true", email: "e.qasimov@aztu.edu.az", phone: "+994 12 598 40 11", bio: "Sistem analizi və layihə idarəetməsi üzrə dosent. SAP sistemləri sahəsində təcrübəlidir." },
   { id: 2006, cafedra_id: 102, full_name: "Süleymanova Nigar Ramiz qızı", position: "Müəllim", photo_url: "https://ui-avatars.com/api/?name=Nigar+Suleymanova&background=880e4f&color=fff&size=200&bold=true", email: "n.suleymanova@aztu.edu.az", phone: "+994 12 598 40 12", bio: "Web texnologiyaları və informasiya sistemlərinin layihələndirilməsi üzrə müəllim." },
   // Cafedra 103 – KTK
-  { id: 2007, cafedra_id: 103, full_name: "Əliyev Zaur Bəhruz oğlu", position: "Kafedra müdiri", academic_degree: "Texnika elmləri doktoru", photo_url: "https://ui-avatars.com/api/?name=Zaur+Aliyev&background=b71c1c&color=fff&size=200&bold=true", email: "z.aliyev@aztu.edu.az", phone: "+994 12 598 40 20", bio: "Kibertəhlükəsizlik kafedrasının müdiri. Şəbəkə müdafiəsi və kriptoqrafiya üzrə mütəxəssisdir." },
-  { id: 2008, cafedra_id: 103, full_name: "Hüseynova Nərmin Fariz qızı", position: "Dosent", academic_degree: "Elmlər namizədi", photo_url: "https://ui-avatars.com/api/?name=Narmin+Huseynova&background=0d47a1&color=fff&size=200&bold=true", email: "n.huseynova@aztu.edu.az", phone: "+994 12 598 40 21", bio: "Kiberhücumlara qarşı müdafiə metodları üzrə dosent. Etik hacking kurslarını aparır." },
-  { id: 2009, cafedra_id: 103, full_name: "Mustafayev Rauf Elnur oğlu", position: "Müəllim", photo_url: "https://ui-avatars.com/api/?name=Rauf+Mustafayev&background=283593&color=fff&size=200&bold=true", email: "r.mustafayev@aztu.edu.az", phone: "+994 12 598 40 22", bio: "Şəbəkə adminstratorluğu və firewall konfiqurasiyası üzrə müəllim." },
+  { id: 3000, cafedra_id: 103, full_name: "İmamverdiyev Yadigar Nəsib oğlu", position: "Kafedra müdiri", academic_degree: "Texnika elmləri doktoru, dosent", photo_url: "https://ui-avatars.com/api/?name=Yadigar+Imamverdiyev&background=1a2355&color=fff&size=200&bold=true", email: "yadigar.imamverdiyev@aztu.edu.az", phone: "+994 12 539 08 24", bio: "İmamverdiyev Yadigar Nəsib oğlu — texnika elmləri doktoru, dosent, informasiya təhlükəsizliyi və kriptoqrafiya sahəsi üzrə ixtisaslaşmış alimdir. O, informasiya təhlükəsizliyi və kibertəhlükəsizlik istiqamətində elmi və pedaqoji fəaliyyət göstərir. 200-dən çox elmi məqalənin və 8 kitabın müəllifidir, həmçinin ölkədə ilk CERT komandasının yaradılmasında və biometrik identifikasiya sistemlərinin tətbiqi üzrə dövlət layihələrində aktiv iştirak etmişdir." },
+  { id: 3001, cafedra_id: 103, full_name: "Qasımlı Fərid Fikrət oğlu", position: "Baş müəllim", photo_url: "https://ui-avatars.com/api/?name=Farid+Qasimli&background=263238&color=fff&size=200&bold=true", email: "farid.gasimli@aztu.edu.az", phone: "+994 50-403-07-44", bio: "Kibertəhlükəsizlik kafedrasının baş müəllimi. Tədris və tədqiqat sahəsində fəaliyyət göstərir." },
+  { id: 3002, cafedra_id: 103, full_name: "Məhərrəmova Aynur Natiq", position: "Assistent", photo_url: "https://ui-avatars.com/api/?name=Aynur+Maharramova&background=880e4f&color=fff&size=200&bold=true", email: "aynur.meherremova@aztu.edu.az", phone: "+994 51-700-30-30", bio: "Kibertəhlükəsizlik kafedrasının assistenti. Tələbələrə tədris sahəsində yardım göstərir." },
+  { id: 3003, cafedra_id: 103, full_name: "Məmmədova Nərmin Ləyaqət", position: "Assistent", photo_url: "https://ui-avatars.com/api/?name=Narmin+Mammadova&background=00695c&color=fff&size=200&bold=true", email: "narmin.mammadova@aztu.edu.az", phone: "+994 51-526-86-87", bio: "Kibertəhlükəsizlik kafedrasının assistenti. Tələbələrə tədris sahəsində yardım göstərir." },
+  { id: 3004, cafedra_id: 103, full_name: "Qəhrəmanova Samirə Həsən", position: "Dosent", academic_degree: "t.f.d., dosent", photo_url: "https://ui-avatars.com/api/?name=Samira+Qahramanova&background=b71c1c&color=fff&size=200&bold=true", email: "samira.qahramanova@aztu.edu.az", phone: "+994 10 527 07 11", bio: "Kibertəhlükəsizlik kafedrasının dosenti. Sahəsinin aparıcı mütəxəssislərindən biridir." },
+  { id: 3005, cafedra_id: 103, full_name: "Babayeva Arzu Ələm", position: "Assistent", photo_url: "https://ui-avatars.com/api/?name=Arzu+Babayeva&background=1b5e20&color=fff&size=200&bold=true", email: "arzu.babayeva@aztu.edu.az", phone: "+994 51-430-05-74", bio: "Kibertəhlükəsizlik kafedrasının assistenti. Tələbələrə tədris sahəsində yardım göstərir." },
+  { id: 3006, cafedra_id: 103, full_name: "Hüseynova Əzimə Şahin", position: "Assistent", photo_url: "https://ui-avatars.com/api/?name=Azima+Huseynova&background=4527a0&color=fff&size=200&bold=true", email: "ezime.huseynova@aztu.edu.az", phone: "+994 51-649-82-98", bio: "Kibertəhlükəsizlik kafedrasının assistenti. Tələbələrə tədris sahəsində yardım göstərir." },
+  { id: 3007, cafedra_id: 103, full_name: "Qəhrəmanova İlahə Həsən", position: "Baş müəllim", photo_url: "https://ui-avatars.com/api/?name=Ilaha+Qahramanova&background=ad1457&color=fff&size=200&bold=true", email: "ilaha.qahramanova@aztu.edu.az", phone: "+994 50-418-57-30", bio: "Kibertəhlükəsizlik kafedrasının baş müəllimi. Tədris və tədqiqat sahəsində fəaliyyət göstərir." },
+  { id: 3008, cafedra_id: 103, full_name: "İbrahimova Aytəkin Bəybala", position: "Assistent", photo_url: "https://ui-avatars.com/api/?name=Aytekin+Ibrahimova&background=0277bd&color=fff&size=200&bold=true", email: "aytekin.ibrahimova@aztu.edu.az", phone: "+994 55-980-39-70", bio: "Kibertəhlükəsizlik kafedrasının assistenti. Tələbələrə tədris sahəsində yardım göstərir." },
+  { id: 3009, cafedra_id: 103, full_name: "Əliyeva Qahirə Tehran", position: "Assistent", photo_url: "https://ui-avatars.com/api/?name=Qahira+Aliyeva&background=33691e&color=fff&size=200&bold=true", email: "qahire.vahidli@aztu.edu.az", phone: "+994 55-840-97-28", bio: "Kibertəhlükəsizlik kafedrasının assistenti. Tələbələrə tədris sahəsində yardım göstərir." },
+  { id: 3010, cafedra_id: 103, full_name: "Quluzadə Pərişan Ceyhun", position: "Assistent", photo_url: "https://ui-avatars.com/api/?name=Perishan+Quluzade&background=bf360c&color=fff&size=200&bold=true", email: "perishan.guluzade@aztu.edu.az", phone: "+994 50-449-30-56", bio: "Kibertəhlükəsizlik kafedrasının assistenti. Tələbələrə tədris sahəsində yardım göstərir." },
+  { id: 3011, cafedra_id: 103, full_name: "Nəcəfli Cavad Vaqif", position: "Assistent", photo_url: "https://ui-avatars.com/api/?name=Cavad+Nacafli&background=37474f&color=fff&size=200&bold=true", email: "cavad.necefli@aztu.edu.az", phone: "+994 51-340-19-24", bio: "Kibertəhlükəsizlik kafedrasının assistenti. Tələbələrə tədris sahəsində yardım göstərir." },
+  { id: 3012, cafedra_id: 103, full_name: "Arifli Aydan Rauf", position: "Assistent", photo_url: "https://ui-avatars.com/api/?name=Aydan+Arifli&background=6a1b9a&color=fff&size=200&bold=true", email: "aydan.arifli@aztu.edu.az", phone: "+994 55-439-72-28", bio: "Kibertəhlükəsizlik kafedrasının assistenti. Tələbələrə tədris sahəsində yardım göstərir." },
+  { id: 3013, cafedra_id: 103, full_name: "Orucova Leyla Sənan", position: "Assistent", photo_url: "https://ui-avatars.com/api/?name=Leyla+Orucova&background=004d40&color=fff&size=200&bold=true", email: "leyla.orucova@aztu.edu.az", phone: "+994 50-679-72-34", bio: "Kibertəhlükəsizlik kafedrasının assistenti. Tələbələrə tədris sahəsində yardım göstərir." },
+  { id: 3014, cafedra_id: 103, full_name: "Şirəliyeva Xumar Rəşad", position: "Assistent", photo_url: "https://ui-avatars.com/api/?name=Xumar+Shiraliyeva&background=7b1fa2&color=fff&size=200&bold=true", email: "khumar.shiraliyeva@aztu.edu.az", phone: "+994 55-232-07-67", bio: "Kibertəhlükəsizlik kafedrasının assistenti. Tələbələrə tədris sahəsində yardım göstərir." },
+  { id: 3015, cafedra_id: 103, full_name: "Abdullayeva İnci Tağı", position: "Assistent", photo_url: "https://ui-avatars.com/api/?name=Inci+Abdullayeva&background=283593&color=fff&size=200&bold=true", email: "inci.abdullayeva@aztu.edu.az", phone: "+994 50-536-49-26", bio: "Kibertəhlükəsizlik kafedrasının assistenti. Tələbələrə tədris sahəsində yardım göstərir." },
+  { id: 3016, cafedra_id: 103, full_name: "Fərzəliyev Azad Novruz", position: "Assistent", photo_url: "https://ui-avatars.com/api/?name=Azad+Farzaliyev&background=1a3a5c&color=fff&size=200&bold=true", email: "azad.farzaliyev@aztu.edu.az", phone: "+994 51-696-06-44", bio: "Kibertəhlükəsizlik kafedrasının assistenti. Tələbələrə tədris sahəsində yardım göstərir." },
+  { id: 3017, cafedra_id: 103, full_name: "Səfərli Ramidə Elşən", position: "Assistent", photo_url: "https://ui-avatars.com/api/?name=Ramida+Safarli&background=558b2f&color=fff&size=200&bold=true", email: "ramida.safarli@aztu.edu.az", phone: "+994 55-329-83-26", bio: "Kibertəhlükəsizlik kafedrasının assistenti. Tələbələrə tədris sahəsində yardım göstərir." },
+  { id: 3018, cafedra_id: 103, full_name: "Kərimova Adilə Yadigar", position: "Assistent", photo_url: "https://ui-avatars.com/api/?name=Adila+Karimova&background=0d47a1&color=fff&size=200&bold=true", email: "adila.karimova@aztu.edu.az", phone: "+994 51-821-54-17", bio: "Kibertəhlükəsizlik kafedrasının assistenti. Tələbələrə tədris sahəsində yardım göstərir." },
+  { id: 3019, cafedra_id: 103, full_name: "Ağababayev Rahib Rəsul", position: "Baş müəllim", photo_url: "https://ui-avatars.com/api/?name=Rahib+Agababayev&background=c62828&color=fff&size=200&bold=true", email: "rahib.agababayev@aztu.edu.az", phone: "+994 51-491-91-81", bio: "Kibertəhlükəsizlik kafedrasının baş müəllimi. Tədris və tədqiqat sahəsində fəaliyyət göstərir." },
+  { id: 3020, cafedra_id: 103, full_name: "Quliyev Natiq Əliabbas", position: "Dosent", academic_degree: "f.r.e.n., dosent", photo_url: "https://ui-avatars.com/api/?name=Natiq+Quliyev&background=e65100&color=fff&size=200&bold=true", email: "natiq.quliyev@aztu.edu.az", phone: "+994 70-323-37-36", bio: "Kibertəhlükəsizlik kafedrasının dosenti. Sahəsinin aparıcı mütəxəssislərindən biridir." },
+  { id: 3021, cafedra_id: 103, full_name: "Sadıqova Rəhilə Hidayət", position: "Dosent", academic_degree: "r.ü.f.d., dosent", photo_url: "https://ui-avatars.com/api/?name=Rahila+Sadiqova&background=4a148c&color=fff&size=200&bold=true", email: "rahila.sadygova@aztu.edu.az", phone: "+994 70-623-31-18", bio: "Kibertəhlükəsizlik kafedrasının dosenti. Sahəsinin aparıcı mütəxəssislərindən biridir." },
+  { id: 3022, cafedra_id: 103, full_name: "Hüseynov Aydın Fridun", position: "Dosent", academic_degree: "t.e.n., dosent", photo_url: "https://ui-avatars.com/api/?name=Aydin+Huseynov&background=006064&color=fff&size=200&bold=true", email: "aydin.huseynov@aztu.edu.az", phone: "+994 70-386-76-77", bio: "Kibertəhlükəsizlik kafedrasının dosenti. Sahəsinin aparıcı mütəxəssislərindən biridir." },
+  { id: 3023, cafedra_id: 103, full_name: "Əliyev Əli Əbülfəz", position: "Assistent", photo_url: "https://ui-avatars.com/api/?name=Ali+Aliyev&background=1565c0&color=fff&size=200&bold=true", email: "ali.aliyev@aztu.edu.az", phone: "+994 50-253-49-53", bio: "Kibertəhlükəsizlik kafedrasının assistenti. Tələbələrə tədris sahəsində yardım göstərir." },
+  { id: 3024, cafedra_id: 103, full_name: "Məmmədzadə Nigar Ərəstun", position: "Assistent", photo_url: "https://ui-avatars.com/api/?name=Nigar+Mammadzade&background=880e4f&color=fff&size=200&bold=true", email: "nigar.mammadzade@aztu.edu.az", phone: "+994 50-493-21-24", bio: "Kibertəhlükəsizlik kafedrasının assistenti. Tələbələrə tədris sahəsində yardım göstərir." },
+  { id: 3025, cafedra_id: 103, full_name: "İbayev Elşən Akif", position: "Dosent", academic_degree: "r.ü.f.d., dosent", photo_url: "https://ui-avatars.com/api/?name=Elshen+Ibayev&background=1b5e20&color=fff&size=200&bold=true", email: "elshen.ibayev@aztu.edu.az", phone: "+994 50-501-14-84", bio: "Kibertəhlükəsizlik kafedrasının dosenti. Sahəsinin aparıcı mütəxəssislərindən biridir." },
+  { id: 3026, cafedra_id: 103, full_name: "Abbasova Əminə Elşad", position: "Assistent", photo_url: "https://ui-avatars.com/api/?name=Amina+Abbasova&background=bf360c&color=fff&size=200&bold=true", email: "amina.abbasova@aztu.edu.az", phone: "+994 51-724-60-92", bio: "Kibertəhlükəsizlik kafedrasının assistenti. Tələbələrə tədris sahəsində yardım göstərir." },
+  { id: 3027, cafedra_id: 103, full_name: "Həsənova Samirə Əfrasiyab", position: "Assistent", photo_url: "https://ui-avatars.com/api/?name=Samira+Hasanova&background=00695c&color=fff&size=200&bold=true", email: "samirahasanova75@gmail.com", phone: "+994 50-349-77-27", bio: "Kibertəhlükəsizlik kafedrasının assistenti. Tələbələrə tədris sahəsində yardım göstərir." },
+  { id: 3028, cafedra_id: 103, full_name: "Cəfərov Təbriz Ramal", position: "Dosent", academic_degree: "h.ü.f.d., dosent", photo_url: "https://ui-avatars.com/api/?name=Tabriz+Cafarov&background=37474f&color=fff&size=200&bold=true", email: "tabriz.cafarov@aztu.edu.az", phone: "+994 50-247-48-10", bio: "Kibertəhlükəsizlik kafedrasının dosenti. Sahəsinin aparıcı mütəxəssislərindən biridir." },
   // Cafedra 201 – MEK
   { id: 2010, cafedra_id: 201, full_name: "Babayev Tural Əli oğlu", position: "Kafedra müdiri", academic_degree: "Texnika elmləri doktoru", photo_url: "https://ui-avatars.com/api/?name=Tural+Babayev&background=1a2355&color=fff&size=200&bold=true", email: "t.babayev@aztu.edu.az", phone: "+994 12 598 41 01", bio: "Maşın elementləri kafedrasının müdiri. Maşın hissələrinin hesablanması üzrə 20 il təcrübəsi var." },
   { id: 2011, cafedra_id: 201, full_name: "Şirinova Leyla Fərrux qızı", position: "Dosent", academic_degree: "Fəlsəfə doktoru", photo_url: "https://ui-avatars.com/api/?name=Leyla+Shirinova&background=4a148c&color=fff&size=200&bold=true", email: "l.shirinova@aztu.edu.az", phone: "+994 12 598 41 02", bio: "Tribologiya və yağlama sistemləri üzrə dosent. Mexaniki konstruksiya dərslərini aparır." },
@@ -303,4 +367,55 @@ export function getFacultyEmployeeById(id: number): StaticEmployee | undefined {
 
 export function getCafedraEmployeeById(id: number): StaticEmployee | undefined {
   return STATIC_CAFEDRA_EMPLOYEES.find((e) => e.id === id);
+}
+
+export const STATIC_CAFEDRA_HEADS: StaticCafedraHead[] = [
+  {
+    cafedra_id: 103,
+    full_name: "İmamverdiyev Yadigar Nəsib oğlu",
+    academic_degree: "Texnika elmləri doktoru, dosent",
+    title: "Kibertəhlükəsizlik kafedrasının müdiri",
+    photo_url:
+      "https://ui-avatars.com/api/?name=Yadigar+Imamverdiyev&background=1a2355&color=fff&size=300&bold=true&font-size=0.38",
+    email: "yadigar.imamverdiyev@aztu.edu.az",
+    phone: "+994 12 539 08 24",
+    office: "V korpus, K406-cı otaq",
+    reception_hours: "Bazar ertəsi, Çərşənbə 14:00–17:00",
+    bio: "İmamverdiyev Yadigar Nəsib oğlu — texnika elmləri doktoru, dosent, informasiya təhlükəsizliyi və kriptoqrafiya sahəsi üzrə ixtisaslaşmış alimdir. O, informasiya təhlükəsizliyi və kibertəhlükəsizlik istiqamətində elmi və pedaqoji fəaliyyət göstərir. 200-dən çox elmi məqalənin və 8 kitabın müəllifidir, həmçinin ölkədə ilk CERT komandasının yaradılmasında və biometrik identifikasiya sistemlərinin tətbiqi üzrə dövlət layihələrində aktiv iştirak etmişdir.",
+    research_areas: [
+      "Süni intellekt metodları",
+      "Tətbiqi kriptoqrafiya",
+      "Kibertəhlükəsizlik sistemləri",
+      "İnformasiya sistemlərinin idarə edilməsi",
+      "Kritik infrastrukturun təhlükəsizliyi",
+      "Blokçeyn texnologiyaları",
+    ],
+    education: [
+      {
+        year: "1982–1989",
+        degree: "Bakalavr + magistr",
+        institution: "Azərbaycan Dövlət Neft və Sənaye Universiteti",
+      },
+      {
+        year: "2003–2006",
+        degree: "Elmlər namizədi (PhD)",
+        institution: "AMEA İnformasiya Texnologiyaları İnstitutu",
+      },
+      {
+        year: "2008–2012",
+        degree: "Elmlər doktoru (DSc)",
+        institution: "AMEA İnformasiya Texnologiyaları İnstitutu",
+      },
+    ],
+    scopus_url:
+      "https://www.scopus.com/authid/detail.uri?authorId=35731194800",
+    wos_url:
+      "https://www.webofscience.com/wos/author/record/1400086",
+    scholar_url:
+      "https://scholar.google.com/citations?user=nQHep3sAAAAJ&hl=en&oi=ao",
+  },
+];
+
+export function getCafedraHead(cafedraId: number): StaticCafedraHead | undefined {
+  return STATIC_CAFEDRA_HEADS.find((h) => h.cafedra_id === cafedraId);
 }
