@@ -2,20 +2,14 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import HeaderChanger from "@/components/header/HeaderChanger";
 import Footer from "@/components/footer/Footer";
 import SchoolIcon from "@mui/icons-material/School";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { motion } from "framer-motion";
-
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site";
-
-interface FacultyItem {
-    id: number;
-    faculty_code: string;
-    faculty_name: string;
-    created_at: string;
-}
+import { getFaculties, FacultySummary } from "@/services/facultyService/facultyService";
+import type { Lang } from "@/util/apiClient";
 
 const cardVariants = {
     hidden: { opacity: 0, y: 24 },
@@ -27,20 +21,29 @@ const cardVariants = {
 };
 
 export default function FacultiesPage() {
-    const [faculties, setFaculties] = useState<FacultyItem[]>([]);
+    const searchParams = useSearchParams();
+    const [faculties, setFaculties] = useState<FacultySummary[]>([]);
     const [loading, setLoading] = useState(true);
 
+    const currentLang = ((): Lang => {
+        const queryLang = searchParams?.get("lang");
+        if (queryLang === "az" || queryLang === "en") {
+            return queryLang;
+        }
+        return typeof navigator !== "undefined" && navigator.language?.startsWith("az") ? "az" : "en";
+    })();
+
     useEffect(() => {
-        fetch(`${API_BASE}/api/faculty/public/all?lang=az&start=0&end=30`)
-            .then((r) => r.json())
-            .then((data) => {
-                if (data.status_code === 200) {
-                    setFaculties(data.faculties ?? []);
-                }
-                setLoading(false);
-            })
-            .catch(() => setLoading(false));
-    }, []);
+        setLoading(true);
+        getFaculties({ start: 0, end: 30, lang: currentLang }).then((res) => {
+            if (Array.isArray(res)) {
+                setFaculties(res);
+            } else {
+                setFaculties([]);
+            }
+            setLoading(false);
+        });
+    }, [currentLang]);
 
     return (
         <>
@@ -102,8 +105,16 @@ export default function FacultiesPage() {
 
                                         {/* Name */}
                                         <h2 className="text-[#1a2355] dark:text-white font-bold text-base leading-snug group-hover:text-[#ee7c7e] transition-colors duration-300">
-                                            {faculty.faculty_name}
+                                            {faculty.title}
                                         </h2>
+
+                                        {faculty.cafedra_count !== undefined || faculty.deputy_dean_count !== undefined ? (
+                                            <div className="text-sm text-gray-600 dark:text-gray-300">
+                                                {faculty.cafedra_count !== undefined && <span>{faculty.cafedra_count} kafedra</span>}
+                                                {faculty.cafedra_count !== undefined && faculty.deputy_dean_count !== undefined && <span> · </span>}
+                                                {faculty.deputy_dean_count !== undefined && <span>{faculty.deputy_dean_count} dekan müavini</span>}
+                                            </div>
+                                        ) : null}
 
                                         {/* CTA */}
                                         <div className="flex items-center gap-1 text-[#1a2355] dark:text-blue-400 font-semibold text-sm mt-auto w-fit">

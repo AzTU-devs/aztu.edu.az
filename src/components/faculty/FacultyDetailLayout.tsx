@@ -2,6 +2,7 @@
 
 import { use, useState, useEffect } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import HeaderChanger from "@/components/header/HeaderChanger";
 import Footer from "@/components/footer/Footer";
 import FacultySidebar from "@/components/faculty/FacultySidebar";
@@ -9,13 +10,12 @@ import HomeIcon from "@mui/icons-material/Home";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site";
+import { getFacultyByCode } from "@/services/facultyService/facultyService";
+import type { Lang } from "@/util/apiClient";
 
 interface FacultyInfo {
-    id: number;
     faculty_code: string;
-    faculty_name: string;
+    title: string;
 }
 
 interface Props {
@@ -25,19 +25,27 @@ interface Props {
 
 export default function FacultyDetailLayout({ children, params }: Props) {
     const { facultyId } = use(params);
+    const searchParams = useSearchParams();
     const [faculty, setFaculty] = useState<FacultyInfo | null>(null);
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
+    const currentLang = ((): Lang => {
+        const queryLang = searchParams?.get("lang");
+        if (queryLang === "az" || queryLang === "en") {
+            return queryLang;
+        }
+        return typeof navigator !== "undefined" && navigator.language?.startsWith("az") ? "az" : "en";
+    })();
+
     useEffect(() => {
-        fetch(`${API_BASE}/api/faculty/${facultyId}?lang=az`)
-            .then((r) => r.json())
-            .then((data) => {
-                if (data.status_code === 200 && data.faculty) {
-                    setFaculty(data.faculty);
+        getFacultyByCode(facultyId, currentLang)
+            .then((result) => {
+                if (result) {
+                    setFaculty(result);
                 }
             })
             .catch(() => {});
-    }, [facultyId]);
+    }, [facultyId, currentLang]);
 
     return (
         <>
@@ -54,12 +62,12 @@ export default function FacultyDetailLayout({ children, params }: Props) {
                         <Link href="/faculties" className="hover:text-white transition-colors">Fakültələr</Link>
                         <ChevronRightIcon sx={{ fontSize: 14 }} />
                         <span className="text-white/80 truncate max-w-[200px]">
-                            {faculty?.faculty_name ?? facultyId}
+                            {faculty?.title ?? facultyId}
                         </span>
                     </nav>
 
                     <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 leading-tight">
-                        {faculty?.faculty_name ?? facultyId}
+                        {faculty?.title ?? facultyId}
                     </h1>
                     {faculty?.faculty_code && (
                         <span className="inline-block mt-2 text-sm font-semibold bg-white/10 text-white/90 px-4 py-1 rounded-full border border-white/20">
