@@ -1,106 +1,214 @@
 "use client";
 
+import { use, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import SectionBlock from "@/components/shared/SectionBlock";
+import ComingSoon from "@/components/shared/ComingSoon";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import SchoolIcon from "@mui/icons-material/School";
+import { getFacultyByCode, FacultyDetail, getImageUrl } from "@/services/facultyService/facultyService";
+import type { Lang } from "@/util/apiClient";
 
-const DEAN = {
-  full_name: "Əliyev Kamran Rauf oğlu",
-  academic_degree: "Texnika elmləri doktoru, professor",
-  title: "Dekan",
-  photo_url: "https://ui-avatars.com/api/?name=Kamran+Eliyev&background=1a2355&color=fff&size=300&bold=true&font-size=0.38",
-  email: "k.aliyev@aztu.edu.az",
-  phone: "+994 12 539 08 24",
-  office: "I korpus, 312-ci otaq",
-  reception_hours: "Bazar ertəsi, Çərşənbə 14:00–17:00",
-  bio: "Kamran Rauf oğlu Əliyev 1972-ci ildə Bakıda anadan olmuşdur. 1994-cü ildə AzTU-nun İnformasiya Texnologiyaları fakültəsini fərqlənmə diplomu ilə bitirmişdir. 1997-ci ildə elmlər namizədi, 2008-ci ildə isə elmlər doktoru elmi dərəcəsi almışdır. 2010-cu ildən professor vəzifəsindədir. 150-dən artıq elmi məqalənin, 4 monoqrafiyanın və 12 dərs vəsaitinin müəllifidir. Bir sıra beynəlxalq layihələrin rəhbəri olmuş, müxtəlif ölkələrin universitetlərində elmi ezamiyyətlərdə bulunmuşdur.",
-  research_areas: [
-    "Süni intellekt və maşın öyrənməsi",
-    "Böyük verilənlər analizi",
-    "Kibertəhlükəsizlik sistemləri",
-    "İnformasiya sistemlərinin idarəedilməsi",
-  ],
-  education: [
-    { year: "1994", degree: "Bakalavr", institution: "Azərbaycan Texniki Universiteti" },
-    { year: "1997", degree: "Elmlər namizədi (PhD)", institution: "AzTU, Bakı" },
-    { year: "2008", degree: "Elmlər doktoru (DSc)", institution: "AzTU, Bakı" },
-  ],
-};
+interface Props {
+  params: Promise<{ facultyId: string }>;
+}
 
-const contactItems = [
-  { icon: <EmailIcon sx={{ fontSize: 16 }} />, label: "E-poçt", value: DEAN.email, href: `mailto:${DEAN.email}` },
-  { icon: <PhoneIcon sx={{ fontSize: 16 }} />, label: "Telefon", value: DEAN.phone, href: `tel:${DEAN.phone}` },
-  { icon: <LocationOnIcon sx={{ fontSize: 16 }} />, label: "Otaq", value: DEAN.office },
-  { icon: <AccessTimeIcon sx={{ fontSize: 16 }} />, label: "Qəbul saatları", value: DEAN.reception_hours },
-];
+export default function DekanPage({ params }: Props) {
+  const { facultyId } = use(params);
+  const searchParams = useSearchParams();
+  const [faculty, setFaculty] = useState<FacultyDetail | null>(null);
+  const [loading, setLoading] = useState(true);
 
-export default function DekanPage() {
+  const currentLang = ((): Lang => {
+    const queryLang = searchParams?.get("lang");
+    if (queryLang === "az" || queryLang === "en") {
+      return queryLang;
+    }
+    return typeof navigator !== "undefined" && navigator.language?.startsWith("az") ? "az" : "en";
+  })();
+
+  useEffect(() => {
+    setLoading(true);
+    getFacultyByCode(facultyId, currentLang)
+      .then((result) => {
+        setFaculty(result);
+        setLoading(false);
+      })
+      .catch(() => {
+        setFaculty(null);
+        setLoading(false);
+      });
+  }, [facultyId, currentLang]);
+
+  const director = faculty?.director;
+  const directorFullName = director
+    ? [director.first_name, director.last_name, director.father_name].filter(Boolean).join(" ")
+    : "";
+
   return (
     <div className="space-y-6">
       <SectionBlock title="Dekan" accent>
-        <div className="flex flex-col sm:flex-row gap-8">
-          <div className="flex-shrink-0 flex justify-center sm:justify-start">
-            <div className="w-44 h-44 rounded-2xl overflow-hidden shadow-md border-4 border-white dark:border-slate-700">
-              <img src={DEAN.photo_url} alt={DEAN.full_name} className="w-full h-full object-cover" />
-            </div>
+        {loading ? (
+          <div className="animate-pulse space-y-3">
+            <div className="h-5 rounded bg-gray-200 dark:bg-slate-700" />
+            <div className="h-5 rounded bg-gray-200 dark:bg-slate-700 w-5/6" />
+            <div className="h-5 rounded bg-gray-200 dark:bg-slate-700 w-4/6" />
           </div>
-          <div className="flex-1 space-y-4">
-            <div>
-              <h2 className="text-2xl font-bold text-[#1a2355] dark:text-white leading-tight">{DEAN.full_name}</h2>
-              <p className="text-[#ee7c7e] font-semibold text-sm mt-1">{DEAN.academic_degree}</p>
-              <p className="text-gray-500 dark:text-slate-400 text-sm mt-0.5">{DEAN.title}</p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {contactItems.map((item) => (
-                <div key={item.label} className="flex items-start gap-3 bg-gray-50 dark:bg-slate-700/50 rounded-xl px-4 py-3">
-                  <span className="text-[#1a2355] dark:text-blue-400 mt-0.5 flex-shrink-0">{item.icon}</span>
-                  <div className="min-w-0">
-                    <p className="text-xs text-gray-400 dark:text-slate-500 font-medium">{item.label}</p>
-                    {item.href ? (
-                      <a href={item.href} className="text-sm text-gray-700 dark:text-gray-200 font-semibold hover:text-[#ee7c7e] transition-colors truncate block">{item.value}</a>
-                    ) : (
-                      <p className="text-sm text-gray-700 dark:text-gray-200 font-semibold">{item.value}</p>
-                    )}
+        ) : director ? (
+          <div className="flex flex-col sm:flex-row gap-8">
+            <div className="flex-shrink-0 flex justify-center sm:justify-start">
+              <div className="w-44 h-44 rounded-2xl overflow-hidden shadow-md border-4 border-white dark:border-slate-700">
+                {director.profile_image ? (
+                  <img src={getImageUrl(director.profile_image)} alt={directorFullName} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-[#1a2355]/10 text-[#1a2355] text-sm font-semibold">
+                    Profil şəkli yoxdur
                   </div>
-                </div>
-              ))}
+                )}
+              </div>
+            </div>
+            <div className="flex-1 space-y-4">
+              <div>
+                <h2 className="text-2xl font-bold text-[#1a2355] dark:text-white leading-tight">{directorFullName}</h2>
+                <p className="text-[#ee7c7e] font-semibold text-sm mt-1">{director.scientific_title ?? director.duty ?? director.position}</p>
+                {director.scientific_degree && (
+                  <p className="text-gray-500 dark:text-slate-400 text-sm mt-0.5">{director.scientific_degree}</p>
+                )}
+              </div>
+
+              {director.bio && (
+                <div
+                  className="prose prose-sm dark:prose-invert max-w-none text-gray-700 dark:text-gray-300"
+                  dangerouslySetInnerHTML={{ __html: director.bio }}
+                />
+              )}
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {director.email && (
+                  <div className="rounded-2xl bg-gray-50 dark:bg-slate-700/50 p-4 border border-gray-100 dark:border-slate-600">
+                    <div className="flex items-center gap-2 text-sm text-[#1a2355] font-semibold">
+                      <EmailIcon sx={{ fontSize: 16 }} /> E-poçt
+                    </div>
+                    <a href={`mailto:${director.email}`} className="block text-sm text-gray-700 dark:text-gray-200 mt-2 break-all">
+                      {director.email}
+                    </a>
+                  </div>
+                )}
+                {director.phone && (
+                  <div className="rounded-2xl bg-gray-50 dark:bg-slate-700/50 p-4 border border-gray-100 dark:border-slate-600">
+                    <div className="flex items-center gap-2 text-sm text-[#1a2355] font-semibold">
+                      <PhoneIcon sx={{ fontSize: 16 }} /> Telefon
+                    </div>
+                    <a href={`tel:${director.phone}`} className="block text-sm text-gray-700 dark:text-gray-200 mt-2">
+                      {director.phone}
+                    </a>
+                  </div>
+                )}
+                {director.room_number && (
+                  <div className="rounded-2xl bg-gray-50 dark:bg-slate-700/50 p-4 border border-gray-100 dark:border-slate-600">
+                    <div className="flex items-center gap-2 text-sm text-[#1a2355] font-semibold">
+                      <LocationOnIcon sx={{ fontSize: 16 }} /> Otaq
+                    </div>
+                    <p className="text-sm text-gray-700 dark:text-gray-200 mt-2">{director.room_number}</p>
+                  </div>
+                )}
+                {director.working_hours && (
+                  <div className="rounded-2xl bg-gray-50 dark:bg-slate-700/50 p-4 border border-gray-100 dark:border-slate-600">
+                    <div className="flex items-center gap-2 text-sm text-[#1a2355] font-semibold">
+                      <AccessTimeIcon sx={{ fontSize: 16 }} /> İş saatları
+                    </div>
+                    <div className="mt-2 text-sm text-gray-700 dark:text-gray-200 space-y-2">
+                      {typeof director.working_hours === "string" ? (
+                        <p>{director.working_hours}</p>
+                      ) : (
+                        director.working_hours.map((slot, idx) => (
+                          <div key={idx} className="flex items-center justify-between gap-3">
+                            <span>{slot.day}</span>
+                            <span className="font-semibold">{slot.time_range}</span>
+                          </div>
+                        ))
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <ComingSoon label="Dekan haqqında məlumat tapılmadı" />
+        )}
       </SectionBlock>
 
-      <SectionBlock title="Biografiya" accent>
-        <p className="text-gray-700 dark:text-gray-300 text-sm leading-7">{DEAN.bio}</p>
-      </SectionBlock>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <SectionBlock title="Elmi tədqiqat sahələri" accent>
-          <ul className="space-y-2">
-            {DEAN.research_areas.map((area) => (
-              <li key={area} className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300">
-                <SchoolIcon sx={{ fontSize: 16, color: "#ee7c7e" }} className="mt-0.5 flex-shrink-0" />
-                {area}
-              </li>
-            ))}
-          </ul>
-        </SectionBlock>
-        <SectionBlock title="Təhsil" accent>
-          <ul className="space-y-3">
-            {DEAN.education.map((edu) => (
-              <li key={edu.year} className="flex items-start gap-3">
-                <span className="text-xs font-bold text-[#1a2355] dark:text-blue-400 bg-[#1a2355]/10 dark:bg-[#1a2355]/20 px-2 py-1 rounded-lg flex-shrink-0 mt-0.5 min-w-[42px] text-center">{edu.year}</span>
+      {director?.scientific_events && director.scientific_events.length > 0 && (
+        <SectionBlock title="Elmi fəaliyyət sahələri" accent>
+          <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+            {director.scientific_events.map((event, index) => (
+              <li key={index} className="flex items-start gap-2">
+                <span className="mt-0.5">•</span>
                 <div>
-                  <p className="text-sm font-semibold text-gray-800 dark:text-white leading-snug">{edu.degree}</p>
-                  <p className="text-xs text-gray-500 dark:text-slate-400">{edu.institution}</p>
+                  <span className="font-semibold">{event.event_title}</span>
+                  {event.event_description && (
+                    <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">{event.event_description}</p>
+                  )}
                 </div>
               </li>
             ))}
           </ul>
         </SectionBlock>
-      </div>
+      )}
+
+      {director?.educations && director.educations.length > 0 && (
+        <SectionBlock title="Təhsil" accent>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {director.educations.map((edu, index) => {
+              if (typeof edu === "string") {
+                return (
+                  <div
+                    key={index}
+                    className="rounded-3xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 p-5 shadow-sm"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="mt-1 text-[#1a2355] dark:text-blue-300">
+                        <SchoolIcon sx={{ fontSize: 20 }} />
+                      </div>
+                      <p className="text-sm text-gray-700 dark:text-gray-300">{edu}</p>
+                    </div>
+                  </div>
+                );
+              }
+
+              const years = [edu.start_year, edu.end_year].filter(Boolean).join(" – ");
+
+              return (
+                <div
+                  key={index}
+                  className="rounded-3xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 p-5 shadow-sm"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1 text-[#1a2355] dark:text-blue-300">
+                      <SchoolIcon sx={{ fontSize: 20 }} />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-semibold text-gray-900 dark:text-white">
+                        {edu.degree ?? "Təhsil"}
+                      </p>
+                      {edu.university && (
+                        <p className="text-sm text-gray-500 dark:text-slate-400 mt-1">{edu.university}</p>
+                      )}
+                    </div>
+                  </div>
+                  {years && (
+                    <p className="mt-4 text-xs text-gray-500 dark:text-slate-400">{years}</p>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </SectionBlock>
+      )}
     </div>
   );
 }

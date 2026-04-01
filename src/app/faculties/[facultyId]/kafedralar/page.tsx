@@ -2,10 +2,12 @@
 
 import { use, useEffect, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import SectionBlock from "@/components/shared/SectionBlock";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { getCafedras, CafedraInterface } from "@/services/cafedraService/cafedraService";
+import type { Lang } from "@/util/apiClient";
 
 interface Props {
     params: Promise<{ facultyId: string }>;
@@ -13,17 +15,29 @@ interface Props {
 
 export default function FacultyKafedralarPage({ params }: Props) {
     const { facultyId } = use(params);
+    const searchParams = useSearchParams();
     const [cafedras, setCafedras] = useState<CafedraInterface[]>([]);
     const [loading, setLoading] = useState(true);
 
+    const currentLang = ((): Lang => {
+        const queryLang = searchParams?.get("lang");
+        if (queryLang === "az" || queryLang === "en") {
+            return queryLang;
+        }
+        return typeof navigator !== "undefined" && navigator.language?.startsWith("az") ? "az" : "en";
+    })();
+
     useEffect(() => {
-        getCafedras({ facultyCode: facultyId, start: 0, end: 50, lang: "az" }).then((res) => {
+        setLoading(true);
+        getCafedras({ facultyCode: facultyId, start: 0, end: 50, lang: currentLang }).then((res) => {
             if (Array.isArray(res)) {
                 setCafedras(res);
+            } else {
+                setCafedras([]);
             }
             setLoading(false);
         });
-    }, [facultyId]);
+    }, [facultyId, currentLang]);
 
     return (
         <div className="space-y-6">

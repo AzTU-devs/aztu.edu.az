@@ -1,66 +1,80 @@
 "use client";
 
+import { use, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import SectionBlock from "@/components/shared/SectionBlock";
 import ComingSoon from "@/components/shared/ComingSoon";
 import PersonCard from "@/components/shared/PersonCard";
-import { ViceDean } from "@/types/faculty";
+import { getFacultyByCode, FacultyDetail, getImageUrl } from "@/services/facultyService/facultyService";
+import type { Lang } from "@/util/apiClient";
 
-const VICE_DEANS: ViceDean[] = [
-  {
-    id: 1,
-    full_name: "Hüseynov Tural Elnur oğlu",
-    title: "Dosent",
-    responsibility_area: "Tədris işləri üzrə dekan müavini",
-    photo_url: "https://ui-avatars.com/api/?name=Tural+Huseynov&background=1a2355&color=fff&size=200&bold=true",
-    email: "t.huseynov@aztu.edu.az",
-    phone: "+994 12 539 08 31",
-  },
-  {
-    id: 2,
-    full_name: "Məmmədova Günel Rafiq qızı",
-    title: "Elmlər namizədi, dosent",
-    responsibility_area: "Elmi işlər üzrə dekan müavini",
-    photo_url: "https://ui-avatars.com/api/?name=Gunel+Mammadova&background=ee7c7e&color=fff&size=200&bold=true",
-    email: "g.mammadova@aztu.edu.az",
-    phone: "+994 12 539 08 35",
-  },
-  {
-    id: 3,
-    full_name: "Rzayev Orxan Mübariz oğlu",
-    title: "Baş müəllim",
-    responsibility_area: "Tələbə işləri üzrə dekan müavini",
-    photo_url: "https://ui-avatars.com/api/?name=Orxan+Rzayev&background=334155&color=fff&size=200&bold=true",
-    email: "o.rzayev@aztu.edu.az",
-    phone: "+994 12 539 08 38",
-  },
-];
+interface Props {
+  params: Promise<{ facultyId: string }>;
+}
 
-export default function DekanMuavinleriPage() {
-  const viceDeans: ViceDean[] = VICE_DEANS;
+export default function DekanMuavinleriPage({ params }: Props) {
+  const { facultyId } = use(params);
+  const searchParams = useSearchParams();
+  const [faculty, setFaculty] = useState<FacultyDetail | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  const currentLang = ((): Lang => {
+    const queryLang = searchParams?.get("lang");
+    if (queryLang === "az" || queryLang === "en") {
+      return queryLang;
+    }
+    return typeof navigator !== "undefined" && navigator.language?.startsWith("az") ? "az" : "en";
+  })();
+
+  useEffect(() => {
+    setLoading(true);
+    getFacultyByCode(facultyId, currentLang)
+      .then((result) => {
+        setFaculty(result);
+        setLoading(false);
+      })
+      .catch(() => {
+        setFaculty(null);
+        setLoading(false);
+      });
+  }, [facultyId, currentLang]);
+
+  const deputyDeans = faculty?.deputy_deans ?? [];
 
   return (
     <div className="space-y-6">
       <SectionBlock title="Dekan müavinləri" accent>
-        {viceDeans.length === 0 ? (
+        {loading ? (
+          <div className="flex justify-center py-12">
+            <div className="w-8 h-8 border-4 border-[#1a2355] border-t-transparent rounded-full animate-spin" />
+          </div>
+        ) : deputyDeans.length === 0 ? (
           <ComingSoon label="Dekan müavinləri haqqında məlumat əlavə ediləcək" />
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {viceDeans.map((vd) => (
-              <div
-                key={vd.id}
-                className="bg-gray-50 dark:bg-slate-700/50 rounded-2xl p-5 border border-gray-100 dark:border-slate-600"
-              >
-                <PersonCard
-                  fullName={vd.full_name}
-                  title={vd.title}
-                  email={vd.email}
-                  phone={vd.phone}
-                />
-                <p className="mt-3 text-xs text-center text-[#ee7c7e] font-semibold">
-                  {vd.responsibility_area}
-                </p>
-              </div>
-            ))}
+            {deputyDeans.map((vd, index) => {
+              const fullName = [vd.first_name, vd.last_name, vd.father_name].filter(Boolean).join(" ");
+              return (
+                <div
+                  key={index}
+                  className="bg-gray-50 dark:bg-slate-700/50 rounded-2xl p-5 border border-gray-100 dark:border-slate-600"
+                >
+                  <PersonCard
+                    fullName={fullName || "Naməlum əməkdaş"}
+                    title={vd.duty || vd.scientific_name || vd.scientific_title || vd.position}
+                    academicDegree={vd.scientific_degree}
+                    photoUrl={getImageUrl(vd.profile_image)}
+                    email={vd.email}
+                    phone={vd.phone}
+                  />
+                  {vd.duty && (
+                    <p className="mt-3 text-xs text-center text-[#ee7c7e] font-semibold">
+                      {vd.duty}
+                    </p>
+                  )}
+                </div>
+              );
+            })}
           </div>
         )}
       </SectionBlock>
