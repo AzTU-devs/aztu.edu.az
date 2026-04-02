@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import Dropdown from "./Dropdown";
 import { AnimatePresence } from "framer-motion";
@@ -14,10 +15,9 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import AzTULogoDark from "@/../public/logo/aztu-logo-dark.png";
 import AzTULogoLight from "@/../public/logo/aztu-logo-light.png";
-import { NAV_SECTIONS, NavSection } from "@/config/navigation";
 import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
-import { getHeaderMenu } from "@/services/menu/menuService";
+import { getHeaderMenu, type MenuHeader } from "@/services/menu/menuService";
 import LanguageSwitcher from "@/components/shared/LanguageSwitcher";
 import { useTranslation } from "@/hooks/useTranslation";
 
@@ -27,46 +27,21 @@ type HeaderProps = {
 };
 
 export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
-  const [activeSection, setActiveSection] = useState<NavSection | null>(null);
-  const [navSections, setNavSections] = useState<NavSection[]>(NAV_SECTIONS);
+  const [activeHeader, setActiveHeader] = useState<MenuHeader | null>(null);
+  const [menuHeaders, setMenuHeaders] = useState<MenuHeader[]>([]);
   const t = useTranslation();
   const { theme, toggleTheme } = useTheme();
   const { lang } = useLanguage();
 
   useEffect(() => {
     getHeaderMenu(lang).then((data) => {
-      if (!data?.sections?.length) return;
-      const mapped: NavSection[] = data.sections.map((apiSec) => {
-        const fallback = NAV_SECTIONS.find((s) => s.key === apiSec.key);
-        // Normalise slug: strip leading slash then strip the base-path segment
-        // so the Dropdown can safely do `basePath + "/" + slug` without doubling.
-        // Handles: "/about/history", "about/history", "history" → "history"
-        const baseSeg = apiSec.base_path.replace(/^\/+/, "").replace(/\/+$/, "");
-        const normalizeSlug = (slug: string) => {
-          const s = slug.replace(/^\/+/, ""); // strip any leading slashes
-          if (s === baseSeg) return "";
-          if (s.startsWith(baseSeg + "/")) return s.slice(baseSeg.length + 1);
-          return s;
-        };
-        return {
-          key: apiSec.key,
-          label: apiSec.label,
-          basePath: apiSec.base_path,
-          image: apiSec.image_url ?? fallback?.image ?? NAV_SECTIONS[0].image,
-          items: apiSec.items.map((item) => ({
-            title: item.title,
-            slug: item.slug ? normalizeSlug(item.slug) : undefined,
-            subItems: item.sub_items
-              ?.filter((s) => s.slug)
-              .map((s) => ({ title: s.title, slug: normalizeSlug(s.slug!) })),
-          })),
-        };
-      });
-      setNavSections(mapped);
+      if (data && data.length > 0) {
+        setMenuHeaders(data);
+      }
     });
   }, [lang]);
 
-  const isOpen = Boolean(activeSection);
+  const isOpen = Boolean(activeHeader);
 
   return (
     <header
@@ -75,21 +50,23 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
           ? "bg-white dark:bg-[#0f172a] border-b border-gray-200 dark:border-gray-700"
           : "bg-gradient-to-b from-[#0b1e3a]/90 via-[#0b1e3a]/60 to-transparent"
       }`}
-      onMouseLeave={() => setActiveSection(null)}
+      onMouseLeave={() => setActiveHeader(null)}
     >
       <nav className="flex items-center justify-between w-full px-[80px] xl:px-[120px] py-[18px]">
         {/* Logo */}
         <div className="flex-shrink-0">
-          {isOpen ? (
-            <Image
-              src={theme === "dark" ? AzTULogoLight : AzTULogoDark}
-              alt="AzTU"
-              width={65}
-              priority
-            />
-          ) : (
-            <Image src={AzTULogoLight} alt="AzTU" width={65} priority />
-          )}
+          <Link href="/">
+            {isOpen ? (
+              <Image
+                src={theme === "dark" ? AzTULogoLight : AzTULogoDark}
+                alt="AzTU"
+                width={65}
+                priority
+              />
+            ) : (
+              <Image src={AzTULogoLight} alt="AzTU" width={65} priority />
+            )}
+          </Link>
         </div>
 
         {/* Right side: utility row + nav row */}
@@ -147,12 +124,30 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
           {/* Nav row */}
           <div className="flex items-center gap-1">
             <ul className="flex items-center">
-              {navSections.map((section) => {
-                const isActive = activeSection?.key === section.key;
+              {menuHeaders.map((header) => {
+                const isActive = activeHeader?.id === header.id;
+                
+                if (header.direct_url) {
+                  return (
+                    <li key={header.id}>
+                      <Link
+                        href={header.direct_url}
+                        className={`relative text-[13px] xl:text-[14px] font-bold px-3 py-2 rounded-lg transition-all duration-200 block ${
+                          isOpen
+                            ? "text-[#1a2355]/70 dark:text-white/70 hover:text-[#1a2355] dark:hover:text-white"
+                            : "text-white hover:bg-white/15"
+                        }`}
+                      >
+                        {header.title}
+                      </Link>
+                    </li>
+                  );
+                }
+
                 return (
                   <li
-                    key={section.key}
-                    onMouseEnter={() => setActiveSection(section)}
+                    key={header.id}
+                    onMouseEnter={() => setActiveHeader(header)}
                     className={`relative text-[13px] xl:text-[14px] font-bold px-3 py-2 rounded-lg transition-all duration-200 cursor-pointer select-none ${
                       isOpen
                         ? isActive
@@ -161,7 +156,7 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
                         : "text-white hover:bg-white/15"
                     }`}
                   >
-                    {section.label}
+                    {header.title}
                     {/* Active underline */}
                     {isActive && isOpen && (
                       <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#1a2355] dark:bg-white rounded-full" />
@@ -195,8 +190,8 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
 
       {/* Dropdown panel */}
       <AnimatePresence>
-        {activeSection && (
-          <Dropdown section={activeSection} />
+        {activeHeader && (
+          <Dropdown header={activeHeader} />
         )}
       </AnimatePresence>
     </header>
