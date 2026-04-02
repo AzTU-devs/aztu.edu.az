@@ -52,17 +52,28 @@ export default function DekanPage({ params }: Props) {
     <div className="space-y-6">
       <SectionBlock title="Dekan" accent>
         {loading ? (
-          <div className="animate-pulse space-y-3">
-            <div className="h-5 rounded bg-gray-200 dark:bg-slate-700" />
-            <div className="h-5 rounded bg-gray-200 dark:bg-slate-700 w-5/6" />
-            <div className="h-5 rounded bg-gray-200 dark:bg-slate-700 w-4/6" />
+          <div className="animate-pulse space-y-4">
+            <div className="flex flex-col sm:flex-row gap-8">
+              <div className="w-44 h-44 rounded-2xl bg-gray-200 dark:bg-slate-700 flex-shrink-0" />
+              <div className="flex-1 space-y-3">
+                <div className="h-6 rounded bg-gray-200 dark:bg-slate-700 w-2/3" />
+                <div className="h-4 rounded bg-gray-200 dark:bg-slate-700 w-1/3" />
+                <div className="h-4 rounded bg-gray-200 dark:bg-slate-700 w-1/2" />
+              </div>
+            </div>
           </div>
-        ) : director ? (
+        ) : !director ? (
+          <ComingSoon label="Dekan haqqında məlumat tapılmadı" />
+        ) : (
           <div className="flex flex-col sm:flex-row gap-8">
             <div className="flex-shrink-0 flex justify-center sm:justify-start">
               <div className="w-44 h-44 rounded-2xl overflow-hidden shadow-md border-4 border-white dark:border-slate-700">
                 {director.profile_image ? (
-                  <img src={getImageUrl(director.profile_image)} alt={directorFullName} className="w-full h-full object-cover" />
+                  <img
+                    src={getImageUrl(director.profile_image)}
+                    alt={directorFullName}
+                    className="w-full h-full object-cover"
+                  />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-[#1a2355]/10 text-[#1a2355] text-sm font-semibold">
                     Profil şəkli yoxdur
@@ -70,10 +81,15 @@ export default function DekanPage({ params }: Props) {
                 )}
               </div>
             </div>
+
             <div className="flex-1 space-y-4">
               <div>
                 <h2 className="text-2xl font-bold text-[#1a2355] dark:text-white leading-tight">{directorFullName}</h2>
-                <p className="text-[#ee7c7e] font-semibold text-sm mt-1">{director.scientific_title ?? director.duty ?? director.position}</p>
+                {(director.scientific_title ?? director.duty ?? director.position) && (
+                  <p className="text-[#ee7c7e] font-semibold text-sm mt-1">
+                    {director.scientific_title ?? director.duty ?? director.position}
+                  </p>
+                )}
                 {director.scientific_degree && (
                   <p className="text-gray-500 dark:text-slate-400 text-sm mt-0.5">{director.scientific_degree}</p>
                 )}
@@ -137,8 +153,6 @@ export default function DekanPage({ params }: Props) {
               </div>
             </div>
           </div>
-        ) : (
-          <ComingSoon label="Dekan haqqında məlumat tapılmadı" />
         )}
       </SectionBlock>
 

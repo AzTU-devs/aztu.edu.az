@@ -6,6 +6,9 @@ export interface StaticFaculty {
   is_active: boolean;
 }
 
+import type { CafedraInterface } from "@/services/cafedraService/cafedraService";
+import type { FacultyDetail, FacultyPerson, SectionItem } from "@/services/facultyService/facultyService";
+
 export interface StaticCafedra {
   cafedra_id: number;
   faculty_id: number;
@@ -21,50 +24,50 @@ export interface StaticCafedra {
 export const STATIC_FACULTIES: StaticFaculty[] = [
   {
     faculty_id: 1,
-    name: "İnformasiya Texnologiyaları və Sistemlər Mühəndisliyi fakültəsi",
-    short_name: "İTSM",
+    name: " İnformasiya texnologiyaları və telekommunikasiya fakültəsi",
+    short_name: "ITT",
     description:
-      "İnformasiya texnologiyaları, kompüter elmləri, proqram mühəndisliyi və sistemlər mühəndisliyi sahəsində yüksəkixtisaslı mütəxəssislər hazırlayan fakültə.",
+      "Azərbaycan Texniki Universitetinin (AzTU) İnformasiya texnologiyaları və telekommunikasiya fakültəsi ölkənin rəqəmsal inkişafında strateji rol oynayan aparıcı tədris  mərkəzlərindən biridir. Fakültədə müasir informasiya texnologiyaları, telekommunikasiya sistemləri və rəqəmsal transformasiya istiqamətlərində yüksək ixtisaslı kadrlar hazırlanır. Sürətlə dəyişən texnoloji mühitdə ölkənin dayanıqlı inkişafı üçün rəqabətqabiliyyətli, analitik düşüncəyə malik və innovativ mühəndislərin yetişdirilməsi mühüm əhəmiyyət daşıyır. Tədris və elmi fəaliyyət sənaye  tələblərinə uyğun şəkildə qurulur.",
     is_active: true,
   },
   {
     faculty_id: 2,
-    name: "Maşınqayırma və Robotexnika fakültəsi",
-    short_name: "MRF",
+    name: "Nəqliyyat və logistika fakültəsi",
+    short_name: "NL",
     description:
-      "Maşınqayırma, mexanika, robotexnika və avtomatlaşdırılmış istehsal texnologiyaları sahəsində müasir kadrlar yetişdirən fakültə.",
+      "Nəqliyyat və logistika fakültəsi 1950-ci ildən fəaliyyətə başlayıb. 1950-ci ildə Azərbaycan Politexnik İnstitutu (indiki Azərbaycan Texniki Universiteti) fəaliyyətə başladığı zaman bu fakültə Mexanika adlanıb. Sonralar fakültənin adı dəyişdirilərək Avtonəqliyyat, Nəqliyyat, Avtomexanika və dəmir yolu nəqliyyatı adlanıb. 2019-cu ildən fakültə Nəqliyyat və logistika adı ilə fəaliyyət göstərir. Təhsil azərbaycan və rus dillərində aparılır.",
     is_active: true,
   },
   {
     faculty_id: 3,
-    name: "Neft-Kimya Mühəndisliyi fakültəsi",
-    short_name: "NKM",
+    name: " Energetika fakültəsi",
+    short_name: "",
     description:
-      "Neft-kimya sənayesi, kimyəvi texnologiyalar və enerji mühəndisliyi sahəsini əhatə edən fakültə.",
+      "Energetika fakültəsi ölkəmizdə fəaliyyət göstərən müvafiq sənaye müəssisələrini mühəndis kadrlara olan ehtiyacını ödəmək üçün 1964-cü ildə Ç.İldırım adına Azərbaycan Politexnik İnstitutunda (indiki Azərbaycan Texniki Universiteti) Elektrotexnika adı ilə yaradılıb. Fakültə 2001-ci ildən Elektrotexnika və energetika fakültəsi adlandırılıb. Azərbaycan Respublikası müstəqillik qazandıqdan sonra ölkə iqtisadiyyatında baş verən köklü dəyişikliklər, enerji sahələrinin idarəedilməsinin intellektuallaşdırılması, ekoloji problemlərin həlli və yaşıl enerji texnologiyalarının enerjisistemə inteqrasiyası kadr hazırlığı strategiyasına yenidən baxılması fakültənin strukturunda dəyişikliklərin edilməsi və genişləndirilməsi zəruriliyini nəzərə alarq, 2021-ci ildə universitetin Elmi şurasının qərarı ilə fakültə Energetika və avtomatika, 05.07.2025-ci il tarixli 08 nömrəli qərarı ilə isə, əmək bazarının tələbləri nəzərə alınaraq fakültənin strukturunda yenidən əhəmiyyətli dəyişikliklər edilərək, fakültə “Energetika” olaraq adlandırılıb.",
     is_active: true,
   },
   {
     faculty_id: 4,
-    name: "Elektrotexnika və Elektronika fakültəsi",
+    name: "Maşınqayırma və metallurgiya fakültəsi",
     short_name: "EEF",
     description:
-      "Elektrik enerjisi sistemləri, elektronika, telekommunikasiya və elektrotexniki cihazlar sahəsində mütəxəssislər hazırlayan fakültə.",
+      "Fakültə ölkəmizdə fəaliyyət göstərən müvafiq sənaye müəssisələrinin mühəndis kadrlara olan ehtiyacını ödəmək üçün 1982-ci ildə Ç.İldırım adına Azərbaycan Politexnik İnstitutunda (indiki Azərbaycan Texniki Universiteti) Maşınqayırma fakültəsi adı altında yaradılmışdır. Azərbaycan Respublikası müstəqillik qazandıqdan sonra yeni müasir ixtisaslara müvafiq olaraq fakültə xeyli genişləndirilmiş və fakültənin strukturunda əhəmiyyətli dəyişikliklər edilmişdir. Buna müvafiq olaraq, AzTU-nun Elmi şurasının 05.07.2025-ci il tarixli 08 nömrəli qərarı ilə fakültə Maşınqayırma və metallurgiya olaraq adlandırılıb.",
     is_active: true,
   },
   {
     faculty_id: 5,
-    name: "İnşaat Mühəndisliyi fakültəsi",
-    short_name: "İMF",
+    name: "Xüsusi texnika və texnologiya fakültəsi",
+    short_name: "XTT",
     description:
-      "Tikinti, hidrotexniki qurğular, yol mühəndisliyi və geotexnika sahəsini əhatə edən fakültə.",
+      "Xüsusi texnika və texnologiya fakültəsi Azərbaycan Respublikası müdafiə sənayesi kompleksi üçün yüksək ixtisaslı kadrların hazırlanması məqsədilə Nazirlər Kabinetinin 07.06.2011-ci il tarixli 91 nömrəli qərarı ilə yaradılıb. Fakültədə nəzəri və praktiki dərslər universitetlə yanaşı, həftədə bir və ya bir neçə gün Müdafiə Sənayesi Nazirliyinin tabeliyində olan zavodlarda, həmçinin sənaye müəssisələrinin təlim mərkəzlərində yaradılmış geniş auditoriyalarda və istehsalat sahələrində keçirilir.Fakültənin III və IV kurs tələbələri müdafiə sənayesi kompleksinə daxil olan müəssisələrdə istehsalat təcrübəsinə cəlb olunurlar. Onlar kurs layihələri və buraxılış işlərini yerinə yetirməklə istehsalat proseslərinin təkmilləşdirilməsinə dair təkliflər irəli sürürlər.",
     is_active: true,
   },
   {
     faculty_id: 6,
-    name: "Nəqliyyat, Mexanika-Maşınqayırma fakültəsi",
+    name: "Sənaye iqtisadiyyatı və menecment fakültəsi",
     short_name: "NMM",
     description:
-      "Avtomobil nəqliyyatı, dəmir yolu nəqliyyatı, logistika və mexanika-maşınqayırma ixtisaslarını əhatə edən fakültə.",
+      "Ölkəmizin iqtisadi inkişaf strategiyası yeni dövrün çağırışlarına uyğun olaraq, iqtisadi məsələləri dərindən bilən, müasir idarəetmə və biznes prinsiplərinə bələd olan yüksək ixtisaslı mütəxəssislərin hazırlanmasını zəruri etmişdir. Məhz bu ehtiyacı nəzərə alaraq, 1995-ci ildə Azərbaycan Texniki Universitetində (AzTU) Mühəndis biznesi və menecment fakültəsi yaradılmışdır.",
     is_active: true,
   },
 ];

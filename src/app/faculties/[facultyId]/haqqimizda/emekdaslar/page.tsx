@@ -1,10 +1,12 @@
 "use client";
 
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import SectionBlock from "@/components/shared/SectionBlock";
 import PersonCard from "@/components/shared/PersonCard";
 import ComingSoon from "@/components/shared/ComingSoon";
-import { getFacultyEmployees } from "@/data/staticFaculties";
+import { getFacultyByCode, FacultyDetail, FacultyPerson, getImageUrl } from "@/services/facultyService/facultyService";
+import type { Lang } from "@/util/apiClient";
 import SearchIcon from "@mui/icons-material/Search";
 
 interface Props {
@@ -13,23 +15,55 @@ interface Props {
 
 export default function EmekdaslarPage({ params }: Props) {
   const { facultyId } = use(params);
-  const employees = getFacultyEmployees(Number(facultyId));
+  const searchParams = useSearchParams();
+  const [faculty, setFaculty] = useState<FacultyDetail | null>(null);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
 
-  const filtered = employees.filter(
-    (e) =>
-      e.full_name.toLowerCase().includes(search.toLowerCase()) ||
-      e.position.toLowerCase().includes(search.toLowerCase())
-  );
+  const currentLang = ((): Lang => {
+    const queryLang = searchParams?.get("lang");
+    if (queryLang === "az" || queryLang === "en") {
+      return queryLang;
+    }
+    return typeof navigator !== "undefined" && navigator.language?.startsWith("az") ? "az" : "en";
+  })();
+
+  useEffect(() => {
+    setLoading(true);
+    getFacultyByCode(facultyId, currentLang)
+      .then((result) => {
+        setFaculty(result);
+        setLoading(false);
+      })
+      .catch(() => {
+        setFaculty(null);
+        setLoading(false);
+      });
+  }, [facultyId, currentLang]);
+
+  const workers: FacultyPerson[] = faculty?.workers ?? [];
+
+  const filtered = workers.filter((w) => {
+    const fullName = [w.first_name, w.last_name, w.father_name].filter(Boolean).join(" ").toLowerCase();
+    const duty = (w.duty ?? w.position ?? "").toLowerCase();
+    const q = search.toLowerCase();
+    return fullName.includes(q) || duty.includes(q);
+  });
 
   return (
     <div className="space-y-6">
       <SectionBlock title="Əməkdaşlar" accent>
         <p className="text-sm text-gray-500 dark:text-slate-400 mb-6">
-          Fakültənin əməkdaşları. Ətraflı məlumat üçün əməkdaşın kartına klikləyin.
+          Fakültənin əməkdaşları.
         </p>
 
-        {employees.length === 0 ? (
+        {loading ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div key={i} className="animate-pulse rounded-2xl bg-gray-200 dark:bg-slate-700 h-40" />
+            ))}
+          </div>
+        ) : workers.length === 0 ? (
           <ComingSoon label="Əməkdaşlar haqqında məlumat əlavə ediləcək" />
         ) : (
           <>
@@ -48,18 +82,20 @@ export default function EmekdaslarPage({ params }: Props) {
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-              {filtered.map((emp) => (
-                <PersonCard
-                  key={emp.id}
-                  fullName={emp.full_name}
-                  title={emp.position}
-                  photoUrl={emp.photo_url}
-                  cvUrl={emp.cv_url}
-                  email={emp.email}
-                  size="sm"
-                  href={`/faculties/${facultyId}/haqqimizda/emekdaslar/${emp.id}`}
-                />
-              ))}
+              {filtered.map((w, index) => {
+                const fullName = [w.first_name, w.last_name, w.father_name].filter(Boolean).join(" ");
+                return (
+                  <PersonCard
+                    key={index}
+                    fullName={fullName || "Naməlum əməkdaş"}
+                    title={w.duty ?? w.position ?? w.scientific_name}
+                    academicDegree={w.scientific_degree}
+                    photoUrl={getImageUrl(w.profile_image)}
+                    email={w.email}
+                    size="sm"
+                  />
+                );
+              })}
             </div>
 
             {filtered.length === 0 && (

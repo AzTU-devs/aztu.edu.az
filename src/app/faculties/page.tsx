@@ -1,15 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 import HeaderChanger from "@/components/header/HeaderChanger";
 import Footer from "@/components/footer/Footer";
 import SchoolIcon from "@mui/icons-material/School";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { motion } from "framer-motion";
-import { getFaculties, FacultySummary } from "@/services/facultyService/facultyService";
-import type { Lang } from "@/util/apiClient";
+import { getFaculties, type FacultySummary } from "@/services/facultyService/facultyService";
 
 const cardVariants = {
     hidden: { opacity: 0, y: 24 },
@@ -21,29 +19,18 @@ const cardVariants = {
 };
 
 export default function FacultiesPage() {
-    const searchParams = useSearchParams();
     const [faculties, setFaculties] = useState<FacultySummary[]>([]);
     const [loading, setLoading] = useState(true);
 
-    const currentLang = ((): Lang => {
-        const queryLang = searchParams?.get("lang");
-        if (queryLang === "az" || queryLang === "en") {
-            return queryLang;
-        }
-        return typeof navigator !== "undefined" && navigator.language?.startsWith("az") ? "az" : "en";
-    })();
-
     useEffect(() => {
-        setLoading(true);
-        getFaculties({ start: 0, end: 30, lang: currentLang }).then((res) => {
-            if (Array.isArray(res)) {
-                setFaculties(res);
-            } else {
-                setFaculties([]);
-            }
-            setLoading(false);
-        });
-    }, [currentLang]);
+        getFaculties({ lang: "az" })
+            .then((result) => {
+                if (Array.isArray(result)) {
+                    setFaculties(result);
+                }
+            })
+            .finally(() => setLoading(false));
+    }, []);
 
     return (
         <>
@@ -64,21 +51,17 @@ export default function FacultiesPage() {
 
                 {/* Content */}
                 <section className="px-4 md:px-10 lg:px-20 py-12">
-                    {loading && (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-pulse">
-                            {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <div key={i} className="bg-gray-200 dark:bg-slate-800 rounded-2xl h-48" />
+                    {loading ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {Array.from({ length: 6 }).map((_, i) => (
+                                <div key={i} className="animate-pulse bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 p-6 h-44" />
                             ))}
                         </div>
-                    )}
-
-                    {!loading && faculties.length === 0 && (
+                    ) : faculties.length === 0 ? (
                         <div className="text-center py-24 text-gray-400 font-semibold text-lg">
                             Fakültə tapılmadı.
                         </div>
-                    )}
-
-                    {!loading && faculties.length > 0 && (
+                    ) : (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             {faculties.map((faculty, i) => (
                                 <motion.div
@@ -108,13 +91,13 @@ export default function FacultiesPage() {
                                             {faculty.title}
                                         </h2>
 
-                                        {faculty.cafedra_count !== undefined || faculty.deputy_dean_count !== undefined ? (
+                                        {(faculty.cafedra_count !== undefined || faculty.deputy_dean_count !== undefined) && (
                                             <div className="text-sm text-gray-600 dark:text-gray-300">
                                                 {faculty.cafedra_count !== undefined && <span>{faculty.cafedra_count} kafedra</span>}
                                                 {faculty.cafedra_count !== undefined && faculty.deputy_dean_count !== undefined && <span> · </span>}
                                                 {faculty.deputy_dean_count !== undefined && <span>{faculty.deputy_dean_count} dekan müavini</span>}
                                             </div>
-                                        ) : null}
+                                        )}
 
                                         {/* CTA */}
                                         <div className="flex items-center gap-1 text-[#1a2355] dark:text-blue-400 font-semibold text-sm mt-auto w-fit">
