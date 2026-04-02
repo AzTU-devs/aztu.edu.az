@@ -1,28 +1,29 @@
 import apiClient from "@/util/apiClient";
 import type { Lang } from "@/util/apiClient";
 
-// Header menu types
-export interface NavSubItem {
-    title: string;
-    slug: string | null;
+// Header menu types (New API)
+export interface SubItem {
+  id: number;
+  title: string;
+  slug: string;
+  direct_url: string;
 }
 
-export interface NavMenuItem {
-    title: string;
-    slug?: string | null;
-    sub_items?: NavSubItem[];
+export interface MenuItem {
+  id: number;
+  title: string;
+  slug: string;
+  direct_url: string | null;
+  sub_items: SubItem[];
 }
 
-export interface NavSection {
-    key: string;
-    label: string;
-    base_path: string;
-    image_url?: string;
-    items: NavMenuItem[];
-}
-
-export interface HeaderMenuData {
-    sections: NavSection[];
+export interface MenuHeader {
+  id: number;
+  title: string;
+  slug: string;
+  image_url: string | null;
+  direct_url: string | null;
+  items: MenuItem[];
 }
 
 // Footer menu types
@@ -88,17 +89,17 @@ export interface QuickMenuData {
     right_sections?: QuickMenuSection[];
 }
 
-export const getHeaderMenu = async (lang: Lang = "az") => {
+export const getHeaderMenu = async (lang: Lang = "az"): Promise<MenuHeader[]> => {
     try {
-        const response = await apiClient.get(`/api/menu/header?lang=${lang}`, {
+        const response = await apiClient.get(`/api/menu/header/?lang_code=${lang}`, {
             headers: { "Accept-Language": lang },
         });
         if (response.data.status_code === 200 && response.data.data) {
-            return response.data.data as HeaderMenuData;
+            return response.data.data as MenuHeader[];
         }
-        return null;
+        return [];
     } catch {
-        return null;
+        return [];
     }
 };
 
