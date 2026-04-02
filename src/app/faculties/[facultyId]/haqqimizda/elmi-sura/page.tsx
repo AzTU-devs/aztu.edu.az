@@ -1,31 +1,55 @@
 "use client";
 
+import { use, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import SectionBlock from "@/components/shared/SectionBlock";
 import ComingSoon from "@/components/shared/ComingSoon";
-import { CouncilMember } from "@/types/faculty";
+import { getFacultyByCode, FacultyDetail, FacultyPerson } from "@/services/facultyService/facultyService";
+import type { Lang } from "@/util/apiClient";
 
-const COUNCIL_MEMBERS: CouncilMember[] = [
-  { id: 1, last_name: "Əliyev", first_name: "Kamran", middle_name: "Rauf oğlu", position: "Şura sədri, dekan, professor" },
-  { id: 2, last_name: "Hüseynov", first_name: "Tural", middle_name: "Elnur oğlu", position: "Şura katibi, dekan müavini, dosent" },
-  { id: 3, last_name: "Məmmədova", first_name: "Günel", middle_name: "Rafiq qızı", position: "Elmi işlər üzrə dekan müavini, dosent" },
-  { id: 4, last_name: "Quliyev", first_name: "Rauf", middle_name: "Əli oğlu", position: "Kafedra müdiri, professor" },
-  { id: 5, last_name: "İsmayılova", first_name: "Sevinc", middle_name: "Nadir qızı", position: "Kafedra müdiri, dosent" },
-  { id: 6, last_name: "Babayev", first_name: "Elnur", middle_name: "Faiq oğlu", position: "Professor" },
-  { id: 7, last_name: "Nəsirov", first_name: "Vüsal", middle_name: "Kamil oğlu", position: "Dosent" },
-  { id: 8, last_name: "Həsənli", first_name: "Aytən", middle_name: "Cavid qızı", position: "Dosent" },
-  { id: 9, last_name: "Cəfərov", first_name: "Mübariz", middle_name: "Həsən oğlu", position: "Baş elmi işçi, dosent" },
-  { id: 10, last_name: "Orucova", first_name: "Lalə", middle_name: "Tofiq qızı", position: "Müəllim, elmlər namizədi" },
-  { id: 11, last_name: "Bağırov", first_name: "Anar", middle_name: "Şərif oğlu", position: "Tələbə nümayəndəsi" },
-  { id: 12, last_name: "Süleymanova", first_name: "Nigar", middle_name: "Ramiz qızı", position: "Tələbə nümayəndəsi" },
-];
+interface Props {
+  params: Promise<{ facultyId: string }>;
+}
 
-export default function ElmiSuraPage() {
-  const members: CouncilMember[] = COUNCIL_MEMBERS;
+export default function ElmiSuraPage({ params }: Props) {
+  const { facultyId } = use(params);
+  const searchParams = useSearchParams();
+  const [faculty, setFaculty] = useState<FacultyDetail | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  const currentLang = ((): Lang => {
+    const queryLang = searchParams?.get("lang");
+    if (queryLang === "az" || queryLang === "en") {
+      return queryLang;
+    }
+    return typeof navigator !== "undefined" && navigator.language?.startsWith("az") ? "az" : "en";
+  })();
+
+  useEffect(() => {
+    setLoading(true);
+    getFacultyByCode(facultyId, currentLang)
+      .then((result) => {
+        setFaculty(result);
+        setLoading(false);
+      })
+      .catch(() => {
+        setFaculty(null);
+        setLoading(false);
+      });
+  }, [facultyId, currentLang]);
+
+  const members: FacultyPerson[] = faculty?.scientific_council ?? [];
 
   return (
     <div className="space-y-6">
       <SectionBlock title="Fakültə elmi şurası" accent>
-        {members.length === 0 ? (
+        {loading ? (
+          <div className="animate-pulse space-y-3">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="h-10 rounded bg-gray-200 dark:bg-slate-700" />
+            ))}
+          </div>
+        ) : members.length === 0 ? (
           <ComingSoon label="Elmi şura üzvləri haqqında məlumat əlavə ediləcək" />
         ) : (
           <div className="overflow-x-auto">
@@ -44,22 +68,25 @@ export default function ElmiSuraPage() {
                 </tr>
               </thead>
               <tbody>
-                {members.map((m, idx) => (
-                  <tr
-                    key={m.id}
-                    className="border-b border-gray-100 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors"
-                  >
-                    <td className="py-3 px-4 text-gray-500 dark:text-slate-400 font-medium">
-                      {idx + 1}
-                    </td>
-                    <td className="py-3 px-4 text-[#1a2355] dark:text-white font-semibold">
-                      {m.last_name} {m.first_name} {m.middle_name}
-                    </td>
-                    <td className="py-3 px-4 text-gray-600 dark:text-gray-300">
-                      {m.position}
-                    </td>
-                  </tr>
-                ))}
+                {members.map((m, idx) => {
+                  const fullName = [m.last_name, m.first_name, m.father_name].filter(Boolean).join(" ");
+                  return (
+                    <tr
+                      key={idx}
+                      className="border-b border-gray-100 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors"
+                    >
+                      <td className="py-3 px-4 text-gray-500 dark:text-slate-400 font-medium">
+                        {idx + 1}
+                      </td>
+                      <td className="py-3 px-4 text-[#1a2355] dark:text-white font-semibold">
+                        {fullName || "—"}
+                      </td>
+                      <td className="py-3 px-4 text-gray-600 dark:text-gray-300">
+                        {m.duty || m.position || "—"}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
