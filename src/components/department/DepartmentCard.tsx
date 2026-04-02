@@ -4,7 +4,7 @@ import Link from "next/link";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import BusinessIcon from "@mui/icons-material/Business";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import type { DepartmentSummary } from "@/types/department";
 
 interface DepartmentCardProps {
@@ -12,12 +12,12 @@ interface DepartmentCardProps {
   index: number;
 }
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, delay: i * 0.05, ease: "easeOut" },
+    transition: { duration: 0.5, delay: i * 0.05, ease: "easeOut" as const },
   }),
 };
 
