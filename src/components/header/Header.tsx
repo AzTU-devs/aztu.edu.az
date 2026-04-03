@@ -129,7 +129,7 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
                 
                 if (header.direct_url) {
                   return (
-                    <li key={header.id}>
+                    <li key={header.id} onMouseEnter={() => setActiveHeader(null)}>
                       <Link
                         href={header.direct_url}
                         className={`relative text-[13px] xl:text-[14px] font-bold px-3 py-2 rounded-lg transition-all duration-200 block ${
