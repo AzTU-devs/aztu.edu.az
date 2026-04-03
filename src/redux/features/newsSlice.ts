@@ -11,8 +11,8 @@ export const fetchNewsList = createAsyncThunk<
 >("news/fetchList", async (params, { rejectWithValue }) => {
     try {
         return await getNewsList(params);
-    } catch (err: any) {
-        return rejectWithValue(err?.message ?? "Failed to fetch news list");
+    } catch (err: unknown) {
+        return rejectWithValue((err as any)?.message ?? "Failed to fetch news list");
     }
 });
 
@@ -24,8 +24,8 @@ export const fetchNewsById = createAsyncThunk<
         const data = await getNewsById(id, lang);
         if (!data) return rejectWithValue("News not found");
         return data;
-    } catch (err: any) {
-        return rejectWithValue(err?.message ?? "Failed to fetch news detail");
+    } catch (err: unknown) {
+        return rejectWithValue((err as any)?.message ?? "Failed to fetch news detail");
     }
 });
 

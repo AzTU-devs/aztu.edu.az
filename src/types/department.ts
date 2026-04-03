@@ -19,8 +19,9 @@ export interface Education {
 
 export interface SectionItem {
   id?: number;
-  title: string;
+  title?: string;
   description?: string;
+  html_content?: string;
 }
 
 export interface DepartmentDirector {
