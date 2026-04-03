@@ -18,7 +18,7 @@ export const getAnnouncements = async (start: number, end: number) => {
         } else if (response.data.status_code === 204) {
             return "NO_CONTENT";
         }
-    } catch (err: any) {
+    } catch (err: unknown) {
         return "ERROR";
     }
 }

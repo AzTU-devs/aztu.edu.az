@@ -56,21 +56,35 @@ export default async function DepartmentAboutPage({ params }: Props) {
 
     return (
       <SectionBlock title={title} accent>
-        <ul className="space-y-4">
-          {items.map((item, i) => (
-            <li key={item.id ?? i} className="flex items-start gap-3 group">
-              <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#ee7c7e] group-hover:scale-125 transition-transform duration-300 flex-shrink-0" />
-              <div className="flex-1">
-                <p className="text-gray-700 dark:text-gray-200 text-sm md:text-base leading-relaxed font-medium text-justify">
-                  {typeof item === "string" ? item : (item.title || item.description)}
-                </p>
-                {item.description && item.title && (
-                   <SanitizedHtml html={item.description} className="mt-2 text-sm text-gray-500 dark:text-slate-400 text-justify" />
-                )}
+        <div className="space-y-6">
+          {items.map((item, i) => {
+            if (typeof item !== "string" && item.html_content) {
+              return (
+                <SanitizedHtml
+                  key={item.id ?? i}
+                  html={item.html_content}
+                  className="prose prose-sm md:prose-base dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed font-medium text-justify"
+                />
+              );
+            }
+            return (
+              <div key={i} className="flex items-start gap-3 group">
+                <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#ee7c7e] group-hover:scale-125 transition-transform duration-300 flex-shrink-0" />
+                <div className="flex-1">
+                  <p className="text-gray-700 dark:text-gray-200 text-sm md:text-base leading-relaxed font-medium text-justify">
+                    {typeof item === "string" ? item : (item.title || item.description)}
+                  </p>
+                  {typeof item !== "string" && item.description && item.title && (
+                    <SanitizedHtml
+                      html={item.description}
+                      className="mt-2 text-sm text-gray-500 dark:text-slate-400 text-justify"
+                    />
+                  )}
+                </div>
               </div>
-            </li>
-          ))}
-        </ul>
+            );
+          })}
+        </div>
       </SectionBlock>
     );
   };
@@ -86,10 +100,10 @@ export default async function DepartmentAboutPage({ params }: Props) {
       </SectionBlock>
 
       {/* Objectives */}
-      {renderSectionItems(lang === "az" ? "Məqsədlər" : "Objectives", department.objectives as any)}
+      {renderSectionItems(lang === "az" ? "Məqsədlər" : "Objectives", department.objectives as SectionItem[] | string)}
 
       {/* Core Functions */}
-      {renderSectionItems(lang === "az" ? "Əsas Funksiyalar" : "Core Functions", department.core_functions as any)}
+      {renderSectionItems(lang === "az" ? "Əsas Funksiyalar" : "Core Functions", department.core_functions as SectionItem[] | string)}
     </div>
   );
 }
