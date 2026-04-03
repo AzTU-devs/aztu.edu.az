@@ -34,7 +34,7 @@ export default async function DepartmentLayout({ children, params }: Props) {
           <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
           <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-[#ee7c7e]/10 rounded-full blur-3xl" />
 
-          <div className="relative z-10 max-w-screen-2xl mx-auto">
+          <div className="relative z-10 w-full">
             <nav className="flex items-center gap-2 text-white/40 text-[10px] md:text-xs mb-8 flex-wrap uppercase tracking-widest font-black">
               <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
                 <HomeIcon sx={{ fontSize: 14 }} />
@@ -65,7 +65,7 @@ export default async function DepartmentLayout({ children, params }: Props) {
         </div>
 
         {/* Main layout with sticky sidebar and better spacing */}
-        <div className="flex flex-col lg:flex-row px-4 md:px-10 lg:px-20 py-12 lg:py-20 gap-10 lg:gap-16 max-w-screen-2xl mx-auto">
+        <div className="flex flex-col lg:flex-row px-4 md:px-10 lg:px-20 py-12 lg:py-20 gap-10 lg:gap-16 w-full">
           {/* Desktop Sidebar */}
           <aside className="hidden lg:block lg:w-72 flex-shrink-0">
             <div className="sticky top-28">
