@@ -49,7 +49,6 @@ export default function Home() {
 
   return (
     <>
-      <HeaderChanger />
       <main>
         {/* Hero — no reveal wrapper, plays immediately */}
         <HeroSection />
@@ -78,7 +77,6 @@ export default function Home() {
         </SectionReveal>
       </main>
 
-      <Footer />
       {isLoading && <Loading />}
     </>
   );
