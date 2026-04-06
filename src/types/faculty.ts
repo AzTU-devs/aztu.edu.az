@@ -54,6 +54,15 @@ export interface PartnerUniversity {
   universities: University[];
 }
 
+export interface Specialization {
+  id: number;
+  name: string;
+  code?: string;
+  degree: string;
+  duration_years: number;
+  description?: string;
+}
+
 export interface FacultyDetail {
   faculty_code: string;
   title: string;
