@@ -6,6 +6,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import SchoolIcon from "@mui/icons-material/School";
 import SanitizedHtml from "@/components/shared/SanitizedHtml";
 import { getImageUrl } from "@/services/departmentService/departmentService";
+import Bakhtiyar from "@/../public/bakhtiyar.png";
 import type { DepartmentDirector, WorkingHour, Education } from "@/types/department";
 
 interface DirectorCardProps {
@@ -28,7 +29,7 @@ export default function DirectorCard({ director }: DirectorCardProps) {
             <div className="absolute inset-0 bg-[#ee7c7e] rounded-[2rem] rotate-6 scale-95 opacity-20 group-hover:rotate-12 transition-transform duration-500" />
             <div className="relative w-56 h-56 rounded-[2rem] bg-white dark:bg-slate-700 overflow-hidden border-8 border-white dark:border-slate-800 shadow-2xl">
               {profileImage ? (
-                <img src={profileImage} alt={fullName} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src={Bakhtiyar.src} alt={fullName} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-[#1a2355]/5 text-[#1a2355]">
                   <PersonIcon sx={{ fontSize: 120 }} />

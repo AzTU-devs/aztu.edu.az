@@ -2,10 +2,12 @@
 
 import { use, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { motion } from "framer-motion";
 import SectionBlock from "@/components/shared/SectionBlock";
 import ComingSoon from "@/components/shared/ComingSoon";
 import PersonCard from "@/components/shared/PersonCard";
-import { getFacultyByCode, FacultyDetail, getImageUrl } from "@/services/facultyService/facultyService";
+import { getFacultyBySlug, getImageUrl } from "@/services/facultyService/facultyService";
+import type { FacultyDetail, PersonnelItem } from "@/types/faculty";
 import type { Lang } from "@/util/apiClient";
 
 interface Props {
@@ -13,7 +15,7 @@ interface Props {
 }
 
 export default function DekanMuavinleriPage({ params }: Props) {
-  const { facultyId } = use(params);
+  const { facultyId: facultySlug } = use(params);
   const searchParams = useSearchParams();
   const [faculty, setFaculty] = useState<FacultyDetail | null>(null);
   const [loading, setLoading] = useState(true);
@@ -28,7 +30,7 @@ export default function DekanMuavinleriPage({ params }: Props) {
 
   useEffect(() => {
     setLoading(true);
-    getFacultyByCode(facultyId, currentLang)
+    getFacultyBySlug(facultySlug, currentLang)
       .then((result) => {
         setFaculty(result);
         setLoading(false);
@@ -37,42 +39,45 @@ export default function DekanMuavinleriPage({ params }: Props) {
         setFaculty(null);
         setLoading(false);
       });
-  }, [facultyId, currentLang]);
+  }, [facultySlug, currentLang]);
 
-  const deputyDeans = faculty?.deputy_deans ?? [];
+  const deputyDeans: PersonnelItem[] = faculty?.deputy_deans ?? [];
 
   return (
     <div className="space-y-6">
-      <SectionBlock title="Dekan müavinləri" accent>
+      <SectionBlock title={currentLang === "az" ? "Dekan müavinləri" : "Deputy Deans"} accent>
         {loading ? (
-          <div className="flex justify-center py-12">
-            <div className="w-8 h-8 border-4 border-[#1a2355] border-t-transparent rounded-full animate-spin" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1,2,3].map(i => <div key={i} className="h-64 rounded-3xl bg-gray-100 dark:bg-slate-800 animate-pulse" />)}
           </div>
         ) : deputyDeans.length === 0 ? (
-          <ComingSoon label="Dekan müavinləri haqqında məlumat əlavə ediləcək" />
+          <ComingSoon label={currentLang === "az" ? "Dekan müavinləri haqqında məlumat əlavə ediləcək" : "Information about deputy deans will be added soon"} />
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {deputyDeans.map((vd, index) => {
               const fullName = [vd.first_name, vd.last_name, vd.father_name].filter(Boolean).join(" ");
               return (
-                <div
+                <motion.div
                   key={index}
-                  className="bg-gray-50 dark:bg-slate-700/50 rounded-2xl p-5 border border-gray-100 dark:border-slate-600"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-white dark:bg-slate-800 rounded-[2rem] p-6 shadow-sm border border-gray-100 dark:border-slate-700 hover:shadow-xl hover:border-[#ee7c7e]/20 transition-all duration-500 group"
                 >
                   <PersonCard
                     fullName={fullName || "Naməlum əməkdaş"}
-                    title={vd.duty || vd.scientific_name || vd.scientific_title || vd.position}
+                    title={vd.duty || vd.scientific_name}
                     academicDegree={vd.scientific_degree}
                     photoUrl={getImageUrl(vd.profile_image)}
                     email={vd.email}
                     phone={vd.phone}
                   />
-                  {vd.duty && (
-                    <p className="mt-3 text-xs text-center text-[#ee7c7e] font-semibold">
-                      {vd.duty}
-                    </p>
-                  )}
-                </div>
+                  <div className="mt-6 pt-4 border-t border-gray-50 dark:border-slate-700 flex justify-center">
+                     <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#ee7c7e]">
+                       {vd.duty || (currentLang === "az" ? "Dekan Müavini" : "Deputy Dean")}
+                     </span>
+                  </div>
+                </motion.div>
               );
             })}
           </div>

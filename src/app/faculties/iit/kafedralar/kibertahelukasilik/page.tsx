@@ -1,10 +1,7 @@
 import { redirect } from "next/navigation";
 
-export default async function CafedraRootPage({
-  params,
-}: {
-  params: Promise<{ facultyId: string; cafedraId: string }>;
-}) {
-  const { facultyId, cafedraId } = await params;
+export default async function CafedraRootPage() {
+  const facultyId = "iit";
+  const cafedraId = "kibertahelukasilik";
   redirect(`/faculties/${facultyId}/kafedralar/${cafedraId}/haqqimizda`);
 }

@@ -2,9 +2,11 @@
 
 import { use, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { motion } from "framer-motion";
 import SectionBlock from "@/components/shared/SectionBlock";
 import ComingSoon from "@/components/shared/ComingSoon";
-import { getFacultyByCode, FacultyDetail, FacultyPerson } from "@/services/facultyService/facultyService";
+import { getFacultyBySlug } from "@/services/facultyService/facultyService";
+import type { FacultyDetail, PersonnelItem } from "@/types/faculty";
 import type { Lang } from "@/util/apiClient";
 
 interface Props {
@@ -12,7 +14,7 @@ interface Props {
 }
 
 export default function ElmiSuraPage({ params }: Props) {
-  const { facultyId } = use(params);
+  const { facultyId: facultySlug } = use(params);
   const searchParams = useSearchParams();
   const [faculty, setFaculty] = useState<FacultyDetail | null>(null);
   const [loading, setLoading] = useState(true);
@@ -27,7 +29,7 @@ export default function ElmiSuraPage({ params }: Props) {
 
   useEffect(() => {
     setLoading(true);
-    getFacultyByCode(facultyId, currentLang)
+    getFacultyBySlug(facultySlug, currentLang)
       .then((result) => {
         setFaculty(result);
         setLoading(false);
@@ -36,60 +38,72 @@ export default function ElmiSuraPage({ params }: Props) {
         setFaculty(null);
         setLoading(false);
       });
-  }, [facultyId, currentLang]);
+  }, [facultySlug, currentLang]);
 
-  const members: FacultyPerson[] = faculty?.scientific_council ?? [];
+  const members: PersonnelItem[] = faculty?.scientific_council ?? [];
 
   return (
     <div className="space-y-6">
-      <SectionBlock title="Fakültə elmi şurası" accent>
+      <SectionBlock title={currentLang === "az" ? "Fakültə elmi şurası" : "Faculty Scientific Council"} accent>
         {loading ? (
-          <div className="animate-pulse space-y-3">
+          <div className="animate-pulse space-y-4">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="h-10 rounded bg-gray-200 dark:bg-slate-700" />
+              <div key={i} className="h-12 rounded-xl bg-gray-100 dark:bg-slate-800" />
             ))}
           </div>
         ) : members.length === 0 ? (
-          <ComingSoon label="Elmi şura üzvləri haqqında məlumat əlavə ediləcək" />
+          <ComingSoon label={currentLang === "az" ? "Elmi şura üzvləri haqqında məlumat əlavə ediləcək" : "Information about scientific council members will be added soon"} />
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-gray-200 dark:border-slate-600">
-                  <th className="text-left py-3 px-4 text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-slate-400">
-                    №
-                  </th>
-                  <th className="text-left py-3 px-4 text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-slate-400">
-                    Soyadı, adı, ata adı
-                  </th>
-                  <th className="text-left py-3 px-4 text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-slate-400">
-                    Vəzifəsi
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {members.map((m, idx) => {
-                  const fullName = [m.last_name, m.first_name, m.father_name].filter(Boolean).join(" ");
-                  return (
-                    <tr
-                      key={idx}
-                      className="border-b border-gray-100 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors"
-                    >
-                      <td className="py-3 px-4 text-gray-500 dark:text-slate-400 font-medium">
-                        {idx + 1}
-                      </td>
-                      <td className="py-3 px-4 text-[#1a2355] dark:text-white font-semibold">
-                        {fullName || "—"}
-                      </td>
-                      <td className="py-3 px-4 text-gray-600 dark:text-gray-300">
-                        {m.duty || m.position || "—"}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="overflow-hidden rounded-2xl border border-gray-100 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm"
+          >
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-gray-50 dark:bg-slate-700/50">
+                    <th className="text-left py-4 px-6 text-xs font-bold uppercase tracking-wider text-[#1a2355] dark:text-blue-300">
+                      №
+                    </th>
+                    <th className="text-left py-4 px-6 text-xs font-bold uppercase tracking-wider text-[#1a2355] dark:text-blue-300">
+                      {currentLang === "az" ? "Soyadı, adı, ata adı" : "Full Name"}
+                    </th>
+                    <th className="text-left py-4 px-6 text-xs font-bold uppercase tracking-wider text-[#1a2355] dark:text-blue-300">
+                      {currentLang === "az" ? "Vəzifəsi" : "Duty / Position"}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100 dark:divide-slate-700">
+                  {members.map((m, idx) => {
+                    const fullName = [m.last_name, m.first_name, m.father_name].filter(Boolean).join(" ");
+                    return (
+                      <motion.tr
+                        key={idx}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: idx * 0.05 }}
+                        className="hover:bg-gray-50/50 dark:hover:bg-slate-700/30 transition-colors"
+                      >
+                        <td className="py-4 px-6 text-gray-400 font-mono text-xs">
+                          {String(idx + 1).padStart(2, '0')}
+                        </td>
+                        <td className="py-4 px-6">
+                          <span className="font-bold text-[#1a2355] dark:text-white block">{fullName || "—"}</span>
+                          <span className="text-[10px] text-gray-400 uppercase tracking-tighter">{m.scientific_degree}</span>
+                        </td>
+                        <td className="py-4 px-6">
+                           <span className="inline-flex px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/20 text-[#1a2355] dark:text-blue-300 text-xs font-bold">
+                             {m.duty || m.scientific_name || "—"}
+                           </span>
+                        </td>
+                      </motion.tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </motion.div>
         )}
       </SectionBlock>
     </div>
