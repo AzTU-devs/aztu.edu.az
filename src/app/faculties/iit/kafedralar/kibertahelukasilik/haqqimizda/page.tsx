@@ -10,10 +10,6 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { motion } from "framer-motion";
 
-interface Props {
-  params: Promise<{ facultyId: string; cafedraId: string }>;
-}
-
 const statsData = [
     { label: "Bakalavr proqramları", value: "1" },
     { label: "Magistratura proqramları", value: "5" },
@@ -25,8 +21,9 @@ const statsData = [
     { label: "SDG", value: "SDG 4, 9, 16" },
 ];
 
-export default function CafedraHaqqimizdaPage({ params }: Props) {
-  const { facultyId, cafedraId } = use(params);
+export default function CafedraHaqqimizdaPage() {
+  const facultyId = "iit";
+  const cafedraId = "kibertahelukasilik";
 
   const subPages = [
     {

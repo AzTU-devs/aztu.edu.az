@@ -2,12 +2,15 @@ import CafedraDetailLayout from "@/components/cafedra/CafedraDetailLayout";
 
 export default function Layout({
   children,
-  params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ facultyId: string; cafedraId: string }>;
 }) {
+  const hardcodedParams = Promise.resolve({
+    facultyId: "iit",
+    cafedraId: "kibertahelukasilik",
+  });
+
   return (
-    <CafedraDetailLayout params={params}>{children}</CafedraDetailLayout>
+    <CafedraDetailLayout params={hardcodedParams}>{children}</CafedraDetailLayout>
   );
 }

@@ -3,10 +3,12 @@
 import { use, useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { motion } from "framer-motion";
 import SectionBlock from "@/components/shared/SectionBlock";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { getCafedras, CafedraInterface } from "@/services/cafedraService/cafedraService";
+import { getFacultyBySlug } from "@/services/facultyService/facultyService";
 import type { Lang } from "@/util/apiClient";
 
 interface Props {
@@ -14,7 +16,7 @@ interface Props {
 }
 
 export default function FacultyKafedralarPage({ params }: Props) {
-    const { facultyId } = use(params);
+    const { facultyId: facultySlug } = use(params);
     const searchParams = useSearchParams();
     const [cafedras, setCafedras] = useState<CafedraInterface[]>([]);
     const [loading, setLoading] = useState(true);
@@ -29,57 +31,77 @@ export default function FacultyKafedralarPage({ params }: Props) {
 
     useEffect(() => {
         setLoading(true);
-        getCafedras({ facultyCode: facultyId, start: 0, end: 50, lang: currentLang }).then((res) => {
-            if (Array.isArray(res)) {
-                setCafedras(res);
+        // First get the faculty code from slug
+        getFacultyBySlug(facultySlug, currentLang).then(faculty => {
+            if (faculty) {
+                getCafedras({ facultyCode: faculty.faculty_code, start: 0, end: 50, lang: currentLang }).then((res) => {
+                    if (Array.isArray(res)) {
+                        setCafedras(res);
+                    } else {
+                        setCafedras([]);
+                    }
+                    setLoading(false);
+                });
             } else {
-                setCafedras([]);
+                setLoading(false);
             }
-            setLoading(false);
         });
-    }, [facultyId, currentLang]);
+    }, [facultySlug, currentLang]);
 
     return (
         <div className="space-y-6">
-            <SectionBlock title="Kafedralar" accent>
+            <SectionBlock title={currentLang === "az" ? "Kafedralar" : "Departments"} accent>
                 {loading && (
-                    <div className="flex justify-center py-12">
-                        <div className="w-8 h-8 border-4 border-[#1a2355] border-t-transparent rounded-full animate-spin" />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                         {[1,2,3,4].map(i => <div key={i} className="h-32 rounded-3xl bg-gray-100 dark:bg-slate-800 animate-pulse" />)}
                     </div>
                 )}
 
                 {!loading && cafedras.length === 0 && (
-                    <p className="text-center text-gray-400 dark:text-slate-500 py-12 text-sm">
-                        Bu fakültəyə aid kafedra tapılmadı.
-                    </p>
+                    <div className="text-center py-20 bg-gray-50 dark:bg-slate-800/30 rounded-[3rem] border-2 border-dashed border-gray-100 dark:border-slate-700">
+                        <MenuBookIcon sx={{ fontSize: 48, color: "#1a2355" }} className="opacity-10 mb-4" />
+                        <p className="text-gray-400 dark:text-slate-500 text-sm font-black uppercase tracking-widest">
+                            {currentLang === "az" ? "Kafedra tapılmadı" : "No departments found"}
+                        </p>
+                    </div>
                 )}
 
                 {!loading && cafedras.length > 0 && (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {cafedras.map((c) => (
-                            <Link
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {cafedras.map((c, idx) => (
+                            <motion.div
                                 key={c.id}
-                                href={`/faculties/${facultyId}/kafedralar/${c.cafedra_code}/giris`}
-                                className="group flex flex-col gap-3 bg-gray-50 dark:bg-slate-700/40 border border-gray-100 dark:border-slate-600 rounded-2xl p-5 hover:border-[#1a2355]/30 dark:hover:border-[#1a2355]/40 hover:shadow-md transition-all"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: idx * 0.1 }}
                             >
-                                <div className="flex items-center justify-between">
-                                    <div className="w-10 h-10 rounded-xl bg-[#1a2355]/10 dark:bg-[#1a2355]/20 flex items-center justify-center">
-                                        <MenuBookIcon sx={{ fontSize: 20, color: "#1a2355" }} />
+                                <Link
+                                    href={`/faculties/${facultySlug}/kafedralar/${c.cafedra_code}/giris`}
+                                    className="group block relative h-full bg-white dark:bg-slate-800 border-2 border-gray-50 dark:border-slate-700 rounded-[2rem] p-8 hover:border-[#ee7c7e] hover:shadow-2xl hover:shadow-[#1a2355]/5 transition-all duration-500 overflow-hidden"
+                                >
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 dark:bg-slate-700/30 rounded-bl-[4rem] -mr-8 -mt-8 transition-transform group-hover:scale-110" />
+                                    
+                                    <div className="relative z-10">
+                                        <div className="flex items-center justify-between mb-6">
+                                            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#1a2355] to-[#2a3a8a] flex items-center justify-center text-white shadow-lg shadow-blue-900/20 group-hover:bg-gradient-to-br group-hover:from-[#ee7c7e] group-hover:to-[#f09395] transition-all duration-500">
+                                                <MenuBookIcon sx={{ fontSize: 24 }} />
+                                            </div>
+                                            <span className="text-[10px] font-black text-[#1a2355] dark:text-blue-300 bg-[#1a2355]/5 dark:bg-[#1a2355]/20 px-4 py-1.5 rounded-full uppercase tracking-widest group-hover:bg-[#ee7c7e]/10 group-hover:text-[#ee7c7e] transition-colors">
+                                                {c.cafedra_code}
+                                            </span>
+                                        </div>
+
+                                        <h3 className="font-black text-[#1a2355] dark:text-white text-lg leading-tight group-hover:text-[#ee7c7e] transition-colors duration-300 mb-6">
+                                            {c.cafedra_name}
+                                        </h3>
+
+                                        <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400 group-hover:text-[#1a2355] dark:group-hover:text-white transition-colors">
+                                            {currentLang === "az" ? "Ətraflı məlumat" : "View details"}
+                                            <ChevronRightIcon sx={{ fontSize: 16 }} className="transition-transform group-hover:translate-x-2" />
+                                        </div>
                                     </div>
-                                    <span className="text-xs font-bold text-[#1a2355] dark:text-blue-300 bg-[#1a2355]/10 dark:bg-[#1a2355]/20 px-3 py-1 rounded-full">
-                                        {c.cafedra_code}
-                                    </span>
-                                </div>
-
-                                <h3 className="font-bold text-[#1a2355] dark:text-white text-sm leading-snug group-hover:text-[#ee7c7e] transition-colors duration-300">
-                                    {c.cafedra_name}
-                                </h3>
-
-                                <div className="flex items-center gap-1 text-xs text-[#1a2355] dark:text-blue-400 font-semibold mt-auto">
-                                    Ətraflı bax
-                                    <ChevronRightIcon sx={{ fontSize: 14 }} className="transition-transform group-hover:translate-x-1" />
-                                </div>
-                            </Link>
+                                </Link>
+                            </motion.div>
                         ))}
                     </div>
                 )}
