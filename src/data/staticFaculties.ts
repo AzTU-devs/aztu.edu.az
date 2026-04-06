@@ -7,7 +7,7 @@ export interface StaticFaculty {
 }
 
 import type { CafedraInterface } from "@/services/cafedraService/cafedraService";
-import type { FacultyDetail, FacultyPerson, SectionItem } from "@/services/facultyService/facultyService";
+import type { FacultyDetail, PersonnelItem as FacultyPerson, ContentSection as SectionItem } from "@/types/faculty";
 
 export interface StaticCafedra {
   cafedra_id: number;
