@@ -44,6 +44,16 @@ export interface ContentSection {
   description: string;
 }
 
+export interface University {
+  name: string;
+  website?: string;
+}
+
+export interface PartnerUniversity {
+  country: string;
+  universities: University[];
+}
+
 export interface FacultyDetail {
   faculty_code: string;
   title: string;
