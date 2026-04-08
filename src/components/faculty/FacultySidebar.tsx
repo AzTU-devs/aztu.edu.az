@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface NavSubItem {
   label: string;
@@ -17,24 +18,40 @@ interface NavItem {
   subItems?: NavSubItem[];
 }
 
-function buildNavItems(facultyId: string): NavItem[] {
-  const base = `/faculties/${facultyId}`;
+function buildNavItems(facultyId: string, lang: string): NavItem[] {
+  const base = `/${lang}/faculties/${facultyId}`;
+  
+  // Folders are haqqimizda, kafedralar, ixtisaslar, beynelxalq-elaqeler
+  // For EN we use about, departments, specializations, international-relations
+  const aboutSlug = lang === "az" ? "haqqimizda" : "about";
+  const kafedraSlug = lang === "az" ? "kafedralar" : "departments";
+  const ixtisasSlug = lang === "az" ? "ixtisaslar" : "specializations";
+  const internationalSlug = lang === "az" ? "beynelxalq-elaqeler" : "international-relations";
+
+  // Sub-sub slugs for About section
+  const deanSlug = lang === "az" ? "dekan" : "dean";
+  const deputySlug = lang === "az" ? "dekan-muavinleri" : "deputy-deans";
+  const councilSlug = lang === "az" ? "elmi-sura" : "scientific-council";
+  const academicSlug = lang === "az" ? "akademik-heyat" : "academic-staff";
+  const staffSlug = lang === "az" ? "emekdaslar" : "staff";
+  const contactSlug = lang === "az" ? "elaqe" : "contact";
+
   return [
     {
-      label: "Haqqımızda",
-      href: `${base}/haqqimizda`,
+      label: lang === "az" ? "Haqqımızda" : "About Us",
+      href: `${base}/${aboutSlug}`,
       subItems: [
-        { label: "Dekan", href: `${base}/haqqimizda/dekan` },
-        { label: "Dekan müavinləri", href: `${base}/haqqimizda/dekan-muavinleri` },
-        { label: "Fakültə elmi şurası", href: `${base}/haqqimizda/elmi-sura` },
-        { label: "Akademik heyət", href: `${base}/haqqimizda/akademik-heyat` },
-        { label: "Əməkdaşlar", href: `${base}/haqqimizda/emekdaslar` },
-        { label: "Əlaqə", href: `${base}/haqqimizda/elaqe` },
+        { label: lang === "az" ? "Dekan" : "Dean", href: `${base}/${aboutSlug}/${deanSlug}` },
+        { label: lang === "az" ? "Dekan müavinləri" : "Deputy Deans", href: `${base}/${aboutSlug}/${deputySlug}` },
+        { label: lang === "az" ? "Fakültə elmi şurası" : "Faculty Scientific Council", href: `${base}/${aboutSlug}/${councilSlug}` },
+        { label: lang === "az" ? "Akademik heyət" : "Academic Staff", href: `${base}/${aboutSlug}/${academicSlug}` },
+        { label: lang === "az" ? "Əməkdaşlar" : "Staff", href: `${base}/${aboutSlug}/${staffSlug}` },
+        { label: lang === "az" ? "Əlaqə" : "Contact", href: `${base}/${aboutSlug}/${contactSlug}` },
       ],
     },
-    { label: "Kafedralar", href: `${base}/kafedralar` },
-    { label: "İxtisaslar", href: `${base}/ixtisaslar` },
-    { label: "Beynəlxalq əlaqələr", href: `${base}/beynelxalq-elaqeler` },
+    { label: lang === "az" ? "Kafedralar" : "Departments", href: `${base}/${kafedraSlug}` },
+    { label: lang === "az" ? "İxtisaslar" : "Specializations", href: `${base}/${ixtisasSlug}` },
+    { label: lang === "az" ? "Beynəlxalq əlaqələr" : "International Relations", href: `${base}/${internationalSlug}` },
   ];
 }
 
@@ -44,35 +61,45 @@ interface Props {
 
 export default function FacultySidebar({ facultyId }: Props) {
   const pathname = usePathname();
-  const navItems = buildNavItems(facultyId);
+  const { lang } = useLanguage();
+  const navItems = buildNavItems(facultyId, lang);
 
   const [expanded, setExpanded] = useState<string[]>([]);
 
   useEffect(() => {
+    // Always keep "Haqqımızda" (or "About Us") expanded
+    const aboutLabel = lang === "az" ? "Haqqımızda" : "About Us";
+    
     const active = navItems
       .filter(
         (item) =>
           item.subItems &&
-          (pathname === item.href || pathname.startsWith(item.href + "/"))
+          (pathname === item.href || pathname.startsWith(item.href + "/") || item.label === aboutLabel)
       )
       .map((item) => item.label);
+    
     setExpanded(active);
-  }, [pathname]);
+  }, [pathname, lang]);
 
   const toggle = (label: string) => {
+    // Prevent collapsing if it's the "Haqqımızda" section and we want it always open, 
+    // or just let it toggle but it will be reset by useEffect if we want it strictly always open.
+    // For now, let's allow toggling but the useEffect ensures it's open on load.
     setExpanded((prev) =>
       prev.includes(label) ? prev.filter((s) => s !== label) : [...prev, label]
     );
   };
 
-  const isParentActive = (item: NavItem) =>
-    pathname === item.href || pathname.startsWith(item.href + "/");
+  const isParentActive = (item: NavItem) => {
+    // Remove lang prefix for comparison if necessary, but pathname already includes it
+    return pathname === item.href || pathname.startsWith(item.href + "/");
+  };
 
   return (
     <nav className="bg-white dark:bg-slate-800 rounded-[2rem] shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden">
       <div className="px-6 py-5 border-b border-gray-50 dark:border-slate-700 bg-gray-50/50 dark:bg-slate-800/50">
         <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1a2355] dark:text-blue-300">
-          Fakültə Menyu
+          {lang === "az" ? "Fakültə Menyu" : "Faculty Menu"}
         </p>
       </div>
       <ul className="p-4 space-y-2">

@@ -17,7 +17,12 @@ export function getImageUrl(path?: string | null): string | undefined {
     if (!path) return undefined;
     if (path.startsWith("http://") || path.startsWith("https://")) return path;
     const base = (API_BASE_URL ?? "").replace(/\/$/, "");
-    return `${base}/static/${path.replace(/^\//, "")}`;
+    // If path already contains 'static/', don't add it again
+    const cleanPath = path.replace(/^\//, "");
+    if (cleanPath.startsWith("static/")) {
+        return `${base}/${cleanPath}`;
+    }
+    return `${base}/static/${cleanPath}`;
 }
 
 // Memory cache for slug to code mapping
@@ -26,9 +31,7 @@ const slugToCodeMap: Record<string, string> = {};
 export const getFaculties = async (params: { start?: number; end?: number; lang?: Lang } = {}) => {
     try {
         const { start = 0, end = 30, lang = "az" } = params;
-        const response = await apiClient.get(`/api/faculty/public/all?start=${start}&end=${end}`, {
-            headers: { "Accept-Language": lang },
-        });
+        const response = await apiClient.get(`/api/faculty/public/all?start=${start}&end=${end}&lang=${lang}`);
 
         if (response.data.status_code === 200) {
             const faculties = response.data.faculties as FacultySummary[];
@@ -57,9 +60,7 @@ export const getFacultyBySlug = async (slug: string, lang: Lang = "az") => {
 
 export const getFacultyByCode = async (facultyCode: string, lang: Lang = "az") => {
     try {
-        const response = await apiClient.get(`/api/faculty/${facultyCode}`, {
-            headers: { "Accept-Language": lang },
-        });
+        const response = await apiClient.get(`/api/faculty/${facultyCode}?lang=${lang}`);
         if (response.data.status_code === 200) {
             return response.data.faculty as FacultyDetail;
         }

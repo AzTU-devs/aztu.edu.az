@@ -2,10 +2,7 @@
 
 import { use, useState, useEffect } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import HeaderChanger from "@/components/header/HeaderChanger";
-import Footer from "@/components/footer/Footer";
 import FacultySidebar from "@/components/faculty/FacultySidebar";
 import HomeIcon from "@mui/icons-material/Home";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -13,7 +10,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { getFacultyBySlug } from "@/services/facultyService/facultyService";
 import type { FacultyDetail } from "@/types/faculty";
-import type { Lang } from "@/util/apiClient";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Props {
     children: React.ReactNode;
@@ -22,17 +19,9 @@ interface Props {
 
 export default function FacultyDetailLayout({ children, params }: Props) {
     const { facultyId: facultySlug } = use(params);
-    const searchParams = useSearchParams();
+    const { lang: currentLang } = useLanguage();
     const [faculty, setFaculty] = useState<FacultyDetail | null>(null);
     const [sidebarOpen, setSidebarOpen] = useState(false);
-
-    const currentLang = ((): Lang => {
-        const queryLang = searchParams?.get("lang");
-        if (queryLang === "az" || queryLang === "en") {
-            return queryLang;
-        }
-        return typeof navigator !== "undefined" && navigator.language?.startsWith("az") ? "az" : "en";
-    })();
 
     useEffect(() => {
         getFacultyBySlug(facultySlug, currentLang)
@@ -46,17 +35,25 @@ export default function FacultyDetailLayout({ children, params }: Props) {
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-slate-900 transition-colors">
-            <HeaderChanger />
-            
             {/* Stunning Banner */}
             <div className="relative overflow-hidden bg-[#1a2355] pt-32 pb-16 md:pt-40 md:pb-24">
+                {/* Background Image of AzTU */}
+                <div 
+                    className="absolute inset-0 z-0 opacity-20 grayscale hover:grayscale-0 transition-all duration-1000"
+                    style={{
+                        backgroundImage: 'url("/aztu.png")',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                    }}
+                />
+                
                 {/* Abstract background elements */}
-                <div className="absolute inset-0 overflow-hidden opacity-20">
+                <div className="absolute inset-0 overflow-hidden opacity-20 z-10">
                     <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-400/20 to-transparent skew-x-12 transform translate-x-1/4" />
                     <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-[#ee7c7e]/10 rounded-full blur-3xl transform -translate-x-1/4 translate-y-1/4" />
                 </div>
                 
-                <div className="relative px-4 md:px-10 lg:px-20 max-w-screen-2xl mx-auto">
+                <div className="relative px-4 md:px-10 lg:px-12 w-full z-20">
                     <motion.nav 
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -100,7 +97,7 @@ export default function FacultyDetailLayout({ children, params }: Props) {
                 </div>
 
                 {/* Bottom wave decoration */}
-                <div className="absolute bottom-0 left-0 right-0 h-12 bg-gray-50 dark:bg-slate-900" 
+                <div className="absolute bottom-0 left-0 right-0 h-12 bg-gray-50 dark:bg-slate-900 z-20" 
                      style={{ clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 100%)" }} />
             </div>
 
@@ -155,7 +152,7 @@ export default function FacultyDetailLayout({ children, params }: Props) {
             </AnimatePresence>
 
             {/* Main layout */}
-            <div className="flex flex-col lg:flex-row px-4 md:px-10 lg:px-20 py-12 gap-10 max-w-screen-2xl mx-auto">
+            <div className="flex flex-col lg:flex-row px-4 md:px-10 lg:px-12 py-12 gap-10 w-full">
                 {/* Desktop Sidebar */}
                 <aside className="hidden lg:block lg:w-72 flex-shrink-0">
                     <div className="sticky top-28 space-y-6">
@@ -169,7 +166,7 @@ export default function FacultyDetailLayout({ children, params }: Props) {
                                 {currentLang === "az" ? "Fakültə ilə bağlı suallarınız üçün bizimlə əlaqə saxlayın." : "Contact us for your questions about the faculty."}
                             </p>
                             <Link 
-                                href={`/faculties/${facultySlug}/haqqimizda/elaqe`}
+                                href={`/${currentLang}/faculties/${facultySlug}/about/contact`}
                                 className="inline-flex items-center gap-2 text-xs font-bold bg-[#ee7c7e] hover:bg-[#ee7c7e]/90 px-4 py-2 rounded-lg transition-colors relative z-10 shadow-lg shadow-black/10"
                             >
                                 {currentLang === "az" ? "Əlaqəyə keç" : "Contact Us"}
@@ -190,8 +187,6 @@ export default function FacultyDetailLayout({ children, params }: Props) {
                     </motion.div>
                 </main>
             </div>
-            
-            <Footer />
         </div>
     );
 }
