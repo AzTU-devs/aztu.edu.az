@@ -9,6 +9,7 @@ import PersonCard from "@/components/shared/PersonCard";
 import { getFacultyBySlug, getImageUrl } from "@/services/facultyService/facultyService";
 import type { FacultyDetail, PersonnelItem } from "@/types/faculty";
 import type { Lang } from "@/util/apiClient";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Props {
   params: Promise<{ facultyId: string }>;
@@ -16,17 +17,9 @@ interface Props {
 
 export default function DekanMuavinleriPage({ params }: Props) {
   const { facultyId: facultySlug } = use(params);
-  const searchParams = useSearchParams();
+  const { lang: currentLang } = useLanguage();
   const [faculty, setFaculty] = useState<FacultyDetail | null>(null);
   const [loading, setLoading] = useState(true);
-
-  const currentLang = ((): Lang => {
-    const queryLang = searchParams?.get("lang");
-    if (queryLang === "az" || queryLang === "en") {
-      return queryLang;
-    }
-    return typeof navigator !== "undefined" && navigator.language?.startsWith("az") ? "az" : "en";
-  })();
 
   useEffect(() => {
     setLoading(true);

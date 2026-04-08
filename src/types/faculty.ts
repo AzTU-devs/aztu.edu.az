@@ -22,6 +22,11 @@ export interface WorkingHour {
   time_range: string;
 }
 
+export interface ScientificEvent {
+  event_title: string;
+  event_description: string;
+}
+
 export interface Director {
   first_name: string;
   last_name: string;
@@ -35,6 +40,7 @@ export interface Director {
   room_number: string;
   scientific_research_fields: string[];
   working_hours: WorkingHour[];
+  scientific_events: ScientificEvent[];
   educations: Education[];
 }
 

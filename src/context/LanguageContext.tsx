@@ -39,11 +39,56 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const toggleLang = () => {
     const newLang: Lang = lang === "az" ? "en" : "az";
     const segments = pathname.split("/").filter(Boolean);
+    
     if (segments[0] === "az" || segments[0] === "en") {
       segments[0] = newLang;
+      
+      // Translate slugs if we're in the faculties section
+      if (segments[1] === "faculties" && segments[3]) {
+          const subMapping: Record<string, string> = {
+              "haqqimizda": "about",
+              "kafedralar": "departments",
+              "ixtisaslar": "specializations",
+              "beynelxalq-elaqeler": "international-relations"
+          };
+          const reverseSubMapping: Record<string, string> = {
+              "about": "haqqimizda",
+              "departments": "kafedralar",
+              "specializations": "ixtisaslar",
+              "international-relations": "beynelxalq-elaqeler"
+          };
+
+          const subSubMapping: Record<string, string> = {
+              "dekan": "dean",
+              "dekan-muavinleri": "deputy-deans",
+              "elmi-sura": "scientific-council",
+              "akademik-heyat": "academic-staff",
+              "emekdaslar": "staff",
+              "elaqe": "contact"
+          };
+          const reverseSubSubMapping: Record<string, string> = {
+              "dean": "dekan",
+              "deputy-deans": "dekan-muavinleri",
+              "scientific-council": "elmi-sura",
+              "academic-staff": "akademik-heyat",
+              "staff": "emekdaslar",
+              "contact": "elaqe"
+          };
+
+          if (newLang === "en") {
+              // AZ -> EN
+              if (subMapping[segments[3]]) segments[3] = subMapping[segments[3]];
+              if (segments[4] && subSubMapping[segments[4]]) segments[4] = subSubMapping[segments[4]];
+          } else {
+              // EN -> AZ
+              if (reverseSubMapping[segments[3]]) segments[3] = reverseSubMapping[segments[3]];
+              if (segments[4] && reverseSubSubMapping[segments[4]]) segments[4] = reverseSubSubMapping[segments[4]];
+          }
+      }
     } else {
       segments.unshift(newLang);
     }
+    
     router.push("/" + segments.join("/"));
   };
 
