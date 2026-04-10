@@ -4,8 +4,7 @@ import { useParams } from "next/navigation";
 import React from "react";
 import Link from "next/link";
 import { getDepartment } from "@/data/administrationDepts";
-import HeaderChanger from "@/components/header/HeaderChanger";
-import Footer from "@/components/footer/Footer";
+
 import SectionBlock from "@/components/shared/SectionBlock";
 import PersonCard from "@/components/shared/PersonCard";
 import SchoolIcon from "@mui/icons-material/School";
@@ -26,7 +25,6 @@ export default function AdminDepartmentPage() {
   if (!dept) {
     return (
       <>
-        <HeaderChanger />
         <main className="min-h-screen bg-gray-50 dark:bg-[#0f172a] flex flex-col items-center justify-center gap-6 px-4">
           <div className="text-center space-y-3">
             <h1 className="text-2xl font-bold text-[#1a2355] dark:text-white">Bölmə tapılmadı</h1>
@@ -42,8 +40,7 @@ export default function AdminDepartmentPage() {
             </Link>
           </div>
         </main>
-        <Footer />
-      </>
+        </>
     );
   }
 
@@ -58,7 +55,6 @@ export default function AdminDepartmentPage() {
 
   return (
     <>
-      <HeaderChanger />
       <main className="min-h-screen bg-gray-50 dark:bg-[#0f172a]">
         {/* Banner */}
         <div className="bg-[#1a2355] text-white px-4 md:px-10 lg:px-20 py-12 md:py-16">
@@ -240,7 +236,6 @@ export default function AdminDepartmentPage() {
           )}
         </div>
       </main>
-      <Footer />
-    </>
+      </>
   );
 }

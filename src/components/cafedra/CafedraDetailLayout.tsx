@@ -2,8 +2,7 @@
 
 import { use, useState, useEffect } from "react";
 import Link from "next/link";
-import HeaderChanger from "@/components/header/HeaderChanger";
-import Footer from "@/components/footer/Footer";
+
 import CafedraSidebar from "@/components/cafedra/CafedraSidebar";
 import HomeIcon from "@mui/icons-material/Home";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";

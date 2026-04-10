@@ -3,8 +3,7 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import HomeIcon from "@mui/icons-material/Home";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import HeaderChanger from "@/components/header/HeaderChanger";
-import Footer from "@/components/footer/Footer";
+
 import DepartmentSidebar from "@/components/department/DepartmentSidebar";
 import { getDepartmentByCode } from "@/services/departmentService/departmentService";
 import type { Lang } from "@/util/apiClient";
@@ -26,7 +25,6 @@ export default async function DepartmentLayout({ children, params }: Props) {
 
   return (
     <>
-      <HeaderChanger />
       <div className="min-h-screen bg-gray-50 dark:bg-slate-900 transition-colors">
         {/* Banner with refined background */}
         <div className="relative bg-[#1a2355] px-4 md:px-10 lg:px-20 pt-44 pb-16 overflow-hidden">
@@ -103,7 +101,6 @@ export default async function DepartmentLayout({ children, params }: Props) {
           </main>
         </div>
       </div>
-      <Footer />
-    </>
+      </>
   );
 }

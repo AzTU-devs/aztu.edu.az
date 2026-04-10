@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import HeaderChanger from "@/components/header/HeaderChanger";
-import Footer from "@/components/footer/Footer";
+
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
@@ -73,7 +72,6 @@ export default function ProjectsPage() {
 
     return (
         <>
-            <HeaderChanger />
             <main className="min-h-screen bg-gray-50 dark:bg-[#0f172a]">
 
                 {/* Banner */}
@@ -212,7 +210,6 @@ export default function ProjectsPage() {
                     )}
                 </div>
             </main>
-            <Footer />
-        </>
+            </>
     );
 }

@@ -1,12 +1,10 @@
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import HeaderChanger from "@/components/header/HeaderChanger";
-import Footer from "@/components/footer/Footer";
+
 import Link from "next/link";
 
 export default function DepartmentsLoading() {
   return (
     <>
-      <HeaderChanger />
       <main className="min-h-screen bg-gray-50 dark:bg-slate-900">
         {/* Page Banner */}
         <div className="bg-[#1a2355] px-4 md:px-10 lg:px-20 pt-40 pb-16 animate-pulse">
@@ -38,7 +36,6 @@ export default function DepartmentsLoading() {
           </div>
         </section>
       </main>
-      <Footer />
-    </>
+      </>
   );
 }

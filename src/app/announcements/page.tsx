@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import HeaderChanger from "@/components/header/HeaderChanger";
-import Footer from "@/components/footer/Footer";
+
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import CampaignIcon from "@mui/icons-material/Campaign";
@@ -59,8 +58,6 @@ export default function AnnouncementsPage() {
 
     return (
         <>
-            <HeaderChanger />
-
             <main className="min-h-screen bg-gray-50">
 
                 {/* ── Banner ── */}
@@ -244,7 +241,6 @@ export default function AnnouncementsPage() {
                 </div>
             </main>
 
-            <Footer />
-        </>
+            </>
     );
 }

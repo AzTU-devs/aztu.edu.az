@@ -3,8 +3,7 @@
 import { use, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import HeaderChanger from "@/components/header/HeaderChanger";
-import Footer from "@/components/footer/Footer";
+
 import { motion, useScroll } from "framer-motion";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -42,8 +41,6 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
 
     return (
         <>
-            <HeaderChanger />
-
             <motion.div
                 className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#1a2355] via-blue-400 to-[#ee7c7e] z-[60] origin-left"
                 style={{ scaleX: scrollYProgress }}
@@ -165,7 +162,6 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                 )}
             </main>
 
-            <Footer />
-        </>
+            </>
     );
 }

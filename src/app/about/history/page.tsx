@@ -1,7 +1,5 @@
 "use client";
 
-import HeaderChanger from "@/components/header/HeaderChanger";
-import Footer from "@/components/footer/Footer";
 import Link from "next/link";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import HomeIcon from "@mui/icons-material/Home";
@@ -25,7 +23,6 @@ export default function HistoryPage() {
 
     return (
         <>
-            <HeaderChanger />
             <main className="min-h-screen bg-gray-50 dark:bg-[#0f172a]">
 
                 {/* Banner */}
@@ -183,7 +180,6 @@ export default function HistoryPage() {
                     </div>
                 </div>
             </main>
-            <Footer />
-        </>
+            </>
     );
 }
