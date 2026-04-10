@@ -6,7 +6,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { getCafedraByCode } from "@/services/cafedraService/cafedraService";
 import { getFacultyBySlug } from "@/services/facultyService/facultyService";
 import type { CafedraDetail } from "@/types/cafedra";
-import type { Faculty } from "@/types/faculty";
+import type { FacultyDetail } from "@/types/faculty";
 
 import CafedraSidebar from "@/components/cafedra/CafedraSidebar";
 import HomeIcon from "@mui/icons-material/Home";
@@ -23,7 +23,7 @@ export default function CafedraDetailLayout({ children, params }: Props) {
     const { facultyId, cafedraId } = use(params);
     const { lang } = useLanguage();
     const [cafedra, setCafedra] = useState<CafedraDetail | null>(null);
-    const [faculty, setFaculty] = useState<Faculty | null>(null);
+    const [faculty, setFaculty] = useState<FacultyDetail | null>(null);
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     useEffect(() => {
@@ -34,7 +34,7 @@ export default function CafedraDetailLayout({ children, params }: Props) {
     const breadcrumbs = [
         { label: lang === "az" ? "Ana səhifə" : "Home", href: "/", icon: <HomeIcon sx={{ fontSize: 15 }} /> },
         { label: lang === "az" ? "Fakültələr" : "Faculties", href: "/faculties" },
-        { label: faculty?.faculty_name ?? facultyId, href: `/faculties/${facultyId}/haqqimizda` },
+        { label: faculty?.title ?? facultyId, href: `/faculties/${facultyId}/haqqimizda` },
         { label: lang === "az" ? "Kafedralar" : "Departments", href: `/faculties/${facultyId}/kafedralar` },
         { label: cafedra?.title ?? cafedraId, isCurrent: true },
     ];
