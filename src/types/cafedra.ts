@@ -31,7 +31,17 @@ export interface GenericSection {
   description: string;
 }
 
+export interface CafedraSpecialization {
+  id: number;
+  name: string;
+  code?: string;
+  degree: "bachelor" | "master" | "phd";
+  duration_years: number;
+  description?: string;
+}
+
 export interface CafedraDetail {
+...
   id: number;
   faculty_code: string;
   cafedra_code: string;
