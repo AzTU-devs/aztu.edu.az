@@ -2,14 +2,14 @@
 
 import { use, useEffect, useState } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import SectionBlock from "@/components/shared/SectionBlock";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { getCafedras, CafedraInterface } from "@/services/cafedraService/cafedraService";
+import { getCafedras } from "@/services/cafedraService/cafedraService";
 import { getFacultyBySlug } from "@/services/facultyService/facultyService";
-import type { Lang } from "@/util/apiClient";
+import type { CafedraSummary } from "@/types/cafedra";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Props {
     params: Promise<{ facultyId: string }>;
@@ -17,24 +17,15 @@ interface Props {
 
 export default function FacultyKafedralarPage({ params }: Props) {
     const { facultyId: facultySlug } = use(params);
-    const searchParams = useSearchParams();
-    const [cafedras, setCafedras] = useState<CafedraInterface[]>([]);
+    const { lang } = useLanguage();
+    const [cafedras, setCafedras] = useState<CafedraSummary[]>([]);
     const [loading, setLoading] = useState(true);
-
-    const currentLang = ((): Lang => {
-        const queryLang = searchParams?.get("lang");
-        if (queryLang === "az" || queryLang === "en") {
-            return queryLang;
-        }
-        return typeof navigator !== "undefined" && navigator.language?.startsWith("az") ? "az" : "en";
-    })();
 
     useEffect(() => {
         setLoading(true);
-        // First get the faculty code from slug
-        getFacultyBySlug(facultySlug, currentLang).then(faculty => {
+        getFacultyBySlug(facultySlug, lang).then(faculty => {
             if (faculty) {
-                getCafedras({ facultyCode: faculty.faculty_code, start: 0, end: 50, lang: currentLang }).then((res) => {
+                getCafedras({ facultyCode: faculty.faculty_code, start: 0, end: 50, lang }).then((res) => {
                     if (Array.isArray(res)) {
                         setCafedras(res);
                     } else {
@@ -46,22 +37,22 @@ export default function FacultyKafedralarPage({ params }: Props) {
                 setLoading(false);
             }
         });
-    }, [facultySlug, currentLang]);
+    }, [facultySlug, lang]);
 
     return (
         <div className="space-y-6">
-            <SectionBlock title={currentLang === "az" ? "Kafedralar" : "Departments"} accent>
+            <SectionBlock title={lang === "az" ? "Kafedralar" : "Departments"} accent>
                 {loading && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                         {[1,2,3,4].map(i => <div key={i} className="h-32 rounded-3xl bg-gray-100 dark:bg-slate-800 animate-pulse" />)}
+                         {[1,2,3,4].map(i => <div key={i} className="h-32 rounded-[2.5rem] bg-gray-100 dark:bg-slate-800 animate-pulse" />)}
                     </div>
                 )}
 
                 {!loading && cafedras.length === 0 && (
-                    <div className="text-center py-20 bg-gray-50 dark:bg-slate-800/30 rounded-[3rem] border-2 border-dashed border-gray-100 dark:border-slate-700">
+                    <div className="text-center py-20 bg-white dark:bg-slate-800 rounded-[3rem] border-2 border-dashed border-gray-100 dark:border-slate-700">
                         <MenuBookIcon sx={{ fontSize: 48, color: "#1a2355" }} className="opacity-10 mb-4" />
-                        <p className="text-gray-400 dark:text-slate-500 text-sm font-black uppercase tracking-widest">
-                            {currentLang === "az" ? "Kafedra tapılmadı" : "No departments found"}
+                        <p className="text-gray-400 dark:text-slate-500 text-xs font-black uppercase tracking-widest">
+                            {lang === "az" ? "Kafedra tapılmadı" : "No departments found"}
                         </p>
                     </div>
                 )}
@@ -77,7 +68,7 @@ export default function FacultyKafedralarPage({ params }: Props) {
                             >
                                 <Link
                                     href={`/faculties/${facultySlug}/kafedralar/${c.cafedra_code}/giris`}
-                                    className="group block relative h-full bg-white dark:bg-slate-800 border-2 border-gray-50 dark:border-slate-700 rounded-[2rem] p-8 hover:border-[#ee7c7e] hover:shadow-2xl hover:shadow-[#1a2355]/5 transition-all duration-500 overflow-hidden"
+                                    className="group block relative h-full bg-white dark:bg-slate-800 border-2 border-gray-50 dark:border-slate-700 rounded-[2.5rem] p-8 hover:border-[#ee7c7e] hover:shadow-2xl hover:shadow-[#1a2355]/5 transition-all duration-500 overflow-hidden"
                                 >
                                     <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 dark:bg-slate-700/30 rounded-bl-[4rem] -mr-8 -mt-8 transition-transform group-hover:scale-110" />
                                     
@@ -95,9 +86,16 @@ export default function FacultyKafedralarPage({ params }: Props) {
                                             {c.cafedra_name}
                                         </h3>
 
-                                        <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400 group-hover:text-[#1a2355] dark:group-hover:text-white transition-colors">
-                                            {currentLang === "az" ? "Ətraflı məlumat" : "View details"}
-                                            <ChevronRightIcon sx={{ fontSize: 16 }} className="transition-transform group-hover:translate-x-2" />
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400 group-hover:text-[#1a2355] dark:group-hover:text-white transition-colors">
+                                                {lang === "az" ? "Ətraflı məlumat" : "View details"}
+                                                <ChevronRightIcon sx={{ fontSize: 16 }} className="transition-transform group-hover:translate-x-2" />
+                                            </div>
+                                            {c.deputy_director_count > 0 && (
+                                                <span className="text-[9px] font-bold text-gray-400 dark:text-slate-500">
+                                                    {c.deputy_director_count} {lang === "az" ? "müavin" : "deputies"}
+                                                </span>
+                                            )}
                                         </div>
                                     </div>
                                 </Link>
