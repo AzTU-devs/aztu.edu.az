@@ -1,7 +1,5 @@
 "use client";
 
-import HeaderChanger from "@/components/header/HeaderChanger";
-import Footer from "@/components/footer/Footer";
 import AboutPageBanner from "@/components/about/AboutPageBanner";
 import SectionBlock from "@/components/shared/SectionBlock";
 import Link from "next/link";
@@ -28,7 +26,6 @@ const RELATED = [
 export default function BakuStateCollegesPage() {
     return (
         <>
-            <HeaderChanger />
             <main className="min-h-screen bg-gray-50 dark:bg-[#0f172a]">
                 <AboutPageBanner
                     eyebrow="Affiliated College"
@@ -118,7 +115,6 @@ export default function BakuStateCollegesPage() {
                     </div>
                 </div>
             </main>
-            <Footer />
-        </>
+            </>
     );
 }

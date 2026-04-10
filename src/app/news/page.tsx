@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import HeaderChanger from "@/components/header/HeaderChanger";
+
 import { newsSlug } from "@/util/slugify";
-import Footer from "@/components/footer/Footer";
+
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -109,7 +109,6 @@ export default function NewsPage() {
 
     return (
         <>
-            <HeaderChanger />
             <main className="min-h-screen bg-gray-50 dark:bg-[#0f172a]">
 
                 {/* Banner */}
@@ -342,7 +341,6 @@ export default function NewsPage() {
                     )}
                 </div>
             </main>
-            <Footer />
-        </>
+            </>
     );
 }

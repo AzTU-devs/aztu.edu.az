@@ -1,7 +1,6 @@
 import Link from "next/link";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import HeaderChanger from "@/components/header/HeaderChanger";
-import Footer from "@/components/footer/Footer";
+
 import DepartmentCard from "@/components/department/DepartmentCard";
 import { getDepartments } from "@/services/departmentService/departmentService";
 import type { Metadata } from "next";
@@ -16,7 +15,6 @@ export default async function DepartmentsPage() {
 
   return (
     <>
-      <HeaderChanger />
       <main className="min-h-screen bg-gray-50 dark:bg-slate-900 transition-colors">
         {/* Page Banner with refined styling */}
         <div className="relative bg-[#1a2355] px-4 md:px-10 lg:px-20 pt-40 pb-20 overflow-hidden">
@@ -64,7 +62,6 @@ export default async function DepartmentsPage() {
           )}
         </section>
       </main>
-      <Footer />
-    </>
+      </>
   );
 }

@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import HeaderChanger from "@/components/header/HeaderChanger";
-import Footer from "@/components/footer/Footer";
+
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import HomeIcon from "@mui/icons-material/Home";
 import { NavSection, NavItem } from "@/config/navigation";
@@ -15,7 +14,6 @@ type Props = {
 export default function StaticSubPage({ section, item }: Props) {
     return (
         <>
-            <HeaderChanger />
             <main className="min-h-screen bg-gray-50">
                 {/* ── Dark Banner ── */}
                 <div className="bg-[#1a2355] px-4 md:px-10 lg:px-20 pt-40 pb-12">
@@ -79,7 +77,6 @@ export default function StaticSubPage({ section, item }: Props) {
                     </div>
                 </section>
             </main>
-            <Footer />
-        </>
+            </>
     );
 }

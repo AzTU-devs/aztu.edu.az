@@ -3,8 +3,7 @@
 import { use, useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import HeaderChanger from "@/components/header/HeaderChanger";
-import Footer from "@/components/footer/Footer";
+
 import { motion, useScroll, AnimatePresence } from "framer-motion";
 import CampaignIcon from "@mui/icons-material/Campaign";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -105,8 +104,6 @@ export default function AnnouncementDetailPage({ params }: { params: Promise<{ i
 
     return (
         <>
-            <HeaderChanger />
-
             {/* Reading Progress Bar */}
             <motion.div
                 className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#1a2355] via-blue-400 to-[#ee7c7e] z-[60] origin-left"
@@ -376,7 +373,6 @@ export default function AnnouncementDetailPage({ params }: { params: Promise<{ i
                 )}
             </main>
 
-            <Footer />
-        </>
+            </>
     );
 }

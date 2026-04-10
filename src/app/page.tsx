@@ -3,11 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import News from "@/components/home/news/News";
-import Footer from "@/components/footer/Footer";
 import Loading from "@/components/loading/Loading";
 import Projects from "@/components/home/projects/Projects";
 import Collaborators from "@/components/home/collaborators/Collaborators";
-import HeaderChanger from "@/components/header/HeaderChanger";
 import Announcements from "@/components/home/announcements.tsx/Announcements";
 import HeroSection from "@/components/home/heroSection/HeroSection";
 import StatsSection from "@/components/home/stats/StatsSection";

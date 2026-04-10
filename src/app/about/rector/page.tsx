@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import HeaderChanger from "@/components/header/HeaderChanger";
-import Footer from "@/components/footer/Footer";
+
 import VilayetVeliyev from "@/../public/vilayet_veliyev.jpeg"
 import AboutPageBanner from "@/components/about/AboutPageBanner";
 import SectionBlock from "@/components/shared/SectionBlock";
@@ -101,7 +100,6 @@ export default function RectorPage() {
 
     return (
         <>
-            <HeaderChanger />
             <main className="min-h-screen bg-gray-50 dark:bg-[#0f172a]">
                 <AboutPageBanner
                     eyebrow={p.eyebrow}
@@ -251,7 +249,6 @@ export default function RectorPage() {
                     </div>
                 </div>
             </main>
-            <Footer />
-        </>
+            </>
     );
 }

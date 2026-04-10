@@ -3,8 +3,7 @@
 import { useParams } from "next/navigation";
 import { getSectionByKey, getItemBySlug } from "@/config/navigation";
 import StaticSubPage from "@/components/pages/StaticSubPage";
-import HeaderChanger from "@/components/header/HeaderChanger";
-import Footer from "@/components/footer/Footer";
+
 import Link from "next/link";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
@@ -20,7 +19,6 @@ export default function AboutSlugPage() {
     if (!section || !item) {
         return (
             <>
-                <HeaderChanger />
                 <main className="min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-[#0f172a] px-4">
                     <h1 className="text-3xl font-bold text-[#1a2355] dark:text-white mb-4">Page not found</h1>
                     <p className="text-gray-500 mb-8">The page you are looking for does not exist.</p>
@@ -29,8 +27,7 @@ export default function AboutSlugPage() {
                         <ChevronRightIcon sx={{ fontSize: 18 }} />
                     </Link>
                 </main>
-                <Footer />
-            </>
+                </>
         );
     }
 
