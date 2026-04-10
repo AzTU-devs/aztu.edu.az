@@ -41,7 +41,6 @@ export interface CafedraSpecialization {
 }
 
 export interface CafedraDetail {
-...
   id: number;
   faculty_code: string;
   cafedra_code: string;
