@@ -6,7 +6,6 @@ export interface StaticFaculty {
   is_active: boolean;
 }
 
-import type { CafedraInterface } from "@/services/cafedraService/cafedraService";
 import type { FacultyDetail, PersonnelItem as FacultyPerson, ContentSection as SectionItem } from "@/types/faculty";
 
 export interface StaticCafedra {

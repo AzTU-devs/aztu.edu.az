@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { getCafedras, CafedraInterface } from "@/services/cafedraService/cafedraService";
+import { getCafedras } from "@/services/cafedraService/cafedraService";
+import type { CafedraSummary } from "@/types/cafedra";
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { motion } from "framer-motion";
@@ -17,7 +18,7 @@ const cardVariants = {
 };
 
 export default function CafedrasPage() {
-    const [cafedras, setCafedras] = useState<CafedraInterface[]>([]);
+    const [cafedras, setCafedras] = useState<CafedraSummary[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
