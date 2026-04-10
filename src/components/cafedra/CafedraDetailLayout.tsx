@@ -2,27 +2,17 @@
 
 import { use, useState, useEffect } from "react";
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
+import { getCafedraByCode } from "@/services/cafedraService/cafedraService";
+import { getFacultyBySlug } from "@/services/facultyService/facultyService";
+import type { CafedraDetail } from "@/types/cafedra";
+import type { Faculty } from "@/types/faculty";
 
 import CafedraSidebar from "@/components/cafedra/CafedraSidebar";
 import HomeIcon from "@mui/icons-material/Home";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site";
-
-interface CafedraInfo {
-    id: number;
-    faculty_code: string;
-    cafedra_code: string;
-    cafedra_name: string;
-}
-
-interface FacultyInfo {
-    id: number;
-    faculty_code: string;
-    faculty_name: string;
-}
 
 interface Props {
     children: React.ReactNode;
@@ -31,85 +21,61 @@ interface Props {
 
 export default function CafedraDetailLayout({ children, params }: Props) {
     const { facultyId, cafedraId } = use(params);
-    const [cafedra, setCafedra] = useState<CafedraInfo | null>(null);
-    const [faculty, setFaculty] = useState<FacultyInfo | null>(null);
+    const { lang } = useLanguage();
+    const [cafedra, setCafedra] = useState<CafedraDetail | null>(null);
+    const [faculty, setFaculty] = useState<Faculty | null>(null);
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     useEffect(() => {
-        if (cafedraId === "kibertahelukasilik") {
-            setCafedra({
-                id: 101,
-                faculty_code: "iit",
-                cafedra_code: "KIB",
-                cafedra_name: "Kibertəhlükəsizlik"
-            });
-        } else {
-            fetch(`${API_BASE}/api/cafedra/${cafedraId}?lang=az`)
-                .then((r) => r.json())
-                .then((data) => {
-                    if (data.status_code === 200 && data.cafedra) {
-                        setCafedra(data.cafedra);
-                    }
-                })
-                .catch(() => {});
-        }
+        getCafedraByCode(cafedraId, lang).then(setCafedra);
+        getFacultyBySlug(facultyId, lang).then(setFaculty);
+    }, [facultyId, cafedraId, lang]);
 
-        if (facultyId === "iit") {
-            setFaculty({
-                id: 1,
-                faculty_code: "iit",
-                faculty_name: "İnformasiya və Telekommunikasiya Texnologiyaları"
-            });
-        } else {
-            fetch(`${API_BASE}/api/faculty/${facultyId}?lang=az`)
-                .then((r) => r.json())
-                .then((data) => {
-                    if (data.status_code === 200 && data.faculty) {
-                        setFaculty(data.faculty);
-                    }
-                })
-                .catch(() => {});
-        }
-    }, [facultyId, cafedraId]);
+    const breadcrumbs = [
+        { label: lang === "az" ? "Ana səhifə" : "Home", href: "/", icon: <HomeIcon sx={{ fontSize: 15 }} /> },
+        { label: lang === "az" ? "Fakültələr" : "Faculties", href: "/faculties" },
+        { label: faculty?.faculty_name ?? facultyId, href: `/faculties/${facultyId}/haqqimizda` },
+        { label: lang === "az" ? "Kafedralar" : "Departments", href: `/faculties/${facultyId}/kafedralar` },
+        { label: cafedra?.title ?? cafedraId, isCurrent: true },
+    ];
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-slate-900 transition-colors">
             {/* Banner */}
             <div className="bg-[#1a2355] px-4 md:px-10 lg:px-20 pt-40 pb-12">
                 <nav className="flex items-center gap-1.5 text-white/50 text-sm mb-4 flex-wrap">
-                    <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-                        <HomeIcon sx={{ fontSize: 15 }} />
-                        Ana səhifə
-                    </Link>
-                    <ChevronRightIcon sx={{ fontSize: 14 }} />
-                    <Link href="/faculties" className="hover:text-white transition-colors">Fakültələr</Link>
-                    <ChevronRightIcon sx={{ fontSize: 14 }} />
-                    <Link href={`/faculties/${facultyId}/haqqimizda`} className="hover:text-white transition-colors truncate max-w-[160px]">
-                        {faculty?.faculty_name ?? facultyId}
-                    </Link>
-                    <ChevronRightIcon sx={{ fontSize: 14 }} />
-                    <Link href={`/faculties/${facultyId}/kafedralar`} className="hover:text-white transition-colors">
-                        Kafedralar
-                    </Link>
-                    <ChevronRightIcon sx={{ fontSize: 14 }} />
-                    <span className="text-white/80 truncate max-w-[160px]">
-                        {cafedra?.cafedra_name ?? (cafedraId === "kibertahelukasilik" ? "Kibertəhlükəsizlik" : cafedraId)}
-                    </span>
+                    {breadcrumbs.map((bc, i) => (
+                        <div key={i} className="flex items-center gap-1.5">
+                            {bc.isCurrent ? (
+                                <span className="text-white/80 truncate max-w-[160px]">{bc.label}</span>
+                            ) : (
+                                <>
+                                    <Link href={bc.href!} className="hover:text-white transition-colors flex items-center gap-1">
+                                        {bc.icon}
+                                        {bc.label}
+                                    </Link>
+                                    <ChevronRightIcon sx={{ fontSize: 14 }} />
+                                </>
+                            )}
+                        </div>
+                    ))}
                 </nav>
 
                 <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 leading-tight">
-                    {cafedra?.cafedra_name ?? (cafedraId === "kibertahelukasilik" ? "Kibertəhlükəsizlik" : cafedraId)}
+                    {cafedra?.title ?? cafedraId}
                 </h1>
-                {(cafedra?.cafedra_code || cafedraId === "kibertahelukasilik") && (
+                {cafedra?.cafedra_code && (
                     <span className="inline-block mt-2 text-sm font-semibold bg-white/10 text-white/90 px-4 py-1 rounded-full border border-white/20">
-                        {cafedra?.cafedra_code ?? "KIB"}
+                        {cafedra.cafedra_code}
                     </span>
                 )}
             </div>
 
             {/* Mobile sidebar toggle */}
             <div className="lg:hidden px-4 md:px-10 py-3 border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-between">
-                <span className="text-sm font-semibold text-[#1a2355] dark:text-white">Naviqasiya</span>
+                <span className="text-sm font-semibold text-[#1a2355] dark:text-white">
+                    {lang === "az" ? "Naviqasiya" : "Navigation"}
+                </span>
                 <button
                     onClick={() => setSidebarOpen((o) => !o)}
                     className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors"

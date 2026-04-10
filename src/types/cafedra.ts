@@ -1,70 +1,69 @@
-export interface CafedraDetail {
-  cafedra_id: number;
-  faculty_id: number;
-  name: string;
-  short_name: string;
-  description: string;
-  purpose?: string;
-  main_directions?: string[];
-  educational_work?: string;
-  international_relations?: string;
-  is_active: boolean;
+export interface CafedraSummary {
+  id: number;
+  faculty_code: string;
+  cafedra_code: string;
+  cafedra_name: string;
+  deputy_director_count: number;
   created_at: string;
 }
 
-export interface CafedraHead {
-  id: number;
-  full_name: string;
-  title: string;
-  academic_degree?: string;
-  photo_url?: string;
-  email?: string;
-  phone?: string;
-  office?: string;
-  bio?: string;
+export interface Personnel {
+  first_name: string;
+  last_name: string;
+  father_name: string;
+  profile_image: string | null;
+  scientific_degree: string | null;
+  scientific_title: string | null;
+  bio: string | null;
+  email: string | null;
+  phone: string | null;
+  room_number: string | null;
+  duty: string | null;
+  scientific_name: string | null;
+  working_hours?: Array<{ day: string; time_range: string }>;
+  educations?: Array<{ degree: string; university: string; start_year: number; end_year: number }>;
+  scientific_events?: Array<{ event_title: string; event_description: string }>;
 }
 
-export interface CafedraEmployee {
-  id: number;
-  full_name: string;
-  position: string;
-  academic_degree?: string;
-  photo_url?: string;
-  cv_url?: string;
-  email?: string;
-}
-
-export interface CafedraNews {
+export interface GenericSection {
   id: number;
   title: string;
-  summary: string;
-  date: string;
-  image_url?: string;
+  description: string;
 }
 
-export interface CafedraContact {
-  building: string;
-  room: string;
-  phone: string;
-  fax?: string;
-  email: string;
-}
-
-export interface CafedraSpecialization {
+export interface CafedraDetail {
   id: number;
-  name: string;
-  code?: string;
-  degree: "bachelor" | "master" | "phd";
-  duration_years: number;
-  description?: string;
-}
-
-export interface ScientificPublication {
-  id: number;
+  faculty_code: string;
+  cafedra_code: string;
   title: string;
-  authors: string[];
-  journal?: string;
-  year: number;
-  doi?: string;
-  type: "article" | "book" | "conference" | "patent";
+  html_content: string;
+  
+  // Statistics
+  bachelor_programs_count: number;
+  master_programs_count: number;
+  phd_programs_count: number;
+  international_collaborations_count: number;
+  laboratories_count: number;
+  projects_patents_count: number;
+  industrial_collaborations_count: number;
+  
+  // SDGs
+  sdgs: number[];
+  
+  // Personnel
+  director: Personnel | null;
+  deputy_directors: Personnel[];
+  workers: Personnel[];
+  scientific_council: Personnel[];
+  
+  // Academic & Research
+  laboratories: GenericSection[];
+  research_works: GenericSection[];
+  partner_companies: GenericSection[];
+  objectives: GenericSection[];
+  duties: GenericSection[];
+  projects: GenericSection[];
+  directions_of_action: GenericSection[];
+  
+  created_at: string;
 }

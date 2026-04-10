@@ -1,14 +1,17 @@
 "use client";
 
-import { use } from "react";
-import { getCafedraById } from "@/data/staticFaculties";
+import { use, useEffect, useState } from "react";
+import { getCafedraByCode } from "@/services/cafedraService/cafedraService";
+import type { CafedraDetail } from "@/types/cafedra";
 import SectionBlock from "@/components/shared/SectionBlock";
 import InfoIcon from "@mui/icons-material/Info";
-import TrackChangesIcon from "@mui/icons-material/TrackChanges";
-import AccountTreeIcon from "@mui/icons-material/AccountTree";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
-import LanguageIcon from "@mui/icons-material/Language";
-import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import { useLanguage } from "@/context/LanguageContext";
+import SanitizedHtml from "@/components/shared/SanitizedHtml";
+import SchoolIcon from "@mui/icons-material/School";
+import ScienceIcon from "@mui/icons-material/Science";
+import PublicIcon from "@mui/icons-material/Public";
+import BusinessIcon from "@mui/icons-material/Business";
+import { motion } from "framer-motion";
 
 interface Props {
   params: Promise<{ facultyId: string; cafedraId: string }>;
@@ -16,121 +19,104 @@ interface Props {
 
 export default function CafedraGirisPage({ params }: Props) {
   const { cafedraId } = use(params);
-  const cafedra = getCafedraById(Number(cafedraId));
+  const { lang } = useLanguage();
+  const [cafedra, setCafedra] = useState<CafedraDetail | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const sections = [
-    {
-      id: "haqqinda",
-      icon: <InfoIcon sx={{ color: "#1a2355" }} />,
-      title: "Kafedra haqqında ümumi məlumat",
-      content:
-        cafedra?.description ??
-        "Kafedra haqqında ümumi məlumat tezliklə əlavə olunacaq.",
-      directions: null as string[] | null,
-    },
-    {
-      id: "meqsed",
-      icon: <TrackChangesIcon sx={{ color: "#1a2355" }} />,
-      title: "Kafedranın məqsədi",
-      content:
-        cafedra?.purpose ??
-        "Kafedranın əsas məqsədi müasir tələblərə cavab verən yüksəkixtisaslı mütəxəssislərin hazırlanması, elmi-tədqiqat işlərinin aparılması və müvafiq sahə üzrə kadr potensialının artırılmasıdır.",
-      directions: null as string[] | null,
-    },
-    {
-      id: "istiqametler",
-      icon: <AccountTreeIcon sx={{ color: "#1a2355" }} />,
-      title: "Kafedranın əsas fəaliyyət istiqamətləri",
-      content: cafedra?.main_directions
-        ? null
-        : "Kafedranın fəaliyyəti bir neçə əsas istiqaməti əhatə edir: tədris işinin təşkili, elmi-tədqiqat fəaliyyəti, beynəlxalq əlaqələrin genişləndirilməsi və tələbələrə metodik yardımın göstərilməsi.",
-      directions: cafedra?.main_directions ?? null,
-    },
-    {
-      id: "tedris",
-      icon: <MenuBookIcon sx={{ color: "#1a2355" }} />,
-      title: "Tədris işi",
-      content:
-        "Kafedra üzrə tədris olunan fənlər müasir standartlara uyğun tədris planları əsasında həyata keçirilir. Bakalavr, magistr və doktorantura səviyyəsində tədris aparılır.",
-      directions: null as string[] | null,
-    },
-    {
-      id: "beynelxalq",
-      icon: <LanguageIcon sx={{ color: "#1a2355" }} />,
-      title: "Beynəlxalq əlaqələr",
-      content:
-        "Kafedra əməkdaşları bir sıra xarici ölkə universitetləri ilə əlaqə saxlayır, birgə tədqiqat layihələri həyata keçirir və beynəlxalq konfranslarda iştirak edir.",
-      directions: null as string[] | null,
-    },
-  ];
+  useEffect(() => {
+    setLoading(true);
+    getCafedraByCode(cafedraId, lang).then((data) => {
+      setCafedra(data);
+      setLoading(false);
+    });
+  }, [cafedraId, lang]);
+
+  if (loading) {
+    return (
+      <div className="space-y-6 animate-pulse">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="h-24 bg-gray-200 dark:bg-slate-800 rounded-2xl" />
+          ))}
+        </div>
+        <div className="h-64 bg-gray-200 dark:bg-slate-800 rounded-3xl" />
+      </div>
+    );
+  }
+
+  if (!cafedra) {
+    return (
+      <SectionBlock accent>
+        <div className="text-center py-10">
+          <p className="text-gray-500">{lang === "az" ? "Məlumat tapılmadı" : "No information found"}</p>
+        </div>
+      </SectionBlock>
+    );
+  }
+
+  const stats = [
+    { label: lang === "az" ? "Bakalavr" : "Bachelor", value: cafedra.bachelor_programs_count, icon: <SchoolIcon /> },
+    { label: lang === "az" ? "Magistr" : "Master", value: cafedra.master_programs_count, icon: <SchoolIcon /> },
+    { label: lang === "az" ? "Doktorantura" : "PhD", value: cafedra.phd_programs_count, icon: <SchoolIcon /> },
+    { label: lang === "az" ? "Laboratoriyalar" : "Laboratories", value: cafedra.laboratories_count, icon: <ScienceIcon /> },
+    { label: lang === "az" ? "Beynəlxalq əlaqələr" : "Int. Relations", value: cafedra.international_collaborations_count, icon: <PublicIcon /> },
+    { label: lang === "az" ? "Sənaye əlaqələri" : "Industrial Coll.", value: cafedra.industrial_collaborations_count, icon: <BusinessIcon /> },
+    { label: lang === "az" ? "Patentlər/Layihələr" : "Patents/Projects", value: cafedra.projects_patents_count, icon: <ScienceIcon /> },
+  ].filter(s => s.value > 0);
 
   return (
-    <div className="space-y-6">
-      {/* Stats grid — only shown when cafedra has stats data */}
-      {cafedra?.stats && cafedra.stats.length > 0 && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-          {cafedra.stats.map((stat) => (
-            <div
+    <div className="space-y-8">
+      {/* Stats Grid */}
+      {stats.length > 0 && (
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          {stats.map((stat, idx) => (
+            <motion.div
               key={stat.label}
-              className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 p-4 flex flex-col items-center text-center gap-1"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.1 }}
+              className="bg-white dark:bg-slate-800 p-5 rounded-[2rem] border border-gray-100 dark:border-slate-700 shadow-sm flex flex-col items-center text-center group hover:border-[#ee7c7e] transition-all duration-300"
             >
-              <span className="text-2xl font-extrabold text-[#1a2355] dark:text-white leading-none">
+              <div className="text-[#1a2355] dark:text-blue-400 mb-2 opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
+                {stat.icon}
+              </div>
+              <span className="text-2xl font-black text-[#1a2355] dark:text-white mb-1">
                 {stat.value}
               </span>
-              <span className="text-xs text-gray-500 dark:text-slate-400 font-medium leading-snug">
+              <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 dark:text-slate-500">
                 {stat.label}
               </span>
-            </div>
+            </motion.div>
           ))}
         </div>
       )}
 
-      {/* Sticky in-page anchor nav */}
-      <div className="overflow-x-auto">
-        <div className="flex gap-2 pb-1 min-w-max">
-          {sections.map((s) => (
-            <a
-              key={s.id}
-              href={`#${s.id}`}
-              className="text-xs font-semibold text-[#1a2355] dark:text-blue-300 bg-[#1a2355]/5 dark:bg-[#1a2355]/20 hover:bg-[#1a2355]/10 dark:hover:bg-[#1a2355]/30 px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
-            >
-              {s.title.length > 30 ? s.title.slice(0, 30) + "…" : s.title}
-            </a>
-          ))}
+      {/* About Section */}
+      <SectionBlock title={lang === "az" ? "Kafedra haqqında" : "About Department"} accent>
+        <div className="prose prose-sm max-w-none dark:prose-invert">
+          <SanitizedHtml html={cafedra.html_content} />
         </div>
-      </div>
+      </SectionBlock>
 
-      {/* Content sections */}
-      {sections.map((section) => (
-        <div key={section.id} id={section.id} className="scroll-mt-6">
-          <SectionBlock accent>
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-[#1a2355]/10 dark:bg-[#1a2355]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                {section.icon}
+      {/* SDGs */}
+      {cafedra.sdgs && cafedra.sdgs.length > 0 && (
+        <SectionBlock title={lang === "az" ? "Dayanıqlı İnkişaf Məqsədləri" : "Sustainable Development Goals"} accent>
+          <div className="flex flex-wrap gap-4">
+            {cafedra.sdgs.map((sdg) => (
+              <div key={sdg} className="relative group">
+                <img
+                  src={`https://api.aztu.edu.az/static/sdg/E_SDG_Icons-${sdg < 10 ? '0' + sdg : sdg}.jpg`}
+                  alt={`SDG ${sdg}`}
+                  className="w-16 h-16 rounded-lg shadow-sm group-hover:scale-110 transition-transform duration-300"
+                  onError={(e) => {
+                     (e.target as HTMLImageElement).src = `https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-${sdg < 10 ? '0' + sdg : sdg}.png`;
+                  }}
+                />
               </div>
-              <div className="flex-1">
-                <h2 className="font-bold text-[#1a2355] dark:text-white text-base mb-3">
-                  {section.title}
-                </h2>
-                {section.directions ? (
-                  <ul className="space-y-2">
-                    {section.directions.map((dir, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                        <FiberManualRecordIcon sx={{ fontSize: 8, color: "#ee7c7e", marginTop: "6px", flexShrink: 0 }} />
-                        {dir}
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                    {section.content}
-                  </p>
-                )}
-              </div>
-            </div>
-          </SectionBlock>
-        </div>
-      ))}
+            ))}
+          </div>
+        </SectionBlock>
+      )}
     </div>
   );
 }

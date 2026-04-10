@@ -1,13 +1,6 @@
 import apiClient from "@/util/apiClient";
 import type { Lang } from "@/util/apiClient";
-
-export interface CafedraInterface {
-    id: number;
-    faculty_code: string;
-    cafedra_code: string;
-    cafedra_name: string;
-    created_at: string;
-}
+import type { CafedraSummary, CafedraDetail } from "@/types/cafedra";
 
 export const getCafedras = async (params: { facultyCode?: string; start?: number; end?: number; lang?: Lang } = {}) => {
     try {
@@ -23,7 +16,7 @@ export const getCafedras = async (params: { facultyCode?: string; start?: number
         });
 
         if (response.data.status_code === 200) {
-            return response.data.cafedras as CafedraInterface[];
+            return response.data.cafedras as CafedraSummary[];
         } else if (response.data.status_code === 204) {
             return "NO_CONTENT";
         }
@@ -38,7 +31,7 @@ export const getCafedraByCode = async (cafedraCode: string, lang: Lang = "az") =
             headers: { "Accept-Language": lang },
         });
         if (response.data.status_code === 200) {
-            return response.data.cafedra as CafedraInterface;
+            return response.data.cafedra as CafedraDetail;
         }
         return null;
     } catch {
