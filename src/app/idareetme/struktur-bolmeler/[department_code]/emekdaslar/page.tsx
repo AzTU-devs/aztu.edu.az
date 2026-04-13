@@ -19,11 +19,11 @@ export default function DepartmentStaffPage({ params }: Props) {
   const { department_code: departmentSlug } = use(params);
   const { lang: currentLang } = useLanguage();
   const [department, setDepartment] = useState<DepartmentDetail | null | undefined>(undefined);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     getDepartmentBySlug(departmentSlug, currentLang).then(setDepartment);
   }, [departmentSlug, currentLang]);
-  }, [departmentCode, currentLang]);
 
   if (department === undefined) return <Loading />;
   if (department === null) return null;

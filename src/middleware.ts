@@ -144,6 +144,12 @@ export function middleware(request: NextRequest) {
         }
         
         if (lang === "en") {
+            // Redirect plain cafedras or akademik/cafedras to academic/cafedras
+            if ((segments_rest[0] === "akademik" && segments_rest[1] === "cafedras") || segments_rest[0] === "cafedras") {
+                const rest = segments_rest[0] === "cafedras" ? segments_rest.slice(1) : segments_rest.slice(2);
+                return NextResponse.redirect(new URL(`/en/academic/cafedras/${rest.join("/")}`, request.url));
+            }
+
             // Redirect akademik/fakulteler or plain faculties to academic/faculties
             if (segments_rest[0] === "akademik" || segments_rest[0] === "faculties") {
                 const newPath = ["academic", "faculties"];
@@ -176,15 +182,6 @@ export function middleware(request: NextRequest) {
                     }
                 }
                 return NextResponse.redirect(new URL(`/en/${newPath.join("/")}`, request.url));
-            }
-            // Redirect plain cafedras or akademik/cafedras to academic/cafedras
-            if (segments_rest[0] === "akademik" && segments_rest[1] === "cafedras") {
-                const rest = segments_rest.slice(2);
-                return NextResponse.redirect(new URL(`/en/academic/cafedras/${rest.join("/")}`, request.url));
-            }
-            if (segments_rest[0] === "cafedras") {
-                const rest = segments_rest.slice(1);
-                return NextResponse.redirect(new URL(`/en/academic/cafedras/${rest.join("/")}`, request.url));
             }
         }
     }

@@ -6,5 +6,5 @@ interface Props {
 
 export default async function DepartmentRootPage({ params }: Props) {
   const { department_code } = await params;
-  redirect(`/departments/${department_code}/haqqimizda`);
+  redirect(`/idareetme/struktur-bolmeler/${department_code}/haqqimizda`);
 }
