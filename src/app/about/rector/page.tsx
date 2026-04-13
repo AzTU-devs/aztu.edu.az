@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import VilayetVeliyev from "@/../public/vilayet_veliyev.jpeg";
 import SectionBlock from "@/components/shared/SectionBlock";
 import { useTranslation } from "@/hooks/useTranslation";
+import { useLanguage } from "@/context/LanguageContext";
 
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import EmailIcon from "@mui/icons-material/Email";
@@ -108,10 +109,11 @@ function GallerySlider({ items }: { items: { caption: string }[] }) {
 
 export default function RectorPage() {
     const t = useTranslation();
+    const { lang } = useLanguage();
     const p = t.pages.about.rector;
 
-    const leadershipLabel = t.lang === "az" ? "Rəhbərlik və İdarəetmə" : "Leadership and Management";
-    const leadershipHref = t.lang === "az" ? "/haqqimizda/rehbetlik-ve-idareetme" : "/about/leadership-and-management";
+    const leadershipLabel = lang === "az" ? "Rəhbərlik və İdarəetmə" : "Leadership and Management";
+    const leadershipHref = lang === "az" ? "/haqqimizda/rehbetlik-ve-idareetme" : "/about/leadership-and-management";
 
     return (
         <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
@@ -140,7 +142,7 @@ export default function RectorPage() {
                             Home
                         </Link>
                         <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={t.lang === "az" ? "/haqqimizda" : "/about"} className="hover:text-white transition-colors">
+                        <Link href={lang === "az" ? "/haqqimizda" : "/about"} className="hover:text-white transition-colors">
                             {t.nav.sections.about}
                         </Link>
                         <ChevronRightIcon sx={{ fontSize: 12 }} />

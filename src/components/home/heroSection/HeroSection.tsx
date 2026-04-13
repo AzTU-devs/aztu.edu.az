@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState, useCallback } from "react"
+import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward"
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
@@ -197,12 +198,14 @@ export default function HeroSection() {
                                         </div>
                                     </button>
 
-                                    <button className="group flex items-center gap-4 bg-white/10 backdrop-blur-md border border-white/20 text-white font-black px-8 py-4 md:px-10 md:py-4.5 rounded-[1.5rem] hover:bg-white/20 transition-all duration-500 cursor-pointer">
-                                        <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                            <PlayArrowIcon sx={{ fontSize: 24 }} />
-                                        </div>
-                                        <span className="uppercase tracking-[0.2em] text-xs">{t.lang === 'az' ? 'Virtual Tur' : 'Virtual Tour'}</span>
-                                    </button>
+                                    <Link href="/virtual-tour">
+                                        <button className="group flex items-center gap-4 bg-white/10 backdrop-blur-md border border-white/20 text-white font-black px-8 py-4 md:px-10 md:py-4.5 rounded-[1.5rem] hover:bg-white/20 transition-all duration-500 cursor-pointer">
+                                            <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                                <PlayArrowIcon sx={{ fontSize: 24 }} />
+                                            </div>
+                                            <span className="uppercase tracking-[0.2em] text-xs">{t.lang === 'az' ? 'Virtual Tur' : 'Virtual Tour'}</span>
+                                        </button>
+                                    </Link>
                                 </motion.div>
                             </motion.div>
                         </AnimatePresence>
