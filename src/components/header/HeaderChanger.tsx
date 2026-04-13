@@ -6,8 +6,10 @@ import QuickMenu from "../menu/QuickMenu";
 import ResponsiveHeader from "./ResponsiveHeader";
 import SearchOverlay from "./SearchOverlay";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function HeaderChanger() {
+  const pathname = usePathname();
   const [showSubHeader, setShowSubHeader] = useState(false);
   const [isQuickMenuOpen, setIsQuickMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -34,6 +36,9 @@ export default function HeaderChanger() {
 
   const openSearch = () => setIsSearchOpen(true);
   const closeSearch = () => setIsSearchOpen(false);
+
+  // Don't show the regular header on the virtual tour page
+  if (pathname.includes("/virtual-tour")) return null;
 
   return (
     <>

@@ -8,8 +8,12 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import EmailIcon from '@mui/icons-material/Email';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import { getQuickMenu, type QuickMenuData } from "@/services/menu/menuService";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTranslation } from "@/hooks/useTranslation";
 
 type Props = {
     isOpen: boolean;
@@ -63,10 +67,29 @@ const STATIC_LEFT_ITEMS = [
     { label: "FAQ", url: "/haqqimizda/faq" },
 ];
 
+const containerVariants = {
+    closed: { x: "100%" },
+    open: { 
+        x: 0,
+        transition: { 
+            duration: 0.6, 
+            ease: [0.23, 1, 0.32, 1],
+            staggerChildren: 0.05,
+            delayChildren: 0.1
+        }
+    }
+};
+
+const itemVariants = {
+    closed: { opacity: 0, x: 20 },
+    open: { opacity: 1, x: 0 }
+};
+
 export default function QuickMenu({ isOpen, onClose }: Props) {
     const [menuData, setMenuData] = useState<QuickMenuData | null>(null);
     const [activeSection, setActiveSection] = useState<string>("");
     const { lang } = useLanguage();
+    const t = useTranslation();
 
     useEffect(() => {
         if (isOpen) {
@@ -84,14 +107,12 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
     const rightSections = menuData?.right_sections?.length ? menuData.right_sections : STATIC_RIGHT_SECTIONS;
     const leftItems = menuData?.left_items?.length ? menuData.left_items : STATIC_LEFT_ITEMS;
     const contact = menuData?.contact;
-    const socialLinks = menuData?.social_links?.length
-        ? menuData.social_links
-        : [
-              { platform: "facebook", url: "https://www.facebook.com/aztu.edu.az" },
-              { platform: "instagram", url: "https://www.instagram.com/aztu_edu_az" },
-              { platform: "linkedin", url: "https://www.linkedin.com/school/azerbaijantechnicaluniversity" },
-              { platform: "youtube", url: "https://www.youtube.com/@aztu_official" },
-          ];
+    const socialLinks = menuData?.social_links?.length ? menuData.social_links : [
+        { platform: "facebook", url: "https://www.facebook.com/aztu.edu.az" },
+        { platform: "instagram", url: "https://www.instagram.com/aztu_edu_az" },
+        { platform: "linkedin", url: "https://www.linkedin.com/school/azerbaijantechnicaluniversity" },
+        { platform: "youtube", url: "https://www.youtube.com/@aztu_official" },
+    ];
 
     const currentActive = activeSection || (rightSections[0]?.key ?? "");
     const activeData = rightSections.find((s) => s.key === currentActive) ?? rightSections[0];
@@ -99,103 +120,119 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
     return (
         <AnimatePresence>
             {isOpen && (
-                <motion.div
-                    className="fixed inset-0 z-[999] flex justify-end"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                >
+                <div className="fixed inset-0 z-[1000] flex justify-end overflow-hidden">
                     {/* Overlay */}
-                    <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="absolute inset-0 bg-[#0b1330]/80 backdrop-blur-sm" 
+                        onClick={onClose} 
+                    />
 
                     {/* MAIN CONTAINER */}
                     <motion.div
-                        className="relative flex h-screen w-full sm:w-full md:w-[80%] lg:w-[60%] flex-col lg:flex-row"
-                        initial={{ x: "100%" }}
-                        animate={{ x: 0 }}
-                        exit={{ x: "100%" }}
-                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        variants={containerVariants}
+                        initial="closed"
+                        animate="open"
+                        exit="closed"
+                        className="relative flex h-full w-full md:w-[85%] lg:w-[70%] xl:w-[60%] bg-[#0b1330] shadow-[-20px_0_80px_rgba(0,0,0,0.5)] border-l border-white/5 overflow-hidden flex-col lg:flex-row"
                     >
-                        {/* Close Button */}
-                        <div
-                            className="absolute left-[-15px] top-[15px] sm:left-[-20px] sm:top-[20px] z-50 bg-white dark:bg-[#1e293b] p-[10px] rounded-full cursor-pointer"
-                            onClick={onClose}
-                        >
-                            <CloseIcon />
+                        {/* DECORATIVE BACKGROUND */}
+                        <div className="absolute inset-0 pointer-events-none opacity-40">
+                            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(white 0.5px, transparent 0.5px)', backgroundSize: '32px 32px' }} />
+                            <div className="absolute top-0 right-0 w-[60%] h-[60%] bg-[#ee7c7e]/[0.05] blur-[120px] rounded-full" />
+                            <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-blue-500/[0.05] blur-[100px] rounded-full" />
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[200px] font-black text-white/[0.01] select-none uppercase tracking-tighter">AzTU</div>
                         </div>
 
-                        {/* LEFT PANEL */}
-                        <motion.div
-                            className="bg-[#1a2355] w-full lg:w-[30%] h-auto lg:h-screen p-[20px] sm:p-[30px]"
-                            initial={{ x: -40, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ delay: 0.3, duration: 0.5 }}
+                        {/* CLOSE BUTTON */}
+                        <motion.button
+                            whileHover={{ scale: 1.1, rotate: 90 }}
+                            whileTap={{ scale: 0.9 }}
+                            onClick={onClose}
+                            className="absolute left-6 top-6 lg:left-[-30px] lg:top-1/2 lg:-translate-y-1/2 z-[100] w-12 h-12 lg:w-14 lg:h-14 bg-[#ee7c7e] text-white flex items-center justify-center rounded-2xl shadow-2xl shadow-[#ee7c7e]/40 cursor-pointer border border-white/20"
                         >
-                            <h2 className="text-white font-bold text-[22px] sm:text-[25px] text-center mb-6">
-                                <span className="mr-2">AzTU</span> Quick Menu
-                            </h2>
+                            <CloseIcon sx={{ fontSize: 28 }} />
+                        </motion.button>
 
-                            <div>
+                        {/* LEFT PANEL (Institutional Info) */}
+                        <div className="relative z-10 w-full lg:w-[35%] border-r border-white/5 flex flex-col p-8 md:p-12">
+                            <div className="mb-12">
+                                <span className="text-[#ee7c7e] text-[10px] font-black uppercase tracking-[0.5em] mb-4 block">Navigation</span>
+                                <h2 className="text-white font-black text-4xl tracking-tighter leading-none mb-2">QUICK<br/>ACCESS</h2>
+                                <div className="w-12 h-1 bg-[#ee7c7e] rounded-full mt-6" />
+                            </div>
+
+                            <nav className="flex-1 space-y-3">
                                 {leftItems.map((item, i) => (
-                                    <Link
-                                        key={i}
-                                        href={item.url}
-                                        onClick={onClose}
-                                        className="block px-4 py-2 bg-white dark:bg-[#1e293b] dark:text-white rounded-[20px] my-3 font-bold cursor-pointer transition-all hover:bg-[#5A9BD3] hover:text-white text-center"
-                                    >
-                                        {item.label}
-                                    </Link>
-                                ))}
-                            </div>
-
-                            <div className="mt-8 text-white font-bold space-y-3 text-center lg:text-left">
-                                <a href={`mailto:${contact?.email ?? "aztu@aztu.edu.az"}`} className="block hover:text-[#80c7ff] transition-colors">
-                                    {contact?.email ?? "aztu@aztu.edu.az"}
-                                </a>
-                                {(contact?.phones ?? ["(+994 12) 539-13-05", "(+994 12) 538-33-83"]).map((phone, i) => (
-                                    <a key={i} href={`tel:${phone.replace(/\s|\(|\)|-/g, "")}`} className="block hover:text-[#80c7ff] transition-colors">
-                                        {phone}
-                                    </a>
-                                ))}
-                            </div>
-
-                            <div className="flex justify-center lg:justify-start gap-3 mt-6">
-                                {socialLinks.map(({ platform, url }) => {
-                                    const Icon = SOCIAL_ICONS[platform.toLowerCase()] ?? FacebookIcon;
-                                    return (
-                                        <a
-                                            key={platform}
-                                            href={url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            aria-label={platform}
-                                            className="bg-white/30 w-[45px] h-[45px] flex items-center justify-center rounded-lg cursor-pointer hover:bg-white/50 transition-colors"
+                                    <motion.div key={i} variants={itemVariants}>
+                                        <Link
+                                            href={item.url}
+                                            onClick={onClose}
+                                            className="group flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/10 transition-all duration-300 shadow-lg"
                                         >
-                                            <Icon sx={{ color: "white", fontSize: 26 }} />
-                                        </a>
-                                    );
-                                })}
-                            </div>
-                        </motion.div>
+                                            <span className="text-white/70 font-bold text-sm uppercase tracking-widest group-hover:text-white transition-colors">{item.label}</span>
+                                            <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-300">
+                                                <ArrowOutwardIcon sx={{ fontSize: 16 }} />
+                                            </div>
+                                        </Link>
+                                    </motion.div>
+                                ))}
+                            </nav>
 
-                        {/* RIGHT PANEL */}
-                        <motion.div
-                            className="bg-[#5A9BD3]/95 w-full lg:w-[70%] h-screen overflow-y-auto px-4 sm:px-6 py-8 sm:py-12"
-                            initial={{ x: 80, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ duration: 0.4 }}
-                        >
-                            {/* Section tabs */}
-                            <div className="flex justify-between gap-2 flex-wrap mb-6">
+                            <div className="mt-12 pt-8 border-t border-white/5 space-y-6">
+                                <div className="space-y-4">
+                                    <a href={`mailto:${contact?.email ?? "aztu@aztu.edu.az"}`} className="flex items-center gap-4 group">
+                                        <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-[#ee7c7e] group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-300">
+                                            <EmailIcon sx={{ fontSize: 18 }} />
+                                        </div>
+                                        <span className="text-sm font-bold text-white/40 group-hover:text-white transition-colors tracking-tight">{contact?.email ?? "aztu@aztu.edu.az"}</span>
+                                    </a>
+                                    {(contact?.phones ?? ["(+994 12) 539-13-05"]).map((phone, i) => (
+                                        <a key={i} href={`tel:${phone.replace(/\s|\(|\)|-/g, "")}`} className="flex items-center gap-4 group">
+                                            <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-[#ee7c7e] group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-300">
+                                                <LocalPhoneIcon sx={{ fontSize: 18 }} />
+                                            </div>
+                                            <span className="text-sm font-bold text-white/40 group-hover:text-white transition-colors tracking-tight">{phone}</span>
+                                        </a>
+                                    ))}
+                                </div>
+
+                                <div className="flex gap-3">
+                                    {socialLinks.map(({ platform, url }) => {
+                                        const Icon = SOCIAL_ICONS[platform.toLowerCase()] ?? FacebookIcon;
+                                        return (
+                                            <motion.a
+                                                key={platform}
+                                                href={url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                whileHover={{ y: -3, scale: 1.1 }}
+                                                className="w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/5 text-white/40 hover:text-white hover:bg-[#ee7c7e] hover:border-[#ee7c7e] transition-all duration-300 shadow-xl"
+                                            >
+                                                <Icon sx={{ fontSize: 20 }} />
+                                            </motion.a>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* RIGHT PANEL (Categorized Items) */}
+                        <div className="relative z-10 flex-1 flex flex-col p-8 md:p-12 bg-black/20 overflow-y-auto">
+                            {/* Section Tabs */}
+                            <div className="flex gap-2 p-1.5 rounded-[2rem] bg-white/5 border border-white/5 mb-12 self-start max-w-full overflow-x-auto no-scrollbar">
                                 {rightSections.map((section) => {
                                     const isActive = currentActive === section.key;
                                     return (
                                         <button
                                             key={section.key}
                                             onClick={() => setActiveSection(section.key)}
-                                            style={{ width: "calc(100% / 3 - 10px)" }}
-                                            className={`px-5 py-2 rounded-full font-bold text-sm transition-all cursor-pointer ${
-                                                isActive ? "bg-white text-[#1a2355]" : "bg-white/20 text-white hover:bg-white/40"
+                                            className={`px-8 py-3 rounded-[1.5rem] font-black text-[11px] uppercase tracking-[0.2em] transition-all duration-500 whitespace-nowrap cursor-pointer ${
+                                                isActive 
+                                                ? "bg-[#ee7c7e] text-white shadow-xl shadow-[#ee7c7e]/20" 
+                                                : "text-white/40 hover:text-white hover:bg-white/5"
                                             }`}
                                         >
                                             {section.title}
@@ -204,31 +241,57 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
                                 })}
                             </div>
 
-                            {/* Active section items */}
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={currentActive}
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="flex flex-col gap-3"
-                                >
-                                    {activeData?.items.map((item) => (
-                                        <Link
-                                            key={item.label}
-                                            href={item.url}
-                                            onClick={onClose}
-                                            className="px-6 py-4 rounded-2xl bg-white/20 text-white font-semibold hover:bg-white hover:text-[#1a2355] transition-colors cursor-pointer block"
-                                        >
-                                            {item.label}
-                                        </Link>
-                                    ))}
-                                </motion.div>
-                            </AnimatePresence>
-                        </motion.div>
+                            {/* Active Content Grid */}
+                            <div className="flex-1">
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={currentActive}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -20 }}
+                                        transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+                                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                                    >
+                                        {activeData?.items.map((item, idx) => (
+                                            <motion.div
+                                                key={item.label}
+                                                initial={{ opacity: 0, scale: 0.95 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                transition={{ delay: idx * 0.05, duration: 0.4 }}
+                                            >
+                                                <Link
+                                                    href={item.url}
+                                                    onClick={onClose}
+                                                    className="group relative flex flex-col p-8 rounded-[2.5rem] bg-white/5 border border-white/5 hover:bg-white/10 transition-all duration-500 hover:shadow-2xl overflow-hidden min-h-[160px] justify-between"
+                                                >
+                                                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:bg-[#ee7c7e]/10 transition-colors" />
+                                                    
+                                                    <div className="relative z-10 flex items-center justify-between">
+                                                        <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-[#ee7c7e] group-hover:scale-110 transition-transform">
+                                                            <ArrowOutwardIcon sx={{ fontSize: 24 }} />
+                                                        </div>
+                                                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20 group-hover:text-[#ee7c7e] transition-colors">Portal</span>
+                                                    </div>
+
+                                                    <h3 className="relative z-10 text-xl font-black text-white group-hover:text-[#ee7c7e] transition-colors leading-tight tracking-tight mt-6">
+                                                        {item.label}
+                                                    </h3>
+                                                    
+                                                    <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-[#ee7c7e] group-hover:w-full transition-all duration-700 ease-out origin-left" />
+                                                </Link>
+                                            </motion.div>
+                                        ))}
+                                    </motion.div>
+                                </AnimatePresence>
+                            </div>
+
+                            {/* Bottom Brand Slogan */}
+                            <div className="mt-12 text-center opacity-10">
+                                <p className="text-[10px] font-black uppercase tracking-[0.8em] text-white">Shaping the engineering future</p>
+                            </div>
+                        </div>
                     </motion.div>
-                </motion.div>
+                </div>
             )}
         </AnimatePresence>
     );
