@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import type { MenuHeader } from "@/services/menu/menuService";
+import AzTUBg from "@/../public/aztu.png";
 
 type Props = {
   header: MenuHeader;
@@ -12,93 +13,155 @@ type Props = {
 export default function Dropdown({ header }: Props) {
   return (
     <motion.div
-      initial={{ y: -16, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: -16, opacity: 0 }}
-      transition={{ duration: 0.22, ease: "easeOut" }}
-      className="w-full bg-white dark:bg-[#0f172a] shadow-2xl border-t border-gray-100 dark:border-gray-700"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+      className="absolute inset-x-0 top-full w-full bg-white dark:bg-[#0b1330] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] dark:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] border-t border-gray-100 dark:border-white/5 z-40 overflow-hidden"
     >
-      <div className="flex items-stretch px-[80px] xl:px-[120px] py-8 gap-10 max-w-screen-2xl mx-auto">
-        {/* Left: section-specific image with overlay (if exists) */}
-        {header.image_url && (
-          <div className="hidden lg:block w-[260px] xl:w-[300px] flex-shrink-0 relative rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={header.id}
-                initial={{ opacity: 0, scale: 1.04 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.04 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                className="w-full h-full min-h-[220px] relative"
-              >
-                <Image
-                  src={header.image_url}
-                  alt={header.title}
-                  fill
-                  className="object-cover"
-                  sizes="300px"
-                  unoptimized // Use unoptimized if the image is from an external API and not in Next.js public
-                />
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1a2355]/90 via-[#1a2355]/30 to-transparent" />
+      {/* BACKGROUND DECORATIONS */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* Dotted Grid Pattern */}
+          <div className="absolute inset-0 opacity-[0.12] dark:opacity-[0.04]" 
+               style={{ backgroundImage: 'radial-gradient(#ee7c7e 0.5px, transparent 0.5px)', backgroundSize: '32px 32px' }} />
 
-                {/* Section label on image */}
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <p className="text-[#ee7c7e] text-[10px] font-black uppercase tracking-[0.25em] mb-1">
-                    AzTU
-                  </p>
-                  <h3 className="text-white text-xl font-black leading-tight tracking-tight">
-                    {header.title}
-                  </h3>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+          {/* Technical Blueprint Lines */}
+          <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] dark:opacity-[0.05]">
+              <svg width="100%" height="100%" fill="none">
+                  <defs>
+                      <pattern id="grid" width="160" height="160" patternUnits="userSpaceOnUse">
+                          <path d="M 160 0 L 0 0 0 160" stroke="currentColor" strokeWidth="1"/>
+                      </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#grid)" />
+              </svg>
           </div>
-        )}
 
-        {/* Right: hierarchical groups */}
-        <div className="flex-1 flex flex-wrap gap-x-12 gap-y-8 content-start">
-          {header.items.map((item, idx) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: -6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.05, duration: 0.18 }}
-              className="min-w-[180px]"
-            >
-              {/* Level 2: Category title — link if it has direct_url, plain header otherwise */}
-              {item.direct_url ? (
-                <Link
-                  href={item.direct_url}
-                  className="block text-[11px] font-black uppercase tracking-[0.15em] text-[#1a2355] dark:text-white mb-3 hover:text-[#ee7c7e] dark:hover:text-[#ee7c7e] transition-colors"
+          {/* Floating Geometric Accents */}
+          <div className="absolute top-20 right-[15%] w-32 h-32 border border-[#ee7c7e]/10 rounded-3xl rotate-12 animate-pulse" />
+          <div className="absolute bottom-40 left-[10%] w-48 h-48 border border-[#1a2355]/5 dark:border-white/5 rounded-full" />
+
+          {/* Subtle Mesh Gradients / Glow Orbs */}
+          <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#ee7c7e]/[0.04] dark:bg-[#ee7c7e]/[0.08] blur-[120px] rounded-full animate-pulse" />
+          <div className="absolute top-[20%] left-[-5%] w-[30%] h-[40%] bg-[#1a2355]/[0.03] dark:bg-blue-500/[0.04] blur-[100px] rounded-full" />
+          <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[40%] bg-[#1a2355]/[0.03] dark:bg-white/[0.02] blur-[100px] rounded-full" />
+          <div className="absolute bottom-[10%] right-[10%] w-[25%] h-[25%] bg-[#ee7c7e]/[0.02] blur-[80px] rounded-full" />
+          
+          {/* Brand Watermark */}
+          <div className="absolute right-10 bottom-10 select-none opacity-[0.03] dark:opacity-[0.06]">
+              <h1 className="text-[200px] font-black tracking-tighter leading-none text-[#1a2355] dark:text-white">AzTU</h1>
+          </div>
+      </div>
+
+      <div className="relative z-10 flex items-stretch px-[40px] md:px-[60px] xl:px-[100px] py-16 max-w-[2000px] mx-auto gap-12 min-h-[700px]">
+        
+        {/* LEFT VISUAL: The Immersive Banner */}
+        <div className="hidden lg:block w-[360px] xl:w-[460px] flex-shrink-0 relative rounded-[3.5rem] overflow-hidden shadow-2xl group/banner ring-1 ring-black/5 dark:ring-white/10">
+            <Image
+                src={AzTUBg}
+                alt="AzTU"
+                fill
+                className="object-cover transition-transform duration-1000 group-hover/banner:scale-110"
+                priority
+            />
+            {/* Multi-layered dark/brand overlays */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1a2355] via-[#1a2355]/40 to-transparent dark:from-[#0b1330] dark:via-transparent" />
+            <div className="absolute inset-0 bg-black/10 dark:bg-transparent" />
+            
+            <div className="absolute bottom-0 left-0 right-0 p-12">
+                <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
                 >
-                  {item.title}
-                </Link>
-              ) : (
-                <span className="block text-[11px] font-black uppercase tracking-[0.15em] text-[#1a2355]/40 dark:text-white/40 mb-3">
-                  {item.title}
-                </span>
-              )}
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 mb-6 shadow-xl">
+                        <div className="w-2 h-2 rounded-full bg-[#ee7c7e] shadow-[0_0_10px_#ee7c7e]" />
+                        <span className="text-white text-[10px] font-black uppercase tracking-[0.4em]">
+                            Global Leader
+                        </span>
+                    </div>
+                    <h3 className="text-white text-5xl font-black leading-tight tracking-tighter mb-4 drop-shadow-2xl">
+                        {header.title}
+                    </h3>
+                    <p className="text-white/60 text-base font-bold leading-relaxed max-w-[300px] uppercase tracking-widest border-l-2 border-[#ee7c7e] pl-4">
+                        Defining the next generation of technical education.
+                    </p>
+                </motion.div>
+            </div>
+        </div>
 
-              {/* Level 3: Sub-items */}
-              {item.sub_items && item.sub_items.length > 0 && (
-                <ul className="flex flex-col gap-0.5">
-                  {item.sub_items.map((sub) => (
-                    <li key={sub.id}>
-                      <Link
-                        href={sub.direct_url}
-                        className="block py-1.5 px-2 rounded-xl text-[13.5px] font-bold text-[#1a2355]/80 dark:text-white/70 hover:bg-[#1a2355]/5 dark:hover:bg-white/5 hover:text-[#1a2355] dark:hover:text-white transition-all duration-200"
-                      >
-                        {sub.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </motion.div>
-          ))}
+        {/* RIGHT CONTENT: High-Density Card Grid */}
+        <div className="flex-1 py-2 relative">
+            {/* Background Content Panel */}
+            <div className="absolute inset-0 bg-gray-50/40 dark:bg-white/[0.01] rounded-[4rem] -m-8 pointer-events-none" />
+            
+            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
+                {header.items.map((item, idx) => (
+                    <motion.div
+                        key={item.id}
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: idx * 0.05 + 0.2, duration: 0.5 }}
+                        className="group/item flex flex-col bg-white dark:bg-white/5 hover:bg-white dark:hover:bg-white/[0.08] p-10 rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/20 transition-all duration-500"
+                    >
+                        {/* Category Header */}
+                        <div className="relative mb-6">
+                            {item.direct_url ? (
+                                <Link
+                                    href={item.direct_url}
+                                    className="inline-flex items-center group/title"
+                                >
+                                    <span className="text-[15px] font-black uppercase tracking-[0.25em] text-[#1a2355] dark:text-blue-300 group-hover/title:text-[#ee7c7e] transition-colors duration-300">
+                                        {item.title}
+                                    </span>
+                                </Link>
+                            ) : (
+                                <span className="text-[15px] font-black uppercase tracking-[0.25em] text-[#1a2355]/30 dark:text-white/20">
+                                    {item.title}
+                                </span>
+                            )}
+                            {/* Stylish Dot Indicator */}
+                            <div className="h-2 w-2 bg-[#ee7c7e] rounded-full mt-2 group-hover/item:scale-150 group-hover/item:shadow-[0_0_10px_#ee7c7e] transition-all duration-300" />
+                        </div>
+
+                        {/* Level 3 Link List */}
+                        {item.sub_items && item.sub_items.length > 0 && (
+                            <ul className="flex flex-col gap-1.5">
+                                {item.sub_items.map((sub) => (
+                                    <li key={sub.id}>
+                                        <Link
+                                            href={sub.direct_url}
+                                            className="group/link flex items-center py-2 text-[16px] font-bold text-gray-500 dark:text-white/50 hover:text-[#1a2355] dark:hover:text-white transition-all duration-300"
+                                        >
+                                            <span className="group-hover:translate-x-1.5 transition-transform duration-300">
+                                                {sub.title}
+                                            </span>
+                                            <ChevronRightIcon 
+                                                sx={{ fontSize: 14 }} 
+                                                className="ml-2 text-[#ee7c7e] opacity-0 group-hover/link:opacity-100 transition-all duration-300"
+                                            />
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </motion.div>
+                ))}
+            </div>
         </div>
       </div>
     </motion.div>
   );
+}
+
+function ChevronRightIcon({ className, sx }: { className?: string; sx?: any }) {
+    return (
+        <svg 
+            className={className}
+            style={sx}
+            width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+        >
+            <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+    );
 }
