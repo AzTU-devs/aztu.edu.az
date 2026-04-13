@@ -45,9 +45,9 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         isOpen
-          ? "bg-white dark:bg-[#0f172a] border-b border-gray-200 dark:border-gray-700"
+          ? "bg-white dark:bg-[#0b1330] border-b border-gray-100 dark:border-white/10 shadow-lg"
           : "bg-gradient-to-b from-[#0b1e3a]/90 via-[#0b1e3a]/60 to-transparent"
       }`}
       onMouseLeave={() => setActiveHeader(null)}
@@ -134,7 +134,7 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
                         href={header.direct_url}
                         className={`relative text-[13px] xl:text-[14px] font-bold px-3 py-2 rounded-lg transition-all duration-200 block ${
                           isOpen
-                            ? "text-[#1a2355]/70 dark:text-white/70 hover:text-[#1a2355] dark:hover:text-white"
+                            ? "text-[#1a2355] dark:text-white/70 hover:text-[#ee7c7e] dark:hover:text-white"
                             : "text-white hover:bg-white/15"
                         }`}
                       >
@@ -151,15 +151,15 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
                     className={`relative text-[13px] xl:text-[14px] font-bold px-3 py-2 rounded-lg transition-all duration-200 cursor-pointer select-none ${
                       isOpen
                         ? isActive
-                          ? "text-[#1a2355] dark:text-white"
-                          : "text-[#1a2355]/70 dark:text-white/70 hover:text-[#1a2355] dark:hover:text-white"
+                          ? "text-[#ee7c7e] dark:text-white"
+                          : "text-[#1a2355] dark:text-white/70 hover:text-[#ee7c7e] dark:hover:text-white"
                         : "text-white hover:bg-white/15"
                     }`}
                   >
                     {header.title}
                     {/* Active underline */}
                     {isActive && isOpen && (
-                      <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#1a2355] dark:bg-white rounded-full" />
+                      <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#ee7c7e] dark:bg-white rounded-full" />
                     )}
                   </li>
                 );
