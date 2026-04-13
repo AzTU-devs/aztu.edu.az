@@ -25,7 +25,7 @@ const RESEARCH_AREAS = [
 const RELATED = [
     { title: "Institute of Information Technology", href: "/about/iit" },
     { title: "Turkish-Azerbaijan University (TAU)", href: "/about/tau" },
-    { title: "Research Activities", href: "/research/activities" },
+    { title: "Research Activities", href: "/research/research-activity" },
 ];
 
 export default function ICSPage() {

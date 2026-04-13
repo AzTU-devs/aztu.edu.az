@@ -160,7 +160,7 @@ export default function HistoryPage() {
                             {[
                                 { title: t.pages.about.vision.title, href: "/about/vision" },
                                 { title: t.pages.about.mission.title, href: "/about/mission" },
-                                { title: t.pages.about.rector.title, href: "/about/rector" },
+                                { title: t.pages.about.rector.title, href: t.lang === "az" ? "/haqqimizda/rehbetlik-ve-idareetme/rektor" : "/about/leadership-and-management/rector" },
                             ].map((link) => (
                                 <Link
                                     key={link.href}

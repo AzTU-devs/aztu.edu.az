@@ -45,7 +45,7 @@ export function getNavSections(t: Locale): NavSection[] {
                 {
                     title: n.leadershipGovernance,
                     subItems: [
-                        { title: n.rector, slug: "rector" },
+                        { title: n.rector, slug: t.lang === "az" ? "rehbetlik-ve-idareetme/rektor" : "leadership-and-management/rector" },
                         { title: n.viceRector, slug: "vice-rector" },
                         { title: n.scientificBoard, slug: "scientific-board" },
                     ],
@@ -74,10 +74,10 @@ export function getNavSections(t: Locale): NavSection[] {
         {
             key: "academics",
             label: t.nav.sections.academics,
-            basePath: "/academics",
+            basePath: t.lang === "az" ? "/akademik" : "/academic",
             image: Slide2,
             items: [
-                { title: n.faculties, slug: "faculties" },
+                { title: n.faculties, slug: t.lang === "az" ? "fakulteler" : "faculties" },
                 { title: n.cafedras, slug: "cafedras" },
                 {
                     title: n.higherEducationInstitutes,
@@ -144,10 +144,16 @@ export function getNavSections(t: Locale): NavSection[] {
         {
             key: "research",
             label: t.nav.sections.research,
-            basePath: "/research",
+            basePath: t.lang === "az" ? "/tedqiqat" : "/research",
             image: News2,
             items: [
-                { title: n.researchActivities, slug: "activities" },
+                {
+                    title: n.researchActivities,
+                    slug: t.lang === "az" ? "tedqiqat-fealiyyeti" : "research-activity",
+                    subItems: [
+                        { title: n.researchInstitutes, slug: t.lang === "az" ? "tedqiqat-institutlari" : "research-institutes" },
+                    ],
+                },
                 { title: n.researchPriorities, slug: "priorities" },
             ],
         },
@@ -196,7 +202,7 @@ export const NAV_SECTIONS: NavSection[] = [
             {
                 title: "Leadership & Governance",
                 subItems: [
-                    { title: "Rector", slug: "rector" },
+                    { title: "Rector", slug: "leadership-and-management/rector" },
                     { title: "Vice-Rector", slug: "vice-rector" },
                     { title: "Scientific Board", slug: "scientific-board" },
                 ],
@@ -225,7 +231,7 @@ export const NAV_SECTIONS: NavSection[] = [
     {
         key: "academics",
         label: "ACADEMICS",
-        basePath: "/academics",
+        basePath: "/academic",
         image: Slide2,
         items: [
             { title: "Faculties", slug: "faculties" },
@@ -298,7 +304,13 @@ export const NAV_SECTIONS: NavSection[] = [
         basePath: "/research",
         image: News2,
         items: [
-            { title: "Research Activities", slug: "activities" },
+            {
+                title: "Research Activities",
+                slug: "research-activity",
+                subItems: [
+                    { title: "Research Institutes", slug: "research-institutes" },
+                ],
+            },
             { title: "Research Priorities", slug: "priorities" },
         ],
     },
