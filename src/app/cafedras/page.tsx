@@ -84,7 +84,7 @@ export default function CafedrasPage() {
                                     whileHover={{ y: -4, transition: { duration: 0.2 } }}
                                 >
                                     <Link
-                                        href={`/faculties/${cafedra.faculty_code}/kafedralar/${cafedra.cafedra_code}/giris`}
+                                        href={`/az/akademik/fakulteler/${cafedra.faculty_code}/kafedralar/${cafedra.cafedra_code}/giris`}
                                         className="group bg-white dark:bg-slate-800 rounded-2xl shadow-md border border-gray-100 dark:border-slate-700 p-6 flex flex-col gap-4 hover:shadow-xl transition-all duration-300 block"
                                     >
                                         <div className="flex items-center justify-between">

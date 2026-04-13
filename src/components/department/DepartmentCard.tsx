@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import BusinessIcon from "@mui/icons-material/Business";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { motion, type Variants } from "framer-motion";
 import type { DepartmentSummary } from "@/types/department";
+import { useLanguage } from "@/context/LanguageContext";
+import { slugify } from "@/util/slugify";
 
 interface DepartmentCardProps {
   department: DepartmentSummary;
@@ -22,6 +23,13 @@ const cardVariants: Variants = {
 };
 
 export default function DepartmentCard({ department, index }: DepartmentCardProps) {
+  const { lang } = useLanguage();
+  const slug = slugify(department.department_name);
+  
+  const path = lang === "az"
+    ? `/az/idareetme/struktur-bolmeler/${slug}/haqqimizda`
+    : `/en/management/structural-units/${slug}/about`;
+
   return (
     <motion.div
       custom={index}
@@ -31,7 +39,7 @@ export default function DepartmentCard({ department, index }: DepartmentCardProp
       className="h-full"
     >
       <Link
-        href={`/departments/${department.department_code}/haqqimizda`}
+        href={path}
         className="group relative h-full bg-white dark:bg-slate-800 rounded-3xl p-8 flex flex-col gap-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-8px_rgba(0,0,0,0.1)] border border-gray-100 dark:border-slate-700/50 transition-all duration-500 overflow-hidden block"
       >
         {/* Background Accent */}
@@ -65,7 +73,7 @@ export default function DepartmentCard({ department, index }: DepartmentCardProp
         {/* CTA Footer */}
         <div className="mt-auto pt-6 flex items-center justify-between relative z-10">
           <span className="text-sm font-bold text-[#1a2355]/60 dark:text-blue-400/60 uppercase tracking-wider group-hover:text-[#ee7c7e] transition-colors duration-300">
-            Məlumat
+            {lang === "az" ? "Məlumat" : "Info"}
           </span>
           <div className="w-10 h-10 rounded-full bg-gray-50 dark:bg-slate-700 flex items-center justify-center transition-all duration-500 group-hover:bg-[#1a2355] group-hover:translate-x-1 shadow-sm">
             <ArrowForwardIcon 

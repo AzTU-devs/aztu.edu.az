@@ -7,7 +7,7 @@ import StaticSubPage from "@/components/pages/StaticSubPage";
 import Link from "next/link";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
-const SECTION_KEY = "tedqiqat";
+const SECTION_KEY = "research";
 
 export default function TedqiqatSlugPage() {
     const params = useParams();

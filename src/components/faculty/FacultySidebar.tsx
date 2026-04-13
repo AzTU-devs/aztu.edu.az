@@ -19,7 +19,9 @@ interface NavItem {
 }
 
 function buildNavItems(facultyId: string, lang: string): NavItem[] {
-  const base = `/${lang}/faculties/${facultyId}`;
+  const academicPrefix = lang === "az" ? "akademik" : "academic";
+  const facultyPrefix = lang === "az" ? "fakulteler" : "faculties";
+  const base = `/${lang}/${academicPrefix}/${facultyPrefix}/${facultyId}`;
   
   // Folders are haqqimizda, kafedralar, ixtisaslar, beynelxalq-elaqeler
   // For EN we use about, departments, specializations, international-relations

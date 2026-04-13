@@ -19,7 +19,10 @@ interface NavItem {
 }
 
 function buildNavItems(facultyId: string, cafedraId: string, lang: string): NavItem[] {
-  const base = `/faculties/${facultyId}/kafedralar/${cafedraId}`;
+  const academicPrefix = lang === "az" ? "akademik" : "academic";
+  const facultyPrefix = lang === "az" ? "fakulteler" : "faculties";
+  const kafedraSlug = lang === "az" ? "kafedralar" : "departments";
+  const base = `/${lang}/${academicPrefix}/${facultyPrefix}/${facultyId}/${kafedraSlug}/${cafedraId}`;
   
   const introLabel = lang === "az" ? "Giriş" : "Introduction";
   const aboutLabel = lang === "az" ? "Haqqımızda" : "About Us";
@@ -31,19 +34,19 @@ function buildNavItems(facultyId: string, cafedraId: string, lang: string): NavI
   const researchLabel = lang === "az" ? "Elmi fəaliyyət" : "Scientific Activity";
 
   return [
-    { label: introLabel, href: `${base}/giris` },
+    { label: introLabel, href: `${base}/${lang === "az" ? "giris" : "introduction"}` },
     {
       label: aboutLabel,
-      href: `${base}/haqqimizda`,
+      href: `${base}/${lang === "az" ? "haqqimizda" : "about"}`,
       subItems: [
-        { label: headLabel, href: `${base}/haqqimizda/kafedra-mudiri` },
-        { label: staffLabel, href: `${base}/haqqimizda/emekdaslar` },
-        { label: newsLabel, href: `${base}/haqqimizda/xeberler` },
-        { label: contactLabel, href: `${base}/haqqimizda/elaqe` },
+        { label: headLabel, href: `${base}/${lang === "az" ? "haqqimizda/kafedra-mudiri" : "about/head-of-department"}` },
+        { label: staffLabel, href: `${base}/${lang === "az" ? "haqqimizda/emekdaslar" : "about/staff"}` },
+        { label: newsLabel, href: `${base}/${lang === "az" ? "haqqimizda/xeberler" : "about/news"}` },
+        { label: contactLabel, href: `${base}/${lang === "az" ? "haqqimizda/elaqe" : "about/contact"}` },
       ],
     },
-    { label: specsLabel, href: `${base}/ixtisaslar` },
-    { label: researchLabel, href: `${base}/elmi-fealiyyet` },
+    { label: specsLabel, href: `${base}/${lang === "az" ? "ixtisaslar" : "specializations"}` },
+    { label: researchLabel, href: `${base}/${lang === "az" ? "elmi-fealiyyet" : "scientific-activity"}` },
   ];
 }
 

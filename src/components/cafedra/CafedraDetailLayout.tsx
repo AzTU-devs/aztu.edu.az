@@ -32,11 +32,15 @@ export default function CafedraDetailLayout({ children, params }: Props) {
         getFacultyBySlug(facultyId, currentLang).then(setFaculty);
     }, [facultyId, cafedraId, currentLang]);
 
+    const academicPrefix = currentLang === "az" ? "akademik" : "academic";
+    const facultyPrefix = currentLang === "az" ? "fakulteler" : "faculties";
+    const facultyBase = `/${currentLang}/${academicPrefix}/${facultyPrefix}/${facultyId}`;
+
     const breadcrumbs = [
         { label: currentLang === "az" ? "Ana səhifə" : "Home", href: "/", icon: <HomeIcon sx={{ fontSize: 16 }} /> },
-        { label: currentLang === "az" ? "Fakültələr" : "Faculties", href: "/faculties" },
-        { label: faculty?.title ?? facultyId, href: `/faculties/${facultyId}/haqqimizda` },
-        { label: currentLang === "az" ? "Kafedralar" : "Departments", href: `/faculties/${facultyId}/kafedralar` },
+        { label: currentLang === "az" ? "Fakültələr" : "Faculties", href: `/${currentLang}/${academicPrefix}/${facultyPrefix}` },
+        { label: faculty?.title ?? facultyId, href: `${facultyBase}/${currentLang === "az" ? "haqqimizda" : "about"}` },
+        { label: currentLang === "az" ? "Kafedralar" : "Departments", href: `${facultyBase}/${currentLang === "az" ? "kafedralar" : "departments"}` },
         { label: cafedra?.title ?? cafedraId, isCurrent: true },
     ];
 
@@ -176,7 +180,7 @@ export default function CafedraDetailLayout({ children, params }: Props) {
                                 {currentLang === "az" ? "Kafedra ilə bağlı suallarınız üçün bizimlə əlaqə saxlayın." : "Contact us for your questions about the department."}
                             </p>
                             <Link 
-                                href={`/${currentLang}/faculties/${facultyId}/kafedralar/${cafedraId}/haqqimizda/elaqe`}
+                                href={`${facultyBase}/${currentLang === "az" ? "kafedralar" : "departments"}/${cafedraId}/${currentLang === "az" ? "haqqimizda/elaqe" : "about/contact"}`}
                                 className="inline-flex items-center gap-2 text-xs font-bold bg-[#ee7c7e] hover:bg-[#ee7c7e]/90 px-4 py-2 rounded-lg transition-colors relative z-10 shadow-lg shadow-black/10"
                             >
                                 {currentLang === "az" ? "Əlaqəyə keç" : "Contact Us"}

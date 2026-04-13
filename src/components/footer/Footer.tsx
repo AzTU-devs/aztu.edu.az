@@ -191,7 +191,7 @@ export default function Footer() {
 
                             <div className="flex flex-wrap gap-4 justify-center">
                                 {[
-                                    { Icon: ImportContactsIcon, label: t.footer.quickLinks[0].label, href: "/tedqiqat/library" },
+                                    { Icon: ImportContactsIcon, label: t.footer.quickLinks[0].label, href: "/research/library" },
                                     { Icon: TrendingUpIcon, label: t.footer.quickLinks[1].label, href: "/haqqimizda/rankings" },
                                     { Icon: SchoolIcon, label: t.footer.quickLinks[2].label, href: "/tehsil/admission" },
                                 ].map(({ Icon, label, href }) => (
