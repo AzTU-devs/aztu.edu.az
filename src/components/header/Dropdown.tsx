@@ -53,10 +53,10 @@ export default function Dropdown({ header }: Props) {
           </div>
       </div>
 
-      <div className="relative z-10 flex items-stretch px-[40px] md:px-[60px] xl:px-[100px] py-16 max-w-[2000px] mx-auto gap-12 min-h-[700px]">
+      <div className="relative z-10 flex items-stretch px-[40px] md:px-[60px] xl:px-[80px] py-12 max-w-[1800px] mx-auto gap-10 min-h-[600px]">
         
         {/* LEFT VISUAL: The Immersive Banner */}
-        <div className="hidden lg:block w-[360px] xl:w-[460px] flex-shrink-0 relative rounded-[3.5rem] overflow-hidden shadow-2xl group/banner ring-1 ring-black/5 dark:ring-white/10">
+        <div className="hidden lg:block w-[340px] xl:w-[440px] flex-shrink-0 relative rounded-[3rem] overflow-hidden shadow-2xl group/banner ring-1 ring-black/5 dark:ring-white/10">
             <Image
                 src={AzTUBg}
                 alt="AzTU"
@@ -68,7 +68,7 @@ export default function Dropdown({ header }: Props) {
             <div className="absolute inset-0 bg-gradient-to-t from-[#1a2355] via-[#1a2355]/40 to-transparent dark:from-[#0b1330] dark:via-transparent" />
             <div className="absolute inset-0 bg-black/10 dark:bg-transparent" />
             
-            <div className="absolute bottom-0 left-0 right-0 p-12">
+            <div className="absolute bottom-0 left-0 right-0 p-10">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -93,16 +93,16 @@ export default function Dropdown({ header }: Props) {
         {/* RIGHT CONTENT: High-Density Card Grid */}
         <div className="flex-1 py-2 relative">
             {/* Background Content Panel */}
-            <div className="absolute inset-0 bg-gray-50/40 dark:bg-white/[0.01] rounded-[4rem] -m-8 pointer-events-none" />
+            <div className="absolute inset-0 bg-gray-50/40 dark:bg-white/[0.01] rounded-[3rem] -m-6 pointer-events-none" />
             
-            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
+            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
                 {header.items.map((item, idx) => (
                     <motion.div
                         key={item.id}
                         initial={{ opacity: 0, scale: 0.98 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: idx * 0.05 + 0.2, duration: 0.5 }}
-                        className="group/item flex flex-col bg-white dark:bg-white/5 hover:bg-white dark:hover:bg-white/[0.08] p-10 rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/20 transition-all duration-500"
+                        className="group/item flex flex-col bg-white dark:bg-white/5 hover:bg-white dark:hover:bg-white/[0.08] p-8 rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/20 transition-all duration-500"
                     >
                         {/* Category Header */}
                         <div className="relative mb-6">
@@ -111,27 +111,27 @@ export default function Dropdown({ header }: Props) {
                                     href={item.direct_url}
                                     className="inline-flex items-center group/title"
                                 >
-                                    <span className="text-[15px] font-black uppercase tracking-[0.25em] text-[#1a2355] dark:text-blue-300 group-hover/title:text-[#ee7c7e] transition-colors duration-300">
+                                    <span className="text-[13px] font-black uppercase tracking-[0.25em] text-[#1a2355] dark:text-blue-300 group-hover/title:text-[#ee7c7e] transition-colors duration-300">
                                         {item.title}
                                     </span>
                                 </Link>
                             ) : (
-                                <span className="text-[15px] font-black uppercase tracking-[0.25em] text-[#1a2355]/30 dark:text-white/20">
+                                <span className="text-[13px] font-black uppercase tracking-[0.25em] text-[#1a2355]/30 dark:text-white/20">
                                     {item.title}
                                 </span>
                             )}
                             {/* Stylish Dot Indicator */}
-                            <div className="h-2 w-2 bg-[#ee7c7e] rounded-full mt-2 group-hover/item:scale-150 group-hover/item:shadow-[0_0_10px_#ee7c7e] transition-all duration-300" />
+                            <div className="h-1.5 w-1.5 bg-[#ee7c7e] rounded-full mt-2 group-hover/item:scale-150 group-hover/item:shadow-[0_0_8px_#ee7c7e] transition-all duration-300" />
                         </div>
 
                         {/* Level 3 Link List */}
                         {item.sub_items && item.sub_items.length > 0 && (
-                            <ul className="flex flex-col gap-1.5">
+                            <ul className="flex flex-col gap-1">
                                 {item.sub_items.map((sub) => (
                                     <li key={sub.id}>
                                         <Link
                                             href={sub.direct_url}
-                                            className="group/link flex items-center py-2 text-[16px] font-bold text-gray-500 dark:text-white/50 hover:text-[#1a2355] dark:hover:text-white transition-all duration-300"
+                                            className="group/link flex items-center py-2 text-[14.5px] font-bold text-gray-500 dark:text-white/50 hover:text-[#1a2355] dark:hover:text-white transition-all duration-300"
                                         >
                                             <span className="group-hover:translate-x-1.5 transition-transform duration-300">
                                                 {sub.title}
