@@ -1,7 +1,12 @@
 "use client"
 
 import { useEffect, useRef, useState, useCallback } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward"
+import PlayArrowIcon from '@mui/icons-material/PlayArrow'
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium'
+import GroupsIcon from '@mui/icons-material/Groups'
+import PublicIcon from '@mui/icons-material/Public'
 import { useTranslation } from "@/hooks/useTranslation"
 
 const LOCAL_VIDEOS = [
@@ -29,7 +34,6 @@ export default function HeroSection() {
         videosLengthRef.current = videos.length
     }, [videos.length])
 
-    // Try to fetch the active hero video from API
     useEffect(() => {
         fetch(`${API_BASE}/api/hero/public`)
             .then((r) => r.json())
@@ -57,7 +61,6 @@ export default function HeroSection() {
         return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
     }, [startAutoAdvance])
 
-    // Only play the active video; pause all others
     useEffect(() => {
         videoRefs.current.forEach((video, i) => {
             if (!video) return
@@ -70,7 +73,6 @@ export default function HeroSection() {
         })
     }, [activeIndex])
 
-    // Play thumbnail videos once on mount (they are small 64px circles)
     useEffect(() => {
         thumbRefs.current.forEach(v => { if (v) v.play().catch(() => {}) })
     }, [videos])
@@ -82,12 +84,19 @@ export default function HeroSection() {
     }, [startAutoAdvance])
 
     const handleScroll = () => {
-        window.scrollBy({ top: window.innerHeight, behavior: "smooth" })
+        window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
     }
 
+    const currentTitle = t.hero.title;
+
+    const quickStats = [
+        { icon: GroupsIcon, label: t.lang === 'az' ? 'Tələbə' : 'Students', value: '25,000+' },
+        { icon: PublicIcon, label: t.lang === 'az' ? 'Tərəfdaş' : 'Partners', value: '150+' },
+        { icon: WorkspacePremiumIcon, label: t.lang === 'az' ? 'Reytinq' : 'Ranking', value: '#1 Tech' },
+    ];
+
     return (
-        <section className="w-full h-screen relative overflow-hidden">
-            {/* CSS-driven progress ring — no JS timers touching React state */}
+        <section className="w-full h-screen relative overflow-hidden bg-black">
             <style>{`
                 @keyframes hero-ring {
                     from { stroke-dashoffset: ${RING_CIRCUMFERENCE}; }
@@ -98,15 +107,17 @@ export default function HeroSection() {
                 }
             `}</style>
 
+            {/* Video Layer */}
             {videos.map((src, i) => (
                 <video
                     key={src}
                     ref={el => { videoRefs.current[i] = el }}
-                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
+                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
                     style={{
                         opacity: i === activeIndex ? 1 : 0,
                         zIndex: i === activeIndex ? 1 : 0,
                         willChange: "opacity",
+                        filter: "brightness(0.6) contrast(1.1)"
                     }}
                     muted
                     playsInline
@@ -117,57 +128,141 @@ export default function HeroSection() {
                 </video>
             ))}
 
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-black/40" style={{ zIndex: 2 }} />
-
-            {/* Content */}
-            <div
-                className="absolute bottom-10 left-6 sm:bottom-14 sm:left-10 md:bottom-16 md:left-16 text-white max-w-[90%] sm:max-w-[500px] md:max-w-[600px]"
-                style={{ zIndex: 3 }}
-            >
-                <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-5 md:mb-6 leading-snug md:leading-tight">
-                    {t.hero.title}
-                </h1>
-
-                <button
-                    onClick={handleScroll}
-                    className="flex items-center justify-between gap-3 bg-white text-black font-semibold px-5 py-3 md:px-6 md:py-3.5 rounded-lg hover:bg-gray-200 transition-all duration-300 w-fit cursor-pointer"
-                >
-                    <span>{t.hero.button}</span>
-                    <ArrowDownwardIcon fontSize="small" />
-                </button>
+            {/* Premium Overlays */}
+            <div className="absolute inset-0 z-10">
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#0b1330] via-transparent to-black/30 opacity-90" />
+                <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[#0b1330]/80 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 h-96 bg-gradient-to-t from-[#0b1330] to-transparent" />
             </div>
 
-            {/* Video thumbnail indicators — right side */}
+            {/* Content Container */}
+            <div className="absolute inset-0 z-20 flex items-center px-[40px] md:px-[80px] xl:px-[120px]">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+                    
+                    {/* LEFT: Main Text */}
+                    <div className="lg:col-span-8">
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={activeIndex}
+                                initial={{ opacity: 0, x: -40 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: 20 }}
+                                transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+                            >
+                                <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 mb-8 shadow-2xl">
+                                    <div className="w-2.5 h-2.5 rounded-full bg-[#ee7c7e] shadow-[0_0_12px_#ee7c7e] animate-pulse" />
+                                    <span className="text-white text-[12px] font-black uppercase tracking-[0.5em]">
+                                        {t.lang === 'az' ? 'Azərbaycan Texniki Universiteti' : 'Azerbaijan Technical University'}
+                                    </span>
+                                </div>
+
+                                <h1 className="text-4xl md:text-6xl xl:text-7xl font-black text-white mb-8 leading-[1.05] tracking-tighter">
+                                    {currentTitle.split(' ').map((word, i) => (
+                                        <motion.span 
+                                            key={i} 
+                                            className="inline-block mr-4 last:mr-0 drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: 0.2 + (i * 0.1), duration: 0.6, ease: "easeOut" }}
+                                        >
+                                            {word}
+                                        </motion.span>
+                                    ))}
+                                </h1>
+
+                                <motion.p 
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.7, duration: 0.6 }}
+                                    className="text-white/70 text-base md:text-lg font-medium mb-10 max-w-xl leading-relaxed border-l-4 border-[#ee7c7e] pl-8"
+                                >
+                                    {t.lang === 'az' 
+                                        ? "Gələcəyin texnologiyalarını bu gün bizimlə öyrənin. İnnovativ təhsil, real təcrübə." 
+                                        : "Learn the technologies of the future with us today. Innovative education, real experience."}
+                                </motion.p>
+
+                                <motion.div 
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.9, duration: 0.6 }}
+                                    className="flex flex-wrap gap-6 items-center"
+                                >
+                                    <button
+                                        onClick={handleScroll}
+                                        className="group flex items-center gap-4 bg-white text-[#1a2355] font-black px-8 py-4 md:px-10 md:py-4.5 rounded-[1.5rem] hover:bg-[#ee7c7e] hover:text-white transition-all duration-500 shadow-[0_30px_60px_rgba(0,0,0,0.4)] hover:shadow-[#ee7c7e]/50 cursor-pointer overflow-hidden relative"
+                                    >
+                                        <span className="relative z-10 uppercase tracking-[0.2em] text-xs">{t.hero.button}</span>
+                                        <div className="relative z-10 w-10 h-10 rounded-xl bg-[#1a2355]/5 group-hover:bg-white/20 flex items-center justify-center transition-colors">
+                                            <ArrowDownwardIcon className="group-hover:translate-y-1 transition-transform" sx={{ fontSize: 20 }} />
+                                        </div>
+                                    </button>
+
+                                    <button className="group flex items-center gap-4 bg-white/10 backdrop-blur-md border border-white/20 text-white font-black px-8 py-4 md:px-10 md:py-4.5 rounded-[1.5rem] hover:bg-white/20 transition-all duration-500 cursor-pointer">
+                                        <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                            <PlayArrowIcon sx={{ fontSize: 24 }} />
+                                        </div>
+                                        <span className="uppercase tracking-[0.2em] text-xs">{t.lang === 'az' ? 'Virtual Tur' : 'Virtual Tour'}</span>
+                                    </button>
+                                </motion.div>
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
+
+                    {/* RIGHT: Stunning Staff / Stuff (Quick Stats Cards) */}
+                    <div className="lg:col-span-4 hidden lg:flex flex-col gap-4">
+                        {quickStats.map((stat, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, x: 50 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 1.2 + (i * 0.15), duration: 0.6 }}
+                                whileHover={{ x: -10, transition: { duration: 0.3 } }}
+                                className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-6 flex items-center gap-5 group hover:bg-white/10 transition-all duration-500 shadow-2xl"
+                            >
+                                <div className="w-14 h-14 rounded-[1.25rem] bg-[#ee7c7e]/20 flex items-center justify-center group-hover:bg-[#ee7c7e] transition-colors duration-500 shadow-lg shadow-[#ee7c7e]/20">
+                                    <stat.icon className="text-[#ee7c7e] group-hover:text-white transition-colors duration-500" sx={{ fontSize: 28 }} />
+                                </div>
+                                <div>
+                                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 mb-0.5">{stat.label}</p>
+                                    <p className="text-2xl font-black text-white">{stat.value}</p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Video thumbnail indicators — refined */}
             <div
-                className="absolute right-5 top-1/2 -translate-y-1/2 flex flex-col gap-4 items-center"
-                style={{ zIndex: 3 }}
+                className="absolute right-8 md:right-12 bottom-12 flex flex-col gap-6 items-center z-30"
             >
                 {videos.map((src, i) => (
-                    <div
+                    <motion.div
                         key={i}
-                        className="relative flex items-center justify-center"
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 1.5 + (i * 0.1), type: 'spring' }}
+                        className="relative flex items-center justify-center group/thumb"
                         style={{ width: "80px", height: "80px" }}
                     >
-                        {/* Progress ring — animated purely via CSS, no setInterval */}
                         <svg
-                            className="absolute inset-0 w-full h-full"
+                            className="absolute inset-0 w-full h-full transition-transform duration-500 group-hover/thumb:scale-110"
                             viewBox="0 0 80 80"
                             style={{ transform: "rotate(-90deg)" }}
                         >
                             <circle
                                 cx="40" cy="40" r="37"
                                 fill="none"
-                                stroke={i === activeIndex ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.1)"}
-                                strokeWidth="2"
+                                stroke={i === activeIndex ? "rgba(238,124,126,0.3)" : "rgba(255,255,255,0.1)"}
+                                strokeWidth="3"
                             />
                             {i === activeIndex && (
                                 <circle
                                     key={progressKey}
                                     cx="40" cy="40" r="37"
                                     fill="none"
-                                    stroke="white"
-                                    strokeWidth="2"
+                                    stroke="#ee7c7e"
+                                    strokeWidth="3"
                                     strokeLinecap="round"
                                     strokeDasharray={RING_CIRCUMFERENCE}
                                     strokeDashoffset={RING_CIRCUMFERENCE}
@@ -176,27 +271,23 @@ export default function HeroSection() {
                             )}
                         </svg>
 
-                        {/* Circular thumbnail button */}
                         <button
                             onClick={() => goTo(i)}
-                            aria-label={t.hero.videoAriaLabel(i + 1)}
-                            className="relative overflow-hidden focus:outline-none cursor-pointer"
+                            className="relative overflow-hidden focus:outline-none cursor-pointer group-hover/thumb:scale-105 transition-transform duration-500 shadow-2xl"
                             style={{
-                                width: "64px",
-                                height: "64px",
+                                width: "60px",
+                                height: "60px",
                                 borderRadius: "50%",
                                 background: "black",
                                 border: i === activeIndex
-                                    ? "2px solid rgba(255,255,255,0.85)"
+                                    ? "3px solid #ee7c7e"
                                     : "2px solid rgba(255,255,255,0.2)",
-                                transform: i === activeIndex ? "scale(1.06)" : "scale(1)",
-                                transition: "border-color 0.3s ease, transform 0.3s ease",
                                 flexShrink: 0,
                             }}
                         >
                             <video
                                 ref={el => { thumbRefs.current[i] = el }}
-                                className="absolute inset-0 w-full h-full object-cover"
+                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/thumb:scale-125"
                                 muted
                                 playsInline
                                 loop
@@ -204,17 +295,24 @@ export default function HeroSection() {
                             >
                                 <source src={LOCAL_VIDEOS[i % LOCAL_VIDEOS.length]} type="video/mp4" />
                             </video>
-
-                            <div
-                                className="absolute inset-0 transition-opacity duration-300"
-                                style={{
-                                    backgroundColor: i === activeIndex ? "rgba(0,0,0,0.05)" : "rgba(0,0,0,0.55)",
-                                }}
-                            />
+                            <div className={`absolute inset-0 transition-opacity duration-300 ${i === activeIndex ? 'bg-transparent' : 'bg-black/60'}`} />
                         </button>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
+
+            {/* Scroll Indicator */}
+            <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2, duration: 1 }}
+                className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 hidden md:block"
+            >
+                <div className="flex flex-col items-center gap-3">
+                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-white/30 rotate-90 mb-8 origin-left">Scroll</p>
+                    <div className="w-1 h-12 rounded-full bg-gradient-to-b from-[#ee7c7e] to-transparent" />
+                </div>
+            </motion.div>
         </section>
     )
 }
