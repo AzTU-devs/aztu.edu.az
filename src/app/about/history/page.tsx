@@ -9,6 +9,7 @@ import PeopleIcon from "@mui/icons-material/People";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import { motion } from "framer-motion";
 import { useTranslation } from "@/hooks/useTranslation";
+import { useLanguage } from "@/context/LanguageContext";
 
 const STAT_ICONS = [
     <CalendarMonthIcon key="cal" sx={{ fontSize: 32 }} />,
@@ -19,6 +20,7 @@ const STAT_ICONS = [
 
 export default function HistoryPage() {
     const t = useTranslation();
+    const { lang } = useLanguage();
     const p = t.pages.about.history;
 
     return (
@@ -160,7 +162,7 @@ export default function HistoryPage() {
                             {[
                                 { title: t.pages.about.vision.title, href: "/about/vision" },
                                 { title: t.pages.about.mission.title, href: "/about/mission" },
-                                { title: t.pages.about.rector.title, href: t.lang === "az" ? "/haqqimizda/rehbetlik-ve-idareetme/rektor" : "/about/leadership-and-management/rector" },
+                                { title: t.pages.about.rector.title, href: lang === "az" ? "/haqqimizda/rehbetlik-ve-idareetme/rektor" : "/about/leadership-and-management/rector" },
                             ].map((link) => (
                                 <Link
                                     key={link.href}

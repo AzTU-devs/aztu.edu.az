@@ -1,12 +1,14 @@
 "use client";
 
 import { useTranslation } from "@/hooks/useTranslation";
+import { useLanguage } from "@/context/LanguageContext";
 import { motion } from "framer-motion";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from "next/link";
 
 export default function VirtualTourPage() {
     const t = useTranslation();
+    const { lang } = useLanguage();
 
     return (
         <main className="min-h-screen bg-[#0b1330] flex flex-col relative overflow-hidden">
@@ -55,7 +57,7 @@ export default function VirtualTourPage() {
                         <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-[#0b1330]/60 backdrop-blur-xl border border-white/10 shadow-2xl">
                             <div className="w-2.5 h-2.5 rounded-full bg-[#ee7c7e] animate-pulse shadow-[0_0_12px_#ee7c7e]" />
                             <span className="text-white text-[11px] font-black uppercase tracking-[0.4em]">
-                                {t.lang === 'az' ? 'Virtual Tur' : 'Virtual Tour'}
+                                {lang === 'az' ? 'Virtual Tur' : 'Virtual Tour'}
                             </span>
                         </div>
                     </div>

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
@@ -22,7 +22,7 @@ import { getHeaderMenu, type MenuHeader } from "@/services/menu/menuService";
 import LanguageSwitcher from "@/components/shared/LanguageSwitcher";
 import { useTranslation } from "@/hooks/useTranslation";
 
-const drawerVariants = {
+const drawerVariants: Variants = {
     closed: { x: "-100%" },
     open: { 
         x: 0,
@@ -35,7 +35,7 @@ const drawerVariants = {
     }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
     closed: { opacity: 0, x: -20 },
     open: { opacity: 1, x: 0 }
 };

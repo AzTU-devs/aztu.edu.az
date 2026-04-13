@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import CloseIcon from "@mui/icons-material/Close";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -67,7 +67,7 @@ const STATIC_LEFT_ITEMS = [
     { label: "FAQ", url: "/haqqimizda/faq" },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
     closed: { x: "100%" },
     open: { 
         x: 0,
@@ -80,7 +80,7 @@ const containerVariants = {
     }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
     closed: { opacity: 0, x: 20 },
     open: { opacity: 1, x: 0 }
 };

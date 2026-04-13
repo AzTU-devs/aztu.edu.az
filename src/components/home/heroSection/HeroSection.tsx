@@ -9,6 +9,7 @@ import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium'
 import GroupsIcon from '@mui/icons-material/Groups'
 import PublicIcon from '@mui/icons-material/Public'
 import { useTranslation } from "@/hooks/useTranslation"
+import { useLanguage } from "@/context/LanguageContext"
 
 const LOCAL_VIDEOS = [
     "/heroVideos/video5.mp4",
@@ -23,6 +24,7 @@ const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karams
 
 export default function HeroSection() {
     const t = useTranslation()
+    const { lang } = useLanguage()
     const [videos, setVideos] = useState<string[]>(LOCAL_VIDEOS)
     const [activeIndex, setActiveIndex] = useState(0)
     const [progressKey, setProgressKey] = useState(0)
@@ -91,9 +93,9 @@ export default function HeroSection() {
     const currentTitle = t.hero.title;
 
     const quickStats = [
-        { icon: GroupsIcon, label: t.lang === 'az' ? 'Tələbə' : 'Students', value: '25,000+' },
-        { icon: PublicIcon, label: t.lang === 'az' ? 'Tərəfdaş' : 'Partners', value: '150+' },
-        { icon: WorkspacePremiumIcon, label: t.lang === 'az' ? 'Reytinq' : 'Ranking', value: '#1 Tech' },
+        { icon: GroupsIcon, label: lang === 'az' ? 'Tələbə' : 'Students', value: '25,000+' },
+        { icon: PublicIcon, label: lang === 'az' ? 'Tərəfdaş' : 'Partners', value: '150+' },
+        { icon: WorkspacePremiumIcon, label: lang === 'az' ? 'Reytinq' : 'Ranking', value: '#1 Tech' },
     ];
 
     return (
@@ -153,7 +155,7 @@ export default function HeroSection() {
                                 <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 mb-8 shadow-2xl">
                                     <div className="w-2.5 h-2.5 rounded-full bg-[#ee7c7e] shadow-[0_0_12px_#ee7c7e] animate-pulse" />
                                     <span className="text-white text-[12px] font-black uppercase tracking-[0.5em]">
-                                        {t.lang === 'az' ? 'Azərbaycan Texniki Universiteti' : 'Azerbaijan Technical University'}
+                                        {lang === 'az' ? 'Azərbaycan Texniki Universiteti' : 'Azerbaijan Technical University'}
                                     </span>
                                 </div>
 
@@ -177,7 +179,7 @@ export default function HeroSection() {
                                     transition={{ delay: 0.7, duration: 0.6 }}
                                     className="text-white/70 text-base md:text-lg font-medium mb-10 max-w-xl leading-relaxed border-l-4 border-[#ee7c7e] pl-8"
                                 >
-                                    {t.lang === 'az' 
+                                    {lang === 'az' 
                                         ? "Gələcəyin texnologiyalarını bu gün bizimlə öyrənin. İnnovativ təhsil, real təcrübə." 
                                         : "Learn the technologies of the future with us today. Innovative education, real experience."}
                                 </motion.p>
@@ -203,7 +205,7 @@ export default function HeroSection() {
                                             <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
                                                 <PlayArrowIcon sx={{ fontSize: 24 }} />
                                             </div>
-                                            <span className="uppercase tracking-[0.2em] text-xs">{t.lang === 'az' ? 'Virtual Tur' : 'Virtual Tour'}</span>
+                                            <span className="uppercase tracking-[0.2em] text-xs">{lang === 'az' ? 'Virtual Tur' : 'Virtual Tour'}</span>
                                         </button>
                                     </Link>
                                 </motion.div>

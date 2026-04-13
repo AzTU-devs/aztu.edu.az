@@ -6,6 +6,7 @@ import Slide4 from "@/../public/slide-4.png";
 import News2 from "@/../public/news/news-2.png";
 import News4 from "@/../public/news/news-4.png";
 import type { Locale } from "@/locales";
+import type { Lang } from "@/util/apiClient";
 
 export interface NavSubItem {
     title: string;
@@ -29,7 +30,7 @@ export interface NavSection {
 }
 
 /** Returns the nav sections with labels translated via the given locale. */
-export function getNavSections(t: Locale): NavSection[] {
+export function getNavSections(t: Locale, lang: Lang): NavSection[] {
     const n = t.nav.items;
     return [
         {
@@ -45,7 +46,7 @@ export function getNavSections(t: Locale): NavSection[] {
                 {
                     title: n.leadershipGovernance,
                     subItems: [
-                        { title: n.rector, slug: t.lang === "az" ? "rehbetlik-ve-idareetme/rektor" : "leadership-and-management/rector" },
+                        { title: n.rector, slug: lang === "az" ? "rehbetlik-ve-idareetme/rektor" : "leadership-and-management/rector" },
                         { title: n.viceRector, slug: "vice-rector" },
                         { title: n.scientificBoard, slug: "scientific-board" },
                     ],
@@ -74,10 +75,10 @@ export function getNavSections(t: Locale): NavSection[] {
         {
             key: "academics",
             label: t.nav.sections.academics,
-            basePath: t.lang === "az" ? "/akademik" : "/academic",
+            basePath: lang === "az" ? "/akademik" : "/academic",
             image: Slide2,
             items: [
-                { title: n.faculties, slug: t.lang === "az" ? "fakulteler" : "faculties" },
+                { title: n.faculties, slug: lang === "az" ? "fakulteler" : "faculties" },
                 { title: n.cafedras, slug: "cafedras" },
                 {
                     title: n.higherEducationInstitutes,
@@ -144,14 +145,14 @@ export function getNavSections(t: Locale): NavSection[] {
         {
             key: "research",
             label: t.nav.sections.research,
-            basePath: t.lang === "az" ? "/tedqiqat" : "/research",
+            basePath: lang === "az" ? "/tedqiqat" : "/research",
             image: News2,
             items: [
                 {
                     title: n.researchActivities,
-                    slug: t.lang === "az" ? "tedqiqat-fealiyyeti" : "research-activity",
+                    slug: lang === "az" ? "tedqiqat-fealiyyeti" : "research-activity",
                     subItems: [
-                        { title: n.researchInstitutes, slug: t.lang === "az" ? "tedqiqat-institutlari" : "research-institutes" },
+                        { title: n.researchInstitutes, slug: lang === "az" ? "tedqiqat-institutlari" : "research-institutes" },
                     ],
                 },
                 { title: n.researchPriorities, slug: "priorities" },
