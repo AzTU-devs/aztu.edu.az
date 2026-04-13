@@ -157,7 +157,7 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
                         </motion.button>
 
                         {/* LEFT PANEL (Institutional Info) */}
-                        <div className="relative z-10 w-full lg:w-[35%] border-r border-white/5 flex flex-col p-8 md:p-12">
+                        <div className="relative z-10 w-full lg:w-[35%] border-r border-white/5 flex flex-col p-8 md:p-12 overflow-y-auto no-scrollbar">
                             <div className="mb-12">
                                 <span className="text-[#ee7c7e] text-[10px] font-black uppercase tracking-[0.5em] mb-4 block">Navigation</span>
                                 <h2 className="text-white font-black text-4xl tracking-tighter leading-none mb-2">QUICK<br/>ACCESS</h2>
