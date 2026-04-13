@@ -17,7 +17,7 @@ export default function Dropdown({ header }: Props) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-      className="absolute inset-x-0 top-full w-full bg-white dark:bg-[#0b1330] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] dark:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] border-t border-gray-100 dark:border-white/5 z-40 overflow-hidden"
+      className="absolute inset-x-0 top-full w-full bg-white dark:bg-[#0b1330] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] dark:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] border-t border-gray-100 dark:border-white/5 z-40 overflow-y-auto max-h-[calc(100vh-100px)]"
     >
       {/* BACKGROUND DECORATIONS */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
