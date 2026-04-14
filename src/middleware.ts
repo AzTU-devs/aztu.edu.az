@@ -110,7 +110,7 @@ export function middleware(request: NextRequest) {
     }
 
     // Academic & Faculties Redirects
-    if (segments_rest[0] === "academic" || segments_rest[0] === "akademik" || segments_rest[0] === "faculties" || segments_rest[0] === "cafedras") {
+    if (segments_rest[0] === "academic" || segments_rest[0] === "akademik" || segments_rest[0] === "faculties" || segments_rest[0] === "cafedras" || segments_rest[0] === "fakulteler") {
         // EN: academic/faculties
         // AZ: akademik/fakulteler
         
