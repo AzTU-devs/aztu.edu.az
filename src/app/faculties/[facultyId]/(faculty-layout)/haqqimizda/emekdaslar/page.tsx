@@ -85,7 +85,7 @@ export default function EmekdaslarPage({ params }: Props) {
                 const fullName = [w.first_name, w.last_name, w.father_name].filter(Boolean).join(" ");
                 return (
                   <motion.div
-                    key={index}
+                    key={w.id}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.03 }}

@@ -121,7 +121,7 @@ export default function FacultiesPage() {
 
                             return (
                                 <motion.div
-                                    key={faculty.id}
+                                    key={faculty.faculty_code}
                                     custom={i}
                                     variants={cardVariants}
                                     initial="hidden"

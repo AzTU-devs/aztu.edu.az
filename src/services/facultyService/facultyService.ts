@@ -33,39 +33,112 @@ export const getFaculties = async (params: { start?: number; end?: number; lang?
         const { start = 0, end = 30, lang = "az" } = params;
         const response = await apiClient.get(`/api/faculty/public/all?start=${start}&end=${end}&lang=${lang}`);
 
-        if (response.data.status_code === 200) {
-            const faculties = response.data.faculties as FacultySummary[];
-            // Update cache
+        let faculties: FacultySummary[] = [];
+
+        if (response.data.status_code === 200 && Array.isArray(response.data.faculties)) {
+            faculties = response.data.faculties;
+        } else if (response.status === 200) {
+            if (Array.isArray(response.data)) {
+                faculties = response.data;
+            } else if (response.data && Array.isArray(response.data.faculties)) {
+                faculties = response.data.faculties;
+            }
+        }
+
+        if (faculties.length > 0) {
             faculties.forEach(f => {
-                slugToCodeMap[slugify(f.title)] = f.faculty_code;
+                if (f.title) slugToCodeMap[slugify(f.title)] = f.faculty_code;
             });
             return faculties;
-        } else if (response.data.status_code === 204) {
+        }
+
+        if (response.status === 204 || response.data.status_code === 204) {
             return "NO_CONTENT";
         }
-    } catch {
+        return "ERROR";
+    } catch (error) {
+        console.error("Error fetching faculties:", error);
         return "ERROR";
     }
 };
 
 export const getFacultyBySlug = async (slug: string, lang: Lang = "az") => {
-    // If we don't have the code in cache, we need to fetch all and find it
-    if (!slugToCodeMap[slug]) {
+    // Try to find the code in cache first
+    let code = slugToCodeMap[slug];
+    
+    if (!code) {
+        // If not in cache, fetch all to populate cache
         await getFaculties({ start: 0, end: 100, lang });
+        code = slugToCodeMap[slug];
     }
 
-    const code = slugToCodeMap[slug] || slug; // Fallback to slug itself if not found
-    return getFacultyByCode(code, lang);
+    // Fallback: If still not found, try using the slug directly (some backends might support it)
+    return getFacultyByCode(code || slug, lang);
 };
+
+function flattenObject(obj: any, lang: Lang) {
+    if (!obj) return obj;
+    const localizedData = obj[lang] || {};
+    return { ...obj, ...localizedData };
+}
+
+function flattenFacultyData(data: any, lang: Lang): FacultyDetail {
+    if (!data) return data;
+
+    // Flatten root level if needed
+    let flattened = flattenObject(data, lang);
+
+    // Flatten Director
+    if (flattened.director) {
+        flattened.director = flattenObject(flattened.director, lang);
+
+        // Flatten Working Hours inside Director
+        if (Array.isArray(flattened.director.working_hours)) {
+            flattened.director.working_hours = flattened.director.working_hours.map((wh: any) => flattenObject(wh, lang));
+        }
+
+        // Flatten Educations inside Director
+        if (Array.isArray(flattened.director.educations)) {
+            flattened.director.educations = flattened.director.educations.map((edu: any) => flattenObject(edu, lang));
+        }
+    }
+
+    // Flatten Content Sections (laboratories, objectives, etc.)
+    const sectionKeys = [
+        "laboratories", "research_works", "partner_companies", 
+        "objectives", "duties", "projects", "directions_of_action"
+    ];
+
+    sectionKeys.forEach(key => {
+        if (Array.isArray(flattened[key])) {
+            flattened[key] = flattened[key].map((item: any) => flattenObject(item, lang));
+        }
+    });
+
+    return flattened as FacultyDetail;
+}
 
 export const getFacultyByCode = async (facultyCode: string, lang: Lang = "az") => {
     try {
         const response = await apiClient.get(`/api/faculty/${facultyCode}?lang=${lang}`);
-        if (response.data.status_code === 200) {
-            return response.data.faculty as FacultyDetail;
+        
+        if (response.status === 200) {
+            let data = null;
+            if (response.data && response.data.faculty_code) {
+                data = response.data;
+            } else if (response.data && response.data.faculty) {
+                data = response.data.faculty;
+            } else if (response.data.status_code === 200 && response.data.faculty_code) {
+                data = response.data;
+            }
+
+            if (data) {
+                return flattenFacultyData(data, lang);
+            }
         }
         return null;
-    } catch {
+    } catch (error) {
+        console.error(`Error fetching faculty by code ${facultyCode}:`, error);
         return null;
     }
 };

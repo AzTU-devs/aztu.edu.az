@@ -12,6 +12,7 @@ import BusinessIcon from "@mui/icons-material/Business";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import SchoolIcon from "@mui/icons-material/School";
 import PublicIcon from "@mui/icons-material/Public";
+import PersonIcon from "@mui/icons-material/Person";
 
 import { getFacultyBySlug } from "@/services/facultyService/facultyService";
 import type { FacultyDetail, ContentSection } from "@/types/faculty";
@@ -69,6 +70,8 @@ export default function FacultyHaqqimizdaPage({ params }: Props) {
   }, [facultySlug, currentLang]);
 
   const stats = faculty ? [
+    { label: currentLang === "az" ? "Kafedralar" : "Departments", value: faculty.cafedra_count, icon: AccountTreeIcon },
+    { label: currentLang === "az" ? "Dekan müavinləri" : "Deputy Deans", value: faculty.deputy_dean_count, icon: PersonIcon },
     { label: currentLang === "az" ? "Bakalavr ixtisasları" : "Bachelor Programs", value: faculty.bachelor_programs_count, icon: SchoolIcon },
     { label: currentLang === "az" ? "Magistratura ixtisasları" : "Master Programs", value: faculty.master_programs_count, icon: SchoolIcon },
     { label: currentLang === "az" ? "Doktorantura ixtisasları" : "PhD Programs", value: faculty.phd_programs_count, icon: SchoolIcon },
@@ -79,7 +82,9 @@ export default function FacultyHaqqimizdaPage({ params }: Props) {
   ].filter(s => s.value !== null && s.value !== undefined) : [];
 
   const renderContentSection = (id: string, icon: React.ReactNode, title: string, items?: ContentSection[], htmlContent?: string) => {
-    if ((!items || items.length === 0) && !htmlContent) return null;
+    const hasItems = items && items.length > 0;
+    const hasHtml = htmlContent !== undefined && htmlContent !== null && htmlContent !== "";
+    if (!hasItems && !hasHtml) return null;
     return (
       <motion.div 
         id={id} 
@@ -207,15 +212,15 @@ export default function FacultyHaqqimizdaPage({ params }: Props) {
               <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide no-scrollbar">
                 {navSections.map((s) => {
                   const hasContent = 
-                    (s.id === "haqqinda" && faculty.html_content) ||
-                    (s.id === "sustainability" && faculty.sdgs?.length > 0) ||
-                    (s.id === "meqsed" && faculty.objectives?.length > 0) ||
-                    (s.id === "vezifeler" && faculty.duties?.length > 0) ||
-                    (s.id === "istiqametler" && faculty.directions_of_action?.length > 0) ||
-                    (s.id === "laboratoriyalar" && faculty.laboratories?.length > 0) ||
-                    (s.id === "tedqiqat" && faculty.research_works?.length > 0) ||
-                    (s.id === "layiheler" && faculty.projects?.length > 0) ||
-                    (s.id === "partnyorlar" && faculty.partner_companies?.length > 0);
+                    (s.id === "haqqinda" && (faculty.html_content !== undefined && faculty.html_content !== null && faculty.html_content !== "")) ||
+                    (s.id === "sustainability" && faculty.sdgs && faculty.sdgs.length > 0) ||
+                    (s.id === "meqsed" && faculty.objectives && faculty.objectives.length > 0) ||
+                    (s.id === "vezifeler" && faculty.duties && faculty.duties.length > 0) ||
+                    (s.id === "istiqametler" && faculty.directions_of_action && faculty.directions_of_action.length > 0) ||
+                    (s.id === "laboratoriyalar" && faculty.laboratories && faculty.laboratories.length > 0) ||
+                    (s.id === "tedqiqat" && faculty.research_works && faculty.research_works.length > 0) ||
+                    (s.id === "layiheler" && faculty.projects && faculty.projects.length > 0) ||
+                    (s.id === "partnyorlar" && faculty.partner_companies && faculty.partner_companies.length > 0);
                   
                   if (!hasContent) return null;
 
@@ -236,7 +241,7 @@ export default function FacultyHaqqimizdaPage({ params }: Props) {
           {/* 4. Other Sections */}
           {renderContentSection("meqsed", <TrackChangesIcon sx={{ color: "white" }} />, currentLang === "az" ? "Fəaliyyət məqsədləri" : "Strategic Objectives", faculty?.objectives)}
           {renderContentSection("vezifeler", <AssignmentIcon sx={{ color: "white" }} />, currentLang === "az" ? "Vəzifələr" : "Duties & Responsibilities", faculty?.duties)}
-          {renderContentSection("istiqametler", <AccountTreeIcon sx={{ color: "white" }} />, currentLang === "az" ? "Fəaliyyət istiqamətləri" : "Directions of Action", undefined, faculty?.directions_of_action?.map(d => `<div class="mb-4"><h4 class="font-bold text-[#1a2355] dark:text-white mb-2">${d.title}</h4><div class="text-sm">${d.description}</div></div>`).join(""))}
+          {renderContentSection("istiqametler", <AccountTreeIcon sx={{ color: "white" }} />, currentLang === "az" ? "Fəaliyyət istiqamətləri" : "Directions of Action", faculty?.directions_of_action)}
           {renderContentSection("laboratoriyalar", <ScienceIcon sx={{ color: "white" }} />, currentLang === "az" ? "Laboratoriyalar" : "Laboratories", faculty?.laboratories)}
           {renderContentSection("tedqiqat", <ScienceIcon sx={{ color: "white" }} />, currentLang === "az" ? "Elmi tədqiqat işləri" : "Scientific Research", faculty?.research_works)}
           {renderContentSection("layiheler", <AssignmentIcon sx={{ color: "white" }} />, currentLang === "az" ? "Layihələr" : "Projects & Initiatives", faculty?.projects)}

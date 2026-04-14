@@ -51,7 +51,7 @@ export default function DekanMuavinleriPage({ params }: Props) {
               const fullName = [vd.first_name, vd.last_name, vd.father_name].filter(Boolean).join(" ");
               return (
                 <motion.div
-                  key={index}
+                  key={vd.id}
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1 }}

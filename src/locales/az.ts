@@ -265,6 +265,33 @@ const az = {
         ],
       },
 
+      rectorsOffice: {
+        eyebrow: "Rəhbərlik & İdarəetmə",
+        title: "Rektorluq",
+        subtitle: "Azərbaycan Texniki Universitetinin Rektorluq heyəti.",
+        breadcrumb: "Rektorluq",
+        staff: [
+          {
+            name: "Rüstəmzadə Fərhad",
+            email: "ferhad.rustamzadeh@aztu.edu.az",
+            phone: "+994 12 538 32 80",
+            title: "Sertifikasiya üzrə menecer"
+          },
+          {
+            name: "Əhmədov Nicat",
+            email: "nijat.ahmadov@aztu.edu.az",
+            phone: "+994 12 538 32 80",
+            title: "Rektor köməkçisi"
+          },
+          {
+            name: "Əliyeva Mehriban",
+            email: "mehriban.aliyeva@aztu.edu.az",
+            phone: "+994 12 537 01 12",
+            title: "Rektor referenti"
+          }
+        ]
+      },
+
       viceRector: {
         eyebrow: "Rəhbərlik & İdarəetmə",
         title: "Prorektorlar",
