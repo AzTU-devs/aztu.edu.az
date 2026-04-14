@@ -10,6 +10,7 @@ import { getFacultyBySlug, getImageUrl } from "@/services/facultyService/faculty
 import type { FacultyDetail, PersonnelItem } from "@/types/faculty";
 import type { Lang } from "@/util/apiClient";
 import SearchIcon from "@mui/icons-material/Search";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Props {
   params: Promise<{ facultyId: string }>;
@@ -17,18 +18,10 @@ interface Props {
 
 export default function AkademikHeyatPage({ params }: Props) {
   const { facultyId: facultySlug } = use(params);
-  const searchParams = useSearchParams();
+  const { lang: currentLang } = useLanguage();
   const [faculty, setFaculty] = useState<FacultyDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-
-  const currentLang = ((): Lang => {
-    const queryLang = searchParams?.get("lang");
-    if (queryLang === "az" || queryLang === "en") {
-      return queryLang;
-    }
-    return typeof navigator !== "undefined" && navigator.language?.startsWith("az") ? "az" : "en";
-  })();
 
   useEffect(() => {
     setLoading(true);
@@ -86,7 +79,7 @@ export default function AkademikHeyatPage({ params }: Props) {
                 const fullName = [w.first_name, w.last_name, w.father_name].filter(Boolean).join(" ");
                 return (
                   <motion.div
-                    key={index}
+                    key={w.id}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: index * 0.05 }}

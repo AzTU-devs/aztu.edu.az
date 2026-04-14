@@ -265,6 +265,33 @@ const en = {
         ],
       },
 
+      rectorsOffice: {
+        eyebrow: "Leadership & Governance",
+        title: "Rector's Office",
+        subtitle: "The Rector's Office staff of Azerbaijan Technical University.",
+        breadcrumb: "Rector's Office",
+        staff: [
+          {
+            name: "Rustamzada Farhad",
+            email: "ferhad.rustamzadeh@aztu.edu.az",
+            phone: "+994 12 538 32 80",
+            title: "Certification Manager"
+          },
+          {
+            name: "Ahmadov Nıjat",
+            email: "nijat.ahmadov@aztu.edu.az",
+            phone: "+994 12 538 32 80",
+            title: "Assistant to the Rector"
+          },
+          {
+            name: "Alıyeva Mehriban",
+            email: "mehriban.aliyeva@aztu.edu.az",
+            phone: "+994 12 537 01 12",
+            title: "Rector’s Secretary"
+          }
+        ]
+      },
+
       viceRector: {
         eyebrow: "Leadership & Governance",
         title: "Vice-Rectors",

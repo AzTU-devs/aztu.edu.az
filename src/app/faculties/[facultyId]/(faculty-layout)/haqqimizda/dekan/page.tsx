@@ -41,7 +41,7 @@ export default function DekanPage({ params }: Props) {
 
   const director = faculty?.director;
   const directorFullName = director
-    ? [director.last_name, director.first_name, director.father_name].filter(Boolean).join(" ")
+    ? [director.first_name, director.last_name, director.father_name].filter(Boolean).join(" ")
     : "";
 
   return (
@@ -99,7 +99,7 @@ export default function DekanPage({ params }: Props) {
                   )}
                 </motion.div>
 
-                {director.bio && (
+                {(director.bio !== undefined && director.bio !== null && director.bio !== "") && (
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

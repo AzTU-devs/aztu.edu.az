@@ -69,10 +69,10 @@ export default function ElmiSuraPage({ params }: Props) {
                 </thead>
                 <tbody className="divide-y divide-gray-100 dark:divide-slate-700">
                   {members.map((m, idx) => {
-                    const fullName = [m.last_name, m.first_name, m.father_name].filter(Boolean).join(" ");
+                    const fullName = [m.first_name, m.last_name, m.father_name].filter(Boolean).join(" ");
                     return (
                       <motion.tr
-                        key={idx}
+                        key={m.id}
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: idx * 0.05 }}
@@ -83,11 +83,11 @@ export default function ElmiSuraPage({ params }: Props) {
                         </td>
                         <td className="py-4 px-6">
                           <span className="font-bold text-[#1a2355] dark:text-white block">{fullName || "—"}</span>
-                          <span className="text-[10px] text-gray-400 uppercase tracking-tighter">{m.scientific_degree}</span>
+                          <span className="text-[10px] text-gray-400 uppercase tracking-tighter">{m.scientific_degree || m.scientific_name}</span>
                         </td>
                         <td className="py-4 px-6">
                            <span className="inline-flex px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/20 text-[#1a2355] dark:text-blue-300 text-xs font-bold">
-                             {m.duty || m.scientific_name || "—"}
+                             {m.duty || "—"}
                            </span>
                         </td>
                       </motion.tr>

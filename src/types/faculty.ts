@@ -1,4 +1,5 @@
 export interface PersonnelItem {
+  id: number;
   first_name: string;
   last_name: string;
   father_name: string;
@@ -81,6 +82,8 @@ export interface FacultyDetail {
   projects_patents_count: number;
   industrial_collaborations_count: number;
   sdgs: number[];
+  cafedra_count: number;
+  deputy_dean_count: number;
   director: Director | null;
   deputy_deans: PersonnelItem[];
   scientific_council: PersonnelItem[];

@@ -237,10 +237,19 @@ export function middleware(request: NextRequest) {
         }
     }
 
-    // Rector Mapping
-    if ((segments_rest[0] === "about" && segments_rest[1] === "leadership-and-management" && segments_rest[2] === "rector") ||
-        (segments_rest[0] === "haqqimizda" && segments_rest[1] === "rehbetlik-ve-idareetme" && segments_rest[2] === "rektor")) {
-        segments_rest = ["about", "rector"];
+    // Leadership & Management Mapping
+    if ((segments_rest[0] === "about" || segments_rest[0] === "haqqimizda") && 
+        (segments_rest[1] === "leadership-and-management" || segments_rest[1] === "rehbetlik-ve-idareetme")) {
+        const sub = segments_rest[2];
+        if (sub === "rector" || sub === "rektor") {
+            segments_rest = ["about", "rector"];
+        } else if (sub === "rectors-office" || sub === "rektorluq") {
+            segments_rest = ["about", "rectors-office"];
+        } else if (sub === "vice-rector" || sub === "prorektor") {
+            segments_rest = ["about", "vice-rector"];
+        } else if (sub === "scientific-board" || sub === "elmi-sura") {
+            segments_rest = ["about", "scientific-board"];
+        }
     }
 
     // Faculties Mapping (EN slugs to AZ folders)
