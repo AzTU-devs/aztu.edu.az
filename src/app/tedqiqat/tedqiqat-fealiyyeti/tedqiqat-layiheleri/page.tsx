@@ -270,7 +270,7 @@ export default function ResearchProjectsPage() {
                     >
                         <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                         <div className="relative z-10 max-w-4xl mx-auto">
-                            <h2 className="text-white/40 text-xs font-black uppercase tracking-[0.5em] mb-8">{t.common?.introduction || "Introduction"}</h2>
+                            {/* <h2 className="text-white/40 text-xs font-black uppercase tracking-[0.5em] mb-8">{t.common?.introduction || "Introduction"}</h2> */}
                             <p className="text-white text-xl md:text-3xl font-black leading-snug tracking-tight">
                                 {p.description}
                             </p>

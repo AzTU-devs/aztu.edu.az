@@ -249,7 +249,7 @@ export default function InternalGrantsPage() {
                             {[
                                 { title: t.pages.research.priorities.title, href: lang === "az" ? "/tedqiqat/tedqiqat-fealiyyeti/tedqiqat-prioritetleri" : "/research/research-activity/tedqiqat-prioritetleri", color: "#1a2355" },
                                 { title: t.nav.items.researchInstitutes, href: lang === "az" ? "/tedqiqat/tedqiqat-fealiyyeti/tedqiqat-institutlari" : "/research/research-activity/research-institutes", color: "#ee7c7e" },
-                                { title: t.nav.items.projects, href: "/projects", color: "#2563eb" },
+                                // { title: t.nav.items.projects, href: "/projects", color: "#2563eb" },
                             ].map((link, i) => (
                                 <Link
                                     key={i}

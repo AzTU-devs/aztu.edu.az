@@ -223,7 +223,7 @@ export default function ResearchPrioritiesPage() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             {[
                                 { title: t.nav.items.researchInstitutes, href: lang === "az" ? "/tedqiqat/tedqiqat-fealiyyeti/tedqiqat-institutlari" : "/research/research-activity/research-institutes", color: "#1a2355" },
-                                { title: t.nav.items.projects, href: "/projects", color: "#ee7c7e" },
+                                // { title: t.nav.items.projects, href: "/projects", color: "#ee7c7e" },
                                 { title: t.nav.sections.about, href: "/about", color: "#2563eb" },
                             ].map((link, i) => (
                                 <Link

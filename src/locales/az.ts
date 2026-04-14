@@ -492,6 +492,7 @@ const az = {
             image: "/research-seminars-training/Machine Science (Maşınşünaslıq).jpg",
             issn: "2227-6912",
             eissn: "2790-0479",
+            year: "2001",
             frequency: "2",
             language: "İngilis",
             founder: "Azərbaycan Texniki Universiteti",
