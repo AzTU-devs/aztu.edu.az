@@ -121,13 +121,13 @@ function JournalCard({ journal, index }: { journal: Journal; index: number }) {
                             {journal.frequency && (
                                 <div className="flex items-center gap-3 text-gray-600 dark:text-white/60">
                                     <CalendarMonthIcon sx={{ fontSize: 18 }} className="text-[#ee7c7e]" />
-                                    <span className="text-sm font-medium">{journal.frequency} {t.common?.perYear || "Issues per year"}</span>
+                                    {/* <span className="text-sm font-medium">{journal.frequency} {t.common?.perYear || "Issues per year"}</span> */}
                                 </div>
                             )}
                         </div>
                         {journal.chiefEditor && (
                             <div className="p-6 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
-                                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#ee7c7e] mb-3">{t.common?.chiefEditor || "Chief Editor"}</p>
+                                {/* <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#ee7c7e] mb-3">{t.common?.chiefEditor || "Chief Editor"}</p> */}
                                 <div className="flex items-start gap-3">
                                     <PersonIcon sx={{ fontSize: 18 }} className="text-[#1a2355] dark:text-white mt-0.5" />
                                     <p className="text-sm font-bold text-[#1a2355] dark:text-white/90 leading-snug">{journal.chiefEditor}</p>
@@ -156,7 +156,7 @@ function JournalCard({ journal, index }: { journal: Journal; index: number }) {
 
                     {journal.editorialBoard && (
                         <div className="mb-10">
-                            <h3 className="text-sm font-black uppercase tracking-[0.2em] text-[#1a2355] dark:text-white mb-6">{t.common?.editorialBoard || "Editorial Board"}</h3>
+                            {/* <h3 className="text-sm font-black uppercase tracking-[0.2em] text-[#1a2355] dark:text-white mb-6">{t.common?.editorialBoard || "Editorial Board"}</h3> */}
                             <div className="flex flex-wrap gap-2">
                                 {journal.editorialBoard.map((member: string, i: number) => (
                                     <span key={i} className="px-4 py-2 rounded-lg bg-gray-100 dark:bg-white/5 text-xs font-bold text-gray-600 dark:text-white/70 border border-gray-200/50 dark:border-white/10">
@@ -175,7 +175,7 @@ function JournalCard({ journal, index }: { journal: Journal; index: number }) {
                         className="group/btn relative inline-flex items-center gap-4 bg-[#1a2355] dark:bg-[#ee7c7e] text-white font-black px-10 py-5 rounded-2xl hover:scale-[1.02] transition-all duration-300 shadow-xl overflow-hidden"
                     >
                         <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
-                        <span className="relative z-10 uppercase tracking-[0.2em] text-xs">{t.common?.visitWebsite || "Visit Website"}</span>
+                        {/* <span className="relative z-10 uppercase tracking-[0.2em] text-xs">{t.common?.visitWebsite || "Visit Website"}</span> */}
                         <LaunchIcon className="relative z-10 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" sx={{ fontSize: 18 }} />
                     </Link>
                 </div>
@@ -297,7 +297,7 @@ export default function SeminarsAndTrainingsPage() {
                     >
                         <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                         <div className="relative z-10 max-w-4xl mx-auto">
-                            <h2 className="text-white/40 text-xs font-black uppercase tracking-[0.5em] mb-8">{t.common?.introduction || "Introduction"}</h2>
+                            {/* <h2 className="text-white/40 text-xs font-black uppercase tracking-[0.5em] mb-8">{t.common?.introduction || "Introduction"}</h2> */}
                             <p className="text-white text-xl md:text-3xl font-black leading-snug tracking-tight">
                                 {p.description}
                             </p>
