@@ -131,10 +131,17 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       }
 
       // Translate slugs for research institutes
-      if ((segments[1] === "research" || segments[1] === "tedqiqat") && segments[2] && segments[3] && segments[4]) {
+      if ((segments[1] === "research" || segments[1] === "tedqiqat") && segments[2] && segments[3]) {
         const azToEnResearch: Record<string, string> = {
             "tedqiqat-fealiyyeti": "research-activity",
             "tedqiqat-institutlari": "research-institutes",
+            "tedqiqat-prioritetleri": "tedqiqat-prioritetleri",
+            "tedqiqat-layiheleri": "research-projects",
+            "eqli-mulkiyyet-ve-patentler": "intellectual-property-and-patents",
+            "performans-ve-qiymetlendirme": "performance-and-evaluation",
+            "daxili-qrant-proqramlari": "daxili-qrant-proqramlari",
+            "konfranslar-ve-tedbirler": "conferences-and-events",
+            "seminarlar-ve-telimler": "seminars-and-trainings",
             "direktor": "director",
             "heyet": "staff",
             "elaqe": "contact"
@@ -142,6 +149,13 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         const enToAzResearch: Record<string, string> = {
             "research-activity": "tedqiqat-fealiyyeti",
             "research-institutes": "tedqiqat-institutlari",
+            "tedqiqat-prioritetleri": "tedqiqat-prioritetleri",
+            "research-projects": "tedqiqat-layiheleri",
+            "intellectual-property-and-patents": "eqli-mulkiyyet-ve-patentler",
+            "performance-and-evaluation": "performans-ve-qiymetlendirme",
+            "internal-grant-programs": "daxili-qrant-proqramlari",
+            "conferences-and-events": "konfranslar-ve-tedbirler",
+            "seminars-and-trainings": "seminarlar-ve-telimler",
             "director": "direktor",
             "staff": "heyet",
             "contact": "elaqe"

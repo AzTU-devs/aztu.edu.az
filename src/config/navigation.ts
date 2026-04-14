@@ -153,9 +153,31 @@ export function getNavSections(t: Locale, lang: Lang): NavSection[] {
                     slug: lang === "az" ? "tedqiqat-fealiyyeti" : "research-activity",
                     subItems: [
                         { title: n.researchInstitutes, slug: lang === "az" ? "tedqiqat-institutlari" : "research-institutes" },
+                        { title: n.researchPriorities, slug: "tedqiqat-prioritetleri" },
+                        { title: lang === "az" ? "Tədqiqat Layihələri" : "Research Projects", slug: lang === "az" ? "tedqiqat-layiheleri" : "research-projects" },
+                        { title: lang === "az" ? "Əqli Mülkiyyət və Patentlər" : "Intellectual Property and Patents", slug: lang === "az" ? "eqli-mulkiyyet-ve-patentler" : "intellectual-property-and-patents" },
                     ],
                 },
-                { title: n.researchPriorities, slug: "priorities" },
+                {
+                    title: lang === "az" ? "Performans və Qiymətləndirmə" : "Performance and Evaluation",
+                    slug: lang === "az" ? "performans-ve-qiymetlendirme" : "performance-and-evaluation",
+                    subItems: [
+                        { 
+                            title: lang === "az" ? "Daxili Qrant Proqramları" : "Internal Grant Programs", 
+                            slug: "daxili-qrant-proqramlari" 
+                        },
+                    ],
+                },
+                {
+                    title: lang === "az" ? "Konfranslar və Tədbirlər" : "Conferences and Events",
+                    slug: lang === "az" ? "konfranslar-ve-tedbirler" : "conferences-and-events",
+                    subItems: [
+                        { 
+                            title: lang === "az" ? "Seminarlar və Təlimlər" : "Seminars and Trainings", 
+                            slug: "seminarlar-ve-telimler" 
+                        },
+                    ],
+                },
             ],
         },
         {

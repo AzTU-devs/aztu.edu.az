@@ -54,8 +54,15 @@ export function middleware(request: NextRequest) {
         if (lang === "az" && segments_rest[0] === "research") {
             const newPath = ["tedqiqat"];
             if (segments_rest[1] === "research-activity") newPath.push("tedqiqat-fealiyyeti");
+            else if (segments_rest[1] === "performance-and-evaluation") newPath.push("performans-ve-qiymetlendirme");
+            else if (segments_rest[1] === "conferences-and-events") newPath.push("konfranslar-ve-tedbirler");
             else if (segments_rest[1]) newPath.push(segments_rest[1]);
+            
             if (segments_rest[2] === "research-institutes") newPath.push("tedqiqat-institutlari");
+            else if (segments_rest[2] === "internal-grant-programs") newPath.push("daxili-qrant-proqramlari");
+            else if (segments_rest[2] === "seminars-and-trainings") newPath.push("seminarlar-ve-telimler");
+            else if (segments_rest[2] === "research-projects") newPath.push("tedqiqat-layiheleri");
+            else if (segments_rest[2] === "intellectual-property-and-patents") newPath.push("eqli-mulkiyyet-ve-patentler");
             else if (segments_rest[2]) newPath.push(segments_rest[2]);
             if (segments_rest[3]) newPath.push(segments_rest[3]); 
             if (segments_rest[4] === "director") newPath.push("direktor");
@@ -67,8 +74,15 @@ export function middleware(request: NextRequest) {
         if (lang === "en" && segments_rest[0] === "tedqiqat") {
             const newPath = ["research"];
             if (segments_rest[1] === "tedqiqat-fealiyyeti") newPath.push("research-activity");
+            else if (segments_rest[1] === "performans-ve-qiymetlendirme") newPath.push("performance-and-evaluation");
+            else if (segments_rest[1] === "konfranslar-ve-tedbirler") newPath.push("conferences-and-events");
             else if (segments_rest[1]) newPath.push(segments_rest[1]);
+            
             if (segments_rest[2] === "tedqiqat-institutlari") newPath.push("research-institutes");
+            else if (segments_rest[2] === "daxili-qrant-proqramlari") newPath.push("internal-grant-programs");
+            else if (segments_rest[2] === "seminarlar-ve-telimler") newPath.push("seminars-and-trainings");
+            else if (segments_rest[2] === "tedqiqat-layiheleri") newPath.push("research-projects");
+            else if (segments_rest[2] === "eqli-mulkiyyet-ve-patentler") newPath.push("intellectual-property-and-patents");
             else if (segments_rest[2]) newPath.push(segments_rest[2]);
             if (segments_rest[3]) newPath.push(segments_rest[3]); 
             if (segments_rest[4] === "direktor") newPath.push("director");
@@ -105,7 +119,7 @@ export function middleware(request: NextRequest) {
             if (segments_rest[0] === "academic" || segments_rest[0] === "faculties") {
                 const newPath = ["akademik", "fakulteler"];
                 // Skip the first segment(s) and take the rest
-                let restIdx = segments_rest[0] === "faculties" ? 1 : 2;
+                const restIdx = segments_rest[0] === "faculties" ? 1 : 2;
                 
                 if (segments_rest[restIdx]) {
                     newPath.push(segments_rest[restIdx]); // faculty ID
@@ -151,10 +165,10 @@ export function middleware(request: NextRequest) {
             }
 
             // Redirect akademik/fakulteler or plain faculties to academic/faculties
-            if (segments_rest[0] === "akademik" || segments_rest[0] === "faculties") {
+            if (segments_rest[0] === "akademik" || segments_rest[0] === "fakulteler") {
                 const newPath = ["academic", "faculties"];
-                let restIdx = (segments_rest[0] === "faculties") ? 1 : 2;
-                
+                const restIdx = (segments_rest[0] === "fakulteler") ? 1 : 2;
+
                 if (segments_rest[restIdx]) {
                     newPath.push(segments_rest[restIdx]); // faculty ID
                     if (segments_rest[restIdx + 1]) {
@@ -199,7 +213,13 @@ export function middleware(request: NextRequest) {
     if (segments_rest[0] === "research") {
         segments_rest[0] = "tedqiqat";
         if (segments_rest[1] === "research-activity") segments_rest[1] = "tedqiqat-fealiyyeti";
+        if (segments_rest[1] === "performance-and-evaluation") segments_rest[1] = "performans-ve-qiymetlendirme";
+        if (segments_rest[1] === "conferences-and-events") segments_rest[1] = "konfranslar-ve-tedbirler";
         if (segments_rest[2] === "research-institutes") segments_rest[2] = "tedqiqat-institutlari";
+        if (segments_rest[2] === "internal-grant-programs") segments_rest[2] = "daxili-qrant-proqramlari";
+        if (segments_rest[2] === "seminars-and-trainings") segments_rest[2] = "seminarlar-ve-telimler";
+        if (segments_rest[2] === "research-projects") segments_rest[2] = "tedqiqat-layiheleri";
+        if (segments_rest[2] === "intellectual-property-and-patents") segments_rest[2] = "eqli-mulkiyyet-ve-patentler";
         if (segments_rest[4] === "director") segments_rest[4] = "direktor";
         if (segments_rest[4] === "staff") segments_rest[4] = "heyet";
         if (segments_rest[4] === "contact") segments_rest[4] = "elaqe";

@@ -411,6 +411,283 @@ const az = {
         breadcrumb: "Prosedurlar & Qaydalar",
       },
     },
+    research: {
+      priorities: {
+        eyebrow: "Tədqiqat",
+        title: "Prioritet Tədqiqat İstiqamətləri",
+        subtitle: "Azərbaycan Texniki Universiteti elmi-tədqiqat və innovasiya fəaliyyətini strateji inkişaf hədəflərinə uyğun olaraq 5 əsas prioritet istiqamət üzrə həyata keçirir.",
+        breadcrumb: "Tədqiqat Prioritetləri",
+        description: "Azərbaycan Texniki Universiteti elmi-tədqiqat və innovasiya fəaliyyətini strateji inkişaf hədəflərinə uyğun olaraq 5 əsas prioritet istiqamət üzrə həyata keçirir. Bu istiqamətlər çərçivəsində universitet sənaye tərəfdaşlıqlarını genişləndirir, beynəlxalq və yerli elmi tədbirlər təşkil edir, elmi nəticələrin praktik tətbiqinə və cəmiyyət üçün dəyər yaradılmasına xüsusi önəm verir.",
+        items: [
+          {
+            title: "1. Məlumat Analitikası, Süni İntellekt və Kibertəhlükəsizlik",
+            content: "Azərbaycan Texniki Universitetində bu istiqamət üzrə aparılan tədqiqatlar müasir dövrün mürəkkəb çağırışlarına cavab verən texnoloji həllərin hazırlanmasına yönəlib. Tədqiqatçılar məlumat analitikası, süni intellekt və kibertəhlükəsizlik sahələrində qabaqcıl elmi yanaşmaları tətbiq etməklə innovativ və praktik nəticələr əldə etməyə çalışırlar.\n\nBu sahədə həyata keçirilən layihələr məlumatların emalı və təhlili üçün maşın öyrənməsi alqoritmlərini, süni intellekt əsaslı kibertəhlükəsizlik həllərini, həmçinin məxfiliyin qorunması və informasiya təhlükəsizliyi üsullarını əhatə edir. Universitet elmi nəticələrin real sektorda tətbiqini genişləndirmək, qərar qəbuletmə proseslərini təkmilləşdirmək və rəqəmsal təhlükəsizliyi gücləndirmək məqsədilə sənaye tərəfdaşları ilə səmərəli əməkdaşlıq qurur.\n\nEyni zamanda, bu istiqamət üzrə təşkil olunan elmi konfranslar və seminarlar alimlər, tədqiqatçılar və praktik mütəxəssislər üçün aktual məsələlərin müzakirəsi, qabaqcıl təcrübələrin paylaşılması və innovativ həllərin təqdimatı baxımından mühüm platforma rolunu oynayır."
+          },
+          {
+            title: "2. Enerji, Nəqliyyat və Ətraf Mühit Texnologiyaları",
+            content: "Bu prioritet istiqamət üzrə aparılan tədqiqatların əsas məqsədi davamlı enerji istehsalının təşviqi, səmərəli nəqliyyat sistemlərinin inkişafı və ətraf mühitin mühafizəsi üçün innovativ həllərin hazırlanmasıdır. Universitet bu sahədə texnoloji yeniliklərin yaradılmasını və onların praktik tətbiqini əsas strateji hədəflərdən biri kimi müəyyən edir.\n\nTədqiqat istiqamətlərinə bərpa olunan enerji texnologiyaları, ağıllı nəqliyyat sistemləri, ətraf mühitin monitorinqi və resurslardan səmərəli istifadə yanaşmaları daxildir. Sənaye tərəfdaşları ilə həyata keçirilən əməkdaşlıqlar elmi nəticələrin tətbiqinə, enerji səmərəliliyinin artırılmasına və ekoloji davamlılığın gücləndirilməsinə mühüm töhfə verir.\n\nBu sahə üzrə təşkil olunan elmi konfranslar və simpoziumlar yerli və beynəlxalq experləri bir araya gətirərək yeni tendensiyaların müzakirəsinə, qabaqcıl təcrübələrin paylaşılmasına və sahələrarası elmi əməkdaşlığın inkişafına geniş imkan yaradır."
+          },
+          {
+            title: "3. Robototexnika və Sənaye Əşyaların İnterneti",
+            content: "Robototexnika və sənaye əşyaların interneti istiqaməti müasir sənaye proseslərinin transformasiyası, avtomatlaşdırmanın inkişafı və istehsalın səmərəliliyinin artırılması baxımından xüsusi əhəmiyyət daşıyır. Universitet bu sahədə gələcəyin ağıllı istehsal sistemlərinin formalaşdırılmasına yönəlmiş tədqiqatlara geniş yer ayırır.\n\nBu istiqamət çərçivəsində həyata keçirilən layihələr avtonom robot sistemlərini, sensor şəbəkələrini, ağıllı istehsal texnologiyalarını və sənaye əşyaların interneti əsaslı həlləri əhatə edir. Sənaye tərəfdaşları ilə reallaşdırılan birgə təşəbbüslər texnologiya transferini sürətləndirir, innovativ həllərin tətbiqini təşviq edir və istehsalatda rəqəmsal transformasiyanı dəstəkləyir.\n\nUniversitet tərəfindən bu istiqamət üzrə keçirilən elmi seminar və konfranslar tədqiqatçılara əldə olunan nəticələri təqdim etmək, yeni əməkdaşlıqlar qurmaq və bilik mübadiləsini gücləndirmək üçün əlverişli mühit yaradır."
+          },
+          {
+            title: "4. Qabaqcıl Materiallar və Nanotexnologiya",
+            content: "Qabaqcıl materiallar və nanotexnologiya istiqaməti üzrə aparılan tədqiqatlar yeni nəsil materialların hazırlanması, onların funksional xüsusiyyətlərinin təkmilləşdirilməsi və nanoölçülü proseslərin dərindən öyrənilməsinə yönəlmişdir. Bu sahə elm, sənaye və texnologiyanın kəsişməsində yerləşərək yüksək innovasiya potensialına malikdir.\n\nBurada həyata keçirilən tədqiqatlar nanomaterialların sintezi, xarakterizasiya üsulları və onların elektronika, səhiyyə, energetika və digər sahələrdə tətbiqlərini əhatə edir. Universitet sənaye müəssisələri və tədqiqat institutları ilə strateji tərəfdaşlıqlar quraraq texnologiyanın inkişafını, innovasiyaların kommersiyalaşdırılmasını və elmi nəticələrin praktik istifadəsini dəstəkləyir.\n\nBu istiqamət üzrə keçirilən konfrans və simpoziumlar tədqiqatçılar üçün elmi yenilikləri nümayiş etdirmək, mövcud çağırışları müzakirə etmək və gələcək əməkdaşlıq imkanlarını dəyərləndirmək baxımından mühüm əhəmiyyət kəsb edir."
+          },
+          {
+            title: "5. Dayanıqlı İnkişaf və Mobillik",
+            content: "Dayanıqlı inkişaf və mobillik istiqaməti üzrə tədqiqat təşəbbüsləri cəmiyyətin artan ehtiyaclarını qarşılamaqla yanaşı, ətraf mühitə təsirin minimuma endirilməsini və resurslardan səmərəli istifadəni hədəfləyir. Universitet bu istiqamətdə iqtisadi, sosial və ekoloji tarazlığın qorunmasına xidmət edən elmi yanaşmaları dəstəkləyir.\n\nBu sahədə aparılan layihələr şəhərsalma, dayanıqlı infrastruktur, alternativ nəqliyyat həlləri, ağıllı şəhər texnologiyaları və ekoloji idarəetmə istiqamətlərini əhatə edir. Sənaye qurumları, dövlət təşkilatları və qeyri-kommersiya strukturları ilə qurulan əməkdaşlıqlar dayanıqlı siyasətlərin və innovativ həllərin tətbiqinə, eyni zamanda iqtisadi inkişaf ilə ekoloji mühafizənin uzlaşdırılmasına şərait yaradır.\n\nBu istiqamət üzrə təşkil olunan konfranslar, forumlar və müzakirə platformaları müxtəlif sahələrdən olan experləri bir araya gətirərək dayanıqlı inkişaf və mobillik üçün yeni yanaşmaların formalaşdırılmasına töhfə verir."
+          }
+        ]
+      },
+      internalGrants: {
+        eyebrow: "Performans və Qiymətləndirmə",
+        title: "Daxili Qrant Proqramları",
+        subtitle: "Azərbaycan Texniki Universitetində elmi fəaliyyətin davamlı inkişafı və gənc tədqiqatçıların təşviqi məqsədilə daxili qrant proqramları həyata keçirilir.",
+        breadcrumb: "Daxili Qrantlar",
+        description: "Bu proqramlar universitetin elmi mühitində rəqəmsallığı artırır, yeni ideyaların reallaşmasına və innovativ nəticələrin əldə edilməsinə şərait yaradır.",
+        portalButton: "E-Qrant Portalı",
+        sections: [
+          {
+            title: "Əsas Məqsədlər",
+            items: [
+              "Gənc alim və doktorantların elmi fəaliyyətini dəstəkləmək",
+              "Fənlərarası tədqiqatların aparılmasını stimullaşdırmaq",
+              "Universitetin prioritet istiqamətlərində yeni layihələrin inkişafına imkan yaratmaq",
+              "Alınan nəticələrin kommersiyalaşdırılmasını və sənaye sektoruna transferini təşviq etmək"
+            ]
+          },
+          {
+            title: "Qrantların İstiqamətləri",
+            items: [
+              "Süni intellekt və rəqəmsal texnologiyalar",
+              "Alternativ enerji və enerji səmərəliliyi",
+              "Robototexnika və avtomatlaşdırma sistemləri",
+              "İqtisadiyyat və innovasiya modelləri",
+              "Təhsil texnologiyaları və elektron öyrənmə"
+            ]
+          },
+          {
+            title: "Layihələrin Seçimi",
+            items: [
+              "Elmi yenilik və praktiki əhəmiyyət",
+              "Universitetin strateji hədəflərinə uyğunluq",
+              "Fənlərarası əməkdaşlıq potensialı",
+              "Gənc tədqiqatçıların iştirak səviyyəsi"
+            ]
+          }
+        ]
+      },
+      seminarsAndTrainings: {
+        eyebrow: "Konfranslar və Tədbirlər",
+        title: "Seminarlar və Təlimlər",
+        subtitle: "Azərbaycan Texniki Universitetində seminar və təlimlər akademik və peşəkar inkişafın dəstəklənməsində mühüm rol oynayır.",
+        breadcrumb: "Seminarlar və Təlimlər",
+        description: "Azərbaycan Texniki Universitetində seminar və təlimlər akademik və peşəkar inkişafın dəstəklənməsində mühüm rol oynayır. Bu tədbirlər tələbələrə, tədqiqatçılara və əməkdaşlara yeni biliklər əldə etmək, praktiki bacarıqlarını gücləndirmək və elm, texnologiya və təhsil sahəsindəki son yeniliklərdən xəbərdar olmaq imkanı yaradır. Təcrübəli müəllimlər, sənaye mütəxəssisləri və dəvət olunmuş ekspertlər tərəfindən keçirilən bu sessiyalar aktiv iştirak, müzakirə və fikir mübadiləsini təşviq edir. Seminar və təlimlər vasitəsilə iştirakçılar öz bacarıqlarını inkişaf etdirir, dünyagörüşlərini genişləndirir və gələcək akademik və karyera uğurları üçün hazırlıqlarını artırırlar. Bu cür fəaliyyətlər eyni zamanda universitet daxilində əməkdaşlığın, innovasiyanın və güclü öyrənmə mühitinin formalaşmasına töhfə verir.",
+        journalsTitle: "Elmi Jurnallar",
+        journals: [
+          {
+            name: "Machine Science (Maşınşünaslıq)",
+            image: "/research-seminars-training/Machine Science (Maşınşünaslıq).jpg",
+            issn: "2227-6912",
+            eissn: "2790-0479",
+            frequency: "2",
+            language: "İngilis",
+            founder: "Azərbaycan Texniki Universiteti",
+            doi: "10.61413",
+            about: "Machine Science (Maşınşünaslıq) beynəlxalq elmi-texniki jurnalının əsası 2001-ci ildə qoyulmuşdur. Jurnal Azərbaycan Respublikasının Prezidenti Yanında Ali Attestasiya Komissiyası tərəfindən Azərbaycan Respublikasında məqalələrin dərc olunması tövsiyə edilən dövri elmi nəşrlərin siyahına daxildir. Jurnalda maşın dizaynı, mexanika, maşınqayırma texnologiyası, mühəndis iqtisadiyyatı və menecmenti, energetika, materialşünaslıq kimi maşınşünaslıq sahələri üzrə yüksək keyfiyyətli elmi məqalələrin nəşrini həyata keçirir. Jurnalın sabit olaraq ildə iki buraxılışı həyata keçirilir. Hər bir nəşr olunan məqalə ixtisas üzrə kifayət qədər təcrübəyə malik iki müstəqil rəyçi tərəfindən yoxlamadan keçirilir. Nəşr olunan məqalələr jurnalın rəsmi saytı olan msj.aztu.edu.az saytının arxiv bölməsində, eləcə də eLibrary.ru elektron kitabxanasında yerləşdirilir. Hər bir məqalə DOI - rəqəmsal obyekt identifikatoru ilə təmin edilir. Jurnalda məqalələrin nəşri üçün müəlliflərdən heç bir rüsum alınmır və jurnalın fəaliyyəti tam olaraq Azərbaycan Texniki Universiteti tərəfindən maliyyələşdirilir.",
+            link: "https://msj.aztu.edu.az"
+          },
+          {
+            name: "Energy sustainability: risks and decision making",
+            image: "/research-seminars-training/Energy sustainability- risks and decision making.png",
+            issn: "3006 - 8487",
+            year: "2023",
+            frequency: "2",
+            language: "İngilis",
+            doi: "10.61413/PXHI4350",
+            about: "\"Energy Sustainability: Risks and Decision Making\" çoxşaxəli, açıq girişli və ekspert qiymətləndirməsindən (peer-reviewed) keçən jurnal olub, dayanıqlı inkişaf məsələləri üzrə tədqiqatların təşviqi və yayılmasına həsr olunub. Jurnal tədqiqatçılar, praktiklər, siyasətçilər və digər müvafiq tərəflər üçün dayanıqlı inkişaf məsələləri ilə bağlı biliklərini, təcrübələrini və baxışlarını paylaşmaq üçün platforma təmin etməyi məqsəd qoyur.",
+            chiefEditor: "Prof. Vilayat Vəliyev, Azərbaycan Texniki Universiteti, Bakı, Azərbaycan",
+            editorialBoard: [
+              "Prof. Gürkan Kumbaroğlu",
+              "Prof. Buket Akkoyunlu",
+              "Prof. Aytekin Isman",
+              "Dos. Fariz Məmmədov",
+              "Dos. Aynura İsmayılova",
+              "Dr. İgor Nasirov",
+              "Dos. Natəvan Namazova"
+            ],
+            link: "https://ensusjournal.org/index.php/ojs/index"
+          },
+          {
+            name: "Elmi əsərlər (Proceedings)",
+            image: "/research-seminars-training/Proceedings.jpg",
+            issn: "1815-1779",
+            year: "1992",
+            frequency: "2",
+            language: "Azərbaycan, İngilis, Rus",
+            founder: "Azərbaycan Texniki Universiteti",
+            doi: "10.61413/XTJT2525",
+            about: "Təhsildə innovasiyaların yaradılması və tətbiqi universitetin bazar iqtisadiyyatı şəraitində maliyyə imkanlarını artırmaqla yanaşı, innovativ universitet modeli qurmağa imkan verir. Universitetin yeniliklərə, innovasiyalara açıq olması, innovativ inkişaf yolunu tutması onun sürətlə inkişaf edən qlobal tələblərə uyğunlaşması, rəqabətə davamlı olması üçün mühüm şərtdir. Universitetin inkişafı konsepsiyasının əsasını orada çalışan alimlərin tədris fəaliyyəti ilə yanaşı elmi fəaliyyəti də təşkil edir. Bu nöqteyi-nəzərdən Azərbaycan Texniki Universitetində (AzTU-da) “Elmi əsərlər” elmi-texniki jurnalı nəşr olunur.\n\nNəşr olunduğu ilk gündən etibarən jurnal Azərbaycan və xarici ölkə alimlərinin elmi-tədqiqat işlərinin nəticələrini yüksək tərtibatla oxuculara təqdim edir. Jurnalda nəşr olunan hər bir məqalə uyğun sahə üzrə beynəlxalq səviyyədə tanınmış alimlərin anonim olaraq müsbət rəyi alındıqdan sonra nəşr olunur. AzTU-nun “Elmi əsərlər” jurnalının nəşr edilmiş nüsxələri isə həm Azərbaycanın, həm də bir çox ölkələrin universitetlərinin kitabxanalarına göndərilir. Jurnalın redaksiya heyətinə ölkəmizdə və xaricdə fəaliyyət göstərən tanınmış alimlər daxildir. Jurnalın nəşrində iştirak edən bütün tərəflərin (müəlliflər, rəyçilər və nəşriyyatçı) gözlənilən etik qaydalara əməl etmələri tələb olunur. Jurnalın etik qaydaları “Nəşriyyat Etikası Komitəsi”nin (COPE) tələblərinə əsasən hazırlanmışdır. Jurnalda 2022-ci ildən təkmilləşdirmə ilə əlaqədar dəyişiklikdən sonra redaksiya heyəti yenilənmiş, internet portalı istifadəyə verilmişdir.\n\n“Elmi əsərlər” jurnalında fizika, riyaziyyat, kimya, mexanika, avtomatika, informatika, telekommunikasiya, maşınqayırma, elektrotexnika, metallurgiya, maşınşünaslıq, energetika, nəqliyyat, ekologiya və iqtisadiyyat elmi istiqamətləri üzrə məqalələr dərc edilir.",
+            link: "https://proceedings.aztu.edu.az/"
+          },
+          {
+            name: "Journal of Advance Material Processing and Applications (JAMPA)",
+            image: "",
+            about: "Journal of Advanced Material Processing and Applications (JAMPA) material emalının qabaqcıl texnologiyalarının öyrənilməsi və tətbiqinin inkişafına həsr olunmuş multidissiplinar, rəyli (peer-reviewed) elmi jurnaldır. Bu jurnal nano və əlavə (additive) istehsal daxil olmaqla, sürətlə inkişaf edən qabaqcıl istehsal sahəsində yüksək keyfiyyətli tədqiqat nəticələrinin, texnoloji yeniliklərin və innovativ tətbiqlərin yayılması üçün tədqiqatçılar, mühəndislar və mütəxəssislər üçün platforma təqdim edir.\n\nJAMPA-nın əsas məqsədi materialşünaslıq, mexanika mühəndisliyi, kompüter elmləri, biotibbi mühəndislik və digər sahələrdən olan tədqiqatçılar və mütəxəssislər arasında əməkdaşlığı və bilik mübadiləsini təşviq etməkdir. Jurnal material emalının qabaqcıl üsulları və onların tətbiqləri ilə bağlı fundamental elmi prinsipləri, metodoloji yenilikləri və praktik problemləri əhatə edən orijinal məqalələr, icmallar və analitik baxışlar dərc etməyi hədəfləyir.",
+            scopeTitle: "Əhatə olunan mövzular:",
+            scopeItems: [
+              "Qabaqcıl istehsal prosesləri üçün yeni materialların hazırlanması və xarakteristikası",
+              "Qabaqcıl əlavə istehsal texnologiyaları (powder bed fusion, directed energy deposition və s.)",
+              "Optimallaşdırma, modelləşdirmə, simulyasiya və idarəetmə strategiyaları",
+              "Çoxmateriallı və hibrid istehsal yanaşmaları",
+              "Dizayn metodologiyaları, proqram alətləri və həndəsi modelləşdirmə",
+              "Aerokosmik, avtomobil, səhiyyə və digər sahələrdə tətbiqlər",
+              "Davamlı və ekoloji cəhətdən təmiz istehsal yanaşmaları",
+              "3D çap, biofabrikasiya və material emalında yeni tendensiyalar"
+            ],
+            link: "https://admpa.org/"
+          }
+        ]
+      },
+      researchProjects: {
+        eyebrow: "Tədqiqat və İnnovasiya",
+        title: "Tədqiqat Layihələri",
+        subtitle: "Azərbaycan Texniki Universitetində həyata keçirilən mühüm elmi-tədqiqat layihələri ilə tanış olun.",
+        breadcrumb: "Tədqiqat Layihələri",
+        description: "Universitetimizdə müasir dövrün çağırışlarına cavab verən, müxtəlif elm sahələrini əhatə edən innovativ tədqiqat layihələri həyata keçirilir. Bu layihələr həm yerli, həm də beynəlxalq səviyyədə elmi inkişafa töhfə verməklə yanaşı, sənaye tərəfdaşlıqlarını da gücləndirir.",
+        projectDetails: {
+          type: "Layihənin növü",
+          duration: "İcra müddəti",
+          leader: "Layihə rəhbəri",
+          team: "Layihənin komandası",
+          amount: "Ümumi məbləğ",
+          about: "Haqqında",
+          link: "Layihə linki"
+        },
+        projects: [
+          {
+            name: "Azad Fəzada Optik Rabitəli Maneəyə Davamlı Nanopeyk Modelinin İşlənilməsi və Tədqiqi",
+            type: "Elmi tədqiqat",
+            duration: "İki il",
+            leader: "Həsənov Mehman Hüseyn oğlu",
+            team: ["Tağıyev Əli Daşdəmir oğlu", "Piriyev Sahib Aydin oğlu", "Nəcəfov Baloğlan Kamil oğlu", "Camalzadə Nuranə İqbal qızı"],
+            amount: "800,000 AZN",
+            about: "Layihənin məqsədi azad fəzada optik rabitəni özündə birləşdirən model yaratmaqla nanopeykin rabitə effektivliyini artırmaqdır. Nanopeyklər optik rabitə vasitəsilə informasiyanın daha sürətli və təhlükəsiz şəkildə ötürülməsinə imkan verir. Bu layihədə azad fəzada optik rabitənin iş prinsipləri, həmçinin texnoloji və təbii amillərin (məsələn, atmosfer maneələri) rabitəyə təsiri araşdırılacaq. Layihənin qarşıya qoyulan məsələləri aşağıdakılardır: nanopeyk modelinin dizaynı və inkişafı, optik rabitə sisteminin hazırlanması, təsir amillərinin tədqiqi, optik rabitənin səmərəliliyinin yoxlanılması və enerji effektivliyi ilə peykin avtonom fəaliyyətinin təmin olunması. Nanopeyk texnologiyası üçün lazım olan kompakt və səmərəli dizaynın hazırlanması, peykin quraşdırılması və kosmik mühitdə uğurlu əməliyyatın təmin edilməsi üçün lazımi sistemlərin inteqrasiyası həyata keçiriləcək. Azad fəzada optik rabitə məqsədilə tələb olunan texnologiyaların kosmos şərtlərinə uyğunluğu araşdırılacaq, atmosfer şəraitinin, kosmik radiasiyanın, müdaxilələrin və digər xarici amillərin rabitə keyfiyyətinə və peyk performansına təsiri öyrəniləcək, bu təsirləri azaltmaq üçün həll yolları müəyyən ediləcək. Optik rabitə siqnallarının bütövlüyü, ötürmə qabiliyyəti və ünsiyyət sürəti yoxlanılacaq, atmosfer şəraitində işığın yayılma xüsusiyyətlərini araşdırmaq üçün eksperimental təcrübələr və simulyasiyalar aparılacaq. Eyni zamanda peyklərin uzunmüddətli fəaliyyətini təmin edəcək və enerji sərfiyyatını azaldacaq enerji mənbələri və idarəetmə sistemləri yaradılacaq. Layihənin aktuallığı ondan ibarətdir ki, CubeSat tipli nanopeyklər artan sürətlə genişlənən kosmik rabitə sistemləri sahəsində əsaslı texnoloji irəliləyişləri asanlaşdırır. Bu sistemlər üçün optik rabitə geniş bant genişliyi ilə təhlükəsiz, yüksək sürətli məlumat ötürülməsini təmin edir. Adi radiorabitədən fərqli olaraq, optik rabitə daha yüksək məlumat ötürmə qabiliyyəti və azaldılmış müdaxilə riski təklif edir. Gələcək peyk təşəbbüslərinin inkişafına atmosferin və kosmik şəraitin rabitə vasitələrinə təsirinin tədqiqi kömək edəcək. Layihə elmi tədqiqatlar sahəsində son dərəcə aktualdır və müasir telekommunikasiya və kosmik texnologiyalar üçün vacib olan innovasiyaların həyata keçirilməsini vurğulayır. Bu layihə kosmik texnologiyalar, optik fizika, rabitə texnologiyaları, mühəndislik və telekommunikasiya texnologiyaları kimi müxtəlif elmi və texnoloji sahələri birləşdirən multidissiplinar bir yanaşmaya malikdir. Layihə nanopeyk texnologiyalarına aid olan CubeSat modeli əsasında optik rabitə sistemlərinin qurulmasını və bu sistemlərin azad fəza mühitində nə qədər effektiv olduğunu tədqiq etməyi hədəfləyir. Layihənin əsas məqsədi azad fəzada optik rabitə texnologiyaları ilə təchiz edilmiş CubeSat nanopeykinin modelinin hazırlanması və işlənməsi, azad fəzada yüksək sürətli məlumat ötürmə qabiliyyətinin təmin edilməsi və bu sistemə təsir edən kənar amillərin (məsələn, atmosfer, istilik və mexaniki gərginliklərin optik siqnallara təsiri) araşdırılmasıdır. Layihənin elmi əsası kiçik ölçülü peyklərdə (məsələn, CubeSat) yüksək sürətli məlumat ötürülməsi məqsədilə elektromaqnit spektrini genişləndirmək və ənənəvi radio rabitədən daha effektiv və səmərəli olan optik rabitənin asan şəkildə istifadəsini təmin etməkdən ibarətdir. Layihə həmçinin orbital dinamika, atmosfer təsirləri, istilik və mexaniki yüklərin peykin rabitə sisteminə təsirini tədqiq edəcək. Əlavə olaraq tədqiqatda orbital dinamika, atmosfer şəraiti, istilik və mexaniki gərginliklərin peyk rabitə sisteminə təsirləri araşdırılacaq. Gözlənilən nəticələrə optik rabitə sistemləri ilə inteqrasiya olunmuş yüksək performanslı CubeSat tipli modellərinin yaradılması, onların qiymətləndirilməsi və azad fəzada informasiya ötürülməsinin səmərəliliyinin artırılması daxildir. Optik rabitənin istifadəsi vasitəsilə CubeSat tipli nanopeyklərin daha geniş elmi və texniki məqsədlər üçün istifadəsi hədəflənir. Layihənin nəticələri əsasında kiçik peyk sistemlərinin səmərəliliyini və uzunömürlülüyünü artırmaq, gələcəkde onların genişmiqyaslı tətbiqlərini asanlıqla həyata keçirmək gözlənilir. Layihədə CubeSat modeli də daxil olmaqla nanopeyklərdə optik rabitə texnologiyalarının istifadəsi ilə bağlı yeni elmi anlayışlar və texnoloji irəliləyişlər təklif edilir. Elmi əhəmiyyətli tədqiqatda, azad fəzada optik rabitədən istifadə edən nanopeyklərin, yüksək sürətli və geniş məlumat ötürmə imkanlarını təmin etməsi nəzərdə tutulur. Bununla da peyklərdə ənənəvi radio rabitə sistemlərinin çatışmazlıqları aradan qaldırılaraq yeni rabitə texnologiyalarının inkişafına təkan verilir. Layihənin praktiki əhəmiyyəti isə yüksək performanslı, lakin daha aşağı maliyyətli nanopeyk sistemlərinin hazırlanmasından, bununla yanaşı elmi tədqiqatlar, müşahidə, məlumat toplama və digər kosmik əməliyyat sahələrində istifadənin mümkünlüyünü təmin etməkdən ibarətdir. Optik rabitə texnologiyası peyk rabitə sistemlərində nisbətən yeni olsa da, onun tətbiqi ilə bağlı intensiv tədqiqatlar aparılır. Optik rabitə radiotezliyə əsaslanan rabitə sistemləri ilə müqayisədə daha yüksək bant genişliyinə, daha sürətli məlumat ötürmə imkanlarına və elektromaqnit müdaxiləsinə qarşı daha yüksək toxunulmazlığa malikdir. Buna baxmayaraq, azad fəzada optik rabitə texnologiyalarının istifadəsi müxtəlif texnoloji maneələr yaradır. Bu texnologiyanın geniş tətbiqinə əsas maneə olaraq atmosfer şəraitinin, dispersiya və atmosfer zəifləmə faktorlarının optik siqnalın keyfiyyətinə təsirini göstərmək olar. Bu sahədə müxtəlif ölkələrdə aparılan elmi tədqiqatlar göstərir ki, nanopeyklər üçün optik rabitənin tətbiqi həm nəzəri, həm də praktiki çərçivədə inkişaf etdirilməlidir. Məsələn, NASA və ESA çoxsaylı optik rabitə təşəbbüsləri həyata keçirib. NASA-nın Laser Communications Relay Demonstration (LCRD) proqramı kosmosun tədqiqi məqsədilə lazer əsaslı rabitə sistemlərinin qiymətləndirilməsini həyata keçirir. Bu proqram RF rabitə sistemlərini əvəz etmək üçün lazer texnologiyasının potensialını nümayiş etdirən qabaqcıl tədqiqat layihələrindən biridir. Bundan əlavə, Avropa Kosmik Agentliyi (ESA) “Avropa Data Relay System” (EDRS) vasitəsilə məlumatların ötürülməsi üçün lazer rabitəsi sahəsində əsaslı tədqiqatlar aparmışdır. Starlink peyklər arasında lazer əsaslı optik rabitə texnologiyasını tətbiq etməklə sürətli və fasiləsiz məlumat ötürülməsini təmin edir, bu da internet xidmətində gecikməni azaldır. Bu texnologiya CubeSat-lar kimi nanopeyklərin gələcəkdə daha effektiv və genişmiqyaslı rabitə şəbəkələrində istifadə edilməsi üçün yeni imkanlar yaradır. Layihə müəlliflərinin elmi istiqaməti üzrə elmi-təcrübi nailiyyətləri də bu istiqamətdə böyük əhəmiyyət daşıyır. Son 5 il ərzində layihənin rəhbəri Mehman Həsənov və həm-rəhbər Əli Tağıyev layihənin elmi istiqaməti üzrə geniş araşdırmalar aparmış, mövzu ilə bağlı çoxsaylı elmi məqalələr dərc etdirmişlər. Layihənin icraçılarının da bu mövzu barəsində araşdırmaları, patentləri və ixtiraları mövcuddur. Elmi-təcrübi araşdırmalardan biri süni neyron analizindən istifadə edərək azad fəzada optik şəbəkələrin adaptiv monitorinqinə həsr olunmuşdur. Digər mühüm nəticə isə lazer şüasının ötürülməsindən istifadə edən nanopeykin konseptual modelinin işlənməsi və onun bərpa olunan elektrik enerjisinin yığılmasında əhəmiyyətinin müəyyən edilməsidir. Layihə rəhbərləri tərəfindən nanopeyklərdən ötürülən siqnalları optimal qəbul etmək üçün antenaların üzərində quraşdırılan piezomotor texnologiyası üzrə də geniş tədqiqatlar aparılmış və bəzi qurğular üçün patentlər əldə edilmişdir. Bununla belə, layihənin əsas tədqiqat hədəfi olan sahə üzrə hələ də çoxlu həll olunmamış məsələlər qalmaqdadır. Atmosfer təsirlərinin optik rabitəyə təsirinin tam aradan qaldırılması problemi hələ müasir texnologiyalarla tam həll edilməmişdir. Peyklərdəki optik rabitə sistemlərinin minimal enerjisi yüksək keyfiyyətli siqnalların uzaq məsafələrə ötürülməsində müəyyən çətinliklər yaradır. Əlavə olaraq Azərbaycanda milli CubeSat-in olmaması ölkənin kosmik texnologiyalar sahəsində xarici asılılığını artırır və yerli elmi-texnoloji inkişafı məhdudlaşdırır. Milli CubeSat platformasının yaradılması müstəqil kosmik infrastruktur qurmağa, elm və texnologiya sahəsində yeni biliklər əldə etməyə və strateji təhlükəsizliyi təmin etməyə imkan verəcək. Bu layihə həm də yerli mütəxəssislərin hazırlanmasına və ölkənin regionda kosmik sahədə mövqeyinin güclənməsinə töhfə verəcək. Göstərilən problemlərin həlli üçün yeni qurğular, lazer texnologiyaları və daha mürəkkəb siqnal emal üsulları üzərində davamlı tədqiqatlar aparılmalıdır. Layihə müəlliflərinin elmi təcrübəsi və bilikləri bu sahədə üstün nəticələr əldə etmək üçün istifadə ediləcək.",
+            link: "https://www.aef.gov.az/az/grant/view/57",
+            image: ""
+          },
+          {
+            name: "200 MPa-a qədər geniş temperatur və təzyiq diapazonunda 1-butanolun istilik-fiziki xüsusiyyətlərinin öyrənilməsinə",
+            type: "Elmi-tədqiqat",
+            duration: "2022-2025",
+            leader: "Prof. Həsənov V.H.",
+            team: [],
+            amount: "-",
+            about: "Bu layihənin əsas məqsədi 1-butanolun geniş temperatur və yüksək təzyiq (200 MPa-a qədər) diapazonlarında istilik-fiziki xüsusiyyətlərini dəqiq müəyyənləşdirmək və bu məlumatlar əsasında onun texnoloji proseslərdə tətbiq imkanlarını qiymətləndirməkdir. Layihənin əsas əhəmiyyəti və aktuallığı ondan ibarətsir ki, 1-butanol alternativ yanacaq və sənaye həlledicisi kimi perspektivli maddədir. Onun yüksək temperatur və təzyiq şəraitində davranışının öyrənilməsi enerji, kimya və neft-kimya sənayesində mühüm tətbiqlərə yol aça bilər. İqlim dəyişikliyi və enerji keçidi dövründə bu tip tədqiqatlar böyük əhəmiyyət kəsb edir. Layihədə 1-butanolun istilik-fiziki parametrlərinin təyin olunması üçün eksperimental şəraitin qurulmuş, müxtəlif təzyiq və temperatur rejimlərində ölçmələrin aparılmış və alınan nəticələrin analizi və mövcud ədəbiyyatla müqayisəsi aparılmışdır. Layihə eksperimental və hesablama üsullarının birləşdirilməsi ilə həyata keçiriləcək. Laborator şəraitdə yüksək dəqiqlikli cihazlardan istifadə olunacaq, daha sonra nəticələr müvafiq termodinamik modellərlə təhlil ediləcəkdir. Layihənin əsas istiqaməti geniş diapazonda 1-butanol üçün dəqiq istilik-fiziki xassələrin cədvəl və qrafiklərlə təqdim olunması, mövcud modellərin uyğunluğunun qiymətləndirilməsi və təkmilləşdirilməsi üçün yeni təkliflər, tətbiq sahələri üçün elmi əsaslandırılmış tövsiyələr. Layihənin nəticələri enerji mühəndisliyi, istilik mübadiləsi sistemləri, bioyanacaq texnologiyaları və kimya sənayesində tətbiq oluna bilər. Eyni zamanda alınmış məlumatlar simulyasiya proqramlarında istifadə edilərək real proseslərin daha dəqiq modelləşdirilməsinə töhfə verəcək. Bu da texnoloji proseslərin səmərəliliyinin artırılması və enerji itkilərinin azaldılması ilə nəticələnməısi nəzərdə tutulub.",
+            link: "http://www.mgs.gost.ru/TKSUGGEST/MGSpublic.nsf/0/16AE6446020EF6F343258CA700415711?OpenDocument",
+            image: "/research-projects/Thermophysical properties of 1-butanol in a wide range of temperatures and pressures up to 200 MPa.png"
+          },
+          {
+            name: "Yerli resurslar əsasında legirli poladlar və ferroərintilər istehsalı texnologiyalarının işlənməsi (“Əsas qrant müsabiqəsi-2023”)",
+            type: "Azərbaycan Elm Fondu",
+            duration: "01 dekabr 2023-cü il – 01 dekabr 2025-ci il",
+            leader: "Məmmədov Arif Tapdıq oğlu",
+            team: ["Babayev A.İ.", "Namazov S.N.", "Hüseynov M.Ç.", "Quliyev F.T.", "İsmayılov N.Ş.", "Bayramov A.T.", "Babayev H.İ", "Musurzayeva B.B."],
+            amount: "250,000 AZN",
+            about: "Layihənin məqsədi yerli xammaldan istifadə etməklə ferroərintilərin istehsal proseslərinin işlənməsi və ölkənin metallurgiya müəssisələrində legirli poladlarının istehsalının təşkilindən ibarətdir. Layihənin elmi ideyasını ilk dəfə ferroərintilər istehsalında yerli xammalın istifadəsi əsasında mürəkkəb fiziki-kimyəvi və metallurji proseslərin, termodinamiki parametrlərin aşkarlanması, poladın oksigensizləşdirilməsi və legirlənməsində ferroərintilərin rolunun qiymətləndirilməsi təşkil edir. Bu postulat əsasında alınan legirli poladlarının istehsal rejimləri, struktur və xassələri arasında qarşılıqlı əlaqənin qurulması da tədqiqatların elmi ideyasını təşkil edir. Layihənin gözlənilən emi nəticələri yerli xammal əsasında işlənmiş legirli polad və ferroərintilərin poladın oksigensizləşdirmə prosesinin keyfiyyətin yüksəldilməsinə, nəticədə daha keyfiyyətli elektrik poladının alınmasını təmin edir. Məhz poladın keyfiyyətinin artırılması onun müxtəlif konstruksiyalar üçün istifadəsinə imkan verəcəkdir. Tədqiqatlar nəticəsində alınmış elmi nəticələr metallurgiya və materialşünaslıq sahəsində innovativ yanaşmalar əsasında yeni müddəaların formalaşmasına imkan verə bilər. İşlənmiş müddəalar metallurgiya istehsalında və müvafiq ixtisasların tədris proqramlarında istifadə oluna bilər. Layihənin elmi istiqaməti yerli xammaldan istifadə etməklə ferroərintilərin istehsalının təşkili üçün tədqiqatların aparılmasıdır. Ferroərintilər əsasən polad və çuqunun istehsalında istifadə olunur. Ferroərintilərin keyfiyyəti metallurgiya məhsullarının keyfiyyətinə birbaşa təsir edir.",
+            link: "https://www.aef.gov.az/upload/...",
+            image: ""
+          },
+          {
+            name: "Süni intellekt metodlarından istifadə edərək funksional keçidli yeni növ kompozit materialların dayanıqlıq problemlərinin modelləşdirilməsi",
+            type: "Elmi-tədqiqat",
+            duration: "1 il (12 ay)",
+            leader: "Piriyev Sahib Aydın oğlu",
+            team: ["Rüstəmova Məhsəti Akif qızı", "Məmmədova Güldəstə Akif qızı", "Əzimov Fizuli Murad oğlu"],
+            amount: "30,000 AZN",
+            about: "Layihənin məqsədi süni intellekt metodları və riyazi modelləşdirmə yanaşmaları əsasında funksional keçidli (FGM) yeni nəsil kompozit materialların dayanıqlıq və deformasiya davranışının proqnozlaşdırılması üçün nəzəri və hesablama modellərinin işlənməsidir. Müasir mühəndislikdə və materialşünaslıqda funksional keçidli materiallar (Functionally Graded Materials, FGM) və kompozit strukturlar ən perspektivli istiqamətlərdən biridir. Bu materiallar müxtəlif fiziki və mexaniki xassələri tədricən dəyişən formada daşıdıqları üçün kəskin gərginlik sıçrayışlarını azaldır, çat əmələ gəlməsini ləngidir və istismar müddətini artırır. Eyni zamanda, süni intellekt (AI) metodları materialların davranışının proqnozlaşdırılmasında və zədələnmə mexanizmlərinin analitik modelləşdirilməsində yeni imkanlar açır. Layihənin nəticələri aerokosmik, avtomobil və enerji sənayesində tətbiq oluna biləcək yeni nəsil ağıllı materialların layihələndirilməsinə töhfə verəcək.",
+            link: "",
+            image: "/research-projects/Modeling of durability problems of new types of functionally transitionable composite materials using artificial intelligence methods.png"
+          }
+        ]
+      },
+      intellectualPropertyAndPatents: {
+        eyebrow: "Tədqiqat və İnnovasiya",
+        title: "Əqli Mülkiyyət və patentlər",
+        subtitle: "Azərbaycan Texniki Universitetində elmi-tədqiqat işlərinin nəticəsi olaraq patentlərin sayı ildən-ilə artır.",
+        breadcrumb: "Əqli Mülkiyyət və Patentlər",
+        description: "Patent - ixtira və ya faydalı modelin müəllifinə verilən hüquqi sənəddir. O, ixtiranın qorunmasını təmin edir, müəllifə müstəsna hüquqlar verir və başqalarının icazəsiz istifadəsinin qarşısını alır. Patent elmi yeniliklərin kommersiyalaşdırılmasına və innovasiyaların inkişafına şərait yaradır. Azərbaycan Texniki Universitetində elmi-tədqiqat işlərinin nəticəsi olaraq patentlərin sayı ildən-ilə artır. Son illərdə AzTU əməkdaşları və tədqiqat qrupları tərəfindən ixtira və faydalı modellərə dair bir sıra patentlər əldə olunmuşdur. Bu artım universitetdə innovasiya yönümlü elmi fəaliyyətin və intellektual mülkiyyətin qorunmasına verilən önəmin bariz nümunəsidir.",
+        tableHeaders: {
+          no: "№",
+          number: "Patentin nömrəsi",
+          name: "Patentin adı",
+          authors: "Müəlliflər",
+          link: "LİNK"
+        },
+        years: [
+          {
+            year: "2023",
+            patents: [
+              { no: "1", number: "İ 2023 0017", name: "Qənaətlə legirlənmiş kürəvi qrafitli çüqun", authors: "Həsənli Ramiz, Namazov Sübhan", link: "https://drive.google.com/file/d/1fiaER4-x54VsuZNN9sOZS89UTY1__qtE/view" },
+              { no: "2", number: "İ 2023 0091", name: "Əzələ gərilmələrinin aradan qaldırılması üçün avtomatlaşdırılmış qurğu", authors: "Abdullayev Namiq, Paşayeva Kəmalə", link: "https://drive.google.com/file/d/1xPYXKphWv0l_oodrCFDWJNLUeyo4JgcB/view?usp=sharing" },
+              { no: "3", number: "İ 2023 0093", name: "3D PRİNTER", authors: "Həsənov Mehman, İbrahimov Bayram, İslamov İslam, Tağıyev Əli, Hacıyeva Könül, Fətəliyev Vəli", link: "https://drive.google.com/file/d/1xVDY5DDLrfHamukNXI5Ghc_y72bBGutf/view?usp=sharing" },
+              { no: "4", number: "İ 2023 0092", name: "Robotlaşdirilmiş mexatronik modul sistemi", authors: "Əlizadə Rasim, Cavadov Natiq, Fətəliyev Vəli, Həsənov Mehman, Hüseynəliyeva Xatirə", link: "https://drive.google.com/file/d/1CVGJEjTkx-Ga-OdxT65NXHMhojnNMnXr/view?usp=sharing" },
+              { no: "5", number: "İ 2023 0098", name: "Disklərin emalı üçün sürtgü", authors: "Əziz Sarvan", link: "https://drive.google.com/file/d/1xSaFNcFodbXnULYwnkaFVyYD2A1wsFGg/view?usp=sharing" },
+              { no: "6", number: "İ 2023 0026", name: "Paket Reduktoru", authors: "Fətəliyev Vəli", link: "https://drive.google.com/file/d/1_j8SNBsxhE7FLmWhdi8ksMOuiig9DooP/view?usp=sharing" },
+              { no: "7", number: "İ 2023 0035", name: "Fasonlu səthləri surətköçürmə ilə pardaqlama üsulu", authors: "Rəsulov Nəriman, Ələkbərov Mürsəl, Məmmədov Ərəstun", link: "https://drive.google.com/file/d/1GARCH8bLmetu5qvFc5svwxjd5g2tf18W/view?usp=sharing" },
+              { no: "8", number: "İ 2023 0039", name: "Hidravlik sistemlə kombinə edilmiş balansirli mancanaq dəzgahı", authors: "Əzizov Ehtiram, Əzizov Səlim, Əzizov Əzizağa", link: "https://drive.google.com/file/d/1At927jJqJ4TsMleB0F-5z9uJ_j_hj7JJ/view?usp=sharing" },
+              { no: "9", number: "İ 2023 0101", name: "Optik –lifli sensor", authors: "Mansurov Tofiq, Yusifbəyli Nurəli, Cəbrayılova Sevinc", link: "https://drive.google.com/file/d/1ykzH8svJYeWkgNS48npnvQQ92oUQ-mVU/view?usp=sharing" },
+              { no: "10", number: "İ 2023 0102", name: "Asfalt-qətran-parafin çöküntülərini təmizləmək üçün tərkib", authors: "Məmmədov Elton, Əsədov Musa, Musayev Tahir, Zeynalova Kəmalə", link: "https://drive.google.com/file/d/1V_LzKsByFZNLH54KsONkgqbrwmghrIfe/view?usp=sharing" },
+              { no: "11", number: "F 2023 0021", name: "Yoldəyişənin elektromexaniki intiqalları", authors: "Abdullayev Ayaz, Əlifov Əlişir, Əhmədov Bəyalı, Çələbi İftixar, Rəsulov Qoşqar, Hacıyev Anar", link: "https://drive.google.com/file/d/1P5XOGhvOy4VbIFCzzhxpWUWV3Sg3LH9b/view?usp=sharing" },
+              { no: "12", number: "F 2023 0026", name: "Avtomatik ştanqlı dərinlik nasos qurğusu", authors: "Əziz Ehtiram, Əzizov Salim, Əzizov Əzizağa", link: "https://drive.google.com/file/d/1_j8SNBsxhE7FLmWhdi8ksMOuiig9DooP/view?usp=sharing" },
+              { no: "13", number: "№045270", name: "Грузоподъемный механизм мостовых, башенных и козловых кранов", authors: "Abdullayev Ayaz, Çələbi İftixar, İsmayılov Orxan, Rəsulov Qoşqar, Qafarov Hüseyn, Hüseynov İlqar, Adgözəlova Sevda", link: "https://drive.google.com/file/d/1nuNPMNpYuBgcMFV2yanJrto25wqFqUmt/view?usp=sharing" },
+              { no: "14", number: "№043160", name: "Тяговый привод подвижного состава", authors: "Abdullayev Ayaz, Nəcəfov Əli, Hüseynov İlqar, Çələbi İftixar, Rəsulov Qoşqar, Adgözəlova Sevda", link: "https://drive.google.com/file/d/1HHt6e_bNmXmVj7JSue9RY6deZ-7ua0mB/view?usp=sharing" },
+              { no: "15", number: "№043504", name: "Легированный чугун c шаровидным графитом", authors: "Həsənli Ramiz, Məmmədov Arif", link: "https://drive.google.com/file/d/1V3IZW8Tp2RAR4zFpzBg9bEq2ETAcxal-/view?usp=sharing" },
+              { no: "16", number: "№043657", name: "Доменно-ориентированная информационно-поисковая система (ДИПС) (Способ ее создания)", authors: "Abbasov Əli, Qasımov Vaqif", link: "https://drive.google.com/file/d/1qkcJS6qdsahwCoxXkd-usq-k_ZRtODHC/view?usp=sharing" }
+            ]
+          },
+          {
+            year: "2024",
+            patents: [
+              { no: "1", number: "İ 2024 0058", name: "Alüminium oksidin alınması üsulu", authors: "İbrahimov Əli, Namazov Sübhan, Vəkilova Rəna, Həsənli Ramiz, Yusubov Fəxrəddin", link: "https://drive.google.com/file/d/1ggU8iZhZzOKjlseZXBcwaFAEqbymsQVV/view?usp=sharing" },
+              { no: "2", number: "İ 2024 0077", name: "Polimer kompozisiya", authors: "Osmanova Sevinc, Vəzirov Hikmət, Kərimov Fərhad, Ələkbərov Allahvertdi, Zeynalov Şücayət", link: "https://drive.google.com/file/d/1ocp7Z7f1YBM6NjZKP6zOU96f7ze-XyR1/view?usp=sharing" },
+              { no: "3", number: "İ 2024 0107", name: "Psevdo-təsadüfi ədədlər ardıcılığının formalaşdırılması üsulu", authors: "Rzayev Xəzail, Məmmədov Musa, Bağırov Elnur, Evslev Sergey, Səmədov Firuz, İmaməliyev Elman", link: "https://drive.google.com/file/d/1ZLiXoCj5ZVzkcAz3YWoRx_V7ek0C20lc/view?usp=sharing" },
+              { no: "4", number: "İ 2024 0106", name: "Psevdo-təsadüfi ədədlər ardıcılığının yaradılması üsulu", authors: "Rzayev Xəzail, Məmmədov Musa, Bağırov Elnur, Korolov Roman, Əliyeva Sevinc, Həsənova Sayəstə", link: "https://drive.google.com/file/d/1VLhoyAK-c0dc-L2m6SUmAu1zvJlhVUc5/view?usp=sharing" },
+              { no: "5", number: "İ 2024 0008", name: "Tangensial başlıqla yivdiyirləmə üsulu", authors: "Rəsulov Nəriman, Yusubov Nizami, Hüseynov Yusif", link: "https://drive.google.com/file/d/1wSqwcIjAmKFoRFLlKJoembxevM0dCq8H/view?usp=sharing" },
+              { no: "6", number: "İ 2024 0015", name: "Optik –lifli şaxələndirici", authors: "Mansurov Tofiq, Zeneviç Andrey, Cəbrayılova Sevinc, Məmmədov Rəhman, Mansurov Elnur", link: "https://drive.google.com/file/d/1a6ULzBvfI6rlvX6r-W37a2c7R89nN_Jh/view?usp=sharing" },
+              { no: "7", number: "İ 2024 0110", name: "Optik –lifli şaxələndirici", authors: "Mansurov Tofiq, Yabloçnikov Sergey, Mansurov Elnur, Qurbanova Gülnar, Məmmədov Rəhman", link: "https://drive.google.com/file/d/1UWNqzly26HVnziQdmPFz3aRj1htXwYDQ/view?usp=sharing" },
+              { no: "8", number: "İ 2024 0112", name: "Optik –lifli şaxələndirici", authors: "Mansurov Tofiq, Zeneviç Andrey, Mansurov Elnur, Jdanoviç Sergey", link: "https://drive.google.com/file/d/1j2ceseyRxKiZC4W-XC6WBj-hVLucWgQS/view?usp=sharing" },
+              { no: "9", number: "İ 2024 0004", name: "Yumurcuqlu paylayıcı val və onun hazırlanma üsulu", authors: "Abbasov Vaqif, Kərimov Azad, Sadıxov Əli, Əmirov Fariz", link: "https://drive.google.com/file/d/1oZK6Tpw9EcKArO39LbAE4FUaA1Yrv65O/view?usp=sharing" },
+              { no: "10", number: "İ 2024 0109", name: "Yumurcuqlu paylayıcı val və onun hazırlanma üsulu", authors: "Abbasov Vaqif, Hüseynov Ələkbər, Kərimov Azad", link: "https://drive.google.com/file/d/1qfsajEicIt55cAiu967EbnLNNYuc0J-H/view?usp=sharing" },
+              { no: "11", number: "İ 2024 0054", name: "Sudan hidrogen və oksigen qazları almaq üçün elektrolizer", authors: "Salamov Oktay, Əzizova Lalə, Əliyev Fərhad, Salmanova Firuzə, Salamlı Səba", link: "https://drive.google.com/file/d/1if615Z9Q4kNTNw4Tmgzg6_mmwRAWWznh/view?usp=sharing" },
+              { no: "12", number: "İ 2024 0082", name: "Biokütlələrin və üzvi tulantıların qazlaşdırılması üçün günəş qurğusu", authors: "Salamov Oktay, Əzizova Lalə, Əliyev Fərhad, Salmanova Firuzə, Salamlı Səba, Mahmudova Təranə, Yusupov İqor", link: "https://drive.google.com/file/d/1-7ggcyQ4d-QQosZ4GZKCfEYc0_51r2Wt/view?usp=sharing" },
+              { no: "13", number: "№047247", name: "Редуктор привода несущего винта вертолета", authors: "Abdullayev Ayaz, Talışov Arif, Nəcəfov Əli, Hacıyev Anar, İsmayılzadə Vaqif, Abdullayev Fərid", link: "https://drive.google.com/file/d/1BLNxbwWMnm6VqygLrn2IeNVKSGi2NVwU/view?usp=sharing" },
+              { no: "14", number: "№157514", name: "Спосiб вимiрювання усереднених значень координат кольору свıтлодüdних ламп та свıтилıникıв", authors: "Bağırov Sabir", link: "https://drive.google.com/file/d/1o66mIyfc02JVfTtgFSRz_OIKVgxUOtKO/view?usp=sharing" },
+              { no: "15", number: "W02023242086", name: "Bələdçi mikrotel ilə təchiz edilmiş damardaxili cihaz", authors: "Abdulllayev Nuran", link: "https://aztu.edu.az/az/news/aztu-professorunun-ixtirasi-avropada-patent-alib-8848" },
+              { no: "16", number: "№048494", name: "Метод оперативного определения малого содержания влаги в маслах и нефтепродуктах", authors: "Qasımova Sevda", link: "https://drive.google.com/file/d/1rFyz54iIEz9wv0BYeivllKrEf2BpZa1Y/view?usp=sharing" }
+            ]
+          },
+          {
+            year: "2025",
+            patents: [
+              { no: "1", number: "İ 2025 0065", name: "Müxtəlif yönlü daxili konik səthlərin və yivlərin paralel emalı üçün alət", authors: "Rəsulov Nəriman, Məmmədov Ərəstun, Abbasova İradə", link: "https://drive.google.com/file/d/1GT6uNS130ragI0RIqYdzYvheRzTmwos0/view?usp=sharing" },
+              { no: "2", number: "İ 2025 0096", name: "Su-neft emulsiyalarının əmələ gəlməsinin qaeşısının alınması üsulu", authors: "Məmmədov Elton, Mehrabova Mətanət, Əsədov Musa, Musayev Tahir, Əliyev Şahbaba, Zeynalova Kəmalə", link: "https://drive.google.com/file/d/1Ptvw4JpoYql-F8nDv_7zN8z7Mrn1qJpv/view?usp=sharing" },
+              { no: "3", number: "İ 2025 0090", name: "Dayanıqlı su-neft emulsiyalarının susuzlaşdırılması üsulu", authors: "Məmmədov Elton, Mehrabova Mətanət, Əsədov Musa, Musayev Tahir, Zeynalova Kəmalə", link: "https://drive.google.com/file/d/1cN2x0X9hkP1egKHvG0QL1DEp-iJDjqbe/view?usp=sharing" },
+              { no: "4", number: "İ 2025 0002", name: "Tezkəsən poladdan burğunun işçi qabiliyyətini artırma üsulu", authors: "Məmmədov Arif, İsgəndərov Əliməmməd, Hüseynov Muxtar, Orucov Akif, Süleymanov Məmməd", link: "https://drive.google.com/file/d/1L2_9AoSQLeVKIyJGViSqHTsmJQF0T8a1/view?usp=sharing" },
+              { no: "5", number: "İ 2025 0007", name: "Xətti reversiv pyezoelektrik mühərrik", authors: "Həsənov Mehman, Yusifbəyli Nurəli, Hacıyeva Könül, Nəcəfov Baloğlan, Hüseynli Fərid", link: "https://drive.google.com/file/d/1-SOUpeq4amNDwNO4celBFQ9ll6tZW6xw/view?usp=sharing" },
+              { no: "6", number: "İ 2025 0018", name: "Ət doğrayan bıçaqların itiləmə üsulu", authors: "Abbasov Vaqif, Kamal Aytən, Kərimov Azad", link: "https://drive.google.com/file/d/1Kd3Sdm9mQcpohv-vlx64cglslrUu4e2_/view?usp=sharing" },
+              { no: "7", number: "İ 2025 0055", name: "Vakuumda lazerlə diffuziya metallaşdırması üsulu", authors: "Abbasov Vaqif, Hüseynov Ələkbər, Əsədov Şövqi, Kərimov Azad, Hüseynli Fərid", link: "https://drive.google.com/file/d/1gJgCYJv2QowWLeFr2YstPfMPZXC19TlE/view?usp=sharing" },
+              { no: "8", number: "İ 2025 0101", name: "Diskvari frezlərin itilənmə üsulu", authors: "Abbasov Vaqif, Nəsirov Mürsəl, Kərimov Azad", link: "https://drive.google.com/file/d/1tiIjR7bdyhJRuH4YFbogS-VC67t1sr0X/view?usp=sharing" },
+              { no: "9", number: "F 2025 0039", name: "Panel tipli qızdırıcı radiator", authors: "Məmmədov Firuz, Əhmədov Bəyalı", link: "https://drive.google.com/file/d/1fn1wyTf1yGsSKAVo5KZ5ieKQ6nj9kGRs/view?usp=sharing" },
+              { no: "10", number: "F 2025 0040", name: "Maqnit asqılı havada tozun konsentrasiyasını ölçən qurğu", authors: "Əfəndiyev Orxan, Fərhadov Vahid, Aşirov Zaur, Allahverdiyeva Aynurə", link: "https://drive.google.com/file/d/1Pa-IqKm1Eg6FoanTb5t5dvsawU44huQQ/view?usp=sharing" },
+              { no: "11", number: "№ 050892", name: "Способ производства труб", authors: "Məmmədov Arif, Babayev Aqil, İsmayılov Nizami, Hüseynov Muxtar, Musurzayeva Bəturə", link: "https://drive.google.com/file/d/1O9a9R1l2V8_yWxiFHjp6mjbgPqqcJUHg/view?usp=sharing" }
+            ]
+          }
+        ]
+      }
+    },
   },
 
   hero: {
