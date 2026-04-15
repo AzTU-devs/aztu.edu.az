@@ -120,13 +120,7 @@ const en = {
         subtitle: "Where we are headed — the future AzTU is building toward.",
         breadcrumb: "Vision",
         statementTitle: "Our Vision Statement",
-        visionQuote: "\"To be a globally recognised technical university, inspiring innovation, cultivating engineering talent, and driving sustainable development for Azerbaijan and the world.\"",
-        whatItMeans: "What Our Vision Means",
-        points: [
-          { title: "Engineering Leadership", body: "To produce engineers and scientists who set the standard for technical innovation across the South Caucasus and beyond." },
-          { title: "Global Recognition", body: "To earn a place among the world's leading technical universities through world-class research, teaching, and international partnership." },
-          { title: "Sustainable Innovation", body: "To pioneer technologies and practices that address the defining challenges of our era — energy, climate, and digitalisation." },
-        ],
+        visionQuote: "Our vision is to become a leading university in the region in the engineering fields of the future through innovation and the application of advanced technologies.",
         related: [
           { title: "Mission", href: "/about/mission" },
           { title: "Strategic Plan", href: "/about/strategic-plan" },
@@ -140,14 +134,7 @@ const en = {
         subtitle: "Why AzTU exists — the commitment we make to our students, our country, and the world.",
         breadcrumb: "Mission",
         statementTitle: "Our Mission Statement",
-        missionStatement: "Azerbaijan Technical University is committed to delivering world-class education, advancing knowledge through research, and developing ethical engineers and scientists who contribute to the sustainable development of Azerbaijan and the global community.",
-        coreTitle: "Four Core Commitments",
-        pillars: [
-          { title: "Outstanding Education", body: "Deliver rigorous, research-informed engineering and technical education that meets the highest international standards and prepares graduates for global careers." },
-          { title: "Advancing Knowledge", body: "Pursue frontier research that expands the boundaries of science and technology, and translates discoveries into real-world impact for industry and society." },
-          { title: "Industry Partnership", body: "Build deep, enduring partnerships with industry, government, and civil society to ensure our programmes remain relevant and our graduates are in demand." },
-          { title: "Ethical Leadership", body: "Develop engineers and scientists with a strong ethical compass, committed to the sustainable development of Azerbaijan and the global community." },
-        ],
+        missionStatement: "To possess advanced education and research potential in the fields of engineering sciences and the application of smart technologies.",
         related: [
           { title: "Vision", href: "/about/vision" },
           { title: "Strategic Plan", href: "/about/strategic-plan" },

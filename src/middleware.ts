@@ -101,10 +101,37 @@ export function middleware(request: NextRequest) {
         if (lang === "en" && segments_rest[0] === "haqqimizda" && segments_rest[1] === "rehbetlik-ve-idareetme" && segments_rest[2] === "rektor") {
             return NextResponse.redirect(new URL("/en/about/leadership-and-management/rector", request.url));
         }
+
+        // Vision & Mission Redirects
+        if (segments_rest[1] === "vision-mission" || segments_rest[1] === "vizyon-ve-missiya") {
+            const sub = segments_rest[2];
+            if (lang === "az") {
+                if (segments_rest[0] === "about" || segments_rest[1] === "vision-mission" || (sub && sub === "vision")) {
+                    const newSub = sub === "mission" ? "missiya" : "vizyon";
+                    return NextResponse.redirect(new URL(`/az/haqqimizda/vizyon-ve-missiya/${newSub}`, request.url));
+                }
+            }
+            if (lang === "en") {
+                if (segments_rest[0] === "haqqimizda" || segments_rest[1] === "vizyon-ve-missiya" || (sub && sub === "vizyon")) {
+                    const newSub = sub === "missiya" ? "mission" : "vision";
+                    return NextResponse.redirect(new URL(`/en/about/vision-mission/${newSub}`, request.url));
+                }
+            }
+        }
         
         // Redirect old /rector to new nested path
         if (segments_rest[1] === "rector" || segments_rest[1] === "rektor") {
             const prefix = lang === "az" ? "haqqimizda/rehbetlik-ve-idareetme/rektor" : "about/leadership-and-management/rector";
+            return NextResponse.redirect(new URL(`/${lang}/${prefix}`, request.url));
+        }
+
+        // Standard Vision/Mission Redirects
+        if (segments_rest[1] === "vision" || segments_rest[1] === "vizyon") {
+            const prefix = lang === "az" ? "haqqimizda/vizyon-ve-missiya/vizyon" : "about/vision-mission/vision";
+            return NextResponse.redirect(new URL(`/${lang}/${prefix}`, request.url));
+        }
+        if (segments_rest[1] === "mission" || segments_rest[1] === "missiya") {
+            const prefix = lang === "az" ? "haqqimizda/vizyon-ve-missiya/missiya" : "about/vision-mission/mission";
             return NextResponse.redirect(new URL(`/${lang}/${prefix}`, request.url));
         }
     }
@@ -249,6 +276,17 @@ export function middleware(request: NextRequest) {
             segments_rest = ["about", "vice-rector"];
         } else if (sub === "scientific-board" || sub === "elmi-sura") {
             segments_rest = ["about", "scientific-board"];
+        }
+    }
+
+    // Vision & Mission Mapping
+    if ((segments_rest[0] === "about" || segments_rest[0] === "haqqimizda") && 
+        (segments_rest[1] === "vision-mission" || segments_rest[1] === "vizyon-ve-missiya")) {
+        const sub = segments_rest[2];
+        if (sub === "vision" || sub === "vizyon") {
+            segments_rest = ["about", "vision"];
+        } else if (sub === "mission" || sub === "missiya") {
+            segments_rest = ["about", "mission"];
         }
     }
 
