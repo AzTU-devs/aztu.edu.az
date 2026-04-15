@@ -86,31 +86,38 @@ const az = {
   pages: {
     about: {
       history: {
-        eyebrow: "Haqqımızda",
+        eyebrow: "Mirasımız",
         title: "AzTU-nun Tarixi",
-        subtitle: "Azərbaycanın texniki tərəqqisini formalaşdıran mühəndislər, novatorlar və liderlərin yetişdirilməsinin yetmiş ildən artıq tarixi.",
+        subtitle: "1887-ci ildən bəri davam edən innovasiya və mükəmməllik yolu.",
         breadcrumb: "Tarix",
-        legacyTitle: "Mühəndislik Mükəmməliyyətinin Mirası",
-        para1: "Azərbaycan Texniki Universiteti (AzTU) 1950-ci ildə Azərbaycan Politexnik İnstitutu kimi təsis edilib. Universitetin missiyası Azərbaycan Sovet Sosialist Respublikasının artan sənaye ehtiyacları üçün yüksək ixtisaslı mühəndis kadrları hazırlamaq idi.",
-        para2: "İlk illərindən etibarən universitet ciddi elmi hazırlıq sahəsində şöhrət qazandı. Məzunları Sovet İttifaqı boyunca əlamətdar infrastruktur layihələrinə töhfə verdilər — Xəzər hövzəsindəki neft hasilatı texnologiyalarından tutmuş Mərkəzi Asiyanı əhatə edən telekommunikasiya şəbəkələrinə qədər.",
-        para3: "Azərbaycanın 1991-ci ildə müstəqilliyini bərpa etməsindən sonra universitet transformasiya dövrünə girdi. Tədris planları modernləşdirildi, beynəlxalq tərəfdaşlıqlar quruldu və 2000-ci ildə qurum rəsmi olaraq Azərbaycan Texniki Universiteti adını aldı — qlobal standartlarla uyğunlaşan hərtərəfli tədqiqat və tədris müəssisəsinə çevrilməsini əks etdirdi.",
-        para4: "Bu gün AzTU Cənubi Qafqazın ən böyük və ən nüfuzlu texniki universitetlərindən biridir; 12 fakültə üzrə 25.000-dən çox tələbəsi var və Avropa, Asiya və Şimali Amerikada universitetlərlə aktiv əməkdaşlıq müqavilələri mövcuddur.",
         milestonesTitle: "Əsas Mərhələlər",
         milestones: [
-          { year: "1950", title: "Təsis", description: "Azərbaycan Politexnik İnstitutu Sovet hökuməti tərəfindən respublikanın artan sənaye sektoru üçün mühəndis kadrları hazırlamaq məqsədilə yaradıldı." },
-          { year: "1959", title: "İlk Məzunlar", description: "İlk mühəndis qrupu məzun oldu; onların çoxu Azərbaycanda və bütün Sovet İttifaqında aparıcı sənaye sahələrini idarə etməyə getdi." },
-          { year: "1991", title: "Müstəqillik Dövrü", description: "Azərbaycanın müstəqillik elanından sonra institut böyük islahat dövrünə girdi — tədris planlarını bazar iqtisadiyyatının tələblərinə cavab vermək üçün yenidən qurdu." },
-          { year: "2000", title: "Universitet Statusu", description: "Qurum rəsmi olaraq Azərbaycan Texniki Universiteti (AzTU) adını aldı; bu, onun genişləndirilmiş akademik əhatə dairəsini və tədqiqat missiyasını əks etdirdi." },
-          { year: "2008", title: "Beynəlxalq Tərəfdaşlıqlar", description: "AzTU aparıcı Avropa və Asiya universitetləri ilə ilk beynəlxalq əməkdaşlıq müqavilələri dalgasını imzaladı; mübadilə və birgə dərəcə proqramları açıldı." },
-          { year: "2015", title: "Rəqəmsal Transformasiya", description: "Universitetdə geniş miqyaslı rəqəmsallaşdırma proqramı başladı: LMS platformaları, elektron kitabxanalar və ağıllı sinif otaqları bütün fakültələrdə tətbiq edildi." },
-          { year: "2020", title: "CDIO Təşəbbüsü", description: "AzTU qlobal CDIO (Düşün–Layihələndir–Həyata Keçir–İdarə Et) Təşəbbüsünə qoşuldu; bu, mühəndislik təhsilini layihəyə əsaslanan öyrənmə istiqamətində köklü şəkildə yenidən qurmaq deməkdir." },
-          { year: "2024", title: "Davamlılıq Kampusu", description: "Yaşıl infrastruktur və bərpa olunan enerji tədqiqat qurğularını özündə birləşdirən yeni davamlılıq yönümlü kampus genişlənməsi başladı." },
+          { year: "1887", title: "Azərbaycanda texniki təhsilin əsası qoyuldu", description: "1887-ci il noyabrın 10-da Bakı şəhər Dumasının qərarı ilə Bakıda 4 sinifli texniki məktəb yaradıldı və bununla Azərbaycanda texniki təhsilin əsası qoyuldu. Məktəbdə dülgərlik, xarratlıq, dəmirçilik və çilingərlik emalatxanaları fəaliyyət göstərirdi." },
+          { year: "1905", title: "Orta texniki məktəb kimi yenidən təşkil olundu", description: "1905-ci ilin yanvarında təhsil müəssisəsi Mexanika-inşaat orta texniki məktəbi kimi yenidən təşkil edildi. Bu dövrdən etibarən mexanika və inşaat sahələri üzrə mütəxəssis hazırlığı daha da genişləndirildi." },
+          { year: "1910", title: "Yeni ixtisas istiqamətləri yaradıldı", description: "Mexanika şöbəsində neft mexanikası və elektromexanika ixtisasları üzrə kadr hazırlığına başlanıldı. Bu, dövrün sənaye tələblərinə uyğun mütəxəssis hazırlığında mühüm mərhələ idi." },
+          { year: "1918", title: "Politexnik məktəb statusu aldı", description: "Azərbaycan Demokratik Respublikasının qərarına əsasən, məktəb Politexnik məktəb adlandırıldı. Bu dövrdə təhsil müəssisəsində Neft sənayesi, Elektromexanika və Memarlıq-inşaat şöbələri fəaliyyət göstərirdi." },
+          { year: "1920", title: "Bakı Politexnik İnstitutu yaradıldı", description: "1920-ci il noyabrın 14-də Politexnik məktəbin bazasında Bakı Politexnik İnstitutu yaradıldı. Bununla da ölkədə ali texniki təhsilin inkişafında yeni mərhələnin əsası qoyuldu." },
+          { year: "1923", title: "Azərbaycan Politexnik İnstitutu adlandırıldı", description: "1923-cü ildən etibarən təhsil müəssisəsi Azərbaycan Politexnik İnstitutu adı ilə fəaliyyətini davam etdirdi." },
+          { year: "1930", title: "Azərbaycan Neft İnstitutu kimi fəaliyyət göstərdi", description: "1930-cu ildə institut Azərbaycan Neft İnstitutu adlandırıldı və ölkənin neft sənayesi üçün mühəndis kadrlarının hazırlanmasında mühüm rol oynadı." },
+          { year: "1934", title: "Azərbaycan Sənaye İnstitutu yaradıldı", description: "1934-cü ilin yanvarında Azərbaycan Neft İnstitutu ilə İnşaat İnstitutu birləşdirilərək Azərbaycan Sənaye İnstitutu yaradıldı." },
+          { year: "1950", title: "Azərbaycan Politexnik İnstitutu yenidən təşkil edildi", description: "1950-ci ilin noyabrında Azərbaycan Politexnik İnstitutu yenidən fəaliyyətə başladı. Bu mərhələ indiki Azərbaycan Texniki Universitetinin müasir tarixinin başlanğıcı hesab olunur." },
+          { year: "1955", title: "Universitetin əsas binasına köçürüldü", description: "1955-ci ildən etibarən institutun bütün fakültələri universitetin indiki əsas binasında fəaliyyət göstərməyə başladı." },
+          { year: "1975", title: "Yeni ali texniki təhsil müəssisələrinin formalaşmasına zəmin yaratdı", description: "Azərbaycan Politexnik İnstitutunun bazasında Azərbaycan Memarlıq və İnşaat Universiteti və Gəncə Texnologiya İnstitutu yaradıldı." },
+          { year: "1978", title: "Beynəlxalq təhsil əlaqələri genişləndirildi", description: "1978-ci ildən başlayaraq universitet müxtəlif ölkələr üçün mühəndis və texniki profilli mütəxəssislərin hazırlanmasına başladı və beynəlxalq təhsil məkanında mövqeyini daha da gücləndirdi." },
+          { year: "1983", title: "Yüksək nailiyyətlərinə görə təltif olundu", description: "İnstitut tədris-metodiki və elmi-texniki sahələrdə qazandığı nailiyyətlərə görə SSRİ Ali və Orta İxtisas Təhsili Nazirliyinin müvafiq mükafatına layiq görüldü." },
+          { year: "1991", title: "Azərbaycan Texniki Universiteti adını aldı", description: "1991-ci ildən etibarən ali təhsil müəssisəsi Azərbaycan Texniki Universiteti (AzTU) adı ilə fəaliyyət göstərir." },
+          { year: "Bu gün", title: "Azərbaycanın aparıcı texniki ali təhsil müəssisələrindən biri", description: "Bu gün Azərbaycan Texniki Universiteti ölkənin aparıcı texniki ali təhsil müəssisələrindən biri kimi mühəndislik, nəqliyyat, informasiya texnologiyaları, energetika, iqtisadiyyat və digər strateji sahələr üzrə yüksəkixtisaslı kadrlar hazırlayır." },
         ],
         stats: [
           { value: "75+", label: "İllik Tarix" },
           { value: "25,000+", label: "Tələbə" },
           { value: "1,500+", label: "Akademik Heyət" },
           { value: "12", label: "Fakültə" },
+        ],
+        related: [
+          { title: "Vizyon", href: "/about/vision" },
+          { title: "Missiya", href: "/about/mission" },
+          { title: "Yubiley Filmi", href: "/about/75-illik-yubiley-filmi" },
         ],
       },
 
@@ -138,6 +145,18 @@ const az = {
         related: [
           { title: "Vizyon", href: "/about/vision" },
           { title: "Strateji Plan", href: "/about/strategic-plan" },
+          { title: "AzTU-nun Tarixi", href: "/about/history" },
+        ],
+      },
+
+      anniversaryFilm: {
+        eyebrow: "Qeyd etmə",
+        title: "75 İllik Yubiley Filmi",
+        subtitle: "AzTU-nun tarixini və nailiyyətlərini yubiley sənədli filmimiz vasitəsilə kəşf edin.",
+        breadcrumb: "Yubiley Filmi",
+        related: [
+          { title: "Vizyon", href: "/about/vision" },
+          { title: "Missiya", href: "/about/mission" },
           { title: "AzTU-nun Tarixi", href: "/about/history" },
         ],
       },
@@ -200,9 +219,24 @@ const az = {
         breadcrumb: "Rektor",
         messageTitle: "Rektorun Müraciəti",
         message: [
-          "Azərbaycan Texniki Universiteti tarixinin maraqlı bir dönüm nöqtəsindədir. Bizim missiyamız həmişə dünyanı formalaşdırmağa qadir mühəndislər və alimlər hazırlamaq olub — və bu missiya heç vaxt bu qədər təcili və aktuallı olmayıb.",
-          "2025–2030 Strateji Planımızı həyata keçirdikcə, universitetdə hər cəhəti inkişaf etdirməyə sərmayə qoyuruq: CDIO və nəticəyə əsaslanan təhsil vasitəsilə tədris planlarını modernləşdiririk, beynəlxalq tərəfdaşlıqlarımızı genişləndiririk, tədqiqat çıxışımızı sürətləndiririk və dəstəklədiyimiz davamlılıq dəyərlərini əks etdirən kampus qururuq.",
-          "Hər bir tələbəni, fakültə üzvünü və tərəfdaşı bu yolçuluğa qatılmağa dəvət edirəm. Birlikdə AzTU-nun növbəti fəslini yazacağıq — mükəmməllik, açıqlıq və uzunmüddətli təsir ilə müəyyən edilən bir fəsil.",
+          "Hörmətli həmkarlar, tələbələr, məzunlar və tərəfdaşlar,",
+          "Sizi 1887-ci ildən zəngin ənənələrə malik olan və bu gün innovasiya, elmi mükəmməllik və qlobal baxışla inkişaf edən Azərbaycan Texniki Universitetində (AzTU) salamlayıram.",
+          "Bir əsrdən artıq müddətdə AzTU mühəndislik təhsili, elmi tədqiqat və texnoloji inkişaf sahəsində ölkəmizin aparıcı ali təhsil müəssisələrindən biri kimi formalaşmışdır. Bu gün isə biz yalnız bu irsi qorumaqla kifayətlənmir, eyni zamanda müasir dövrün tələblərinə uyğun olaraq daim yenilənən, tədqiqata əsaslanan və beynəlxalq əməkdaşlığa açıq universitet kimi inkişaf edirik. Məzunlarımız akademik biliklə yanaşı liderlik, innovativ düşüncə və peşəkar bacarıqları ilə cəmiyyətin müxtəlif sahələrində mühüm rol oynayırlar.",
+          "Müasir dünya sürətli texnoloji transformasiya dövrünü yaşayır. Rəqəmsallaşma, süni intellekt və qabaqcıl mühəndislik həlləri iqtisadiyyatları və cəmiyyətləri köklü şəkildə dəyişdirir. Bu reallıq universitetlərin rolunu yenidən müəyyən edir – artıq ali təhsil müəssisələri yalnız bilik ötürən deyil, həm də innovasiya yaradan, sahibkarlığı təşviq edən və dayanıqlı inkişafı təmin edən mərkəzlər olmalıdır.",
+          "AzTU olaraq strateji hədəfimiz regionun aparıcı sahibkar universitetlərindən birinə çevrilmək, təhsil, tədqiqat və sənaye əməkdaşlığını vahid ekosistemdə birləşdirərək innovasiyaların real nəticələrə çevrilməsini təmin etməkdir.",
+          "Bu gün tədqiqatlar artıq yalnız akademik mühitlə məhdudlaşmır. Universitetimizdə formalaşan bilik və ideyalar texnoparklar, innovasiya mərkəzləri və sənaye tərəfdaşlıqları vasitəsilə kommersiyalaşdırılaraq iqtisadi və sosial dəyər yaradır. Bu yanaşma universitet–sənaye inteqrasiyasının yeni mərhələsini formalaşdırır.",
+          "Eyni zamanda, qlobal əmək bazarının dəyişən tələblərini nəzərə alaraq təhsil modelimizi daim yeniləyirik. Məqsədimiz tələbələrimizi yalnız mövcud biliklərlə deyil, həm də gələcəyin bacarıqları ilə təmin etməkdir. Süni intellekt, Əşyaların İnterneti, kibertəhlükəsizlik və digər qabaqcıl sahələr üzrə kompetensiyaların inkişafı bu istiqamətdə prioritetlərimizdəndir.",
+          `Əsas fəaliyyət istiqamətlərimiz:
+  • Universitet–sənaye əməkdaşlığını gücləndirmək və texnologiya transferini inkişaf etdirmək
+  • Tədris proqramlarını qlobal texnoloji trendlərə uyğun müasirləşdirmək
+  • Bütün təhsil pillələrində layihə əsaslı və tədqiqat yönümlü təhsili genişləndirmək
+  • Ömürboyu öyrənmə və innovativ düşüncə mədəniyyətini təşviq etmək
+  • Elmi tədqiqatların keyfiyyətini və beynəlxalq təsirini artırmaq`,
+          "AzTU olaraq inanırıq ki, təhsil yalnız bilik qazandırmaq deyil, həm də gələcəyin liderlərini formalaşdırmaqdır — düşünən, yaradan və dəyişikliklərə istiqamət verən fərdlər yetişdirməkdir.",
+          "Sizi bu inkişaf yolunun bir parçası olmağa dəvət edir, birlikdə öyrənməyə, yaratmağa və gələcəyi formalaşdırmağa çağırıram.",
+          "Hörmətlə,",
+          "Prof. Vilayət Vəliyev",
+          "Rektor"
         ],
         responsibilitiesTitle: "Vəzifə Öhdəlikləri",
         responsibilities: [
@@ -221,10 +255,12 @@ const az = {
         ],
         aboutRectorTitle: "Rektor haqqında",
         aboutRector: [
-          "Vilayət Əliyev 1965-ci ildə Azərbaycanda anadan olmuşdur. Ali təhsilini Azərbaycan Texniki Universitetinin Mexanika Mühəndisliyi ixtisası üzrə tamamlamış, daha sonra Texnika Elmləri üzrə doktorluq dissertasiyasını müdafiə etmişdir.",
-          "Professor Əliyev 30 ildən artıq müddətdir ki, özünü mühəndislik təhsilinə və elmi tədqiqatlara həsr etmişdir. O, 120-dən çox elmi əsərin, 3 monoqrafiyanın müəllifidir və mexaniki sistemlər və avtomatlaşdırma sahəsində bir neçə patent sahibidir.",
-          "Rektor vəzifəsinə təyin edilməzdən əvvəl Mexanika Mühəndisliyi fakültəsinin dekanı və Tədris İşləri üzrə Prorektor vəzifələrini icra etmişdir. Onun rəhbərliyi altında AzTU beynəlxalq tərəfdaşlıqlarını əhəmiyyətli dərəcədə genişləndirmiş və Avropa Ali Təhsil Məkanı standartlarına uyğun olaraq tədris proqramlarını modernləşdirmişdir.",
-          "Professor Əliyev Azərbaycan Milli Elmlər Akademiyasının üzvüdür və elm və mühəndislik təhsilinə verdiyi töhfələrə görə çoxsaylı dövlət mükafatlarına layiq görülmüşdür.",
+          "Prof. Vilayət Vəliyev mühəndislik, enerji iqtisadiyyatı və tətbiqi riyaziyyat sahələrində geniştəcrübəyə malik tanınmış alim və akademik rəhbərdir. Azərbaycan Respublikasının Prezidenti İlham Əliyevin Sərəncamı ilə 31 iyul 2019-cu ildə Azərbaycan Texniki Universitetinin (AzTU) rektoru vəzifəsinə təyin edilmiş, 29 iyul 2024-cü ildə bu vəzifəyə yenidən təyin olunmuşdur.",
+          "30 ildən artıq elmi və idarəçilik təcrübəsinə malik olan Prof. Vəliyev Azərbaycan Milli Elmlər Akademiyasında müxtəlif rəhbər vəzifələrdə çalışmış, 2009–2019-cu illərdə İqtisadiyyat Nazirliyinin İqtisadi İslahatlar Elmi Tədqiqat İnstitutunun direktoru olmuşdur. Onun fəaliyyəti enerji siyasəti, iqtisadi modelləşdirmə və strateji inkişaf sahələrində mühüm töhfələrlə yadda qalmışdır.",
+          "Texnika üzrə fəlsəfə doktoru və iqtisad elmləri doktoru olan Prof. Vəliyev 2013-cü ildə professor elmi adını almışdır. O, ABŞ-da UNOCAL və PENNZOIL şirkətlərində, həmçinin Oklahoma Universitetində elmi tədqiqatlar aparmışdır. Beynəlxalq Enerji İqtisadçıları Assosiasiyasının (IAEE) üzvü olmuş, 2018-ci ildə bu təşkilatın regional məsələlər üzrə vitse-prezidenti seçilmişdir.",
+          "Prof. Vəliyev Dünya Bankı, AYİB, Asiya İnkişaf Bankı, USAID, Avropa İttifaqı və digər beynəlxalq qurumlarla əməkdaşlıq çərçivəsində çoxsaylı layihələrə rəhbərlik etmişdir. O, 100-dən artıq elmi əsərin, o cümlədən beynəlxalq nəşrlərin, monoqrafiya və dərsliyin müəllifidir və bir sıra doktorantların elmi rəhbəri olmuşdur.", ,
+          "Elmi və pedaqoji fəaliyyətinə görə 2014-cü ildə “Əməkdar elm xadimi” fəxri adına layiq görülmüşdür.",
+          "Rus və ingilis dillərini bilir. Ailəlidir, iki övladı var."
         ],
         departmentsTitle: "Rektora tabe olan şöbələr",
         departments: [

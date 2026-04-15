@@ -134,6 +134,18 @@ export function middleware(request: NextRequest) {
             const prefix = lang === "az" ? "haqqimizda/vizyon-ve-missiya/missiya" : "about/vision-mission/mission";
             return NextResponse.redirect(new URL(`/${lang}/${prefix}`, request.url));
         }
+
+        // History Redirects
+        if (segments_rest[1] === "history" || segments_rest[1] === "history-of-aztu" || segments_rest[1] === "aztu-nun-tarixi") {
+            const prefix = lang === "az" ? "haqqimizda/vizyon-ve-missiya/aztu-nun-tarixi" : "about/vision-mission/history-of-aztu";
+            return NextResponse.redirect(new URL(`/${lang}/${prefix}`, request.url));
+        }
+
+        // Anniversary Film Redirects
+        if (segments_rest[1] === "75th-anniversary-film" || segments_rest[1] === "75-illik-yubiley-filmi") {
+            const prefix = lang === "az" ? "haqqimizda/vizyon-ve-missiya/75-illik-yubiley-filmi" : "about/vision-mission/75th-anniversary-film";
+            return NextResponse.redirect(new URL(`/${lang}/${prefix}`, request.url));
+        }
     }
 
     // Academic & Faculties Redirects
@@ -287,6 +299,10 @@ export function middleware(request: NextRequest) {
             segments_rest = ["about", "vision"];
         } else if (sub === "mission" || sub === "missiya") {
             segments_rest = ["about", "mission"];
+        } else if (sub === "history-of-aztu" || sub === "aztu-nun-tarixi") {
+            segments_rest = ["about", "history"];
+        } else if (sub === "75th-anniversary-film" || sub === "75-illik-yubiley-filmi") {
+            segments_rest = ["about", "anniversary-film"];
         }
     }
 
