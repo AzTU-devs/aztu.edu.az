@@ -142,6 +142,18 @@ const en = {
         ],
       },
 
+      anniversaryFilm: {
+        eyebrow: "Celebration",
+        title: "75th Anniversary Film",
+        subtitle: "Experience the history and achievements of AzTU through our anniversary documentary.",
+        breadcrumb: "Anniversary Film",
+        related: [
+          { title: "Vision", href: "/about/vision" },
+          { title: "Mission", href: "/about/mission" },
+          { title: "History of AzTU", href: "/about/history" },
+        ],
+      },
+
       strategicPlan: {
         eyebrow: "Strategy 2025 – 2030",
         title: "Strategic Plan",

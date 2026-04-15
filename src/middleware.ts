@@ -11,6 +11,16 @@ const INTERNAL_FOLDERS = ["idareetme", "tedqiqat", "haqqimizda", "struktur", "te
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Skip Next.js internals, static files, and API
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api") ||
+    pathname.includes(".") ||
+    pathname === "/favicon.ico"
+  ) {
+    return NextResponse.next();
+  }
+
   const segments = pathname.split("/").filter(Boolean);
   const firstSegment = segments[0];
 
@@ -105,17 +115,17 @@ export function middleware(request: NextRequest) {
         // Vision & Mission Redirects
         if (segments_rest[1] === "vision-mission" || segments_rest[1] === "vizyon-ve-missiya") {
             const sub = segments_rest[2];
-            if (lang === "az") {
-                if (segments_rest[0] === "about" || segments_rest[1] === "vision-mission" || (sub && sub === "vision")) {
-                    const newSub = sub === "mission" ? "missiya" : "vizyon";
-                    return NextResponse.redirect(new URL(`/az/haqqimizda/vizyon-ve-missiya/${newSub}`, request.url));
-                }
-            }
-            if (lang === "en") {
-                if (segments_rest[0] === "haqqimizda" || segments_rest[1] === "vizyon-ve-missiya" || (sub && sub === "vizyon")) {
-                    const newSub = sub === "missiya" ? "mission" : "vision";
-                    return NextResponse.redirect(new URL(`/en/about/vision-mission/${newSub}`, request.url));
-                }
+            // If already on the correct localized path, do nothing
+            if (lang === "az" && segments_rest[0] === "haqqimizda" && segments_rest[1] === "vizyon-ve-missiya") {
+                // Already correct AZ path
+            } else if (lang === "en" && segments_rest[0] === "about" && segments_rest[1] === "vision-mission") {
+                // Already correct EN path
+            } else {
+                // Incorrect localized parent slug, redirect to correct one
+                const newParent = lang === "az" ? "haqqimizda/vizyon-ve-missiya" : "about/vision-mission";
+                // Keep the sub-slug as is if it's already localized, or just pass it through
+                const finalSub = sub || "vision"; 
+                return NextResponse.redirect(new URL(`/${lang}/${newParent}/${finalSub}`, request.url));
             }
         }
         
@@ -125,7 +135,7 @@ export function middleware(request: NextRequest) {
             return NextResponse.redirect(new URL(`/${lang}/${prefix}`, request.url));
         }
 
-        // Standard Vision/Mission Redirects
+        // Standard Vision/Mission/History Redirects (from top-level /about/...)
         if (segments_rest[1] === "vision" || segments_rest[1] === "vizyon") {
             const prefix = lang === "az" ? "haqqimizda/vizyon-ve-missiya/vizyon" : "about/vision-mission/vision";
             return NextResponse.redirect(new URL(`/${lang}/${prefix}`, request.url));
@@ -134,14 +144,10 @@ export function middleware(request: NextRequest) {
             const prefix = lang === "az" ? "haqqimizda/vizyon-ve-missiya/missiya" : "about/vision-mission/mission";
             return NextResponse.redirect(new URL(`/${lang}/${prefix}`, request.url));
         }
-
-        // History Redirects
         if (segments_rest[1] === "history" || segments_rest[1] === "history-of-aztu" || segments_rest[1] === "aztu-nun-tarixi") {
             const prefix = lang === "az" ? "haqqimizda/vizyon-ve-missiya/aztu-nun-tarixi" : "about/vision-mission/history-of-aztu";
             return NextResponse.redirect(new URL(`/${lang}/${prefix}`, request.url));
         }
-
-        // Anniversary Film Redirects
         if (segments_rest[1] === "75th-anniversary-film" || segments_rest[1] === "75-illik-yubiley-filmi") {
             const prefix = lang === "az" ? "haqqimizda/vizyon-ve-missiya/75-illik-yubiley-filmi" : "about/vision-mission/75th-anniversary-film";
             return NextResponse.redirect(new URL(`/${lang}/${prefix}`, request.url));
