@@ -86,38 +86,31 @@ const en = {
   pages: {
     about: {
       history: {
-        eyebrow: "Our Legacy",
-        title: "History of AzTU",
-        subtitle: "A journey of innovation and excellence since 1887.",
+        eyebrow: "About AzTU",
+        title: "History of Azerbaijan Technical University",
+        subtitle: "Over seven decades of shaping engineers, innovators, and leaders who drive Azerbaijan's technological progress.",
         breadcrumb: "History",
+        legacyTitle: "A Legacy of Engineering Excellence",
+        para1: "Azerbaijan Technical University (AzTU) was established in 1950 as the Azerbaijan Polytechnic Institute, founded with the mission of training highly qualified engineering cadres for the growing industrial needs of the Azerbaijan Soviet Socialist Republic.",
+        para2: "From its earliest years, the university built a reputation for rigorous scientific training. Its graduates contributed to landmark infrastructure projects across the Soviet Union — from oil extraction technologies in the Caspian Basin to telecommunications networks spanning Central Asia.",
+        para3: "Following Azerbaijan's restoration of independence in 1991, the university entered a transformative era. Curricula were modernised, international partnerships were forged, and in 2000 the institution was officially reconstituted as Azerbaijan Technical University — signalling its evolution into a comprehensive research and teaching institution aligned with global standards.",
+        para4: "Today, AzTU is one of the largest and most prestigious technical universities in the South Caucasus, with more than 25,000 students across 12 faculties, and active collaboration agreements with universities in Europe, Asia, and North America.",
         milestonesTitle: "Key Milestones",
         milestones: [
-          { year: "1887", title: "Foundation of Technical Education in Azerbaijan", description: "On November 10, 1887, by decision of the Baku City Duma, a four-grade technical school was established in Baku, laying the foundation for technical education in Azerbaijan. The school operated carpentry, joinery, blacksmithing, and locksmith workshops." },
-          { year: "1905", title: "Reorganization as a Secondary Technical School", description: "In January 1905, the institution was reorganized as the Mechanical-Construction Secondary Technical School. From this period, the training of specialists in mechanics and construction was significantly expanded." },
-          { year: "1910", title: "Introduction of New Specializations", description: "The Mechanics Department began training specialists in oil mechanics and electromechanics, marking an important step in meeting the industrial demands of the time." },
-          { year: "1918", title: "Polytechnic School Status", description: "By decision of the Azerbaijan Democratic Republic, the institution was renamed Polytechnic School. It operated departments in Oil Industry, Electromechanics, and Architecture-Construction." },
-          { year: "1920", title: "Establishment of Baku Polytechnic Institute", description: "On November 14, 1920, the Baku Polytechnic Institute was established on the basis of the Polytechnic School. This marked the beginning of a new stage in the development of higher technical education in the country." },
-          { year: "1923", title: "Azerbaijan Polytechnic Institute", description: "From 1923, the institution continued its activity under the name Azerbaijan Polytechnic Institute." },
-          { year: "1930", title: "Azerbaijan Oil Institute", description: "In 1930, the institute was renamed Azerbaijan Oil Institute and played a key role in training engineering specialists for the oil industry." },
-          { year: "1934", title: "Azerbaijan Industrial Institute", description: "In January 1934, the Azerbaijan Oil Institute and the Construction Institute were merged to form the Azerbaijan Industrial Institute." },
-          { year: "1950", title: "Re-establishment of Azerbaijan Polytechnic Institute", description: "In November 1950, the Azerbaijan Polytechnic Institute resumed its activity. This period marks the beginning of the modern history of the present-day Azerbaijan Technical University." },
-          { year: "1955", title: "Relocation to the Main Building", description: "From 1955, all faculties were relocated to the university’s current main building." },
-          { year: "1975", title: "Formation of New Higher Technical Institutions", description: "On the basis of the Azerbaijan Polytechnic Institute, the Azerbaijan University of Architecture and Construction and the Ganja Institute of Technology were established." },
-          { year: "1978", title: "Expansion of International Education", description: "From 1978, the university began training specialists for various countries, strengthening its position in the international educational arena." },
-          { year: "1983", title: "Award for Academic Excellence", description: "The institute was awarded by the USSR Ministry of Higher and Secondary Specialized Education for its achievements in academic, methodological, and scientific-technical fields." },
-          { year: "1991", title: "Azerbaijan Technical University", description: "Since 1991, the institution has been operating under its current name — Azerbaijan Technical University (AzTU)." },
-          { year: "Today", title: "One of Azerbaijan’s Leading Technical Universities", description: "Today, Azerbaijan Technical University is one of the country’s leading technical higher education institutions, providing highly qualified specialists in engineering, transport, information technologies, energy, economics, and other strategic fields." },
+          { year: "1950", title: "Foundation", description: "Azerbaijan Polytechnic Institute was established by the Soviet government to train engineering cadres for the growing industrial sector of the republic." },
+          { year: "1959", title: "First Graduates", description: "The first cohort of engineers graduated, many of whom went on to lead key industries in Azerbaijan and across the Soviet Union." },
+          { year: "1991", title: "Independence Era", description: "Following Azerbaijan's declaration of independence, the institute began a period of major reform — restructuring curricula to meet the demands of a market economy." },
+          { year: "2000", title: "University Status", description: "The institution was officially renamed Azerbaijan Technical University (AzTU), reflecting its expanded academic scope and research mission." },
+          { year: "2008", title: "International Partnerships", description: "AzTU signed its first wave of international cooperation agreements with leading European and Asian universities, opening exchange and joint-degree programmes." },
+          { year: "2015", title: "Digital Transformation", description: "A university-wide digitalisation programme launched: LMS platforms, e-libraries, and smart classrooms were introduced across all faculties." },
+          { year: "2020", title: "CDIO Initiative", description: "AzTU joined the global CDIO (Conceive–Design–Implement–Operate) Initiative, fundamentally reshaping engineering education toward project-based learning." },
+          { year: "2024", title: "Sustainability Campus", description: "A new sustainability-focused campus expansion broke ground, integrating green infrastructure and renewable energy research facilities." },
         ],
         stats: [
           { value: "75+", label: "Years of History" },
           { value: "25,000+", label: "Students" },
           { value: "1,500+", label: "Academic Staff" },
           { value: "12", label: "Faculties" },
-        ],
-        related: [
-          { title: "Vision", href: "/about/vision" },
-          { title: "Mission", href: "/about/mission" },
-          { title: "Anniversary Film", href: "/about/75th-anniversary-film" },
         ],
       },
 
@@ -145,18 +138,6 @@ const en = {
         related: [
           { title: "Vision", href: "/about/vision" },
           { title: "Strategic Plan", href: "/about/strategic-plan" },
-          { title: "History of AzTU", href: "/about/history" },
-        ],
-      },
-
-      anniversaryFilm: {
-        eyebrow: "Celebration",
-        title: "75th Anniversary Film",
-        subtitle: "Experience the history and achievements of AzTU through our anniversary documentary.",
-        breadcrumb: "Anniversary Film",
-        related: [
-          { title: "Vision", href: "/about/vision" },
-          { title: "Mission", href: "/about/mission" },
           { title: "History of AzTU", href: "/about/history" },
         ],
       },
@@ -219,9 +200,24 @@ const en = {
         breadcrumb: "Rector",
         messageTitle: "Message from the Rector",
         message: [
-          "Azerbaijan Technical University stands at an exciting inflection point in its history. Our mission has always been to prepare engineers and scientists capable of shaping the world — and that mission has never been more urgent or more relevant.",
-          "As we execute our Strategic Plan 2025–2030, we are investing in every dimension of university life: modernising our curricula through CDIO and outcome-based education, expanding our international partnerships, accelerating our research output, and building a campus that reflects the values of sustainability we espouse.",
-          "I invite every student, faculty member, and partner to join us on this journey. Together, we will write the next chapter of AzTU — one defined by excellence, openness, and lasting impact.",
+          "Dear Colleagues, Students, Alumni, and Partners,",
+          "It is my great pleasure to welcome you to Azerbaijan Technical University (AzTU) an institution with a distinguished legacy dating back to 1887 and a forward-looking vision shaped by innovation, excellence, and global engagement.",
+          "For more than a century, AzTU has stood at the forefront of engineering education, research, and technological advancement in Azerbaijan. Today, we continue to evolve as a modern, research-driven university, committed to nurturing highly skilled professionals, advancing knowledge, and contributing meaningfully to society and industry. Our graduates distinguish themselves not only through academic excellence but also through leadership, innovation, and impactful contributions across public and private sectors.",
+          "We are living in an era defined by rapid technological transformation, where digitalization, artificial intelligence, and advanced engineering are reshaping economies and societies. In this dynamic landscape, universities must go beyond traditional education they must become engines of innovation, entrepreneurship, and sustainable development.",
+          "Our strategic ambition is clear: to develop into a leading entrepreneurial university in the region, one that seamlessly integrates education, research, and industry collaboration. We are committed to fostering an ecosystem where ideas are transformed into innovations, and innovations into real-world solutions.",
+          "Research today extends far beyond academic laboratories. Through our growing network of technoparks, innovation hubs, and industry partnerships, we actively support the commercialization of knowledge, enabling scientific discoveries to generate tangible economic and societal value.",
+          "In response to the evolving demands of the global workforce, we are continuously transforming our educational model. We emphasize interdisciplinary learning, project-based education, and close collaboration with industry to ensure that our students are equipped with the competencies required for the future — including expertise in Artificial Intelligence, the Internet of Things, cybersecurity, and other emerging fields.",
+          `Our key priorities include:
+          • Strengthening university–industry collaboration and advancing technology transfer
+          • Modernizing curricula in line with global digital and technological trends
+          • Expanding project-based and research-integrated learning across all levels of education
+          • Promoting lifelong learning and cultivating adaptive, innovative mindsets
+          • Enhancing the quality, impact, and international visibility of our research`,
+          "We believe that education is not only about knowledge but also about shaping future leaders, individuals who can think critically, act responsibly, and drive meaningful change in an increasingly complex world.",
+          "We invite you to be part of this journey to learn, to innovate, and to lead.",
+          "Sincerely,",
+          "Prof. Vilayat Valiyev",
+          "Rector"
         ],
         responsibilitiesTitle: "Responsibilities",
         responsibilities: [
@@ -240,10 +236,12 @@ const en = {
         ],
         aboutRectorTitle: "About the Rector",
         aboutRector: [
-          "Vilayet Veliyev was born in 1965 in Azerbaijan. He completed his higher education at Azerbaijan Technical University, specializing in Mechanical Engineering, and later defended his doctoral dissertation in Technical Sciences.",
-          "Professor Veliyev has dedicated over 30 years to engineering education and scientific research. He has authored more than 120 scientific publications, 3 monographs, and holds several patents in the field of mechanical systems and automation.",
-          "Prior to his appointment as Rector, he served as Dean of the Faculty of Mechanical Engineering and as Vice-Rector for Academic Affairs. Under his leadership, AzTU has significantly expanded its international partnerships and modernized its academic programs in line with European Higher Education Area standards.",
-          "Professor Veliyev is a member of the National Academy of Sciences of Azerbaijan and has received numerous state awards for his contributions to science and engineering education.",
+          "Prof. Vilayat Valiyev is a distinguished scholar and academic leader with extensive expertise in engineering, energy economics, and applied mathematics. Since his appointment as Rector of Azerbaijan Technical University (AzTU) in July 2019 by the Decree of the President of the Republic of Azerbaijan, Ilham Aliyev, he has led the University’s strategic transformation toward a modern, research-driven and entrepreneurial institution. He was reappointed to this position in July 2024.",
+          "With a career spanning over three decades, Prof. Valiyev has held senior research and leadership positions at the Azerbaijan National Academy of Sciences and served as Director of the Institute for Scientific Research on Economic Reforms under the Ministry of Economy (2009–2019). His work has significantly contributed to energy policy, economic modeling, and strategic development at both national and international levels.",
+          "Prof. Valiyev holds a PhD in Engineering and a Doctor of Sciences degree in Economics, and was awarded the academic title of Professor in 2013. He has conducted research and collaborated with leading international institutions and companies, including UNOCAL, PENNZOIL, and the University of Oklahoma. He is an active member and former Vice President (Regional Affairs) of the International Association for Energy Economics (IAEE).",
+          "Throughout his career, he has led and contributed to numerous high-impact projects supported by the World Bank, EBRD, Asian Development Bank, USAID, European Union, GIZ, and other global organizations. His research portfolio includes over 100 scientific publications, including international works, as well as academic textbooks and monographs. He has supervised multiple doctoral researchers.",
+          "In recognition of his contributions to science and education, Prof. Valiyev was awarded the honorary title of “Honored Scientist of Azerbaijan” in 2014.",
+          "He is fluent in Russian and English. Prof. Valiyev is married and has two children."
         ],
         departmentsTitle: "Departments Under the Rector",
         departments: [
