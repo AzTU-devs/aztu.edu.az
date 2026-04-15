@@ -120,13 +120,7 @@ const az = {
         subtitle: "Haraya gedirik — AzTU-nun qurduğu gələcək.",
         breadcrumb: "Vizyon",
         statementTitle: "Vizyon Bəyanatımız",
-        visionQuote: "\"Azərbaycanda və dünyada innovasiyaya ruh verən, mühəndis istedadını inkişaf etdirən və davamlı inkişafı sürükləyən qlobal tanınan texniki universitet olmaq.\"",
-        whatItMeans: "Vizyonumuzun Mənası",
-        points: [
-          { title: "Mühəndislik Liderliyi", body: "Cənubi Qafqazda və daha geniş ərazidə texniki innovasiya standartını müəyyən edən mühəndislər və alimlər yetişdirmək." },
-          { title: "Qlobal Tanınma", body: "Dünya səviyyəli tədqiqat, tədris və beynəlxalq tərəfdaşlıq vasitəsilə dünyanın aparıcı texniki universitetləri arasında yer tutmaq." },
-          { title: "Davamlı İnnovasiya", body: "Dövrümüzün əsas problemlərini — enerji, iqlim dəyişikliyi və rəqəmsallaşmanı — həll edən texnologiyalar və praktikalar öncüllük etmək." },
-        ],
+        visionQuote: "Vizyonumuz innovasiya və qabaqcıl texnologiyaların tətbiqi ilə gələcəyin mühəndislik sahələrində regionun lider universiteti olmaqdır.",
         related: [
           { title: "Missiya", href: "/about/mission" },
           { title: "Strateji Plan", href: "/about/strategic-plan" },
@@ -140,14 +134,7 @@ const az = {
         subtitle: "AzTU niyə mövcuddur — tələbələrimizə, ölkəmizə və dünyaya verdiyimiz öhdəlik.",
         breadcrumb: "Missiya",
         statementTitle: "Missiya Bəyanatımız",
-        missionStatement: "Azərbaycan Texniki Universiteti dünya səviyyəli təhsil verməyə, tədqiqat yolu ilə bilikləri inkişaf etdirməyə və Azərbaycanın və qlobal icmanın davamlı inkişafına töhfə verən etik mühəndislər və alimlər yetişdirməyə sadiqdir.",
-        coreTitle: "Dörd Əsas Öhdəlik",
-        pillars: [
-          { title: "Üstün Təhsil", body: "Ən yüksək beynəlxalq standartlara cavab verən və məzunları qlobal karyeraya hazırlayan ciddi, tədqiqata əsaslanan mühəndislik və texniki təhsil vermək." },
-          { title: "Biliklərin İnkişafı", body: "Elm və texnologiyanın sərhədlərini genişləndirən mühüm tədqiqatlar aparmaq; kəşfləri sənaye və cəmiyyət üçün real nəticələrə çevirmək." },
-          { title: "Sənaye Tərəfdaşlığı", body: "Proqramlarımızın aktuallığını və məzunlarımızın tələb olunmasını təmin etmək üçün sənaye, hökumət və vətəndaş cəmiyyəti ilə dərin, davamlı tərəfdaşlıqlar qurmaq." },
-          { title: "Etik Liderlik", body: "Azərbaycanın və qlobal icmanın davamlı inkişafına sadiq, güclü etik anlayışa malik mühəndislər və alimlər yetişdirmək." },
-        ],
+        missionStatement: "Mühəndislik elmləri və ağıllı texnologiyaların tətbiqi sahəsində qabaqcıl təhsil və tədqiqat potensialına malik olmaq.",
         related: [
           { title: "Vizyon", href: "/about/vision" },
           { title: "Strateji Plan", href: "/about/strategic-plan" },

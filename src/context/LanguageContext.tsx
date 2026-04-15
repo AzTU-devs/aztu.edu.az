@@ -218,6 +218,22 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
               segments[3] = "rektor";
           }
       }
+
+      // Translate slugs for Vision & Mission
+      if ((segments[1] === "about" || segments[1] === "haqqimizda") && 
+          (segments[2] === "vision-mission" || segments[2] === "vizyon-ve-missiya")) {
+          if (newLang === "en") {
+              segments[1] = "about";
+              segments[2] = "vision-mission";
+              if (segments[3] === "vizyon") segments[3] = "vision";
+              if (segments[3] === "missiya") segments[3] = "mission";
+          } else {
+              segments[1] = "haqqimizda";
+              segments[2] = "vizyon-ve-missiya";
+              if (segments[3] === "vision") segments[3] = "vizyon";
+              if (segments[3] === "mission") segments[3] = "missiya";
+          }
+      }
     } else {
       segments.unshift(newLang);
     }
