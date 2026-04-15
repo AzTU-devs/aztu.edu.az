@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
-import VilayetVeliyev from "@/../public/vilayet_veliyev.jpeg";
+import VilayetVeliyev from "@/../public/vilayet_veliyev.jpg";
 import SectionBlock from "@/components/shared/SectionBlock";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
@@ -35,7 +35,7 @@ const stats = [
     { icon: FormatQuoteIcon, label: "Experience", value: "30+ Years" },
 ];
 
-function GallerySlider({ items }: { items: { caption: string }[] }) {
+function GallerySlider({ items }: { items: { image: string, caption: string }[] }) {
     const [current, setCurrent] = useState(0);
     const total = items.length;
 
@@ -65,10 +65,10 @@ function GallerySlider({ items }: { items: { caption: string }[] }) {
                         >
                             <div className="relative aspect-[4/3] overflow-hidden group/item">
                                 <Image
-                                    src={VilayetVeliyev}
+                                    src={item.image}
                                     alt={item.caption}
                                     fill
-                                    className="object-cover object-top transition-transform duration-500 group-hover/item:scale-110 grayscale-[0.3] group-hover/item:grayscale-0"
+                                    className="object-cover object-center transition-transform duration-500 group-hover/item:scale-110 grayscale-[0.3] group-hover/item:grayscale-0"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-300" />
                             </div>
