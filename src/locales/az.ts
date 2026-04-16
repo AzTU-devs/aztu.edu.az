@@ -25,10 +25,13 @@ const az = {
     },
     items: {
       historyOfAztu: "AzTU-nun Tarixi",
+      visionMission: "Vizyon və Missiya",
       vision: "Vizyon",
       mission: "Missiya",
       strategicPlan: "Strateji Plan",
-      leadershipGovernance: "Rəhbərlik & İdarəetmə",
+      anniversaryFilm: "75 İllik Yubiley Filmi",
+      leadershipGovernance: "Rəhbərlik və İdarəetmə",
+
       rector: "Rektor",
       viceRector: "Prorektor",
       scientificBoard: "Elmi Şura",
@@ -129,9 +132,9 @@ const az = {
         statementTitle: "Vizyon Bəyanatımız",
         visionQuote: "Vizyonumuz innovasiya və qabaqcıl texnologiyaların tətbiqi ilə gələcəyin mühəndislik sahələrində regionun lider universiteti olmaqdır.",
         related: [
-          { title: "Missiya", href: "/about/mission" },
-          { title: "Strateji Plan", href: "/about/strategic-plan" },
-          { title: "AzTU-nun Tarixi", href: "/about/history" },
+          { title: "Missiya", href: "/haqqimizda/vizyon-ve-missiya/missiya" },
+          { title: "Strateji Plan", href: "/haqqimizda/vizyon-ve-missiya/strateji-plan" },
+          { title: "AzTU-nun Tarixi", href: "/haqqimizda/vizyon-ve-missiya/aztu-nun-tarixi" },
         ],
       },
 
@@ -143,9 +146,9 @@ const az = {
         statementTitle: "Missiya Bəyanatımız",
         missionStatement: "Mühəndislik elmləri və ağıllı texnologiyaların tətbiqi sahəsində qabaqcıl təhsil və tədqiqat potensialına malik olmaq.",
         related: [
-          { title: "Vizyon", href: "/about/vision" },
-          { title: "Strateji Plan", href: "/about/strategic-plan" },
-          { title: "AzTU-nun Tarixi", href: "/about/history" },
+          { title: "Vizyon", href: "/haqqimizda/vizyon-ve-missiya/vizyon" },
+          { title: "Strateji Plan", href: "/haqqimizda/vizyon-ve-missiya/strateji-plan" },
+          { title: "AzTU-nun Tarixi", href: "/haqqimizda/vizyon-ve-missiya/aztu-nun-tarixi" },
         ],
       },
 
@@ -155,60 +158,72 @@ const az = {
         subtitle: "AzTU-nun tarixini və nailiyyətlərini yubiley sənədli filmimiz vasitəsilə kəşf edin.",
         breadcrumb: "Yubiley Filmi",
         related: [
-          { title: "Vizyon", href: "/about/vision" },
-          { title: "Missiya", href: "/about/mission" },
-          { title: "AzTU-nun Tarixi", href: "/about/history" },
+          { title: "Vizyon", href: "/haqqimizda/vizyon-ve-missiya/vizyon" },
+          { title: "Missiya", href: "/haqqimizda/vizyon-ve-missiya/missiya" },
+          { title: "AzTU-nun Tarixi", href: "/haqqimizda/vizyon-ve-missiya/aztu-nun-tarixi" },
         ],
       },
 
       strategicPlan: {
-        eyebrow: "Strategiya 2025 – 2030",
-        title: "Strateji Plan",
-        subtitle: "AzTU-nun 2030-a qədər dünya səviyyəli texniki universitetə çevrilməsini istiqamətləndirən beş sütun.",
+        eyebrow: "Vizyon 2030",
+        title: "Strateji İnkişaf Planı",
+        subtitle: "2030-cu ilə doğru: Regionun aparıcı sahibkar tədqiqat universitetinə çevrilmək.",
         breadcrumb: "Strateji Plan",
-        stats: [
-          { value: "5", label: "Strateji Sütun" },
-          { value: "2030", label: "Hədəf İl" },
-          { value: "15+", label: "Əsas Təşəbbüs" },
-          { value: "3", label: "Beynəlxalq Akkreditasiya" },
-          { value: "50+", label: "Tərəfdaş Universitet" },
-        ],
+        pdfUrl: "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/5-2025/Strateji%20inki%C5%9Faf%20plan%C4%B1%202024-2030.pdf",
+        vision: "Mühəndislik və texnologiya sahəsində regionun aparıcı sahibkar tədqiqat universitetinə çevrilmək və milli iqtisadiyyatın davamlı inkişafına töhfə vermək.",
+        mission: "Yüksək ixtisaslı, rəqabətədavamlı mütəxəssislər hazırlamaq, innovativ elmi tədqiqatlar aparmaq, cəmiyyətə və sənayeyə yüksək dəyərli xidmətlər təqdim etmək.",
         pillars: [
           {
             num: "01",
-            title: "Akademik Mükəmməllik",
-            description: "CDIO inteqrasiyası, nəticəyə əsaslanan təhsil və fasiləsiz fakültə inkişafı vasitəsilə bütün dərəcə proqramlarının keyfiyyətini yüksəltmək. Əsas mühəndislik proqramları üçün EUR-ACE və ABET akkreditasiyasını hədəfləmək.",
-            targets: ["2026-cı ilə qədər 100% proqram nəticəyə əsaslı", "3 yeni beynəlxalq akkreditasiya", "Tələbə məmnuniyyəti göstəricilərinin 20% artması"],
+            title: "Təhsildə Mükəmməllik",
+            description: "Tədris prosesinin modernləşdirilməsi, təhsilin keyfiyyətinin artırılması və əmək bazarının tələblərinə uyğunlaşdırılması.",
+            targets: ["Modernləşdirilmiş kurikulum", "Beynəlxalq akkreditasiya", "Artan məşğulluq"]
           },
           {
             num: "02",
-            title: "Tədqiqat & İnnovasiya",
-            description: "Tədqiqat çıxışını iki dəfə artırmaq, xarici qrant gəlirini artırmaq və spin-off şirkətlər və sənaye lisenziya müqavilələri vasitəsilə əqli mülkiyyəti kommersiyalaşdırmaq.",
-            targets: ["İldə 400+ indeksli nəşr", "Qrant gəlirinin 2× artması", "5 texnoloji spin-off yaradılması"],
+            title: "Tədqiqat və İnnovasiya",
+            description: "Elmi məhsuldarlığın artırılması və güclü sahibkarlıq ekosisteminin yaradılması.",
+            targets: ["Scopus/WoS nəşrləri", "Sənaye tərəfdaşlıqları", "Texnologiya transferi"]
           },
           {
             num: "03",
-            title: "Qlobal Varlıq",
-            description: "Beynəlxalq tələbə qəbulunu genişləndirmək, Erasmus+ portfelini möhkəmləndirmək və Avropa və Asiyadakı tərəfdaş universitetlərlə birgə dərəcə proqramları qurmaq.",
-            targets: ["50+ aktiv ikitərəfli müqavilə", "İldə 500 xaricdə mobilllik tələbəsi", "3 yeni birgə dərəcə proqramı"],
+            title: "Beynəlxalqlaşma",
+            description: "Qlobal görünürlüyün artırılması və dünya miqyasında akademik tərəfdaşlıqların genişləndirilməsi.",
+            targets: ["Artan əcnəbi tələbələr", "Qlobal reytinqlər (Top 1000 QS)", "Müəllim mübadiləsi"]
           },
           {
             num: "04",
             title: "Rəqəmsal Transformasiya",
-            description: "Süni intellektlə dəstəklənən alətlərlə öyrənmə infrastrukturunu modernləşdirmək, elektron öyrənmə çatdırılmasını genişləndirmək və məlumat əsaslı inzibati infrastruktur qurmaq.",
-            targets: ["Bütün kurslar üzrə LMS tətbiqi", "Rəqəmsal əkiz kampus pilotu", "Bütün tədris planlarında süni intellekt savadlılığı"],
+            description: "İT infrastrukturunun modernləşdirilməsi vasitəsilə 'Rəqəmsal Universitet' modelinin tətbiqi.",
+            targets: ["İT modernləşdirilməsi", "Avtomatlaşdırılmış idarəetmə", "Rəqəmsal öyrənmə alətləri"]
           },
           {
             num: "05",
-            title: "Davamlılıq & Təsir",
-            description: "Karbon neytral kampus əməliyyatlarına nail olmaq, bütün proqramlarda davamlılıq savadlılığını yerləşdirmək və xidmət öyrənməsi vasitəsilə icma ilə əlaqəni dərinləşdirmək.",
-            targets: ["2030-a qədər sıfır neto emissiyalı kampus", "Hər proqramda davamlılıq modulu", "İldə 10.000 icma xidməti saatı"],
-          },
+            title: "İnstitusional İnkişaf",
+            description: "Maliyyə dayanıqlığının təkmilləşdirilməsi və sosial məsuliyyətin yerinə yetirilməsi.",
+            targets: ["Maliyyə sabitliyi", "İnsan resurslarının idarə edilməsi", "Sosial təsir"]
+          }
+        ],
+        valuesTitle: "Korporativ Dəyərlər",
+        values: [
+          "Akademik Azadlıq",
+          "Dürüstlük və Şəffaflıq",
+          "İnnovativlik",
+          "Mükəmməllik",
+          "Sosial Məsuliyyət"
+        ],
+        targetsTitle: "Əsas Performans Göstəriciləri (KPI)",
+        targets: [
+          "QS Dünya Universitetləri Reytinqində ilk 1000-liyə daxil olmaq",
+          "Scopus və Web of Science bazalarında məqalələrin sayının artırılması",
+          "Əcnəbi tələbələrin payının 5-10%-ə çatdırılması",
+          "Məzunların işlə təmin olunma göstəricisinin 80%-i keçməsi",
+          "Tədris proqramlarının ən azı 50%-i üçün beynəlxalq akkreditasiya"
         ],
         related: [
-          { title: "Vizyon", href: "/about/vision" },
-          { title: "Missiya", href: "/about/mission" },
-          { title: "AzTU-nun Tarixi", href: "/about/history" },
+          { title: "Vizyon", href: "/haqqimizda/vizyon-ve-missiya/vizyon" },
+          { title: "Missiya", href: "/haqqimizda/vizyon-ve-missiya/missiya" },
+          { title: "AzTU-nun Tarixi", href: "/haqqimizda/vizyon-ve-missiya/aztu-nun-tarixi" },
         ],
       },
 
