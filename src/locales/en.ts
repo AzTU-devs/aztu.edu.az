@@ -377,12 +377,17 @@ const en = {
 
       tau: {
         eyebrow: "Affiliated Entity",
-        title: "Turkish-Azerbaijan University (TAU)",
-        subtitle: "A joint Turkish-Azerbaijani higher education institution fostering bilateral academic cooperation.",
+        title: "Türkiye–Azerbaijan University",
+        subtitle: "A modern and innovative model of strategic academic collaboration between Azerbaijan and Türkiye.",
         breadcrumb: "TAU",
         aboutTitle: "About TAU",
-        para1: "Turkish-Azerbaijan University (Türk-Azərbaycan Universiteti) is a joint institution established under a bilateral agreement between the Republic of Azerbaijan and the Republic of Turkey. Founded in 2009, TAU is designed to strengthen educational and cultural ties between the two countries.",
-        para2: "TAU offers degree programmes across engineering, economics, and social sciences. Instruction is delivered in Azerbaijani, Turkish, and English, preparing graduates for careers in both countries and beyond. The university benefits from shared academic resources and faculty exchange with AzTU.",
+        paragraphs: [
+          "Türkiye–Azerbaijan University represents a modern and innovative model of strategic academic collaboration between Azerbaijan and Türkiye. By combining the strong academic traditions and advanced educational approaches of both countries, the University delivers a high-quality learning environment aligned with international standards.",
+          "The University aims to educate highly qualified and globally competitive professionals in engineering, technology, and other priority fields. Its academic programs are developed and continuously updated in close collaboration with leading partner institutions Istanbul Technical University (ITU), Middle East Technical University (METU), Hacettepe University, and Azerbaijan Technical University (AzTU) ensuring alignment with the evolving demands of the global labor market.",
+          "The educational model is built on modern laboratories, innovation centers, and strong industry integration. This approach enables students to develop critical thinking, technical expertise, and real-world problem-solving skills.",
+          "In parallel, the University prioritizes advancing research, promoting innovation, and commercializing knowledge. This integrated ecosystem prepares graduates to succeed both locally and internationally, contributing meaningfully to technological and economic development."
+        ],
+        websiteUrl: "https://tau.edu.az/",
         programmesTitle: "Programmes Offered",
         facts: [
           { label: "Founded", value: "2009" },
@@ -399,10 +404,16 @@ const en = {
 
       iit: {
         eyebrow: "Affiliated Entity",
-        title: "Institute of Information Technology",
-        subtitle: "AzTU's dedicated research and higher education centre for ICT.",
+        title: "Affiliated Institutions (Institute of Information Technology)",
+        subtitle: "Advancing computing, AI, and digital systems research in partnership with AzTU and ANAS.",
         breadcrumb: "IIT",
         aboutTitle: "About the Institute",
+        paragraphs: [
+          "Azerbaijan Technical University (AzTU) fosters a dynamic and modern academic ecosystem through strategic partnerships that strengthen the integration of education, research, and innovation. These collaborations expand the University’s research capacity, promote knowledge exchange, and support innovation-driven development.",
+          "The Institute of Information Technology of the Azerbaijan National Academy of Sciences (ANAS) is a leading research center dedicated to advancing the fields of information and communication technologies. The Institute conducts high-impact research in areas such as digital transformation, data science, artificial intelligence, and the development of the information society.",
+          "Through its collaboration with AzTU, the Institute actively contributes to joint research initiatives, academic exchange, and the integration of advanced technological knowledge into the educational process. This partnership strengthens research capabilities and supports the development of innovative solutions to contemporary scientific and technological challenges."
+        ],
+        websiteUrl: "https://ict.az/en/",
         related: [
           { title: "Turkish-Azerbaijan University (TAU)", href: "/about/tau" },
           { title: "Institute of Control Systems", href: "/about/ics" },
@@ -412,10 +423,16 @@ const en = {
 
       ics: {
         eyebrow: "Affiliated Entity",
-        title: "Institute of Control Systems",
+        title: "Affiliated Institutions (The Institute of Control Systems)",
         subtitle: "Azerbaijan's leading research institute in automation and control technologies.",
         breadcrumb: "ICS",
         aboutTitle: "About the Institute",
+        paragraphs: [
+          "Azerbaijan Technical University (AzTU) fosters a dynamic and modern academic ecosystem through strategic partnerships that strengthen the integration of education, research, and innovation. These collaborations expand the University’s research capacity, promote knowledge exchange, and support innovation-driven development.",
+          "The Institute of Control Systems of the Azerbaijan National Academy of Sciences (ANAS) is a prominent scientific institution specializing in systems engineering, automation, and applied control technologies. Its research focuses on modeling, optimization, and intelligent control systems across a wide range of industrial and technological domains.",
+          "In partnership with AzTU, the Institute supports interdisciplinary research, knowledge transfer, and the advancement of engineering education. This collaboration strengthens both practical and theoretical competencies while fostering innovation in the design and management of complex systems."
+        ],
+        websiteUrl: "https://isi.az/en/",
         related: [
           { title: "Turkish-Azerbaijan University (TAU)", href: "/about/tau" },
           { title: "Institute of Information Technology", href: "/about/iit" },
@@ -425,10 +442,16 @@ const en = {
 
       bakuTechnicalColleges: {
         eyebrow: "Affiliated Entity",
-        title: "Baku Technical Colleges",
-        subtitle: "A network of colleges playing a key role in Azerbaijan's technical workforce development.",
-        breadcrumb: "Baku Technical Colleges",
-        aboutTitle: "About the Colleges",
+        title: "Baku Technical College",
+        subtitle: "A modern educational approach to prepare competitive and industry-relevant mid-level specialists.",
+        breadcrumb: "Baku Technical College",
+        aboutTitle: "About the College",
+        paragraphs: [
+          "Baku Technical College was established in 1996 through the merger of Baku Polytechnic and Machine-Building technical schools, building upon a long-standing tradition of technical education. Its academic roots trace back to the Household Technical School founded in 1930, reflecting a strong legacy in engineering and vocational training.",
+          "Since 2015, the College has operated under Azerbaijan Technical University (AzTU), adopting modern educational approaches to prepare competitive and industry-relevant mid-level specialists. It offers sub-bachelor level programs across various technical disciplines, with a curriculum designed to balance theoretical knowledge and practical skills.",
+          "Education is delivered through both state-funded and tuition-based models. Supported by modern infrastructure and a practice-oriented approach, the College equips students with the competencies required for successful career integration in a dynamic labor market."
+        ],
+        websiteUrl: "https://bakitexnikikolleci.edu.az/",
         related: [
           { title: "Baku State Colleges", href: "/about/baku-state-colleges" },
           { title: "Turkish-Azerbaijan University (TAU)", href: "/about/tau" },
@@ -438,10 +461,17 @@ const en = {
 
       bakuStateColleges: {
         eyebrow: "Affiliated Entity",
-        title: "Baku State Colleges",
-        subtitle: "State college training professionals in communications and transport.",
-        breadcrumb: "Baku State Colleges",
+        title: "Baku State College of Communication and Transport",
+        subtitle: "A leading institution providing specialized mid-level education in communication, transport, and technology-related fields.",
+        breadcrumb: "Baku State College of Communication and Transport",
         aboutTitle: "About the College",
+        paragraphs: [
+          "The Baku State College of Communication and Transport, operating under Azerbaijan Technical University (AzTU), is a leading institution providing specialized mid-level education in communication, transport, and technology-related fields. Building on a strong historical foundation, the College integrates modern educational approaches to prepare competitive and industry-ready professionals.",
+          "Its academic roots trace back to communication training established in 1931 and the Baku Railway Technical School founded in 1933. The integration of these institutions in 2002 created a unified platform for technical education, combining expertise in communication and transport disciplines.",
+          "As part of AzTU’s academic ecosystem, the College emphasizes the integration of theoretical knowledge with practical skills. A modern learning environment and practice-oriented approach enable students to develop technical competencies, analytical thinking, and professional readiness.",
+          "Today, the College plays a significant role in Azerbaijan’s technical education system by delivering innovation-oriented, industry-aligned training and contributing to the development of a skilled workforce."
+        ],
+        websiteUrl: "https://rabitakolleci.edu.az/",
         related: [
           { title: "Baku Technical Colleges", href: "/about/baku-technical-colleges" },
           { title: "Turkish-Azerbaijan University (TAU)", href: "/about/tau" },

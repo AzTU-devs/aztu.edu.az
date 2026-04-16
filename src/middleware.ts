@@ -105,6 +105,47 @@ export function middleware(request: NextRequest) {
 
     // Rector Page Redirects
     if (segments_rest[0] === "about" || segments_rest[0] === "haqqimizda") {
+        // Partner Universities & Related Institutes Redirects
+        const partnerSlugs = {
+            en: "partner-universities-and-related-institutes",
+            az: "terefdas-universitet-ve-elaqeli-institutlar"
+        };
+
+        if (lang === "az" && segments_rest[1] === partnerSlugs.en) {
+            const sub = segments_rest[2];
+            let newSub = sub;
+            if (sub === "turkish-azerbaijani-university-tau") newSub = "turk-azerbaycan-universiteti-tau";
+            if (sub === "institute-of-information-technologies") newSub = "informasiya-texnalogiyalari-institutu";
+            if (sub === "management-systems-institute") newSub = "idareetme-sistemleri-insitutu";
+            if (sub === "baku-technical-colleges") newSub = "baki-texniki-kollecleri";
+            if (sub === "baku-state-college-of-communications-and-transport") newSub = "baki-rabite-ve-neqliyayt-dovlet-kollecleri";
+            return NextResponse.redirect(new URL(`/az/haqqimizda/${partnerSlugs.az}/${newSub}`, request.url));
+        }
+        if (lang === "en" && segments_rest[1] === partnerSlugs.az) {
+            const sub = segments_rest[2];
+            let newSub = sub;
+            if (sub === "turk-azerbaycan-universiteti-tau") newSub = "turkish-azerbaijani-university-tau";
+            if (sub === "informasiya-texnalogiyalari-institutu") newSub = "institute-of-information-technologies";
+            if (sub === "idareetme-sistemleri-insitutu") newSub = "management-systems-institute";
+            if (sub === "baki-texniki-kollecleri") newSub = "baku-technical-colleges";
+            if (sub === "baki-rabite-ve-neqliyayt-dovlet-kollecleri") newSub = "baku-state-college-of-communications-and-transport";
+            return NextResponse.redirect(new URL(`/en/about/${partnerSlugs.en}/${newSub}`, request.url));
+        }
+
+        // Redirect short slugs to long slugs for consistency if requested (Optional, but usually better)
+        if (segments_rest[1] === "tau" || segments_rest[1] === "iit" || segments_rest[1] === "ics" || segments_rest[1] === "baku-technical-colleges" || segments_rest[1] === "baku-state-colleges") {
+            const mapping: Record<string, string> = {
+                "tau": lang === "az" ? "turk-azerbaycan-universiteti-tau" : "turkish-azerbaijani-university-tau",
+                "iit": lang === "az" ? "informasiya-texnalogiyalari-institutu" : "institute-of-information-technologies",
+                "ics": lang === "az" ? "idareetme-sistemleri-insitutu" : "management-systems-institute",
+                "baku-technical-colleges": lang === "az" ? "baki-texniki-kollecleri" : "baku-technical-colleges",
+                "baku-state-colleges": lang === "az" ? "baki-rabite-ve-neqliyayt-dovlet-kollecleri" : "baku-state-college-of-communications-and-transport",
+            };
+            const parent = lang === "az" ? partnerSlugs.az : partnerSlugs.en;
+            const prefix = lang === "az" ? "haqqimizda" : "about";
+            return NextResponse.redirect(new URL(`/${lang}/${prefix}/${parent}/${mapping[segments_rest[1]]}`, request.url));
+        }
+
         if (lang === "az" && segments_rest[0] === "about" && segments_rest[1] === "rector") {
             return NextResponse.redirect(new URL("/az/haqqimizda/rehbetlik-ve-idareetme/rektor", request.url));
         }
@@ -329,6 +370,23 @@ export function middleware(request: NextRequest) {
                 "contact": "elaqe"
             };
             if (subSub[segments_rest[3]]) segments_rest[3] = subSub[segments_rest[3]];
+        }
+    }
+
+    // Partner Universities & Related Institutes Mapping
+    if ((segments_rest[0] === "about" || segments_rest[0] === "haqqimizda") && 
+        (segments_rest[1] === "partner-universities-and-related-institutes" || segments_rest[1] === "terefdas-universitet-ve-elaqeli-institutlar")) {
+        const sub = segments_rest[2];
+        if (sub === "turkish-azerbaijani-university-tau" || sub === "turk-azerbaycan-universiteti-tau") {
+            segments_rest = ["about", "tau"];
+        } else if (sub === "institute-of-information-technologies" || sub === "informasiya-texnalogiyalari-institutu") {
+            segments_rest = ["about", "iit"];
+        } else if (sub === "management-systems-institute" || sub === "idareetme-sistemleri-insitutu") {
+            segments_rest = ["about", "ics"];
+        } else if (sub === "baku-technical-colleges" || sub === "baki-texniki-kollecleri") {
+            segments_rest = ["about", "baku-technical-colleges"];
+        } else if (sub === "baku-state-college-of-communications-and-transport" || sub === "baki-rabite-ve-neqliyayt-dovlet-kollecleri") {
+            segments_rest = ["about", "baku-state-colleges"];
         }
     }
 
