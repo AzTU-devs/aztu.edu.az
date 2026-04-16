@@ -25,9 +25,11 @@ const en = {
     },
     items: {
       historyOfAztu: "History of AzTU",
+      visionMission: "Vision & Mission",
       vision: "Vision",
       mission: "Mission",
       strategicPlan: "Strategic Plan",
+      anniversaryFilm: "75th Anniversary Film",
       leadershipGovernance: "Leadership & Governance",
       rector: "Rector",
       viceRector: "Vice-Rector",
@@ -129,9 +131,9 @@ const en = {
         statementTitle: "Our Vision Statement",
         visionQuote: "Our vision is to become a leading university in the region in the engineering fields of the future through innovation and the application of advanced technologies.",
         related: [
-          { title: "Mission", href: "/about/mission" },
-          { title: "Strategic Plan", href: "/about/strategic-plan" },
-          { title: "History of AzTU", href: "/about/history" },
+          { title: "Mission", href: "/about/vision-mission/mission" },
+          { title: "Strategic Plan", href: "/about/vision-mission/strategic-plan" },
+          { title: "History of AzTU", href: "/about/vision-mission/history-of-aztu" },
         ],
       },
 
@@ -143,9 +145,9 @@ const en = {
         statementTitle: "Our Mission Statement",
         missionStatement: "To possess advanced education and research potential in the fields of engineering sciences and the application of smart technologies.",
         related: [
-          { title: "Vision", href: "/about/vision" },
-          { title: "Strategic Plan", href: "/about/strategic-plan" },
-          { title: "History of AzTU", href: "/about/history" },
+          { title: "Vision", href: "/about/vision-mission/vision" },
+          { title: "Strategic Plan", href: "/about/vision-mission/strategic-plan" },
+          { title: "History of AzTU", href: "/about/vision-mission/history-of-aztu" },
         ],
       },
 
@@ -155,60 +157,72 @@ const en = {
         subtitle: "Experience the history and achievements of AzTU through our anniversary documentary.",
         breadcrumb: "Anniversary Film",
         related: [
-          { title: "Vision", href: "/about/vision" },
-          { title: "Mission", href: "/about/mission" },
-          { title: "History of AzTU", href: "/about/history" },
+          { title: "Vision", href: "/about/vision-mission/vision" },
+          { title: "Mission", href: "/about/vision-mission/mission" },
+          { title: "History of AzTU", href: "/about/vision-mission/history-of-aztu" },
         ],
       },
 
       strategicPlan: {
-        eyebrow: "Strategy 2025 – 2030",
-        title: "Strategic Plan",
-        subtitle: "Five pillars guiding AzTU's transformation into a world-class technical university by 2030.",
+        eyebrow: "Vision 2030",
+        title: "Strategic Development Plan",
+        subtitle: "Towards 2030: Becoming a leading entrepreneurial research university in the region.",
         breadcrumb: "Strategic Plan",
-        stats: [
-          { value: "5", label: "Strategic Pillars" },
-          { value: "2030", label: "Target Year" },
-          { value: "15+", label: "Key Initiatives" },
-          { value: "3", label: "International Accreditations" },
-          { value: "50+", label: "Partner Universities" },
-        ],
+        pdfUrl: "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/9-2025/Strategic_Development_Plan_2024-2030%20(2).pdf",
+        vision: "To become a leading entrepreneurial research university in the region, specializing in engineering and technology, and driving the sustainable development of the national economy.",
+        mission: "To educate highly qualified, competitive professionals, conduct innovative scientific research, and provide high-value services to society and the industry.",
         pillars: [
           {
             num: "01",
-            title: "Academic Excellence",
-            description: "Elevate the quality of all degree programmes through CDIO integration, outcome-based education, and continuous faculty development. Target accreditation by EUR-ACE and ABET for key engineering programmes.",
-            targets: ["100% of programmes outcome-based by 2026", "3 new international accreditations", "20% increase in student satisfaction scores"],
+            title: "Educational Excellence",
+            description: "Modernizing the educational process, improving teaching quality, and aligning with international labor market needs.",
+            targets: ["Modernized curriculum", "International accreditation", "Increased employability"]
           },
           {
             num: "02",
-            title: "Research & Innovation",
-            description: "Double research output, grow external grant income, and commercialise intellectual property through spin-offs and industry licensing agreements.",
-            targets: ["400+ indexed publications per year", "2× growth in grant income", "5 technology spin-offs established"],
+            title: "Research and Innovation",
+            description: "Increasing scientific productivity and fostering a strong entrepreneurial ecosystem.",
+            targets: ["Scopus/WoS publications", "Industry partnerships", "Technology transfer"]
           },
           {
             num: "03",
-            title: "Global Presence",
-            description: "Expand international student enrolment, strengthen the Erasmus+ portfolio, and establish dual-degree programmes with partner universities in Europe and Asia.",
-            targets: ["50+ active bilateral agreements", "500 outbound mobility students/year", "3 new dual-degree programmes"],
+            title: "Internationalization",
+            description: "Enhancing global visibility and expanding academic partnerships worldwide.",
+            targets: ["Increased foreign students", "Global rankings (Top 1000 QS)", "Faculty exchange"]
           },
           {
             num: "04",
             title: "Digital Transformation",
-            description: "Modernise learning infrastructure with AI-assisted tools, expand e-learning delivery, and build a data-driven administrative backbone.",
-            targets: ["LMS adoption across all courses", "Digital twin campus pilot", "AI literacy embedded in all curricula"],
+            description: "Implementing the 'Digital University' model by modernizing IT infrastructure.",
+            targets: ["IT modernization", "Automated management", "Digital learning tools"]
           },
           {
             num: "05",
-            title: "Sustainability & Impact",
-            description: "Achieve carbon-neutral campus operations, embed sustainability literacy in all programmes, and deepen community engagement through service learning.",
-            targets: ["Net-zero campus by 2030", "Sustainability module in every programme", "10,000 community service hours/year"],
-          },
+            title: "Institutional Development",
+            description: "Improving financial sustainability and fulfilling social responsibilities.",
+            targets: ["Financial stability", "Human resource management", "Social impact"]
+          }
+        ],
+        valuesTitle: "Core Values",
+        values: [
+          "Academic Freedom",
+          "Integrity and Transparency",
+          "Innovation",
+          "Excellence",
+          "Social Responsibility"
+        ],
+        targetsTitle: "Major Targets & KPIs",
+        targets: [
+          "Entering the Top 1000 in QS World University Rankings",
+          "Significant increase in Scopus and Web of Science publications",
+          "Foreign student share reaching 5-10% of total student body",
+          "Graduate employability rate exceeding 80%",
+          "International accreditation for at least 50% of degree programs"
         ],
         related: [
-          { title: "Vision", href: "/about/vision" },
-          { title: "Mission", href: "/about/mission" },
-          { title: "History of AzTU", href: "/about/history" },
+          { title: "Vision", href: "/about/vision-mission/vision" },
+          { title: "Mission", href: "/about/vision-mission/mission" },
+          { title: "History of AzTU", href: "/about/vision-mission/history-of-aztu" },
         ],
       },
 

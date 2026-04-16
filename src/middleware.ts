@@ -346,6 +346,8 @@ export function middleware(request: NextRequest) {
             segments_rest = ["about", "vision"];
         } else if (sub === "mission" || sub === "missiya") {
             segments_rest = ["about", "mission"];
+        } else if (sub === "strategic-plan" || sub === "strateji-plan") {
+            segments_rest = ["about", "strategic-plan"];
         } else if (sub === "history-of-aztu" || sub === "aztu-nun-tarixi") {
             segments_rest = ["about", "history"];
         } else if (sub === "75th-anniversary-film" || sub === "75-illik-yubiley-filmi") {

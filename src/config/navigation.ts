@@ -39,10 +39,16 @@ export function getNavSections(t: Locale, lang: Lang): NavSection[] {
             basePath: "/about",
             image: Slide1,
             items: [
-                { title: n.historyOfAztu, slug: "history" },
-                { title: n.vision, slug: "vision" },
-                { title: n.mission, slug: "mission" },
-                { title: n.strategicPlan, slug: "strategic-plan" },
+                {
+                    title: n.visionMission,
+                    subItems: [
+                        { title: n.historyOfAztu, slug: lang === "az" ? "vizyon-ve-missiya/aztu-nun-tarixi" : "vision-mission/history-of-aztu" },
+                        { title: n.vision, slug: lang === "az" ? "vizyon-ve-missiya/vizyon" : "vision-mission/vision" },
+                        { title: n.mission, slug: lang === "az" ? "vizyon-ve-missiya/missiya" : "vision-mission/mission" },
+                        { title: n.strategicPlan, slug: lang === "az" ? "vizyon-ve-missiya/strateji-plan" : "vision-mission/strategic-plan" },
+                        { title: n.anniversaryFilm, slug: lang === "az" ? "vizyon-ve-missiya/75-illik-yubiley-filmi" : "vision-mission/75th-anniversary-film" },
+                    ],
+                },
                 {
                     title: n.leadershipGovernance,
                     subItems: [
@@ -218,10 +224,16 @@ export const NAV_SECTIONS: NavSection[] = [
         basePath: "/about",
         image: Slide1,
         items: [
-            { title: "History of AzTU", slug: "history" },
-            { title: "Vision", slug: "vision" },
-            { title: "Mission", slug: "mission" },
-            { title: "Strategic Plan", slug: "strategic-plan" },
+            {
+                title: "Vision & Mission",
+                subItems: [
+                    { title: "History of AzTU", slug: "vision-mission/history-of-aztu" },
+                    { title: "Vision", slug: "vision-mission/vision" },
+                    { title: "Mission", slug: "vision-mission/mission" },
+                    { title: "Strategic Plan", slug: "vision-mission/strategic-plan" },
+                    { title: "75th Anniversary Film", slug: "vision-mission/75th-anniversary-film" },
+                ],
+            },
             {
                 title: "Leadership & Governance",
                 subItems: [
