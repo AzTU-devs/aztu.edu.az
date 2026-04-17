@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-
+import { usePathname } from "next/navigation";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import HomeIcon from "@mui/icons-material/Home";
 import { NavSection, NavItem } from "@/config/navigation";
+import { motion } from "framer-motion";
 
 type Props = {
     section: NavSection;
@@ -12,71 +13,186 @@ type Props = {
 };
 
 export default function StaticSubPage({ section, item }: Props) {
+    const pathname = usePathname();
+    
+    // Auto-detect research paths
+    const isResearchPage = pathname.startsWith('/az/tedqiqat') || pathname.startsWith('/en/research');
+    const videoSrc = isResearchPage ? "/heroBgVideos/research.mp4" : null;
+
     return (
-        <>
-            <main className="min-h-screen bg-gray-50">
-                {/* ── Dark Banner ── */}
-                <div className="bg-[#1a2355] px-4 md:px-10 lg:px-20 pt-40 pb-12">
+        <main className="min-h-screen bg-white dark:bg-[#0b1330] transition-colors duration-500 overflow-hidden">
+            {/* ── Stunning Banner ── */}
+            <div className="bg-[#0b1330] px-4 md:px-10 lg:px-20 pt-44 pb-20 relative overflow-hidden min-h-[450px] flex flex-col justify-end">
+                {/* Background Texture/Pattern */}
+                <div className="absolute inset-0 opacity-[0.05] pointer-events-none z-10" 
+                     style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+
+                {/* Video Background */}
+                {videoSrc && (
+                    <div className="absolute inset-0 z-0">
+                        <video
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="w-full h-full object-cover opacity-50"
+                        >
+                            <source src={videoSrc} type="video/mp4" />
+                        </video>
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0b1330] via-[#0b1330]/40 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-[#0b1330]/80 via-transparent to-transparent" />
+                    </div>
+                )}
+                
+                {!videoSrc && (
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#0b1330] via-[#1a2355] to-[#13365E] z-0">
+                         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/10 blur-[150px] rounded-full translate-x-1/2 -translate-y-1/2" />
+                         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#ee7c7e]/10 blur-[120px] rounded-full -translate-x-1/4 translate-y-1/4" />
+                    </div>
+                )}
+
+                <div className="relative z-20">
                     {/* Breadcrumb */}
-                    <nav className="flex items-center gap-1.5 text-white/50 text-sm mb-4 flex-wrap">
-                        <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-                            <HomeIcon sx={{ fontSize: 15 }} />
-                            Ana səhifə
+                    <motion.nav 
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className="flex items-center gap-2 text-white/40 text-[10px] font-black uppercase tracking-[0.4em] mb-10 flex-wrap"
+                    >
+                        <Link href="/" className="hover:text-[#ee7c7e] transition-colors flex items-center gap-2 group">
+                            <HomeIcon sx={{ fontSize: 14 }} className="group-hover:scale-110 transition-transform" />
+                            Home
                         </Link>
-                        <ChevronRightIcon sx={{ fontSize: 14 }} />
-                        <Link href={section.basePath} className="hover:text-white transition-colors capitalize">
+                        <ChevronRightIcon sx={{ fontSize: 12 }} />
+                        <Link href={section.basePath} className="hover:text-white transition-colors">
                             {section.label}
                         </Link>
-                        <ChevronRightIcon sx={{ fontSize: 14 }} />
-                        <span className="text-white/80">{item.title}</span>
-                    </nav>
+                        <ChevronRightIcon sx={{ fontSize: 12 }} />
+                        <span className="text-white/90">{item.title}</span>
+                    </motion.nav>
 
-                    <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-white/5 border border-white/10 mb-6 backdrop-blur-md"
+                    >
+                        <div className="w-2 h-2 rounded-full bg-[#ee7c7e] animate-pulse" />
+                        <span className="text-white text-[11px] font-black uppercase tracking-[0.4em]">
+                            {section.label}
+                        </span>
+                    </motion.div>
+
+                    <motion.h1
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+                        className="text-4xl md:text-7xl font-black text-white mb-6 leading-tight tracking-tighter"
+                    >
                         {item.title}
-                    </h1>
-                    <p className="text-white/65 text-base max-w-2xl">
+                    </motion.h1>
+                    <motion.p 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="text-white/70 text-lg md:text-xl max-w-3xl leading-relaxed font-medium border-l-4 border-[#ee7c7e]/40 pl-8"
+                    >
                         {item.description}
-                    </p>
+                    </motion.p>
+                </div>
+                
+                {/* Bottom Accent Line */}
+                <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#ee7c7e]/30 to-transparent" />
+            </div>
+
+            {/* ── Content Area with Grid Background ── */}
+            <div className="relative">
+                {/* Stunning Content Background */}
+                <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]" 
+                         style={{ backgroundImage: 'radial-gradient(#1a2355 1.5px, transparent 1.5px)', backgroundSize: '40px 40px' }} />
+                    
+                    <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#1a2355]/[0.03] blur-[120px] rounded-full" />
+                    <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#ee7c7e]/[0.02] blur-[100px] rounded-full" />
                 </div>
 
-                {/* ── Content ── */}
-                <section className="px-4 md:px-10 lg:px-20 py-14">
-                    <div className="max-w-4xl">
-                        {/* Content card */}
-                        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-8">
-                            <p className="text-gray-700 text-base leading-relaxed">
-                                {item.content}
-                            </p>
+                <section className="relative z-10 px-4 md:px-10 lg:px-20 py-24">
+                    <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
+                        {/* Main Content */}
+                        <div className="lg:col-span-8 space-y-12">
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6 }}
+                                className="bg-white dark:bg-white/5 rounded-[3rem] border border-gray-100 dark:border-white/10 p-10 md:p-16 shadow-2xl shadow-blue-900/5 backdrop-blur-sm"
+                            >
+                                <p className="text-gray-600 dark:text-gray-300 text-xl leading-relaxed font-medium whitespace-pre-wrap">
+                                    {item.content}
+                                </p>
+                            </motion.div>
+
+                            {/* Optional Bottom Feature Style for Other Pages */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="pt-12 border-t border-gray-100 dark:border-white/10"
+                            >
+                                <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tighter mb-10 flex items-center gap-4">
+                                    <span className="w-2 h-10 bg-[#ee7c7e] rounded-full" />
+                                    Explore {section.label}
+                                </h2>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                    {section.items
+                                        .filter((i) => i.slug !== item.slug)
+                                        .map((other, idx) => (
+                                            <Link
+                                                key={other.slug}
+                                                href={`${section.basePath}/${other.slug}`}
+                                                className="group relative h-full flex flex-col justify-between p-8 bg-gray-50 dark:bg-white/5 rounded-[2rem] border border-gray-100 dark:border-white/5 transition-all duration-500 hover:bg-[#1a2355] hover:border-[#1a2355] group-hover:shadow-2xl overflow-hidden"
+                                            >
+                                                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:scale-150 transition-transform" />
+                                                
+                                                <div className="relative z-10 flex items-center justify-between gap-4">
+                                                    <span className="text-lg font-black text-[#1a2355] dark:text-white group-hover:text-white leading-tight transition-colors">
+                                                        {other.title}
+                                                    </span>
+                                                    <div className="w-10 h-10 rounded-xl bg-white dark:bg-white/10 flex items-center justify-center transition-all duration-300 group-hover:bg-[#ee7c7e] group-hover:translate-x-1 shadow-sm">
+                                                        <ChevronRightIcon
+                                                            sx={{ fontSize: 20 }}
+                                                            className="text-[#1a2355] group-hover:text-white transition-colors"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        ))}
+                                </div>
+                            </motion.div>
                         </div>
 
-                        {/* Other pages in this section */}
-                        <div>
-                            <h2 className="text-lg font-bold text-[#1a2355] mb-4">
-                                {section.label} bölməsindəki digər səhifələr
-                            </h2>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                {section.items
-                                    .filter((i) => i.slug !== item.slug)
-                                    .map((other) => (
-                                        <Link
-                                            key={other.slug}
-                                            href={`${section.basePath}/${other.slug}`}
-                                            className="flex items-center justify-between bg-white border border-gray-100 rounded-xl px-5 py-3 hover:border-[#1a2355]/30 hover:shadow-md transition-all duration-200 group"
-                                        >
-                                            <span className="text-[#1a2355] font-medium text-sm">
-                                                {other.title}
-                                            </span>
-                                            <ChevronRightIcon
-                                                sx={{ fontSize: 18, color: "#1a2355", opacity: 0.4 }}
-                                                className="transition-transform duration-200 group-hover:translate-x-1"
-                                            />
-                                        </Link>
-                                    ))}
-                            </div>
+                        {/* Sidebar Style Info (Optional/Future) */}
+                        <div className="lg:col-span-4 space-y-8">
+                             <div className="sticky top-28 p-10 rounded-[3rem] bg-[#1a2355] text-white shadow-2xl relative overflow-hidden group">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
+                                <div className="relative z-10">
+                                    <div className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-white/10 border border-white/10 mb-8">
+                                        <div className="w-2 h-2 rounded-full bg-[#ee7c7e] animate-pulse" />
+                                        <span className="text-white text-[10px] font-black uppercase tracking-[0.3em]">Information</span>
+                                    </div>
+                                    <h3 className="text-2xl font-black uppercase tracking-tighter mb-4">AzTU Academic Excellence</h3>
+                                    <p className="text-white/60 font-medium leading-relaxed mb-10">
+                                        Empowering the next generation of engineers and technologists through innovation and research-driven education.
+                                    </p>
+                                    <Link href="/" className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] bg-[#ee7c7e] px-8 py-4 rounded-2xl shadow-xl shadow-black/20 hover:scale-[1.02] active:scale-95 transition-all">
+                                        Join Us
+                                        <ChevronRightIcon sx={{ fontSize: 16 }} />
+                                    </Link>
+                                </div>
+                             </div>
                         </div>
                     </div>
                 </section>
-            </main>
-            </>
+            </div>
+        </main>
     );
 }

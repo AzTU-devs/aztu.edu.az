@@ -73,8 +73,13 @@ export function middleware(request: NextRequest) {
             else if (segments_rest[2] === "seminars-and-trainings") newPath.push("seminarlar-ve-telimler");
             else if (segments_rest[2] === "research-projects") newPath.push("tedqiqat-layiheleri");
             else if (segments_rest[2] === "intellectual-property-and-patents") newPath.push("eqli-mulkiyyet-ve-patentler");
+            else if (segments_rest[2] === "scientific-journals") newPath.push("elmi-jurnallar");
             else if (segments_rest[2]) newPath.push(segments_rest[2]);
-            if (segments_rest[3]) newPath.push(segments_rest[3]); 
+            
+            if (segments_rest[3] === "machine-science") newPath.push("masin-elmi");
+            else if (segments_rest[3] === "energy-sustainability-risks-and-decision-making") newPath.push("enerji-davamliligi-riskler-ve-qerarlarin-qebul-edilmesi");
+            else if (segments_rest[3]) newPath.push(segments_rest[3]); 
+
             if (segments_rest[4] === "director") newPath.push("direktor");
             else if (segments_rest[4] === "staff") newPath.push("heyet");
             else if (segments_rest[4] === "contact") newPath.push("elaqe");
@@ -88,13 +93,21 @@ export function middleware(request: NextRequest) {
             else if (segments_rest[1] === "konfranslar-ve-tedbirler") newPath.push("conferences-and-events");
             else if (segments_rest[1]) newPath.push(segments_rest[1]);
             
-            if (segments_rest[2] === "tedqiqat-institutlari") newPath.push("research-institutes");
-            else if (segments_rest[2] === "daxili-qrant-proqramlari") newPath.push("internal-grant-programs");
-            else if (segments_rest[2] === "seminarlar-ve-telimler") newPath.push("seminars-and-trainings");
-            else if (segments_rest[2] === "tedqiqat-layiheleri") newPath.push("research-projects");
-            else if (segments_rest[2] === "eqli-mulkiyyet-ve-patentler") newPath.push("intellectual-property-and-patents");
-            else if (segments_rest[2]) newPath.push(segments_rest[2]);
+            if (segments_rest[2] === "tedqiqat-institutlari") segments_rest[2] = "research-institutes";
+            else if (segments_rest[2] === "daxili-qrant-proqramlari") segments_rest[2] = "internal-grant-programs";
+            else if (segments_rest[2] === "seminarlar-ve-telimler") segments_rest[2] = "seminars-and-trainings";
+            else if (segments_rest[2] === "tedqiqat-layiheleri") segments_rest[2] = "research-projects";
+            else if (segments_rest[2] === "eqli-mulkiyyet-ve-patentler") segments_rest[2] = "intellectual-property-and-patents";
+            else if (segments_rest[2] === "elmi-jurnallar") segments_rest[2] = "scientific-journals";
+
+            if (segments_rest[2] === "scientific-journals") {
+                if (segments_rest[3] === "masin-elmi") segments_rest[3] = "machine-science";
+                else if (segments_rest[3] === "enerji-davamliligi-riskler-ve-qerarlarin-qebul-edilmesi") segments_rest[3] = "energy-sustainability-risks-and-decision-making";
+            }
+
+            if (segments_rest[2]) newPath.push(segments_rest[2]);
             if (segments_rest[3]) newPath.push(segments_rest[3]); 
+
             if (segments_rest[4] === "direktor") newPath.push("director");
             else if (segments_rest[4] === "heyet") newPath.push("staff");
             else if (segments_rest[4] === "elaqe") newPath.push("contact");
@@ -301,14 +314,33 @@ export function middleware(request: NextRequest) {
         if (segments_rest[1] === "research-activity") segments_rest[1] = "tedqiqat-fealiyyeti";
         if (segments_rest[1] === "performance-and-evaluation") segments_rest[1] = "performans-ve-qiymetlendirme";
         if (segments_rest[1] === "conferences-and-events") segments_rest[1] = "konfranslar-ve-tedbirler";
+        
         if (segments_rest[2] === "research-institutes") segments_rest[2] = "tedqiqat-institutlari";
-        if (segments_rest[2] === "internal-grant-programs") segments_rest[2] = "daxili-qrant-proqramlari";
-        if (segments_rest[2] === "seminars-and-trainings") segments_rest[2] = "seminarlar-ve-telimler";
-        if (segments_rest[2] === "research-projects") segments_rest[2] = "tedqiqat-layiheleri";
-        if (segments_rest[2] === "intellectual-property-and-patents") segments_rest[2] = "eqli-mulkiyyet-ve-patentler";
+        else if (segments_rest[2] === "internal-grant-programs") segments_rest[2] = "daxili-qrant-proqramlari";
+        else if (segments_rest[2] === "seminars-and-trainings") segments_rest[2] = "seminarlar-ve-telimler";
+        else if (segments_rest[2] === "research-projects") segments_rest[2] = "tedqiqat-layiheleri";
+        else if (segments_rest[2] === "intellectual-property-and-patents") segments_rest[2] = "eqli-mulkiyyet-ve-patentler";
+        else if (segments_rest[2] === "scientific-journals") segments_rest[2] = "elmi-jurnallar";
+
+        if (segments_rest[2] === "elmi-jurnallar") {
+            if (segments_rest[3] === "machine-science") segments_rest[3] = "masin-elmi";
+            else if (segments_rest[3] === "energy-sustainability-risks-and-decision-making") segments_rest[3] = "enerji-davamliligi-riskler-ve-qerarlarin-qebul-edilmesi";
+        }
+
         if (segments_rest[4] === "director") segments_rest[4] = "direktor";
         if (segments_rest[4] === "staff") segments_rest[4] = "heyet";
         if (segments_rest[4] === "contact") segments_rest[4] = "elaqe";
+    }
+
+    // Explicit Scientific Journals Mapping for long paths
+    if ((segments_rest[0] === "research" || segments_rest[0] === "tedqiqat") && 
+        (segments_rest[1] === "scientific-journals" || segments_rest[1] === "elmi-jurnallar")) {
+        const sub = segments_rest[2];
+        if (sub === "machine-science" || sub === "masin-elmi") {
+            segments_rest = ["tedqiqat", "elmi-jurnallar", "machine-science"];
+        } else if (sub === "energy-sustainability-risks-and-decision-making" || sub === "enerji-davamliligi-riskler-ve-qerarlarin-qebul-edilmesi") {
+            segments_rest = ["tedqiqat", "elmi-jurnallar", "energy-sustainability-risks-and-decision-making"];
+        }
     }
     // Academic Section Mapping
     if (segments_rest[0] === "academic" || segments_rest[0] === "akademik") {
@@ -335,6 +367,29 @@ export function middleware(request: NextRequest) {
             segments_rest = ["about", "vice-rector"];
         } else if (sub === "scientific-board" || sub === "elmi-sura") {
             segments_rest = ["about", "scientific-board"];
+        }
+    }
+
+    // Students Section Mapping
+    if (segments_rest[0] === "students" || segments_rest[0] === "telebeler") {
+        const sub = segments_rest[1];
+        if (sub === "academic-calendar-and-rules" || sub === "tedris-teqvimi-ve-qaydalar") {
+            const subSub = segments_rest[2];
+            if (subSub === "2025-2026-academic-year-calendar" || subSub === "2025-2026-tedris-ili-teqvimi") {
+                segments_rest = ["tehsil", "academic-calendar-2025"];
+            } else if (subSub === "2026-2027-academic-year-calendar" || subSub === "2026-2027-tedris-ili-teqvimi") {
+                segments_rest = ["tehsil", "academic-calendar-2026"];
+            } else if (subSub === "assessment-and-examination-organization-rules" || subSub === "qiymetlendirme-ve-imtahan-teskili-qaydalari") {
+                segments_rest = ["tehsil", "assessment-rules"];
+            } else if (subSub === "credit-system-at-bachelors-and-masters-levels" || subSub === "bakalavr-ve-magistratura-seviyyelerinde-kredit-sistemi") {
+                segments_rest = ["tehsil", "credit-system"];
+            } else if (subSub === "lms-guidelines" || subSub === "lms-telimatlari") {
+                segments_rest = ["tehsil", "lms-guidelines"];
+            }
+        } else if (sub === "academic-calendar-2025") {
+            segments_rest = ["tehsil", "academic-calendar-2025"];
+        } else if (sub === "academic-calendar-2026") {
+            segments_rest = ["tehsil", "academic-calendar-2026"];
         }
     }
 

@@ -1,105 +1,204 @@
 "use client";
 
+import { use, useEffect, useState } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
 import SectionBlock from "@/components/shared/SectionBlock";
 import SchoolIcon from "@mui/icons-material/School";
-import { CafedraSpecialization } from "@/types/cafedra";
+import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
+import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
+import { getCafedraByCode } from "@/services/cafedraService/cafedraService";
+import type { CafedraDetail, CafedraSpecialization } from "@/types/cafedra";
 import { useLanguage } from "@/context/LanguageContext";
 
-export default function CafedraIxtisaslarPage() {
-  const { lang } = useLanguage();
+interface Props {
+  params: Promise<{ facultyId: string; cafedraId: string }>;
+}
 
+const degreeMeta: Record<string, { label: string; icon: any; color: string; bg: string }> = {
+  bachelor: { 
+    label: "Bakalavr", 
+    icon: SchoolIcon, 
+    color: "text-blue-600", 
+    bg: "bg-blue-50 dark:bg-blue-900/20" 
+  },
+  master: { 
+    label: "Magistr", 
+    icon: WorkspacePremiumIcon, 
+    color: "text-emerald-600", 
+    bg: "bg-emerald-50 dark:bg-emerald-900/20" 
+  },
+  phd: { 
+    label: "Doktorantura", 
+    icon: HistoryEduIcon, 
+    color: "text-purple-600", 
+    bg: "bg-purple-50 dark:bg-purple-900/20" 
+  },
+};
+
+export default function CafedraIxtisaslarPage({ params }: Props) {
+  const { facultyId, cafedraId } = use(params);
+  const { lang: currentLang } = useLanguage();
+  const [cafedra, setCafedra] = useState<CafedraDetail | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    getCafedraByCode(cafedraId, currentLang)
+      .then((result) => {
+        setCafedra(result);
+        setLoading(false);
+      })
+      .catch(() => {
+        setCafedra(null);
+        setLoading(false);
+      });
+  }, [cafedraId, currentLang]);
+
+  // Using mock data if API doesn't provide specializations yet, to show the layout
   const specializations: CafedraSpecialization[] = [
     {
       id: 1,
-      name: lang === "az" ? "Kafedra ixtisası 1" : "Department Specialization 1",
-      code: "050XXX",
+      name: currentLang === "az" ? "İnformasiya texnologiyaları" : "Information Technologies",
+      code: "050628",
       degree: "bachelor",
       duration_years: 4,
-      description: lang === "az" ? "İxtisas haqqında ümumi məlumat." : "General information about the specialization.",
+      description: currentLang === "az" ? "Şəbəkə texnologiyaları, informasiya təhlükəsizliyi və proqram təminatı hazırlığı." : "Network technologies, information security and software development.",
     },
     {
       id: 2,
-      name: lang === "az" ? "Kafedra ixtisası 2" : "Department Specialization 2",
-      code: "060XXX",
+      name: currentLang === "az" ? "Kompüter mühəndisliyi" : "Computer Engineering",
+      code: "050627",
+      degree: "bachelor",
+      duration_years: 4,
+      description: currentLang === "az" ? "Kompüter sistemləri, aparat təminatı və alqoritmik həllər." : "Computer systems, hardware and algorithmic solutions.",
+    },
+    {
+      id: 3,
+      name: currentLang === "az" ? "Kompüter elmləri" : "Computer Science",
+      code: "060627",
       degree: "master",
       duration_years: 2,
-      description: lang === "az" ? "Magistr proqramı haqqında məlumat." : "Information about the master's program.",
+      description: currentLang === "az" ? "Süni intellekt, maşın öyrənməsi və böyük verilənlər təhlili." : "Artificial intelligence, machine learning and big data analytics.",
     },
   ];
 
-  const degreeLabels: Record<string, string> = {
-    bachelor: lang === "az" ? "Bakalavr" : "Bachelor",
-    master: lang === "az" ? "Magistr" : "Master",
-    phd: lang === "az" ? "Doktorantura" : "PhD",
-  };
-
-  const degreeBadgeColors: Record<string, string> = {
-    bachelor: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300",
-    master: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300",
-    phd: "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300",
-  };
-
   const grouped = specializations.reduce<Record<string, CafedraSpecialization[]>>(
     (acc, s) => {
-      if (!acc[s.degree]) acc[s.degree] = [];
-      acc[s.degree].push(s);
+      const key = s.degree;
+      if (!acc[key]) acc[key] = [];
+      acc[key].push(s);
       return acc;
     },
     {}
   );
 
   return (
-    <div className="space-y-6">
-      {Object.entries(grouped).length === 0 ? (
-        <SectionBlock accent>
-            <div className="text-center py-10">
-                <p className="text-gray-500">{lang === "az" ? "Məlumat tapılmadı" : "No information found"}</p>
-            </div>
-        </SectionBlock>
-      ) : (
-        Object.entries(grouped).map(([degree, specs]) => (
-          <SectionBlock key={degree} title={`${degreeLabels[degree]} ${lang === "az" ? "ixtisasları" : "specializations"}`} accent>
-            <div className="space-y-4">
-              {specs.map((spec) => (
-                <div
-                  key={spec.id}
-                  className="flex items-start gap-4 bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 rounded-2xl p-5 hover:border-[#ee7c7e] hover:shadow-lg transition-all group"
+    <div className="space-y-10">
+      <SectionBlock title={currentLang === "az" ? "Kafedra ixtisasları" : "Departmental Programs"} accent>
+        <p className="text-sm text-gray-500 dark:text-slate-400 mb-10 max-w-2xl">
+          {currentLang === "az" 
+            ? "Kafedra tərəfindən tədris olunan bütün ixtisaslar və təhsil pillələri haqqında ətraflı məlumat." 
+            : "Detailed information about all specializations and levels of education offered by the department."}
+        </p>
+
+        {loading ? (
+          <div className="space-y-8">
+             {[1,2].map(i => <div key={i} className="h-48 rounded-[2rem] bg-gray-100 dark:bg-slate-800 animate-pulse" />)}
+          </div>
+        ) : (
+          <div className="space-y-12">
+            {Object.entries(grouped).map(([degree, specs], groupIdx) => {
+              const Icon = degreeMeta[degree]?.icon || SchoolIcon;
+              const meta = degreeMeta[degree] || degreeMeta.bachelor;
+              return (
+                <motion.div 
+                  key={degree}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: groupIdx * 0.2 }}
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#1a2355]/5 dark:bg-[#1a2355]/20 flex items-center justify-center flex-shrink-0 text-[#1a2355] dark:text-blue-400 group-hover:bg-[#ee7c7e]/10 group-hover:text-[#ee7c7e] transition-colors">
-                    <SchoolIcon sx={{ fontSize: 24 }} />
+                  <div className="flex items-center gap-4 mb-6">
+                     <div className={`w-12 h-12 rounded-2xl ${meta.bg} ${meta.color} flex items-center justify-center shadow-sm`}>
+                        <Icon sx={{ fontSize: 24 }} />
+                     </div>
+                     <h3 className="text-xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight">
+                       {currentLang === "az" ? `${meta.label} pilləsi` : `${meta.label} Degree`}
+                     </h3>
                   </div>
-                  <div className="flex-1">
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <h4 className="font-bold text-[#1a2355] dark:text-white text-base">
-                        {spec.name}
-                      </h4>
-                      <span
-                        className={`text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full ${degreeBadgeColors[spec.degree]}`}
+
+                  <div className="grid grid-cols-1 gap-4">
+                    {specs.map((spec, idx) => (
+                      <motion.div
+                        key={spec.id}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: (groupIdx * 0.2) + (idx * 0.1) }}
+                        className="group relative bg-white dark:bg-slate-800 border-2 border-gray-50 dark:border-slate-700 rounded-[1.5rem] p-6 hover:border-[#ee7c7e] hover:shadow-xl hover:shadow-[#1a2355]/5 transition-all duration-500"
                       >
-                        {degreeLabels[spec.degree]}
-                      </span>
-                      {spec.code && (
-                        <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 dark:text-slate-500 bg-gray-50 dark:bg-slate-700/50 px-2 py-1 rounded-lg">
-                          {spec.code}
-                        </span>
-                      )}
-                    </div>
-                    {spec.description && (
-                      <p className="text-sm text-gray-500 dark:text-slate-400 leading-relaxed mb-2">
-                        {spec.description}
-                      </p>
-                    )}
-                    <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#ee7c7e]" />
-                        {lang === "az" ? "Müddəti" : "Duration"}: {spec.duration_years} {lang === "az" ? "il" : "years"}
-                    </div>
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                          <div className="flex-1 min-w-0">
+                            <div className="flex flex-wrap items-center gap-3 mb-2">
+                              <span className="text-lg font-black text-[#1a2355] dark:text-white group-hover:text-[#ee7c7e] transition-colors">
+                                {spec.name}
+                              </span>
+                              {spec.code && (
+                                <span className="px-2 py-0.5 rounded-md bg-gray-100 dark:bg-slate-700 text-gray-400 font-mono text-[10px] font-bold">
+                                  {spec.code}
+                                </span>
+                              )}
+                            </div>
+                            {spec.description && (
+                              <p className="text-sm text-gray-500 dark:text-slate-400 leading-relaxed line-clamp-2">
+                                {spec.description}
+                              </p>
+                            )}
+                          </div>
+                          
+                          <div className="flex flex-row md:flex-col items-center md:items-end gap-4 md:gap-1 flex-shrink-0 border-t md:border-t-0 md:border-l border-gray-100 dark:border-slate-700 pt-4 md:pt-0 md:pl-8">
+                             <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">{currentLang === "az" ? "Müddət" : "Duration"}</span>
+                             <span className="text-lg font-black text-[#1a2355] dark:text-white">{spec.duration_years} {currentLang === "az" ? "İL" : "YEARS"}</span>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
                   </div>
-                </div>
-              ))}
-            </div>
-          </SectionBlock>
-        ))
-      )}
+                </motion.div>
+              );
+            })}
+          </div>
+        )}
+      </SectionBlock>
+
+      {/* Stunning Apply Banner */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.98 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        className="relative overflow-hidden rounded-[3rem] bg-[#1a2355] p-10 md:p-16 text-white shadow-2xl"
+      >
+        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl -mr-32 -mt-32" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#ee7c7e]/10 rounded-full blur-3xl -ml-32 -mb-32" />
+        
+        <div className="relative z-10 max-w-2xl">
+           <h2 className="text-3xl md:text-4xl font-black mb-6 leading-tight">
+             {currentLang === "az" ? "Akademik karyeranızı bizimlə qurun" : "Build your academic career with us"}
+           </h2>
+           <p className="text-white/70 text-lg mb-10 font-medium">
+             {currentLang === "az" 
+               ? "Kafedramızın təklif etdiyi yüksək keyfiyyətli təhsil proqramları ilə gələcəyinizə investisiya edin." 
+               : "Invest in your future with the high-quality educational programs offered by our department."}
+           </p>
+           <div className="flex flex-wrap gap-4">
+              <a href="https://portal.edu.az" target="_blank" className="px-8 py-4 rounded-2xl bg-[#ee7c7e] hover:bg-[#f09395] text-white font-black text-sm transition-all shadow-lg shadow-red-900/20 active:scale-95">
+                {currentLang === "az" ? "İndi müraciət et" : "Apply Now"}
+              </a>
+              <Link href={`/faculties/${facultyId}/kafedralar/${cafedraId}/haqqimizda/elaqe`} className="px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-black text-sm transition-all border border-white/10 active:scale-95">
+                {currentLang === "az" ? "Məlumat al" : "Get Information"}
+              </Link>
+           </div>
+        </div>
+      </motion.div>
     </div>
   );
 }

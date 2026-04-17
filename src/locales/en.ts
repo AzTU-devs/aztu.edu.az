@@ -370,21 +370,100 @@ const en = {
         subtitle: "The supreme academic governing body of Azerbaijan Technical University.",
         breadcrumb: "Scientific Board",
         aboutTitle: "About the Board",
-        aboutText: "The Scientific Board (Elmi Şura) is the highest academic decision-making body of AzTU. Chaired by the Rector, it brings together deans, department heads, senior professors, and elected faculty representatives to deliberate on all matters of academic policy, quality, and strategy.",
-        chairmanTitle: "Chairman",
-        membersTitle: "Board Members",
-        mandateTitle: "Board Mandate",
-        mandate: [
-          "Approve university-wide academic standards and degree programme structures",
-          "Review and endorse research priorities and strategic research partnerships",
-          "Evaluate nominations for professorial appointments and academic promotions",
-          "Oversee academic quality assurance and institutional accreditation processes",
-          "Deliberate on academic disciplinary matters involving faculty",
-          "Advise the Rector on matters of academic policy and institutional governance",
-        ],
+        aboutText: "The Academic Council of Azerbaijan Technical University (AzTU) is the University’s highest collegial governing body responsible for guiding its academic and strategic development. The Council plays a central role in shaping institutional priorities by ensuring the integration of education, research, and innovation. It oversees academic quality, approves educational programs, and directs the development of research activities in alignment with international standards. Operating on principles of academic excellence, transparency, and institutional integrity, the Academic Council brings together the University’s senior leadership and leading faculty members. The Council is chaired by the Rector. Through its governance, the Academic Council contributes to strengthening AzTU’s global competitiveness and advancing its transformation into a research-driven and innovation-oriented university.",
+        scientificCouncil: {
+          title: "Scientific Council",
+          headers: ["№", "Surname, first name", "Position"],
+          members: [
+            ["1", "Valiyev Vilayat Mamed", "Rector, professor, chairman of the Scientific Council"],
+            ["2", "Yusifbeyli Nureli Adil", "Vice-rector for educational affairs, Ph.D., professor, vice-chairman"],
+            ["3", "Rzayeva Vafa Huseynaga", "Scientific secretary of the university"],
+            ["4", "Namazov Subhan Nadir", "Vice-rector for science and innovation, Ph.D., professor"],
+            ["5", "Mamedov Fariz Orucali", "Vice-rector for international relations"],
+            ["6", "Mustafayev Fariz Front", "Vice Chancellor for General Affairs"],
+            ["7", "Aliyev Rashad Yaver", "Vice-rector for financial and economic affairs"],
+            ["8", "Rzayeva Narmin Eldar", "Vice-rector for social issues and public relations, Ph.D., docent"],
+            ["9", "Bakhtiyarov Bakhtiyar Ibrahim", "Director of Baku State College of Communication and Transport, Ph.D., docent"],
+            ["10", "Jahangirov Akif Ali", "Director of Baku Technical College, Ph.D., professor"],
+            ["11", "Chelebi Iftikhar Kurbanali", "Director of the Institute of Higher Education, Ph.D., associate professor"],
+            ["12", "Sharifov Allahverdi Jamal", "Dean of the Faculty of Transport and Logistics, associate professor"],
+            ["13", "Musayeva Farqana Khazanfar", "Dean of the Faculty of Economics and Management, docent"],
+            ["14", "Shirinov Taleh Vorashil", "Dean of the faculty of information and telecommunication technologies, docent"],
+            ["15", "Rzayev Elchin David", "Dean of the faculty of special engineering and technology, associate professor"],
+            ["16", "Kuliyev Huseynqulu Bayram", "Dean of the Faculty of Energy and Automation, associate professor"],
+            ["17", "Poladov Nizami Kadim", "Dean of the Faculty of Metallurgy and Materials Science, associate professor"],
+            ["18", "Karayev Malik Fikret", "Dean of the Faculty of Mechanical Engineering and Robotics, associate professor"],
+            ["19", "Mamedov Erestun Salman", "Dean of the German engineering faculty, associate professor"],
+            ["20", "Farhadov Vahid Kara", "Head of the Department of Automation and Management, associate professor"],
+            ["21", "Manafov Kasım Cabar", "Head of the department of transport equipment and management technologies, associate professor"],
+            ["22", "Mirzeyev Habib Adil", "Head of the Department of Humanities, F.E.N., Associate Professor"],
+            ["23", "Aliyev Hikmet Sakhaveddin", "Head of the Department of Electrical Engineering, docent"],
+            ["24", "Zeynalov Shudjaat Emen", "Associate Professor of Engineering Physics and Electronics Department, Ph.D."],
+            ["25", "Suleymanov Arzu Sahib", "Head of the Department of Economics and Statistics, associate professor"],
+            ["26", "Kalbiyev Ramiz Kalbi", "Head of the department of energy efficiency and green energy, associate professor"],
+            ["27", "Bashirov Rasim Javad", "Head of the department of energy efficiency and green energy, associate professor"],
+            ["28", "Maharramov Vaqif Ali", "Head of the Department of Radioelectronic and Aerospace Systems, Ph.D., Professor"],
+            ["29", "Yusubov Nizami Demir", "Head of the Department of Mechanical Engineering Technology, Ph.D., Professor"],
+            ["30", "Khalilov Isa Ali", "Head of the Department of Mechotronics and Machine Design, Ph.D., Professor"],
+            ["31", "Baksheli Valeh Ismikhan", "Head of the Department of Mechanics, Ph.D., Professor"],
+            ["32", "Bayramov Razim Pasha", "Head of the department of transport logistics and traffic safety, associate professor"],
+            ["33", "Babayev Aqil İsa", "Head of the department of metallurgy and materials technology, associate professor"],
+            ["34", "Yusubov Fakhraddin Veli", "Head of the Department of Chemical Technology, Recycling and Ecology, Ph.D., Professor"],
+            ["35", "Aghayev Nadir Bafaddin", "Head of the Department of Engineering Mathematics and Artificial Intelligence, Ph.D., Professor"],
+            ["36", "Imamverdiyev Yadigar Nasib", "Head of the Department of Cyber Security, Ph.D., Associate Professor"],
+            ["37", "Hasanov Mehman Huseyn", "Head of the radio engineering and telecommunication department, Ph.D., associate professor"],
+            ["38", "Qasimov Vaqif Alijavad", "Head of the Department of Computer Technologies, Ph.D., Professor"],
+            ["39", "Almamedova Sabina Mamed", "Head of the Department of Foreign Languages, Ph.D., Associate Professor"],
+            ["40", "Huseynov Alekber Gulahmed", "Head of the department of special technologies and equipment, Ph.D., professor"],
+            ["41", "Ibrahimov Bayram Qanimet", "Professor of the Department of Radio Engineering and Telecommunications, Ph.D"],
+            ["42", "Aslanzada Ilham Alici", "Professor of the Department of Economics and Statistics, i.e.d."],
+            ["43", "Ismayilova Aynura Manaf", "Director of the Center for University-Industry Cooperation and Lifelong Education"],
+            ["44", "Qemberov Amirkhan Jabbar", "Head of the Quality Assurance and Learning Center"],
+            ["45", "Dashdemirov Fuad Samid", "Director of the Institute of Logistics and Transport, Ph.D., associate professor"],
+            ["46", "Khajibeyova Sevda Jafar", "Head of the teaching department"],
+            ["47", "Bakhtiyarli Elvin Amin", "Chairman of the Trade Union Committee"],
+            ["48", "Alekberli Mirmahammad Elshen", "Chairman of the Labor Union Committee"],
+            ["49", "Aliyeva Sherefkhanim Vaqif", "Chairman of the Student Scientific Society"],
+            ["50", "Shukurov Rahim Izzat", "Advisor-Professor of the Department of Metallurgy and Materials"],
+            ["51", "Karimov Ziyafat Kheyrulla", "Professor of the Department of Transport Techniques and Management, Ph.D."]
+          ]
+        },
+        digitalCouncil: {
+          title: "Digital Council",
+          headers: ["№", "Full Name", "Position"],
+          members: [
+            ["1", "Telman Akhundov", "Head of 'Akhundoff Network', Chairman"],
+            ["2", "Vilayat Valiyev", "Rector of AzTU"],
+            ["3", "Rashad Aliyev", "Vice-Rector of AzTU"],
+            ["4", "Osman Gunduz", "President of Azerbaijan Internet Forum, Chairman of the Public Council of AzTU"],
+            ["5", "Edgar Abdullayev", "Executive Director of 'United Payment'"],
+            ["6", "Javharat Dinavasova", "Head of the Protocol Sector of AzTU, Secretariat Coordinator"],
+            ["7", "Manafeddin Namazov", "Director of the Institute of Materials and Nanotechnologies"],
+            ["8", "Aynura Ismayilova", "Director of the School of Lifelong Learning"],
+            ["9", "Atif Namazov", "Head of the Department of Engineering Mathematics and Artificial Intelligence"],
+            ["10", "Zafar Jafarov", "Head of the Department of Computer Technologies"],
+            ["11", "Natavan Namazova", "Head of the Department of Economics and Statistics"],
+            ["12", "Yadullah Babayev", "Director of the Technology Transfer Office"],
+            ["13", "Javid Abbasli", "Lecturer at the Department of Engineering Mathematics and Artificial Intelligence"],
+            ["14", "Rauf Hasanov", "Head of 'Bestcomp'"],
+            ["15", "Rasim Bakhshi", "Head of 'Lenovo' Azerbaijan Representative Office"],
+            ["16", "Emin Akhundov", "IT Expert"],
+            ["17", "Ulvi Aslanov", "Head of 'Code Academy'"],
+            ["18", "Ramil Maharramov", "Business Development Advisor at 'Norm'"],
+            ["19", "Elshad Yusifli", "Information Technology Expert"],
+            ["20", "Ruslan Talibov", "Chairman of the Board of the Azerbaijan Fintech Association"]
+          ],
+          secretariat: {
+            title: "Secretariat",
+            members: [
+              ["1", "Chingiz Hajizada", "Lecturer at the Department of Engineering Mathematics and Artificial Intelligence"],
+              ["2", "Chingiz Alakbarov", "Master's student at the Department of Engineering Mathematics and Artificial Intelligence"]
+            ]
+          }
+        },
         related: [
           { title: "Rector", href: "/about/leadership-and-management/rector" },
-          { title: "Vice-Rector", href: "/about/vice-rector" },
+          { title: "Vice-Rectors", href: "/about/leadership-and-management/vice-rector" },
           { title: "Strategic Plan", href: "/about/strategic-plan" },
         ],
       },
@@ -520,6 +599,227 @@ const en = {
         subtitle: "Key procedural processes and official guidelines at AzTU.",
         breadcrumb: "Procedure & Guidelines",
       },
+    },
+    students: {
+      academicCalendar2025: {
+        eyebrow: "Students",
+        title: "Academic Calendar for the 2025-2026 Academic Year",
+        subtitle: "The academic activity schedule of Azerbaijan Technical University.",
+        breadcrumb: "Academic Calendar 2025-2026",
+        sections: [
+          {
+            title: "Fall Semester (2025)",
+            headers: ["Dates", "Activity / Event"],
+            rows: [
+              ["Sept 1 – 10", "Adjustments to course registration for the Fall semester"],
+              ["Sept 15", "Knowledge Day / Start of the Fall Semester"],
+              ["Sept 15 – 21", "Week I of teaching"],
+              ["Sept 22 – 28", "Week II of teaching"],
+              ["Sept 29 – Oct 5", "Week III of teaching"],
+              ["Oct 6 – 12", "Week IV of teaching"],
+              ["Oct 13 – 19", "Week V of teaching"],
+              ["Oct 20 – 26", "Week VI of teaching"],
+              ["Oct 27 – Nov 2", "Week VII of teaching"],
+              ["Nov 3 – 9", "Week VIII of teaching"],
+              ["Nov 8", "Victory Day"],
+              ["Nov 9", "Flag Day"],
+              ["Nov 10 – 16", "Week IX of teaching"],
+              ["Nov 17 – 23", "Week X of teaching / Week I of current assessment"],
+              ["Nov 24 – 30", "Week XI of teaching / Week II of current assessment"],
+              ["Dec 1 – 7", "Week XII of teaching"],
+              ["Dec 8 – 14", "Week XIII of teaching / Assessment of independent work"],
+              ["Dec 15 – 21", "Week XIV of teaching / Assessment of independent work"],
+              ["Dec 22 – 28", "Week XV of teaching"],
+              ["Dec 29 – Jan 3", "Week I of Fall semester exam session"],
+              ["Dec 31", "International Solidarity Day of Azerbaijanis"],
+            ]
+          },
+          {
+            title: "Spring Semester (2026)",
+            headers: ["Dates", "Activity / Event"],
+            rows: [
+              ["Jan 1 – 2", "New Year Holidays"],
+              ["Jan 5 – 11", "Week II of Fall semester exam session"],
+              ["Jan 12 – 18", "Week III of Fall semester exam session"],
+              ["Jan 19 – 25", "Week IV of Fall semester exam session"],
+              ["Jan 20", "National Day of Mourning"],
+              ["Jan 26 – Feb 1", "Week V of Fall semester exam session"],
+              ["Feb 2 – 8", "Adjustments to Spring registration / Registration for retake exams"],
+              ["Feb 9 – 15", "Organization of retake exams"],
+              ["Feb 16", "Start of the Spring Semester"],
+              ["Feb 16 – 22", "Week I of teaching / Week I of Internship"],
+              ["Feb 23 – Mar 1", "Week II of teaching / Week II of Internship"],
+              ["Mar 2 – 8", "Week III of teaching / Week III of Internship"],
+              ["Mar 8", "International Women's Day"],
+              ["Mar 9 – 15", "Week IV of teaching / Week IV of Internship"],
+              ["Mar 16 – 22", "Week V of teaching / Week V of Internship"],
+              ["Mar 18 – 19", "Ramadan Holiday"],
+              ["Mar 20 – 24", "Novruz Holiday"],
+              ["Mar 23 – 29", "Week VI of teaching / Week VI of Internship"],
+              ["Mar 30 – Apr 5", "Week VII of teaching / Week VII of Internship"],
+              ["Apr 6 – 12", "Week VIII of teaching / Week VIII of Internship"],
+              ["Apr 13 – 19", "Week IX of teaching / Week IX of Internship / Week I of current assessment"],
+              ["Apr 20 – 26", "Week X of teaching / Week X of Internship / Week II of current assessment"],
+              ["Apr 27 – May 3", "Week XI of teaching / Week XI of Internship"],
+              ["May 1 – 22", "Entering independent work grades into the system"],
+              ["May 4 – 10", "Week XII of teaching / Week XII of Internship"],
+              ["May 9", "Victory Day"],
+              ["May 11 – 17", "Week XIII of teaching / Week XIII of Internship"],
+              ["May 18 – 24", "Week XIV of teaching / Week XIV of Internship"],
+              ["May 25 – 31", "Week XV of teaching / Week XV of Internship"],
+              ["May 26 – 27", "Eid al-Adha"],
+              ["May 28", "Independence Day"],
+            ]
+          },
+          {
+            title: "Summer Period & Graduation (2026)",
+            headers: ["Dates", "Activity / Event"],
+            rows: [
+              ["June 1 – 7", "Week I of Spring exam session / Week XVI of Internship"],
+              ["June 8 – 14", "Week II of Spring exam session / Week XVII of Internship"],
+              ["June 15 – 21", "Week III of Spring exam session / Week XVIII of Internship"],
+              ["June 15", "National Salvation Day"],
+              ["June 15 – July 15", "Registration for the Summer semester"],
+              ["June 22 – 28", "Week IV of Spring exam session / Week XIX of Internship / Week I of Thesis Defense"],
+              ["June 26", "Armed Forces Day"],
+              ["June 29 – July 5", "Week V of Spring exam session / Week XX of Internship / Week II of Thesis Defense"],
+              ["July 6 – 9", "Registration and organization of retake exams"],
+              ["July 10 – 15", "Organization of retake exams"],
+              ["July 20 – 26", "Week I of Summer semester"],
+              ["July 27 – Aug 2", "Week II of Summer semester"],
+              ["Aug 3 – 9", "Week III of Summer semester"],
+              ["Aug 10 – 16", "Week IV of Summer semester"],
+              ["Aug 17 – 23", "Week V of Summer semester"],
+              ["Aug 24 – 30", "Exam week for the Summer semester"],
+            ]
+          }
+        ],
+        notes: [
+          "Internships: These run concurrently with the Spring semester, lasting up to 20 weeks.",
+          "Assessments: Current assessments typically occur in two-week blocks during the 10th-11th weeks of the semester.",
+          "Independent Work: Specific periods are designated for the evaluation and entry of grades for independent student work."
+        ]
+      },
+      assessmentRules: {
+        eyebrow: "Students",
+        title: "Assessment and Examination Organization Rules",
+        subtitle: "Procedures for student assessment and the organization of examinations at Azerbaijan Technical University.",
+        breadcrumb: "Assessment Rules",
+        pdfUrl: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/4-2025/Organization%20of%20Examinations%20at%20Azerbaijan%20Technical%20University.pdf",
+        sections: [
+          {
+            title: "Point Distribution",
+            content: "The assessment is based on a 100-point multi-grading system:",
+            list: [
+              "Seminar / Practical Session: 30 points",
+              "Attendance: 10 points",
+              "Individual Work: 10 points",
+              "Final Examination: 50 points"
+            ],
+            subContent: "To pass the examination, a student must score at least 17 points (out of 50)."
+          },
+          {
+            title: "Grading Scale",
+            table: {
+              headers: ["Points", "Grade", "Description"],
+              rows: [
+                ["91 – 100", "A", "Excellent"],
+                ["81 – 90", "B", "Very Good"],
+                ["71 – 80", "C", "Good"],
+                ["61 – 70", "D", "Satisfactory"],
+                ["51 – 60", "E", "Sufficient"],
+                ["Below 51", "F", "Unsatisfactory (Fail)"]
+              ]
+            }
+          },
+          {
+            title: "Examination Formats",
+            items: [
+              { title: "Test-based", description: "50 questions, 60 minutes. Questions are grouped into three difficulty levels." },
+              { title: "Written examination", description: "5 questions per ticket. Evaluated based on content, analysis, and writing rules." },
+              { title: "Oral examination", description: "5 questions per ticket. Video recorded for transparency." },
+              { title: "Written-electronic", description: "10 questions (3 theoretical, 7 practical), 120 minutes." }
+            ]
+          },
+          {
+            title: "Disciplinary Rules",
+            content: "Examination results will be cancelled in the following cases:",
+            list: [
+              "Bringing mobile phones, smartwatches, or other communication devices",
+              "Attempting to copy or providing conditions for copying",
+              "Leaving the examination hall without permission",
+              "Unethical behavior towards invigilators"
+            ]
+          },
+          {
+            title: "Appeals Process",
+            content: "Students dissatisfied with their results can apply to the Appeals Commission within 24 hours of the announcement of the results."
+          }
+        ]
+      },
+      creditSystem: {
+        eyebrow: "Students",
+        title: "Credit System at Bachelor's and Master's Levels",
+        subtitle: "Rules for the organization of teaching and assessment of student achievements at Azerbaijan Technical University.",
+        breadcrumb: "Credit System",
+        pdfUrl: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/4-2025/the%20Credit%20System%20at%20Bachelors%20and%20Masters%20Levels%20%20Translations.pdf",
+        sections: [
+          {
+            title: "General Provisions",
+            content: "Teaching is organized based on individual study plans according to the Bologna process:",
+            list: [
+              "Every student has an individual study plan",
+              "Academic advisors (tutors) guide students",
+              "Attendance limit is 25%",
+              "Passing score is 51 points"
+            ]
+          },
+          {
+            title: "Workload and Credits",
+            content: "Credits measure the time a student spends mastering a subject:",
+            list: [
+              "1 credit = 30 hours of workload",
+              "Maximum weekly workload: 45 hours (1.5 credits)",
+              "Normal semester load: 30 credits",
+              "Maximum semester load: 40 credits"
+            ]
+          },
+          {
+            title: "Graduation Requirements",
+            content: "Minimum credits required for graduation:",
+            table: {
+              headers: ["Level of Education", "Number of Credits", "Duration"],
+              rows: [
+                ["Bachelor's", "240 – 300 credits", "4 – 5 years"],
+                ["Master's", "90 – 120 credits", "1.5 – 2 years"],
+                ["Medicine (Bachelor's)", "300 – 360 credits", "5 – 6 years"]
+              ]
+            }
+          },
+          {
+            title: "Summer Semester",
+            content: "Organized for debt elimination or earning extra credits:",
+            list: [
+              "Maximum 10 credits can be taken",
+              "Classes last for 6 weeks",
+              "Exams are held immediately after classes"
+            ]
+          }
+        ]
+      },
+      lmsGuidelines: {
+        eyebrow: "Students",
+        title: "LMS Guidelines - KOICA",
+        subtitle: "Rules for using Learning Management Systems (LMS) at Azerbaijan Technical University.",
+        breadcrumb: "LMS Guidelines",
+        intro: "Azerbaijan Technical University (AzTU) uses Learning Management Systems (LMS) to streamline course management, enhance student engagement, and support remote learning. LMS platforms at AzTU allow for easy access to course materials, interactive learning, online assessments, and tracking of student performance. The system also facilitates communication between students and faculty, contributing to a more flexible and efficient educational experience. Through LMS, AzTU promotes collaboration, innovation, and improved accessibility for its students.",
+        guidelinesTitle: "LMS Guidelines",
+        guidelinesPdfUrl: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/3-2025/LMS%20-Guidlines.pdf",
+        staffTitle: "Trained LMS staff",
+        staffDescription: "Trained LMS staff are essential for maximizing the benefits of the LMS, enhancing the teaching and learning experience, and ensuring that the platform runs effectively.",
+        staffListTitle: "List of trained staff",
+        staffPdfUrl: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/3-2025/Number%20of%20Trained%20Staff%20.pdf"
+      }
     },
     research: {
       priorities: {
@@ -797,6 +1097,50 @@ const en = {
             ]
           }
         ]
+      },
+      scientificJournals: {
+        eyebrow: "Research and Innovation",
+        title: "Scientific Journals",
+        subtitle: "The official scientific publications of Azerbaijan Technical University.",
+        breadcrumb: "Scientific Journals",
+        machineScience: {
+          title: "Machine Science (Maşınşünaslıq)",
+          details: {
+            issn: "2227-6912",
+            eissn: "2790-0479",
+            year: "2001",
+            issuesPerYear: "2",
+            language: "English",
+            founder: "Azerbaijan Technical University",
+            doi: "10.61413",
+            link: "msj.aztu.edu.az"
+          },
+          about: "Machine Science international scientific and technical journal was founded in 2001. The journal is included in the list of periodical scientific publications recommended for the publication of articles in the Republic of Azerbaijan by the Higher Attestation Commission (HAC) under the President of the Republic of Azerbaijan. The journal publishes high-quality scientific articles covering various fields of machine science, such as Machine Design, Mechanics, Mechanical Engineering Technology, Engineering Economics and Management, Energetics (Energy), and Materials Science. The journal consistently produces two issues annually. Every submitted article undergoes a review process by two independent reviewers with substantial expertise in the relevant field. Published articles are deposited in the archives section of the journal's official website, msj.aztu.edu.az, as well as in the eLibrary.ru electronic library. Each article is provided with a DOI (Digital Object Identifier). Authors are not charged any fees for the publication of articles in the journal, and the journal's activities are fully financed by the Azerbaijan Technical University.",
+          image: "/research-seminars-training/Machine Science (Maşınşünaslıq).jpg"
+        },
+        energySustainability: {
+          title: "Energy sustainability: risks and decision making",
+          details: {
+            issn: "3006 - 8487",
+            year: "2023",
+            issuesPerYear: "2",
+            language: "English",
+            doi: "10.61413/PXHI4350",
+            link: "https://ensusjournal.org/index.php/ojs/index"
+          },
+          about: "\"Energy Sustainability: Risks and Decision Making\" is a multidisciplinary, open-access, and peer-reviewed journal dedicated to promoting and disseminating research on sustainable development issues. The journal aims to provide a platform for researchers, practitioners, policymakers, and other relevant parties to share their knowledge, experience, and views related to sustainable development issues.",
+          chiefEditor: "Prof. Vilayat Valiyev, Azerbaijan Technical University, Baku, Azerbaijan",
+          editorialBoard: [
+            "Prof. Gürkan Kumbaroğlu",
+            "Prof. Buket Akkoyunlu",
+            "Prof. Aytekin Isman",
+            "Dos. Fariz Məmmədov",
+            "Dos. Aynura İsmayılova",
+            "Dr. Igor Nasirov",
+            "Dos. Natavan Namazova"
+          ],
+          image: "/research-seminars-training/Energy sustainability- risks and decision making.png"
+        }
       }
     },
   },
