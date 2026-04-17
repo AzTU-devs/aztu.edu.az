@@ -70,7 +70,7 @@ export default function IntellectualPropertyPage() {
                     className="absolute inset-0 w-full h-full object-cover opacity-50 transition-opacity duration-1000"
                     style={{ filter: "brightness(0.6) contrast(1.1) saturate(0.8)" }}
                 >
-                    <source src="/heroVideos/video9.mp4" type="video/mp4" />
+                    <source src="/heroBgVideos/research.mp4" type="video/mp4" />
                 </video>
 
                 <motion.div style={{ y }} className="absolute inset-0 z-10">

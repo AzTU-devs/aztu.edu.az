@@ -371,22 +371,101 @@ const az = {
         subtitle: "Azərbaycan Texniki Universitetinin ali akademik idarəetmə orqanı.",
         breadcrumb: "Elmi Şura",
         aboutTitle: "Şura Haqqında",
-        aboutText: "Elmi Şura AzTU-nun ən yüksək akademik qərar qəbul orqanıdır. Rektor tərəfindən idarə edilən bu şura akademik siyasət, keyfiyyət və strategiyanın bütün məsələlərini müzakirə etmək üçün dekanları, kafedra müdirlərini, yüksək rütbəli professorları və seçilmiş fakültə nümayəndələrini bir araya gətirir.",
-        chairmanTitle: "Sədrin",
-        membersTitle: "Şura Üzvləri",
-        mandateTitle: "Şura Mandatı",
-        mandate: [
-          "Universitetdə akademik standartları və dərəcə proqramı strukturlarını təsdiqləmək",
-          "Tədqiqat prioritetlərini və strateji tədqiqat tərəfdaşlıqlarını nəzərdən keçirmək və dəstəkləmək",
-          "Professor təyinatları və akademik tərtibat üçün namizədlərə baxmaq",
-          "Akademik keyfiyyətin təminatına və institutsional akkreditasiya proseslərinə nəzarət etmək",
-          "Fakültəni əhatə edən akademik intizam məsələlərini müzakirə etmək",
-          "Akademik siyasət və institutsional idarəetmə məsələlərində Rektora məsləhət vermək",
-        ],
+        aboutText: "Azərbaycan Texniki Universitetinin Elmi Şurası universitetin akademik və strateji inkişafını istiqamətləndirən ali kollegial idarəetmə orqanıdır. Şura təhsil, tədqiqat və innovasiya fəaliyyətlərinin inteqrasiyasını təmin edərək universitetin akademik mükəmməlliyini və institusional dayanıqlığını gücləndirir. Universitetin inkişaf prioritetlərinin müəyyən edilməsi, tədris proqramlarının keyfiyyətinin artırılması və elmi fəaliyyətin istiqamətləndirilməsi Şuranın əsas funksiyalarını təşkil edir. Elmi Şura akademik idarəetmədə şəffaflıq, keyfiyyət və beynəlxalq standartlara uyğunluq prinsiplərinə əsaslanaraq qərarların qəbulunu həyata keçirir. Şuranın tərkibinə universitet rəhbərliyi və aparıcı akademik heyət daxildir və ona universitetin rektoru sədrlik edir. AzTU Elmi Şurası universitetin qlobal rəqabət qabiliyyətinin artırılması və tədqiqat yönümlü inkişaf modelinin formalaşdırılmasında əsas rol oynayır.",
+        scientificCouncil: {
+          title: "Elmi şura",
+          headers: ["№", "Soyadı, adı və atasının adı", "Vəzifəsi"],
+          members: [
+            ["1", "Vəliyev Vilayət Məmməd oğlu", "Rektor, i.e.d., professor, Elmi şuranın sədri"],
+            ["2", "Yusifbəyli Nurəli Adil oğlu", "Tədris işləri üzrə prorektor, t.e.d., professor, sədr müavini"],
+            ["3", "Rzayeva Vəfa Hüseynağa qızı", "Universitetin elmi katibi, t.e.n."],
+            ["4", "Namazov Sübhan Nadir oğlu", "Elm və innovasiyalar üzrə prorektor, t.e.d., professor"],
+            ["5", "Məmmədov Fariz Orucalı oğlu", "Beynəlxalq əlaqələr üzrə prorektor, i.f.d."],
+            ["6", "Mustafayev Fariz Front oğlu", "Ümumi işlər üzrə prorektor"],
+            ["7", "Əliyev Rəşad Yavər oğlu", "Maliyyə-təsərrüfat işləri üzrə prorektor, i.f.d."],
+            ["8", "Rzayeva Nərmin Eldar qızı", "Sosial məsələlər və ictimaiyyətlə əlaqələr üzrə prorektor, t.f.d., dosent"],
+            ["9", "Bəxtiyarov Bəhxtiyar İbrahim oğlu", "Bakı Dövlət Rabitə və Nəqliyyat Kollecinin direktoru, t.f.d., dosent"],
+            ["10", "Cahangirov Akif Əli oğlu", "Bakı Texniki Kollecinin direktoru, t.e.d., professor"],
+            ["11", "Çələbi İftixar Qurbanəli oğlu", "Yüksək Təhsil İnstitutunun direktoru, t.e.d., dosent"],
+            ["12", "Şərifov Allahverdi Camal oğlu", "Nəqliyyat və logistika fakültəsinin dekanı, t.f.d., dosent"],
+            ["13", "Musayeva Fərqanə Qəzənfər qızı", "İqtisadiyyat və idarəetmə fakültəsinin dekanı, i.f.d., dosent"],
+            ["14", "Şirinov Taleh Voraşil oğlu", "İnformasiya və telekommunikasiya texnologiyaları fakültəsinin dekanı, f-r.e.n., dosent"],
+            ["15", "Rzayev Elçin David oğlu", "Xüsusi texnika və texnologiya fakültəsinin dekanı, t.e.n., dosent"],
+            ["16", "Quliyev Hüseynqulu Bayram oğlu", "Energetika və avtomatika fakültəsinin dekanı, t.e.n., dosent"],
+            ["17", "Poladov Nizami Qədim oğlu", "Metallurgiya və materialşünaslıq fakültəsinin dekanı, t.f.d., dosent"],
+            ["18", "Qarayev Malik Fikrət oğlu", "Maşınqayırma və robototexnika fakültəsinin dekanı, t.e.n., dosent"],
+            ["19", "Məmmədov Ərəstun Salman oğlu", "Alman mühəndislik fakültəsinin dekanı, t.e.n., dosent"],
+            ["20", "Fərhadov Vahid Qara oğlu", "Avtomatika və idarəetmə kafedrasının müdiri, t.e.n., dosent"],
+            ["21", "Manafov Qasım Cabar oğlu", "Nəqliyyat texnikası və idarəetmə texnologiyaları kafedrasının müdiri, t.e.n., dosent"],
+            ["22", "Mirzəyev Həbib Adil oğlu", "Humanitar fənlər kafedrasının müdiri, f.e.n., dosent"],
+            ["23", "Əliyev Hikmət Səxavəddin oğlu", "Elektrotexnika kafedrasının müdiri, f-r.e.d., dosent"],
+            ["24", "Zeynalov Şücaət Əmən oğlu", "Mühəndis fizikası və elektronika kafedrasının dosenti, f.f.d."],
+            ["25", "Süleymanov Arzu Sahib oğlu", "İqtisadiyyat və statistika kafedrasının müdiri, i.f.d., dosent"],
+            ["26", "Kəlbiyev Ramiz Kəlbi oğlu", "Enerji effektliyi və yaşıl enerji kafedrasının müdiri, t.e.n., dosent"],
+            ["27", "Bəşirov Rasim Cavad oğlu", "Xüsusi təyinatlı material və vasitələr kafedrasının müdiri, t.e.d., professor"],
+            ["28", "Məhərrəmov Vaqif Əli oğlu", "Radioelektron və aerokosmik sistemlər kafedrasının müdiri, t.e.d., professor"],
+            ["29", "Yusubov Nizami Dəmir oğlu", "Maşınqayırma texnologiyası kafedrasının müdiri, t.e.d., professor"],
+            ["30", "Xəlilov İsa Əli oğlu", "Mexotronika və maşın dizaynı kafedrasının müdiri, t.e.d., professor"],
+            ["31", "Baxşəli Valeh İsmixan oğlu", "Mexanika kafedrasının müdiri, t.e.d., professor"],
+            ["32", "Bayramov Razim Paşa oğlu", "Nəqliyyat logistikası və hərəkətin təhlükəsizliyi kafedrasının müdiri, t.e.n., dosent"],
+            ["33", "Babayev Aqil İsa oğlu", "Metallurgiya və materiallar texnologiyası kafedrasının müdiri, t.e.n., dosent"],
+            ["34", "Yusubov Fəxrəddin Vəli oğlu", "Kimya texnologiya, təkrar emal və ekalogiya kafedrasının müdiri, t.e.d., professor"],
+            ["35", "Ağayev Nadir Bafadin oğlu", "Mühəndis riyaziyyatı və süni intellekt kafedrasının müdiri, t.e.d., professor"],
+            ["36", "İmamverdiyev Yadigar Nəsib oğlu", "Kibertəhlükəsizlik kafedrasının müdiri, t.e.d., dosent"],
+            ["37", "Həsənov Mehman Hüseyn oğlu", "Rediotexnika və telekommunikasiya kafedrasının müdiri, t.e.d., dosent"],
+            ["38", "Qasımov Vaqif Əlicavad oğlu", "Kompüter texnologiyaları kafedrasının müdiri, t.e.d., professor"],
+            ["39", "Alməmmədova Səbinə Məmməd qızı", "Xarici dillər kafedrasının müdiri, f.e.d., dosent"],
+            ["40", "Hüseynov Ələkbər Güləhməd oğlu", "Xüsusi texnologiyalar və avadanlıqlar kafedrasının müdiri, t.e.d., professor"],
+            ["41", "İbrahimov Bayram Qənimət oğlu", "Radiotexnika və telekommunikasiya kafedrasının professoru, t.e.d."],
+            ["42", "Aslanzadə İlham Alıcı oğlu", "İqtisadiyyat və statistika kafedrasının professoru, i.e.d."],
+            ["43", "İsmayılova Aynurə Manaf qızı", "Universitet-sənaye əməkdaşlığı və ömürboyu təhsil mərkəzinin müdiri, i.f.d."],
+            ["44", "Qəmbərov Əmirxan Cabbar oğlu", "Keyfiyyətin təminatı və öyrənmə-öyrətmə mərkəzinin müdiri"],
+            ["45", "Daşdəmirov Fuad Səmid oğlu", "Logistika və Nəqliyyat İnstitutunun direktoru, t.f.d., dosent"],
+            ["46", "Hacıbəyova Sevda Cəfər qızı", "Tədris şöbəsinin müdiri"],
+            ["47", "Bəxtiyarlı Elvin Əmin oğlu", "Hamkarlar İttifaqı Komitəsinin sədri"],
+            ["48", "Ələkbərli Mirməhəmməd Elşən oğlu", "Tələbə Həmkarlar İttifaqı Komitəsinin sədri"],
+            ["49", "Əliyeva Şərəfxanım Vaqif qızı", "Tələbə Elmi Cəmiyyətinin sədri"],
+            ["50", "Şükürov Rəhim İzzət oğlu", "Metallurgiya və materiallar kafedrasının məsləhətçi-professoru, t.e.n."],
+            ["51", "Kərimov Ziyafət Xeyrulla oğlu", "Nəqliyyat texnikası və idarəetmə kafedrasının professoru, t.e.d."]
+          ]
+        },
+        digitalCouncil: {
+          title: "Rəqəmsal Şura",
+          headers: ["№", "Ad - soyad", "Vəzifəsi"],
+          members: [
+            ["1", "Telman Axundov", "“Akhundoff Netwok” şirkətinin rəhbəri, sədr"],
+            ["2", "Vilayət Vəliyev", "AzTU-nun rektoru"],
+            ["3", "Rəşad Əliyev", "AzTU-nun prorektoru"],
+            ["4", "Osman Gündüz", "Azərbaycan İnternet Forumunun prezidenti, AzTU-nun İctimai Şurasının sədri"],
+            ["5", "Edqar Abdullayev", "“United Payment”in icraçı direktoru"],
+            ["6", "Cavharat Dinavasova", "AzTU-nun protokol sektorunun müdiri, katibliyin koordinatoru"],
+            ["7", "Manafəddin Namazov", "Materiallar və Nanotexnologiyalar İnstitutunun direktoru"],
+            ["8", "Aynurə İsmayılova", "Ömürboyu Öyrənmə Məktəbinin direktoru"],
+            ["9", "Atif Namazov", "Mühəndis riyaziyyatı və süni intellekt kafedrasının müdiri"],
+            ["10", "Zəfər Cəfərov", "Kompüter texnologiyaları kafedrasının müdiri"],
+            ["11", "Natavan Namazova", "İqtisadiyyat və statistika kafedrasının müdiri"],
+            ["12", "Yadullah Babayev", "Texnoloji Transfer Ofisinin direktoru"],
+            ["13", "Cavid Abbaslı", "Mühəndis riyaziyyatı və süni intellekt kafedrasının müəllimi"],
+            ["14", "Rauf Həsənov", "“Bestcomp” şirkətinin rəhbəri"],
+            ["15", "Rasim Bəxşi", "“Lenovo” Azərbaycan nümayəndəliyinin rəhbəri"],
+            ["16", "Emin Axundov", "IT eksperti"],
+            ["17", "Ülvi Aslanov", "“Code Academy” şirkətinin rəhbəri"],
+            ["18", "Ramil Məhərrəmov", "“Norm” şirkətində biznesin inkişafı üzrə müşavir"],
+            ["19", "Elşad Yusifli", "İnformasiya texnologiyaları üzrə ekspert"],
+            ["20", "Ruslan Talıbov", "Azərbaycan Fintex Assosiasiyasının İdarə Heyətinin sədri"]
+          ],
+          secretariat: {
+            title: "Katiblik",
+            members: [
+              ["1", "Çingiz Hacızadə", "Mühəndis riyaziyyatı və süni intellekt kafedrasının müəllimi"],
+              ["2", "Çingiz Ələkbərov", "Mühəndis riyaziyyatı və süni intellekt kafedrasının magistrantı"]
+            ]
+          }
+        },
         related: [
           { title: "Rektor", href: "/haqqimizda/rehbetlik-ve-idareetme/rektor" },
-          { title: "Prorektor", href: "/about/vice-rector" },
-          { title: "Strateji Plan", href: "/about/strategic-plan" },
+          { title: "Prorektorlar", href: "/haqqimizda/rehbetlik-ve-idareetme/prorektor" },
+          { title: "Strateji Plan", href: "/haqqimizda/vizyon-ve-missiya/strateji-plan" },
         ],
       },
 
@@ -521,6 +600,227 @@ const az = {
         subtitle: "AzTU-da əsas prosedur prosesləri və rəsmi qaydalar.",
         breadcrumb: "Prosedurlar & Qaydalar",
       },
+    },
+    students: {
+      academicCalendar2025: {
+        eyebrow: "Tələbələr",
+        title: "2025-2026-cı tədris ili üçün Akademik Təqvim",
+        subtitle: "Azərbaycan Texniki Universitetinin akademik fəaliyyət qrafiki.",
+        breadcrumb: "Akademik Təqvim 2025-2026",
+        sections: [
+          {
+            title: "Payız semestri (2025)",
+            headers: ["Tarixlər", "Fəaliyyət / Tədbir"],
+            rows: [
+              ["1 – 10 Sentyabr", "Payız semestri üçün fənlər üzrə qeydiyyatın dəqiqləşdirilməsi"],
+              ["15 Sentyabr", "Bilik Günü / Payız semestrinin başlanması"],
+              ["15 – 21 Sentyabr", "Tədrisin I həftəsi"],
+              ["22 – 28 Sentyabr", "Tədrisin II həftəsi"],
+              ["29 Sentyabr – 5 Oktyabr", "Tədrisin III həftəsi"],
+              ["6 – 12 Oktyabr", "Tədrisin IV həftəsi"],
+              ["13 – 19 Oktyabr", "Tədrisin V həftəsi"],
+              ["20 – 26 Oktyabr", "Tədrisin VI həftəsi"],
+              ["27 Oktyabr – 2 Noyabr", "Tədrisin VII həftəsi"],
+              ["3 – 9 Noyabr", "Tədrisin VIII həftəsi"],
+              ["8 Noyabr", "Zəfər Bayramı"],
+              ["9 Noyabr", "Bayraq Günü"],
+              ["10 – 16 Noyabr", "Tədrisin IX həftəsi"],
+              ["17 – 23 Noyabr", "Tədrisin X həftəsi / Cari qiymətləndirmənin I həftəsi"],
+              ["24 – 30 Noyabr", "Tədrisin XI həftəsi / Cari qiymətləndirmənin II həftəsi"],
+              ["1 – 7 Dekabr", "Tədrisin XII həftəsi"],
+              ["8 – 14 Dekabr", "Tədrisin XIII həftəsi / Sərbəst işlərin qiymətləndirilməsi"],
+              ["15 – 21 Dekabr", "Tədrisin XIV həftəsi / Sərbəst işlərin qiymətləndirilməsi"],
+              ["22 – 28 Dekabr", "Tədrisin XV həftəsi"],
+              ["29 Dekabr – 3 Yanvar", "Payız semestrinin imtahan sessiyasının I həftəsi"],
+              ["31 Dekabr", "Dünya Azərbaycanlılarının Həmrəylik Günü"],
+            ]
+          },
+          {
+            title: "Yaz semestri (2026)",
+            headers: ["Tarixlər", "Fəaliyyət / Tədbir"],
+            rows: [
+              ["1 – 2 Yanvar", "Yeni il bayramı"],
+              ["5 – 11 Yanvar", "Payız semestrinin imtahan sessiyasının II həftəsi"],
+              ["12 – 18 Yanvar", "Payız semestrinin imtahan sessiyasının III həftəsi"],
+              ["19 – 25 Yanvar", "Payız semestrinin imtahan sessiyasının IV həftəsi"],
+              ["20 Yanvar", "Ümumxalq Hüzn günü"],
+              ["26 Yanvar – 1 Fevral", "Payız semestrinin imtahan sessiyasının V həftəsi"],
+              ["2 – 8 Fevral", "Yaz semestri üzrə qeydiyyatın dəqiqləşdirilməsi / Borclar üzrə qeydiyyat"],
+              ["9 – 15 Fevral", "Borclar üzrə imtahanların təşkili"],
+              ["16 Fevral", "Yaz semestrinin başlanması"],
+              ["16 – 22 Fevral", "Tədrisin I həftəsi / İstehsalat təcrübəsinin I həftəsi"],
+              ["23 Fevral – 1 Mart", "Tədrisin II həftəsi / İstehsalat təcrübəsinin II həftəsi"],
+              ["2 – 8 Mart", "Tədrisin III həftəsi / İstehsalat təcrübəsinin III həftəsi"],
+              ["8 Mart", "Beynəlxalq Qadınlar Günü"],
+              ["9 – 15 Mart", "Tədrisin IV həftəsi / İstehsalat təcrübəsinin IV həftəsi"],
+              ["16 – 22 Mart", "Tədrisin V həftəsi / İstehsalat təcrübəsinin V həftəsi"],
+              ["18 – 19 Mart", "Ramazan bayramı"],
+              ["20 – 24 Mart", "Novruz bayramı"],
+              ["23 – 29 Mart", "Tədrisin VI həftəsi / İstehsalat təcrübəsinin VI həftəsi"],
+              ["30 Mart – 5 Aprel", "Tədrisin VII həftəsi / İstehsalat təcrübəsinin VII həftəsi"],
+              ["6 – 12 Aprel", "Tədrisin VIII həftəsi / İstehsalat təcrübəsinin VIII həftəsi"],
+              ["13 – 19 Aprel", "Tədrisin IX həftəsi / İstehsalat təcrübəsinin IX həftəsi / Cari qiymətləndirmənin I həftəsi"],
+              ["20 – 26 Aprel", "Tədrisin X həftəsi / İstehsalat təcrübəsinin X həftəsi / Cari qiymətləndirmənin II həftəsi"],
+              ["27 Aprel – 3 May", "Tədrisin XI həftəsi / İstehsalat təcrübəsinin XI həftəsi"],
+              ["1 – 22 May", "Sərbəst işlərin qiymətlərinin sistemə işlənilməsi"],
+              ["4 – 10 May", "Tədrisin XII həftəsi / İstehsalat təcrübəsinin XII həftəsi"],
+              ["9 May", "Qələbə Günü"],
+              ["11 – 17 May", "Tədrisin XIII həftəsi / İstehsalat təcrübəsinin XIII həftəsi"],
+              ["18 – 24 May", "Tədrisin XIV həftəsi / İstehsalat təcrübəsinin XIV həftəsi"],
+              ["25 – 31 May", "Tədrisin XV həftəsi / İstehsalat təcrübəsinin XV həftəsi"],
+              ["26 – 27 May", "Qurban bayramı"],
+              ["28 May", "Müstəqillik Günü"],
+            ]
+          },
+          {
+            title: "Yay dövrü və Məzuniyyət (2026)",
+            headers: ["Tarixlər", "Fəaliyyət / Tədbir"],
+            rows: [
+              ["1 – 7 İyun", "Yaz semestrinin imtahan sessiyasının I həftəsi / İstehsalat təcrübəsinin XVI həftəsi"],
+              ["8 – 14 İyun", "Yaz semestrinin imtahan sessiyasının II həftəsi / İstehsalat təcrübəsinin XVII həftəsi"],
+              ["15 – 21 İyun", "Yaz semestrinin imtahan sessiyasının III həftəsi / İstehsalat təcrübəsinin XVIII həftəsi"],
+              ["15 İyun", "Milli Qurtuluş Günü"],
+              ["15 İyun – 15 İyul", "Yay semestri üzrə qeydiyyat"],
+              ["22 – 28 İyun", "Yaz semestrinin imtahan sessiyasının IV həftəsi / İstehsalat təcrübəsinin XIX həftəsi / Yekun Dövlət Attestasiyasının I həftəsi"],
+              ["26 İyun", "Silahlı Qüvvələr Günü"],
+              ["29 İyun – 5 İyul", "Yaz semestrinin imtahan sessiyasının V həftəsi / İstehsalat təcrübəsinin XX həftəsi / Yekun Dövlət Attestasiyasının II həftəsi"],
+              ["6 – 9 İyul", "Borclar üzrə qeydiyyat və imtahanların təşkili"],
+              ["10 – 15 İyul", "Borclar üzrə imtahanların təşkili"],
+              ["20 – 26 İyul", "Yay semestrinin I həftəsi"],
+              ["27 İyul – 2 Avqust", "Yay semestrinin II həftəsi"],
+              ["3 – 9 Avqust", "Yay semestrinin III həftəsi"],
+              ["10 – 16 Avqust", "Yay semestrinin IV həftəsi"],
+              ["17 – 23 Avqust", "Yay semestrinin V həftəsi"],
+              ["24 – 30 Avqust", "Yay semestrinin imtahan həftəsi"],
+            ]
+          }
+        ],
+        notes: [
+          "İstehsalat təcrübəsi: Yaz semestri ilə eyni vaxtda başlayır və 20 həftə davam edir.",
+          "Cari qiymətləndirmə: Semestrin 10-cu və 11-ci həftələrində həyata keçirilir.",
+          "Sərbəst işlər: Sərbəst işlərin qiymətləndirilməsi və sistemə daxil edilməsi üçün xüsusi müddətlər təyin olunur."
+        ]
+      },
+      assessmentRules: {
+        eyebrow: "Tələbələr",
+        title: "Qiymətləndirmə və imtahanın təşkili qaydaları",
+        subtitle: "Azərbaycan Texniki Universitetində tələbələrin biliyinin qiymətləndirilməsi və imtahanların keçirilməsi prosedurları.",
+        breadcrumb: "Qiymətləndirmə Qaydaları",
+        pdfUrl: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/4-2025/Qiym%C9%99tl%C9%99ndirm%C9%99%20v%C9%99%20imtahan%C4%B1n%20t%C9%99%C5%9Fkili%20qaydalar%C4%B1-%20(1).pdf",
+        sections: [
+          {
+            title: "Qiymətləndirmə Sistemi",
+            content: "Tələbələrin biliyi 100 ballıq sistemlə qiymətləndirilir:",
+            list: [
+              "Seminar / Məşğələ: 30 bal",
+              "Davamiyyət: 10 bal",
+              "Sərbəst iş: 10 bal",
+              "Yekun İmtahan: 50 bal"
+            ],
+            subContent: "İmtahandan keçmək üçün tələbə minimum 17 bal toplamalıdır (50 baldan)."
+          },
+          {
+            title: "Qiymət Şkalası",
+            table: {
+              headers: ["Ballar", "Hərfli Qiymət", "Təsvir"],
+              rows: [
+                ["91 – 100", "A", "Əla"],
+                ["81 – 90", "B", "Çox yaxşı"],
+                ["71 – 80", "C", "Yaxşı"],
+                ["61 – 70", "D", "Kafi"],
+                ["51 – 60", "E", "Qənaətbəxş"],
+                ["51-dən aşağı", "F", "Qeyri-kafi (Kəsr)"]
+              ]
+            }
+          },
+          {
+            title: "İmtahanın Keçirilmə Formaları",
+            items: [
+              { title: "Test üsulu", description: "50 sual, 60 dəqiqə. Suallar çətinlik dərəcəsinə görə 3 qrupa bölünür." },
+              { title: "Yazılı imtahan", description: "Hər biletdə 5 sual. Məzmun, təhlil və yazı qaydaları əsasında qiymətləndirilir." },
+              { title: "Şifahi imtahan", description: "Hər biletdə 5 sual. Şəffaflıq üçün videoçəkiliş aparılır." },
+              { title: "Yazılı-elektron", description: "10 sual (3 nəzəri, 7 praktiki), 120 dəqiqə." }
+            ]
+          },
+          {
+            title: "İntizam Qaydaları",
+            content: "Aşağıdakı hallarda imtahan nəticələri ləğv edilir:",
+            list: [
+              "Mobil telefon, smart saat və digər rabitə vasitələrinin gətirilməsi",
+              "Köçürmə halları və ya köçürməyə şərait yaratmaq",
+              "İmtahan zalını icazəsiz tərk etmək",
+              "Nəzarətçilərə qarşı qeyri-etik davranış"
+            ]
+          },
+          {
+            title: "Apellyasiya Proseduru",
+            content: "Nəticədən narazı olan tələbələr imtahan nəticələri elan olunduqdan sonra 24 saat ərzində Apellyasiya Komissiyasına müraciət edə bilərlər."
+          }
+        ]
+      },
+      creditSystem: {
+        eyebrow: "Tələbələr",
+        title: "Bakalavr və magistratura səviyyələrində kredit sistemi",
+        subtitle: "Azərbaycan Texniki Universitetində kredit sistemi ilə tədrisin təşkili və tələbə nailiyyətlərinin ölçülməsi qaydaları.",
+        breadcrumb: "Kredit Sistemi",
+        pdfUrl: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/4-2025/ATM-nin%20Bakalavriat%20v%C9%99%20Magistratura%20S%C9%99viyy%C9%99l%C9%99rind%C9%99%20Kredit%20Sistemi%20il%C9%99%20T%C9%99drisin%20T%C9%99%C5%9Fkili%20Qaydalar%C4%B1.pdf",
+        sections: [
+          {
+            title: "Əsas Prinsiplər",
+            content: "Tədris Bolonya prosesinin prinsiplərinə uyğun fərdi tədris planları əsasında qurulur:",
+            list: [
+              "Hər bir tələbənin fərdi tədris planı olur",
+              "Akademik məsləhətçilər (tyutorlar) tələbələrə bələdçilik edir",
+              "Davamiyyət limiti 25%-dir",
+              "Müvəffəqiyyət həddi 51 baldır"
+            ]
+          },
+          {
+            title: "İş Yükü və Kreditlər",
+            content: "Kredit tələbənin fənni mənimsəmək üçün sərf etdiyi vaxtı ölçür:",
+            list: [
+              "1 kredit = 30 saat iş yükü",
+              "Həftəlik maksimum yük: 45 saat (1.5 kredit)",
+              "Semestr üzrə normal yük: 30 kredit",
+              "Maksimum semestr yükü: 40 kredit"
+            ]
+          },
+          {
+            title: "Məzuniyyət Tələbləri",
+            content: "Məzun olmaq üçün tələb olunan minimum kreditlər:",
+            table: {
+              headers: ["Təhsil Səviyyəsi", "Kredit Sayı", "Müddət"],
+              rows: [
+                ["Bakalavriat", "240 – 300 kredit", "4 – 5 il"],
+                ["Magistratura", "90 – 120 kredit", "1.5 – 2 il"],
+                ["Tibb (Bakalavr)", "300 – 360 kredit", "5 – 6 il"]
+              ]
+            }
+          },
+          {
+            title: "Yay Semestri",
+            content: "Akademik borcları ləğv etmək və ya əlavə kredit qazanmaq üçün təşkil olunur:",
+            list: [
+              "Maksimum 10 kredit götürmək olar",
+              "Dərslər 6 həftə davam edir",
+              "İmtahanlar dərslərdən dərhal sonra keçirilir"
+            ]
+          }
+        ]
+      },
+      lmsGuidelines: {
+        eyebrow: "Tələbələr",
+        title: "LMS Təlimatları - KOICA",
+        subtitle: "Azərbaycan Texniki Universitetində Öyrənmə İdarəetmə Sistemlərindən (LMS) istifadə qaydaları.",
+        breadcrumb: "LMS Təlimatları",
+        intro: "Azərbaycan Texniki Universiteti (AzTU) kurs idarəetməsini sadələşdirmək, tələbə cəlbini artırmaq və məsafədən öyrənməni dəstəkləmək üçün Öyrənmə İdarəetmə Sistemlərindən (LMS) istifadə edir. AzTU-dakı LMS platformaları kurs materiallarına asan çıxış, interaktiv öyrənmə, onlayn qiymətləndirmə və tələbə performansının izlənilməsinə imkan verir. Sistem həmçinin tələbələr və müəllim heyəti arasında ünsiyyəti asanlaşdırır, daha çevik və səmərəli təhsil təcrübəsinə töhfə verir. LMS vasitəsilə AzTU tələbələri üçün əməkdaşlığı, innovasiyanı və əlçatanlığın yaxşılaşdırılmasını təşviq edir.",
+        guidelinesTitle: "LMS Təlimatları",
+        guidelinesPdfUrl: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/3-2025/LMS%20-Guidlines.pdf",
+        staffTitle: "Təlim keçmiş LMS heyəti",
+        staffDescription: "Təlim keçmiş LMS heyəti sistemin faydalarını maksimuma çatdırmaq, tədris və öyrənmə təcrübəsini təkmilləşdirmək və platformanın effektiv işləməsini təmin etmək üçün vacibdir.",
+        staffListTitle: "Təlim keçmiş heyətin siyahısı",
+        staffPdfUrl: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/3-2025/Number%20of%20Trained%20Staff%20.pdf"
+      }
     },
     research: {
       priorities: {
@@ -798,6 +1098,50 @@ const az = {
             ]
           }
         ]
+      },
+      scientificJournals: {
+        eyebrow: "Tədqiqat və İnnovasiya",
+        title: "Elmi Jurnallar",
+        subtitle: "Azərbaycan Texniki Universitetinin rəsmi elmi nəşrləri.",
+        breadcrumb: "Elmi Jurnallar",
+        machineScience: {
+          title: "Machine Science (Maşınşünaslıq)",
+          details: {
+            issn: "2227-6912",
+            eissn: "2790-0479",
+            year: "2001",
+            issuesPerYear: "2",
+            language: "İngilis",
+            founder: "Azərbaycan Texniki Universiteti",
+            doi: "10.61413",
+            link: "msj.aztu.edu.az"
+          },
+          about: "Machine Science (Maşınşünaslıq) beynəlxalq elmi-texniki jurnalının əsası 2001-ci ildə qoyulmuşdur. Jurnal Azərbaycan Respublikasının Prezidenti Yanında Ali Attestasiya Komissiyası tərəfindən Azərbaycan Respublikasında məqalələrin dərc olunması tövsiyə edilən dövri elmi nəşrlərin siyahına daxildir. Jurnalda maşın dizaynı, mexanika, maşınqayırma texnologiyası, mühəndis iqtisadiyyatı və menecmenti, energetika, materialşünaslıq kimi maşınşünaslıq sahələri üzrə yüksək keyfiyyətli elmi məqalələrin nəşrini həyata keçirir. Jurnalın sabit olaraq ildə iki buraxılışı həyata keçirilir. Hər bir nəşr olunan məqalə ixtisas üzrə kifayət qədər təcrübəyə malik iki müstəqil rəyçi tərəfindən yoxlamadan keçirilir. Nəşr olunan məqalələr jurnalın rəsmi saytı olan msj.aztu.edu.az saytının arxiv bölməsində, eləcə də eLibrary.ru elektron kitabxanasında yerləşdirilir. Hər bir məqalə DOI - rəqəmsal obyekt identifikatoru ilə təmin edilir. Jurnalda məqalələrin nəşri üçün müəlliflərdən heç bir rüsum alınmır və jurnalın fəaliyyəti tam olaraq Azərbaycan Texniki Universiteti tərəfindən maliyyələşdirilir.",
+          image: "/research-seminars-training/Machine Science (Maşınşünaslıq).jpg"
+        },
+        energySustainability: {
+          title: "Energy sustainability: risks and decision making",
+          details: {
+            issn: "3006 - 8487",
+            year: "2023",
+            issuesPerYear: "2",
+            language: "İngilis",
+            doi: "10.61413/PXHI4350",
+            link: "https://ensusjournal.org/index.php/ojs/index"
+          },
+          about: "\"Energy Sustainability: Risks and Decision Making\" çoxşaxəli, açıq girişli və ekspert qiymətləndirməsindən (peer-reviewed) keçən jurnal olub, dayanıqlı inkişaf məsələləri üzrə tədqiqatların təşviqi və yayılmasına həsr olunub. Jurnal tədqiqatçılar, praktiklər, siyasətçilər və digər müvafiq tərəflər üçün dayanıqlı inkişaf məsələləri ilə bağlı biliklərini, təcrübələrini və baxışlarını paylaşmaq üçün platforma təmin etməyi məqsəd qoyur.",
+          chiefEditor: "Prof. Vilayət Vəliyev, Azərbaycan Texniki Universiteti, Bakı, Azərbaycan",
+          editorialBoard: [
+            "Prof. Gürkan Kumbaroğlu",
+            "Prof. Buket Akkoyunlu",
+            "Prof. Aytekin Isman",
+            "Dos. Fariz Məmmədov",
+            "Dos. Aynura İsmayılova",
+            "Dr. İgor Nasirov",
+            "Dos. Natəvan Namazova"
+          ],
+          image: "/research-seminars-training/Energy sustainability- risks and decision making.png"
+        }
       }
     },
   },

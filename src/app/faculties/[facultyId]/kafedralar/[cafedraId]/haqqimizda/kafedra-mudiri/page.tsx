@@ -1,17 +1,18 @@
 "use client";
 
 import { use, useEffect, useState } from "react";
-import { getCafedraByCode } from "@/services/cafedraService/cafedraService";
-import type { CafedraDetail } from "@/types/cafedra";
+import { motion } from "framer-motion";
 import SectionBlock from "@/components/shared/SectionBlock";
+import ComingSoon from "@/components/shared/ComingSoon";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import SchoolIcon from "@mui/icons-material/School";
+import ScienceIcon from "@mui/icons-material/Science";
+import { getCafedraByCode } from "@/services/cafedraService/cafedraService";
+import type { CafedraDetail } from "@/types/cafedra";
 import { useLanguage } from "@/context/LanguageContext";
-import SanitizedHtml from "@/components/shared/SanitizedHtml";
-import { motion } from "framer-motion";
 
 interface Props {
   params: Promise<{ facultyId: string; cafedraId: string }>;
@@ -21,163 +22,221 @@ const API_BASE = "https://api.aztu.edu.az/";
 
 export default function KafedraMudiriPage({ params }: Props) {
   const { cafedraId } = use(params);
-  const { lang } = useLanguage();
+  const { lang: currentLang } = useLanguage();
   const [cafedra, setCafedra] = useState<CafedraDetail | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
-    getCafedraByCode(cafedraId, lang).then((data) => {
-      setCafedra(data);
-      setLoading(false);
-    });
-  }, [cafedraId, lang]);
-
-  if (loading) {
-    return <div className="animate-pulse space-y-4">
-      <div className="h-64 bg-gray-200 dark:bg-slate-800 rounded-3xl" />
-      <div className="h-32 bg-gray-200 dark:bg-slate-800 rounded-3xl" />
-    </div>;
-  }
+    getCafedraByCode(cafedraId, currentLang)
+      .then((result) => {
+        setCafedra(result);
+        setLoading(false);
+      })
+      .catch(() => {
+        setCafedra(null);
+        setLoading(false);
+      });
+  }, [cafedraId, currentLang]);
 
   const head = cafedra?.director;
+  const headFullName = head
+    ? [head.first_name, head.last_name, head.father_name].filter(Boolean).join(" ")
+    : "";
 
-  if (!head) {
-    return (
-      <SectionBlock accent>
-        <div className="text-center py-10">
-          <p className="text-gray-500">{lang === "az" ? "Məlumat tapılmadı" : "No information found"}</p>
-        </div>
-      </SectionBlock>
-    );
-  }
-
-  const fullName = `${head.first_name} ${head.last_name} ${head.father_name}`;
-
-  const contactItems = [
-    { icon: <EmailIcon sx={{ fontSize: 16 }} />, label: lang === "az" ? "E-poçt" : "Email", value: head.email, href: head.email ? `mailto:${head.email}` : undefined },
-    { icon: <PhoneIcon sx={{ fontSize: 16 }} />, label: lang === "az" ? "Telefon" : "Phone", value: head.phone, href: head.phone ? `tel:${head.phone}` : undefined },
-    { icon: <LocationOnIcon sx={{ fontSize: 16 }} />, label: lang === "az" ? "Otaq" : "Room", value: head.room_number },
-  ].filter((item) => item.value);
+  const getImg = (path: string | null) => {
+    if (!path) return undefined;
+    return path.startsWith('http') ? path : `${API_BASE}${path}`;
+  };
 
   return (
-    <div className="space-y-6">
-      <SectionBlock title={lang === "az" ? "Kafedra müdiri" : "Head of Department"} accent>
-        <div className="flex flex-col sm:flex-row gap-8">
-          <div className="flex-shrink-0 flex justify-center sm:justify-start">
-            <div className="w-44 h-56 rounded-2xl overflow-hidden shadow-md border-4 border-white dark:border-slate-700 bg-gray-100">
-              {head.profile_image ? (
-                <img 
-                  src={head.profile_image.startsWith('http') ? head.profile_image : `${API_BASE}${head.profile_image}`} 
-                  alt={fullName} 
-                  className="w-full h-full object-cover" 
-                />
-              ) : (
-                <div className="w-full h-full bg-[#1a2355]/10 flex items-center justify-center">
-                  <span className="text-[#1a2355] text-4xl font-bold">{head.first_name[0]}</span>
-                </div>
-              )}
-            </div>
+    <div className="space-y-8">
+      <SectionBlock title={currentLang === "az" ? "Kafedra müdiri haqqında" : "About the Head of Department"} accent>
+        {loading ? (
+          <div className="animate-pulse space-y-6">
+             <div className="flex flex-col md:flex-row gap-10">
+               <div className="w-64 h-80 rounded-3xl bg-gray-100 dark:bg-slate-800" />
+               <div className="flex-1 space-y-4">
+                 <div className="h-10 w-2/3 bg-gray-100 dark:bg-slate-800 rounded-xl" />
+                 <div className="h-6 w-1/3 bg-gray-100 dark:bg-slate-800 rounded-lg" />
+                 <div className="h-32 w-full bg-gray-100 dark:bg-slate-800 rounded-2xl" />
+               </div>
+             </div>
           </div>
-          <div className="flex-1 space-y-4">
-            <div>
-              <h2 className="text-2xl font-bold text-[#1a2355] dark:text-white leading-tight">{fullName}</h2>
-              {head.scientific_degree && (
-                <p className="text-[#ee7c7e] font-semibold text-sm mt-1">{head.scientific_degree}</p>
-              )}
-              {head.scientific_title && (
-                <p className="text-gray-500 dark:text-slate-400 text-sm mt-0.5">{head.scientific_title}</p>
-              )}
-              {head.duty && (
-                 <p className="text-gray-400 dark:text-slate-500 text-xs font-black uppercase tracking-widest mt-2">{head.duty}</p>
-              )}
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {contactItems.map((item) => (
-                <div key={item.label} className="flex items-start gap-3 bg-gray-50 dark:bg-slate-700/50 rounded-xl px-4 py-3">
-                  <span className="text-[#1a2355] dark:text-blue-400 mt-0.5 flex-shrink-0">{item.icon}</span>
-                  <div className="min-w-0">
-                    <p className="text-xs text-gray-400 dark:text-slate-500 font-medium">{item.label}</p>
-                    {item.href ? (
-                      <a href={item.href} className="text-sm text-gray-700 dark:text-gray-200 font-semibold hover:text-[#ee7c7e] transition-colors truncate block">{item.value}</a>
-                    ) : (
-                      <p className="text-sm text-gray-700 dark:text-gray-200 font-semibold">{item.value}</p>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            {head.working_hours && head.working_hours.length > 0 && (
-                <div className="bg-[#1a2355]/5 dark:bg-[#1a2355]/20 rounded-xl px-4 py-3">
-                    <p className="text-xs text-[#1a2355] dark:text-blue-300 font-black uppercase tracking-widest mb-2 flex items-center gap-2">
-                        <AccessTimeIcon sx={{ fontSize: 14 }} />
-                        {lang === "az" ? "Qəbul saatları" : "Working Hours"}
-                    </p>
-                    <div className="space-y-1">
-                        {head.working_hours.map((wh, idx) => (
-                            <div key={idx} className="flex justify-between text-xs">
-                                <span className="font-bold text-gray-600 dark:text-gray-400">{wh.day}</span>
-                                <span className="text-gray-500 dark:text-gray-500">{wh.time_range}</span>
-                            </div>
-                        ))}
+        ) : !head ? (
+          <ComingSoon label={currentLang === "az" ? "Kafedra müdiri haqqında məlumat tapılmadı" : "Head of department information not found"} />
+        ) : (
+          <div className="space-y-10">
+            <div className="flex flex-col md:flex-row gap-10">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="w-full md:w-64 lg:w-72 flex-shrink-0"
+              >
+                <div className="aspect-[3/4] rounded-[2.5rem] overflow-hidden border-8 border-white dark:border-slate-800 shadow-2xl relative group">
+                  {head.profile_image ? (
+                    <img
+                      src={getImg(head.profile_image)}
+                      alt={headFullName}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-[#1a2355]/10 text-[#1a2355] text-sm font-semibold uppercase tracking-widest">
+                      No Photo
                     </div>
+                  )}
+                  <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-[2.5rem]" />
                 </div>
+              </motion.div>
+
+              <div className="flex-1 space-y-6">
+                <motion.div
+                   initial={{ opacity: 0, y: 10 }}
+                   animate={{ opacity: 1, y: 0 }}
+                >
+                  <span className="text-[#ee7c7e] text-xs font-black uppercase tracking-[0.2em] mb-2 block">{currentLang === "az" ? "Kafedra Rəhbəri" : "Department Leadership"}</span>
+                  <h2 className="text-4xl font-black text-[#1a2355] dark:text-white leading-tight">{headFullName}</h2>
+                  <p className="text-xl font-bold text-gray-500 dark:text-slate-400 mt-2">
+                    {head.scientific_title}
+                  </p>
+                  {head.scientific_degree && (
+                    <p className="text-sm text-gray-400 dark:text-slate-500 font-medium mt-1">{head.scientific_degree}</p>
+                  )}
+                </motion.div>
+
+                {(head.bio !== undefined && head.bio !== null && head.bio !== "") && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                    className="prose prose-sm lg:prose-base dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 leading-relaxed border-l-4 border-[#ee7c7e]/20 pl-6 py-2 italic bg-gray-50/50 dark:bg-slate-800/30 rounded-r-2xl"
+                    dangerouslySetInnerHTML={{ __html: head.bio }}
+                  />
+                )}
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                  {[
+                    { icon: EmailIcon, label: currentLang === "az" ? "E-poçt" : "Email", value: head.email, href: `mailto:${head.email}`, color: "bg-blue-50 dark:bg-blue-900/20 text-blue-600" },
+                    { icon: PhoneIcon, label: currentLang === "az" ? "Telefon" : "Phone", value: head.phone, href: `tel:${head.phone}`, color: "bg-green-50 dark:bg-green-900/20 text-green-600" },
+                    { icon: LocationOnIcon, label: currentLang === "az" ? "Otaq" : "Room", value: head.room_number, color: "bg-orange-50 dark:bg-orange-900/20 text-orange-600" },
+                  ].filter(f => f.value).map((field, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 + (idx * 0.1) }}
+                      className="group bg-white dark:bg-slate-800 rounded-2xl p-5 border border-gray-100 dark:border-slate-700 shadow-sm hover:shadow-md transition-all"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className={`w-10 h-10 rounded-xl ${field.color} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                          <field.icon sx={{ fontSize: 20 }} />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest mb-0.5">{field.label}</p>
+                          {field.href ? (
+                            <a href={field.href} className="text-sm font-bold text-[#1a2355] dark:text-white hover:text-[#ee7c7e] transition-colors truncate block">
+                              {field.value}
+                            </a>
+                          ) : (
+                            <p className="text-sm font-bold text-[#1a2355] dark:text-white truncate">
+                              {field.value}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                  
+                  {head.working_hours && head.working_hours.length > 0 && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6 }}
+                      className="sm:col-span-2 bg-[#1a2355] dark:bg-slate-800 rounded-2xl p-5 text-white shadow-lg"
+                    >
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
+                          <AccessTimeIcon sx={{ fontSize: 20 }} />
+                        </div>
+                        <p className="text-xs font-black uppercase tracking-[0.2em]">{currentLang === "az" ? "Qəbul Saatları" : "Reception Hours"}</p>
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+                        {head.working_hours.map((slot, idx) => (
+                          <div key={idx} className="flex items-center justify-between py-1 border-b border-white/10 last:border-0">
+                            <span className="text-sm font-medium text-white/60">{slot.day}</span>
+                            <span className="text-sm font-black">{slot.time_range}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {head.scientific_research_fields && head.scientific_research_fields.length > 0 && (
+              <motion.div
+                 initial={{ opacity: 0, y: 20 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 viewport={{ once: true }}
+              >
+                <SectionBlock title={currentLang === "az" ? "Elmi tədqiqat sahələri" : "Scientific Research Fields"} accent>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {head.scientific_research_fields.map((field, index) => (
+                      <div key={index} className="flex items-center gap-3 bg-gray-50 dark:bg-slate-700/50 rounded-xl p-4 border border-gray-100 dark:border-slate-700">
+                        <div className="w-8 h-8 rounded-lg bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e] flex-shrink-0">
+                          <ScienceIcon sx={{ fontSize: 16 }} />
+                        </div>
+                        <span className="text-sm font-bold text-[#1a2355] dark:text-white leading-tight">{field}</span>
+                      </div>
+                    ))}
+                  </div>
+                </SectionBlock>
+              </motion.div>
+            )}
+
+            {head.educations && head.educations.length > 0 && (
+              <motion.div
+                 initial={{ opacity: 0, y: 20 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 viewport={{ once: true }}
+              >
+                <SectionBlock title={currentLang === "az" ? "Təhsil keçmişi" : "Educational Background"} accent>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {head.educations.map((edu, index) => {
+                      const years = [edu.start_year, edu.end_year].filter(Boolean).join(" – ");
+                      return (
+                        <div
+                          key={index}
+                          className="relative overflow-hidden rounded-[2rem] border border-gray-100 dark:border-slate-700 bg-white dark:bg-slate-800 p-8 shadow-sm group hover:shadow-xl hover:-translate-y-1 transition-all duration-500"
+                        >
+                          <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 dark:bg-slate-700/30 rounded-bl-[4rem] -mr-8 -mt-8 transition-transform group-hover:scale-110" />
+                          <div className="relative z-10 flex items-start gap-6">
+                            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#1a2355] to-[#2a3a8a] text-white flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-900/20">
+                              <SchoolIcon sx={{ fontSize: 24 }} />
+                            </div>
+                            <div className="min-w-0">
+                              <span className="text-[#ee7c7e] text-[10px] font-black uppercase tracking-widest block mb-1">{years || (currentLang === "az" ? "Təhsil pilləsi" : "Degree")}</span>
+                              <p className="text-lg font-black text-[#1a2355] dark:text-white leading-tight group-hover:text-[#ee7c7e] transition-colors">
+                                {edu.degree}
+                              </p>
+                              {edu.university && (
+                                <p className="text-sm text-gray-500 dark:text-slate-400 mt-2 font-medium leading-relaxed">
+                                  {edu.university}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </SectionBlock>
+              </motion.div>
             )}
           </div>
-        </div>
+        )}
       </SectionBlock>
-
-      {head.bio && (
-        <SectionBlock title={lang === "az" ? "Haqqında" : "About"} accent>
-          <div className="prose prose-sm max-w-none dark:prose-invert">
-             <SanitizedHtml html={head.bio} />
-          </div>
-        </SectionBlock>
-      )}
-
-      {head.educations && head.educations.length > 0 && (
-          <SectionBlock title={lang === "az" ? "Təhsil" : "Education"} accent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {head.educations.map((edu, idx) => (
-                <motion.div 
-                    key={idx}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.1 }}
-                    className="flex items-start gap-3 bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 p-4 rounded-2xl shadow-sm hover:border-[#ee7c7e] transition-all"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-slate-700 flex items-center justify-center flex-shrink-0 text-[#1a2355] dark:text-blue-400">
-                    <SchoolIcon />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                        <span className="text-[10px] font-black bg-[#1a2355]/5 dark:bg-[#1a2355]/20 text-[#1a2355] dark:text-blue-300 px-2 py-0.5 rounded-full">
-                            {edu.start_year} - {edu.end_year}
-                        </span>
-                        <span className="text-xs font-bold text-[#ee7c7e]">{edu.degree}</span>
-                    </div>
-                    <p className="text-sm font-bold text-gray-800 dark:text-white leading-snug">{edu.university}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </SectionBlock>
-      )}
-
-      {head.scientific_events && head.scientific_events.length > 0 && (
-          <SectionBlock title={lang === "az" ? "Elmi Tədbirlər" : "Scientific Events"} accent>
-            <div className="space-y-4">
-                {head.scientific_events.map((event, idx) => (
-                    <div key={idx} className="relative pl-6 border-l-2 border-[#1a2355]/10 dark:border-slate-700 py-1">
-                        <div className="absolute left-[-5px] top-3 w-2 h-2 rounded-full bg-[#ee7c7e]" />
-                        <h4 className="font-bold text-[#1a2355] dark:text-white text-sm mb-1">{event.event_title}</h4>
-                        <p className="text-xs text-gray-500 dark:text-slate-400 leading-relaxed">{event.event_description}</p>
-                    </div>
-                ))}
-            </div>
-          </SectionBlock>
-      )}
     </div>
   );
 }

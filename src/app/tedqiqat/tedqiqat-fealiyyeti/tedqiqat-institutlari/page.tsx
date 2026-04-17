@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import ScienceIcon from "@mui/icons-material/Science";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import HomeIcon from "@mui/icons-material/Home";
 import { getResearchInstitutes } from "@/services/researchInstituteService/researchInstituteService";
 import type { ResearchInstituteSummary } from "@/types/researchInstitute";
 import { slugify } from "@/util/slugify";
@@ -56,19 +57,23 @@ export default function ResearchInstitutesPage() {
     return (
         <main className="min-h-screen bg-gray-50 dark:bg-slate-900 transition-colors pb-20">
             {/* Stunning Page Banner */}
-            <div className="relative overflow-hidden bg-[#1a2355] pt-40 pb-20 px-4 md:px-10 lg:px-12 w-full">
-                {/* Background Image of AzTU */}
-                <div 
-                    className="absolute inset-0 z-0 opacity-20 grayscale hover:grayscale-0 transition-all duration-1000"
-                    style={{
-                        backgroundImage: 'url("/aztu.png")',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                    }}
-                />
+            <div className="relative overflow-hidden bg-[#0b1330] pt-40 pb-20 px-4 md:px-10 lg:px-12 w-full min-h-[400px] flex flex-col justify-end">
+                {/* Video Background */}
+                <div className="absolute inset-0 z-0">
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover opacity-40"
+                    >
+                        <source src="/heroBgVideos/research.mp4" type="video/mp4" />
+                    </video>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b1330] via-[#0b1330]/60 to-transparent" />
+                </div>
                 
                 {/* Background abstract elements */}
-                <div className="absolute inset-0 z-10 overflow-hidden opacity-20">
+                <div className="absolute inset-0 z-10 overflow-hidden opacity-20 pointer-events-none">
                     <div className="absolute top-0 right-0 w-1/3 h-full bg-blue-400/10 -skew-x-12 transform translate-x-1/4" />
                     <div className="absolute bottom-0 left-0 w-1/4 h-1/2 bg-[#ee7c7e]/10 rounded-full blur-3xl transform -translate-x-1/4 translate-y-1/4" />
                 </div>
@@ -77,12 +82,15 @@ export default function ResearchInstitutesPage() {
                     <motion.nav 
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="flex items-center gap-1.5 text-white/40 text-xs mb-6 flex-wrap font-medium uppercase tracking-widest"
+                        className="flex items-center gap-1.5 text-white/50 text-sm mb-6 flex-wrap font-black uppercase tracking-[0.3em]"
                     >
                         {breadcrumbs.map((crumb, i) => (
                             <div key={i} className="flex items-center gap-1.5">
                                 {crumb.href ? (
-                                    <Link href={crumb.href} className="hover:text-white transition-colors">{crumb.label}</Link>
+                                    <Link href={crumb.href} className="hover:text-white transition-colors flex items-center gap-1">
+                                        {i === 0 && <HomeIcon sx={{ fontSize: 16 }} />}
+                                        {crumb.label}
+                                    </Link>
                                 ) : (
                                     <span className="text-[#ee7c7e]">{crumb.label}</span>
                                 )}
@@ -93,15 +101,15 @@ export default function ResearchInstitutesPage() {
                     <motion.h1 
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight"
+                        className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-6 leading-tight tracking-tighter"
                     >
                         {t.title}
                     </motion.h1>
                     <motion.p 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="text-white/60 text-lg max-w-2xl font-medium leading-relaxed"
+                        className="text-white/70 text-lg max-w-2xl font-medium leading-relaxed"
                     >
                         {t.description}
                     </motion.p>
