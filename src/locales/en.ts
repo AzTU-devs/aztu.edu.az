@@ -325,12 +325,6 @@ const en = {
         breadcrumb: "Rector's Office",
         staff: [
           {
-            name: "Rustamzada Farhad",
-            email: "ferhad.rustamzadeh@aztu.edu.az",
-            phone: "+994 12 538 32 80",
-            title: "Certification Manager"
-          },
-          {
             name: "Ahmadov Nıjat",
             email: "nijat.ahmadov@aztu.edu.az",
             phone: "+994 12 538 32 80",
@@ -1143,6 +1137,218 @@ const en = {
         }
       }
     },
+
+    community: {
+      honoraryDoctors: {
+        eyebrow: "COMMUNITY",
+        title: "Our Honorary Doctors",
+        subtitle: "Individuals with exceptional contributions to the development and scientific achievements of Azerbaijan Technical University.",
+        breadcrumb: "Honorary Doctors",
+        doctors: [
+          {
+            name: "ERSIN TATAR (TRNC)",
+            description: "Former President of the Turkish Republic of Northern Cyprus",
+            award: "doctor",
+            date: "02.07.2025",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2025/ersin_tatar.jpg"
+          },
+          {
+            name: "SELÇUK BAYRAKTAR (TURKEY)",
+            description: "Technological leader of 'Baykar' company, Chairman of the Board of Trustees of the 'Turkish Technology Team Foundation' (T3 Foundation)",
+            award: "doctor",
+            date: "25.05.2022",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/7-2022/Selchuk%20Bayraktar.jpg"
+          },
+          {
+            name: "SYLVIO SIMON (GERMANY)",
+            description: "Brandenburg University of Technology; Head of Mechanical Engineering, Electrical and Energy Systems Faculty; Head of the Department of Metal-Cutting Machine Tools, Professor",
+            award: "doctor",
+            date: "12.06.2019",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/2%20Simon.jpg"
+          },
+          {
+            name: "ROLAND R. YAGER (USA)",
+            description: "Director of IONA College, New York, Professor",
+            award: "doctor",
+            date: "28.11.2012",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/3%20Roland.jpg"
+          },
+          {
+            name: "EQON HASSEL (GERMANY)",
+            description: "Head of the Department of Technical Thermodynamics at the University of Rostock, Dean of the Faculty of Mechanical Engineering and Shipbuilding",
+            award: "doctor",
+            date: "28.11.2012",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/4%20qarabala.jpg"
+          },
+          {
+            name: "HAMADOUN TOURÉ (SWITZERLAND)",
+            description: "Secretary-General of the International Telecommunication Union (ITU)",
+            award: "doctor",
+            date: "18.11.2011",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/raraba.jpg"
+          },
+          {
+            name: "JOACHIM METZNER (GERMANY)",
+            description: "Rector of the Cologne University of Applied Sciences, Professor",
+            award: "doctor",
+            date: "04.10.2007",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/5%20metzner.jpg"
+          },
+          {
+            name: "ION ILIESCU (ROMANIA)",
+            description: "President of Romania",
+            award: "doctor",
+            date: "25.10.2002",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/6.jpg"
+          },
+          {
+            name: "ALBERT ALBERS (GERMANY)",
+            description: "Head of the Institute of Product Engineering (IPEK) at Karlsruhe Institute of Technology",
+            award: "doctor",
+            date: "30.05.2000",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/7%20Albert.jpg"
+          },
+          {
+            name: "REZA TALEBI-DARYANI (GERMANY)",
+            description: "Professor at the Technical University of Cologne",
+            award: "doctor",
+            date: "09.11.1999",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/8%20Reza.jpg"
+          },
+          {
+            name: "ADRIAN BEJAN (USA)",
+            description: "Department Head at Duke University",
+            award: "doctor",
+            date: "03.05.1999",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/9%20Adrian.jpg"
+          },
+          {
+            name: "VEYTSAX QURETSKI (POLAND)",
+            description: "Director of the Institute of Energy Products at the Krakow Mining Academy",
+            award: "doctor",
+            date: "02.06.1998",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/10%20vetrex.jpg"
+          },
+          {
+            name: "ŞEFIK ALP BAHADIR (GERMANY)",
+            description: "Professor of Economics and Director of the Middle East Section at the University of Erlangen-Nuremberg",
+            award: "doctor",
+            date: "13.05.1997",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/11%20%C5%9E%C9%99fik.jpg"
+          },
+          {
+            name: "ALI DOĞRAMACI (TURKEY)",
+            description: "Rector of Bilkent University, Professor, Doctor",
+            award: "doctor",
+            date: "31.10.1995",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/12%20Ali.jpg"
+          },
+          {
+            name: "EKART ŞNARK (GERMANY)",
+            description: "Professor at the Karlsruhe Technical University",
+            award: "honorary professor",
+            date: "31.12.1995",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/13%20Ekart.jpg"
+          }
+        ]
+      },
+      ourHeroes: {
+        eyebrow: "COMMUNITY",
+        title: "Our Heroes",
+        subtitle: "The teachers, students, and graduates of AzTU who sacrificed their lives for the independence and territorial integrity of our motherland.",
+        breadcrumb: "Our Heroes",
+        chapters: [
+          {
+            title: "Our National Heroes",
+            heroes: [
+              { name: "Abdullayev Shovqiyar Jamil oglu", description: "Born on April 5, 1969, in Narimanli village of Basarkechar district, Goycha district. In 1992, he voluntarily joined the National Army. He was a crew commander in a tank brigade in Aghdam. He was martyred on August 27, 1992, while saving his comrades from being captured.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Sovqiyar-Abdullayev.jpg" },
+              { name: "Babayev Chingiz Adil oglu", description: "Born on October 2, 1964, in Baku. He was an officer of the military high school named after J. Nakhchivanski. On October 28, 1995, during the fire in the Baku metro, he died heroically after saving about 300 people.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Babayev-Cingiz.jpg" },
+              { name: "Aliyev Rovshan Nariman oglu", description: "Born on August 30, 1972, in Baku. In 1991, he voluntarily joined the army and participated in the defense of Aghdam. He was martyred on June 14, 1992, while saving his wounded comrades.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Rovsen-Eliyev.jpg" },
+              { name: "Mammadov Seymur Gahraman oglu", description: "Born on September 18, 1971, in Fuzuli. He fought in the 814th self-defense battalion. He was martyred on April 1, 1992, in the battle for Malikjan village.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Seymur-Memmedov.jpg" },
+              { name: "Nazarli Hikmet Baba oglu", description: "Born on March 7, 1966, in Baku. He created an obstacle in front of the enemy on the Khojaly road, took citizens to a safe place, and went missing/was martyred after retreating to the forest at the last moment.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Hikmet-Nezerli.jpg" },
+              { name: "Nasibov Kamil Balada oglu", description: "Born on October 8, 1946, in Lachin. He created a self-defense detachment for the defense of the Lachin district and showed bravery in the liberation of many villages.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Kamil-Nesibov.jpg" },
+              { name: "Huseynov Elman Suleyman oglu", description: "Born on February 28, 1952, in Tartar. He was the commander of the 'Tartar' battalion. He was martyred on January 14, 1993, in the battle for the liberation of Vang village.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Elman-Huseynov.jpg" },
+              { name: "Gahramanov Fariz Choban oglu", description: "Born on March 29, 1974, in Barda. He participated in the battles for Aghdam, Aghdara, Fuzuli, and Kalbajar. In 1995, he served in preventing the attempted coup d'état.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Fariz-Qehremanov.jpg" },
+              { name: "Guliyev Zabit Adil oglu", description: "Born on June 6, 1975, in Kurdamir. He showed great courage by destroying 4 enemy tanks in the battle for Seysulan village.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Zabit-Quliyev.jpg" },
+              { name: "Gurbanov Chingiz Salman oglu", description: "Born on November 24, 1994, in Gusar. He was martyred on December 29, 2016, while preventing the provocation of an intelligence group on the Azerbaijan-Armenia border.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Cingiz-Qurbanov.jpg" },
+            ]
+          },
+          {
+            title: "Martyrs of the First Karabakh War",
+            heroes: [
+              { name: "Babakhanov Shahin Zulfugar oglu" },
+              { name: "Jahangirov Kamal Shahveran oglu" },
+              { name: "Darvishov Vaqif Mahir oglu" },
+              { name: "Ahmadov Yaqub Agali oglu" },
+              { name: "Ahmadov Ilqar Humbat oglu" },
+              { name: "Aliyev Bahman Ibish oglu" },
+              { name: "Aliyev Elshad Hajibaba oglu" },
+              { name: "Aliyev Sahib Shahmali oglu" },
+              { name: "Ibrahimov Jeyhun Tofiq oglu" },
+              { name: "Kerimov Seymur Mohammad oglu" },
+              { name: "Mammadov Alisuvar Alihaydar oglu" },
+              { name: "Mirzamammadov Kamran Sahib oglu" },
+              { name: "Nuriyev Bahruz Allahverdi oglu" },
+              { name: "Gasimov Nureddin Tabi oglu" },
+              { name: "Guliyev Elchin Balakhan oglu" },
+              { name: "Guliyev Khalid Huseynkhan oglu" },
+              { name: "Ramazanov Nureddin Farrukh oglu" },
+              { name: "Salmanov Ramiz Mohammad oglu" },
+              { name: "Zulfugarov Ilqar Agha oglu" },
+            ]
+          },
+          {
+            title: "Martyrs of the April Battles",
+            heroes: [
+              { name: "Akhundov Abdulmajid Nadirshah oglu", description: "Born on October 15, 1993, in Sumgayit. He was martyred during the shootout on the line of contact in April 2016.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Axundov%20%C6%8Fbd%C3%BClm%C9%99cid.jpg" },
+              { name: "Guliyev Mahir Gadir oglu", description: "Born on December 21, 1993, in Baku. He was martyred after destroying an enemy tank in the battle for Seysulan village on April 8, 2016.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Quliyev%20Mahir.jpg" },
+              { name: "Mirzayev Elvin Azadkhan oglu", description: "Born on February 13, 1994, in Khachmaz. He heroically rose to the height of martyrdom during the April 2016 battles.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Mirz%C9%99yev%20Elvin.jpg" },
+              { name: "Orujov Mushfiq Arif oglu", description: "Born on September 18, 1994, in Baku. He was martyred in the battles of Tartar on April 5, 2016.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Orucov%20M%C3%BC%C5%9Ffiq.jpg" },
+            ]
+          },
+          {
+            title: "Martyrs of the 44-day Patriotic War",
+            heroes: [
+              { name: "Abbasov Huseyn Alizade oglu", rank: "Warrant Officer", specialty: "Electronics, telecommunication and radio engineering", date: "06.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/1.jpg" },
+              { name: "Baghirov Elchin Yunus oglu", rank: "Soldier", specialty: "Industrial organization and management", date: "29.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/2.jpg" },
+              { name: "Bakhshaliyev Natiq Saleh oglu", rank: "Lieutenant", specialty: "Refrigeration machines and installations", date: "20.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/3.jpg" },
+              { name: "Bayramov Javid Azer oglu", rank: "Warrant Officer", specialty: "Ground vehicle engineering", date: "08.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/4.jpg" },
+              { name: "Javadov Mahmud Heydar oglu", rank: "Soldier", specialty: "Electronics, telecommunication and radio engineering", date: "27.11.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/5.jpg" },
+              { name: "Ahmadli Elshan Elbrus oglu", rank: "Soldier", specialty: "Service in transport", date: "07.11.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/6%20(1).jpg" },
+              { name: "Ahmadli Nurlan Rahim oglu", rank: "Soldier", specialty: "Electronics, telecommunication and radio engineering", date: "26.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/7.jpg" },
+              { name: "Aliyev Imran Ali oglu", rank: "Lieutenant", specialty: "Computer engineering", date: "29.09.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/8.jpg" },
+              { name: "Aliyev Rauf Sakhavat oglu", rank: "Soldier", specialty: "Information technology and systems", date: "22.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/9.jpg" },
+              { name: "Aliyev Ziyadkhan Ibrahim oglu", rank: "Soldier", specialty: "Information technology and systems", date: "30.09.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/35.jpg" },
+              { name: "Azizov Elchin Avaz oglu", rank: "Senior Lieutenant", specialty: "Casting production of black and non-ferrous metals", date: "13.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/11.jpg" },
+              { name: "Hajiahmadli Hajiahmad Hasan oglu", rank: "Soldier", specialty: "Mechanical engineering", date: "07.11.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/12.jpg" },
+              { name: "Hasanli Elchin Vaqif oglu", rank: "Soldier", specialty: "Electrical engineering", date: "08.11.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/13.jpg" },
+              { name: "Huseynli Alihaydar Salahaddin oglu", rank: "Soldier", specialty: "Information technology and systems", date: "09.11.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/14.jpg" },
+              { name: "Huseynov Bahruz Yavar oglu", rank: "Soldier", specialty: "Mechanical engineering", date: "19.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/15.jpg" },
+              { name: "Ibrahimli Mohammadali Mutallim oglu", rank: "Soldier", specialty: "Specialized radio communication systems", date: "13.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/16.jpg" },
+              { name: "Isgandarli Kamran Yashar oglu", rank: "Soldier", specialty: "Electronics, telecommunication and radio engineering", date: "21.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/17.jpg" },
+              { name: "Mehdiyev Rashad Rahman oglu", rank: "Soldier", specialty: "Information technology and systems", date: "21.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/18.jpg" },
+              { name: "Mammadli Jamil Habil oglu", rank: "Soldier", specialty: "Materials engineering", date: "15.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/36.jpg" },
+              { name: "Mammadov Elcan Zohrab oglu", rank: "Lieutenant", specialty: "Instrument engineering", date: "27.09.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/19.jpg" },
+              { name: "Mammadov Kamal Shamil oglu", rank: "Soldier", specialty: "Instrument engineering", date: "16.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/20.jpg" },
+              { name: "Mammadov Murad Yusif oglu", rank: "Soldier", specialty: "Electrical power engineering", date: "25.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/21.jpg" },
+              { name: "Musazade Azer Chingiz oglu", rank: "Soldier", specialty: "Electrical power engineering", date: "13.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/22.jpg" },
+              { name: "Mammadov Yasin Iman oglu", rank: "Soldier", specialty: "Railway transport and economy", date: "27.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/23.jpg" },
+              { name: "Mammadzade Anar Nazim oglu", rank: "Soldier", specialty: "Technological machines and equipment", date: "08.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/24.jpg" },
+              { name: "Mustafayev Rufat Zohrab oglu", rank: "Soldier", specialty: "Machine engineering", date: "10.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/25.jpg" },
+              { name: "Namazov Babak Sahman oglu", rank: "Junior Sergeant", specialty: "Optotechnics engineering", date: "05.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/26.jpg" },
+              { name: "Piriyev Raul Zabit oglu", rank: "Soldier", specialty: "Railway transport and economy", date: "13.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/27.jpg" },
+              { name: "Gasimov Eltun Vuqar oglu", rank: "Sergeant", specialty: "Industrial organization and management", date: "18.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/28.jpg" },
+              { name: "Rzayev Aslan Suleyman oglu", rank: "Sergeant", specialty: "Computer engineering", date: "13.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/29.jpg" },
+              { name: "Saidov Aladdin Azer oglu", rank: "Soldier", specialty: "Machine engineering", date: "03.11.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/30.jpg" },
+              { name: "Sarkhoshov Seymur Ramiz oglu", rank: "Soldier", specialty: "Technical exploitation of vehicles", date: "14.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/31.jpg" },
+              { name: "Shukurov Anar Mehman oglu", rank: "Mayor", specialty: "Economics and management in transport", date: "16.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/32.jpg" },
+              { name: "Khudiyev Tural Rafayil oglu", rank: "Soldier", specialty: "Railway transport and economy", date: "08.11.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/33.jpg" },
+              { name: "Zeynalli Rashad Qiyas oglu", rank: "Sergeant", specialty: "Instrument engineering", date: "08.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/34.jpg" },
+            ]
+          }
+        ]
+      }
+    },
   },
 
   hero: {
@@ -1233,8 +1439,8 @@ const en = {
           { label: "University History", url: "/haqqimizda/history" },
           { label: "Rector's Message", url: "/about/leadership-and-management/rector" },
           { label: "Honorary Graduates", url: "/haqqimizda/honorary-graduates" },
-          { label: "Honorary Doctors", url: "/haqqimizda/honorary-doctors" },
-          { label: "Our Heroes", url: "/haqqimizda/heroes" },
+          { label: "Honorary Doctors", url: "/community/aztus-honors/honorary-doctors" },
+          { label: "Our Heroes", url: "/community/aztus-honors/our-heroes" },
           { label: "Councils", url: "/haqqimizda/councils" },
           { label: "Campus", url: "/haqqimizda/campus" },
         ],

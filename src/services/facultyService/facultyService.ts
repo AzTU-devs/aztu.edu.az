@@ -22,7 +22,7 @@ export function getImageUrl(path?: string | null): string | undefined {
     if (cleanPath.startsWith("static/")) {
         return `${base}/${cleanPath}`;
     }
-    return `${base}/static/${cleanPath}`;
+    return `${base}/${cleanPath}`;
 }
 
 // Memory cache for slug to code mapping

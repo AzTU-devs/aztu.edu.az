@@ -27,23 +27,32 @@ function StatCard({ label, value, icon: Icon, index }: { label: string; value: n
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
+  const colors = [
+    "text-blue-500 bg-blue-500/10 shadow-blue-500/20",
+    "text-emerald-500 bg-emerald-500/10 shadow-emerald-500/20",
+    "text-[#ee7c7e] bg-[#ee7c7e]/10 shadow-red-500/20",
+    "text-purple-500 bg-purple-500/10 shadow-purple-500/20",
+    "text-orange-500 bg-orange-500/10 shadow-orange-500/20"
+  ];
+  const color = colors[index % colors.length];
+
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      className="relative group bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-slate-700 hover:shadow-md transition-all overflow-hidden"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+      transition={{ delay: index * 0.05, duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+      className="relative group bg-white dark:bg-white/5 rounded-3xl p-8 shadow-2xl shadow-blue-900/5 border border-gray-100 dark:border-white/10 hover:-translate-y-1 transition-all overflow-hidden"
     >
-      <div className="absolute top-0 right-0 w-24 h-24 bg-[#1a2355]/5 rounded-full -mr-8 -mt-8 transition-transform group-hover:scale-110" />
-      <div className="relative z-10 flex flex-col items-center text-center">
-        <div className="w-12 h-12 rounded-xl bg-[#1a2355]/10 dark:bg-[#1a2355]/20 flex items-center justify-center mb-4 text-[#1a2355] dark:text-blue-300 group-hover:bg-[#ee7c7e] group-hover:text-white transition-colors duration-300">
-          <Icon />
+      <div className="absolute top-0 right-0 w-24 h-24 bg-gray-50 dark:bg-white/5 rounded-bl-3xl -mr-8 -mt-8 transition-transform group-hover:scale-110" />
+      <div className="relative z-10 flex flex-col items-start">
+        <div className={`w-14 h-14 rounded-2xl ${color} flex items-center justify-center mb-6 transition-transform duration-500 group-hover:rotate-12`}>
+          <Icon sx={{ fontSize: 28 }} />
         </div>
-        <span className="text-3xl font-extrabold text-[#1a2355] dark:text-white mb-1 tabular-nums">
+        <span className="text-4xl font-black text-[#1a2355] dark:text-white mb-2 tabular-nums tracking-tighter">
           {value}
         </span>
-        <span className="text-xs text-gray-500 dark:text-slate-400 font-bold uppercase tracking-wider leading-snug">
+        <span className="text-[10px] text-gray-400 dark:text-white/40 font-black uppercase tracking-[0.2em] leading-snug">
           {label}
         </span>
       </div>
@@ -80,40 +89,39 @@ export default function CafedraGirisPage({ params }: Props) {
     return (
       <motion.div 
         id={id} 
-        className="scroll-mt-6"
-        initial={{ opacity: 0, y: 20 }}
+        className="scroll-mt-32"
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
       >
-        <SectionBlock accent>
-          <div className="flex items-start gap-5">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#1a2355] to-[#2a3a8a] flex items-center justify-center flex-shrink-0 mt-0.5 shadow-lg shadow-blue-900/10">
-              {icon}
-            </div>
-            <div className="flex-1">
-              <h2 className="font-bold text-[#1a2355] dark:text-white text-lg mb-4">
-                {title}
-              </h2>
-              {htmlContent ? (
-                <div className="prose prose-sm md:prose-base dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed">
-                  <SanitizedHtml html={htmlContent} />
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {items?.map((item) => (
-                    <div key={item.id} className="bg-gray-50 dark:bg-slate-700/30 rounded-xl p-4 border border-gray-100 dark:border-slate-700 transition-all hover:border-[#ee7c7e]/30">
-                      <div className="flex items-start gap-3">
-                        <FiberManualRecordIcon sx={{ fontSize: 10, color: "#ee7c7e", marginTop: "6px", flexShrink: 0 }} />
-                        <div>
-                          <p className="font-bold text-[#1a2355] dark:text-white text-sm">{item.title}</p>
-                          {item.description && <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 leading-relaxed">{item.description}</p>}
-                        </div>
+        <SectionBlock accent title={title}>
+          <div className="relative">
+            {htmlContent ? (
+              <div className="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 leading-relaxed font-medium">
+                <SanitizedHtml html={htmlContent} />
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {items?.map((item, idx) => (
+                  <motion.div 
+                    key={item.id}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.05 }}
+                    className="group bg-gray-50 dark:bg-white/5 rounded-2xl p-6 border border-gray-100 dark:border-white/10 transition-all hover:border-[#ee7c7e]/30 hover:shadow-xl hover:shadow-blue-900/5"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="mt-1 w-2 h-2 rounded-full bg-[#ee7c7e] group-hover:scale-150 transition-transform flex-shrink-0 shadow-[0_0_8px_#ee7c7e]" />
+                      <div>
+                        <p className="font-black text-[#1a2355] dark:text-white text-base mb-2 group-hover:text-[#ee7c7e] transition-colors">{item.title}</p>
+                        {item.description && <p className="text-sm text-gray-500 dark:text-white/60 leading-relaxed font-medium">{item.description}</p>}
                       </div>
                     </div>
-                  ))}
-                </div>
-              )}
-            </div>
+                  </motion.div>
+                ))}
+              </div>
+            )}
           </div>
         </SectionBlock>
       </motion.div>
@@ -134,11 +142,11 @@ export default function CafedraGirisPage({ params }: Props) {
 
   if (loading) {
     return (
-      <div className="space-y-8 animate-pulse">
-        <div className="h-64 rounded-2xl bg-gray-200 dark:bg-slate-800" />
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div className="space-y-12">
+        <div className="h-80 rounded-[3rem] bg-gray-100 dark:bg-white/5 animate-pulse" />
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
           {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="h-32 rounded-2xl bg-gray-200 dark:bg-slate-800" />
+            <div key={i} className="h-40 rounded-[2rem] bg-gray-100 dark:bg-white/5 animate-pulse" />
           ))}
         </div>
       </div>
@@ -148,21 +156,21 @@ export default function CafedraGirisPage({ params }: Props) {
   if (!cafedra) {
     return (
       <SectionBlock accent>
-        <div className="text-center py-10">
-          <p className="text-gray-500">{currentLang === "az" ? "Məlumat tapılmadı" : "No information found"}</p>
+        <div className="text-center py-20">
+          <p className="text-gray-400 font-black uppercase tracking-[0.3em]">{currentLang === "az" ? "Məlumat tapılmadı" : "No information found"}</p>
         </div>
       </SectionBlock>
     );
   }
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-16">
       {/* 1. About Section */}
       {renderContentSection("haqqinda", <InfoIcon sx={{ color: "white" }} />, currentLang === "az" ? "Kafedra haqqında" : "About Department", undefined, cafedra.html_content)}
 
       {/* 2. Metrics Section */}
       {stats.length > 0 && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-6">
           {stats.map((stat, i) => (
             <StatCard key={stat.label} label={stat.label} value={stat.value} icon={stat.icon} index={i} />
           ))}
@@ -173,24 +181,29 @@ export default function CafedraGirisPage({ params }: Props) {
       {cafedra.sdgs && cafedra.sdgs.length > 0 && (
         <motion.div 
           id="sustainability"
-          className="scroll-mt-6"
-          initial={{ opacity: 0, y: 20 }}
+          className="scroll-mt-32"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
         >
-          <SectionBlock title={currentLang === "az" ? "Davamlı İnkişaf Məqsədləri (SDG)" : "Sustainable Development Goals (SDG)"} accent>
-             <div className="flex flex-wrap gap-6 mt-6">
-               {cafedra.sdgs.map(sdgId => (
+          <SectionBlock title={currentLang === "az" ? "Davamlı İnkişaf Məqsədləri" : "Sustainable Development Goals"} accent>
+             <p className="text-gray-500 dark:text-white/40 text-sm font-black uppercase tracking-[0.2em] mb-10">United Nations Strategic Alignment</p>
+             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
+               {cafedra.sdgs.map((sdgId, idx) => (
                  <motion.div 
                    key={sdgId} 
-                   whileHover={{ y: -5, scale: 1.05 }}
-                   className="relative w-24 h-24 rounded-xl overflow-hidden shadow-lg border border-gray-100 dark:border-slate-700"
+                   initial={{ opacity: 0, scale: 0.8 }}
+                   whileInView={{ opacity: 1, scale: 1 }}
+                   transition={{ delay: idx * 0.05 }}
+                   whileHover={{ y: -8, scale: 1.1, rotate: 2 }}
+                   className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl shadow-black/10 border border-gray-100 dark:border-white/10 group cursor-pointer"
                    title={`SDG Goal ${sdgId}`}
                  >
                    <img 
                      src={`https://open-sdg.github.io/sdg-translations/assets/img/goals/en/${sdgId}.png`}
                      alt={`SDG ${sdgId}`}
-                     className="w-full h-full object-cover"
+                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                      onError={(e) => {
                        (e.target as any).style.display = 'none';
                        (e.target as any).parentElement.style.backgroundColor = '#1a2355';
@@ -203,6 +216,7 @@ export default function CafedraGirisPage({ params }: Props) {
                        (e.target as any).parentElement.style.fontWeight = '900';
                      }}
                    />
+                   <div className="absolute inset-0 bg-[#ee7c7e]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                  </motion.div>
                ))}
              </div>
@@ -211,8 +225,8 @@ export default function CafedraGirisPage({ params }: Props) {
       )}
 
       {/* Modern Anchor Nav */}
-      <div className="sticky top-[84px] lg:top-2 z-20 -mx-4 px-4 py-2 bg-gray-50/80 dark:bg-slate-900/80 backdrop-blur-md">
-        <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide no-scrollbar">
+      <div className="sticky top-[84px] lg:top-4 z-20 -mx-4 px-4 py-3 bg-white/40 dark:bg-[#0b1330]/40 backdrop-blur-xl border-y border-gray-100 dark:border-white/5 shadow-2xl shadow-black/5">
+        <div className="max-w-[1600px] mx-auto flex gap-3 overflow-x-auto pb-1 scrollbar-hide no-scrollbar">
           {navSections.map((s) => {
             const hasContent = 
               (s.id === "haqqinda" && cafedra.html_content) ||
@@ -231,7 +245,7 @@ export default function CafedraGirisPage({ params }: Props) {
               <a
                 key={s.id}
                 href={`#${s.id}`}
-                className="text-[11px] font-bold text-[#1a2355] dark:text-blue-300 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 hover:border-[#ee7c7e] hover:text-[#ee7c7e] px-4 py-2 rounded-full transition-all whitespace-nowrap shadow-sm"
+                className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1a2355] dark:text-white bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:border-[#ee7c7e] hover:text-white hover:bg-[#ee7c7e] px-6 py-2.5 rounded-full transition-all whitespace-nowrap shadow-sm active:scale-95"
               >
                 {s.title}
               </a>
@@ -241,13 +255,15 @@ export default function CafedraGirisPage({ params }: Props) {
       </div>
 
       {/* 4. Other Sections */}
-      {renderContentSection("meqsed", <TrackChangesIcon sx={{ color: "white" }} />, currentLang === "az" ? "Fəaliyyət məqsədləri" : "Strategic Objectives", cafedra.objectives)}
-      {renderContentSection("vezifeler", <AssignmentIcon sx={{ color: "white" }} />, currentLang === "az" ? "Vəzifələr" : "Duties & Responsibilities", cafedra.duties)}
-      {renderContentSection("istiqametler", <AccountTreeIcon sx={{ color: "white" }} />, currentLang === "az" ? "Fəaliyyət istiqamətləri" : "Directions of Action", cafedra.directions_of_action)}
-      {renderContentSection("laboratoriyalar", <ScienceIcon sx={{ color: "white" }} />, currentLang === "az" ? "Laboratoriyalar" : "Laboratories", cafedra.laboratories)}
-      {renderContentSection("tedqiqat", <ScienceIcon sx={{ color: "white" }} />, currentLang === "az" ? "Elmi tədqiqat işləri" : "Scientific Research", cafedra.research_works)}
-      {renderContentSection("layiheler", <AssignmentIcon sx={{ color: "white" }} />, currentLang === "az" ? "Layihələr" : "Projects & Initiatives", cafedra.projects)}
-      {renderContentSection("partnyorlar", <BusinessIcon sx={{ color: "white" }} />, currentLang === "az" ? "Partnyor şirkətlər" : "Industrial Partners", cafedra.partner_companies)}
+      <div className="space-y-16 pb-20">
+        {renderContentSection("meqsed", <TrackChangesIcon sx={{ color: "white" }} />, currentLang === "az" ? "Fəaliyyət məqsədləri" : "Strategic Objectives", cafedra.objectives)}
+        {renderContentSection("vezifeler", <AssignmentIcon sx={{ color: "white" }} />, currentLang === "az" ? "Vəzifələr" : "Duties & Responsibilities", cafedra.duties)}
+        {renderContentSection("istiqametler", <AccountTreeIcon sx={{ color: "white" }} />, currentLang === "az" ? "Fəaliyyət istiqamətləri" : "Directions of Action", cafedra.directions_of_action)}
+        {renderContentSection("laboratoriyalar", <ScienceIcon sx={{ color: "white" }} />, currentLang === "az" ? "Laboratoriyalar" : "Laboratories", cafedra.laboratories)}
+        {renderContentSection("tedqiqat", <ScienceIcon sx={{ color: "white" }} />, currentLang === "az" ? "Elmi tədqiqat işləri" : "Scientific Research", cafedra.research_works)}
+        {renderContentSection("layiheler", <AssignmentIcon sx={{ color: "white" }} />, currentLang === "az" ? "Layihələr" : "Projects & Initiatives", cafedra.projects)}
+        {renderContentSection("partnyorlar", <BusinessIcon sx={{ color: "white" }} />, currentLang === "az" ? "Partnyor şirkətlər" : "Industrial Partners", cafedra.partner_companies)}
+      </div>
     </div>
   );
 }

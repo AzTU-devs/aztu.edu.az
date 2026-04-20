@@ -9,6 +9,7 @@ import { getCafedraByCode } from "@/services/cafedraService/cafedraService";
 import type { CafedraDetail, Personnel } from "@/types/cafedra";
 import SearchIcon from "@mui/icons-material/Search";
 import { useLanguage } from "@/context/LanguageContext";
+import { API_BASE_URL } from "@/util/apiClient";
 
 interface Props {
   params: Promise<{ facultyId: string; cafedraId: string }>;
@@ -109,11 +110,11 @@ export default function CafedraEmekdaslarPage({ params }: Props) {
                   >
                     <PersonCard
                       fullName={fullName || "Naməlum əməkdaş"}
-                      title={p.duty || p.scientific_title}
-                      academicDegree={p.scientific_degree}
-                      photoUrl={getImg(p.profile_image)}
-                      email={p.email}
-                      phone={p.phone}
+                      title={p.duty || p.scientific_title || undefined}
+                      academicDegree={p.scientific_degree || undefined}
+                      photoUrl={p.profile_image ? `${API_BASE_URL}${p.profile_image}` : undefined}
+                      email={p.email || undefined}
+                      phone={p.phone || undefined}
                       size="sm"
                     />
                   </motion.div>

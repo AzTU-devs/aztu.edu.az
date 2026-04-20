@@ -1,44 +1,56 @@
 "use client";
 
 import Link from "next/link";
-
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { getProjects, type ProjectItem } from "@/services/projectService/projectService";
+import { useLanguage } from "@/context/LanguageContext";
+import { useTranslation } from "@/hooks/useTranslation";
+import PageHero from "@/components/shared/PageHero";
+import PageContainer from "@/components/shared/PageContainer";
 
 const MONTHS_AZ = [
     "Yanvar", "Fevral", "Mart", "Aprel", "May", "İyun",
     "İyul", "Avqust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr",
 ];
 
-function formatDate(iso: string) {
+const MONTHS_EN = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+];
+
+function formatDate(iso: string, lang: string) {
     if (!iso) return "";
     const d = new Date(iso);
-    return `${String(d.getUTCDate()).padStart(2, "0")} ${MONTHS_AZ[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
+    const months = lang === 'az' ? MONTHS_AZ : MONTHS_EN;
+    return `${String(d.getUTCDate()).padStart(2, "0")} ${months[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 }
 
-const cardVariants = {
-    hidden: { opacity: 0, y: 28 },
+const cardVariants: any = {
+    hidden: { opacity: 0, y: 30 },
     visible: (i: number) => ({
         opacity: 1,
         y: 0,
-        transition: { duration: 0.48, delay: i * 0.07, ease: "easeOut" as const },
+        transition: { duration: 0.6, delay: i * 0.05, ease: [0.23, 1, 0.32, 1] },
     }),
 };
 
-const CARD_COLORS = [
-    "border-blue-200 dark:border-blue-900/50",
-    "border-emerald-200 dark:border-emerald-900/50",
-    "border-purple-200 dark:border-purple-900/50",
-    "border-orange-200 dark:border-orange-900/50",
+const ACCENT_COLORS = [
+    "from-blue-600 to-indigo-600",
+    "from-emerald-600 to-teal-600",
+    "from-purple-600 to-violet-600",
+    "from-orange-600 to-amber-600",
+    "from-[#ee7c7e] to-[#f09395]",
 ];
 
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 12;
 
 export default function ProjectsPage() {
+    const { lang } = useLanguage();
+    const t = useTranslation();
     const [projects, setProjects] = useState<ProjectItem[]>([]);
     const [total, setTotal] = useState(0);
     const [loading, setLoading] = useState(true);
@@ -47,19 +59,19 @@ export default function ProjectsPage() {
 
     useEffect(() => {
         setLoading(true);
-        getProjects({ start: 0, end: PAGE_SIZE, lang: "az" }).then((res) => {
+        getProjects({ start: 0, end: PAGE_SIZE, lang }).then((res) => {
             setLoading(false);
             if (res && res !== "NO_CONTENT" && res !== "ERROR") {
                 setProjects(res.projects);
                 setTotal(res.total);
             }
         });
-    }, []);
+    }, [lang]);
 
     const handleLoadMore = () => {
         const nextPage = page + 1;
         setLoadingMore(true);
-        getProjects({ start: nextPage * PAGE_SIZE, end: (nextPage + 1) * PAGE_SIZE, lang: "az" }).then((res) => {
+        getProjects({ start: nextPage * PAGE_SIZE, end: (nextPage + 1) * PAGE_SIZE, lang }).then((res) => {
             setLoadingMore(false);
             if (res && res !== "NO_CONTENT" && res !== "ERROR") {
                 setProjects((prev) => [...prev, ...res.projects]);
@@ -71,145 +83,105 @@ export default function ProjectsPage() {
     const hasMore = projects.length < total;
 
     return (
-        <>
-            <main className="min-h-screen bg-gray-50 dark:bg-[#0f172a]">
+        <main className="min-h-screen transition-colors duration-500 pb-32">
+            <PageHero
+                title={lang === 'az' ? 'Elmi Layihələr' : 'Research Projects'}
+                description={lang === 'az' ? 'AzTU-nun elmi-tədqiqat və innovasiya layihələri ilə tanış olun.' : 'Explore the scientific research and innovation projects of AzTU.'}
+                breadcrumbs={[
+                    { label: lang === 'az' ? 'Layihələr' : 'Projects' }
+                ]}
+                eyebrow="Research & Innovation"
+            />
 
-                {/* Banner */}
-                <div className="bg-gradient-to-br from-[#0b1330] via-[#1a2355] to-[#13365E] px-4 md:px-10 lg:px-20 pt-36 pb-20 relative overflow-hidden">
-                    <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-white/5 pointer-events-none" />
-                    <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-white/3 pointer-events-none" />
+            <PageContainer>
+                {loading ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                        {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
+                            <div key={i} className="h-80 rounded-[3rem] bg-white dark:bg-slate-800/50 backdrop-blur-md animate-pulse border border-gray-100 dark:border-white/10" />
+                        ))}
+                    </div>
+                ) : projects.length === 0 ? (
+                    <div className="text-center py-40 bg-white dark:bg-slate-800/50 backdrop-blur-md rounded-[4rem] border-2 border-dashed border-gray-100 dark:border-white/10">
+                        <FolderOpenIcon sx={{ fontSize: 80, color: "#1a2355", opacity: 0.1 }} className="mb-6" />
+                        <p className="text-gray-400 font-black uppercase tracking-[0.3em] text-sm">
+                            {lang === 'az' ? 'Layihə tapılmadı.' : 'No projects found.'}
+                        </p>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                        {projects.map((project, i) => {
+                            const color = ACCENT_COLORS[i % ACCENT_COLORS.length];
 
-                    <motion.nav
-                        initial={{ opacity: 0, x: -14 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.4 }}
-                        className="flex items-center gap-1.5 text-white/40 text-xs mb-6 flex-wrap"
-                    >
-                        <Link href="/" className="hover:text-white/70 transition-colors">Ana səhifə</Link>
-                        <ChevronRightIcon sx={{ fontSize: 13 }} />
-                        <span className="text-white/60">Layihələr</span>
-                    </motion.nav>
-
-                    <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="text-white/50 text-sm font-semibold uppercase tracking-widest mb-2"
-                    >
-                        Araşdırma &amp; İnnovasiya
-                    </motion.p>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.55, delay: 0.1 }}
-                        className="text-3xl md:text-5xl font-bold text-white mb-3 flex items-center gap-4"
-                    >
-                        <FolderOpenIcon sx={{ fontSize: 44, opacity: 0.85 }} />
-                        Layihələr
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.55, delay: 0.18 }}
-                        className="text-white/70 text-base max-w-xl"
-                    >
-                        AzTU-nun elmi-tədqiqat və innovasiya layihələri ilə tanış olun.
-                    </motion.p>
-                </div>
-
-                <div className="px-4 md:px-10 lg:px-20 py-10">
-                    {loading && (
-                        <div className="flex justify-center items-center py-32">
-                            <div className="w-10 h-10 rounded-full border-4 border-[#1a2355] border-t-transparent animate-spin" />
-                        </div>
-                    )}
-
-                    <AnimatePresence>
-                        {!loading && projects.length === 0 && (
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                className="text-center py-24 text-gray-400 font-semibold text-lg"
-                            >
-                                Layihə tapılmadı.
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-
-                    {projects.length > 0 && (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                            {projects.map((project, i) => (
+                            return (
                                 <motion.div
                                     key={project.project_id}
                                     custom={i}
                                     variants={cardVariants}
                                     initial="hidden"
                                     animate="visible"
-                                    whileHover={{ y: -6, transition: { duration: 0.2 } }}
                                 >
-                                    <Link href={`/projects/${project.project_id}`}>
-                                        <div className={`group bg-white dark:bg-[#1e293b] rounded-2xl shadow-md border-2 ${CARD_COLORS[i % CARD_COLORS.length]} overflow-hidden flex flex-col cursor-pointer hover:shadow-xl transition-all duration-300 h-full`}>
-                                            <div className="p-6 flex flex-col gap-3 flex-1">
-                                                <div className="flex items-center justify-between">
-                                                    <FolderOpenIcon sx={{ color: "#1a2355", opacity: 0.6, fontSize: 22 }} />
-                                                    <ChevronRightIcon
-                                                        sx={{ fontSize: 18 }}
-                                                        className="text-[#1a2355] dark:text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                                    />
+                                    <Link href={`/projects/${project.project_id}`} className="group block h-full">
+                                        <div className="relative h-full bg-white dark:bg-slate-800/50 backdrop-blur-md rounded-[3rem] shadow-2xl shadow-blue-900/5 border border-gray-100 dark:border-white/10 p-10 transition-all duration-700 overflow-hidden hover:-translate-y-2 hover:border-[#ee7c7e]/30">
+                                            {/* Decorative Background */}
+                                            <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 dark:bg-white/5 rounded-bl-[4rem] -mr-8 -mt-8 transition-transform duration-700 group-hover:scale-110" />
+                                            <div className={`absolute bottom-0 left-0 w-full h-1.5 bg-gradient-to-r ${color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                                            
+                                            <div className="relative z-10 flex flex-col h-full">
+                                                <div className="flex items-center justify-between mb-8">
+                                                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${color} flex items-center justify-center text-white shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6`}>
+                                                        <FolderOpenIcon sx={{ fontSize: 28 }} />
+                                                    </div>
+                                                    <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white">
+                                                        <ChevronRightIcon sx={{ fontSize: 20 }} />
+                                                    </div>
                                                 </div>
 
-                                                <h3 className="text-[#1a2355] dark:text-white font-bold text-base leading-snug flex-1 group-hover:text-[#ee7c7e] transition-colors duration-300 line-clamp-3">
+                                                <h3 className="text-xl font-black text-[#1a2355] dark:text-white leading-[1.3] mb-6 group-hover:text-[#ee7c7e] transition-colors duration-500 tracking-tight">
                                                     {project.title}
                                                 </h3>
 
                                                 {project.description && (
-                                                    <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed line-clamp-2">
+                                                    <p className="text-sm text-gray-500 dark:text-white/40 leading-relaxed line-clamp-3 mb-10 font-medium">
                                                         {project.description}
                                                     </p>
                                                 )}
 
-                                                <div className="flex items-center gap-1 text-gray-400 dark:text-gray-500 text-xs mt-auto pt-1">
-                                                    <CalendarMonthIcon sx={{ fontSize: 13 }} />
-                                                    <span>{formatDate(project.created_at)}</span>
+                                                <div className="mt-auto pt-6 border-t border-gray-100 dark:border-white/10">
+                                                    <div className="flex items-center gap-2 text-gray-400 dark:text-white/20 text-[10px] font-black uppercase tracking-widest">
+                                                        <CalendarMonthIcon sx={{ fontSize: 14, color: '#ee7c7e' }} />
+                                                        <span>{formatDate(project.created_at, lang)}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </Link>
                                 </motion.div>
-                            ))}
-                        </div>
-                    )}
+                            );
+                        })}
+                    </div>
+                )}
 
-                    {hasMore && !loading && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.3 }}
-                            className="flex justify-center mt-14"
+                {hasMore && !loading && (
+                    <div className="mt-24 flex justify-center">
+                        <motion.button
+                            onClick={handleLoadMore}
+                            disabled={loadingMore}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="group px-12 py-5 bg-[#1a2355] text-white rounded-[2rem] font-black uppercase text-xs tracking-[0.3em] shadow-2xl shadow-blue-900/40 hover:bg-[#ee7c7e] hover:shadow-red-900/40 transition-all duration-500 flex items-center gap-4 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            <motion.button
-                                onClick={handleLoadMore}
-                                disabled={loadingMore}
-                                whileHover={{ scale: loadingMore ? 1 : 1.04 }}
-                                whileTap={{ scale: loadingMore ? 1 : 0.97 }}
-                                className="group flex items-center gap-2 bg-[#1a2355] text-white font-bold px-8 py-3 rounded-xl hover:bg-[#1a2355]/90 transition-colors duration-300 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
-                            >
-                                {loadingMore ? (
-                                    <span className="flex items-center gap-2">
-                                        <span className="w-4 h-4 rounded-full border-2 border-white border-t-transparent animate-spin" />
-                                        Yüklənir...
-                                    </span>
-                                ) : (
-                                    <>
-                                        Daha çox yüklə
-                                        <ChevronRightIcon className="rotate-90 transition-transform duration-300 group-hover:translate-y-1" />
-                                    </>
-                                )}
-                            </motion.button>
-                        </motion.div>
-                    )}
-                </div>
-            </main>
-            </>
+                            {loadingMore ? (
+                                <div className="w-5 h-5 rounded-full border-2 border-white border-t-transparent animate-spin" />
+                            ) : (
+                                <>
+                                    {lang === 'az' ? 'Daha çox yüklə' : 'Load More'}
+                                    <ChevronRightIcon className="rotate-90 group-hover:translate-y-1 transition-transform" />
+                                </>
+                            )}
+                        </motion.button>
+                    </div>
+                )}
+            </PageContainer>
+        </main>
     );
 }

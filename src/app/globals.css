@@ -4,29 +4,114 @@
 @variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f0f4f8;
+  --foreground: #1a2355;
+  --primary: #1a2355;
+  --accent: #ee7c7e;
+  --secondary: #13365E;
+}
+
+.dark {
+  --background: #0b1330;
+  --foreground: #f8fafc;
+  --primary: #ee7c7e;
+  --accent: #1a2355;
+  --secondary: #1e293b;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-secondary: var(--secondary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
   overflow-x: hidden;
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 100vh;
 }
 
-.dark body,
-.dark {
-  --background: #0f172a;
-  --foreground: #e2e8f0;
+/* Stunning Mesh Background */
+.bg-mesh {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: var(--background);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(26, 35, 85, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(238, 124, 126, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(19, 54, 94, 0.08) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(238, 124, 126, 0.05) 0px, transparent 50%);
+  filter: blur(80px);
+  opacity: 0.8;
+}
+
+.dark .bg-mesh {
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(30, 41, 59, 0.5) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(238, 124, 126, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(26, 35, 85, 0.5) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(238, 124, 126, 0.08) 0px, transparent 50%);
+}
+
+.bg-grid-premium {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.15;
+  background-image: radial-gradient(var(--foreground) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.dark .bg-grid-premium {
+  opacity: 0.05;
+}
+
+p {
+  text-justify: inter-word;
+  text-align: justify;
+}
+
+.prose p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* Glassmorphism Containers */
+.glass-container {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 10px 40px -10px rgba(26, 35, 85, 0.1);
+}
+
+.dark .glass-container {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* Premium Border Styles */
+.border-premium {
+  border: 1px solid rgba(238, 124, 126, 0.2);
+}
+
+.dark .border-premium {
+  border: 1px solid rgba(238, 124, 126, 0.1);
 }
 
 @keyframes marquee {
@@ -54,8 +139,21 @@ body {
   transition: opacity 0.2s ease;
 }
 
-/* Hide default Swiper navigation arrows (we use custom ones) */
+/* Hide default Swiper navigation arrows */
 .swiper-button-next,
 .swiper-button-prev {
   display: none;
+}
+
+/* Utility classes for stunning layout */
+.section-padding {
+  @apply py-20 md:py-32 px-6 md:px-12 lg:px-24;
+}
+
+.heading-primary {
+  @apply text-4xl md:text-6xl font-black tracking-tighter leading-[1.1] mb-8;
+}
+
+.text-balance {
+  text-wrap: balance;
 }

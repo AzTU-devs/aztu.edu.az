@@ -96,7 +96,7 @@ export default function ScientificBoardPage() {
     const leadershipHref = lang === "az" ? "/az/haqqimizda/rehbetlik-ve-idareetme/rector" : "/en/about/leadership-and-management/rector";
 
     return (
-        <main className="min-h-screen bg-white dark:bg-[#0b1330] transition-colors duration-500">
+        <main className="min-h-screen transition-colors duration-500">
              <AboutPageBanner
                 eyebrow={data.eyebrow}
                 title={data.title}

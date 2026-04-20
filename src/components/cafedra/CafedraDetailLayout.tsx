@@ -51,7 +51,7 @@ export default function CafedraDetailLayout({ children, params }: Props) {
     const facultyPath = `${facultiesPath}/${facultyId}/haqqimizda`;
 
     return (
-        <div className="min-h-screen bg-white dark:bg-[#0b1330] transition-colors overflow-hidden">
+        <div className="min-h-screen transition-colors overflow-hidden">
             {/* Stunning Banner */}
             <div className="relative overflow-hidden bg-[#0b1330] pt-40 pb-20 px-4 md:px-10 lg:px-12 w-full min-h-[500px] flex flex-col justify-end">
                 {/* Background Texture/Pattern */}
@@ -97,7 +97,7 @@ export default function CafedraDetailLayout({ children, params }: Props) {
                         </Link>
                         <ChevronRightIcon sx={{ fontSize: 12 }} />
                         <span className="text-[#ee7c7e] font-black truncate max-w-[250px]">
-                            {loading ? "..." : (cafedra?.cafedra_name || cafedraId)}
+                            {loading ? "..." : (cafedra?.title || cafedraId)}
                         </span>
                     </motion.nav>
 
@@ -107,7 +107,7 @@ export default function CafedraDetailLayout({ children, params }: Props) {
                         transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
                     >
                         <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 leading-[1] max-w-4xl tracking-tighter">
-                            {loading ? "..." : (cafedra?.cafedra_name || cafedraId)}
+                            {loading ? "..." : (cafedra?.title || cafedraId)}
                         </h1>
                         
                         <div className="flex flex-wrap items-center gap-4">

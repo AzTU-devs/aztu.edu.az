@@ -30,6 +30,8 @@ export interface DepartmentDirector {
   father_name: string;
   scientific_degree?: string;
   scientific_title?: string;
+  email?: string;
+  phone?: string;
   room_number?: string;
   bio?: string;
   profile_image?: string;

@@ -321,16 +321,10 @@ const az = {
 
       rectorsOffice: {
         eyebrow: "Rəhbərlik & İdarəetmə",
-        title: "Rektorluq",
-        subtitle: "Azərbaycan Texniki Universitetinin Rektorluq heyəti.",
-        breadcrumb: "Rektorluq",
+        title: "Rektoratlıq",
+        subtitle: "Azərbaycan Texniki Universitetinin Rektoratlıq heyəti.",
+        breadcrumb: "Rektoratlıq",
         staff: [
-          {
-            name: "Rüstəmzadə Fərhad",
-            email: "ferhad.rustamzadeh@aztu.edu.az",
-            phone: "+994 12 538 32 80",
-            title: "Sertifikasiya üzrə menecer"
-          },
           {
             name: "Əhmədov Nicat",
             email: "nijat.ahmadov@aztu.edu.az",
@@ -1144,6 +1138,218 @@ const az = {
         }
       }
     },
+
+    community: {
+      honoraryDoctors: {
+        eyebrow: "İCMA",
+        title: "Fəxri Doktorlarımız",
+        subtitle: "Azərbaycan Texniki Universitetinin inkişafında və elmi nailiyyətlərində müstəsna xidmətləri olan şəxslər.",
+        breadcrumb: "Fəxri Doktorlar",
+        doctors: [
+          {
+            name: "ERSİN TATAR (ŞKTC)",
+            description: "Şimali Kipr Türk Cümhuriyyətinin keçmiş Prezidenti",
+            award: "doktor",
+            date: "02.07.2025",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2025/ersin_tatar.jpg"
+          },
+          {
+            name: "SELÇUK BAYRAKTAR (TÜRKİYƏ)",
+            description: "“Baykar” şirkətinin texnoloji lideri, “Teknoloji Takımı Vakfı”nın (T3 Vakfı) Qəyyumlar Şurasının sədri",
+            award: "doktor",
+            date: "25.05.2022",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/7-2022/Selchuk%20Bayraktar.jpg"
+          },
+          {
+            name: "SYLVIO SIMON (ALMANIYA)",
+            description: "Brandenburq Texniki Universiteti, Maşınqayırma, Elektrik- və Enerji sistemləri fakültəsi, maşınqayırma ixtisası üzrə rəhbər, Metalkəsən dəzgahlar kafedrasının müdiri, professor",
+            award: "doktor",
+            date: "12.06.2019",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/2%20Simon.jpg"
+          },
+          {
+            name: "ROLAND R. YAGER (ABŞ)",
+            description: "Nyu-York İONA kollecinin direktoru, professor",
+            award: "doktor",
+            date: "28.11.2012",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/3%20Roland.jpg"
+          },
+          {
+            name: "EQON HASSEL (ALMANIYA)",
+            description: "Rostok Universitetinin Texniki termodinamika kafedrasının müdiri, Maşınqayırma və gəmiqayırma fakültəsinin dekanı",
+            award: "doktor",
+            date: "28.11.2012",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/4%20qarabala.jpg"
+          },
+          {
+            name: "HƏMƏDUN TURE (İSVEÇRƏ)",
+            description: "Beynəlxalq Telekommunikasiya İttifaqının baş katibi",
+            award: "doktor",
+            date: "18.11.2011",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/raraba.jpg"
+          },
+          {
+            name: "JOACHIM METZNER (ALMANIYA)",
+            description: "Köln Tətbiqi Elmlər Universitetinin rektoru professor",
+            award: "doktor",
+            date: "04.10.2007",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/5%20metzner.jpg"
+          },
+          {
+            name: "İON İLİESKU (RUMINIYA)",
+            description: "Rumıniyanın prezidenti",
+            award: "doktor",
+            date: "25.10.2002",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/6.jpg"
+          },
+          {
+            name: "ALBERT ALBERS (ALMANIYA)",
+            description: "Maşınların konstruksiya edilməsinin əsasları və yük avtomobilləri institutunun rəhbəri",
+            award: "doktor",
+            date: "30.05.2000",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/7%20Albert.jpg"
+          },
+          {
+            name: "RЕZA TALEBİ-DАRYANİ (ALMANIYA)",
+            description: "Köln Texniki Universitetinin professoru",
+            award: "doktor",
+            date: "09.11.1999",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/8%20Reza.jpg"
+          },
+          {
+            name: "ADRIAN BECAN (ABŞ)",
+            description: "Dyuk Universitetinin kafedra müdiri",
+            award: "doktor",
+            date: "03.05.1999",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/9%20Adrian.jpg"
+          },
+          {
+            name: "VEYTSAX QURETSKİ (POLŞA)",
+            description: "Krakov Dağ-Mədən Akademiyasının enerji məmulatları institutunun direktoru",
+            award: "doktor",
+            date: "02.06.1998",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/10%20vetrex.jpg"
+          },
+          {
+            name: "ŞƏFİK ALP BAHADIR (ALMANIYA)",
+            description: "AFR Erlangen-Nyurnberq Universitetinin iqtisad elmləri üzrə professor və Orta Şərq ölkələri seksiyasının direktoru",
+            award: "doktor",
+            date: "13.05.1997",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/11%20%C5%9E%C9%99fik.jpg"
+          },
+          {
+            name: "ALİ DOĞRAMAC (TÜRKİYƏ)",
+            description: "Bilkənt Universitetinin rektoru, professor, doktor",
+            award: "doktor",
+            date: "31.10.1995",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/12%20Ali.jpg"
+          },
+          {
+            name: "EKART ŞNARK (ALMANIYA)",
+            description: "Karlsrue Texniki Universitetinin professoru",
+            award: "fəxri professor",
+            date: "31.12.1995",
+            image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/13%20Ekart.jpg"
+          }
+        ]
+      },
+      ourHeroes: {
+        eyebrow: "İCMA",
+        title: "Qəhrəmanlarımız",
+        subtitle: "Vətənimizin müstəqilliyi və ərazi bütövlüyü uğrunda canından keçən AzTU-nun müəllim, tələbə və məzunları.",
+        breadcrumb: "Qəhrəmanlarımız",
+        chapters: [
+          {
+            title: "Milli Qəhrəmanlarımız",
+            heroes: [
+              { name: "Abdullayev Şövqiyar Cəmil oğlu", description: "1969-cu il aprelin 5-də Göyçə mahalının Basarkeçər rayonunun Nərimanlı kəndində anadan olub. 1992-ci ildə könüllü olaraq Milli Orduya yazılıb. Ağdamda tank briqadasında ekipaj komandiri olub. 1992-ci il avqustun 27-də yoldaşlarını əsir düşməkdən xilas edərkən şəhid olub.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Sovqiyar-Abdullayev.jpg" },
+              { name: "Babayev Çingiz Adil oğlu", description: "1964-cü il oktyabrın 2-də Bakıda anadan olub. C.Naxçıvanski adına hərbi liseyin zabiti olub. 1995-ci il oktyabrın 28-də Bakı metrosunda baş verən yanğın zamanı 300-ə yaxın insanı xilas edərək qəhrəmancasına həlak olub.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Babayev-Cingiz.jpg" },
+              { name: "Əliyev Rövşən Nəriman oğlu", description: "1972-ci il avqustun 30-da Bakıda anadan olub. 1991-ci ildə könüllü olaraq orduya gedib, Ağdamın müdafiəsində iştirak edib. 1992-ci il iyunun 14-də yaralı yoldaşlarını xilas edərkən şəhid olub.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Rovsen-Eliyev.jpg" },
+              { name: "Məmmədov Seymur Qəhrəman oğlu", description: "1971-ci il sentyabrın 18-də Füzulidə anadan olub. 814 saylı özünümüdafiə batalyonunda vuruşub. 1992-ci il aprelin 1-də Məlikcan kəndi uğrunda gedən döyüşdə şəhid olub.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Seymur-Memmedov.jpg" },
+              { name: "Nəzərli Hikmət Baba oğlu", description: "1966-cı il martın 7-də Bakıda anadan olub. Xocalı yolunda düşmən qarşısında maneə yaradaraq vətəndaşları təhlükəsiz yerə çıxarıb və son məqamda meşəyə çəkilərək itkin düşüb/şəhid olub.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Hikmet-Nezerli.jpg" },
+              { name: "Nəsibov Kamil Balədə oğlu", description: "1946-cı il oktyabrın 8-də Laçında anadan olub. Laçın rayonunun müdafiəsi üçün özünümüdafiə dəstəsi yaradıb və bir çox kəndlərin azad edilməsində igidlik göstərib.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Kamil-Nesibov.jpg" },
+              { name: "Hüseynov Elman Süleyman oğlu", description: "1952-ci il fevralın 28-də Tərtərdə anadan olub. 'Tərtər' batalyonunun komandiri olub. 1993-cü il yanvarın 14-də Vəng kəndinin azad edilməsi uğrunda döyüşdə şəhid olub.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Elman-Huseynov.jpg" },
+              { name: "Qəhrəmanov Fariz Çoban oğlu", description: "1974-cü il martın 29-da Bərdədə anadan olub. Ağdam, Ağdərə, Füzuli və Kəlbəcər uğrunda döyüşlərdə iştirak edib. 1995-ci ildə dövlət çevrilişinə cəhdin qarşısının alınmasında xidmət göstərib.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Fariz-Qehremanov.jpg" },
+              { name: "Quliyev Zabit Adil oğlu", description: "1975-ci il iyunun 6-da Kürdəmirdə anadan olub. Seysulan kəndi uğrunda döyüşdə düşmənin 4 tankını məhv edərək böyük şücaət göstərib.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Zabit-Quliyev.jpg" },
+              { name: "Qurbanov Çingiz Salman oğlu", description: "1994-cü il noyabrın 24-də Qusarda anadan olub. 2016-cı il dekabrın 29-da Azərbaycan-Ermənistan sərhədində kəşfiyyat qrupunun təxribatının qarşısını alarkən şəhid olub.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Cingiz-Qurbanov.jpg" },
+            ]
+          },
+          {
+            title: "1-ci Qarabağ müharibəsi şəhidləri",
+            heroes: [
+              { name: "Babaxanov Şahin Zülfüqar oğlu" },
+              { name: "Cahangirov Kamal Şahverən oğlu" },
+              { name: "Dərvişov Vaqif Mahir oğlu" },
+              { name: "Əhmədov Yaqub Ağəli oğlu" },
+              { name: "Əhmədov İlqar Hümbət oğlu" },
+              { name: "Əliyev Bəhmən İbiş oğlu" },
+              { name: "Əliyev Elşad Hacıbaba oğlu" },
+              { name: "Əliyev Sahib Şahmalı oğlu" },
+              { name: "İbrahimov Ceyhun Tofiq oğlu" },
+              { name: "Kərimov Seymur Məhəmməd oğlu" },
+              { name: "Məmmədov Əlisuvar Əliheydər oğlu" },
+              { name: "Mirzəməmmədov Kamran Sahib oğlu" },
+              { name: "Nuriyev Bəhruz Allahverdi oğlu" },
+              { name: "Qasımov Nurəddin Tabı oğlu" },
+              { name: "Quliyev Elçin Balaxan oğlu" },
+              { name: "Quliyev Xalid Hüseynxan oğlu" },
+              { name: "Ramazanov Nurəddin Fərrux oğlu" },
+              { name: "Salmanov Ramiz Məhəmməd oğlu" },
+              { name: "Zülfüqarov İlqar Ağa oğlu" },
+            ]
+          },
+          {
+            title: "Aprel döyüşləri şəhidləri",
+            heroes: [
+              { name: "Axundov Əbdülməcid Nadirşah oğlu", description: "1993-cü il oktyabrın 15-də Sumqayıtda anadan olub. 2016-cı ilin aprel ayında təmas xəttində baş verən atışma zamanı şəhid olub.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Axundov%20%C6%8Fbd%C3%BClm%C9%99cid.jpg" },
+              { name: "Quliyev Mahir Qədir oğlu", description: "1993-cü il dekabrın 21-də Bakıda anadan olub. 2016-cı il aprelin 8-də Seysulan kəndi uğrunda döyüşdə düşmən tankını məhv etdikdən sonra şəhid olub.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Quliyev%20Mahir.jpg" },
+              { name: "Mirzəyev Elvin Azadxan oğlu", description: "1994-cü il fevralın 13-də Xaçmazda anadan olub. 2016-cı ilin aprel döyüşləri zamanı qəhrəmancasına şəhidlik zirvəsinə ucalıb.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Mirz%C9%99yev%20Elvin.jpg" },
+              { name: "Orucov Müşfiq Arif oğlu", description: "1994-cü il sentyabrın 18-də Bakıda anadan olub. 2016-cı il aprelin 5-də Tərtər döyüşlərində şəhid olub.", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/9-2022/Orucov%20M%C3%BC%C5%9Ffiq.jpg" },
+            ]
+          },
+          {
+            title: "44 günlük Vətən müharibəsi şəhidləri",
+            heroes: [
+              { name: "Abbasov Hüseyn Əlizadə oğlu", rank: "Gizir", specialty: "Elektronika, telekommunikasiya və radiotexnika", date: "06.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/1.jpg" },
+              { name: "Bağırov Elçin Yunus oğlu", rank: "Əsgər", specialty: "Sənayenin təşkili və idarə olunması", date: "29.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/2.jpg" },
+              { name: "Baxşəliyev Natiq Saleh oğlu", rank: "Leytenant", specialty: "Soyuducu maşın və qurğular", date: "20.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/3.jpg" },
+              { name: "Bayramov Cavid Azər oğlu", rank: "Gizir", specialty: "Yerüstü nəqliyyat vasitələrinin mühəndisliyi", date: "08.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/4.jpg" },
+              { name: "Cavadov Mahmud Heydər oğlu", rank: "Əsgər", specialty: "Elektronika, telekommunikasiya və radiotexnika", date: "27.11.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/5.jpg" },
+              { name: "Əhmədli Elşən Elbrus oğlu", rank: "Əsgər", specialty: "Nəqliyyatda servis", date: "07.11.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/6%20(1).jpg" },
+              { name: "Əhmədli Nurlan Rəhim oğlu", rank: "Əsgər", specialty: "Elektronika, telekommunikasiya və radiotexnika", date: "26.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/7.jpg" },
+              { name: "Əliyev İmran Əli oğlu", rank: "Leytenant", specialty: "Kompüter mühəndisliyi", date: "29.09.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/8.jpg" },
+              { name: "Əliyev Rauf Səxavət oğlu", rank: "Əsgər", specialty: "İnformasiya texnologiyaları və sistemləri", date: "22.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/9.jpg" },
+              { name: "Əliyev Ziyadxan İbrahim oğlu", rank: "Əsgər", specialty: "İnformasiya texnologiyaları və sistemləri", date: "30.09.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/35.jpg" },
+              { name: "Əzizov Elçin Əvəz oğlu", rank: "Baş leytenant", specialty: "Qara və əlvan metalların tökmə istehsalı", date: "13.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/11.jpg" },
+              { name: "Hacıəhmədli Hacıəhməd Həsən oğlu", rank: "Əsgər", specialty: "Mexanika mühəndisliyi", date: "07.11.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/12.jpg" },
+              { name: "Həsənli Elçin Vaqif oğlu", rank: "Əsgər", specialty: "Elektrik mühəndisliyi", date: "08.11.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/13.jpg" },
+              { name: "Hüseynli Əliheydar Səlahəddin oğlu", rank: "Əsgər", specialty: "İnformasiya texnologiyaları və sistemləri", date: "09.11.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/14.jpg" },
+              { name: "Hüseynov Bəhruz Yavər oğlu", rank: "Əsgər", specialty: "Mexanika mühəndisliyi", date: "19.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/15.jpg" },
+              { name: "İbrahimli Məhəmmədəli Mütəllim oğlu", rank: "Əsgər", specialty: "Xüsusiləşdirilmiş radiorabitə sistemləri", date: "13.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/16.jpg" },
+              { name: "İsgəndərli Kamran Yaşar oğlu", rank: "Əsgər", specialty: "Elektronika, telekommunikasiya və radiotexnika", date: "21.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/17.jpg" },
+              { name: "Mehdiyev Rəşad Rəhman oğlu", rank: "Əsgər", specialty: "İnformasiya texnologiyaları və sistemləri", date: "21.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/18.jpg" },
+              { name: "Məmmədli Cəmil Habil oğlu", rank: "Əsgər", specialty: "Materiallar mühəndisliyi", date: "15.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/36.jpg" },
+              { name: "Məmmədov Elcan Zöhrab oğlu", rank: "Leytenant", specialty: "Cihazqayırma mühəndisliyi", date: "27.09.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/19.jpg" },
+              { name: "Məmmədov Kamal Şamil oğlu", rank: "Əsgər", specialty: "Cihazqayırma mühəndisliyi", date: "16.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/20.jpg" },
+              { name: "Məmmədov Murad Yusif oğlu", rank: "Əsgər", specialty: "Elektroenergetika mühəndisliyi", date: "25.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/21.jpg" },
+              { name: "Musazadə Azər Çingiz oğlu", rank: "Əsgər", specialty: "Elektroenergetika mühəndisliyi", date: "13.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/22.jpg" },
+              { name: "Məmmədov Yasin İman oğlu", rank: "Əsgər", specialty: "Dəmiryol nəqliyyatı və təsərrüfatı", date: "27.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/23.jpg" },
+              { name: "Məmmədzadə Anar Nazim oğlu", rank: "Əsgər", specialty: "Texnoloji maşın və avadanlıqları", date: "08.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/24.jpg" },
+              { name: "Mustafayev Rüfət Zöhrab oğlu", rank: "Əsgər", specialty: "Maşın mühəndisliyi", date: "10.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/25.jpg" },
+              { name: "Namazov Babək Səhman oğlu", rank: "Kiçik çavuş", specialty: "Optotexnika mühəndisliyi", date: "05.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/26.jpg" },
+              { name: "Piriyev Raul Zabit oğlu", rank: "Əsgər", specialty: "Dəmiryol nəqliyyatı və təsərrüfatı", date: "13.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/27.jpg" },
+              { name: "Qasımov Eltun Vüqar oğlu", rank: "Çavuş", specialty: "Sənayenin təşkili və idarə olunması", date: "18.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/28.jpg" },
+              { name: "Rzayev Aslan Süleyman oğlu", rank: "Çavuş", specialty: "Kompüter mühəndisliyi", date: "13.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/29.jpg" },
+              { name: "Səidov Ələddin Azər oğlu", rank: "Əsgər", specialty: "Maşın mühəndisliyi", date: "03.11.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/30.jpg" },
+              { name: "Sərxoşov Seymur Ramiz oğlu", rank: "Əsgər", specialty: "Nəqliyyat vasitələrinin texniki istismarı", date: "14.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/31.jpg" },
+              { name: "Şükürov Anar Mehman oğlu", rank: "Mayor", specialty: "Nəqliyyatda iqtisadiyyat və idarəetmə", date: "16.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/32.jpg" },
+              { name: "Xudiyev Tural Rəfayıl oğlu", rank: "Əsgər", specialty: "Dəmiryol nəqliyyatı və təsərrüfatı", date: "08.11.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/33.jpg" },
+              { name: "Zeynallı Rəşad Qiyas oğlu", rank: "Çavuş", specialty: "Cihazqayırma mühəndisliyi", date: "08.10.2020", image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/34.jpg" },
+            ]
+          }
+        ]
+      }
+    },
   },
 
   hero: {
@@ -1234,8 +1440,8 @@ const az = {
           { label: "Universitetin tarixi", url: "/haqqimizda/history" },
           { label: "Rektorun müraciəti", url: "/haqqimizda/rehbetlik-ve-idareetme/rektor" },
           { label: "Fəxri məzunlarımız", url: "/haqqimizda/honorary-graduates" },
-          { label: "Fəxri doktorlarımız", url: "/haqqimizda/honorary-doctors" },
-          { label: "Qəhrəmanlarımız", url: "/haqqimizda/heroes" },
+          { label: "Fəxri doktorlarımız", url: "/icma/aztu-nun-fexrileri/fexri-doktorlar" },
+          { label: "Qəhrəmanlarımız", url: "/icma/aztu-nun-fexrileri/qehremanlarimiz" },
           { label: "Şuralar", url: "/haqqimizda/councils" },
           { label: "Kampus", url: "/haqqimizda/campus" },
         ],
