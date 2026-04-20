@@ -8,6 +8,8 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { getCafedras } from "@/services/cafedraService/cafedraService";
 import type { CafedraSummary } from "@/types/cafedra";
 import { useLanguage } from "@/context/LanguageContext";
+import PageHero from "@/components/shared/PageHero";
+import PageContainer from "@/components/shared/PageContainer";
 
 const cardVariants = {
     hidden: { opacity: 0, y: 24 },
@@ -52,69 +54,31 @@ export default function CafedrasPage() {
     };
 
     return (
-        <main className="min-h-screen bg-gray-50 dark:bg-slate-900 transition-colors pb-20">
-            {/* Stunning Page Banner */}
-            <div className="relative overflow-hidden bg-[#1a2355] pt-40 pb-20 px-4 md:px-10 lg:px-12 w-full">
-                {/* Background Image of AzTU */}
-                <div 
-                    className="absolute inset-0 z-0 opacity-20 grayscale hover:grayscale-0 transition-all duration-1000"
-                    style={{
-                        backgroundImage: 'url("/aztu.png")',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                    }}
-                />
-                
-                {/* Background abstract elements */}
-                <div className="absolute inset-0 z-10 overflow-hidden opacity-20">
-                    <div className="absolute top-0 right-0 w-1/3 h-full bg-blue-400/10 -skew-x-12 transform translate-x-1/4" />
-                    <div className="absolute bottom-0 left-0 w-1/4 h-1/2 bg-[#ee7c7e]/10 rounded-full blur-3xl transform -translate-x-1/4 translate-y-1/4" />
-                </div>
-                
-                <div className="relative z-20 w-full">
-                    <motion.nav 
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="flex items-center gap-1.5 text-white/40 text-xs mb-6 flex-wrap font-medium uppercase tracking-widest"
-                    >
-                        <Link href="/" className="hover:text-white transition-colors">{t.home}</Link>
-                        <ChevronRightIcon sx={{ fontSize: 13 }} />
-                        <span className="text-[#ee7c7e]">{t.cafedras}</span>
-                    </motion.nav>
-                    <motion.h1 
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight"
-                    >
-                        {t.title}
-                    </motion.h1>
-                    <motion.p 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-white/60 text-lg max-w-2xl font-medium leading-relaxed"
-                    >
-                        {t.description}
-                    </motion.p>
-                </div>
-            </div>
+        <main className="min-h-screen transition-colors duration-500 pb-32">
+            <PageHero
+                title={t.title}
+                description={t.description}
+                breadcrumbs={[
+                    { label: t.cafedras }
+                ]}
+                eyebrow="Academic Excellence"
+            />
 
-            {/* Grid Content */}
-            <section className="px-4 md:px-10 lg:px-12 py-16 -mt-10 relative z-30 w-full">
+            <PageContainer>
                 {loading ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                         {Array.from({ length: 8 }).map((_, i) => (
-                            <div key={i} className="animate-pulse bg-white dark:bg-slate-800 rounded-[2.5rem] shadow-xl border border-gray-100 dark:border-slate-700 p-10 h-64" />
+                            <div key={i} className="animate-pulse bg-white dark:bg-slate-800/50 backdrop-blur-md rounded-[2.5rem] shadow-xl border border-gray-100 dark:border-slate-700 p-10 h-64" />
                         ))}
                     </div>
                 ) : error ? (
-                    <div className="text-center py-32 bg-white dark:bg-slate-800 rounded-[3rem] border-2 border-dashed border-red-100 dark:border-red-900/20 shadow-sm">
+                    <div className="text-center py-32 bg-white dark:bg-slate-800/50 backdrop-blur-md rounded-[3rem] border-2 border-dashed border-red-100 dark:border-red-900/20 shadow-sm">
                         <p className="text-red-400 font-black uppercase tracking-widest text-sm">
                             {t.error}
                         </p>
                     </div>
                 ) : cafedras.length === 0 ? (
-                    <div className="text-center py-32 bg-white dark:bg-slate-800 rounded-[3rem] border-2 border-dashed border-gray-100 dark:border-slate-700 shadow-sm">
+                    <div className="text-center py-32 bg-white dark:bg-slate-800/50 backdrop-blur-md rounded-[3rem] border-2 border-dashed border-gray-100 dark:border-slate-700 shadow-sm">
                         <MenuBookIcon sx={{ fontSize: 64, color: "#1a2355", opacity: 0.1 }} />
                         <p className="text-gray-400 font-black uppercase tracking-widest text-sm mt-4">
                             {t.noContent}
@@ -138,7 +102,7 @@ export default function CafedrasPage() {
                                 >
                                     <Link
                                         href={baseLink}
-                                        className="group block relative h-full bg-white dark:bg-slate-800 rounded-[2.5rem] shadow-sm hover:shadow-[0_20px_50px_rgba(26,35,85,0.1)] border-2 border-transparent hover:border-[#ee7c7e]/20 p-8 transition-all duration-500 overflow-hidden"
+                                        className="group block relative h-full bg-white dark:bg-slate-800/50 backdrop-blur-md rounded-[2.5rem] shadow-sm hover:shadow-[0_20px_50px_rgba(26,35,85,0.1)] border-2 border-transparent hover:border-[#ee7c7e]/20 p-8 transition-all duration-500 overflow-hidden"
                                     >
                                         {/* Decorative Background */}
                                         <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 dark:bg-slate-700/30 rounded-bl-[4rem] -mr-8 -mt-8 transition-transform group-hover:scale-110" />
@@ -182,7 +146,7 @@ export default function CafedrasPage() {
                         })}
                     </div>
                 )}
-            </section>
+            </PageContainer>
         </main>
     );
 }

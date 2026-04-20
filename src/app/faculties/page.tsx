@@ -5,16 +5,20 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import SchoolIcon from "@mui/icons-material/School";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import GroupsIcon from "@mui/icons-material/Groups";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import { getFaculties, type FacultySummary } from "@/services/facultyService/facultyService";
 import { slugify } from "@/util/slugify";
 import { useLanguage } from "@/context/LanguageContext";
+import PageHero from "@/components/shared/PageHero";
+import PageContainer from "@/components/shared/PageContainer";
 
-const cardVariants = {
-    hidden: { opacity: 0, y: 24 },
+const cardVariants: any = {
+    hidden: { opacity: 0, y: 30 },
     visible: (i: number) => ({
         opacity: 1,
         y: 0,
-        transition: { duration: 0.45, delay: i * 0.07, ease: "easeOut" as const },
+        transition: { duration: 0.6, delay: i * 0.05, ease: [0.23, 1, 0.32, 1] },
     }),
 };
 
@@ -48,65 +52,27 @@ export default function FacultiesPage() {
     };
 
     return (
-        <main className="min-h-screen bg-gray-50 dark:bg-slate-900 transition-colors pb-20">
-            {/* Stunning Page Banner */}
-            <div className="relative overflow-hidden bg-[#1a2355] pt-40 pb-20 px-4 md:px-10 lg:px-12 w-full">
-                {/* Background Image of AzTU */}
-                <div 
-                    className="absolute inset-0 z-0 opacity-20 grayscale hover:grayscale-0 transition-all duration-1000"
-                    style={{
-                        backgroundImage: 'url("/aztu.png")',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                    }}
-                />
-                
-                {/* Background abstract elements */}
-                <div className="absolute inset-0 z-10 overflow-hidden opacity-20">
-                    <div className="absolute top-0 right-0 w-1/3 h-full bg-blue-400/10 -skew-x-12 transform translate-x-1/4" />
-                    <div className="absolute bottom-0 left-0 w-1/4 h-1/2 bg-[#ee7c7e]/10 rounded-full blur-3xl transform -translate-x-1/4 translate-y-1/4" />
-                </div>
-                
-                <div className="relative z-20 w-full">
-                    <motion.nav 
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="flex items-center gap-1.5 text-white/40 text-xs mb-6 flex-wrap font-medium uppercase tracking-widest"
-                    >
-                        <Link href="/" className="hover:text-white transition-colors">{t.home}</Link>
-                        <ChevronRightIcon sx={{ fontSize: 13 }} />
-                        <span className="text-[#ee7c7e]">{t.faculties}</span>
-                    </motion.nav>
-                    <motion.h1 
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight"
-                    >
-                        {t.title}
-                    </motion.h1>
-                    <motion.p 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-white/60 text-lg max-w-2xl font-medium leading-relaxed"
-                    >
-                        {t.description}
-                    </motion.p>
-                </div>
-            </div>
+        <main className="min-h-screen transition-colors duration-500 pb-32">
+            <PageHero
+                title={t.title}
+                description={t.description}
+                breadcrumbs={[
+                    { label: t.faculties }
+                ]}
+                eyebrow="Academic Excellence"
+            />
 
-            {/* Grid Content */}
-            <section className="px-4 md:px-10 lg:px-12 py-16 -mt-10 relative z-30 w-full">
+            <PageContainer>
                 {loading ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                         {Array.from({ length: 8 }).map((_, i) => (
-                            <div key={i} className="animate-pulse bg-white dark:bg-slate-800 rounded-[2.5rem] shadow-xl border border-gray-100 dark:border-slate-700 p-10 h-64" />
+                            <div key={i} className="animate-pulse bg-white dark:bg-slate-800/50 backdrop-blur-md rounded-[3rem] shadow-xl border border-gray-100 dark:border-white/10 p-10 h-80" />
                         ))}
                     </div>
                 ) : faculties.length === 0 ? (
-                    <div className="text-center py-32 bg-white dark:bg-slate-800 rounded-[3rem] border-2 border-dashed border-gray-100 dark:border-slate-700 shadow-sm">
-                        <SchoolIcon sx={{ fontSize: 64, color: "#1a2355", opacity: 0.1 }} />
-                        <p className="text-gray-400 font-black uppercase tracking-widest text-sm mt-4">
+                    <div className="text-center py-40 bg-white dark:bg-slate-800/50 backdrop-blur-md rounded-[4rem] border-2 border-dashed border-gray-100 dark:border-white/10 shadow-sm">
+                        <SchoolIcon sx={{ fontSize: 80, color: "#1a2355", opacity: 0.1 }} className="mb-6" />
+                        <p className="text-gray-400 font-black uppercase tracking-[0.3em] text-sm">
                             {t.noContent}
                         </p>
                     </div>
@@ -119,6 +85,16 @@ export default function FacultiesPage() {
                             const baseLink = `/${currentLang}/${academicPrefix}/${facultyPrefix}/${slug}`;
                             const aboutLink = `${baseLink}/${currentLang === "az" ? "haqqimizda" : "about"}`;
 
+                            // Determine card colors based on index or code
+                            const accentColors = [
+                                "from-blue-600 to-indigo-600 shadow-blue-500/20",
+                                "from-emerald-600 to-teal-600 shadow-emerald-500/20",
+                                "from-[#ee7c7e] to-[#f09395] shadow-red-500/20",
+                                "from-purple-600 to-violet-600 shadow-purple-500/20",
+                                "from-orange-600 to-amber-600 shadow-orange-500/20"
+                            ];
+                            const cardColor = accentColors[i % accentColors.length];
+
                             return (
                                 <motion.div
                                     key={faculty.faculty_code}
@@ -130,52 +106,54 @@ export default function FacultiesPage() {
                                 >
                                     <Link
                                         href={aboutLink}
-                                        className="group block relative h-full bg-white dark:bg-slate-800 rounded-[2.5rem] shadow-sm hover:shadow-[0_20px_50px_rgba(26,35,85,0.1)] border-2 border-transparent hover:border-[#ee7c7e]/20 p-8 transition-all duration-500 overflow-hidden"
+                                        className="group block relative h-full bg-white dark:bg-slate-800/50 backdrop-blur-md rounded-[3rem] shadow-2xl shadow-blue-900/5 border border-gray-100 dark:border-white/10 p-10 transition-all duration-700 overflow-hidden hover:-translate-y-2 hover:border-[#ee7c7e]/30"
                                     >
-                                        {/* Decorative Background */}
-                                        <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 dark:bg-slate-700/30 rounded-bl-[4rem] -mr-8 -mt-8 transition-transform group-hover:scale-110" />
+                                        {/* Decorative Background Elements */}
+                                        <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 dark:bg-white/5 rounded-bl-[4rem] -mr-8 -mt-8 transition-transform duration-700 group-hover:scale-110" />
+                                        <div className={`absolute bottom-0 left-0 w-full h-1.5 bg-gradient-to-r ${cardColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                                         
                                         <div className="relative z-10 flex flex-col h-full">
                                             {/* Card Header */}
-                                            <div className="flex items-center justify-between mb-8">
-                                                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#1a2355] to-[#2a3a8a] group-hover:from-[#ee7c7e] group-hover:to-[#f09395] flex items-center justify-center text-white shadow-lg shadow-blue-900/10 transition-all duration-500">
-                                                    <SchoolIcon sx={{ fontSize: 28 }} />
+                                            <div className="flex items-center justify-between mb-10">
+                                                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${cardColor} flex items-center justify-center text-white shadow-lg duration-500 group-hover:scale-110 group-hover:rotate-6`}>
+                                                    <SchoolIcon sx={{ fontSize: 32 }} />
                                                 </div>
-                                                <span className="text-[10px] font-black text-[#1a2355] dark:text-blue-300 bg-[#1a2355]/5 dark:bg-[#1a2355]/20 px-4 py-1.5 rounded-full uppercase tracking-widest">
+                                                <span className="text-[10px] font-black text-gray-400 dark:text-white/30 uppercase tracking-[0.2em] border border-gray-100 dark:border-white/10 px-4 py-2 rounded-xl">
                                                     {faculty.faculty_code}
                                                 </span>
                                             </div>
 
                                             {/* Faculty Title */}
-                                            <h2 className="text-[#1a2355] dark:text-white font-black text-xl leading-tight group-hover:text-[#ee7c7e] transition-colors duration-300 mb-6">
+                                            <h2 className="text-[#1a2355] dark:text-white font-black text-2xl leading-[1.2] group-hover:text-[#ee7c7e] transition-colors duration-500 mb-8 tracking-tighter">
                                                 {faculty.title}
                                             </h2>
 
-                                            {/* Stats or Info */}
-                                            {(faculty.cafedra_count !== undefined || faculty.deputy_dean_count !== undefined) && (
-                                                <div className="flex flex-wrap gap-4 mt-auto pt-6 border-t border-gray-50 dark:border-slate-700">
-                                                    {faculty.cafedra_count !== undefined && (
-                                                        <div className="flex flex-col">
-                                                            <span className="text-xl font-black text-[#1a2355] dark:text-white leading-none">{faculty.cafedra_count}</span>
-                                                            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{t.cafedra}</span>
-                                                        </div>
-                                                    )}
-                                                    {faculty.deputy_dean_count !== undefined && (
-                                                        <div className="flex flex-col ml-auto text-right">
-                                                            <span className="text-xl font-black text-[#1a2355] dark:text-white leading-none">{faculty.deputy_dean_count}</span>
-                                                            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{t.deputy}</span>
-                                                        </div>
-                                                    )}
+                                            {/* Stats Section */}
+                                            <div className="grid grid-cols-2 gap-4 mt-auto pt-8 border-t border-gray-100 dark:border-white/10">
+                                                <div className="flex flex-col">
+                                                    <div className="flex items-center gap-2 mb-1">
+                                                        <AccountTreeIcon sx={{ fontSize: 14 }} className="text-[#ee7c7e]" />
+                                                        <span className="text-xl font-black text-[#1a2355] dark:text-white leading-none">{faculty.cafedra_count || 0}</span>
+                                                    </div>
+                                                    <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{t.cafedra}</span>
                                                 </div>
-                                            )}
+                                                <div className="flex flex-col text-right">
+                                                    <div className="flex items-center gap-2 justify-end mb-1">
+                                                        <span className="text-xl font-black text-[#1a2355] dark:text-white leading-none">{faculty.deputy_dean_count || 0}</span>
+                                                        <GroupsIcon sx={{ fontSize: 14 }} className="text-[#ee7c7e]" />
+                                                    </div>
+                                                    <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{t.deputy}</span>
+                                                </div>
+                                            </div>
 
-                                            {/* Read More Link */}
-                                            <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#1a2355] dark:text-blue-400 mt-8 group-hover:text-[#ee7c7e] transition-colors">
-                                                {t.viewMore}
-                                                <ChevronRightIcon
-                                                    sx={{ fontSize: 16 }}
-                                                    className="transition-transform duration-300 group-hover:translate-x-2"
-                                                />
+                                            {/* View More Button */}
+                                            <div className="flex items-center justify-between mt-10">
+                                                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1a2355] dark:text-white/60 group-hover:text-[#ee7c7e] transition-colors">
+                                                    {t.viewMore}
+                                                </span>
+                                                <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white group-hover:translate-x-2">
+                                                    <ChevronRightIcon sx={{ fontSize: 20 }} />
+                                                </div>
                                             </div>
                                         </div>
                                     </Link>
@@ -184,7 +162,7 @@ export default function FacultiesPage() {
                         })}
                     </div>
                 )}
-            </section>
+            </PageContainer>
         </main>
     );
 }

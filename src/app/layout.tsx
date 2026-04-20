@@ -30,14 +30,22 @@ export default function RootLayout({
   return (
     <html lang="az" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
       >
+        {/* Global Background Elements */}
+        <div className="bg-mesh" />
+        <div className="bg-grid-premium" />
+        
         <ReduxProvider>
           <LanguageProvider>
             <ThemeProvider>
               <HeaderChanger />
-              {children}
-              <Footer />
+              <div className="relative z-10 min-h-screen flex flex-col">
+                <div className="flex-1">
+                  {children}
+                </div>
+                <Footer />
+              </div>
             </ThemeProvider>
           </LanguageProvider>
         </ReduxProvider>

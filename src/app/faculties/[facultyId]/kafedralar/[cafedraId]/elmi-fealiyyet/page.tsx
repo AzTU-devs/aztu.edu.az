@@ -1,6 +1,7 @@
 "use client";
 
 import { use, useEffect, useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import SectionBlock from "@/components/shared/SectionBlock";
 import ScienceIcon from "@mui/icons-material/Science";
@@ -18,7 +19,7 @@ interface Props {
 }
 
 export default function ElmiFealiyyetPage({ params }: Props) {
-  const { cafedraId } = use(params);
+  const { facultyId, cafedraId } = use(params);
   const { lang: currentLang } = useLanguage();
   const [cafedra, setCafedra] = useState<CafedraDetail | null>(null);
   const [loading, setLoading] = useState(true);

@@ -43,7 +43,7 @@ const RELATED = [
 export default function ViceRectorPage() {
     return (
         <>
-            <main className="min-h-screen bg-gray-50 dark:bg-[#0f172a]">
+            <main className="min-h-screen transition-colors duration-500">
                 <AboutPageBanner
                     eyebrow="Leadership & Governance"
                     title="Vice-Rectors"

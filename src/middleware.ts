@@ -6,7 +6,7 @@ const DEFAULT_LANG = "az";
 
 // List of top-level Azerbaijani folders that should NOT trigger a language redirect
 // because they are the internal targets of our rewrites.
-const INTERNAL_FOLDERS = ["idareetme", "tedqiqat", "haqqimizda", "struktur", "tehsil", "sosial", "beynelxalq", "niye-aztu", "media", "faculties"];
+const INTERNAL_FOLDERS = ["idareetme", "tedqiqat", "haqqimizda", "struktur", "tehsil", "sosial", "beynelxalq", "niye-aztu", "media", "faculties", "community"];
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -208,6 +208,42 @@ export function middleware(request: NextRequest) {
         }
     }
 
+    // Community / ICMA Mapping
+    if (segments_rest[0] === "community" || segments_rest[0] === "icma") {
+        if (lang === "az" && segments_rest[0] === "community") {
+            const newPath = ["icma"];
+            if (segments_rest[1] === "aztus-honors") newPath.push("aztu-nun-fexrileri");
+            else if (segments_rest[1]) newPath.push(segments_rest[1]);
+
+            if (segments_rest[1] === "aztus-honors" && segments_rest[2] === "honorary-doctors") {
+                newPath[1] = "aztu-nun-fexrileri";
+                newPath.push("fexri-doktorlar");
+            } else if (segments_rest[1] === "aztus-honors" && segments_rest[2] === "our-heroes") {
+                newPath[1] = "aztu-nun-fexrileri";
+                newPath.push("qehremanlarimiz");
+            } else if (segments_rest[2]) {
+                newPath.push(segments_rest[2]);
+            }
+            return NextResponse.redirect(new URL(`/az/${newPath.join("/")}`, request.url));
+        }
+        if (lang === "en" && segments_rest[0] === "icma") {
+            const newPath = ["community"];
+            if (segments_rest[1] === "aztu-nun-fexrileri") newPath.push("aztus-honors");
+            else if (segments_rest[1]) newPath.push(segments_rest[1]);
+
+            if (segments_rest[1] === "aztu-nun-fexrileri" && segments_rest[2] === "fexri-doktorlar") {
+                newPath[1] = "aztus-honors";
+                newPath.push("honorary-doctors");
+            } else if (segments_rest[1] === "aztu-nun-fexrileri" && segments_rest[2] === "qehremanlarimiz") {
+                newPath[1] = "aztus-honors";
+                newPath.push("our-heroes");
+            } else if (segments_rest[2]) {
+                newPath.push(segments_rest[2]);
+            }
+            return NextResponse.redirect(new URL(`/en/${newPath.join("/")}`, request.url));
+        }
+    }
+
     // Academic & Faculties Redirects
     if (segments_rest[0] === "academic" || segments_rest[0] === "akademik" || segments_rest[0] === "faculties" || segments_rest[0] === "cafedras" || segments_rest[0] === "fakulteler") {
         // EN: academic/faculties
@@ -361,7 +397,7 @@ export function middleware(request: NextRequest) {
         const sub = segments_rest[2];
         if (sub === "rector" || sub === "rektor") {
             segments_rest = ["about", "rector"];
-        } else if (sub === "rectors-office" || sub === "rektorluq") {
+        } else if (sub === "rectors-office" || sub === "rektorluq" || sub === "rektoratliq") {
             segments_rest = ["about", "rectors-office"];
         } else if (sub === "vice-rector" || sub === "prorektor") {
             segments_rest = ["about", "vice-rector"];
@@ -444,6 +480,20 @@ export function middleware(request: NextRequest) {
             segments_rest = ["about", "baku-technical-colleges"];
         } else if (sub === "baku-state-college-of-communications-and-transport" || sub === "baki-rabite-ve-neqliyayt-dovlet-kollecleri") {
             segments_rest = ["about", "baku-state-colleges"];
+        }
+    }
+
+    // Community / ICMA Mapping (Rewrites)
+    if (segments_rest[0] === "community" || segments_rest[0] === "icma") {
+        const sub = segments_rest[1];
+        const subSub = segments_rest[2];
+        
+        if ((sub === "aztus-honors" || sub === "aztu-nun-fexrileri") && 
+            (subSub === "honorary-doctors" || subSub === "fexri-doktorlar")) {
+            segments_rest = ["community", "honorary-doctors"];
+        } else if ((sub === "aztus-honors" || sub === "aztu-nun-fexrileri") && 
+            (subSub === "our-heroes" || subSub === "qehremanlarimiz")) {
+            segments_rest = ["community", "our-heroes"];
         }
     }
 

@@ -36,7 +36,7 @@ export default function FacultyDetailLayout({ children, params }: Props) {
     const institutesListPath = `/${currentLang}/${currentLang === "az" ? "akademik/fakulteler" : "academic/faculties"}`;
 
     return (
-        <div className="min-h-screen bg-white dark:bg-[#0b1330] transition-colors overflow-hidden">
+        <div className="min-h-screen transition-colors overflow-hidden">
             {/* Stunning Banner */}
             <div className="relative overflow-hidden bg-[#0b1330] pt-40 pb-20 px-4 md:px-10 lg:px-12 w-full min-h-[500px] flex flex-col justify-end">
                 {/* Background Texture/Pattern */}

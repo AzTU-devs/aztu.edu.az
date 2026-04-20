@@ -1,12 +1,16 @@
 "use client";
 
 import Link from "next/link";
-
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import CampaignIcon from "@mui/icons-material/Campaign";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { useTranslation } from "@/hooks/useTranslation";
+import { useLanguage } from "@/context/LanguageContext";
+
+import PageHero from "@/components/shared/PageHero";
+import PageContainer from "@/components/shared/PageContainer";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site";
 
@@ -15,11 +19,17 @@ const MONTHS_AZ = [
     "İyul","Avqust","Sentyabr","Oktyabr","Noyabr","Dekabr",
 ];
 
-function parseDate(iso: string) {
+const MONTHS_EN = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+];
+
+function parseDate(iso: string, lang: string) {
     const d = new Date(iso);
+    const months = lang === 'az' ? MONTHS_AZ : MONTHS_EN;
     return {
         date: String(d.getUTCDate()).padStart(2, "0"),
-        month: MONTHS_AZ[d.getUTCMonth()],
+        month: months[d.getUTCMonth()],
         year: String(d.getUTCFullYear()),
     };
 }
@@ -44,6 +54,8 @@ const cardVariants = {
 };
 
 export default function AnnouncementsPage() {
+    const t = useTranslation();
+    const { lang } = useLanguage();
     const [announcements, setAnnouncements] = useState<ApiAnnouncement[]>([]);
 
     useEffect(() => {
@@ -57,190 +69,122 @@ export default function AnnouncementsPage() {
     const rest = announcements.slice(1);
 
     return (
-        <>
-            <main className="min-h-screen bg-gray-50">
-
-                {/* ── Banner ── */}
-                <div className="bg-gradient-to-br from-[#0b1330] via-[#1a2355] to-[#13365E] px-4 md:px-10 lg:px-20 pt-36 pb-20 relative overflow-hidden">
-                    <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-white/5 pointer-events-none" />
-                    <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-white/3 pointer-events-none" />
-
-                    {/* Breadcrumb */}
-                    <motion.nav
-                        initial={{ opacity: 0, x: -14 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.4 }}
-                        className="flex items-center gap-1.5 text-white/40 text-xs mb-6 flex-wrap"
-                    >
-                        <Link href="/" className="hover:text-white/70 transition-colors">
-                            Ana səhifə
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 13 }} />
-                        <span className="text-white/60">Elanlar</span>
-                    </motion.nav>
-
-                    <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="text-white/50 text-sm font-semibold uppercase tracking-widest mb-2"
-                    >
-                        Azərbaycan Texniki Universiteti
-                    </motion.p>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.55, delay: 0.1 }}
-                        className="text-3xl md:text-5xl font-bold text-white mb-3 flex items-center gap-4"
-                    >
-                        <CampaignIcon sx={{ fontSize: 44, opacity: 0.85 }} />
-                        Elanlar
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.55, delay: 0.18 }}
-                        className="text-white/70 text-base max-w-xl"
-                    >
-                        AzTU-nun akademik, tədris, qəbul və inzibati elanları ilə tanış olun.
-                    </motion.p>
+        <main className="min-h-screen transition-colors duration-500">
+            <PageHero
+                title={lang === 'az' ? "Elanlar" : "Announcements"}
+                description={lang === 'az' ? "AzTU-nun akademik, tədris, qəbul və inzibati elanları ilə tanış olun." : "Stay updated with academic, educational, admission, and administrative announcements from AzTU."}
+                breadcrumbs={[
+                    { label: lang === 'az' ? "Elanlar" : "Announcements" }
+                ]}
+            >
+                <div className="absolute right-0 bottom-0 opacity-10 pointer-events-none hidden lg:block">
+                    <CampaignIcon sx={{ fontSize: 300, color: 'white' }} />
                 </div>
+            </PageHero>
 
-                <div className="px-4 md:px-10 lg:px-20 py-10">
+            <PageContainer>
+                {/* ── Empty state ── */}
+                {announcements.length === 0 && (
+                    <div className="text-center py-24 text-gray-400 font-black text-xl uppercase tracking-widest">
+                        {lang === 'az' ? "ELAN TAPILMADI" : "NO ANNOUNCEMENTS FOUND"}
+                    </div>
+                )}
 
-                    {/* ── Empty state ── */}
-                    {announcements.length === 0 && (
-                        <div className="text-center py-24 text-gray-400 font-semibold text-lg">
-                            Elan tapılmadı.
-                        </div>
-                    )}
-
-                    {featured && (
-                        <>
-                            {/* ── Featured / Pinned Card ── */}
+                {featured && (
+                    <div className="mb-20">
+                        <Link href={`/announcements/${featured.id}`}>
                             <motion.div
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, ease: "easeOut" }}
-                                className="mb-10"
+                                className="group relative bg-white dark:bg-slate-800/50 backdrop-blur-md rounded-[3rem] shadow-2xl shadow-blue-900/5 border border-gray-100 dark:border-white/10 overflow-hidden flex flex-col lg:flex-row hover:border-[#ee7c7e]/30 transition-all duration-700"
                             >
-                                <Link href={`/announcements/${featured.id}`}>
-                                    <div className="group bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer hover:shadow-2xl transition-shadow duration-500">
-                                        {/* Top accent bar */}
-                                        <div className="h-1.5 w-full bg-[#1a2355]" />
+                                {/* Left: Date column */}
+                                {(() => {
+                                    const { date, month, year } = parseDate(featured.published_date, lang);
+                                    return (
+                                        <div className="lg:w-64 flex-shrink-0 bg-[#1a2355] flex flex-col items-center justify-center p-12 gap-2 relative overflow-hidden">
+                                            <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+                                            <CalendarMonthIcon sx={{ color: "white", opacity: 0.4, fontSize: 32 }} />
+                                            <p className="text-white font-black text-6xl leading-none relative z-10">{date}</p>
+                                            <p className="text-white/80 text-lg font-black uppercase tracking-widest relative z-10">{month}</p>
+                                            <p className="text-white/40 text-sm font-bold relative z-10">{year}</p>
+                                        </div>
+                                    );
+                                })()}
 
-                                        <div className="flex flex-col lg:flex-row gap-0">
-                                            {/* Left: Date column */}
-                                            {(() => {
-                                                const { date, month, year } = parseDate(featured.published_date);
-                                                return (
-                                                    <div className="lg:w-40 flex-shrink-0 bg-[#1a2355] flex flex-col items-center justify-center p-6 gap-1">
-                                                        <CalendarMonthIcon sx={{ color: "white", opacity: 0.6, fontSize: 22 }} />
-                                                        <p className="text-white font-bold text-3xl leading-none">{date}</p>
-                                                        <p className="text-white/70 text-sm font-medium">{month}</p>
-                                                        <p className="text-white/50 text-xs">{year}</p>
+                                {/* Right: Content */}
+                                <div className="flex flex-col justify-center p-12 md:p-16 gap-6 flex-1">
+                                    <div className="inline-block px-4 py-1.5 rounded-full bg-[#ee7c7e]/10 text-[#ee7c7e] text-[10px] font-black uppercase tracking-[0.3em] w-fit">
+                                        {lang === 'az' ? 'YENİ ELAN' : 'NEW ANNOUNCEMENT'}
+                                    </div>
+                                    <h2 className="text-[#1a2355] dark:text-white font-black text-2xl md:text-4xl leading-tight group-hover:text-[#ee7c7e] transition-colors duration-500 tracking-tighter">
+                                        {featured.title}
+                                    </h2>
+
+                                    {featured.html_content && (
+                                        <div
+                                            className="text-gray-500 dark:text-white/60 text-lg leading-relaxed line-clamp-2 text-justify"
+                                            dangerouslySetInnerHTML={{ __html: featured.html_content }}
+                                        />
+                                    )}
+
+                                    <div className="flex items-center gap-3 text-[#1a2355] dark:text-white font-black text-xs uppercase tracking-[0.2em] group-hover:text-[#ee7c7e] transition-all mt-4">
+                                        {lang === 'az' ? 'ƏTRAFLI OXU' : 'READ MORE'}
+                                        <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white group-hover:translate-x-2">
+                                            <ChevronRightIcon sx={{ fontSize: 20 }} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </Link>
+                    </div>
+                )}
+
+                {rest.length > 0 && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {rest.map((item, i) => {
+                            const { date, month, year } = parseDate(item.published_date, lang);
+                            return (
+                                <motion.div
+                                    key={item.id}
+                                    custom={i}
+                                    variants={cardVariants}
+                                    initial="hidden"
+                                    animate="visible"
+                                    className="h-full"
+                                >
+                                    <Link href={`/announcements/${item.id}`} className="group block h-full">
+                                        <div className="relative bg-white dark:bg-slate-800/50 backdrop-blur-md rounded-[2.5rem] shadow-2xl shadow-blue-900/5 border border-gray-100 dark:border-white/10 overflow-hidden flex flex-col h-full hover:border-[#ee7c7e]/30 transition-all duration-700 hover:-translate-y-2">
+                                            <div className="p-10 flex flex-col h-full gap-6">
+                                                <div className="flex items-center justify-between">
+                                                    <div className="flex items-center gap-2 text-gray-400 dark:text-white/20 text-[10px] font-black uppercase tracking-widest">
+                                                        <CalendarMonthIcon sx={{ fontSize: 16 }} />
+                                                        <span>{date} {month} {year}</span>
                                                     </div>
-                                                );
-                                            })()}
+                                                    <CampaignIcon className="text-[#ee7c7e]/20" />
+                                                </div>
 
-                                            {/* Right: Content */}
-                                            <div className="flex flex-col justify-center px-7 py-7 gap-4 flex-1">
-                                                {/* Title */}
-                                                <h2 className="text-[#1a2355] font-bold text-xl md:text-2xl leading-snug group-hover:underline decoration-[#1a2355]/30 underline-offset-4">
-                                                    {featured.title}
-                                                </h2>
+                                                <h3 className="text-xl font-black text-[#1a2355] dark:text-white leading-snug flex-1 group-hover:text-[#ee7c7e] transition-colors duration-500 tracking-tight line-clamp-4">
+                                                    {item.title}
+                                                </h3>
 
-                                                {featured.html_content && (
-                                                    <div
-                                                        className="text-gray-500 text-sm leading-relaxed line-clamp-2"
-                                                        dangerouslySetInnerHTML={{ __html: featured.html_content }}
-                                                    />
-                                                )}
-
-                                                {/* Footer row */}
-                                                <div className="flex flex-wrap items-center justify-between gap-3 mt-1">
-                                                    <div className="flex items-center gap-1 text-[#1a2355] font-bold text-sm ml-auto">
-                                                        Ətraflı oxu
-                                                        <ChevronRightIcon
-                                                            sx={{ fontSize: 18 }}
-                                                            className="transition-transform duration-300 group-hover:translate-x-1"
-                                                        />
+                                                <div className="flex items-center justify-between mt-auto pt-6 border-t border-gray-50 dark:border-white/5">
+                                                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1a2355] dark:text-white/60 group-hover:text-[#ee7c7e] transition-colors">
+                                                        {lang === 'az' ? 'ƏTRAFLI' : 'DETAILS'}
+                                                    </span>
+                                                    <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white group-hover:translate-x-2">
+                                                        <ChevronRightIcon sx={{ fontSize: 20 }} />
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </Link>
-                            </motion.div>
-
-                            {/* ── Section divider ── */}
-                            {rest.length > 0 && (
-                                <motion.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ duration: 0.5, delay: 0.3 }}
-                                    className="flex items-center gap-4 mb-8"
-                                >
-                                    <h2 className="text-xl font-bold text-[#1a2355] flex-shrink-0">
-                                        Digər elanlar
-                                    </h2>
-                                    <div className="flex-1 h-px bg-gray-200" />
+                                    </Link>
                                 </motion.div>
-                            )}
-                        </>
-                    )}
-
-                    {/* ── Cards Grid ── */}
-                    {rest.length > 0 && (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                            {rest.map((item, i) => {
-                                const { date, month, year } = parseDate(item.published_date);
-                                return (
-                                    <motion.div
-                                        key={item.id}
-                                        custom={i}
-                                        variants={cardVariants}
-                                        initial="hidden"
-                                        animate="visible"
-                                        whileHover={{ y: -6, transition: { duration: 0.2 } }}
-                                        className="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col cursor-pointer group hover:shadow-xl transition-shadow duration-300"
-                                    >
-                                        <Link href={`/announcements/${item.id}`} className="flex flex-col h-full">
-                                            {/* Accent bar */}
-                                            <div className="h-1 w-full bg-[#1a2355]" />
-
-                                            <div className="p-5 flex flex-col gap-3 flex-1">
-                                                {/* Date */}
-                                                <div className="flex items-center gap-1 text-gray-400 text-xs">
-                                                    <CalendarMonthIcon sx={{ fontSize: 13 }} />
-                                                    <span>{date} {month} {year}</span>
-                                                </div>
-
-                                                {/* Title */}
-                                                <h3 className="text-[#1a2355] font-bold text-sm leading-snug flex-1 group-hover:underline decoration-[#1a2355]/30 underline-offset-2 line-clamp-3">
-                                                    {item.title}
-                                                </h3>
-
-                                                {/* Read more */}
-                                                <div className="flex items-center justify-end mt-auto pt-1">
-                                                    <div className="flex items-center gap-0.5 text-[#1a2355] font-semibold text-xs">
-                                                        Ətraflı
-                                                        <ChevronRightIcon
-                                                            sx={{ fontSize: 14 }}
-                                                            className="transition-transform duration-300 group-hover:translate-x-1"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </Link>
-                                    </motion.div>
-                                );
-                            })}
-                        </div>
-                    )}
-                </div>
-            </main>
-
-            </>
+                            );
+                        })}
+                    </div>
+                )}
+            </PageContainer>
+        </main>
     );
 }

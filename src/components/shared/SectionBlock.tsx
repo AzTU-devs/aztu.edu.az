@@ -19,10 +19,10 @@ export default function SectionBlock({ title, children, className = "", accent =
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
       className={`
-        relative rounded-[2.5rem] p-8 md:p-12 transition-all duration-500 overflow-hidden
+        relative rounded-[2.5rem] p-8 md:p-12 transition-all duration-500 overflow-hidden border-premium
         ${dark 
-          ? 'bg-[#1a2355] text-white shadow-2xl border border-white/10' 
-          : 'bg-white dark:bg-slate-800 text-[#1a2355] dark:text-white border border-gray-100 dark:border-slate-700 shadow-xl shadow-blue-900/5'
+          ? 'bg-[#1a2355] text-white shadow-2xl' 
+          : 'bg-white/70 dark:bg-white/5 backdrop-blur-xl text-[#1a2355] dark:text-white shadow-xl shadow-blue-900/5'
         }
         ${className}
       `}

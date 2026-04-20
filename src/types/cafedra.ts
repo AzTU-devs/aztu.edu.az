@@ -8,6 +8,7 @@ export interface CafedraSummary {
 }
 
 export interface Personnel {
+  id: number;
   first_name: string;
   last_name: string;
   father_name: string;
@@ -20,6 +21,7 @@ export interface Personnel {
   room_number: string | null;
   duty: string | null;
   scientific_name: string | null;
+  scientific_research_fields?: string[];
   working_hours?: Array<{ day: string; time_range: string }>;
   educations?: Array<{ degree: string; university: string; start_year: number; end_year: number }>;
   scientific_events?: Array<{ event_title: string; event_description: string }>;

@@ -1,25 +1,25 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 import VilayetVeliyev from "@/../public/vilayet_veliyev.jpg";
-import SectionBlock from "@/components/shared/SectionBlock";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
 
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
-import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import HomeIcon from "@mui/icons-material/Home";
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import SchoolIcon from '@mui/icons-material/School';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import Link from "next/link";
+
+import PageHero from "@/components/shared/PageHero";
+import PageContainer from "@/components/shared/PageContainer";
 
 const rectorData = {
     fullName: "Vilayet Veliyev",
@@ -116,141 +116,73 @@ export default function RectorPage() {
     const leadershipHref = lang === "az" ? "/haqqimizda/rehbetlik-ve-idareetme" : "/about/leadership-and-management";
 
     return (
-        <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
-            {/* STUNNING HERO SECTION */}
-            <div className="relative min-h-screen lg:min-h-[95vh] flex flex-col pt-44 lg:pt-48">
-                {/* Background Graphics */}
-                <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                    {/* Full dark background for text contrast */}
-                    <div className="absolute inset-0 bg-[#0b1330]" />
-                    {/* The styled shape */}
-                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[5rem] lg:rounded-bl-[20rem] transition-all duration-1000" />
-                    
-                    {/* Overlay gradient to soften the transition on the left */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#0b1330] via-[#0b1330]/80 to-transparent hidden lg:block" />
-                    
-                    {/* Abstract circles */}
-                    <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse" />
-                    <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-[#ee7c7e]/10 rounded-full blur-2xl" />
-                </div>
+        <main className="min-h-screen selection:bg-[#ee7c7e]/30">
+            <PageHero
+                title={rectorData.fullName}
+                eyebrow={p.eyebrow}
+                breadcrumbs={[
+                    { label: t.nav.sections.about, href: lang === "az" ? "/haqqimizda" : "/about" },
+                    { label: leadershipLabel, href: leadershipHref },
+                    { label: p.breadcrumb },
+                ]}
+            >
+                <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div className="lg:col-span-7">
+                        <p className="text-xl lg:text-2xl text-white/80 font-medium mb-10 max-w-2xl leading-relaxed italic">
+                            &quot;{p.message[0].substring(0, 150)}...&quot;
+                        </p>
 
-                <div className="relative z-10 flex-1 flex flex-col max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-12">
-                    {/* Breadcrumbs - Now consistently at the top */}
-                    <nav className="flex items-center gap-2 text-white/60 text-xs mb-12 lg:mb-16">
-                        <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-                            <HomeIcon sx={{ fontSize: 14 }} />
-                            Home
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={lang === "az" ? "/haqqimizda" : "/about"} className="hover:text-white transition-colors">
-                            {t.nav.sections.about}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={leadershipHref} className="hover:text-white transition-colors">
-                            {leadershipLabel}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <span className="text-[#ee7c7e] font-bold">{p.breadcrumb}</span>
-                    </nav>
-
-                    <div className="flex-1 flex flex-col justify-center">
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-                            {/* LEFT: Text Content */}
-                            <div className="lg:col-span-7 text-white order-2 lg:order-1">
-                                <motion.div
-                                    initial={{ opacity: 0, x: -30 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ duration: 0.8, ease: "easeOut" }}
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+                            {stats.map((stat, i) => (
+                                <motion.div 
+                                    key={i}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.4 + (i * 0.1) }}
+                                    className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 hover:bg-white/10 transition-colors"
                                 >
-                                    <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
-                                        {p.eyebrow}
-                                    </span>
-                                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-8 leading-[1.1] tracking-tight">
-                                        {rectorData.fullName}
-                                    </h1>
-                                    <p className="text-xl lg:text-2xl text-white/80 font-medium mb-10 max-w-2xl leading-relaxed italic">
-                                        &quot;{p.message[0].substring(0, 150)}...&quot;
-                                    </p>
-
-                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
-                                        {stats.map((stat, i) => (
-                                            <motion.div 
-                                                key={i}
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: 0.4 + (i * 0.1) }}
-                                                className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 hover:bg-white/10 transition-colors"
-                                            >
-                                                <stat.icon className="text-[#ee7c7e] mb-3" sx={{ fontSize: 28 }} />
-                                                <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">{stat.label}</p>
-                                                <p className="text-sm font-bold">{stat.value}</p>
-                                            </motion.div>
-                                        ))}
-                                    </div>
-
-                                    <div className="flex flex-wrap gap-4">
-                                        <a href={`mailto:${rectorData.email}`} className="flex items-center gap-3 px-6 py-3.5 bg-white text-[#1a2355] rounded-2xl font-black text-sm hover:bg-[#ee7c7e] hover:text-white transition-all duration-300 shadow-xl shadow-black/20 group">
-                                            <EmailIcon sx={{ fontSize: 18 }} />
-                                            {rectorData.email}
-                                        </a>
-                                        <a href={`tel:${rectorData.phone}`} className="flex items-center gap-3 px-6 py-3.5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-2xl font-black text-sm hover:bg-white/20 transition-all duration-300">
-                                            <LocalPhoneIcon sx={{ fontSize: 18 }} />
-                                            {rectorData.phone}
-                                        </a>
-                                    </div>
+                                    <stat.icon className="text-[#ee7c7e] mb-3" sx={{ fontSize: 28 }} />
+                                    <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">{stat.label}</p>
+                                    <p className="text-sm font-bold text-white">{stat.value}</p>
                                 </motion.div>
-                            </div>
+                            ))}
+                        </div>
 
-                            {/* RIGHT: Photo */}
-                            <div className="lg:col-span-5 order-1 lg:order-2">
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
-                                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                                    transition={{ duration: 1, ease: "circOut" }}
-                                    className="relative aspect-[4/5] lg:aspect-square xl:aspect-[4/5] max-w-md mx-auto"
-                                >
-                                    {/* Decorative elements around photo */}
-                                    <div className="absolute -top-6 -left-6 w-24 h-24 border-t-4 border-l-4 border-[#ee7c7e] rounded-tl-3xl z-20" />
-                                    <div className="absolute -bottom-6 -right-6 w-24 h-24 border-b-4 border-r-4 border-[#ee7c7e] rounded-br-3xl z-20" />
-                                    
-                                    <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,0.5)] z-10">
-                                        <Image
-                                            src={VilayetVeliyev}
-                                            alt={rectorData.fullName}
-                                            fill
-                                            priority
-                                            className="object-cover object-top"
-                                            sizes="(max-width: 768px) 100vw, 50vw"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-[#1a2355]/40 to-transparent" />
-                                    </div>
-
-                                    {/* Floating Badge */}
-                                    <motion.div
-                                        animate={{ y: [0, -10, 0] }}
-                                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                        className="absolute -right-8 bottom-1/4 z-30 bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-2xl border border-gray-100 dark:border-slate-700 hidden md:block"
-                                    >
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-full bg-[#ee7c7e]/10 flex items-center justify-center">
-                                                <WorkspacePremiumIcon sx={{ color: '#ee7c7e' }} />
-                                            </div>
-                                            <div>
-                                                <p className="text-[10px] font-black text-[#1a2355] dark:text-blue-300 uppercase tracking-tighter">Official Post</p>
-                                                <p className="text-xs font-bold text-gray-600 dark:text-slate-400">University Rector</p>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                </motion.div>
-                            </div>
+                        <div className="flex flex-wrap gap-4">
+                            <a href={`mailto:${rectorData.email}`} className="flex items-center gap-3 px-6 py-3.5 bg-white text-[#1a2355] rounded-2xl font-black text-sm hover:bg-[#ee7c7e] hover:text-white transition-all duration-300 shadow-xl shadow-black/20 group">
+                                <EmailIcon sx={{ fontSize: 18 }} />
+                                {rectorData.email}
+                            </a>
+                            <a href={`tel:${rectorData.phone}`} className="flex items-center gap-3 px-6 py-3.5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-2xl font-black text-sm hover:bg-white/20 transition-all duration-300">
+                                <LocalPhoneIcon sx={{ fontSize: 18 }} />
+                                {rectorData.phone}
+                            </a>
                         </div>
                     </div>
+                    
+                    <div className="lg:col-span-5 hidden lg:block">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="relative aspect-square max-w-md mx-auto"
+                        >
+                            <div className="absolute -top-6 -left-6 w-24 h-24 border-t-4 border-l-4 border-[#ee7c7e] rounded-tl-3xl z-20" />
+                            <div className="absolute -bottom-6 -right-6 w-24 h-24 border-b-4 border-r-4 border-[#ee7c7e] rounded-br-3xl z-20" />
+                            <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden shadow-2xl z-10 border border-white/10">
+                                <Image
+                                    src={VilayetVeliyev}
+                                    alt={rectorData.fullName}
+                                    fill
+                                    priority
+                                    className="object-cover object-top"
+                                />
+                            </div>
+                        </motion.div>
+                    </div>
                 </div>
-            </div>
+            </PageHero>
 
-            {/* CONTENT SECTIONS */}
-            <div className="px-4 md:px-10 lg:px-20 py-24 space-y-32">
-                
+            <PageContainer className="space-y-32">
                 {/* RECTOR'S MESSAGE */}
                 <section>
                     <div className="max-w-4xl mx-auto text-center mb-16">
@@ -268,7 +200,7 @@ export default function RectorPage() {
                                 </p>
                             ))}
                         </div>
-                        <div className="lg:col-span-4 bg-white dark:bg-slate-800 p-8 rounded-[2rem] border border-gray-100 dark:border-slate-700 shadow-sm relative">
+                        <div className="lg:col-span-4 bg-white dark:bg-slate-800/50 backdrop-blur-md p-8 rounded-[2rem] border border-gray-100 dark:border-slate-700 shadow-sm relative">
                             <FormatQuoteIcon className="absolute -top-6 -left-6 text-[#ee7c7e]/20" sx={{ fontSize: 100 }} />
                             <h3 className="text-xl font-black text-[#1a2355] dark:text-white mb-6 relative z-10">
                                 {p.aboutRectorTitle}
@@ -283,7 +215,7 @@ export default function RectorPage() {
                 </section>
 
                 {/* DEPARTMENTS UNDER RECTOR */}
-                <section className="bg-[#1a2355] rounded-[3rem] p-8 md:p-16 text-white relative overflow-hidden">
+                <section className="bg-[#1a2355] rounded-[3rem] p-8 md:p-16 text-white relative overflow-hidden shadow-2xl">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
                     
                     <div className="relative z-10">
@@ -350,7 +282,7 @@ export default function RectorPage() {
                         ))}
                     </div>
                 </section>
-            </div>
+            </PageContainer>
         </main>
     );
 }

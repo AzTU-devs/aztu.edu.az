@@ -189,9 +189,22 @@ export function getNavSections(t: Locale, lang: Lang): NavSection[] {
         {
             key: "community",
             label: t.nav.sections.community,
-            basePath: "/community",
+            basePath: lang === "az" ? "/icma" : "/community",
             image: News4,
             items: [
+                {
+                    title: lang === "az" ? "AzTU-nun Fəxriləri" : "AzTU's Honors",
+                    subItems: [
+                        { 
+                            title: lang === "az" ? "Fəxri Doktorlar" : "Honorary Doctors", 
+                            slug: lang === "az" ? "aztu-nun-fexrileri/fexri-doktorlar" : "aztus-honors/honorary-doctors" 
+                        },
+                        { 
+                            title: lang === "az" ? "Qəhrəmanlarımız" : "Our Heroes", 
+                            slug: lang === "az" ? "aztu-nun-fexrileri/qehremanlarimiz" : "aztus-honors/our-heroes" 
+                        },
+                    ],
+                },
                 {
                     title: n.campusLife,
                     subItems: [
@@ -355,6 +368,13 @@ export const NAV_SECTIONS: NavSection[] = [
         basePath: "/community",
         image: News4,
         items: [
+            {
+                title: "AzTU's Honors",
+                subItems: [
+                    { title: "Honorary Doctors", slug: "aztus-honors/honorary-doctors" },
+                    { title: "Our Heroes", slug: "aztus-honors/our-heroes" },
+                ],
+            },
             {
                 title: "Campus Life",
                 subItems: [
