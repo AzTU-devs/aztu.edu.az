@@ -18,6 +18,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "swiper/css/free-mode";
+import SanitizedHtml from "@/components/shared/SanitizedHtml";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -294,9 +295,9 @@ export default function NewsDetailPage({
                             >
                                 {detail.az_title}
                             </motion.p>
-                                <div
-                                    className="prose prose-slate dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg"
-                                    dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(detail.az_html_content) }}
+                                <SanitizedHtml
+                                    className="text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg"
+                                    html={detail.az_html_content}
                                 />
 
                                 <motion.div

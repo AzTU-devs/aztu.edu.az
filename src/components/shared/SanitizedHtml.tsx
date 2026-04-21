@@ -8,17 +8,33 @@ interface SanitizedHtmlProps {
   className?: string;
 }
 
-export default function SanitizedHtml({ html, className }: SanitizedHtmlProps) {
+function decodeHtmlEntities(encoded: string): string {
+  if (typeof window === "undefined") return encoded;
+  const textarea = document.createElement("textarea");
+  textarea.innerHTML = encoded;
+  return textarea.value;
+}
+
+export default function SanitizedHtml({ html, className = "" }: SanitizedHtmlProps) {
   const [sanitizedHtml, setSanitizedHtml] = useState("");
 
   useEffect(() => {
-    setSanitizedHtml(DOMPurify.sanitize(html));
+    if (html) {
+      const decoded = decodeHtmlEntities(html);
+      setSanitizedHtml(DOMPurify.sanitize(decoded));
+    }
   }, [html]);
+
+  // Default prose classes that ensure good styling for rich text
+  const defaultProseClasses = "prose prose-slate dark:prose-invert max-w-none";
+  const combinedClassName = className.includes("prose") 
+    ? className 
+    : `${defaultProseClasses} ${className}`;
 
   return (
     <div
-      className={className}
-      dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
+      className={combinedClassName}
+      dangerouslySetInnerHTML={{ __html: sanitizedHtml || " " }}
     />
   );
 }

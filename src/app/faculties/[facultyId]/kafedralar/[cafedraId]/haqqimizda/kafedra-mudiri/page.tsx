@@ -14,6 +14,7 @@ import { getCafedraByCode } from "@/services/cafedraService/cafedraService";
 import type { CafedraDetail } from "@/types/cafedra";
 import { useLanguage } from "@/context/LanguageContext";
 import { API_BASE_URL } from "@/util/apiClient";
+import SanitizedHtml from "@/components/shared/SanitizedHtml";
 
 interface Props {
   params: Promise<{ facultyId: string; cafedraId: string }>;
@@ -157,8 +158,9 @@ export default function KafedraMudiriPage({ params }: Props) {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
                     className="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 leading-relaxed text-justify font-medium bg-gray-50/50 dark:bg-white/5 rounded-[2.5rem] p-10 border border-gray-100 dark:border-white/10"
-                    dangerouslySetInnerHTML={{ __html: head.bio }}
-                  />
+                  >
+                    <SanitizedHtml html={head.bio} />
+                  </motion.div>
                 )}
 
                 {head.working_hours && head.working_hours.length > 0 && (
