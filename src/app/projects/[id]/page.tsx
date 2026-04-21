@@ -9,6 +9,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
+import SanitizedHtml from "@/components/shared/SanitizedHtml";
 import { getProjectById, type ProjectDetail } from "@/services/projectService/projectService";
 import { API_BASE_URL } from "@/util/apiClient";
 import { useRef } from "react";
@@ -137,13 +138,9 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                             )}
 
                             {project.html_content && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.55 }}
-                                    className="prose prose-slate dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg"
-                                    dangerouslySetInnerHTML={{ __html: project.html_content }}
+                                <SanitizedHtml
+                                    className="text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg"
+                                    html={project.html_content}
                                 />
                             )}
 

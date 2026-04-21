@@ -12,6 +12,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import CheckIcon from "@mui/icons-material/Check";
 import { API_BASE_URL } from "@/util/apiClient";
+import SanitizedHtml from "@/components/shared/SanitizedHtml";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site";
 
@@ -206,8 +207,9 @@ export default function AnnouncementDetailPage({ params }: { params: Promise<{ i
                                             viewport={{ once: true, margin: "-60px" }}
                                             transition={{ duration: 0.55 }}
                                             className="prose prose-lg max-w-none text-gray-700 leading-relaxed"
-                                            dangerouslySetInnerHTML={{ __html: announcement.html_content }}
-                                        />
+                                        >
+                                            <SanitizedHtml html={announcement.html_content} />
+                                        </motion.div>
                                     ) : (
                                         <p className="text-gray-400 italic">Məzmun mövcud deyil.</p>
                                     )}

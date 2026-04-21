@@ -8,6 +8,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
+import SanitizedHtml from "@/components/shared/SanitizedHtml";
 
 import PageHero from "@/components/shared/PageHero";
 import PageContainer from "@/components/shared/PageContainer";
@@ -127,10 +128,9 @@ export default function AnnouncementsPage() {
                                     </h2>
 
                                     {featured.html_content && (
-                                        <div
-                                            className="text-gray-500 dark:text-white/60 text-xl leading-relaxed line-clamp-3 text-justify font-medium"
-                                            dangerouslySetInnerHTML={{ __html: featured.html_content }}
-                                        />
+                                        <div className="text-gray-500 dark:text-white/60 text-xl leading-relaxed line-clamp-3 text-justify font-medium">
+                                            <SanitizedHtml html={featured.html_content} className="prose-p:my-0" />
+                                        </div>
                                     )}
 
                                     <div className="flex items-center gap-4 text-[#1a2355] dark:text-white font-black text-xs uppercase tracking-[0.3em] group-hover:text-[#ee7c7e] transition-all mt-6">
