@@ -6,7 +6,7 @@ const DEFAULT_LANG = "az";
 
 // List of top-level Azerbaijani folders that should NOT trigger a language redirect
 // because they are the internal targets of our rewrites.
-const INTERNAL_FOLDERS = ["idareetme", "tedqiqat", "haqqimizda", "struktur", "tehsil", "sosial", "beynelxalq", "niye-aztu", "media", "faculties", "community"];
+const INTERNAL_FOLDERS = ["idareetme", "tedqiqat", "haqqimizda", "struktur", "tehsil", "sosial", "beynelxalq", "niye-aztu", "media", "faculties", "community", "elaqe"];
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -35,6 +35,15 @@ export function middleware(request: NextRequest) {
     let segments_rest = segments.slice(1);
 
     // Canonical Redirects (Cross-language mapping for UX consistency)
+    if (segments_rest[0] === "contact-us" || segments_rest[0] === "elaqe") {
+        if (lang === "az" && segments_rest[0] === "contact-us") {
+            return NextResponse.redirect(new URL("/az/elaqe", request.url));
+        }
+        if (lang === "en" && segments_rest[0] === "elaqe") {
+            return NextResponse.redirect(new URL("/en/contact-us", request.url));
+        }
+    }
+
     if (segments_rest[0] === "management" || segments_rest[0] === "idareetme") {
         if (lang === "az" && segments_rest[0] === "management") {
             const newPath = ["idareetme"];
@@ -495,6 +504,11 @@ export function middleware(request: NextRequest) {
             (subSub === "our-heroes" || subSub === "qehremanlarimiz")) {
             segments_rest = ["community", "our-heroes"];
         }
+    }
+
+    // Contact Us Mapping (top-level)
+    if (segments_rest[0] === "contact-us" || segments_rest[0] === "elaqe") {
+        segments_rest = ["elaqe"];
     }
 
     const targetPath = segments_rest.length > 0 ? `/${segments_rest.join("/")}` : "/";
