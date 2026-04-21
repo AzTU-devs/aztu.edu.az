@@ -87,6 +87,38 @@ const az = {
   },
 
   pages: {
+    contact: {
+      eyebrow: "Əlaqə",
+      title: "Bizimlə Əlaqə",
+      subtitle: "Sualınız var? Bizə yazın və ya zəng edin. Sizə kömək etməkdən məmnun olarıq.",
+      breadcrumb: "Əlaqə",
+      description: "Azərbaycan Texniki Universiteti ilə əlaqə saxlamaq üçün aşağıdakı məlumatlardan istifadə edə bilərsiniz. Tədris, qəbul və ya digər məsələlərlə bağlı suallarınız üçün bizə müraciət edin.",
+      sections: {
+        address: {
+          label: "Ünvan",
+          value: "H.Cavid prospekti 25, Bakı, Azərbaycan AZ 1073",
+          sub: "Azərbaycan Texniki Universiteti",
+        },
+        phone: {
+          label: "Telefon",
+          value: "(+994 12) 539-13-05",
+          sub: "Məlumat mərkəzi",
+        },
+        email: {
+          label: "E-poçt",
+          value: "aztu@aztu.edu.az",
+          sub: "Rəsmi yazışmalar üçün",
+        },
+        hours: {
+          label: "İş saatları",
+          value: "Bazar ertəsi – Cümə",
+          sub: "09:00 – 18:00",
+        },
+        locationTitle: "Məkanımız",
+        universityName: "Azərbaycan Texniki Universiteti",
+        buildingInfo: "Əsas tədris korpusu",
+      }
+    },
     about: {
       history: {
         eyebrow: "Mirasımız",
