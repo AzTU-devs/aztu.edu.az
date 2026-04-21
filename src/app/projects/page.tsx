@@ -83,7 +83,11 @@ export default function ProjectsPage() {
     const hasMore = projects.length < total;
 
     return (
-        <main className="min-h-screen transition-colors duration-500 pb-32">
+        <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden pb-32">
+            {/* STUNNING BACKGROUND ELEMENTS - MATCHING HOME PAGE */}
+            <div className="bg-mesh" />
+            <div className="bg-grid-premium" />
+
             <PageHero
                 title={lang === 'az' ? 'Elmi Layihələr' : 'Research Projects'}
                 description={lang === 'az' ? 'AzTU-nun elmi-tədqiqat və innovasiya layihələri ilə tanış olun.' : 'Explore the scientific research and innovation projects of AzTU.'}
@@ -97,18 +101,18 @@ export default function ProjectsPage() {
                 {loading ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                         {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
-                            <div key={i} className="h-80 rounded-[3rem] bg-white dark:bg-slate-800/50 backdrop-blur-md animate-pulse border border-gray-100 dark:border-white/10" />
+                            <div key={i} className="h-80 rounded-[3rem] bg-white/80 dark:bg-slate-800/50 backdrop-blur-xl animate-pulse border-2 border-[#1a2355]/10 dark:border-white/10" />
                         ))}
                     </div>
                 ) : projects.length === 0 ? (
-                    <div className="text-center py-40 bg-white dark:bg-slate-800/50 backdrop-blur-md rounded-[4rem] border-2 border-dashed border-gray-100 dark:border-white/10">
+                    <div className="text-center py-40 bg-white/80 dark:bg-slate-800/50 backdrop-blur-xl rounded-[4rem] border-2 border-dashed border-[#1a2355]/20 dark:border-white/10 relative z-10">
                         <FolderOpenIcon sx={{ fontSize: 80, color: "#1a2355", opacity: 0.1 }} className="mb-6" />
                         <p className="text-gray-400 font-black uppercase tracking-[0.3em] text-sm">
                             {lang === 'az' ? 'Layihə tapılmadı.' : 'No projects found.'}
                         </p>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 relative z-10">
                         {projects.map((project, i) => {
                             const color = ACCENT_COLORS[i % ACCENT_COLORS.length];
 
@@ -121,9 +125,9 @@ export default function ProjectsPage() {
                                     animate="visible"
                                 >
                                     <Link href={`/projects/${project.project_id}`} className="group block h-full">
-                                        <div className="relative h-full bg-white dark:bg-slate-800/50 backdrop-blur-md rounded-[3rem] shadow-2xl shadow-blue-900/5 border border-gray-100 dark:border-white/10 p-10 transition-all duration-700 overflow-hidden hover:-translate-y-2 hover:border-[#ee7c7e]/30">
+                                        <div className="relative h-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[3rem] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/10 dark:border-white/5 p-10 transition-all duration-700 overflow-hidden hover:-translate-y-2 hover:border-[#ee7c7e]/30">
                                             {/* Decorative Background */}
-                                            <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 dark:bg-white/5 rounded-bl-[4rem] -mr-8 -mt-8 transition-transform duration-700 group-hover:scale-110" />
+                                            <div className="absolute top-0 right-0 w-32 h-32 bg-[#1a2355]/5 dark:bg-white/5 rounded-bl-[4rem] -mr-8 -mt-8 transition-transform duration-700 group-hover:scale-110" />
                                             <div className={`absolute bottom-0 left-0 w-full h-1.5 bg-gradient-to-r ${color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                                             
                                             <div className="relative z-10 flex flex-col h-full">
@@ -131,8 +135,8 @@ export default function ProjectsPage() {
                                                     <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${color} flex items-center justify-center text-white shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6`}>
                                                         <FolderOpenIcon sx={{ fontSize: 28 }} />
                                                     </div>
-                                                    <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white">
-                                                        <ChevronRightIcon sx={{ fontSize: 20 }} />
+                                                    <div className="w-12 h-12 rounded-2xl bg-[#1a2355]/5 dark:bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white border border-[#1a2355]/5">
+                                                        <ChevronRightIcon sx={{ fontSize: 24 }} />
                                                     </div>
                                                 </div>
 
@@ -146,7 +150,7 @@ export default function ProjectsPage() {
                                                     </p>
                                                 )}
 
-                                                <div className="mt-auto pt-6 border-t border-gray-100 dark:border-white/10">
+                                                <div className="mt-auto pt-6 border-t border-[#1a2355]/5 dark:border-white/5">
                                                     <div className="flex items-center gap-2 text-gray-400 dark:text-white/20 text-[10px] font-black uppercase tracking-widest">
                                                         <CalendarMonthIcon sx={{ fontSize: 14, color: '#ee7c7e' }} />
                                                         <span>{formatDate(project.created_at, lang)}</span>
