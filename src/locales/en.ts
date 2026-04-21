@@ -86,6 +86,38 @@ const en = {
   },
 
   pages: {
+    contact: {
+      eyebrow: "Contact",
+      title: "Contact Us",
+      subtitle: "Have a question? Write or call us — we are happy to help.",
+      breadcrumb: "Contact",
+      description: "Use the information below to get in touch with Azerbaijan Technical University. Reach out to us with questions about admissions, academics or any other matter.",
+      sections: {
+        address: {
+          label: "Address",
+          value: "H.Cavid Avenue 25, Baku, Azerbaijan AZ 1073",
+          sub: "Azerbaijan Technical University",
+        },
+        phone: {
+          label: "Phone",
+          value: "(+994 12) 539-13-05",
+          sub: "Information center",
+        },
+        email: {
+          label: "Email",
+          value: "aztu@aztu.edu.az",
+          sub: "For official correspondence",
+        },
+        hours: {
+          label: "Working hours",
+          value: "Monday – Friday",
+          sub: "09:00 – 18:00",
+        },
+        locationTitle: "Our Location",
+        universityName: "Azerbaijan Technical University",
+        buildingInfo: "Main academic building",
+      }
+    },
     about: {
       history: {
         eyebrow: "Our Legacy",
