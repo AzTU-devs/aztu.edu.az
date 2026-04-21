@@ -52,7 +52,11 @@ export default function FacultiesPage() {
     };
 
     return (
-        <main className="min-h-screen transition-colors duration-500 pb-32">
+        <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden pb-32">
+            {/* STUNNING BACKGROUND ELEMENTS - MATCHING HOME PAGE */}
+            <div className="bg-mesh" />
+            <div className="bg-grid-premium" />
+
             <PageHero
                 title={t.title}
                 description={t.description}
@@ -66,18 +70,18 @@ export default function FacultiesPage() {
                 {loading ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                         {Array.from({ length: 8 }).map((_, i) => (
-                            <div key={i} className="animate-pulse bg-white dark:bg-slate-800/50 backdrop-blur-md rounded-[3rem] shadow-xl border border-gray-100 dark:border-white/10 p-10 h-80" />
+                            <div key={i} className="animate-pulse bg-white/80 dark:bg-slate-800/50 backdrop-blur-xl rounded-[3rem] shadow-xl border-2 border-[#1a2355]/10 dark:border-white/10 p-10 h-80" />
                         ))}
                     </div>
                 ) : faculties.length === 0 ? (
-                    <div className="text-center py-40 bg-white dark:bg-slate-800/50 backdrop-blur-md rounded-[4rem] border-2 border-dashed border-gray-100 dark:border-white/10 shadow-sm">
+                    <div className="text-center py-40 bg-white/80 dark:bg-slate-800/50 backdrop-blur-xl rounded-[4rem] border-2 border-dashed border-[#1a2355]/20 dark:border-white/10 shadow-sm relative z-10">
                         <SchoolIcon sx={{ fontSize: 80, color: "#1a2355", opacity: 0.1 }} className="mb-6" />
                         <p className="text-gray-400 font-black uppercase tracking-[0.3em] text-sm">
                             {t.noContent}
                         </p>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 relative z-10">
                         {faculties.map((faculty, i) => {
                             const slug = slugify(faculty.title);
                             const academicPrefix = currentLang === "az" ? "akademik" : "academic";
@@ -106,10 +110,10 @@ export default function FacultiesPage() {
                                 >
                                     <Link
                                         href={aboutLink}
-                                        className="group block relative h-full bg-white dark:bg-slate-800/50 backdrop-blur-md rounded-[3rem] shadow-2xl shadow-blue-900/5 border border-gray-100 dark:border-white/10 p-10 transition-all duration-700 overflow-hidden hover:-translate-y-2 hover:border-[#ee7c7e]/30"
+                                        className="group block relative h-full bg-white/80 dark:bg-slate-800/50 backdrop-blur-xl rounded-[3rem] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/10 dark:border-white/5 p-10 transition-all duration-700 overflow-hidden hover:-translate-y-2 hover:border-[#ee7c7e]/30"
                                     >
                                         {/* Decorative Background Elements */}
-                                        <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 dark:bg-white/5 rounded-bl-[4rem] -mr-8 -mt-8 transition-transform duration-700 group-hover:scale-110" />
+                                        <div className="absolute top-0 right-0 w-32 h-32 bg-[#1a2355]/5 dark:bg-white/5 rounded-bl-[4rem] -mr-8 -mt-8 transition-transform duration-700 group-hover:scale-110" />
                                         <div className={`absolute bottom-0 left-0 w-full h-1.5 bg-gradient-to-r ${cardColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                                         
                                         <div className="relative z-10 flex flex-col h-full">
@@ -118,7 +122,7 @@ export default function FacultiesPage() {
                                                 <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${cardColor} flex items-center justify-center text-white shadow-lg duration-500 group-hover:scale-110 group-hover:rotate-6`}>
                                                     <SchoolIcon sx={{ fontSize: 32 }} />
                                                 </div>
-                                                <span className="text-[10px] font-black text-gray-400 dark:text-white/30 uppercase tracking-[0.2em] border border-gray-100 dark:border-white/10 px-4 py-2 rounded-xl">
+                                                <span className="text-[10px] font-black text-gray-400 dark:text-white/30 uppercase tracking-[0.2em] border border-[#1a2355]/10 dark:border-white/10 px-4 py-2 rounded-xl">
                                                     {faculty.faculty_code}
                                                 </span>
                                             </div>
@@ -129,7 +133,7 @@ export default function FacultiesPage() {
                                             </h2>
 
                                             {/* Stats Section */}
-                                            <div className="grid grid-cols-2 gap-4 mt-auto pt-8 border-t border-gray-100 dark:border-white/10">
+                                            <div className="grid grid-cols-2 gap-4 mt-auto pt-8 border-t border-[#1a2355]/5 dark:border-white/10">
                                                 <div className="flex flex-col">
                                                     <div className="flex items-center gap-2 mb-1">
                                                         <AccountTreeIcon sx={{ fontSize: 14 }} className="text-[#ee7c7e]" />
@@ -151,8 +155,8 @@ export default function FacultiesPage() {
                                                 <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1a2355] dark:text-white/60 group-hover:text-[#ee7c7e] transition-colors">
                                                     {t.viewMore}
                                                 </span>
-                                                <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white group-hover:translate-x-2">
-                                                    <ChevronRightIcon sx={{ fontSize: 20 }} />
+                                                <div className="w-12 h-12 rounded-2xl bg-[#1a2355]/5 dark:bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white group-hover:translate-x-2 border border-[#1a2355]/5">
+                                                    <ChevronRightIcon sx={{ fontSize: 24 }} />
                                                 </div>
                                             </div>
                                         </div>

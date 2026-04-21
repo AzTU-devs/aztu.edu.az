@@ -103,7 +103,11 @@ export default function NewsPage() {
     const rest = list.slice(1);
 
     return (
-        <main className="min-h-screen transition-colors duration-500 pb-32">
+        <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden pb-32">
+            {/* STUNNING BACKGROUND ELEMENTS - MATCHING HOME PAGE */}
+            <div className="bg-mesh" />
+            <div className="bg-grid-premium" />
+
             <PageHero
                 title={t.news.pageTitle}
                 description={t.news.pageDescription}
@@ -114,10 +118,10 @@ export default function NewsPage() {
 
             {/* ── Category Filter ── */}
             <div className="sticky top-[84px] lg:top-4 z-30 mx-4 md:mx-10 lg:mx-20 -mt-8">
-                <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-gray-100 dark:border-white/10 p-2 rounded-[2rem] shadow-2xl shadow-black/5 flex items-center gap-2 overflow-x-auto no-scrollbar scrollbar-hide max-w-[1600px] mx-auto">
+                <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-2 border-[#1a2355]/10 dark:border-white/10 p-2.5 rounded-[2.5rem] shadow-2xl shadow-black/5 flex items-center gap-2 overflow-x-auto no-scrollbar scrollbar-hide max-w-[1600px] mx-auto">
                     <button
                         onClick={() => setActiveCategoryId(ALL_CATEGORY_ID)}
-                        className={`flex-shrink-0 px-8 py-3 rounded-[1.5rem] font-black text-[10px] uppercase tracking-[0.2em] transition-all duration-500 cursor-pointer ${activeCategoryId === ALL_CATEGORY_ID
+                        className={`flex-shrink-0 px-8 py-3.5 rounded-[1.8rem] font-black text-[10px] uppercase tracking-[0.2em] transition-all duration-500 cursor-pointer ${activeCategoryId === ALL_CATEGORY_ID
                                 ? "bg-[#1a2355] text-white shadow-xl"
                                 : "text-[#1a2355] dark:text-white/60 hover:bg-[#1a2355]/5 dark:hover:bg-white/5"
                             }`}
@@ -128,7 +132,7 @@ export default function NewsPage() {
                         <button
                             key={cat.category_id}
                             onClick={() => setActiveCategoryId(cat.category_id)}
-                            className={`flex-shrink-0 px-8 py-3 rounded-[1.5rem] font-black text-[10px] uppercase tracking-[0.2em] transition-all duration-500 cursor-pointer ${activeCategoryId === cat.category_id
+                            className={`flex-shrink-0 px-8 py-3.5 rounded-[1.8rem] font-black text-[10px] uppercase tracking-[0.2em] transition-all duration-500 cursor-pointer ${activeCategoryId === cat.category_id
                                     ? "bg-[#1a2355] text-white shadow-xl"
                                     : "text-[#1a2355] dark:text-white/60 hover:bg-[#1a2355]/5 dark:hover:bg-white/5"
                                 }`}
@@ -149,7 +153,7 @@ export default function NewsPage() {
                         className="mb-20"
                     >
                         <Link href={`/news/${newsSlug(featured.news_id, featured.title)}`}>
-                            <div className="group relative bg-white dark:bg-slate-800/50 backdrop-blur-md rounded-[4rem] shadow-2xl shadow-blue-900/5 border border-gray-100 dark:border-white/10 overflow-hidden flex flex-col lg:flex-row hover:border-[#ee7c7e]/30 transition-all duration-700">
+                            <div className="group relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[4rem] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/10 dark:border-white/10 overflow-hidden flex flex-col lg:flex-row hover:border-[#ee7c7e]/30 transition-all duration-700">
                                 <div className="lg:w-3/5 w-full h-[500px] relative overflow-hidden">
                                     <Image
                                         src={`${featured.cover_image}`}
@@ -159,7 +163,7 @@ export default function NewsPage() {
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                                 </div>
-                                <div className="lg:w-2/5 w-full p-12 md:p-20 flex flex-col justify-center">
+                                <div className="lg:w-2/5 w-full p-12 md:p-20 flex flex-col justify-center relative z-10">
                                     <div className="flex items-center gap-4 mb-8">
                                         <span className={`${categoryColor(featured.cateogry_id)} text-white text-[10px] font-black px-5 py-2 rounded-full uppercase tracking-widest shadow-lg`}>
                                             {categoryLabel(featured.cateogry_id)}
@@ -172,13 +176,13 @@ export default function NewsPage() {
                                     <h2 className="text-3xl md:text-5xl font-black text-[#1a2355] dark:text-white mb-8 leading-[1.1] tracking-tighter group-hover:text-[#ee7c7e] transition-colors duration-500">
                                         {featured.title}
                                     </h2>
-                                    <p className="text-gray-500 dark:text-white/60 text-lg leading-relaxed line-clamp-3 mb-12 text-justify">
+                                    <p className="text-gray-500 dark:text-white/60 text-lg leading-relaxed line-clamp-3 mb-12 text-justify font-medium">
                                         {stripHtml(featured.html_content)}
                                     </p>
                                     <div className="flex items-center gap-3 text-[#1a2355] dark:text-white font-black text-xs uppercase tracking-[0.2em] group-hover:text-[#ee7c7e] transition-all">
                                         {t.news.readMore}
-                                        <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white group-hover:translate-x-2">
-                                            <ChevronRightIcon sx={{ fontSize: 20 }} />
+                                        <div className="w-12 h-12 rounded-2xl bg-[#1a2355]/5 dark:bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white group-hover:translate-x-2 border border-[#1a2355]/5">
+                                            <ChevronRightIcon sx={{ fontSize: 24 }} />
                                         </div>
                                     </div>
                                 </div>
@@ -188,7 +192,7 @@ export default function NewsPage() {
                 )}
 
                 {/* Rest of News Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                     {rest.map((item, i) => (
                         <motion.div
                             key={item.news_id}
@@ -198,7 +202,7 @@ export default function NewsPage() {
                             animate="visible"
                         >
                             <Link href={`/news/${newsSlug(item.news_id, item.title)}`} className="group block h-full">
-                                <div className="relative bg-white dark:bg-slate-800/50 backdrop-blur-md rounded-[3rem] shadow-2xl shadow-blue-900/5 border border-gray-100 dark:border-white/10 overflow-hidden flex flex-col h-full hover:border-[#ee7c7e]/30 transition-all duration-700 hover:-translate-y-2">
+                                <div className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[3rem] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/10 dark:border-white/10 overflow-hidden flex flex-col h-full hover:border-[#ee7c7e]/30 transition-all duration-700 hover:-translate-y-2">
                                     <div className="h-72 relative overflow-hidden">
                                         <Image
                                             src={`${item.cover_image}`}
@@ -210,7 +214,7 @@ export default function NewsPage() {
                                             {categoryLabel(item.cateogry_id)}
                                         </div>
                                     </div>
-                                    <div className="p-10 flex flex-col flex-1">
+                                    <div className="p-10 flex flex-col flex-1 relative z-10">
                                         <div className="flex items-center gap-2 text-gray-400 dark:text-white/20 text-[10px] font-black uppercase tracking-widest mb-6">
                                             <CalendarMonthIcon sx={{ fontSize: 14 }} />
                                             <span>{formatDate(item.created_at, lang)}</span>
@@ -225,7 +229,7 @@ export default function NewsPage() {
                                             <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1a2355] dark:text-white/60 group-hover:text-[#ee7c7e] transition-colors">
                                                 {t.news.readMore}
                                             </span>
-                                            <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white group-hover:translate-x-2">
+                                            <div className="w-10 h-10 rounded-xl bg-[#1a2355]/5 dark:bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white group-hover:translate-x-2 border border-[#1a2355]/5">
                                                 <ChevronRightIcon sx={{ fontSize: 20 }} />
                                             </div>
                                         </div>

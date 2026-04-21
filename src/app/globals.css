@@ -48,20 +48,20 @@ body {
   z-index: -1;
   background-color: var(--background);
   background-image: 
-    radial-gradient(at 0% 0%, rgba(26, 35, 85, 0.08) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(238, 124, 126, 0.12) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(19, 54, 94, 0.08) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(238, 124, 126, 0.05) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, rgba(26, 35, 85, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(238, 124, 126, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(19, 54, 94, 0.12) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(238, 124, 126, 0.1) 0px, transparent 50%);
   filter: blur(80px);
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .dark .bg-mesh {
   background-image: 
-    radial-gradient(at 0% 0%, rgba(30, 41, 59, 0.5) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(238, 124, 126, 0.15) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(26, 35, 85, 0.5) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(238, 124, 126, 0.08) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, rgba(30, 41, 59, 0.6) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(238, 124, 126, 0.2) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(26, 35, 85, 0.6) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(238, 124, 126, 0.12) 0px, transparent 50%);
 }
 
 .bg-grid-premium {
@@ -71,13 +71,13 @@ body {
   width: 100%;
   height: 100%;
   z-index: -1;
-  opacity: 0.15;
-  background-image: radial-gradient(var(--foreground) 1px, transparent 1px);
-  background-size: 50px 50px;
+  opacity: 0.25;
+  background-image: radial-gradient(var(--foreground) 1.2px, transparent 1.2px);
+  background-size: 60px 60px;
 }
 
 .dark .bg-grid-premium {
-  opacity: 0.05;
+  opacity: 0.1;
 }
 
 p {
@@ -92,26 +92,26 @@ p {
 
 /* Glassmorphism Containers */
 .glass-container {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 10px 40px -10px rgba(26, 35, 85, 0.1);
+  border: 1px solid rgba(26, 35, 85, 0.1);
+  box-shadow: 0 10px 40px -10px rgba(26, 35, 85, 0.15);
 }
 
 .dark .glass-container {
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(15, 23, 42, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.6);
 }
 
-/* Premium Border Styles */
+/* Premium Border Styles - Updated to Dark Blue as requested */
 .border-premium {
-  border: 1px solid rgba(238, 124, 126, 0.2);
+  border: 2px solid rgba(26, 35, 85, 0.12);
 }
 
 .dark .border-premium {
-  border: 1px solid rgba(238, 124, 126, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.08);
 }
 
 @keyframes marquee {
