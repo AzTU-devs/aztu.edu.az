@@ -108,10 +108,10 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
     const leftItems = menuData?.left_items?.length ? menuData.left_items : STATIC_LEFT_ITEMS;
     const contact = menuData?.contact;
     const socialLinks = menuData?.social_links?.length ? menuData.social_links : [
-        { platform: "facebook", url: "https://www.facebook.com/aztu.edu.az" },
-        { platform: "instagram", url: "https://www.instagram.com/aztu_edu_az" },
+        { platform: "facebook", url: "https://www.facebook.com/aztu1950.official/" },
+        { platform: "instagram", url: "https://www.instagram.com/aztueduaz" },
         { platform: "linkedin", url: "https://www.linkedin.com/school/azerbaijantechnicaluniversity" },
-        { platform: "youtube", url: "https://www.youtube.com/@aztu_official" },
+        { platform: "youtube", url: "https://www.youtube.com/channel/UCu_PoZ-9DKNYs3hxuK9pW1Q" },
     ];
 
     const currentActive = activeSection || (rightSections[0]?.key ?? "");
