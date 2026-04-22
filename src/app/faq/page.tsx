@@ -194,8 +194,8 @@ export default function FAQPage() {
             />
 
             <PageContainer>
-                <div className="max-w-4xl mx-auto relative z-10 py-10">
-                    <div className="space-y-4">
+                <div className="max-w-7xl mx-auto relative z-10 py-10">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
                         {t.faqs.map((faq, index) => (
                             <FAQAccordion
                                 key={index}
