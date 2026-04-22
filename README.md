@@ -314,10 +314,10 @@ GET /api/menu/footer?lang_code={lang_code}
       "address": "H.Cavid prospekti 25, Bakı, Azərbaycan AZ 1073 Azərbaycan Texniki Universiteti."
     },
     "social_links": [
-      { "platform": "facebook",  "url": "https://facebook.com/aztu" },
-      { "platform": "instagram", "url": "https://instagram.com/aztu" },
-      { "platform": "linkedin",  "url": "https://linkedin.com/school/aztu" },
-      { "platform": "youtube",   "url": "https://youtube.com/aztu" }
+      { "platform": "facebook",  "url": "https://www.facebook.com/aztu1950.official/" },
+      { "platform": "instagram", "url": "https://www.instagram.com/aztueduaz" },
+      { "platform": "linkedin",  "url": "https://www.linkedin.com/school/aztueduaz/" },
+      { "platform": "youtube",   "url": "https://www.youtube.com/channel/UCu_PoZ-9DKNYs3hxuK9pW1Q" }
     ],
     "partner_logos": [
       { "label": "Prezident.az",              "image_url": "https://cdn.aztu.edu.az/logos/presidentaz.png",            "url": "https://president.az" },
@@ -424,10 +424,11 @@ GET /api/menu/quick?lang_code={lang_code}
       ]
     },
     "social_links": [
-      { "platform": "facebook",  "url": "https://facebook.com/aztu" },
-      { "platform": "instagram", "url": "https://instagram.com/aztu" },
-      { "platform": "linkedin",  "url": "https://linkedin.com/school/aztu" },
-      { "platform": "youtube",   "url": "https://youtube.com/aztu" }
+      { "platform": "facebook",  "url": "https://www.facebook.com/aztu1950.official/" },
+      { "platform": "instagram", "url": "https://www.instagram.com/aztueduaz" },
+      { "platform": "linkedin",  "url": "https://www.linkedin.com/school/aztueduaz/" },
+      { "platform": "youtube",   "url": "https://www.youtube.com/channel/UCu_PoZ-9DKNYs3hxuK9pW1Q" }
+      { "platform": "X", "url": "https://www.linkedin.com/school/aztueduaz/"}
     ],
     "right_sections": [
       {

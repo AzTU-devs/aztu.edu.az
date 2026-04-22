@@ -113,10 +113,10 @@ const PHONES = ["(+994 12) 539-13-05", "(+994 12) 538-33-83"];
 const EMAIL = "aztu@aztu.edu.az";
 
 const SOCIAL = [
-    { platform: "facebook", url: "https://www.facebook.com/aztu.edu.az", Icon: FacebookIcon },
-    { platform: "instagram", url: "https://www.instagram.com/aztu_edu_az", Icon: InstagramIcon },
-    { platform: "linkedin", url: "https://www.linkedin.com/school/azerbaijantechnicaluniversity", Icon: LinkedInIcon },
-    { platform: "youtube", url: "https://www.youtube.com/@aztu_official", Icon: YouTubeIcon },
+    { platform: "facebook", url: "https://www.facebook.com/aztu1950.official/", Icon: FacebookIcon },
+    { platform: "instagram", url: "https://www.instagram.com/aztueduaz", Icon: InstagramIcon },
+    { platform: "linkedin", url: "https://www.linkedin.com/school/aztueduaz/", Icon: LinkedInIcon },
+    { platform: "youtube", url: "https://www.youtube.com/channel/UCu_PoZ-9DKNYs3hxuK9pW1Q", Icon: YouTubeIcon },
 ];
 
 export default function ContactPage() {

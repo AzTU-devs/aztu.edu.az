@@ -51,10 +51,10 @@ interface FooterData {
 }
 
 const STATIC_SOCIAL = [
-    { platform: "facebook", url: "https://www.facebook.com/aztu.edu.az" },
-    { platform: "instagram", url: "https://www.instagram.com/aztu_edu_az" },
+    { platform: "facebook", url: "https://www.facebook.com/aztu1950.official/" },
+    { platform: "instagram", url: "https://www.instagram.com/aztueduaz" },
     { platform: "linkedin", url: "https://www.linkedin.com/school/azerbaijantechnicaluniversity" },
-    { platform: "youtube", url: "https://www.youtube.com/@aztu_official" },
+    { platform: "youtube", url: "https://www.youtube.com/channel/UCu_PoZ-9DKNYs3hxuK9pW1Q" },
 ];
 
 export default function Footer() {
