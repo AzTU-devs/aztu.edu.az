@@ -57,9 +57,15 @@ export default function DepartmentAboutPage({ params }: Props) {
                   <div className="w-8 h-8 rounded-lg bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e] flex-shrink-0 group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-300">
                     <FlagIcon sx={{ fontSize: 16 }} />
                   </div>
-                  <span className="text-gray-600 dark:text-slate-300 text-sm pt-1.5 leading-relaxed font-medium">
-                    {obj.title || obj.description}
-                  </span>
+                  <div className="text-gray-600 dark:text-slate-300 text-sm pt-1.5 leading-relaxed font-medium flex-1">
+                    {typeof obj === "string" ? (
+                      obj
+                    ) : obj.html_content ? (
+                      <SanitizedHtml html={obj.html_content} className="prose-sm" />
+                    ) : (
+                      obj.title || obj.description
+                    )}
+                  </div>
                 </li>
               ))}
             </ul>
@@ -74,9 +80,15 @@ export default function DepartmentAboutPage({ params }: Props) {
                   <div className="w-8 h-8 rounded-lg bg-[#1a2355]/10 flex items-center justify-center text-[#1a2355] dark:text-blue-400 flex-shrink-0 group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300">
                     <SettingsIcon sx={{ fontSize: 16 }} />
                   </div>
-                  <span className="text-gray-600 dark:text-slate-300 text-sm pt-1.5 leading-relaxed font-medium">
-                    {func.title || func.description}
-                  </span>
+                  <div className="text-gray-600 dark:text-slate-300 text-sm pt-1.5 leading-relaxed font-medium flex-1">
+                    {typeof func === "string" ? (
+                      func
+                    ) : func.html_content ? (
+                      <SanitizedHtml html={func.html_content} className="prose-sm" />
+                    ) : (
+                      func.title || func.description
+                    )}
+                  </div>
                 </li>
               ))}
             </ul>
