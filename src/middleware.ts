@@ -25,8 +25,12 @@ export function middleware(request: NextRequest) {
   const firstSegment = segments[0];
 
   // 1. If it's an internal folder path (no lang prefix), let it pass to serve the file
+  // only if it's an internal rewrite (to avoid infinite loops).
+  // Direct hits will fall through to the language redirect at the bottom.
   if (INTERNAL_FOLDERS.includes(firstSegment)) {
-    return NextResponse.next();
+    if (request.headers.get("x-middleware-rewrite") === "true") {
+        return NextResponse.next();
+    }
   }
 
   // 2. If the first segment is a supported language
@@ -544,7 +548,15 @@ export function middleware(request: NextRequest) {
     const targetPath = segments_rest.length > 0 ? `/${segments_rest.join("/")}` : "/";
     const rewriteUrl = new URL(targetPath, request.url);
     
-    const response = NextResponse.rewrite(rewriteUrl);
+    // Create new request headers with rewrite marker
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set("x-middleware-rewrite", "true");
+
+    const response = NextResponse.rewrite(rewriteUrl, {
+        request: {
+            headers: requestHeaders,
+        },
+    });
     response.cookies.set("aztu-lang", lang, { path: "/", sameSite: "lax" });
     return response;
   }
