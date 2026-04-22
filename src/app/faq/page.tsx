@@ -224,7 +224,7 @@ function FAQAccordion({
         <div className={`overflow-hidden rounded-[2rem] border-2 transition-all duration-500 ${
             isOpen 
             ? "bg-white dark:bg-slate-900 border-[#ee7c7e] shadow-2xl shadow-[#ee7c7e]/10 scale-[1.02]" 
-            : "bg-white/50 dark:bg-slate-900/50 border-[#1a2355]/10 dark:border-white/10 hover:border-[#ee7c7e]/30"
+            : "bg-white/50 dark:bg-slate-900/50 border-[#1a2355]/25 dark:border-[#ee7c7e]/20 hover:border-[#ee7c7e]/40"
         }`}>
             <button
                 onClick={onClick}

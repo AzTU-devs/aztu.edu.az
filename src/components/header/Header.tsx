@@ -47,7 +47,7 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         isOpen
-          ? "bg-white dark:bg-[#0b1330] border-b border-gray-100 dark:border-white/10 shadow-lg"
+          ? "bg-white dark:bg-[#0b1330] border-b border-[#1a2355]/20 dark:border-[#ee7c7e]/25 shadow-lg"
           : "bg-gradient-to-b from-[#0b1e3a]/90 via-[#0b1e3a]/60 to-transparent"
       }`}
       onMouseLeave={() => setActiveHeader(null)}

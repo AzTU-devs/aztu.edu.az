@@ -36,7 +36,7 @@ export default function PersonCard({
   const iconSize = size === "lg" ? 48 : size === "sm" ? 24 : 36;
 
   const cardContent = (
-    <div className={`bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 p-5 flex flex-col items-center text-center gap-3 hover:shadow-md transition-shadow${href ? " cursor-pointer hover:border-[#1a2355]/30 dark:hover:border-[#1a2355]/40" : ""}`}>
+    <div className={`bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-[#1a2355]/20 dark:border-[#ee7c7e]/20 p-5 flex flex-col items-center text-center gap-3 hover:shadow-md transition-shadow${href ? " cursor-pointer hover:border-[#ee7c7e]/40 dark:hover:border-[#ee7c7e]/50" : ""}`}>
       {/* Avatar */}
       <div
         className={`${avatarSize} rounded-full bg-[#1a2355]/10 dark:bg-[#1a2355]/20 flex items-center justify-center overflow-hidden flex-shrink-0`}
