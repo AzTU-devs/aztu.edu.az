@@ -267,8 +267,8 @@ export default function Footer() {
                             </p>
                         </div>
                         <div className="flex items-center gap-10">
-                            <Link href="/privacy" className="text-[10px] font-black text-white/20 hover:text-[#ee7c7e] uppercase tracking-widest transition-colors">Privacy Policy</Link>
-                            <Link href="/terms" className="text-[10px] font-black text-white/20 hover:text-[#ee7c7e] uppercase tracking-widest transition-colors">Terms of Service</Link>
+                            <Link href="/privacy-policy" className="text-[10px] font-black text-white/20 hover:text-[#ee7c7e] uppercase tracking-widest transition-colors">Privacy Policy</Link>
+                            <Link href="/terms-and-conditions" className="text-[10px] font-black text-white/20 hover:text-[#ee7c7e] uppercase tracking-widest transition-colors">Terms of Service</Link>
                         </div>
                     </div>
                 </div>
