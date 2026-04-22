@@ -13,6 +13,7 @@ export interface AdminDirector {
   email: string;
   phone: string;
   office?: string;
+  reception_hours?: string;
   bio: string;
   education: AdminEducation[];
 }
@@ -63,6 +64,7 @@ export const ADMIN_DEPARTMENTS: AdminDepartment[] = [
       email: "t.aliyev@aztu.edu.az",
       phone: "+994 12 539 08 30",
       office: "Baş bina, 312-ci otaq",
+      reception_hours: "Bazar ertəsi – Cümə: 14:00 – 16:00",
       bio: "AzTU-nun elmi tədqiqat fəaliyyətini koordinasiya edir, beynəlxalq reytinq sistemlərindəki mövqeyin artırılmasına cavabdehdir. Universitetin elmi potensialının gücləndirilməsi, tədqiqatçıların elmi nəşrlərinin stimullaşdırılması və institusional reputasiyanın idarə edilməsi istiqamətlərini əhatə edən strategiyaların hazırlanması sahəsindəki fəaliyyəti ilə tanınır.",
       education: [
         { year: "2005", degree: "Bakalavr", institution: "AzTU" },
@@ -167,6 +169,7 @@ export const ADMIN_DEPARTMENTS: AdminDepartment[] = [
       email: "g.huseynova@aztu.edu.az",
       phone: "+994 12 539 08 40",
       office: "Baş bina, 215-ci otaq",
+      reception_hours: "Çərşənbə axşamı, Cümə axşamı: 10:00 – 12:00",
       bio: "Beynəlxalq təhsil müəssisələri ilə əməkdaşlığı koordinasiya edir, mübadiləprogramlarını idarə edir. AzTU-nun xarici tərəfdaşlarla münasibətlərinin inkişafında mühüm rol oynayır. Erasmus+, Fulbright və digər beynəlxalq proqramlar çərçivəsində universitetin iştirakını genişləndirmişdir.",
       education: [
         { year: "2003", degree: "Bakalavr", institution: "BDU" },
@@ -272,6 +275,7 @@ export const ADMIN_DEPARTMENTS: AdminDepartment[] = [
       email: "i.mustafayev@aztu.edu.az",
       phone: "+994 12 539 08 50",
       office: "Baş bina, 102-ci otaq",
+      reception_hours: "Bazar ertəsi, Çərşənbə: 15:00 – 17:00",
       bio: "Universitetin hüquqi məsələlərini koordinasiya edir, normativ sənəd bazasının formalaşdırılmasına rəhbərlik edir. AzTU-nun daxili nizamnamə, əsasnamə və tənzimləyici sənədlərinin hazırlanmasında aparıcı rol oynayır.",
       education: [
         { year: "2000", degree: "Bakalavr", institution: "BDU Hüquq fakültəsi" },
