@@ -95,23 +95,23 @@ p {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(26, 35, 85, 0.1);
+  border: 1px solid rgba(26, 35, 85, 0.25);
   box-shadow: 0 10px 40px -10px rgba(26, 35, 85, 0.15);
 }
 
 .dark .glass-container {
   background: rgba(15, 23, 42, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(238, 124, 126, 0.2);
   box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.6);
 }
 
-/* Premium Border Styles - Updated to Dark Blue as requested */
+/* Premium Border Styles - More vibrant as requested */
 .border-premium {
-  border: 2px solid rgba(26, 35, 85, 0.12);
+  border: 2px solid rgba(26, 35, 85, 0.2);
 }
 
 .dark .border-premium {
-  border: 2px solid rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(238, 124, 126, 0.25);
 }
 
 @keyframes marquee {

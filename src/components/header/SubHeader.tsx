@@ -63,7 +63,7 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
                     <button
                         onClick={() => setIsDrawerOpen(true)}
                         aria-label="Open navigation menu"
-                        className="flex flex-col items-center justify-center gap-[5px] w-11 h-11 rounded-xl bg-[#f5f7ff] dark:bg-[#1e293b] border border-[#e8ecf8] dark:border-[#334155] hover:bg-[#eef2ff] dark:hover:bg-[#263548] hover:border-[#5A9BD3]/40 transition-all duration-200 cursor-pointer"
+                        className="flex flex-col items-center justify-center gap-[5px] w-11 h-11 rounded-xl bg-[#f5f7ff] dark:bg-[#1e293b] border border-[#1a2355]/20 dark:border-[#ee7c7e]/20 hover:bg-[#eef2ff] dark:hover:bg-[#263548] hover:border-[#5A9BD3]/40 transition-all duration-200 cursor-pointer"
                     >
                         <motion.span
                             className="block h-[2px] w-5 bg-[#1a2355] dark:bg-white rounded-full origin-center"
@@ -102,7 +102,7 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
                             whileTap={{ scale: 0.94 }}
                             transition={{ duration: 0.15 }}
                             aria-label="Toggle dark mode"
-                            className="w-10 h-10 rounded-full flex items-center justify-center bg-[#f5f7ff] dark:bg-[#1e293b] border border-[#e8ecf8] dark:border-[#334155] hover:bg-[#5A9BD3] hover:border-[#5A9BD3] text-[#5A9BD3] dark:text-white hover:text-white transition-all duration-200"
+                            className="w-10 h-10 rounded-full flex items-center justify-center bg-[#f5f7ff] dark:bg-[#1e293b] border border-[#1a2355]/20 dark:border-[#ee7c7e]/20 hover:bg-[#5A9BD3] hover:border-[#5A9BD3] text-[#5A9BD3] dark:text-white hover:text-white transition-all duration-200"
                         >
                             {theme === "dark" ? (
                                 <LightModeIcon sx={{ fontSize: 18, color: "inherit" }} />
@@ -116,7 +116,7 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
                             whileHover={{ scale: 1.06 }}
                             whileTap={{ scale: 0.94 }}
                             transition={{ duration: 0.15 }}
-                            className="w-10 h-10 rounded-full flex items-center justify-center bg-[#f5f7ff] dark:bg-[#1e293b] border border-[#e8ecf8] dark:border-[#334155] hover:bg-[#5A9BD3] hover:border-[#5A9BD3] text-[#5A9BD3] dark:text-white hover:text-white transition-all duration-200"
+                            className="w-10 h-10 rounded-full flex items-center justify-center bg-[#f5f7ff] dark:bg-[#1e293b] border border-[#1a2355]/20 dark:border-[#ee7c7e]/20 hover:bg-[#5A9BD3] hover:border-[#5A9BD3] text-[#5A9BD3] dark:text-white hover:text-white transition-all duration-200"
                             aria-label="Search"
                         >
                             <SearchIcon sx={{ fontSize: 18, color: "inherit" }} />
@@ -211,7 +211,7 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
 
                                 if (header.direct_url) {
                                     return (
-                                        <div key={header.id} className="border-b border-gray-100 dark:border-gray-700">
+                                        <div key={header.id} className="border-b border-[#1a2355]/20 dark:border-[#ee7c7e]/20">
                                             <Link
                                                 href={header.direct_url}
                                                 onClick={() => setIsDrawerOpen(false)}
@@ -224,7 +224,7 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
                                 }
 
                                 return (
-                                    <div key={header.id} className="border-b border-gray-100 dark:border-gray-700">
+                                    <div key={header.id} className="border-b border-[#1a2355]/20 dark:border-[#ee7c7e]/20">
                                         <button
                                             onClick={() => toggleHeader(header.id)}
                                             className="w-full flex items-center justify-between px-5 py-4 text-left text-[13.5px] font-black text-[#1a2355] dark:text-white hover:bg-[#f0f4ff] dark:hover:bg-[#1e293b] transition-colors uppercase tracking-widest cursor-pointer"
@@ -250,7 +250,7 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
                                                     className="overflow-hidden bg-[#f8faff] dark:bg-[#162032]"
                                                 >
                                                     {header.items.map((item) => (
-                                                        <div key={item.id} className="border-b border-gray-100/50 dark:border-gray-700/30">
+                                                        <div key={item.id} className="border-b border-[#1a2355]/20 dark:border-[#ee7c7e]/20">
                                                             {/* Level 2 title */}
                                                             {item.direct_url ? (
                                                                 <Link

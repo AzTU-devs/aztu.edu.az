@@ -40,7 +40,7 @@ export default function DepartmentCard({ department, index }: DepartmentCardProp
     >
       <Link
         href={path}
-        className="group relative h-full bg-white dark:bg-slate-800 rounded-3xl p-8 flex flex-col gap-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-8px_rgba(0,0,0,0.1)] border border-gray-100 dark:border-slate-700/50 transition-all duration-500 overflow-hidden block"
+        className="group relative h-full bg-white dark:bg-slate-800 rounded-3xl p-8 flex flex-col gap-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-8px_rgba(0,0,0,0.1)] border border-[#1a2355]/20 dark:border-[#ee7c7e]/20 transition-all duration-500 overflow-hidden block"
       >
         {/* Background Accent */}
         <div className="absolute top-0 right-0 w-32 h-32 bg-[#1a2355]/5 dark:bg-white/5 rounded-full -mr-16 -mt-16 transition-all duration-700 group-hover:scale-[3] group-hover:bg-[#1a2355]/10 pointer-events-none" />
@@ -57,7 +57,7 @@ export default function DepartmentCard({ department, index }: DepartmentCardProp
               className="group-hover:!text-white"
             />
           </div>
-          <span className="text-[10px] font-black tracking-widest text-[#1a2355]/40 dark:text-blue-300/40 uppercase bg-gray-50 dark:bg-slate-700 px-3 py-1.5 rounded-lg border border-gray-100 dark:border-slate-600 group-hover:bg-white group-hover:text-[#1a2355] transition-all duration-500">
+          <span className="text-[10px] font-black tracking-widest text-[#1a2355]/40 dark:text-blue-300/40 uppercase bg-gray-50 dark:bg-slate-700 px-3 py-1.5 rounded-lg border border-[#1a2355]/20 dark:border-[#ee7c7e]/20 group-hover:bg-white group-hover:text-[#1a2355] transition-all duration-500">
             {department.department_code}
           </span>
         </div>

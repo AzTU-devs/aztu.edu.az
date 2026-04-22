@@ -17,7 +17,7 @@ export default function Dropdown({ header }: Props) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-      className="absolute inset-x-0 top-full w-full bg-white dark:bg-[#0b1330] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] dark:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] border-t border-gray-100 dark:border-white/5 z-40 overflow-y-auto max-h-[calc(100vh-100px)]"
+      className="absolute inset-x-0 top-full w-full bg-white dark:bg-[#0b1330] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] dark:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] border-t border-[#1a2355]/20 dark:border-[#ee7c7e]/15 z-40 overflow-y-auto max-h-[calc(100vh-100px)]"
     >
       {/* BACKGROUND DECORATIONS */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -38,8 +38,8 @@ export default function Dropdown({ header }: Props) {
           </div>
 
           {/* Floating Geometric Accents */}
-          <div className="absolute top-20 right-[15%] w-32 h-32 border border-[#ee7c7e]/10 rounded-3xl rotate-12 animate-pulse" />
-          <div className="absolute bottom-40 left-[10%] w-48 h-48 border border-[#1a2355]/5 dark:border-white/5 rounded-full" />
+          <div className="absolute top-20 right-[15%] w-32 h-32 border border-[#ee7c7e]/25 rounded-3xl rotate-12 animate-pulse" />
+          <div className="absolute bottom-40 left-[10%] w-48 h-48 border border-[#1a2355]/20 dark:border-[#ee7c7e]/15 rounded-full" />
 
           {/* Subtle Mesh Gradients / Glow Orbs */}
           <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#ee7c7e]/[0.04] dark:bg-[#ee7c7e]/[0.08] blur-[120px] rounded-full animate-pulse" />
@@ -102,7 +102,7 @@ export default function Dropdown({ header }: Props) {
                         initial={{ opacity: 0, scale: 0.98 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: idx * 0.05 + 0.2, duration: 0.5 }}
-                        className="group/item flex flex-col bg-white dark:bg-white/5 hover:bg-white dark:hover:bg-white/[0.08] p-8 rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/20 transition-all duration-500"
+                        className="group/item flex flex-col bg-white dark:bg-white/5 hover:bg-white dark:hover:bg-white/[0.08] p-8 rounded-[2.5rem] border border-[#1a2355]/20 dark:border-[#ee7c7e]/15 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/20 transition-all duration-500"
                     >
                         {/* Category Header */}
                         <div className="relative mb-6">
