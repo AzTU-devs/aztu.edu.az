@@ -32,7 +32,7 @@ const STATIC_RIGHT_SECTIONS = [
         key: "platform",
         title: "Platform",
         items: [
-            { label: "LMS", url: "#" },
+            { label: "LMS", url: "https://lms.aztu.edu.az" },
             { label: "Internal Grant Competition", url: "#" },
             { label: "Plan Report Information System", url: "#" },
         ],
@@ -41,7 +41,7 @@ const STATIC_RIGHT_SECTIONS = [
         key: "alumni",
         title: "Alumni",
         items: [
-            { label: "Career", url: "#" },
+            { label: "Alumni Portal", url: "https://alumni.aztu.edu.az" },
             { label: "Honorary Doctors", url: "/haqqimizda/honorary-doctors" },
             { label: "Honorary Graduates", url: "/haqqimizda/honorary-graduates" },
             { label: "Our Heroes", url: "/haqqimizda/heroes" },
@@ -64,7 +64,7 @@ const STATIC_LEFT_ITEMS = [
     { label: "Accreditation", url: "/haqqimizda/accreditation" },
     { label: "Policies", url: "/haqqimizda/policies" },
     { label: "Reports", url: "/haqqimizda/reports" },
-    { label: "FAQ", url: "/haqqimizda/faq" },
+    { label: "FAQ", url: "/faq" },
 ];
 
 const containerVariants: Variants = {

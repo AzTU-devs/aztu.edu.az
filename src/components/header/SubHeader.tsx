@@ -180,20 +180,26 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
                         {/* Utility buttons */}
                         <div className="flex items-center gap-2 px-4 py-3 bg-[#1a2355]">
                             {[
-                                { icon: <PersonIcon sx={{ fontSize: 18 }} />, label: t.common.lms },
-                                { icon: <SchoolIcon sx={{ fontSize: 18 }} />, label: t.common.alumni },
-                                { icon: <ConnectedTvIcon sx={{ fontSize: 18 }} />, label: t.common.aztuTv },
-                            ].map(({ icon, label }) => (
-                                <button
+                                { icon: <PersonIcon sx={{ fontSize: 18 }} />, label: t.common.lms, href: "https://lms.aztu.edu.az" },
+                                { icon: <SchoolIcon sx={{ fontSize: 18 }} />, label: t.common.alumni, href: "https://alumni.aztu.edu.az" },
+                                { icon: <ConnectedTvIcon sx={{ fontSize: 18 }} />, label: t.common.aztuTv, href: "https://www.youtube.com/channel/UCu_PoZ-9DKNYs3hxuK9pW1Q" },
+                            ].map(({ icon, label, href }) => (
+                                <a
                                     key={label}
+                                    href={href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="flex items-center gap-1 rounded-lg px-2.5 py-1.5 text-xs font-bold text-white bg-white/10 hover:bg-white/25 transition-all cursor-pointer"
                                 >
                                     {icon}
                                     {label}
-                                </button>
+                                </a>
                             ))}
                             <LanguageSwitcher variant="drawer" />
-                            <button className="rounded-lg w-8 h-8 flex items-center justify-center text-white bg-white/10 hover:bg-white/25 transition-all cursor-pointer">
+                            <button 
+                                onClick={() => navigator.clipboard.writeText(window.location.href)}
+                                className="rounded-lg w-8 h-8 flex items-center justify-center text-white bg-white/10 hover:bg-white/25 transition-all cursor-pointer"
+                            >
                                 <ShareIcon sx={{ fontSize: 18 }} />
                             </button>
                         </div>
