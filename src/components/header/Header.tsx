@@ -74,12 +74,15 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
           {/* Utility row */}
           <div className="flex items-center gap-3">
             {[
-              { icon: <PersonIcon sx={{ fontSize: 20 }} />, label: t.common.lms },
-              { icon: <SchoolIcon sx={{ fontSize: 20 }} />, label: t.common.alumni },
-              { icon: <ConnectedTvIcon sx={{ fontSize: 20 }} />, label: t.common.aztuTv },
-            ].map(({ icon, label }) => (
-              <button
+              { icon: <PersonIcon sx={{ fontSize: 20 }} />, label: t.common.lms, href: "https://lms.aztu.edu.az" },
+              { icon: <SchoolIcon sx={{ fontSize: 20 }} />, label: t.common.alumni, href: "https://alumni.aztu.edu.az" },
+              { icon: <ConnectedTvIcon sx={{ fontSize: 20 }} />, label: t.common.aztuTv, href: "https://www.youtube.com/channel/UCu_PoZ-9DKNYs3hxuK9pW1Q" },
+            ].map(({ icon, label, href }) => (
+              <a
                 key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-bold transition-all duration-300 cursor-pointer ${
                   isOpen
                     ? "bg-[#1a2355] dark:bg-[#1e3a5f] text-white hover:bg-[#1a2355]/80"
@@ -88,12 +91,15 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
               >
                 {icon}
                 {label}
-              </button>
+              </a>
             ))}
 
             <LanguageSwitcher variant={isOpen ? "header-open" : "header-closed"} />
 
             <button
+              onClick={() => {
+                navigator.clipboard.writeText(window.location.href);
+              }}
               className={`rounded-lg w-10 h-10 flex items-center justify-center transition-all duration-300 cursor-pointer ${
                 isOpen
                   ? "bg-[#1a2355] dark:bg-[#1e3a5f]"

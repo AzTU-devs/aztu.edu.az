@@ -178,12 +178,15 @@ export default function ResponsiveHeader() {
                             <p className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20 mb-6 ml-1">University Portals</p>
                             <div className="grid grid-cols-3 gap-3">
                                 {[
-                                    { icon: <PersonIcon sx={{ fontSize: 24 }} />, label: t.common.lms, color: "hover:bg-blue-500/20 hover:border-blue-500/30" },
-                                    { icon: <SchoolIcon sx={{ fontSize: 24 }} />, label: t.common.alumni, color: "hover:bg-emerald-500/20 hover:border-emerald-500/30" },
-                                    { icon: <ConnectedTvIcon sx={{ fontSize: 24 }} />, label: t.common.aztuTv, color: "hover:bg-[#ee7c7e]/20 hover:border-[#ee7c7e]/30" },
-                                ].map(({ icon, label, color }) => (
-                                    <motion.button
+                                    { icon: <PersonIcon sx={{ fontSize: 24 }} />, label: t.common.lms, color: "hover:bg-blue-500/20 hover:border-blue-500/30", href: "https://lms.aztu.edu.az" },
+                                    { icon: <SchoolIcon sx={{ fontSize: 24 }} />, label: t.common.alumni, color: "hover:bg-emerald-500/20 hover:border-emerald-500/30", href: "https://alumni.aztu.edu.az" },
+                                    { icon: <ConnectedTvIcon sx={{ fontSize: 24 }} />, label: t.common.aztuTv, color: "hover:bg-[#ee7c7e]/20 hover:border-[#ee7c7e]/30", href: "https://www.youtube.com/channel/UCu_PoZ-9DKNYs3hxuK9pW1Q" },
+                                ].map(({ icon, label, color, href }) => (
+                                    <motion.a
                                         key={label}
+                                        href={href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         variants={itemVariants}
                                         whileTap={{ scale: 0.95 }}
                                         className={`flex flex-col items-center justify-center gap-3 rounded-[1.5rem] p-4 text-white/60 bg-white/5 border border-white/5 transition-all duration-300 group ${color} hover:text-white`}
@@ -192,13 +195,16 @@ export default function ResponsiveHeader() {
                                             {icon}
                                         </div>
                                         <span className="text-[10px] font-black uppercase tracking-widest line-clamp-1">{label}</span>
-                                    </motion.button>
+                                    </motion.a>
                                 ))}
                             </div>
                             
                             <div className="flex items-center justify-between mt-6 px-1">
                                 <LanguageSwitcher variant="drawer" />
-                                <button className="rounded-2xl w-12 h-12 flex items-center justify-center text-white/40 bg-white/5 border border-white/5 hover:bg-white/10 hover:text-white transition-all active:scale-90">
+                                <button 
+                                    onClick={() => navigator.clipboard.writeText(window.location.href)}
+                                    className="rounded-2xl w-12 h-12 flex items-center justify-center text-white/40 bg-white/5 border border-white/5 hover:bg-white/10 hover:text-white transition-all active:scale-90"
+                                >
                                     <ShareIcon sx={{ fontSize: 20 }} />
                                 </button>
                             </div>
