@@ -16,6 +16,7 @@ import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import HomeIcon from "@mui/icons-material/Home";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
 export default function AdminDepartmentPage() {
   const params = useParams();
@@ -120,6 +121,18 @@ export default function AdminDepartmentPage() {
                     </div>
                   ))}
                 </div>
+
+                {dir.reception_hours && (
+                  <div className="bg-[#1a2355] text-white rounded-xl p-4 flex items-center gap-4 shadow-md">
+                    <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
+                      <AccessTimeIcon sx={{ fontSize: 20, color: "#ee7c7e" }} />
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-white/50 font-bold uppercase tracking-wider mb-0.5">Qəbul Saatları</p>
+                      <p className="text-sm font-bold">{dir.reception_hours}</p>
+                    </div>
+                  </div>
+                )}
 
                 {/* Bio */}
                 <p className="text-gray-700 dark:text-gray-300 text-sm leading-7">{dir.bio}</p>
