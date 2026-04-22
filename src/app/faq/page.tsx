@@ -29,24 +29,72 @@ const COPY: Record<"az" | "en", Dict> = {
         breadcrumb: "FAQ",
         faqs: [
             {
-                question: "AzTU-ya necə qəbul olmaq olar?",
-                answer: "Universitetimizə qəbul Dövlət İmtahan Mərkəzi (DİM) tərəfindən keçirilən mərkəzləşdirilmiş qəbul imtahanları vasitəsilə həyata keçirilir. Bakalavr pilləsi üçün I qrup üzrə imtahan vermək lazımdır."
+                question: "AzTU-nu fərqləndirən nədir?",
+                answer: "AzTU güclü mühəndislik ənənələrinə malik aparıcı texniki ali təhsil müəssisəsidir və müdafiə sənayesi daxil olmaqla strateji əhəmiyyətli sahələr üçün mütəxəssis hazırlığında xüsusi rola malikdir. Universitet praktik yönümlü təhsilə üstünlük verir və tələbə dostu qiymətləndirmə sistemi tətbiq edir."
             },
             {
-                question: "Xarici tələbələr üçün qəbul qaydaları necədir?",
-                answer: "Xarici vətəndaşlar universitetimizə müsahibə əsasında qəbul ola bilərlər. Ətraflı məlumat üçün Beynəlxalq Əlaqələr şöbəsinə müraciət edə bilərsiniz."
+                question: "Qəbul tələbləri hansılardır?",
+                answer: "Yerli abituriyentlər üçün qəbul milli mərkəzləşdirilmiş imtahan sistemi vasitəsilə həyata keçirilir. Xarici tələbələr isə birbaşa universitetə müraciət edə bilər və qəbul akademik göstəricilər və tələb olunan sənədlər əsasında aparılır."
             },
             {
-                question: "Universitetdə yataqxana varmı?",
-                answer: "Bəli, universitetimizin tələbə şəhərciyi və müasir standartlara cavab verən yataqxanası mövcuddur. Yataqxanada qalmaq üçün tələbə xidmətləri bölməsinə müraciət etməlisiniz."
+                question: "Tədris proqramları nə qədər tez-tez yenilənir?",
+                answer: "AzTU-da tədris proqramları təxminən hər 4–5 ildən bir mütəmadi olaraq yenilənir. Bu yenilənmələr əmək bazarının tələbləri, işəgötürən rəyləri, beynəlxalq təcrübə və texnoloji yeniliklər əsasında aparılır. Seçilmiş xüsusi qruplarda bu proses daha dinamik şəkildə həyata keçirilir."
             },
             {
-                question: "Təhsil haqqını hissə-hissə ödəmək mümkündürmü?",
-                answer: "Bəli, təhsil haqqını semestrlər üzrə iki hissəyə bölərək ödəmək mümkündür. Xüsusi hallarda rektorluğa müraciət edərək əlavə güzəştlər əldə edilə bilər."
+                question: "Tədris daha çox nəzəri, yoxsa praktik yönümlüdür?",
+                answer: "AzTU-da tədris əsasən praktik yönümlüdür. Tələbələr laboratoriya işləri, tətbiqi layihələr və istehsalat təcrübələri vasitəsilə real iş mühitinə uyğun bilik və bacarıqlar əldə edirlər."
             },
             {
-                question: "Erasmus+ və digər mübadilə proqramlarında iştirak etmək olar?",
-                answer: "AzTU bir çox Avropa universitetləri ilə Erasmus+ tərəfdaşlıq müqavilələrinə malikdir. Yüksək akademik göstəriciləri olan tələbələr bu proqramlara qoşula bilərlər."
+                question: "Proqramlar əmək bazarının tələblərinə uyğundurmu?",
+                answer: "Bəli, proqramlar əmək bazarının mövcud tələblərinə uyğun hazırlanır. Texniki biliklərlə yanaşı, tələbələrdə analitik düşüncə, idarəetmə və problem həll etmə bacarıqları da formalaşdırılır."
+            },
+            {
+                question: "AzTU-da dərsləri kimlər tədris edir?",
+                answer: "Dərslər təcrübəli professor-müəllim heyəti tərəfindən tədris olunur. Bununla yanaşı, sənaye mütəxəssisləri də tədris prosesinə cəlb edilərək praktik biliklərin ötürülməsinə töhfə verirlər."
+            },
+            {
+                question: "Müəllimlərlə dərsdən kənar əlaqə mümkündürmü?",
+                answer: "Müəllimlərlə qəbul saatları, fərdi görüşlər və elektron platformalar vasitəsilə əlaqə saxlamaq mümkündür. Bəzi hallarda iş yükü səbəbindən gecikmələr olsa da, tələbə təşkilatları bu prosesdə dəstək göstərir."
+            },
+            {
+                question: "Təcrübə və praktiki imkanlar varmı?",
+                answer: "Tələbələr il ərzində müxtəlif yerli və beynəlxalq təcrübə və inkişaf proqramlarında aktiv iştirak edirlər. Seçim zamanı əsasən akademik göstəricilər və ixtisas üzrə biliklər nəzərə alınır."
+            },
+            {
+                question: "Məzunlar əsasən hansı sahələrdə işləyir?",
+                answer: "Məzunlar əsasən energetika, informasiya texnologiyaları, telekommunikasiya, istehsalat, nəqliyyat, logistika və müdafiə sənayesi kimi mühəndislik və texnologiya yönümlü sahələrdə fəaliyyət göstərirlər."
+            },
+            {
+                question: "AzTU-da tələbə həyatı necədir?",
+                answer: "Tələbə həyatı aktiv və çoxşaxəlidir. Universitetdə mədəni tədbirlər, idman yarışları, intellektual oyunlar və peşəkar inkişaf proqramları təşkil olunur. Mövcud imkanlara baxmayaraq, tələbə aktivliyinin artırılması prioritet istiqamətlərdən biridir."
+            },
+            {
+                question: "Universitet tələbələrin rifahını necə dəstəkləyir?",
+                answer: "AzTU tələbələrin psixoloji və sosial rifahını maarifləndirici tədbirlər, təlimlər və fərdi konsultasiyalar vasitəsilə dəstəkləyir. Eyni zamanda tələbələr universitetin kampus daxilində fəaliyyət göstərən poliklinikasının tibbi xidmətlərindən istifadə edə bilirlər. Bu sahədə xidmətlərin daha da genişləndirilməsi istiqamətində işlər davam etdirilir."
+            },
+            {
+                question: "Bakıda tələbə üçün aylıq yaşayış xərci nə qədərdir?",
+                answer: "Orta aylıq yaşayış xərci həyat tərzindən asılı olaraq 400–800 AZN aralığında dəyişir. Əsas xərclər kirayə, qidalanma və nəqliyyatdır."
+            },
+            {
+                question: "Yataqxana mövcuddurmu?",
+                answer: "Universitetin yataqxana infrastrukturu mövcud olsa da, hazırda istifadədə deyil. Bu səbəbdən tələbələr əsasən kirayə mənzillərdə, çox vaxt paylaşılmış formada yaşayırlar."
+            },
+            {
+                question: "Nəqliyyat imkanları necədir?",
+                answer: "Universitet şəhərin əlverişli ərazisində yerləşir və metro, avtobus və digər ictimai nəqliyyat vasitələri ilə rahat əlçatandır."
+            },
+            {
+                question: "Təhsil haqqı nə qədərdir?",
+                answer: "İllik təhsil haqqı ixtisasdan asılı olaraq təxminən 1900–2200 AZN təşkil edir."
+            },
+            {
+                question: "Təqaüd və maliyyə dəstəyi varmı?",
+                answer: "Tələbələr dövlət təqaüdlərindən, akademik göstəricilərə əsaslanan təqaüdlərdən və sosial dəstək proqramlarından yararlana bilirlər."
+            },
+            {
+                question: "Tibbi xidmətlər mövcuddurmu?",
+                answer: "Tələbələr üçün tibbi xidmətlər universitetə bağlı səhiyyə müəssisəsi, o cümlədən universitet poliklinikası vasitəsilə təmin olunur."
             }
         ]
     },
@@ -57,24 +105,72 @@ const COPY: Record<"az" | "en", Dict> = {
         breadcrumb: "FAQ",
         faqs: [
             {
-                question: "How can I apply to AzTU?",
-                answer: "Admission to our university is carried out through centralized entrance exams organized by the State Examination Center (SEC). For undergraduate studies, you need to take exams in the 1st group."
+                question: "What distinguishes AzTU?",
+                answer: "AzTU stands out as a leading technical institution with a strong engineering tradition and a unique role in preparing specialists for strategically important sectors, including the defense industry. The university emphasizes practice-oriented education and maintains a student-friendly academic assessment system."
             },
             {
-                question: "What are the admission rules for international students?",
-                answer: "International citizens can be admitted to our university based on an interview. For more information, please contact the International Relations Department."
+                question: "What are the admission requirements?",
+                answer: "Admission to AzTU for local applicants is conducted through the national centralized examination system. International applicants may apply directly to the university, with admission based on academic qualifications and required documentation in line with institutional criteria."
             },
             {
-                question: "Is there a dormitory at the university?",
-                answer: "Yes, our university has a campus and a dormitory that meets modern standards. To stay in the dormitory, you should contact the student services department."
+                question: "How often are academic programs updated?",
+                answer: "Academic programs at AzTU are regularly reviewed and updated approximately every 4–5 academic years. These updates are based on labor market needs, employer feedback, international academic practices, and technological advancements. In selected excellence-based groups, this process is implemented more dynamically."
             },
             {
-                question: "Is it possible to pay tuition fees in installments?",
-                answer: "Yes, it is possible to pay tuition fees in two installments per semester. In special cases, additional concessions can be obtained by applying to the Rector's office."
+                question: "What is the balance between theoretical and practical learning?",
+                answer: "Education at AzTU is predominantly practice-oriented. Students gain hands-on experience through laboratory work, applied projects, and industrial training, ensuring strong alignment between academic knowledge and real-world application."
             },
             {
-                question: "Can I participate in Erasmus+ and other exchange programs?",
-                answer: "AzTU has Erasmus+ partnership agreements with many European universities. Students with high academic performance can join these programs."
+                question: "Are the programs aligned with current labor market demands?",
+                answer: "Yes, academic programs are designed to reflect current labor market requirements. In addition to technical expertise, students develop analytical, managerial, and problem-solving skills, preparing them for both industrial and business environments."
+            },
+            {
+                question: "Who teaches at AzTU?",
+                answer: "Courses are delivered by experienced academic staff, including professors and lecturers, as well as industry professionals who contribute practical insights to the learning process."
+            },
+            {
+                question: "How accessible are professors outside of class?",
+                answer: "Faculty members are generally accessible through office hours, individual consultations, and digital communication platforms. While occasional delays may occur due to workload, institutional student bodies support communication and issue resolution."
+            },
+            {
+                question: "What internship and practical experience opportunities are available?",
+                answer: "Students actively participate in a wide range of national and international internship and development programs. Selection is typically based on academic performance and subject-specific knowledge."
+            },
+            {
+                question: "What career paths do graduates typically pursue?",
+                answer: "Graduates primarily work in engineering and technology-driven sectors such as energy, information technologies, telecommunications, manufacturing, transport, logistics, and defense-related industries."
+            },
+            {
+                question: "What is student life like at AzTU?",
+                answer: "Student life is dynamic and diverse, offering opportunities in cultural activities, sports, academic competitions, and professional development initiatives. While opportunities are extensive, increasing student engagement remains an ongoing priority."
+            },
+            {
+                question: "Does the university support student wellbeing?",
+                answer: "AzTU provides support for students’ psychological and social wellbeing through awareness programs, training sessions, and individual consultations. Students also have access to medical services through the on-campus university polyclinic. Ongoing efforts are focused on further strengthening and institutionalizing these support services."
+            },
+            {
+                question: "What are the average living costs for students in Baku?",
+                answer: "The average monthly cost of living ranges between 400–800 AZN, depending on lifestyle. Major expenses include accommodation, food, and transportation."
+            },
+            {
+                question: "Are dormitory facilities available?",
+                answer: "Although the university has dormitory infrastructure, it is currently not operational. As a result, students typically rely on private rental housing, often sharing accommodation to reduce costs."
+            },
+            {
+                question: "What are the transportation options?",
+                answer: "The university is located in a well-connected area of the city, with convenient access to metro, bus, and other public transportation options."
+            },
+            {
+                question: "What are the tuition fees?",
+                answer: "Annual tuition fees generally range between 1900–2200 AZN, depending on the program."
+            },
+            {
+                question: "Are scholarships or financial aid options available?",
+                answer: "Students may benefit from government-funded scholarships, merit-based financial support, and institutional social assistance programs aimed at supporting academically successful and financially disadvantaged students."
+            },
+            {
+                question: "Are healthcare services available for students?",
+                answer: "Students have access to medical services through a designated student healthcare facility, including the university polyclinic."
             }
         ]
     },
