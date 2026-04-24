@@ -64,7 +64,7 @@ export default function FacultiesPage() {
                     { label: t.faculties }
                 ]}
                 eyebrow="Academic Excellence"
-                videoSrc="/heroBgVideos/academic-hero-vide.mp4"
+                // videoSrc="/heroBgVideos/academic-hero-vide.mp4"
             />
 
             <PageContainer>

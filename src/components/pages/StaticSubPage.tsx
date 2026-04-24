@@ -23,7 +23,7 @@ export default function StaticSubPage({ section, item }: Props) {
     
     let videoSrc = null;
     if (isResearchPage) videoSrc = "/heroBgVideos/research.mp4";
-    else if (isAcademicPage) videoSrc = "/heroBgVideos/academic-hero-vide.mp4";
+    else if (isAcademicPage) videoSrc = "/heroBgVideos/resaerch.mp4";
 
     return (
         <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden">

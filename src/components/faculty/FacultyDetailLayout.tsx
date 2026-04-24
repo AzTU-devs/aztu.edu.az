@@ -52,7 +52,7 @@ export default function FacultyDetailLayout({ children, params }: Props) {
                         playsInline
                         className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-overlay"
                     >
-                        <source src="/heroBgVideos/academic-hero-vide.mp4" type="video/mp4" />
+                        <source src="/heroBgVideos/research.mp4" type="video/mp4" />
                     </video>
                 </div>
 

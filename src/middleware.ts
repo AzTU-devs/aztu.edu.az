@@ -605,7 +605,6 @@ export function middleware(request: NextRequest) {
             segments_rest = ["beynelmillesme", "beynelxalq-terefdasliq", "terefdas-universitetler"];
         }
     }
-    
     const targetPath = segments_rest.length > 0 ? `/${segments_rest.join("/")}` : "/";
     const rewriteUrl = new URL(targetPath, request.url);
     
