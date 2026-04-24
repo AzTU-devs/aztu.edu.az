@@ -18,6 +18,7 @@ interface PageHeroProps {
   eyebrow?: string;
   className?: string;
   children?: React.ReactNode;
+  videoSrc?: string;
 }
 
 export default function PageHero({
@@ -27,6 +28,7 @@ export default function PageHero({
   eyebrow,
   className = "",
   children,
+  videoSrc,
 }: PageHeroProps) {
   const { lang } = useLanguage();
 
@@ -37,23 +39,40 @@ export default function PageHero({
         {/* Deep Gradient Base */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0b1330] via-[#1a2355] to-[#13365E]" />
         
-        {/* Animated Light Beams */}
-        <motion.div 
-            animate={{ 
-                x: [-500, 500],
-                opacity: [0, 0.3, 0]
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-            className="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-white/40 to-transparent skew-x-[-45deg] blur-sm"
-        />
-        <motion.div 
-            animate={{ 
-                x: [500, -500],
-                opacity: [0, 0.2, 0]
-            }}
-            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-            className="absolute top-0 right-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-[#ee7c7e]/40 to-transparent skew-x-[45deg] blur-sm"
-        />
+        {videoSrc ? (
+          <>
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay"
+            >
+              <source src={videoSrc} type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-[#0b1330]/40" />
+          </>
+        ) : (
+          <>
+            {/* Animated Light Beams */}
+            <motion.div 
+                animate={{ 
+                    x: [-500, 500],
+                    opacity: [0, 0.3, 0]
+                }}
+                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                className="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-white/40 to-transparent skew-x-[-45deg] blur-sm"
+            />
+            <motion.div 
+                animate={{ 
+                    x: [500, -500],
+                    opacity: [0, 0.2, 0]
+                }}
+                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                className="absolute top-0 right-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-[#ee7c7e]/40 to-transparent skew-x-[45deg] blur-sm"
+            />
+          </>
+        )}
 
         {/* Massive Glow Orbs */}
         <div className="absolute top-[-20%] right-[-10%] w-[1000px] h-[1000px] bg-blue-600/20 blur-[180px] rounded-full animate-pulse" />

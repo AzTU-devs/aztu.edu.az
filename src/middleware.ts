@@ -6,7 +6,11 @@ const DEFAULT_LANG = "az";
 
 // List of top-level Azerbaijani folders that should NOT trigger a language redirect
 // because they are the internal targets of our rewrites.
+<<<<<<< HEAD
 const INTERNAL_FOLDERS = ["idareetme", "tedqiqat", "haqqimizda", "struktur", "tehsil", "sosial", "beynelxalq", "niye-aztu", "media", "faculties", "community", "elaqe", "privacy-policy", "terms-conditions"];
+=======
+const INTERNAL_FOLDERS = ["idareetme", "tedqiqat", "haqqimizda", "struktur", "tehsil", "sosial", "beynelxalq", "niye-aztu", "media", "faculties", "community", "beynelmillesme"];
+>>>>>>> 6cbb610 (feat: internalization)
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -277,6 +281,30 @@ export function middleware(request: NextRequest) {
         }
     }
 
+    // Internationalization Mapping
+    if (segments_rest[0] === "internationalization" || segments_rest[0] === "beynelmillesme") {
+        if (lang === "az" && segments_rest[0] === "internationalization") {
+            const newPath = ["beynelmillesme"];
+            if (segments_rest[1] === "international-partnership") newPath.push("beynelxalq-terefdasliq");
+            else if (segments_rest[1]) newPath.push(segments_rest[1]);
+            if (segments_rest[2] === "double-degree-programs") newPath.push("ikili-diplom-proqramlari");
+            else if (segments_rest[2] === "international-projects") newPath.push("beynelxalq-layiheler");
+            else if (segments_rest[2] === "partner-universities") newPath.push("terefdas-universitetler");
+            else if (segments_rest[2]) newPath.push(segments_rest[2]);
+            return NextResponse.redirect(new URL(`/az/${newPath.join("/")}`, request.url));
+        }
+        if (lang === "en" && segments_rest[0] === "beynelmillesme") {
+            const newPath = ["internationalization"];
+            if (segments_rest[1] === "beynelxalq-terefdasliq") newPath.push("international-partnership");
+            else if (segments_rest[1]) newPath.push(segments_rest[1]);
+            if (segments_rest[2] === "ikili-diplom-proqramlari") newPath.push("double-degree-programs");
+            else if (segments_rest[2] === "beynelxalq-layiheler") newPath.push("international-projects");
+            else if (segments_rest[2] === "terefdas-universitetler") newPath.push("partner-universities");
+            else if (segments_rest[2]) newPath.push(segments_rest[2]);
+            return NextResponse.redirect(new URL(`/en/${newPath.join("/")}`, request.url));
+        }
+    }
+
     // Academic & Faculties Redirects
     if (segments_rest[0] === "academic" || segments_rest[0] === "akademik" || segments_rest[0] === "faculties" || segments_rest[0] === "cafedras" || segments_rest[0] === "fakulteler") {
         // EN: academic/faculties
@@ -530,6 +558,7 @@ export function middleware(request: NextRequest) {
         }
     }
 
+<<<<<<< HEAD
     // Contact Us Mapping (top-level)
     if (segments_rest[0] === "contact-us" || segments_rest[0] === "elaqe") {
         segments_rest = ["elaqe"];
@@ -543,6 +572,22 @@ export function middleware(request: NextRequest) {
     // Terms & Conditions Mapping
     if (segments_rest[0] === "terms-and-conditions" || segments_rest[0] === "sertler-ve-qaydalar") {
         segments_rest = ["terms-conditions"];
+=======
+    // Internationalization Mapping
+    if (segments_rest[0] === "internationalization" || segments_rest[0] === "beynelmillesme") {
+        const sub = segments_rest[1];
+        const subSub = segments_rest[2];
+        if ((sub === "international-partnership" || sub === "beynelxalq-terefdasliq") && 
+            (subSub === "double-degree-programs" || subSub === "ikili-diplom-proqramlari")) {
+            segments_rest = ["beynelmillesme", "beynelxalq-terefdasliq", "ikili-diplom-proqramlari"];
+        } else if ((sub === "international-partnership" || sub === "beynelxalq-terefdasliq") && 
+            (subSub === "international-projects" || subSub === "beynelxalq-layiheler")) {
+            segments_rest = ["beynelmillesme", "beynelxalq-terefdasliq", "beynelxalq-layiheler"];
+        } else if ((sub === "international-partnership" || sub === "beynelxalq-terefdasliq") && 
+            (subSub === "partner-universities" || subSub === "terefdas-universitetler")) {
+            segments_rest = ["beynelmillesme", "beynelxalq-terefdasliq", "terefdas-universitetler"];
+        }
+>>>>>>> 6cbb610 (feat: internalization)
     }
 
     const targetPath = segments_rest.length > 0 ? `/${segments_rest.join("/")}` : "/";

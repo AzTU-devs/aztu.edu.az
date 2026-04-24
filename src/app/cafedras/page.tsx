@@ -62,6 +62,7 @@ export default function CafedrasPage() {
                     { label: t.cafedras }
                 ]}
                 eyebrow="Academic Excellence"
+                videoSrc="/heroBgVideos/academic-hero-vide.mp4"
             />
 
             <PageContainer>

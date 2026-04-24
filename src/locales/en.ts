@@ -1170,6 +1170,285 @@ const en = {
       }
     },
 
+    internationalization: {
+      doubleDegreePrograms: {
+        eyebrow: "Internationalization",
+        title: "Dual Degree Programs",
+        subtitle: "Earn two internationally recognised degrees from AzTU and a leading partner university abroad.",
+        breadcrumb: "Double Degree Programs",
+        description: "Azerbaijan Technical University's Double Degree Programmes offer students the opportunity to earn two internationally recognised degrees — one from AzTU and one from a leading partner university abroad — within a single study period. These programmes are developed in line with AzTU's Internationalization Policy and 2030 Development Strategy, reflecting the university's commitment to providing globally competitive education at the Bachelor's, Master's, and doctoral levels.\n\nThrough Double Degree Programmes, students benefit from the academic strengths of two institutions, gain cross-cultural experience, and graduate with qualifications that are recognised both in Azerbaijan and internationally — giving them a significant advantage in the global job market.",
+        currentProgramsTitle: "Current Double Degree Programmes",
+        countries: [
+          {
+            name: "Türkiye",
+            programs: [
+              "Ankara University Electrical & Electronics Engineering — Bachelor's (launched 2022)",
+              "Gazi University Computer Engineering — Bachelor's (launched 2023)"
+            ]
+          },
+          {
+            name: "Germany",
+            programs: [
+              "Brandenburg University of Technology Mechanical & Materials Engineering — Master's",
+              "Brandenburg University of Technology Joint Doctorate Programme — PhD"
+            ]
+          },
+          {
+            name: "Israel",
+            programs: [
+              "Bar-Ilan University Electrical & Electronics Engineering (Nano & Microelectronics) — Master's (launched 2025)"
+            ]
+          }
+        ],
+        whyChooseTitle: "Why Choose a Double Degree Programme?",
+        benefits: [
+          "Graduate with two internationally recognised diplomas",
+          "Study at two leading universities across two countries",
+          "Build a global academic and professional network",
+          "Strengthen your career prospects in the international job market",
+          "Gain cross-cultural competence and language skills"
+        ],
+        related: [
+          { title: "Collaborations", href: "/community/university-cooperation/collaborations" },
+          { title: "Exchange Programs", href: "/students/postgraduates/exchange-programs" },
+        ]
+      },
+      internationalProjects: {
+        eyebrow: "Internationalization",
+        title: "International Projects",
+        subtitle: "A global network of research and innovation partnerships.",
+        breadcrumb: "International Projects",
+        description: "Azerbaijan Technical University actively participates in various international research and educational projects, fostering global collaboration and enhancing institutional capacity.",
+        projects: [
+          {
+            id: 1,
+            title: "Enhancement of internal quality assurance of education in teaching, learning and assessment in HEIs of Azerbaijan and Russia (IQAinAR)",
+            fundedBy: "EU ERASMUS+ CBHE",
+            grantNo: "619477-EPP-1-2020-1-NL-EPPKA2-CBHE-JP",
+            period: "15/01/2021 - 14/01/2025",
+            objective: "The IQAinAR project aims to contribute to the enhancement and development of the internal quality assurance in HEIs in Azerbaijan in reference with international (EU) quality standards as benchmark while at the same time strengthening the HEIs towards local, regional and national policies and strategies implementation.",
+            website: "https://www.iqainar.org/",
+            tasks: [
+              "Benchmark analysis of the internal QA in HE in Europe",
+              "Baseline study of the internal Quality Assurance (IQA) at local/regional level (AZ)",
+              "Development and piloting internal Quality Assurance enhancement strategy in HEI (AZ)",
+              "Creation of IQA Indicators (IQAI) and assessment scale",
+              "Development of trainings programs and certification of HE experts in QA",
+              "Creation and launching of online platform with open access for HEIs"
+            ],
+            aztuImplementation: "Survey was conducted among the students and results are being analyzed. Pilot indicators were assigned to AzTU and is being applied in one of the faculties of the university. Article was developed by the representatives of the university for dissemination of results."
+          },
+          {
+            id: 2,
+            title: "Developing Research Capacity through Institutional Repositories Network in Azerbaijan (DIRNA)",
+            fundedBy: "EU ERASMUS+ CBHE",
+            grantNo: "101082124",
+            period: "01/01/2023 - 31/12/2025",
+            objective: "The project aims at building capacity in management of research output via establishing Open Access Institutional Repositories Network (OAIR).",
+            website: "https://dirna.khazar.org/",
+            tasks: [
+              "Design and build capacity for development of 7 OAIRs",
+              "Prepare training and teaching material meeting the local needs",
+              "Scale-up the Khazar University IR to serve as a flexible central repository",
+              "Maximize the visibility, use and impact of the scientific and academic output",
+              "Provide access to teaching and learning materials on inclusive education for disabled person",
+              "Produce or provide storage for the electronic publications of the Azerbaijani HEIs"
+            ],
+            aztuImplementation: "Study tours are organized to study best experience of Turkey, Italy and Norway partner institutions."
+          },
+          {
+            id: 3,
+            title: "Enhancing Sustainable Entrepreneurial Ecosystem in Higher Education of Azerbaijan (ENGAGE)",
+            fundedBy: "EU ERASMUS+ CBHE",
+            grantNo: "101083269",
+            period: "01/01/2023 - 31/12/2025",
+            objective: "The general objective of the project is to enhance the entrepreneurial mindset and environment in higher education by integrating the entrepreneurship in governance, management and curriculum.",
+            website: "https://engage.edu.az/",
+            tasks: [
+              "Establishment, restructuring and modernization of entrepreneurship and innovation center at AzTU",
+              "Equipping the established center with the appropriate equipment",
+              "Creation of a Working Group to analyse the current situation of entrepreneurial activities",
+              "To support the development of benchmark methodology and questionnaire",
+              "Organizing visits to partner universities from the EU to study best practices",
+              "Development of a strategic plan for innovation and entrepreneurship",
+              "Preparation of awarding rules for entrepreneurship in the HE system"
+            ],
+            aztuImplementation: "Kickoff meeting was held and duties and tasks of the project were discussed. Entrepreneurial experience of HEIs in Sweden, Estonia, Poland were studied."
+          },
+          {
+            id: 4,
+            title: "Increasing girls` participation in engineering education for sustainable development",
+            fundedBy: "UNESCO’s Participation program for 2020/2021",
+            grantNo: "1290116031",
+            period: "13/12/2022 - 30/04/2022",
+            objective: "Studying the international experience for increasing the participation of girls in engineering education and engineering-oriented professional fields, identifying opportunities and challenges for women in this field.",
+            website: "https://www.unesco.az/az",
+            tasks: [
+              "Increasing public awareness to eliminate stereotypes about girls’ engineering education",
+              "Conducting training in accordance with labor market requirements",
+              "Formation of the first experience in the field of engineering for female students",
+              "Organization of 'Everyone is Strong in Engineering' conference",
+              "STEM, Engineering design, Python tutorials for school girls",
+              "Career Days and workshop on developing successful CVs"
+            ],
+            aztuImplementation: "In total, 64 students from 4 higher education institutions had participated in the trainings."
+          },
+          {
+            id: 5,
+            title: "Bachelor, Professional Masters in Open and Distance Learning for Strategic Quality Management and Risk Management in Health in Russia, Kazakhstan and Azerbaijan (LMQsante)",
+            fundedBy: "EU ERASMUS + CBHE",
+            grantNo: "618860-EPP-1-2020-1-EL-EPPKA2-CBHE-JP",
+            period: "15/01/2021 - 14/11/2024",
+            objective: "To increase the potential of universities in the training of specialists in quality assurance and risk management in healthcare in Azerbaijan.",
+            website: "https://www.lmqs-erasmus.eu/",
+            tasks: [
+              "New study program on quality and risk management in health care services",
+              "Open a resource center equipped for distance format education",
+              "Preparation of the accreditation file of new specialties",
+              "Achieving wide dissemination and outreach of the new majors"
+            ],
+            aztuImplementation: "Master's degree major on 'Quality and risk management in healthcare' was opened. Equipment was purchased for the Economics and Management faculty. Five representatives and teachers participated in trainings in Greece."
+          },
+          {
+            id: 6,
+            title: "Establishment of Rectors Conference in Azerbaijan (ECAR)",
+            fundedBy: "EU ERASMUS + CBHE",
+            grantNo: "619354-EPP-1-2020-1-AZ-EPPKA2-CBHE-JP",
+            period: "15/01/2021 - 14/01/2025",
+            objective: "To establish the Rectors Conference in order to generalize and sharing positive experience in development of the educational institutions, higher and post-higher education.",
+            website: "http://ecar.net.az/",
+            tasks: [
+              "Promote scientific, educational, cultural and economic cooperation between Azerbaijan HEIs",
+              "Development of principles and standards in the higher education system",
+              "Support the establishment of a National Education network",
+              "Formulate and present opinions on important issues for science and education"
+            ],
+            aztuImplementation: "European experience was studied from Lithuania, Poland, Sweden, Belgium, Spain, Portugal. The internal management structure and regulations have been developed. Committees have been organized and staff determined."
+          },
+          {
+            id: 7,
+            title: "Enhancing capacity of universities to initiate and to participate in clusters development on innovation and sustainability principles (UniClaD)",
+            fundedBy: "EU ERASMUS + CBHE",
+            grantNo: "609944-EPP-1-2019-1-LT-EPPKA2-CBHE-JP",
+            period: "15/01/2020 - 19/11/2024",
+            objective: "To develop the potential of universities as an integral part of agro-industrial clusters and creation of innovative centers.",
+            website: "http://uniclad.net/",
+            tasks: [
+              "Studying European cluster experience",
+              "Development of the value chain: master - PhD - researcher",
+              "Increasing capacity for business, science and education to work within clusters",
+              "Creation of conditions for better integration of innovations into agro-industrial production"
+            ],
+            aztuImplementation: "Innovative Technologies Center was established at AzTU. Fodder Calculator pilot project was developed for farmers. Representatives attended study tours in Lithuania and Hungary."
+          },
+          {
+            id: 8,
+            title: "Crisis and Risks Engineering for Transport Service (CRENG)",
+            fundedBy: "EU ERASMUS + CBHE",
+            grantNo: "598218-EPP-1-2018-1-PL-EPPKA2-CBHE-JP",
+            period: "15/11/2018 - 15/07/2022",
+            objective: "Implementation of personnel training with modern knowledge and skills in the field of risk and crisis engineering in transport services.",
+            website: "www.creng.eu",
+            tasks: [
+              "Development of a new master's program and teaching materials",
+              "Development and use of 'project-based learning' methodology",
+              "Opening a service office and laboratory for crisis and risk engineering",
+              "Establishing University-Industry cooperation based on 'skills wallet' approach"
+            ],
+            aztuImplementation: "New study program at master degree was opened. 13 courses developed. CRENG service office and laboratory equipped with modern computer equipment was opened."
+          },
+          {
+            id: 9,
+            title: "Restructuring and development of doctoral studies in Azerbaijan in line with requirements of European higher education area (NIZAMI)",
+            fundedBy: "EU ERASMUS + CBHE",
+            grantNo: "561784-EPP-1-2015-1-FR-EPPKA2-CBHE-SP",
+            period: "01/10/2015 - 01/10/2018",
+            objective: "To establish doctoral schools within higher education institutions and achieve adaptation of doctoral education’s management at the national level.",
+            website: "https://doktorantura.az/",
+            tasks: [
+              "Establishment of doctoral schools within HEIs",
+              "Ensuring high standards and compliance with European standards",
+              "Sharing tools for professionalization and internationalization",
+              "Increasing professional skills of doctoral students"
+            ],
+            aztuImplementation: "Structuring of doctoral education has been carried out. NIZAMI self-assessment tool and National Management Portal were created. Guidebook for doctoral students prepared."
+          },
+          {
+            id: 10,
+            title: "Professional license in open and distance learning for the energy and environmental performance of buildings in the Russian Federation, China and Azerbaijan (LPEB)",
+            fundedBy: "EU ERASMUS + CBHE",
+            grantNo: "561732-EPP-1-2015-1-FR-EPPKA2-CBHE-JP",
+            period: "15/10/2015 - 14/10/2018",
+            objective: "Improvement of curricular and contents of energy efficiency and environmental protection subjects.",
+            website: "www.lpeb-erasmus.eu",
+            tasks: [
+              "Support reforms and modernization in HEIs",
+              "Improving the quality of higher education",
+              "Improvement of subject programs and contents",
+              "Creation of resource centers for buildings’ energy efficiency"
+            ],
+            aztuImplementation: "Specialization in 'Heat Energy' adapted and 'Renewable energy sources' opened at master level. 'Mastery Center' was created. Teachers participated in trainings in Paris and Lyon."
+          },
+          {
+            id: 11,
+            title: "Professional Bachelor and Master Programs in Hotel Management for Development of Tourism Industry in Georgia, Azerbaijan and Moldova (LMPH)",
+            fundedBy: "EU TEMPUS program",
+            grantNo: "N° 544191 Tempus 1-2013-1-PT JPCR",
+            period: "01/05/2014 - 30/05/2017",
+            objective: "Creating professionalized education and training programs (master degree) in hospitality and hotel management.",
+            website: "http://tempus.lmph.eu/",
+            tasks: [
+              "Professionalize education programs in hospitality per Bologna process",
+              "Create bachelor and two professional masters degrees",
+              "Improve employability of students in management positions",
+              "Create center of excellence / resource center"
+            ]
+          },
+          {
+            id: 12,
+            title: "Adaptation of engineering studies to the Bologna Process in Azerbaijan Universities",
+            fundedBy: "EU TEMPUS program",
+            grantNo: "516678-TEMPUS-1-2011-1-DE-TEMPUS-JPCR",
+            period: "2011-2015",
+            objective: "Accreditation certificates for 2 master's and 2 bachelor's degree majors presented to AzTU: Automation of processes (M), Electrical Power Engineering (M), Automation & Control (B), Electrical Engineering (B)."
+          }
+        ],
+        details: {
+          fundedBy: "Funded by",
+          grantNo: "Grant No",
+          period: "Period",
+          objective: "General Objective",
+          website: "Website",
+          tasks: "Project Tasks",
+          aztuImplementation: "AzTU Implementation"
+        },
+        related: [
+          { title: "Dual Degree Programs", href: "/internationalization/international-partnership/double-degree-programs" },
+          { title: "Collaborations", href: "/community/university-cooperation/collaborations" },
+        ]
+      },
+      partnerUniversities: {
+        eyebrow: "Internationalization",
+        title: "Partner Universities",
+        subtitle: "A global network of academic excellence.",
+        breadcrumb: "Partner Universities",
+        description: "Azerbaijan Technical University (AzTU) has built a robust global network of partner universities, reflecting its commitment to internationalization and world-class engineering education. Through bilateral cooperation agreements spanning Europe, Asia, CIS countries, and beyond, AzTU collaborates with leading institutions in areas such as joint programs, academic mobility, and scientific research. These partnerships create invaluable opportunities for students, academic staff, and the scientific community at large.",
+        tableHeaders: {
+          no: "№",
+          logo: "Logo",
+          university: "University",
+          country: "Country",
+          agreementType: "Type of agreement",
+          date: "Date",
+          website: "Website"
+        },
+        related: [
+          { title: "Dual Degree Programs", href: "/internationalization/international-partnership/double-degree-programs" },
+          { title: "International Projects", href: "/internationalization/international-partnership/international-projects" },
+        ]
+      }
+    },
+
     community: {
       honoraryDoctors: {
         eyebrow: "COMMUNITY",

@@ -43,9 +43,22 @@ export default function FacultyDetailLayout({ children, params }: Props) {
                 <div className="absolute inset-0 opacity-[0.05] pointer-events-none z-10" 
                      style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
-                {/* Background Image of AzTU */}
+                {/* Video Background */}
+                <div className="absolute inset-0 z-0">
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-overlay"
+                    >
+                        <source src="/heroBgVideos/academic-hero-vide.mp4" type="video/mp4" />
+                    </video>
+                </div>
+
+                {/* Background Image of AzTU - fallback or overlay */}
                 <div 
-                    className="absolute inset-0 z-0 opacity-20 grayscale hover:grayscale-0 transition-all duration-1000"
+                    className="absolute inset-0 z-0 opacity-10 grayscale"
                     style={{
                         backgroundImage: 'url("/aztu.png")',
                         backgroundSize: 'cover',

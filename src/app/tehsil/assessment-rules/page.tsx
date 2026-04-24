@@ -31,6 +31,7 @@ export default function AssessmentRulesPage() {
                     { label: data.breadcrumb }
                 ]}
                 eyebrow={data.eyebrow}
+                videoSrc="/heroBgVideos/academic-hero-vide.mp4"
             />
 
             <PageContainer>

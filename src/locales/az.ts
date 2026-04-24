@@ -1171,6 +1171,286 @@ const az = {
       }
     },
 
+    internationalization: {
+      doubleDegreePrograms: {
+        eyebrow: "Beynəlmiləlləşmə",
+        title: "İkili Diplom Proqramları",
+        subtitle: "AzTU və xarici tərəfdaş universitetlərdən iki beynəlxalq səviyyədə tanınan diplom əldə edin.",
+        breadcrumb: "İkili Diplom Proqramları",
+        description: "Azərbaycan Texniki Universitetinin İkili Diplom Proqramları tələbələrə bir təhsil müddəti ərzində iki beynəlxalq səviyyədə tanınan diplom əldə etmək imkanı yaradır — biri AzTU-dan, digəri isə xarici tərəfdaş universitetdən. Bu proqramlar universitetin Beynəlmiləlləşmə Siyasəti və 2030 İnkişaf Strategiyası ilə uyğun şəkildə hazırlanmışdır və bakalavr, magistr və doktorantura səviyyələrində qlobal rəqabətə davamlı təhsil təqdim etmək məqsədi daşıyır.\n\nİkili diplom proqramları çərçivəsində tələbələr: İki universitetin akademik üstünlüklərindən faydalanır; Fərqli mədəni mühitlərdə təhsil təcrübəsi qazanır; Azərbaycan və beynəlxalq səviyyədə tanınan diplomlarla məzun olurlar. Bu isə onlara qlobal əmək bazarında əhəmiyyətli üstünlük qazandırır.",
+        currentProgramsTitle: "Mövcud İkili Diplom Proqramları",
+        countries: [
+          {
+            name: "Türkiyə",
+            programs: [
+              "Ankara Universiteti — Elektrik və Elektronika Mühəndisliyi (Bakalavr, 2022-ci ildən)",
+              "Qazi Universiteti — Kompüter Mühəndisliyi (Bakalavr, 2023-cü ildən)"
+            ]
+          },
+          {
+            name: "Almaniya",
+            programs: [
+              "Brandenburg Texnologiya Universiteti — Mexanika və Materiallar Mühəndisliyi (Magistr)",
+              "Brandenburg Texnologiya Universiteti — Birgə Doktorantura Proqramı (PhD)"
+            ]
+          },
+          {
+            name: "İsrail",
+            programs: [
+              "Bar-İlan Universiteti — Elektrik və Elektronika Mühəndisliyi (Nano və Mikroelektronika) (Magistr, 2025-ci ildən)"
+            ]
+          }
+        ],
+        whyChooseTitle: "Niyə İkili Diplom Proqramını seçməlisiniz?",
+        benefits: [
+          "İki beynəlxalq səviyyədə tanınan diplom əldə edirsiniz",
+          "İki ölkədə yerləşən aparıcı universitetlərdə təhsil alırsınız",
+          "Qlobal akademik və peşəkar şəbəkə qurursunuz",
+          "Beynəlxalq əmək bazarında karyera imkanlarınızı genişləndirirsiniz",
+          "Multikultural bacarıqlar və dil bilikləri əldə edirsiniz"
+        ],
+        related: [
+          { title: "Əməkdaşlıqlar", href: "/icma/universitet-emekdasliqi/collaborations" },
+          { title: "Mübadilə Proqramları", href: "/tehsil/magistratura/exchange-programs" },
+        ]
+      },
+      internationalProjects: {
+        eyebrow: "Beynəlmiləlləşmə",
+        title: "Beynəlxalq Layihələr",
+        subtitle: "Tədqiqat və innovasiya tərəfdaşlıqlarının qlobal şəbəkəsi.",
+        breadcrumb: "Beynəlxalq Layihələr",
+        description: "Azərbaycan Texniki Universiteti müxtəlif beynəlxalq tədqiqat və təhsil layihələrində fəal iştirak edərək qlobal əməkdaşlığı təşviq edir və institusional potensialı artırır.",
+        projects: [
+          {
+            id: 1,
+            title: "Azərbaycan və Rusiya ali təhsil müəssisələrində tədris, təlim və qiymətləndirmə prosesinin daxili keyfiyyat təminatının təkmilləşdirilməsi (IQAinAR)",
+            fundedBy: "EU ERASMUS+ proqramı",
+            grantNo: "619477-EPP-1-2020-1-NL-EPPKA2-CBHE-JP",
+            period: "15/01/2021 - 14/01/2025",
+            objective: "Layihənin məqsədi universitet səviyyəsində tədrisin keyfiyyətini (müəllim meyarı - müəllimlərin peşəkar bacarıqlarını inkişaf etdirmək) və öyrənmə keyfiyyətini (tələbə meyarı - öyrənmə qabiliyyəti, ömürboyu təhsil, motivasiya, tələbələrin yumşaq və sərt bacarıqları) artırmaq, müəllimlər və tələbələr tərəfindən aparılan tədqiqatların keyfiyyətini yüksəltməkdir.",
+            website: "https://www.iqainar.org/",
+            tasks: [
+              "Avropanın Ali təhsil müəssisələrində ali təhsildə daxili keyfiyyət təminatının etalon təhlili",
+              "Daxili Keyfiyyət Təminatının (DKT) yerli/regional səviyyədə ilkin öyrənilməsi",
+              "ATM-də Daxili Keyfiyyət təminatının artırılması strategiyasının inkişafı və sınaqdan keçirilməsi",
+              "Daxili keyfiyyət təminatı göstəricilərinin və qiymətləndirmə indikatorlrının yaradılması",
+              "Təlim proqramlarının hazırlanması və AT mütəxəssislərinin QA sertifikatlaşdırılması",
+              "Ali təhsil müəssisələri üçün sərbəst girişi olan onlayn platformanın yaradılması"
+            ],
+            aztuImplementation: "Layihə çərçivəsində İspaniya təcrübəsi öyrənilmiş və keyfiyyət indikatorlarının pilot olaraq tərəfdaş universitetlərində tətbiqi icra edilməkdədir."
+          },
+          {
+            id: 2,
+            title: "Azərbaycan İnstitusional Repozitorlar Şəbəkəsi vasitəsilə Azərbaycanda Tədqiqat Potensialının artırılması (DIRNA)",
+            fundedBy: "EU ERASMUS+ proqramı",
+            grantNo: "101082124",
+            period: "101082124",
+            objective: "Layihənin məqsədi açıq girişli Azərbaycan İnstitsional Repositorlar Şəbəkəsinin qurulması yolu ilə Azərbaycanın aparıcı Ali təhsil müəssisələrində tədqiqat nəticələrinin idarəolunması sahəsində potensialın artırılmasıdır.",
+            website: "http://dirna.khazar.org/",
+            tasks: [
+              "Açıq Girişli Azərbaycan İnstitsional Repozitorlar Şəbəkəsinin qurulması üçün layihələndirmə və potensialın artırılması",
+              "Müvafiq potensialın formalaşdırılması məqsədilə təlim və tədris materiallarının hazırlanması",
+              "Xəzər Universitetinin İnformasiya resursları mərkəzindən repozitor kimi istifadə olunmaqla istifadə həcminin genişləndirilməsi",
+              "Elmi və akademik nəticələrin geniş yayılmasını və təsirini maksimallaşdırmaq",
+              "Sağlamlıq imkanları məhdud insanlar üçün inklüziv təhsil üzrə materiallara əlçatanlığın təmin olunması",
+              "Azərbaycanın ali təhsil müəssisələri üçün elektron nəşriyyatların saxlanması üçün sahənin yaradılması"
+            ],
+            aztuImplementation: "Layihə çərçivəsində repozitorlar şəbəkəsinin qurulması üçün Türkiyə təcrübəsi öyrənilmiş, İtaliya universitetlərində repozitorlar şəbəkəsinin öyrənilməsi üçün hazırlıq işləri görülür."
+          },
+          {
+            id: 3,
+            title: "Azərbaycan ali təhsil müəssisələrində sahibkarlıq ekosisteminin gücləndirilməsi (ENGAGE)",
+            fundedBy: "EU ERASMUS+ proqramı",
+            grantNo: "101083269",
+            period: "01/01/2023-31/12/2025",
+            objective: "Layihənin əsas məqsədi Azərbaycanın müvafiq ali təhsil müəssisələrində sahibkarlıq ekosisteminin gücləndirilməsindən, akademik heyətin və tələbələrin sahibkarlıq düşüncəsinin inkişaf etdirilməsindən ibarətdir.",
+            website: "https://engage.edu.az/",
+            tasks: [
+              "AzTU-da sahibkarlıq və İnnovasiya mərkəzinin yaradılması, restrukturizasiyası və modernləşdirilməsi",
+              "Yaradılmış mərkəzin müvafiq avadanlıqlarla təchiz olunması",
+              "Sahibkarlıq fəaliyyətlərinə dair mövcud vəziyyətin təhlili üzrə İşçi Qrupun yaradılması",
+              "Bençmark metodologiyasının və sorğu anketinin hazırlanmasına dəstək olmaq",
+              "Avropa İttifaqından olan tərəfdaş universitetlərə səfərlərin təşkili",
+              "İnnovasiya və sahibkarlıq üzrə strateji planın hazırlanması",
+              "Ali təhsil sistemində sahibkarlıq üzrə mükafatlandırma qaydalarının hazırlanması"
+            ],
+            aztuImplementation: "Layihəyə başlama görüşü keçirilmiş və tapşırıqlar müzakirə edilmişdir. İsveç, Estoniya, Polşa və İspaniya təcrübəsi öyrənilmişdir."
+          },
+          {
+            id: 4,
+            title: "Davamlı inkişaf üçün mühəndislik təhsilində qızların iştirakının artırılması layihəsi",
+            fundedBy: "UNESCO-nun 2020/2021-ci illər üzrə İştirak Proqramı",
+            grantNo: "1290116031",
+            period: "13/12/2021-30/04/2022",
+            objective: "Layihənin əsas məqsədi mühəndislik təhsilində və mühəndislik yönümlü peşə sahələrində qızların iştirakının artırılması üçün beynəlxalq təcrübənin öyrənilməsidir.",
+            website: "https://www.unesco.az/az",
+            tasks: [
+              "Cəmiyyətdə mövcud olan stereoptiplərin aradan qaldırılması üçün məlumatlılığın artırılması",
+              "Əmək bazarının tələblərinə uyğun təlimlərin keçirilməsi",
+              "Şagird qızlarda mühəndislik sahəsində ilk təcrübənin formalaşdırılması",
+              "“Mühəndislikdə Hər Kəs Güclüdür” mövzusu üzrə konfransın keçirilməsi",
+              "STEM, Mühəndislik dizaynı, Python təlimlərinin təşkili",
+              "Tələbələr üçün Karyera Günləri seminarlarının keçirilməsi"
+            ],
+            aztuImplementation: "Ümumilikdə, 4 ali təhsil müəssisəsindən 64 tələbə təlimlərdə iştirak edib."
+          },
+          {
+            id: 5,
+            title: "Rusiya Federasiyası, Qazaxıstan və Azərbaycanda səhiyyədə strateji keyfiyyət menecmenti və risklərin idarə olunması üzrə açıq və distant təhsil formatında bakalavr və magistr hazırlığı layihəsi (LMQS)",
+            fundedBy: "Avropa Birliyinin ERASMUS + CBHE",
+            grantNo: "618860-EPP-1-2020-1-EL-EPPKA2-CBHE-JP",
+            period: "15/01/2021 - 14/11/2024",
+            objective: "Layihənin əsas məqsədi Azərbaycanda səhiyyədə keyfiyyətin təmini və riskin idarə olunması üzrə mütəxəssis hazırlığında universitetlərin potensialının artırılmasıdır.",
+            website: "https://www.lmqs-erasmus.eu/",
+            tasks: [
+              "Bakalvr və magistr pilləsində yeni ixtisasın açılması",
+              "Distant formatda təhsilin verilməsi üçün resurs mərkəzinin açılması",
+              "Akademik heyətin müvafiq sahədə potensialının artırılması",
+              "Yeni ixtisasların akkreditasiya dosyesinin hazırlanması",
+              "Yeni ixtisasın ictimaiyyət və səhiyyə işçiləri arasında təbliği"
+            ],
+            aztuImplementation: "“Səhiyyədə keyfiyyətin və risklərin idarə olunması” üzrə magistr ixtisaslaşması açılmışdır. Avadanlıq alışı icra edilmişdir. AzTU nümayəndələri Yunanıstanda strateji təlimlərdə iştirak etmişdir."
+          },
+          {
+            id: 6,
+            title: "Azərbaycanda Rektorlar Konfransının yaradılması layihəsi (ECAR)",
+            fundedBy: "Avropa Birliyinin ERASMUS + CBHE",
+            grantNo: "619354-EPP-1-2020-1-AZ-EPPKA2-CBHE-JP",
+            period: "15/01/2021- 14/01/2025",
+            objective: "Layihənin əsas məqsədi Təhsil Nazirliyinin bilavasitə iştiraki ilə ali təhsil müəssisələri kollektiv üzvlərinin fəaliyyətlərini əlaqələndirmək üçün Rektorlar Konfransını yaratmaqdır.",
+            website: "http://ecar.net.az/",
+            tasks: [
+              "Ali Təhsil Müəssisələri arasında elmi, təhsil və mədəni əməkdaşlığı təşviq etmək",
+              "Ali təhsil sistemində prinsip və standartların inkişafı",
+              "Milli Təhsil şəbəkəsi yaratmağa dəstək olmaq",
+              "Azərbaycan elminin inkişafı üçün vacib olan məsələlər barədə rəylər təqdim etmək"
+            ],
+            aztuImplementation: "Litva, Polşa, İsveç, Belçika, İspaniya, Portuqaliya təcrübəsi öyrənilmişdir. Rektorlar Konfransının daxili idarəetmə strukturu və əsasnaməsi hazırlanmışdır. Komitələr təşkil edilmişdir."
+          },
+          {
+            id: 7,
+            title: "İnnovasiya və dayanıqlılıq prinsipləri ilə klasterlərin işlənməsinə başlamaqda və iştirakda universitetlərin potensialının artırılması layihəsi (UniClaD)",
+            fundedBy: "Avropa Birliyinin ERASMUS + CBHE",
+            grantNo: "609944-EPP-1-2019-1-LT-EPPKA2-CBHE-JP",
+            period: "15/01/2020- 19/11/2024",
+            objective: "Aqro-sənaye klasterlərinin əsas hissəsi kimi universitetlərin potensialının inkişaf etdirilməsi və innovasiya mərkəzlərinin yaradılmasıdır.",
+            website: "http://uniclad.net/",
+            tasks: [
+              "Avropanın klaster təcrübəsinin öyrənilməsi",
+              "Dəyər zəncirin işlənib hazırlanması: magistr - PhD - tədqiqatçı",
+              "Biznes, elm və təhsilin klasterlər daxilində işləməsi üçün potensialın artırılması",
+              "İnnovasiyaların aqro-sənaye istehsalatına inteqrasiyası üçün şəraitin yaradılması"
+            ],
+            aztuImplementation: "İnnovativ Texnologiyalar Mərkəzi yaradılmışdır. Yem Kalkulyatoru pilot layihəsi işlənilmişdir. 6 nümayəndə Litva və Macarıstanın təcrübəsi ilə tanış olmuşlar."
+          },
+          {
+            id: 8,
+            title: "Nəqliyyat xidmətlərində böhran və risklərin mühəndisliyi layihəsi (CRENG)",
+            fundedBy: "Avropa Birliyinin ERASMUS + CBHE",
+            grantNo: "598218-EPP-1-2018-1-PL-EPPKA2-CBHE-JP",
+            period: "15/11/2018 – 15/07/2022",
+            objective: "Nəqliyyat xidmətlərində risk və böhran mühəndisliyi sahəsində sənayenin ehtiyaclarına yönəlik kadr hazırlığının yerinə yetirilməsidir.",
+            website: "www.creng.eu",
+            tasks: [
+              "Yeni magistr proqramının və tədris materiallarının hazırlanması",
+              "“Layihə üzərindən öyrənmə” metodikasının hazırlanması",
+              "Xidmət ofisinin və laboratoriyasının açılması",
+              "“Bacarıqlar cüzdanı” yanaşması əsasında Universitet-Sənaye əməkdaşlığının qurulması"
+            ],
+            aztuImplementation: "Yeni magistr ixtisası açılmışdır. 13 fənn üzrə tədris materialları işlənib hazırlanmışdır. CRENG xidməti ofisi və laboratoriyası açılmışdır."
+          },
+          {
+            id: 9,
+            title: "Azərbaycanda doktorantura təhsilinin təkmilləşdirilməsi və Avropa Ali Təhsil Məkanının tələblərinə uyğunlaşdırılması (NİZAMI)",
+            fundedBy: "Avropa Birliyinin ERASMUS + CBHE",
+            grantNo: "561784-EPP-1-2015-1-FR-EPPKA2-CBHE-SP",
+            period: "01/10/2015 – 01/10/2018",
+            objective: "Azərbaycanda doktorantura təhsilində yüksək standartların təmin edilməsi və doktorantura məktəblərinin qurulmasıdır.",
+            website: "https://doktorantura.az/",
+            tasks: [
+              "Ali təhsil müəssisələri daxilində doktorantura məktəblərinin qurulması",
+              "Azərbaycan doktorantura təhsilinin Avropa standartlarına uyğunluğunun artırılması",
+              "Doktorantura təhsilinin professionallaşması və beynəlmiləlləşməsi üçün vasitələrin paylaşılması",
+              "Doktorantların peşə bacarıqlarının artırılması"
+            ],
+            aztuImplementation: "Doktorantura təhsilinin strukturlaşdırılması icra edilmişdir. NİZAMI aləti və Milli İdarəetmə Portalı yaradılmışdır. Doktorantlar üçün bələdçi kitabı hazırlanmışdır."
+          },
+          {
+            id: 10,
+            title: "Rusiya Federasiyası, Çin və Azərbaycanda binaların enerji və ekoloji səmərəliliyi üzrə açıq və distant təhsil formatında peşə bakalavrı (LPEB)",
+            fundedBy: "Avropa Birliyinin ERASMUS + CBHE",
+            grantNo: "561732-EPP-1-2015-1-FR-EPPKA2-CBHE-JP",
+            period: "15/10/2015- 14/10/2018",
+            objective: "Enerji səmərəliliyi və ətraf mühitin qorunması üzrə fənn proqramlarının və onların məzmunlarının təkmilləşdirilməsi.",
+            website: "www.lpeb-erasmus.eu",
+            tasks: [
+              "ATM-lərdə islahatlara və modernləşmələrə dəstək göstərmək",
+              "Ali təhsilin keyfiyyətinin yüksəldilməsi",
+              "Fənn proqramlarının və onların məzmunlarının təkmilləşdirilməsi",
+              "Binaların enerji səmərəliliyinin inkişafı üçün resurs mərkəzlərinin yaradılması"
+            ],
+            aztuImplementation: "“İstilik energetikası” kafedrasında mövcud ixtisasın uyğunlaşdırılması yerinə yetirilmiş, magistr pilləsində isə “Bərpa olunan enerji mənbələri” ixtisaslaşması açılmışdır."
+          },
+          {
+            id: 11,
+            title: "Azərbaycan, Gürcüstan və Moldovanın turizm sənayesinin inkişafı üçün mehmanxana işinin menecmenti üzrə bakalavr-magistr hazırlığı (LMPH)",
+            fundedBy: "Avropa Birliyinin TEMPUS proqramı",
+            grantNo: "N° 544191 Tempus 1-2013-1-PT JPCR",
+            period: "01/05/2014 – 30/05/2017",
+            objective: "Qonaqlama və otel idarəçiliyi üzrə peşəkar təhsil və təlim proqramlarının (magistr dərəcəsi) yaradılmasıdır.",
+            website: "http://tempus.lmph.eu/",
+            tasks: [
+              "Otel sahəsində təhsil və təlim proqramlarını peşəkarlaşdırmaq",
+              "Bakalavr və iki peşəkar magistr dərəcəsi yaratmaq",
+              "Tələbələrin işlə təmin olunmasını yaxşılaşdırmaq",
+              "Mükəmməllik mərkəzi / resurs mərkəzi yaratmaq"
+            ]
+          },
+          {
+            id: 12,
+            title: "Azərbaycan Universitetlərində mühəndislik təhsilinin Boloniya prosesinə uyğunlaşdırılması",
+            fundedBy: "Avropa Birliyinin TEMPUS proqramı",
+            grantNo: "516678‐TEMPUS‐1‐2011‐1‐DE‐TEMPUS‐JPCR",
+            period: "2011-2015",
+            objective: "Avropa İttifaqının Akkreditasiya Agentliyi tərəfindən AzTU-ya 2 magistr və 2 bakalavr ixtisası üzrə Akkreditasiya sertifikatları təqdim edilmişdir."
+          }
+        ],
+        details: {
+          fundedBy: "Maliyyələşdirən",
+          grantNo: "Qrant No",
+          period: "İcra müddəti",
+          objective: "Əsas məqsəd",
+          website: "İnternet səhifə",
+          tasks: "Layihənin vəzifələri",
+          aztuImplementation: "AzTU tərəfindən görülmüş işlər"
+        },
+        related: [
+          { title: "İkili Diplom Proqramları", href: "/beynelmillesme/beynelxalq-terefdasliq/ikili-diplom-proqramlari" },
+          { title: "Əməkdaşlıqlar", href: "/icma/universitet-emekdasliqi/collaborations" },
+        ]
+      },
+      partnerUniversities: {
+        eyebrow: "Beynəlmiləlləşmə",
+        title: "Tərəfdaş Universitetlər",
+        subtitle: "Akademik mükəmməlliyin qlobal şəbəkəsi.",
+        breadcrumb: "Tərəfdaş Universitetlər",
+        description: "Azərbaycan Texniki Universitetinin (AzTU) qlobal tərəfdaş universitetlər şəbəkəsi onun beynəlmiləlləşmə və dünya səviyyəli mühəndislik təhsilinə sadiqliyini əks etdirir. Avropa, Asiya, MDB ölkələri və digər regionları əhatə edən ikitərəfli əməkdaşlıq müqavilələri vasitəsilə AzTU aparıcı universitetlərlə birgə proqramlar, akademik mobillik və elmi tədqiqat sahələrində əməkdaşlıq edir. Bu əməkdaşlıqlar tələbələr, akademik heyət və ümumilikdə elmi ictimaiyyət üçün əvəzsiz imkanlar yaradır.",
+        tableHeaders: {
+          no: "№",
+          logo: "Loqo",
+          university: "Universitet",
+          country: "Ölkə",
+          agreementType: "Müqavilə növü",
+          date: "Tarix",
+          website: "Vebsayt"
+        },
+        related: [
+          { title: "İkili Diplom Proqramları", href: "/beynelmillesme/beynelxalq-terefdasliq/ikili-diplom-proqramlari" },
+          { title: "Beynəlxalq Layihələr", href: "/beynelmillesme/beynelxalq-terefdasliq/beynelxalq-layiheler" },
+        ]
+      }
+    },
+
     community: {
       honoraryDoctors: {
         eyebrow: "İCMA",

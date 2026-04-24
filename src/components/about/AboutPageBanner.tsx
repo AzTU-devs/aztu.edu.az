@@ -22,9 +22,11 @@ interface AboutPageBannerProps {
 export default function AboutPageBanner({ eyebrow, title, subtitle, breadcrumbs, videoSrc }: AboutPageBannerProps) {
     const pathname = usePathname();
     
-    // Auto-detect research paths
+    // Auto-detect specific paths for videos
     const isResearchPage = pathname.startsWith('/az/tedqiqat') || pathname.startsWith('/en/research');
-    const finalVideoSrc = videoSrc || (isResearchPage ? "/heroBgVideos/research.mp4" : null);
+    const isAcademicPage = pathname.startsWith('/az/akademik') || pathname.startsWith('/en/academic') || pathname.includes('/faculties/') || pathname.includes('/tehsil/');
+    
+    const finalVideoSrc = videoSrc || (isResearchPage ? "/heroBgVideos/research.mp4" : isAcademicPage ? "/heroBgVideos/academic-hero-vide.mp4" : null);
 
     return (
         <div className="bg-[#0b1330] px-4 md:px-10 lg:px-20 pt-44 pb-20 relative overflow-hidden min-h-[450px] flex flex-col justify-end">
