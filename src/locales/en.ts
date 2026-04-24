@@ -70,6 +70,7 @@ const en = {
       lmsGuidelines: "LMS Guidelines",
       researchActivities: "Research Activities",
       researchInstitutes: "Research Institutes",
+      researchLaboratories: "Research Laboratories",
       researchPriorities: "Research Priorities",
       campusLife: "Campus Life",
       studentLife: "Student Life",

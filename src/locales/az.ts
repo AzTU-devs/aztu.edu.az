@@ -71,6 +71,7 @@ const az = {
       lmsGuidelines: "LMS Qaydaları",
       researchActivities: "Tədqiqat Fəaliyyəti",
       researchInstitutes: "Tədqiqat İnstitutları",
+      researchLaboratories: "Tədqiqat Laboratoriyaları",
       researchPriorities: "Tədqiqat Prioritetləri",
       campusLife: "Kampus Həyatı",
       studentLife: "Tələbə Həyatı",
