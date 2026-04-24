@@ -102,6 +102,7 @@ export function middleware(request: NextRequest) {
             else if (segments_rest[1]) newPath.push(segments_rest[1]);
             
             if (segments_rest[2] === "research-institutes") newPath.push("tedqiqat-institutlari");
+            else if (segments_rest[2] === "research-laboratories") newPath.push("tedqiqat-laboratoriyalari");
             else if (segments_rest[2] === "internal-grant-programs") newPath.push("daxili-qrant-proqramlari");
             else if (segments_rest[2] === "seminars-and-trainings") newPath.push("seminarlar-ve-telimler");
             else if (segments_rest[2] === "research-projects") newPath.push("tedqiqat-layiheleri");
@@ -127,6 +128,7 @@ export function middleware(request: NextRequest) {
             else if (segments_rest[1]) newPath.push(segments_rest[1]);
             
             if (segments_rest[2] === "tedqiqat-institutlari") segments_rest[2] = "research-institutes";
+            else if (segments_rest[2] === "tedqiqat-laboratoriyalari") segments_rest[2] = "research-laboratories";
             else if (segments_rest[2] === "daxili-qrant-proqramlari") segments_rest[2] = "internal-grant-programs";
             else if (segments_rest[2] === "seminarlar-ve-telimler") segments_rest[2] = "seminars-and-trainings";
             else if (segments_rest[2] === "tedqiqat-layiheleri") segments_rest[2] = "research-projects";
@@ -385,6 +387,7 @@ export function middleware(request: NextRequest) {
         if (segments_rest[1] === "conferences-and-events") segments_rest[1] = "konfranslar-ve-tedbirler";
         
         if (segments_rest[2] === "research-institutes") segments_rest[2] = "tedqiqat-institutlari";
+        else if (segments_rest[2] === "research-laboratories") segments_rest[2] = "tedqiqat-laboratoriyalari";
         else if (segments_rest[2] === "internal-grant-programs") segments_rest[2] = "daxili-qrant-proqramlari";
         else if (segments_rest[2] === "seminars-and-trainings") segments_rest[2] = "seminarlar-ve-telimler";
         else if (segments_rest[2] === "research-projects") segments_rest[2] = "tedqiqat-layiheleri";
