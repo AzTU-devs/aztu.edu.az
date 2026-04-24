@@ -159,6 +159,7 @@ export function getNavSections(t: Locale, lang: Lang): NavSection[] {
                     slug: lang === "az" ? "tedqiqat-fealiyyeti" : "research-activity",
                     subItems: [
                         { title: n.researchInstitutes, slug: lang === "az" ? "tedqiqat-institutlari" : "research-institutes" },
+                        { title: lang === "az" ? "Tədqiqat Laboratoriyaları" : "Research Laboratories", slug: lang === "az" ? "tedqiqat-laboratoriyalari" : "research-laboratories" },
                         { title: n.researchPriorities, slug: "tedqiqat-prioritetleri" },
                         { title: lang === "az" ? "Tədqiqat Layihələri" : "Research Projects", slug: lang === "az" ? "tedqiqat-layiheleri" : "research-projects" },
                         { title: lang === "az" ? "Əqli Mülkiyyət və Patentlər" : "Intellectual Property and Patents", slug: lang === "az" ? "eqli-mulkiyyet-ve-patentler" : "intellectual-property-and-patents" },
@@ -357,6 +358,7 @@ export const NAV_SECTIONS: NavSection[] = [
                 slug: "research-activity",
                 subItems: [
                     { title: "Research Institutes", slug: "research-institutes" },
+                    { title: "Research Laboratories", slug: "research-laboratories" },
                 ],
             },
             { title: "Research Priorities", slug: "priorities" },
