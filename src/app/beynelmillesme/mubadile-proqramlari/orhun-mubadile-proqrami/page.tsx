@@ -84,7 +84,7 @@ export default function OrhunExchangePage() {
                                     <LanguageIcon />
                                 </div>
                                 <h2 className="text-2xl lg:text-3xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight">
-                                    {t.nav.items.about || "About"}
+                                    {t.nav.sections.about}
                                 </h2>
                             </div>
                             <div className="space-y-6">
