@@ -30,7 +30,6 @@ export default function CreditSystemPage() {
                     { label: data.breadcrumb }
                 ]}
                 eyebrow={data.eyebrow}
-                // videoSrc="/heroBgVideos/academic-hero-vide.mp4"
             />
 
             <PageContainer>

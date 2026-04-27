@@ -151,7 +151,7 @@ export default function HeroSection() {
             {/* Content Container */}
             <div className="absolute inset-0 z-20 flex items-center px-6 md:px-[80px] xl:px-[120px] pt-20 lg:pt-0">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center w-full">
-                    
+
                     {/* LEFT: Main Text */}
                     <div className="lg:col-span-7 xl:col-span-8">
                         <AnimatePresence mode="wait">
@@ -171,8 +171,8 @@ export default function HeroSection() {
 
                                 <h1 className="text-4xl md:text-7xl xl:text-8xl font-black text-white mb-6 md:mb-10 leading-[0.9] tracking-tighter">
                                     {currentTitle.split(' ').map((word, i) => (
-                                        <motion.span 
-                                            key={i} 
+                                        <motion.span
+                                            key={i}
                                             className="inline-block mr-3 md:mr-6 last:mr-0 drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] last:text-transparent last:bg-clip-text last:bg-gradient-to-br last:from-white last:to-[#ee7c7e]"
                                             initial={{ opacity: 0, y: 40, rotateX: -45 }}
                                             animate={{ opacity: 1, y: 0, rotateX: 0 }}

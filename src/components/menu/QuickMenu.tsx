@@ -123,14 +123,13 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
             {isOpen && (
                 <div className="fixed inset-0 z-[1000] flex justify-end overflow-hidden">
                     {/* Overlay */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute inset-0 bg-[#0b1330]/80 backdrop-blur-sm" 
-                        onClick={onClose} 
+                        className="absolute inset-0 bg-[#0b1330]/80 backdrop-blur-sm"
+                        onClick={onClose}
                     />
-
                     {/* MAIN CONTAINER */}
                     <motion.div
                         variants={containerVariants}

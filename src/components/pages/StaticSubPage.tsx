@@ -17,13 +17,8 @@ type Props = {
 export default function StaticSubPage({ section, item }: Props) {
     const pathname = usePathname();
     
-    // Auto-detect paths for specific videos
     const isResearchPage = pathname.startsWith('/az/tedqiqat') || pathname.startsWith('/en/research');
-    const isAcademicPage = pathname.startsWith('/az/akademik') || pathname.startsWith('/en/academic') || pathname.includes('/faculties/');
-    
-    let videoSrc = null;
-    if (isResearchPage) videoSrc = "/heroBgVideos/research.mp4";
-    else if (isAcademicPage) videoSrc = "/heroBgVideos/resaerch.mp4";
+    const videoSrc = isResearchPage ? "/heroBgVideos/research.mp4" : null;
 
     return (
         <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden bg-white">

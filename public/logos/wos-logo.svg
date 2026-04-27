@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 36" fill="none">
+  <rect width="200" height="36" rx="4" fill="white"/>
+  <text x="10" y="14" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#005A9C" letter-spacing="0.5">WEB OF SCIENCE</text>
+  <rect x="10" y="18" width="105" height="2" fill="#E8003D"/>
+  <text x="10" y="32" font-family="Arial, sans-serif" font-size="11" font-weight="400" fill="#444444" letter-spacing="0.2">Clarivate Analytics</text>
+</svg>

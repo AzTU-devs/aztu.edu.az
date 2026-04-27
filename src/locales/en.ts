@@ -307,6 +307,7 @@ const en = {
           { title: "Strategic Plan", href: "/about/vision-mission/strategic-plan" },
         ]
       },
+
       history: {
         eyebrow: "Our Legacy",
         title: "History of AzTU",
@@ -370,6 +371,7 @@ const en = {
           { title: "History of AzTU", href: "/about/vision-mission/history-of-aztu" },
         ],
       },
+
 
       visionMissionGoal: {
         eyebrow: "Our Identity",

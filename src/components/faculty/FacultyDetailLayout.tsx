@@ -57,7 +57,7 @@ export default function FacultyDetailLayout({ children, params }: Props) {
                 </div>
 
                 {/* Background Image of AzTU - fallback or overlay */}
-                <div 
+                <div
                     className="absolute inset-0 z-0 opacity-10 grayscale-[0.5]"
                     style={{
                         backgroundImage: 'url("/aztu.png")',

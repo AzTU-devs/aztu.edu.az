@@ -373,6 +373,7 @@ const az = {
         ],
       },
 
+
       visionMissionGoal: {
         eyebrow: "Bizim Kimliyimiz",
         title: "Vizyon, Missiya və Məqsəd",

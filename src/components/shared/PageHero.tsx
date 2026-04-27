@@ -38,7 +38,7 @@ export default function PageHero({
       <div className="absolute inset-0 z-0 bg-[#0b1330]">
         {/* Deep Gradient Base */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0b1330] via-[#1a2355] to-[#13365E]" />
-        
+
         {videoSrc ? (
           <>
             <video
@@ -55,19 +55,13 @@ export default function PageHero({
         ) : (
           <>
             {/* Animated Light Beams */}
-            <motion.div 
-                animate={{ 
-                    x: [-500, 500],
-                    opacity: [0, 0.4, 0]
-                }}
+            <motion.div
+                animate={{ x: [-500, 500], opacity: [0, 0.4, 0] }}
                 transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
                 className="absolute top-0 left-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-[#ee7c7e]/40 to-transparent skew-x-[-45deg] blur-md"
             />
-            <motion.div 
-                animate={{ 
-                    x: [500, -500],
-                    opacity: [0, 0.3, 0]
-                }}
+            <motion.div
+                animate={{ x: [500, -500], opacity: [0, 0.3, 0] }}
                 transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
                 className="absolute top-0 right-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-blue-400/30 to-transparent skew-x-[45deg] blur-md"
             />
