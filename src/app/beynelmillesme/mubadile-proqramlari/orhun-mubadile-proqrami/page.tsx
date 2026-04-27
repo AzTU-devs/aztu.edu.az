@@ -39,7 +39,7 @@ export default function OrhunExchangePage() {
                         </Link>
                         <ChevronRightIcon sx={{ fontSize: 12 }} />
                         <Link href={lang === "az" ? "/beynelmillesme" : "/internationalization"} className="hover:text-white transition-colors">
-                            {t.nav.sections.internationalAffairs || "Internationalization"}
+                            {t.nav.items.internationalAffairs}
                         </Link>
                         <ChevronRightIcon sx={{ fontSize: 12 }} />
                         <span className="text-[#ee7c7e] font-bold">{p.breadcrumb}</span>
