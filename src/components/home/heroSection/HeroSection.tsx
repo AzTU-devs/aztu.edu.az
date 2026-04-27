@@ -92,11 +92,11 @@ export default function HeroSection() {
 
     const currentTitle = t.hero.title;
 
-    const quickStats = [
-        { icon: GroupsIcon, label: lang === 'az' ? 'Tələbə' : 'Students', value: '25,000+' },
-        { icon: PublicIcon, label: lang === 'az' ? 'Tərəfdaş' : 'Partners', value: '150+' },
-        { icon: WorkspacePremiumIcon, label: lang === 'az' ? 'Reytinq' : 'Ranking', value: '#1 Tech' },
-    ];
+    const quickStats = t.hero.stats.map((stat: any, i: number) => ({
+        icon: i === 3 ? GroupsIcon : WorkspacePremiumIcon,
+        label: stat.label,
+        value: stat.value,
+    }));
 
     return (
         <section className="w-full h-screen relative overflow-hidden bg-black">
@@ -134,7 +134,7 @@ export default function HeroSection() {
             {/* Premium Overlays */}
             <div className="absolute inset-0 z-10">
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#0b1330] via-transparent to-black/20 opacity-95" />
-                <div className="absolute inset-y-0 left-0 w-[70%] bg-gradient-to-r from-[#0b1330] via-[#0b1330]/60 to-transparent" />
+                <div className="absolute inset-y-0 left-0 w-full lg:w-[70%] bg-gradient-to-r from-[#0b1330] via-[#0b1330]/60 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 h-96 bg-gradient-to-t from-[#0b1330] to-transparent" />
                 
                 {/* Moving Light Streak */}
@@ -149,11 +149,11 @@ export default function HeroSection() {
             </div>
 
             {/* Content Container */}
-            <div className="absolute inset-0 z-20 flex items-center px-[40px] md:px-[80px] xl:px-[120px]">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
-                    
+            <div className="absolute inset-0 z-20 flex items-center px-6 md:px-[80px] xl:px-[120px] pt-20 lg:pt-0">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center w-full">
+
                     {/* LEFT: Main Text */}
-                    <div className="lg:col-span-8">
+                    <div className="lg:col-span-7 xl:col-span-8">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={activeIndex}
@@ -162,18 +162,18 @@ export default function HeroSection() {
                                 exit={{ opacity: 0, x: 40 }}
                                 transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
                             >
-                                <div className="inline-flex items-center gap-4 px-6 py-3 rounded-2xl bg-white/10 backdrop-blur-2xl border border-white/20 mb-10 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
-                                    <div className="w-3 h-3 rounded-full bg-[#ee7c7e] shadow-[0_0_15px_#ee7c7e] animate-pulse" />
-                                    <span className="text-white text-[13px] font-black uppercase tracking-[0.6em]">
+                                <div className="inline-flex items-center gap-3 px-4 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl bg-white/10 backdrop-blur-2xl border border-white/20 mb-6 md:mb-10 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+                                    <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-[#ee7c7e] shadow-[0_0_15px_#ee7c7e] animate-pulse" />
+                                    <span className="text-white text-[10px] md:text-[13px] font-black uppercase tracking-[0.4em] md:tracking-[0.6em]">
                                         {lang === 'az' ? 'Azərbaycan Texniki Universiteti' : 'Azerbaijan Technical University'}
                                     </span>
                                 </div>
 
-                                <h1 className="text-5xl md:text-8xl xl:text-9xl font-black text-white mb-10 leading-[0.85] tracking-tighter">
+                                <h1 className="text-4xl md:text-7xl xl:text-8xl font-black text-white mb-6 md:mb-10 leading-[0.9] tracking-tighter">
                                     {currentTitle.split(' ').map((word, i) => (
-                                        <motion.span 
-                                            key={i} 
-                                            className="inline-block mr-6 last:mr-0 drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] last:text-transparent last:bg-clip-text last:bg-gradient-to-br last:from-white last:to-[#ee7c7e]"
+                                        <motion.span
+                                            key={i}
+                                            className="inline-block mr-3 md:mr-6 last:mr-0 drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] last:text-transparent last:bg-clip-text last:bg-gradient-to-br last:from-white last:to-[#ee7c7e]"
                                             initial={{ opacity: 0, y: 40, rotateX: -45 }}
                                             animate={{ opacity: 1, y: 0, rotateX: 0 }}
                                             transition={{ delay: 0.2 + (i * 0.15), duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
@@ -187,7 +187,7 @@ export default function HeroSection() {
                                     initial={{ opacity: 0, y: 30 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.8, duration: 0.8 }}
-                                    className="text-white/60 text-lg md:text-2xl font-medium mb-12 max-w-2xl leading-relaxed border-l-2 border-[#ee7c7e] pl-10"
+                                    className="text-white/60 text-base md:text-xl xl:text-2xl font-medium mb-8 md:mb-12 max-w-2xl leading-relaxed border-l-2 border-[#ee7c7e] pl-6 md:pl-10"
                                 >
                                     {lang === 'az' 
                                         ? "Gələcəyin texnologiyalarını bu gün bizimlə öyrənin. İnnovativ təhsil, real təcrübə." 
@@ -198,24 +198,24 @@ export default function HeroSection() {
                                     initial={{ opacity: 0, scale: 0.9 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     transition={{ delay: 1.1, duration: 0.6 }}
-                                    className="flex flex-wrap gap-8 items-center"
+                                    className="flex flex-wrap gap-4 md:gap-8 items-center"
                                 >
                                     <button
                                         onClick={handleScroll}
-                                        className="group flex items-center gap-5 bg-white text-[#1a2355] font-black px-10 py-5 rounded-[2rem] hover:bg-[#ee7c7e] hover:text-white transition-all duration-700 shadow-[0_40px_80px_rgba(0,0,0,0.5)] hover:shadow-[#ee7c7e]/50 cursor-pointer overflow-hidden relative active:scale-95"
+                                        className="group flex items-center gap-3 md:gap-5 bg-white text-[#1a2355] font-black px-6 py-3 md:px-10 md:py-5 rounded-full md:rounded-[2rem] hover:bg-[#ee7c7e] hover:text-white transition-all duration-700 shadow-[0_40px_80px_rgba(0,0,0,0.5)] hover:shadow-[#ee7c7e]/50 cursor-pointer overflow-hidden relative active:scale-95"
                                     >
-                                        <span className="relative z-10 uppercase tracking-[0.3em] text-[13px]">{t.hero.button}</span>
-                                        <div className="relative z-10 w-12 h-12 rounded-2xl bg-[#1a2355]/5 group-hover:bg-white/20 flex items-center justify-center transition-colors">
-                                            <ArrowDownwardIcon className="group-hover:translate-y-1 transition-transform" sx={{ fontSize: 24 }} />
+                                        <span className="relative z-10 uppercase tracking-[0.2em] md:tracking-[0.3em] text-[11px] md:text-[13px]">{t.hero.button}</span>
+                                        <div className="relative z-10 w-8 h-8 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-[#1a2355]/5 group-hover:bg-white/20 flex items-center justify-center transition-colors">
+                                            <ArrowDownwardIcon className="group-hover:translate-y-1 transition-transform" sx={{ fontSize: { xs: 18, md: 24 } }} />
                                         </div>
                                     </button>
 
                                     <Link href="/virtual-tour">
-                                        <button className="group flex items-center gap-5 bg-white/5 backdrop-blur-2xl border border-white/20 text-white font-black px-10 py-5 rounded-[2rem] hover:bg-white/10 transition-all duration-700 cursor-pointer active:scale-95">
-                                            <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform group-hover:bg-[#ee7c7e] group-hover:shadow-[0_0_20px_#ee7c7e]">
-                                                <PlayArrowIcon sx={{ fontSize: 28 }} />
+                                        <button className="group flex items-center gap-3 md:gap-5 bg-white/5 backdrop-blur-2xl border border-white/20 text-white font-black px-6 py-3 md:px-10 md:py-5 rounded-full md:rounded-[2rem] hover:bg-white/10 transition-all duration-700 cursor-pointer active:scale-95">
+                                            <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform group-hover:bg-[#ee7c7e] group-hover:shadow-[0_0_20px_#ee7c7e]">
+                                                <PlayArrowIcon sx={{ fontSize: { xs: 20, md: 28 } }} />
                                             </div>
-                                            <span className="uppercase tracking-[0.3em] text-[13px]">{lang === 'az' ? 'Virtual Tur' : 'Virtual Tour'}</span>
+                                            <span className="uppercase tracking-[0.2em] md:tracking-[0.3em] text-[11px] md:text-[13px]">{lang === 'az' ? 'Virtual Tur' : 'Virtual Tour'}</span>
                                         </button>
                                     </Link>
                                 </motion.div>
@@ -224,23 +224,23 @@ export default function HeroSection() {
                     </div>
 
                     {/* RIGHT: Stunning Stats */}
-                    <div className="lg:col-span-4 hidden lg:flex flex-col gap-6">
+                    <div className="lg:col-span-5 xl:col-span-4 flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-col gap-3 md:gap-4 lg:gap-6 mt-10 lg:mt-0">
                         {quickStats.map((stat, i) => (
                             <motion.div
                                 key={i}
                                 initial={{ opacity: 0, x: 80 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 1.4 + (i * 0.2), duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-                                whileHover={{ x: -15, scale: 1.02, transition: { duration: 0.4 } }}
-                                className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-[2.5rem] p-8 flex items-center gap-7 group hover:bg-white/10 transition-all duration-500 shadow-[0_30px_60px_rgba(0,0,0,0.3)] relative overflow-hidden"
+                                whileHover={{ x: -10, scale: 1.02, transition: { duration: 0.4 } }}
+                                className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-2xl md:rounded-[2.5rem] p-4 md:p-6 lg:p-7 flex items-center gap-4 md:gap-6 group hover:bg-white/10 transition-all duration-500 shadow-[0_30px_60px_rgba(0,0,0,0.3)] relative overflow-hidden"
                             >
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-2xl group-hover:bg-[#ee7c7e]/10 transition-colors" />
-                                <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center group-hover:bg-[#ee7c7e] transition-all duration-500 shadow-xl group-hover:shadow-[#ee7c7e]/40">
-                                    <stat.icon className="text-white group-hover:scale-110 transition-transform duration-500" sx={{ fontSize: 32 }} />
+                                <div className="absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-2xl group-hover:bg-[#ee7c7e]/10 transition-colors" />
+                                <div className="w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-xl md:rounded-2xl bg-white/10 flex items-center justify-center group-hover:bg-[#ee7c7e] transition-all duration-500 shadow-xl group-hover:shadow-[#ee7c7e]/40 shrink-0">
+                                    <stat.icon className="text-white group-hover:scale-110 transition-transform duration-500" sx={{ fontSize: { xs: 20, md: 28, lg: 32 } }} />
                                 </div>
-                                <div>
-                                    <p className="text-[11px] font-black uppercase tracking-[0.4em] text-white/40 mb-1 group-hover:text-[#ee7c7e] transition-colors">{stat.label}</p>
-                                    <p className="text-3xl font-black text-white tracking-tighter">{stat.value}</p>
+                                <div className="min-w-0">
+                                    <p className="text-[9px] md:text-[10px] lg:text-[11px] font-black uppercase tracking-[0.2em] md:tracking-[0.4em] text-white/40 mb-1 group-hover:text-[#ee7c7e] transition-colors truncate">{stat.label}</p>
+                                    <p className="text-lg md:text-2xl lg:text-3xl font-black text-white tracking-tighter truncate">{stat.value}</p>
                                 </div>
                             </motion.div>
                         ))}

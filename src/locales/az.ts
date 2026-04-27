@@ -7,7 +7,48 @@ const az = {
     lms: "LMS",
     alumni: "Alumni",
     aztuTv: "AzTU TV",
-    quickMenu: "Quick Menu",
+    quickMenu: {
+      button: "Sürətli Keçid",
+      navigation: "Naviqasiya",
+      title: "SÜRƏTLİ<br/>GİRİŞ",
+      slogan: "Mühəndislik gələcəyini qururuq",
+      portal: "Portal",
+      sections: {
+        platform: {
+          title: "Platforma",
+          items: {
+            lms: "LMS",
+            internalGrants: "Daxili Qrant Müsabiqəsi",
+            planReport: "Plan Hesabat İnformasiya Sistemi",
+          }
+        },
+        alumni: {
+          title: "Məzunlar",
+          items: {
+            portal: "Məzun Portalı",
+            honoraryDoctors: "Fəxri Doktorlar",
+            honoraryGraduates: "Fəxri Məzunlar",
+            heroes: "Qəhrəmanlarımız",
+          }
+        },
+        whyAztu: {
+          title: "Niyə AzTU?",
+          items: {
+            infrastructure: "İnfrastruktur",
+            startups: "Startaplar",
+            dualDegree: "İkili Diplomlar",
+            scholarships: "Təqaüdlər",
+          }
+        }
+      },
+      leftItems: {
+        ranking: "Reytinq",
+        accreditation: "Akkreditasiya",
+        policies: "Siyasətlər",
+        reports: "Hesabatlar",
+        faq: "MTE",
+      }
+    },
     search: "Axtar",
     moreInSection: "Bu bölmədə daha çox",
     comingSoon: "Tezliklə",
@@ -26,6 +67,7 @@ const az = {
     items: {
       historyOfAztu: "AzTU-nun Tarixi",
       visionMission: "Vizyon və Missiya",
+      visionMissionGoal: "Vizyon, Missiya və Məqsəd",
       vision: "Vizyon",
       mission: "Missiya",
       strategicPlan: "Strateji Plan",
@@ -66,8 +108,10 @@ const az = {
       tuitionFees: "Tədris Haqqı",
       postgraduates: "Magistratura",
       cdio: "CDIO",
+      higherEducationInstitute: "Yüksək Təhsil İnstitutu (YTİ)",
       internationalStudents: "Beynəlxalq Tələbələr Bölməsi",
       exchangePrograms: "Mübadilə Proqramları",
+      orhunExchange: "Orhun Mübadilə Proqramı",
       lmsGuidelines: "LMS Qaydaları",
       researchActivities: "Tədqiqat Fəaliyyəti",
       researchInstitutes: "Tədqiqat İnstitutları",
@@ -84,6 +128,7 @@ const az = {
       studentYouthOrg: "Tələbə Gənclər Təşkilatı",
       universityCooperation: "Universitet Əməkdaşlığı",
       collaborations: "Əməkdaşlıqlar",
+      formerRectors: "Sabiq Rektorlar",
     },
   },
 
@@ -118,9 +163,152 @@ const az = {
         locationTitle: "Məkanımız",
         universityName: "Azərbaycan Texniki Universiteti",
         buildingInfo: "Əsas tədris korpusu",
-      }
+      },
     },
+
     about: {
+      hei: {
+        eyebrow: "Təhsil və Proqramlar",
+        title: "Yüksək Təhsil İnstitutu (YTİ)",
+        subtitle: "Müasir mühəndislik mühiti üçün yüksək ixtisaslı, rəqabətədavamlı mütəxəssislərin hazırlanması.",
+        breadcrumb: "Yüksək Təhsil İnstitutu",
+        aboutTitle: "İnstitut haqqında",
+        paragraphs: [
+          "Azərbaycan Texniki Universitetinin (AzTU) nəzdində fəaliyyət göstərən Yüksək Təhsil İnstitutu universitetin Elmi Şurasının 27 dekabr 2021-ci il tarixli qərarı ilə yaradılmışdır. İnstitut AzTU-da magistratura və doktorantura səviyyələrində təhsil və elmi-tədqiqat fəaliyyətlərinin mərkəzləşdirilmiş şəkildə təşkili və inkişafını təmin edən əsas struktur bölmələrdən biridir.",
+          "İnstitutun yaradılmasında əsas məqsəd müasir dövrün tələblərinə uyğun, yüksək ixtisaslı, rəqabətqabiliyyətli və innovativ düşüncəyə malik mütəxəssislərin hazırlanması, həmçinin elmi fəaliyyətin keyfiyyətinin artırılması və beynəlxalq standartlara uyğunlaşdırılmasıdır."
+        ],
+        missionTitle: "Missiya və strateji istiqamətlər",
+        missionText: "Yüksək Təhsil İnstitutunun missiyası texniki və mühəndislik sahələri üzrə müasir bilik və bacarıqlara malik, analitik və yaradıcı təfəkkürlü, tədqiqat və idarəetmə qabiliyyətləri inkişaf etmiş peşəkar kadrlar yetişdirməkdir. İnstitut eyni zamanda elmi fəaliyyətin inkişafına töhfə verməyi, innovativ yanaşmaları təşviq etməyi və universitetin beynəlxalq akademik mühitə inteqrasiyasını gücləndirməyi hədəfləyir.",
+        strategicDirections: [
+          "Magistratura və doktorantura səviyyələrində tədrisin təşkili və koordinasiyası",
+          "Elmi-tədqiqat fəaliyyətlərinin inkişafı və idarə olunması",
+          "Gənc tədqiqatçıların hazırlanması və akademik potensialın gücləndirilməsi",
+          "Beynəlxalq və yerli elmi layihələrdə iştirakın təşviqi",
+          "Sənaye və istehsalatla əlaqələrin gücləndirilməsi"
+        ],
+        academicOpportunities: {
+          title: "Təhsil imkanları",
+          description: "İnstitut magistratura səviyyəsində geniş ixtisas və ixtisaslaşma spektri üzrə təhsil təklif edir. Hazırda:",
+          stats: [
+            "36 ixtisas üzrə",
+            "126 ixtisaslaşma mövcuddur"
+          ],
+          languagesTitle: "Tədris çoxdilli mühitdə təşkil olunur və aşağıdakı dillərdə aparılır:",
+          languages: [
+            "Azərbaycan dili",
+            "İngilis dili",
+            "Alman dili",
+            "Rus dili"
+          ],
+          footer: "Bu yanaşma tələbələrin beynəlxalq akademik və peşəkar mühitə daha asan inteqrasiyasına imkan yaradır."
+        },
+        researchTitle: "Elmi-tədqiqat fəaliyyəti",
+        researchDescription: "Yüksək Təhsil İnstitutu elmi-tədqiqat işlərinin təşkili və inkişafına xüsusi önəm verir. İnstitut magistrant, doktorant və dissertantlara elmi fəaliyyətin bütün mərhələlərində dəstək göstərir. Bu dəstək aşağıdakı istiqamətləri əhatə edir:",
+        researchItems: [
+          "Elmi tədqiqatların planlaşdırılması və aparılması",
+          "Dissertasiya mövzularının aktual və tətbiqyönümlü istiqamətlər üzrə seçilməsi",
+          "Sənaye problemlərinə yönəlmiş tədqiqatların təşviqi",
+          "Beynəlxalq elmi jurnallarda nəşrlərin dəstəklənməsi",
+          "Elmi konfrans və simpoziumlarda iştirak imkanlarının yaradılması"
+        ],
+        researchFooter: "İnstitut həmçinin müasir elmi nailiyyətləri və innovativ texnologiyaları izləyərək onların tədris və tədqiqat prosesinə inteqrasiyasını təmin edir." ,
+        doctoralTitle: "Doktorantura təhsili",
+        doctoralDescription: "AzTU-da doktorantura ali təhsilin ən yüksək səviyyəsi olmaqla fəlsəfə doktoru (PhD) və elmlər doktoru elmi dərəcələrinin verilməsi ilə yekunlaşır.",
+        doctoralFormatsTitle: "Doktorantura təhsili aşağıdakı formalarda həyata keçirilir:",
+        doctoralFormats: [
+          "Əyani (istehsalatdan ayrılmaqla)",
+          "Qiyabi (istehsalatdan ayrılmamaqla)",
+          "Dissertantlıq yolu ilə"
+        ],
+        doctoralDuration: {
+          title: "Təhsil müddəti:",
+          phd: {
+            title: "Fəlsəfə doktoru (PhD):",
+            items: ["Əyani: 3 il", "Qiyabi: 4 il", "Dissertantlıq: 4 il"]
+          },
+          ds: {
+            title: "Elmlər doktoru:",
+            items: ["Əyani: 4 il", "Qiyabi: 5 il", "Dissertantlıq: 5 il"]
+          },
+          footer: "Zəruri hallarda mövcud qanunvericiliyə uyğun olaraq təhsil müddəti uzadıla bilər."
+        },
+        doctoralAdmission: "Doktoranturaya qəbul müsabiqə əsasında həyata keçirilir və müraciət edən şəxslər magistr dərəcəsinə və ya ona bərabər tutulan ali təhsil səviyyəsinə malik olmalıdırlar.",
+        director: {
+          title: "Direktoru",
+          name: "Aynurə İsmayılova Manaf qızı",
+          degree: "iqtisad üzrə fəlsəfə doktoru, dosent",
+          email: "aynura.ismayilova@aztu.edu.az",
+          phone: "daxili 3201",
+          office: "I tədris binası, 206 №-li otaq",
+          hours: "Cümə, 15:00-19:00",
+          bio: "Aynurə İsmayılova layihələrin idarəedilməsi və iqtisadi tədqiqat sahəsində 15 ildən artıq beynəlxalq təcrübəyə malik mütəxəssisdir. O, karyerasına 2004-cü ildə Azərbaycan Milli Elmlər Akademiyasında başlamış, daha sonra UNDP və Azərbaycan Respublikasının İqtisadiyyat Nazirliyinin birgə layihəsində layihə meneceri kimi fəaliyyət göstərmişdir. İqtisadi İslahatlar Elmi-Tədqiqat İnstitutunda şöbə müdiri və direktor müavini vəzifələrində çalışmışdır.\n\nBeynəlxalq maliyyə və inkişaf institutları ilə geniş əməkdaşlıq təcrübəsinə malik olan Aynurə İsmayılova Asiya İnkişaf Bankı (ADB), İslam İnkişaf Bankı (IsDB), İqtisadi Əməkdaşlıq Təşkilatı (ECO) və TİKA kimi qurumların dəstəyi ilə həyata keçirilən layihələrdə rəhbər və koordinator kimi iştirak etmişdir.\n\n2012–2021-ci illərdə ECO Tədqiqat Mərkəzinin yaradılması üzrə işçi qrupunun üzvü olmuş, regional əməkdaşlıq və analitik hesabatların hazırlanmasına töhfə vermişdir. Onun fəaliyyəti beyvəlxalq səviyyədə yüksək qiymətləndirilmiş, 2016-cı ildə Qırğızıstan Respublikasının Maliyyə Nazirliyi tərəfindən təltif olunmuşdur.\n\nBeynəlxalq akademik mühitdə fəal iştirak edən A. İsmayılova Çin, Almaniya və Cənubi Koreyada mübadilə və qonaq tədqiqatçı proqramlarında iştirak etmiş, 40-a yaxın beynəlxalq elmi tədbirdə təmsil olunmuşdur.\n\n2021-ci ildən Azərbaycan Texniki Universitetində fəaliyyət göstərir. Universitet–sənaye əməkdaşlığının inkişafında fəal rol oynayaraq TUSAŞ ilə birgə həyata keçirilən “MGP”, “SKY Global” və “Lift UP” kimi strateji proqramlara rəhbərlik etmişdir. Hazırda İqtisadiyyat və statistika kafedrasının dosenti kimi fəaliyyət göstərir.",
+          achievements: "Bakı Dövlət Universitetinin məzunu olan Aynurə İsmayılova 2021-ci ildə iqtisad üzrə fəlsəfə doktoru elmi dərəcəsini almışdır. O, həmçinin layihələrin idarə olunması sahəsində IPMA Level B beynəlxalq sertifikatına malikdir. 2014-cü ildə Azərbaycan Respublikasının Prezidenti tərəfindən “Tərəqqi” medalı ilə təltif olunmuşdur.",
+          researchInterestsTitle: "Elmi-tədqiqat sahələri",
+          researchInterests: [
+            "Layihələrin idarəedilməsi",
+            "Regional iqtisadi əməkdaşlıq",
+            "Universitet–sənaye əməkdaşlığı modelləri",
+            "İnnovasiya siyasəti və institusional inkişaf",
+            "Ömürboyu öyrənmə və kompetensiya əsaslı təhsil modelləri",
+            "Rəqəmsal transformasiya və ali təhsil idarəçiliyi"
+          ],
+          educationTitle: "Təhsil",
+          educationItems: [
+            { period: "2012-2016", degree: "Dissertantura", inst: "AR İqtisadiyyat Nazirliyinin İqtisadi İslahatlar Elmi-Tədqiqat İnstitutu (İİETİ)" },
+            { period: "2001-2003", degree: "Magistratura", inst: "Bakı Dövlət Universiteti, Tətbiqi riyaziyyat və kibernetika fakültəsi" },
+            { period: "1997-2001", degree: "Bakalavriat", inst: "Bakı Dövlət Universiteti, Tətbiqi riyaziyyat və kibernetika fakültəsi" }
+          ]
+        },
+        staffTitle: "Əməkdaşlar",
+        staffDescription: "YTİ-də fəaliyyət göstərən əməkdaşlar haqqında məlumat:",
+        staff: [
+          { name: "Həcər Əliyeva Tahir qızı", pos: "Doktorantura proqram meneceri", degree: "Yoxdur", email: "hecer.aliyeva@aztu.edu.az", phone: "+994 050 584 20 73" },
+          { name: "Kamran Əbilov Əli oğlu", pos: "Magistr proqram meneceri", degree: "Yoxdur", email: "kamran.ebilov@aztu.edu.az", phone: "+994 077 761 59 22" },
+          { name: "Aynur Hüseynova Şəmməd qızı", pos: "Tələblərlə iş üzrə menecer", degree: "Yoxdur", email: "aynur.huseynova@aztu.edu.az", phone: "+994 055 449 96 06" }
+        ],
+        contactInfo: {
+          title: "Əlaqə",
+          address: "I tədris binası, otaq № 414",
+          phone: "3201",
+          email: "yti@aztu.edu.az",
+          hours: "09:00-18:00 (I-V) və 18:00-21:00 (II-III-IV)"
+        },
+        board: {
+          title: "İdarə Heyəti",
+          intro: "Yüksək Təhsil İnstitutunun (YTİ) İdarə Heyətinin vəzifələri:",
+          duties: [
+            "YTİ-nin strateji fəaliyyət istiqamətlərini müəyyən etmək və beş və onillik müddətləri əhatə edən YTİ-nin orta və uzunmüddətli strateji inkişaf planlarını hazırlamaq;",
+            "YTİ-nin Elmi Şurası tərəfindən qəbul edilən və YTİ-nin direktoru tərəfindən təsdiq edən YTİ-nin illik fəaliyyət planlarını təsdiq etmək;"
+          ],
+          note: "İdarə Heyəti ictimai əsaslarla fəaliyyət göstərir.",
+          rightsTitle: "İdarə Heyətinin hüquqları:",
+          rights: [
+            "YTİ-nin adından sənaye müəssisələri ilə tərəfdaşlıq əlaqələri qurmaq;",
+            "YTİ-nin illik fəaliyyəti barədə birbaşa AzTU-nun Elmi Şurasına və Rektoruna hesabat vermək"
+          ],
+          compositionTitle: "İdarə Heyətinin tərkibi:",
+          composition: [
+            "İdarə Heyətinin tərkibi 10 üzv və 1 sədrdən ibarətdir;",
+            "5 üzv AzTU-dan, 6 üzv sənaye müəssisələrindən müəyyən olunur;",
+            "AzTU-dan olan üzvlər AzTU-nun rektorunun əmri ilə təyin olunur. Onlardan bir nəfər Rektorun əmri ilə İdarə Heyətinin sədri təyin olunur.",
+            "Sənaye müəssisələrini təmsil edən 6 üzv AzTU rektorunun, o, olmadıqda Tədris İşləri üzrə prorektorun Azərbaycan Respublikasında fəaliyyət göstərən iri yerli və xarici müəssisələrə rəsmi məktubu əsasında onların təqdim etdiyi nümayəndələrdən formalaşır. Hər müəssisəni yalnız 1 (bir) nümayəndə təmsil edə bilər.",
+            "İdarə Heyətinin bütün üzvləri 1 (bir) illik müddətə təyin olunur və onların AzTU tərəfindən təyin olunması və sənaye müəssisələri tərəfindən namizədliyinin verilməsi hər il aparılır.",
+            "Sənaye müəssisələri İdarə Heyəti üzvlüyünə eyni bir şəxsi qeyri-məhdud sayda təqdim edə bilər.",
+            "İdarə Heyətinin sədri daxil olmaqla AzTU-dan olan eyni bir üzv iki dəfədən artıq təyin oluna bilməz."
+          ],
+          requirementsTitle: "İdarə Heyətinin üzvlərinə olan tələblər:",
+          requirements: [
+            "Sənaye müəssisələrindən olan üzvlər – Potensial namizəd müəssisənin strateji inkişaf şöbəsinin müdiri, İdarə Heyətinin üzvü, İcraçı Direktorun müavini və digər bu qəbildən olan müəssisənin strateji və idarəetmə qərarlarının qəbulunda iştirak edən şəxs olmalıdır.",
+            "AzTU-dan təyin olunan üzvlərə tələblər: Ən azı fəlsəfə doktoru elmi dərəcəsi; Ən azı 1 (bir) illik elmi və pedaqoji təcrübə; AzTU-da ən azı 1 (bir) illik inzibati idarəetmə təcrübəsi – dekan, dekan müavini, kafedra müdiri, şöbə müdiri, şöbə müdirinin müavini, İnstitut direktoru, rektorun müşaviri, prorektor. Dövlət və özəl müəssisələrdə təcrübəsi olanlara üstünlük verilir."
+          ],
+          chairman: "İdarə Heyətinin sədri i.e.f.d. F.O.Məmmədovdur. (fariz.mammadov@aztu.edu.az)."
+        },
+        related: [
+          { title: "Tərəfdaş Universitetlər", href: "/haqqimizda/terefdas-universitet-ve-elaqeli-institutlar" },
+          { title: "Strateji Plan", href: "/haqqimizda/vizyon-ve-missiya/strateji-plan" },
+        ]
+      },
+
       history: {
         eyebrow: "Mirasımız",
         title: "AzTU-nun Tarixi",
@@ -182,6 +370,25 @@ const az = {
           { title: "Vizyon", href: "/haqqimizda/vizyon-ve-missiya/vizyon" },
           { title: "Strateji Plan", href: "/haqqimizda/vizyon-ve-missiya/strateji-plan" },
           { title: "AzTU-nun Tarixi", href: "/haqqimizda/vizyon-ve-missiya/aztu-nun-tarixi" },
+        ],
+      },
+
+
+      visionMissionGoal: {
+        eyebrow: "Bizim Kimliyimiz",
+        title: "Vizyon, Missiya və Məqsəd",
+        subtitle: "AzTU-nu xarakterizə edən əsas prinsiplər və arzular.",
+        breadcrumb: "Vizyon, Missiya və Məqsəd",
+        missionTitle: "Missiya",
+        missionText: "Mühəndislik elmləri və ağıllı texnologiyaların tətbiqi sahəsində qabaqcıl təhsil və tədqiqat potensialına malik olmaq.",
+        visionTitle: "Vizyon",
+        visionText: "Vizyonumuz innovasiya və qabaqcıl texnologiyaların tətbiqi ilə gələcəyin mühəndislik sahələrində regionun lider universiteti olmaqdır.",
+        goalTitle: "Məqsəd",
+        goalText: "Məqsədimiz rəqəmsal platformalarda texnoloji yeniliklər və ağıllı həllər təqdim etməklə bu sahələrdə yüksək ixtisaslı mütəxəssislərin hazırlanmasını təmin etməkdir.",
+        related: [
+          { title: "Strateji Plan", href: "/haqqimizda/vizyon-ve-missiya/strateji-plan" },
+          { title: "AzTU-nun Tarixi", href: "/haqqimizda/vizyon-ve-missiya/aztu-nun-tarixi" },
+          { title: "Yubiley Filmi", href: "/haqqimizda/vizyon-ve-missiya/75-illik-yubiley-filmi" },
         ],
       },
 
@@ -1169,6 +1376,414 @@ const az = {
           ],
           image: "/research-seminars-training/Energy sustainability- risks and decision making.png"
         }
+      },
+      publications: {
+        openAccessPolicy: {
+          eyebrow: "Tədqiqat",
+          title: "Açıq Giriş Siyasəti",
+          subtitle: "AzTU tədqiqat və innovasiyaların inkişafı üçün Açıq Giriş və Açıq Elm prinsiplərini dəstəkləyir.",
+          breadcrumb: "Açıq Giriş Siyasəti",
+          documentInfo: {
+            title: "Azərbaycan Texniki Universitetinin Açıq Giriş Siyasəti",
+            type: "Siyasət",
+            scope: "Bütün əməkdaşlar və tələbələr",
+            issued: "2023",
+            revised: "İyun 2024",
+            reviewCycle: "Hər 2 ildən bir",
+            nextReview: "2026",
+            version: "v3.0",
+            authority: "Universitet Şurası",
+            owner: "Kitabxana-İnformasiya",
+            status: "Təsdiq olunmuş və dərc edilmiş",
+            location: "BAKU-2026"
+          },
+          pdfUrl: "http://api.aztu.edu.az/media/prod/policies/tid/tid_policies/open_access_policy_az.pdf",
+          downloadButton: "PDF-i yüklə",
+          content: [
+            {
+              id: "context",
+              title: "1. KONTEKST VƏ MƏQSƏD",
+              text: "Azərbaycan Texniki Universiteti (AzTU) elmi biliklərə açıq çıxışın tədqiqatların inkişafı, innovasiya və cəmiyyətin tərəqqisi üçün vacib olduğunu qəbul edir. Universitet müasir akademik və tədqiqat mühitinin əsas komponentləri kimi Açıq Giriş və Açıq Elm prinsiplərini dəstəkləyir.\n\nBu siyasət Azərbaycan Respublikasının hüquqi və normativ çərçivəsinə uyğun olaraq hazırlanmış və aşağıdakı sənədlərə əsaslanır:\n• Azərbaycan Respublikasının “Təhsil haqqında” Qanunu;\n• Azərbaycan Respublikasının “Elm haqqında” Qanunu;\n• Azərbaycan Respublikasının “Müəllif hüquqları və əlaqəli hüquqlar haqqında” Qanunu;\n• Azərbaycan Respublikasının “İnformasiya, informasiyalaşdırma və informasiyanın mühafizəsi haqqında” Qanunu;\n• Azərbaycan Respublikasının Elm və Təhsil Nazirliyinin normativ hüquqi aktları, qaydaları və təlimatları;\n• Azərbaycan Respublikası Prezidenti yanında Ali Attestasiya Komissiyasının (AAK) qərarları, qaydaları və tələbləri.\n\nAzTU öz tədqiqat nəticələrinin geniş şəkildə əlçatan olmasını təmin etməyə, eyni zamanda intellektual mülkiyyət hüquqlarına, hüquqi öhdəliklərə və milli maraqlara hörmət etməyə sadiqdir.\n\nBu siyasətin məqsədi AzTU-da yaradılan tədqiqat nəticələrinin açıq şəkildə yayılması, əlçatanlığı və qorunması üçün hərtərəfli çərçivə müəyyən etmək, eyni zamanda milli qanunvericiliyə və institusional standartlara uyğunluğu təmin etməkdir."
+            },
+            {
+              id: "definitions",
+              title: "2. ƏSAS ANLAYIŞLAR VƏ TƏRİFLƏR",
+              text: "Bu siyasətin məqsədləri üçün aşağıdakı anlayışlar istifadə olunur:",
+              list: [
+                "Açıq Giriş: AzTU-da yaradılmış tədqiqat nəticələrinə pulsuz, dərhal və məhdudiyyətsiz onlayn çıxış imkanıdır ki, bu da istifadəçilərə müvafiq qanunvericiliyə və müəllif hüquqları tələblərinə uyğun olaraq məzmunu oxumaq, yükləmək, kopyalamaq, yaymaq və istifadə etmək imkanı verir.",
+                "Açıq Elm: Tədqiqat proseslərinin, metodologiyalarının və nəticələrinin mümkün olduğu hallarda açıq şəkildə təqdim olunmasını təmin etməklə şəffaflığı, əlçatanlığı və əməkdaşlığı təşviq edən tədqiqat yanaşmasıdır.",
+                "Tədqiqat Nəticələri: AzTU çərçivəsində yaradılan bütün elmi və akademik materiallar, o cümlədən jurnal məqalələri, konfrans materialları, dissertasiyalar, monoqrafiyalar, tədris materialları, tədqiqat məlumatları və bu siyasətə daxil olan digər rəqəmsal məhsullar.",
+                "İnstitusional Repozitoriya: AzTU-nun tədqiqat nəticələrinin toplanması, qorunması və yayılması üçün nəzərdə tutulmuş rəsmi rəqəmsal platformasıdır.",
+                "Müəllif Hüquqları və Əlaqəli Hüquqlar: Azərbaycan Respublikasının qanunvericiliyi ilə tənzimlənən və intellektual məhsulların mülkiyyətini, istifadəsini və yayılmasını müəyyən edən hüquqi müdafiə mexanizmləridir.",
+                "Lisenziyalaşdırma: Müəlliflərin öz tədqiqat nəticələrinin istifadəsi, paylaşılması və yenidən istifadəsi üçün şərtləri müəyyən etdiyi mexanizmdir.",
+                "Tədqiqat Məlumatları: AzTU-da aparılan tədqiqat fəaliyyəti zamanı yaradılan və ya toplanan, nəşrləri dəstəkləyən və hüquqi, etik və institusional standartlara uyğun idarə olunmalı olan məlumatlardır.",
+                "Metaməlumat: Tədqiqat nəticələri haqqında (müəllif, başlıq, xülasə, nəşr tarixi və s.) strukturlaşdırılmış təsviri məlumatdır və onların identifikasiyası, axtarışı və idarə olunmasını təmin edir.",
+                "Məxfi və Məhdudlaşdırılmış Məlumat: Hüquqi öhdəliklər, müqavilə şərtləri, intellektual mülkiyyətin qorunması və ya milli təhlükəsizlik səbəbləri ilə açıq şəkildə paylaşılması mümkün olmayan məlumatlardır."
+              ]
+            },
+            {
+              id: "applicability",
+              title: "3. TƏTBİQ SAHƏSİ",
+              text: "Bu siyasət AzTU-da həyata keçirilən bütün akademik və tədqiqat fəaliyyətlərinə şamil olunur. Buraya professor-müəllim heyəti, tədqiqatçılar, doktorantlar, magistrantlar, postdoktorantlar və müvafiq inzibati bölmələr daxildir.\n\nSiyasət jurnal məqalələri, konfrans materialları, dissertasiyalar, monoqrafiyalar, tədris materialları, tədqiqat məlumatları və digər rəqəmsal tədqiqat məhsulları daxil olmaqla elmi nəticələri əhatə edir."
+            },
+            {
+              id: "governance",
+              title: "4. İDARƏETMƏ",
+              text: "Universitet Şurası bu siyasəti təsdiq edir və onun institusional səviyyədə həyata keçirilməsinə nəzarət edir.\n\nUniversitet rəhbərliyi müvafiq milli qanunvericiliyə uyğunluğu təmin edir, strateji istiqamət verir və zəruri institusional resursları ayırır.\n\nElmi Tədqiqat və İnkişaf Departamenti bu siyasətin icrasını koordinasiya edir, uyğunluğu izləyir və Açıq Giriş üzrə tövsiyələr verir.\n\nUniversitet Kitabxanası İnstitusional Repozitoriyanı idarə edir və tədqiqatçılara Açıq Giriş, müəllif hüquqları və məlumatların idarə olunması ilə bağlı texniki və məsləhət dəstəyi göstərir.\n\nTədqiqatçılar və akademik heyət öz tədqiqat nəticələrinin qanuni yayılmasına, müəllif hüquqları və lisenziyalaşdırma tələblərinə uyğunluğa və materialların vaxtında repozitoriyaya yerləşdirilməsinə cavabdehdir.\n\nMüvafiq inzibati və akademik bölmələr bu siyasətin həyata keçirilməsini dəstəkləyir və institusional prosedurlarla uyğunluğu təmin edir."
+            },
+            {
+              id: "principles",
+              title: "5. PRİNSİPLƏR, RİSK SAHƏLƏRİ VƏ İNSTİTUSİONAL STANDARTLAR",
+              text: "AzTU-da Açıq Giriş aşağıdakı prinsiplərə əsaslanır:",
+              list: [
+                "Azərbaycan Respublikasının qanunvericiliyinə uyğunluq;",
+                "tədqiqat nəticələrinin şəffaflığı və əlçatanlığı;",
+                "intellektual mülkiyyət hüquqlarının qorunması;",
+                "etik və məsuliyyətli tədqiqat fəaliyyəti;",
+                "ictimai və institusional resurslardan istifadədə hesabatlılıq;",
+                "həssas, məxfi və məhdud məlumatların qorunması."
+              ]
+            },
+            {
+              id: "implementation",
+              title: "6. İCRA",
+              text: "AzTU bu siyasətin effektiv icrasını aşağıdakı yollarla təmin edir:",
+              list: [
+                "İnstitusional Repozitoriya daxil olmaqla müvafiq rəqəmsal infrastrukturun yaradılması və inkişaf etdirilməsi;",
+                "Açıq Giriş və tədqiqat nəticələrinin yayılması üzrə təlim və maarifləndirmə proqramlarının təşkili;",
+                "müəllif hüquqları, lisenziyalaşdırma və nəşr məsələlərində tədqiqatçılara dəstək;",
+                "uyğunluğun monitorinqi və Açıq Giriş üzrə nəticələrin hesabatı."
+              ]
+            },
+            {
+              id: "compliance",
+              title: "7. UYĞUNLUQ",
+              text: "Bu siyasətə riayət olunması məcburidir və akademik qiymətləndirmə, vəzifə yüksəlişi, institusional tədqiqat maliyyələşdirilməsi və Ali Attestasiya Komissiyasının tələbləri daxil olmaqla milli akademik standartlarla əlaqələndirilə bilər.\n\nUyğunsuzluq halları tədqiqat dəstəyi və qiymətləndirmə proseslərində inzibati məhdudiyyətlərə səbəb ola bilər."
+            },
+            {
+              id: "exceptions",
+              title: "8. İSTİSNALAR",
+              text: "Bu siyasətdən istisnalar hüquqi və ya müqavilə məhdudiyyətləri, məxfilik tələbləri, intellektual mülkiyyətin qorunması və ya milli təhlükəsizlik səbəbləri ilə tətbiq oluna bilər.\n\nBütün istisnalar əsaslandırılmalı və institusional prosedurlara uyğun olaraq təsdiqlənməlidir."
+            },
+            {
+              id: "final",
+              title: "9. YEKUN MÜDDƏA",
+              text: "Azərbaycan Texniki Universiteti açıq, şəffaf və qanunvericiliyə uyğun tədqiqat mühitinin formalaşdırılmasına sadiqdir. Bu siyasət vasitəsilə Universitet öz tədqiqat nəticələrinin əlçatanlığını və görünürlüğünü təmin edir və onların milli və beynəlxalq akademik standartlara uyğunluğunu dəstəkləyir."
+            },
+            {
+              id: "evolution",
+              title: "10. SİYASƏTİN İNKİŞAFI",
+              text: "Bu siyasət hər iki ildən bir və ya qanunvericilikdə dəyişikliklər, institusional inkişafllar və ya monitorinq nəticələri tələb etdikdə daha tez nəzərdən keçirilir. Nəzərdən keçirmə prosesi sübutlara, maraqlı tərəflərin rəyinə və beynəlxalq təcrübəyə əsaslanır. Dəyişikliklər müəyyən edilmiş idarəetmə prosedurları çərçivəsində təsdiqlənir. Prosedur və əməliyyat xarakterli dəyişikliklər bu siyasətin tərkib hissəsi hesab edilmir."
+            }
+          ],
+          related: [
+            { title: "Tədqiqat Prioritetləri", href: "/tedqiqat/tedqiqat-fealiyyeti/tedqiqat-prioritetleri" },
+            { title: "Elmi Jurnallar", href: "/tedqiqat/elmi-jurnallar" },
+          ]
+        }
+      }
+    },
+
+    internationalization: {
+      doubleDegreePrograms: {
+        eyebrow: "Beynəlmiləlləşmə",
+        title: "İkili Diplom Proqramları",
+        subtitle: "AzTU və xarici tərəfdaş universitetlərdən iki beynəlxalq səviyyədə tanınan diplom əldə edin.",
+        breadcrumb: "İkili Diplom Proqramları",
+        description: "Azərbaycan Texniki Universitetinin İkili Diplom Proqramları tələbələrə bir təhsil müddəti ərzində iki beynəlxalq səviyyədə tanınan diplom əldə etmək imkanı yaradır — biri AzTU-dan, digəri isə xarici tərəfdaş universitetdən. Bu proqramlar universitetin Beynəlmiləlləşmə Siyasəti və 2030 İnkişaf Strategiyası ilə uyğun şəkildə hazırlanmışdır və bakalavr, magistr və doktorantura səviyyələrində qlobal rəqabətə davamlı təhsil təqdim etmək məqsədi daşıyır.\n\nİkili diplom proqramları çərçivəsində tələbələr: İki universitetin akademik üstünlüklərindən faydalanır; Fərqli mədəni mühitlərdə təhsil təcrübəsi qazanır; Azərbaycan və beynəlxalq səviyyədə tanınan diplomlarla məzun olurlar. Bu isə onlara qlobal əmək bazarında əhəmiyyətli üstünlük qazandırır.",
+        currentProgramsTitle: "Mövcud İkili Diplom Proqramları",
+        countries: [
+          {
+            name: "Türkiyə",
+            programs: [
+              "Ankara Universiteti — Elektrik və Elektronika Mühəndisliyi (Bakalavr, 2022-ci ildən)",
+              "Qazi Universiteti — Kompüter Mühəndisliyi (Bakalavr, 2023-cü ildən)"
+            ]
+          },
+          {
+            name: "Almaniya",
+            programs: [
+              "Brandenburg Texnologiya Universiteti — Mexanika və Materiallar Mühəndisliyi (Magistr)",
+              "Brandenburg Texnologiya Universiteti — Birgə Doktorantura Proqramı (PhD)"
+            ]
+          },
+          {
+            name: "İsrail",
+            programs: [
+              "Bar-İlan Universiteti — Elektrik və Elektronika Mühəndisliyi (Nano və Mikroelektronika) (Magistr, 2025-ci ildən)"
+            ]
+          }
+        ],
+        whyChooseTitle: "Niyə İkili Diplom Proqramını seçməlisiniz?",
+        benefits: [
+          "İki beynəlxalq səviyyədə tanınan diplom əldə edirsiniz",
+          "İki ölkədə yerləşən aparıcı universitetlərdə təhsil alırsınız",
+          "Qlobal akademik və peşəkar şəbəkə qurursunuz",
+          "Beynəlxalq əmək bazarında karyera imkanlarınızı genişləndirirsiniz",
+          "Multikultural bacarıqlar və dil bilikləri əldə edirsiniz"
+        ],
+        related: [
+          { title: "Əməkdaşlıqlar", href: "/icma/universitet-emekdasliqi/collaborations" },
+          { title: "Mübadilə Proqramları", href: "/tehsil/magistratura/exchange-programs" },
+        ]
+      },
+      orhunExchange: {
+        eyebrow: "Beynəlmiləlləşmə",
+        title: "Orhun Mübadilə Proqramı",
+        subtitle: "Türk dünyasında akademik əməkdaşlığı və mədəni əlaqələri gücləndirən mobilite təşəbbüsü.",
+        breadcrumb: "Orhun Mübadilə",
+        description: "Azərbaycan Texniki Universiteti Türk Universitetlər Birliyinin (TÜRKÜNİB) aktiv üzvüdür. Bu çərçivədə universitet Orhun Mübadilə Proqramında iştirak edir.\n\nOrhun Mübadilə Proqramı Türk Universitetlər Birliyinə üzv ali təhsil müəssisələri arasında akademik əməkdaşlığın və mədəni əlaqələrin gücləndirilməsini hədəfləyən mobilite proqramıdır. Proqram tələbə və akademik heyətə tərəfdaş universitetlərdə təhsil almaq, tədris aparmaq və elmi tədqiqat fəaliyyətlərində iştirak etmək imkanı yaradır.",
+        countriesTitle: "İştirakçı Ölkələr",
+        countriesDescription: "Proqram əsasən Türk Dövlətləri Təşkilatı çərçivəsində əməkdaşlıq edən aşağıdakı ölkələrin universitetlərini əhatə edir:",
+        countries: [
+          "Azərbaycan",
+          "Türkiyə",
+          "Qazaxıstan",
+          "Qırğızıstan",
+          "Özbəkistan"
+        ],
+        linksTitle: "Rəsmi Resurslar",
+        officialWebsite: "Rəsmi veb-sayt",
+        programPage: "Orhun Proqramı səhifəsi",
+        related: [
+          { title: "İkili Diplom Proqramları", href: "/internationalization/international-partnership/double-degree-programs" },
+          { title: "Beynəlxalq Layihələr", href: "/internationalization/international-partnership/international-projects" },
+        ]
+      },
+      internationalProjects: {
+        eyebrow: "Beynəlmiləlləşmə",
+        title: "Beynəlxalq Layihələr",
+        subtitle: "Tədqiqat və innovasiya tərəfdaşlıqlarının qlobal şəbəkəsi.",
+        breadcrumb: "Beynəlxalq Layihələr",
+        description: "Azərbaycan Texniki Universiteti müxtəlif beynəlxalq tədqiqat və təhsil layihələrində fəal iştirak edərək qlobal əməkdaşlığı təşviq edir və institusional potensialı artırır.",
+        projects: [
+          {
+            id: 1,
+            title: "Azərbaycan və Rusiya ali təhsil müəssisələrində tədris, təlim və qiymətləndirmə prosesinin daxili keyfiyyat təminatının təkmilləşdirilməsi (IQAinAR)",
+            fundedBy: "EU ERASMUS+ proqramı",
+            grantNo: "619477-EPP-1-2020-1-NL-EPPKA2-CBHE-JP",
+            period: "15/01/2021 - 14/01/2025",
+            objective: "Layihənin məqsədi universitet səviyyəsində tədrisin keyfiyyətini (müəllim meyarı - müəllimlərin peşəkar bacarıqlarını inkişaf etdirmək) və öyrənmə keyfiyyətini (tələbə meyarı - öyrənmə qabiliyyəti, ömürboyu təhsil, motivasiya, tələbələrin yumşaq və sərt bacarıqları) artırmaq, müəllimlər və tələbələr tərəfindən aparılan tədqiqatların keyfiyyətini yüksəltməkdir.",
+            website: "https://www.iqainar.org/",
+            tasks: [
+              "Avropanın Ali təhsil müəssisələrində ali təhsildə daxili keyfiyyət təminatının etalon təhlili",
+              "Daxili Keyfiyyət Təminatının (DKT) yerli/regional səviyyədə ilkin öyrənilməsi",
+              "ATM-də Daxili Keyfiyyət təminatının artırılması strategiyasının inkişafı və sınaqdan keçirilməsi",
+              "Daxili keyfiyyət təminatı göstəricilərinin və qiymətləndirmə indikatorlrının yaradılması",
+              "Təlim proqramlarının hazırlanması və AT mütəxəssislərinin QA sertifikatlaşdırılması",
+              "Ali təhsil müəssisələri üçün sərbəst girişi olan onlayn platformanın yaradılması"
+            ],
+            aztuImplementation: "Layihə çərçivəsində İspaniya təcrübəsi öyrənilmiş və keyfiyyət indikatorlarının pilot olaraq tərəfdaş universitetlərində tətbiqi icra edilməkdədir."
+          },
+          {
+            id: 2,
+            title: "Azərbaycan İnstitusional Repozitorlar Şəbəkəsi vasitəsilə Azərbaycanda Tədqiqat Potensialının artırılması (DIRNA)",
+            fundedBy: "EU ERASMUS+ proqramı",
+            grantNo: "101082124",
+            period: "101082124",
+            objective: "Layihənin məqsədi açıq girişli Azərbaycan İnstitsional Repositorlar Şəbəkəsinin qurulması yolu ilə Azərbaycanın aparıcı Ali təhsil müəssisələrində tədqiqat nəticələrinin idarəolunması sahəsində potensialın artırılmasıdır.",
+            website: "http://dirna.khazar.org/",
+            tasks: [
+              "Açıq Girişli Azərbaycan İnstitsional Repozitorlar Şəbəkəsinin qurulması üçün layihələndirmə və potensialın artırılması",
+              "Müvafiq potensialın formalaşdırılması məqsədilə təlim və tədris materiallarının hazırlanması",
+              "Xəzər Universitetinin İnformasiya resursları mərkəzindən repozitor kimi istifadə olunmaqla istifadə həcminin genişləndirilməsi",
+              "Elmi və akademik nəticələrin geniş yayılmasını və təsirini maksimallaşdırmaq",
+              "Sağlamlıq imkanları məhdud insanlar üçün inklüziv təhsil üzrə materiallara əlçatanlığın təmin olunması",
+              "Azərbaycanın ali təhsil müəssisələri üçün elektron nəşriyyatların saxlanması üçün sahənin yaradılması"
+            ],
+            aztuImplementation: "Layihə çərçivəsində repozitorlar şəbəkəsinin qurulması üçün Türkiyə təcrübəsi öyrənilmiş, İtaliya universitetlərində repozitorlar şəbəkəsinin öyrənilməsi üçün hazırlıq işləri görülür."
+          },
+          {
+            id: 3,
+            title: "Azərbaycan ali təhsil müəssisələrində sahibkarlıq ekosisteminin gücləndirilməsi (ENGAGE)",
+            fundedBy: "EU ERASMUS+ proqramı",
+            grantNo: "101083269",
+            period: "01/01/2023-31/12/2025",
+            objective: "Layihənin əsas məqsədi Azərbaycanın müvafiq ali təhsil müəssisələrində sahibkarlıq ekosisteminin gücləndirilməsindən, akademik heyətin və tələbələrin sahibkarlıq düşüncəsinin inkişaf etdirilməsindən ibarətdir.",
+            website: "https://engage.edu.az/",
+            tasks: [
+              "AzTU-da sahibkarlıq və İnnovasiya mərkəzinin yaradılması, restrukturizasiyası və modernləşdirilməsi",
+              "Yaradılmış mərkəzin müvafiq avadanlıqlarla təchiz olunması",
+              "Sahibkarlıq fəaliyyətlərinə dair mövcud vəziyyətin təhlili üzrə İşçi Qrupun yaradılması",
+              "Bençmark metodologiyasının və sorğu anketinin hazırlanmasına dəstək olmaq",
+              "Avropa İttifaqından olan tərəfdaş universitetlərə səfərlərin təşkili",
+              "İnnovasiya və sahibkarlıq üzrə strateji planın hazırlanması",
+              "Ali təhsil sistemində sahibkarlıq üzrə mükafatlandırma qaydalarının hazırlanması"
+            ],
+            aztuImplementation: "Layihəyə başlama görüşü keçirilmiş və tapşırıqlar müzakirə edilmişdir. İsveç, Estoniya, Polşa və İspaniya təcrübəsi öyrənilmişdir."
+          },
+          {
+            id: 4,
+            title: "Davamlı inkişaf üçün mühəndislik təhsilində qızların iştirakının artırılması layihəsi",
+            fundedBy: "UNESCO-nun 2020/2021-ci illər üzrə İştirak Proqramı",
+            grantNo: "1290116031",
+            period: "13/12/2021-30/04/2022",
+            objective: "Layihənin əsas məqsədi mühəndislik təhsilində və mühəndislik yönümlü peşə sahələrində qızların iştirakının artırılması üçün beynəlxalq təcrübənin öyrənilməsidir.",
+            website: "https://www.unesco.az/az",
+            tasks: [
+              "Cəmiyyətdə mövcud olan stereoptiplərin aradan qaldırılması üçün məlumatlılığın artırılması",
+              "Əmək bazarının tələblərinə uyğun təlimlərin keçirilməsi",
+              "Şagird qızlarda mühəndislik sahəsində ilk təcrübənin formalaşdırılması",
+              "“Mühəndislikdə Hər Kəs Güclüdür” mövzusu üzrə konfransın keçirilməsi",
+              "STEM, Mühəndislik dizaynı, Python təlimlərinin təşkili",
+              "Tələbələr üçün Karyera Günləri seminarlarının keçirilməsi"
+            ],
+            aztuImplementation: "Ümumilikdə, 4 ali təhsil müəssisəsindən 64 tələbə təlimlərdə iştirak edib."
+          },
+          {
+            id: 5,
+            title: "Rusiya Federasiyası, Qazaxıstan və Azərbaycanda səhiyyədə strateji keyfiyyət menecmenti və risklərin idarə olunması üzrə açıq və distant təhsil formatında bakalavr və magistr hazırlığı layihəsi (LMQS)",
+            fundedBy: "Avropa Birliyinin ERASMUS + CBHE",
+            grantNo: "618860-EPP-1-2020-1-EL-EPPKA2-CBHE-JP",
+            period: "15/01/2021 - 14/11/2024",
+            objective: "Layihənin əsas məqsədi Azərbaycanda səhiyyədə keyfiyyətin təmini və riskin idarə olunması üzrə mütəxəssis hazırlığında universitetlərin potensialının artırılmasıdır.",
+            website: "https://www.lmqs-erasmus.eu/",
+            tasks: [
+              "Bakalvr və magistr pilləsində yeni ixtisasın açılması",
+              "Distant formatda təhsilin verilməsi üçün resurs mərkəzinin açılması",
+              "Akademik heyətin müvafiq sahədə potensialının artırılması",
+              "Yeni ixtisasların akkreditasiya dosyesinin hazırlanması",
+              "Yeni ixtisasın ictimaiyyət və səhiyyə işçiləri arasında təbliği"
+            ],
+            aztuImplementation: "“Səhiyyədə keyfiyyətin və risklərin idarə olunması” üzrə magistr ixtisaslaşması açılmışdır. Avadanlıq alışı icra edilmişdir. AzTU nümayəndələri Yunanıstanda strateji təlimlərdə iştirak etmişdir."
+          },
+          {
+            id: 6,
+            title: "Azərbaycanda Rektorlar Konfransının yaradılması layihəsi (ECAR)",
+            fundedBy: "Avropa Birliyinin ERASMUS + CBHE",
+            grantNo: "619354-EPP-1-2020-1-AZ-EPPKA2-CBHE-JP",
+            period: "15/01/2021- 14/01/2025",
+            objective: "Layihənin əsas məqsədi Təhsil Nazirliyinin bilavasitə iştiraki ilə ali təhsil müəssisələri kollektiv üzvlərinin fəaliyyətlərini əlaqələndirmək üçün Rektorlar Konfransını yaratmaqdır.",
+            website: "http://ecar.net.az/",
+            tasks: [
+              "Ali Təhsil Müəssisələri arasında elmi, təhsil və mədəni əməkdaşlığı təşviq etmək",
+              "Ali təhsil sistemində prinsip və standartların inkişafı",
+              "Milli Təhsil şəbəkəsi yaratmağa dəstək olmaq",
+              "Azərbaycan elminin inkişafı üçün vacib olan məsələlər barədə rəylər təqdim etmək"
+            ],
+            aztuImplementation: "Litva, Polşa, İsveç, Belçika, İspaniya, Portuqaliya təcrübəsi öyrənilmişdir. Rektorlar Konfransının daxili idarəetmə strukturu və əsasnaməsi hazırlanmışdır. Komitələr təşkil edilmişdir."
+          },
+          {
+            id: 7,
+            title: "İnnovasiya və dayanıqlılıq prinsipləri ilə klasterlərin işlənməsinə başlamaqda və iştirakda universitetlərin potensialının artırılması layihəsi (UniClaD)",
+            fundedBy: "Avropa Birliyinin ERASMUS + CBHE",
+            grantNo: "609944-EPP-1-2019-1-LT-EPPKA2-CBHE-JP",
+            period: "15/01/2020- 19/11/2024",
+            objective: "Aqro-sənaye klasterlərinin əsas hissəsi kimi universitetlərin potensialının inkişaf etdirilməsi və innovasiya mərkəzlərinin yaradılmasıdır.",
+            website: "http://uniclad.net/",
+            tasks: [
+              "Avropanın klaster təcrübəsinin öyrənilməsi",
+              "Dəyər zəncirin işlənib hazırlanması: magistr - PhD - tədqiqatçı",
+              "Biznes, elm və təhsilin klasterlər daxilində işləməsi üçün potensialın artırılması",
+              "İnnovasiyaların aqro-sənaye istehsalatına inteqrasiyası üçün şəraitin yaradılması"
+            ],
+            aztuImplementation: "İnnovativ Texnologiyalar Mərkəzi yaradılmışdır. Yem Kalkulyatoru pilot layihəsi işlənilmişdir. 6 nümayəndə Litva və Macarıstanın təcrübəsi ilə tanış olmuşlar."
+          },
+          {
+            id: 8,
+            title: "Nəqliyyat xidmətlərində böhran və risklərin mühəndisliyi layihəsi (CRENG)",
+            fundedBy: "Avropa Birliyinin ERASMUS + CBHE",
+            grantNo: "598218-EPP-1-2018-1-PL-EPPKA2-CBHE-JP",
+            period: "15/11/2018 – 15/07/2022",
+            objective: "Nəqliyyat xidmətlərində risk və böhran mühəndisliyi sahəsində sənayenin ehtiyaclarına yönəlik kadr hazırlığının yerinə yetirilməsidir.",
+            website: "www.creng.eu",
+            tasks: [
+              "Yeni magistr proqramının və tədris materiallarının hazırlanması",
+              "“Layihə üzərindən öyrənmə” metodikasının hazırlanması",
+              "Xidmət ofisinin və laboratoriyasının açılması",
+              "“Bacarıqlar cüzdanı” yanaşması əsasında Universitet-Sənaye əməkdaşlığının qurulması"
+            ],
+            aztuImplementation: "Yeni magistr ixtisası açılmışdır. 13 fənn üzrə tədris materialları işlənib hazırlanmışdır. CRENG xidməti ofisi və laboratoriyası açılmışdır."
+          },
+          {
+            id: 9,
+            title: "Azərbaycanda doktorantura təhsilinin təkmilləşdirilməsi və Avropa Ali Təhsil Məkanının tələblərinə uyğunlaşdırılması (NİZAMI)",
+            fundedBy: "Avropa Birliyinin ERASMUS + CBHE",
+            grantNo: "561784-EPP-1-2015-1-FR-EPPKA2-CBHE-SP",
+            period: "01/10/2015 – 01/10/2018",
+            objective: "Azərbaycanda doktorantura təhsilində yüksək standartların təmin edilməsi və doktorantura məktəblərinin qurulmasıdır.",
+            website: "https://doktorantura.az/",
+            tasks: [
+              "Ali təhsil müəssisələri daxilində doktorantura məktəblərinin qurulması",
+              "Azərbaycan doktorantura təhsilinin Avropa standartlarına uyğunluğunun artırılması",
+              "Doktorantura təhsilinin professionallaşması və beynəlmiləlləşməsi üçün vasitələrin paylaşılması",
+              "Doktorantların peşə bacarıqlarının artırılması"
+            ],
+            aztuImplementation: "Doktorantura təhsilinin strukturlaşdırılması icra edilmişdir. NİZAMI aləti və Milli İdarəetmə Portalı yaradılmışdır. Doktorantlar üçün bələdçi kitabı hazırlanmışdır."
+          },
+          {
+            id: 10,
+            title: "Rusiya Federasiyası, Çin və Azərbaycanda binaların enerji və ekoloji səmərəliliyi üzrə açıq və distant təhsil formatında peşə bakalavrı (LPEB)",
+            fundedBy: "Avropa Birliyinin ERASMUS + CBHE",
+            grantNo: "561732-EPP-1-2015-1-FR-EPPKA2-CBHE-JP",
+            period: "15/10/2015- 14/10/2018",
+            objective: "Enerji səmərəliliyi və ətraf mühitin qorunması üzrə fənn proqramlarının və onların məzmunlarının təkmilləşdirilməsi.",
+            website: "www.lpeb-erasmus.eu",
+            tasks: [
+              "ATM-lərdə islahatlara və modernləşmələrə dəstək göstərmək",
+              "Ali təhsilin keyfiyyətinin yüksəldilməsi",
+              "Fənn proqramlarının və onların məzmunlarının təkmilləşdirilməsi",
+              "Binaların enerji səmərəliliyinin inkişafı üçün resurs mərkəzlərinin yaradılması"
+            ],
+            aztuImplementation: "“İstilik energetikası” kafedrasında mövcud ixtisasın uyğunlaşdırılması yerinə yetirilmiş, magistr pilləsində isə “Bərpa olunan enerji mənbələri” ixtisaslaşması açılmışdır."
+          },
+          {
+            id: 11,
+            title: "Azərbaycan, Gürcüstan və Moldovanın turizm sənayesinin inkişafı üçün mehmanxana işinin menecmenti üzrə bakalavr-magistr hazırlığı (LMPH)",
+            fundedBy: "Avropa Birliyinin TEMPUS proqramı",
+            grantNo: "N° 544191 Tempus 1-2013-1-PT JPCR",
+            period: "01/05/2014 – 30/05/2017",
+            objective: "Qonaqlama və otel idarəçiliyi üzrə peşəkar təhsil və təlim proqramlarının (magistr dərəcəsi) yaradılmasıdır.",
+            website: "http://tempus.lmph.eu/",
+            tasks: [
+              "Otel sahəsində təhsil və təlim proqramlarını peşəkarlaşdırmaq",
+              "Bakalavr və iki peşəkar magistr dərəcəsi yaratmaq",
+              "Tələbələrin işlə təmin olunmasını yaxşılaşdırmaq",
+              "Mükəmməllik mərkəzi / resurs mərkəzi yaratmaq"
+            ]
+          },
+          {
+            id: 12,
+            title: "Azərbaycan Universitetlərində mühəndislik təhsilinin Boloniya prosesinə uyğunlaşdırılması",
+            fundedBy: "Avropa Birliyinin TEMPUS proqramı",
+            grantNo: "516678‐TEMPUS‐1‐2011‐1‐DE‐TEMPUS‐JPCR",
+            period: "2011-2015",
+            objective: "Avropa İttifaqının Akkreditasiya Agentliyi tərəfindən AzTU-ya 2 magistr və 2 bakalavr ixtisası üzrə Akkreditasiya sertifikatları təqdim edilmişdir."
+          }
+        ],
+        details: {
+          fundedBy: "Maliyyələşdirən",
+          grantNo: "Qrant No",
+          period: "İcra müddəti",
+          objective: "Əsas məqsəd",
+          website: "İnternet səhifə",
+          tasks: "Layihənin vəzifələri",
+          aztuImplementation: "AzTU tərəfindən görülmüş işlər"
+        },
+        related: [
+          { title: "İkili Diplom Proqramları", href: "/beynelmillesme/beynelxalq-terefdasliq/ikili-diplom-proqramlari" },
+          { title: "Əməkdaşlıqlar", href: "/icma/universitet-emekdasliqi/collaborations" },
+        ]
+      },
+      partnerUniversities: {
+        eyebrow: "Beynəlmiləlləşmə",
+        title: "Tərəfdaş Universitetlər",
+        subtitle: "Akademik mükəmməlliyin qlobal şəbəkəsi.",
+        breadcrumb: "Tərəfdaş Universitetlər",
+        description: "Azərbaycan Texniki Universitetinin (AzTU) qlobal tərəfdaş universitetlər şəbəkəsi onun beynəlmiləlləşmə və dünya səviyyəli mühəndislik təhsilinə sadiqliyini əks etdirir. Avropa, Asiya, MDB ölkələri və digər regionları əhatə edən ikitərəfli əməkdaşlıq müqavilələri vasitəsilə AzTU aparıcı universitetlərlə birgə proqramlar, akademik mobillik və elmi tədqiqat sahələrində əməkdaşlıq edir. Bu əməkdaşlıqlar tələbələr, akademik heyət və ümumilikdə elmi ictimaiyyət üçün əvəzsiz imkanlar yaradır.",
+        tableHeaders: {
+          no: "№",
+          logo: "Loqo",
+          university: "Universitet",
+          country: "Ölkə",
+          agreementType: "Müqavilə növü",
+          date: "Tarix",
+          website: "Vebsayt"
+        },
+        related: [
+          { title: "İkili Diplom Proqramları", href: "/beynelmillesme/beynelxalq-terefdasliq/ikili-diplom-proqramlari" },
+          { title: "Beynəlxalq Layihələr", href: "/beynelmillesme/beynelxalq-terefdasliq/beynelxalq-layiheler" },
+        ]
       }
     },
 
@@ -1286,6 +1901,80 @@ const az = {
           }
         ]
       },
+      formerRectors: {
+        eyebrow: "İCMA",
+        title: "Sabiq Rektorlarımız",
+        subtitle: "Onilliklər ərzində Azərbaycan Texniki Universitetini formalaşdıran görkəmli rəhbərlər.",
+        breadcrumb: "Sabiq Rektorlar",
+        rectors: [
+          {
+            name: "Mahmud Məmmədov",
+            tenure: "1950–1954",
+            bio: "1909-cu ildə anadan olub, 1933-cü ildə Azərbaycan Kənd Təsərrüfatı İnstitutunu bitirib. 1939-cu ildə Moskvada aspiranturanı bitirənə qədər müəllim və dekan vəzifələrində çalışıb. Kənd Təsərrüfatı Nazirinin müavini və Nazirlər Soveti Sədrinin müavini (1942-1950) vəzifələrində çalışıb. Azərbaycan Politexnik İnstitutunun (indiki AzTU) ilk rektoru olub. 1964-cü ildə vəfat edib.",
+            image: "/former-rectors/mahmud-mammadov.png"
+          },
+          {
+            name: "Abuzər Əliyev",
+            tenure: "1954–1961",
+            bio: "1911-ci ildə anadan olub, 1937-ci ildə Azərbaycan Sənaye İnstitutunun Memarlıq və İnşaat fakültəsini bitirib. İkinci Dünya Müharibəsi illərində hərbi zavodun baş mühəndisi, sonra isə Tikinti Nazirinin müavini vəzifələrində çalışıb. Azərbaycanda inşaat üzrə fəlsəfə doktoru müdafiə edən ilk alim olub və 'Əməkdar Mühəndis' fəxri adına layiq görülüb. 1980-ci ildə vəfat edib.",
+            image: "/former-rectors/abuzer-aliyev.png"
+          },
+          {
+            name: "Ənvər Qasımzadə",
+            tenure: "1962–1969",
+            bio: "1912-ci ildə Salyanda anadan olmuş, görkəmli memar və dövlət xadimi olub. 1936-cı ildə Azərbaycan Sənaye İnstitutunu bitirmiş və müxtəlif yüksək dövlət vəzifələrində, o cümlədən Tikinti Naziri vəzifəsində çalışmışdır. İkinci Dünya Müharibəsi veteranı olan o, 'Qırmızı Ulduz' və 'Qırmızı Bayraq' ordenləri ilə təltif edilib. Rektorluğu dövründə Gəncə filialını və bir neçə yeni fakültəni açaraq universiteti genişləndirib. 1969-cu ildə vəfat edib.",
+            image: "/former-rectors/enver-qasimzade.png"
+          },
+          {
+            name: "Rza Bədəlov",
+            tenure: "1968–1976",
+            bio: "1915-ci ildə Bakıda anadan olub, Azərbaycan Sənaye İnstitutunu bitirib. Neft sənayesində çalışıb, sonra professor və nəzəri mexanika kafedrasının müdiri olub. Azərbaycan Milli Elmlər Akademiyasının müxbir üzvü idi. 1987-ci ildə vəfat edib.",
+            image: "/former-rectors/rza-bedelov.png"
+          },
+          {
+            name: "Mirzəağa Bağırov",
+            tenure: "1976–1988",
+            bio: "1927-ci ildə Lənkəranda anadan olub, 1949-cu ildə Azərbaycan Sənaye İnstitutunun Energetika fakültəsini bitirib. Elmlər Akademiyasında çalışıb və 1966-cı ildə Moskvada doktorluq dissertasiyasını müdafiə edib. 12 il universitetə rəhbərlik edib. 2011-ci ildə vəfat edib.",
+            image: "/former-rectors/mirzeaga-bagirov.png"
+          },
+          {
+            name: "Ramiz Qurbanov",
+            tenure: "1989–1990",
+            bio: "1935-ci ildə Salyanda anadan olub, 1956-cı ildə Azərbaycan Sənaye İnstitutunu fərqlənmə diplomu ilə bitirib. Neft yataqlarının istismarı sahəsində çalışıb, sonradan Azərbaycan Neft və Kimya İnstitutunda professor və prorektor vəzifələrində çalışıb. 1989-cu ildə Elmlər Akademiyasının müxbir üzvü seçilib.",
+            image: "/former-rectors/ramiz-qurbanov.png"
+          },
+          {
+            name: "Əli Sadıxov",
+            tenure: "1990–1992",
+            bio: "1938-ci ildə Bakıda anadan olub, 1962-ci ildə Azərbaycan Politexnik İnstitutunu bitirib. Rektor olmamışdan əvvəl prorektor vəzifəsində çalışıb. Onun rəhbərliyi dövründə (24 sentyabr 1991-ci il) instituta universitet statusu verilmiş və Azərbaycan Texniki Universiteti (AzTU) adlandırılmışdır. Hazırda məsləhətçi professor kimi fəaliyyət göstərir.",
+            image: "/former-rectors/eli-sadixov.png"
+          },
+          {
+            name: "Allahverdi Orucov",
+            tenure: "1993 (iyul–dekabr)",
+            bio: "1944-cü ildə Füzulidə anadan olub, 1969-cu ildə AzPİ-ni bitirib. 1992-2000-ci illərdə tədris işləri üzrə prorektor vəzifəsində çalışıb və 1993-cü ilin ikinci yarısında rektor vəzifəsini icra edib.",
+            image: "/former-rectors/allahverdi-orucov.png"
+          },
+          {
+            name: "Rafiq Mehdiyev",
+            tenure: "1993–1999",
+            bio: "1936-cı ildə Cəbrayılda anadan olub, 1958-ci ildə AzPİ-nin Maşınqayırma fakültəsini bitirib. 1981-ci ildə Leninqradda doktorluq dissertasiyasını müdafiə edib. Rektorluq fəaliyyətindən sonra Türkiyənin İstanbul Texniki Universitetində professor olub.",
+            image: "/former-rectors/rafiq-mehdiyev.png"
+          },
+          {
+            name: "Havar Məmmədov",
+            tenure: "2000–2016",
+            bio: "1945-ci ildə İmişlidə anadan olub, 1968-ci ildə AzPİ-ni fərqlənmə diplomu ilə bitirib. Müxtəlif akademik rəhbər vəzifələrdə çalışıb və 16 il rektor vəzifəsində fəaliyyət göstərib. AzTU-dakı fəaliyyətindən sonra Bakı Mühəndislik Universitetinin rektoru (2017-2023) vəzifəsində çalışıb.",
+            image: "/former-rectors/havar-mammadov.png"
+          },
+          {
+            name: "Xalıq Yahudov",
+            tenure: "2016–2019",
+            bio: "1946-cı ildə Zaqatalada anadan olub, 1969-cu ildə Azərbaycan Dövlət Universitetini bitirib. AzTU-da dekan, tədris işləri üzrə prorektor kimi bir çox vəzifələrdə çalışıb. 2016-cı ilin sentyabrından 2019-cu ilin iyuluna qədər rektor vəzifəsini icra edib.",
+            image: "/former-rectors/xaliq-yahudov.jpg"
+          }
+        ]
+      },
       ourHeroes: {
         eyebrow: "İCMA",
         title: "Qəhrəmanlarımız",
@@ -1389,6 +2078,12 @@ const az = {
     title: "Azərbaycan Texniki Universitetini kəşf edin",
     button: "Daha çox kəşf et",
     videoAriaLabel: (n: number) => `${n}-ci videoya keç`,
+    stats: [
+      { label: "QS Reytinqi", value: "851+" },
+      { label: "THE Dünya Reytinqi", value: "1501+" },
+      { label: "Green Metric Reytinqi", value: "835" },
+      { label: "Beynəlxalq Akkreditə olunmuş proqramlar", value: "20+" },
+    ],
   },
 
   news: {

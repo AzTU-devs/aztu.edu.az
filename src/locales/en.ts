@@ -7,7 +7,48 @@ const en = {
     lms: "LMS",
     alumni: "Alumni",
     aztuTv: "AzTU TV",
-    quickMenu: "Quick Menu",
+    quickMenu: {
+      button: "Quick Menu",
+      navigation: "Navigation",
+      title: "QUICK<br/>ACCESS",
+      slogan: "Shaping the engineering future",
+      portal: "Portal",
+      sections: {
+        platform: {
+          title: "Platform",
+          items: {
+            lms: "LMS",
+            internalGrants: "Internal Grant Competition",
+            planReport: "Plan Report Information System",
+          }
+        },
+        alumni: {
+          title: "Alumni",
+          items: {
+            portal: "Alumni Portal",
+            honoraryDoctors: "Honorary Doctors",
+            honoraryGraduates: "Honorary Graduates",
+            heroes: "Our Heroes",
+          }
+        },
+        whyAztu: {
+          title: "Why AzTU?",
+          items: {
+            infrastructure: "Infrastructure",
+            startups: "Startups",
+            dualDegree: "Dual Degree Diplomas",
+            scholarships: "Scholarships",
+          }
+        }
+      },
+      leftItems: {
+        ranking: "Ranking",
+        accreditation: "Accreditation",
+        policies: "Policies",
+        reports: "Reports",
+        faq: "FAQ",
+      }
+    },
     search: "Search",
     moreInSection: "More in this section",
     comingSoon: "Coming Soon",
@@ -26,6 +67,7 @@ const en = {
     items: {
       historyOfAztu: "History of AzTU",
       visionMission: "Vision & Mission",
+      visionMissionGoal: "Vision, Mission & Goal",
       vision: "Vision",
       mission: "Mission",
       strategicPlan: "Strategic Plan",
@@ -65,8 +107,10 @@ const en = {
       tuitionFees: "Tuition Fees",
       postgraduates: "Postgraduates",
       cdio: "CDIO",
+      higherEducationInstitute: "Higher Education Institute (HEI)",
       internationalStudents: "International Students Unit",
       exchangePrograms: "Exchange Programs",
+      orhunExchange: "Orhun Exchange Program",
       lmsGuidelines: "LMS Guidelines",
       researchActivities: "Research Activities",
       researchInstitutes: "Research Institutes",
@@ -83,6 +127,7 @@ const en = {
       studentYouthOrg: "Student Youth Organization",
       universityCooperation: "University Cooperation",
       collaborations: "Collaborations",
+      formerRectors: "Former Rectors",
     },
   },
 
@@ -117,9 +162,152 @@ const en = {
         locationTitle: "Our Location",
         universityName: "Azerbaijan Technical University",
         buildingInfo: "Main academic building",
-      }
+      },
     },
+
     about: {
+      hei: {
+        eyebrow: "Education and Programs",
+        title: "Higher Education Institute (HEI)",
+        subtitle: "Preparing highly qualified, competitive professionals for the modern engineering landscape.",
+        breadcrumb: "Higher Education Institute",
+        aboutTitle: "About the Institute",
+        paragraphs: [
+          "The Higher Education Institute at Azerbaijan Technical University (AzTU) was established by the decision of the Academic Council of the University on December 27, 2021. It serves as a key academic unit responsible for the centralized organization and development of graduate education and research activities at the Master’s and Doctoral levels.",
+          "The primary objective of the Graduate School is to prepare highly qualified, competitive professionals who meet the demands of the modern world, possess innovative thinking, and contribute to advancing research quality in line with international standards."
+        ],
+        missionTitle: "Mission and Strategic Directions",
+        missionText: "The mission of the Graduate School is to educate professionals in technical and engineering fields equipped with modern knowledge and skills, analytical and creative thinking, as well as strong research and management capabilities. It also aims to foster innovation, enhance research excellence, and strengthen the university’s integration into the global academic environment.",
+        strategicDirections: [
+          "Organization and coordination of Master’s and Doctoral education",
+          "Development and management of research activities",
+          "Training of young researchers and strengthening academic capacity",
+          "Promotion of participation in national and international research projects",
+          "Strengthening collaboration with industry"
+        ],
+        academicOpportunities: {
+          title: "Academic Opportunities",
+          description: "The Graduate School offers a wide range of programs at the Master’s level:",
+          stats: [
+            "36 fields of study",
+            "126 specializations"
+          ],
+          languagesTitle: "Instruction is delivered in a multilingual environment in:",
+          languages: [
+            "Azerbaijani",
+            "English",
+            "German",
+            "Russian"
+          ],
+          footer: "This approach enables students to integrate effectively into the international academic and professional environment."
+        },
+        researchTitle: "Research and Innovation",
+        researchDescription: "The Graduate School provides comprehensive support to Master’s and doctoral students throughout all stages of their research activities, including:",
+        researchItems: [
+          "Planning and conducting research",
+          "Selecting relevant and application-oriented dissertation topics",
+          "Promoting research aligned with industry needs",
+          "Supporting publications in international journals",
+          "Facilitating participation in conferences and academic events"
+        ],
+        researchFooter: "It also ensures the integration of modern scientific achievements and innovative technologies into teaching and research processes.",
+        doctoralTitle: "Doctoral Education",
+        doctoralDescription: "Doctoral education at AzTU represents the highest level of higher education and leads to the award of PhD and Doctor of Science degrees.",
+        doctoralFormatsTitle: "Programs are offered in:",
+        doctoralFormats: [
+          "Full-time",
+          "Part-time",
+          "Dissertation-based formats"
+        ],
+        doctoralDuration: {
+          title: "Duration of Study:",
+          phd: {
+            title: "PhD:",
+            items: ["Full-time: 3 years", "Part-time: 4 years", "Dissertation-based: 4 years"]
+          },
+          ds: {
+            title: "Doctor of Science:",
+            items: ["Full-time: 4 years", "Part-time: 5 years", "Dissertation-based: 5 years"]
+          },
+          footer: "In exceptional cases, the duration may be extended in accordance with regulations."
+        },
+        doctoralAdmission: "Admission is competitive and open to applicants holding a Master’s degree or an equivalent qualification.",
+        director: {
+          title: "Director",
+          name: "Aynura Ismayilova",
+          degree: "PhD in Economics, Associate Professor",
+          email: "aynura.ismayilova@aztu.edu.az",
+          phone: "internal № 3201",
+          office: "Room 206, Main Academic Building",
+          hours: "Friday, 15:00–19:00",
+          bio: "Aynura Ismayilova is a professional with over 15 years of international experience in project management and economic research. She began her career in 2004 at the Azerbaijan National Academy of Sciences and later worked as a Project Manager in a joint project of the United Nations Development Programme (UNDP) and the Ministry of Economy of the Republic of Azerbaijan. She subsequently held senior positions at the Institute of Economic Reforms, serving as Head of Department and later as Deputy Director.\n\nWith extensive experience in collaboration with international financial and development institutions, Aynura Ismayilova has contributed as a coordinator, executor, and project manager in initiatives supported by the Asian Development Bank (ADB), Islamic Development Bank (IsDB), Economic Cooperation Organization (ECO), and the Turkish Cooperation and Coordination Agency (TİKA).\n\nBetween 2012 and 2021, she was a member of the working group on the establishment of the ECO Research Center, actively contributing to regional cooperation and the preparation of analytical reports. Her work has been internationally recognized, and in 2016 she was awarded a Certificate of Appreciation by the Ministry of Finance of the Kyrgyz Republic.\n\nActively engaged in the international academic community, A. Ismayilova has participated in academic exchange and visiting researcher programs in China, Germany, and South Korea. Since 2006, she has taken part in nearly 40 international scientific and technical events under various scholarship programs.\n\nSince 2021, she has been working at Azerbaijan Technical University (AzTU), where she has played a key role in strengthening university–industry collaboration. She has led several strategic programs implemented in partnership with Turkish Aerospace Industries (TUSAŞ), including the “Highly Qualified Engineer Development Program (MGP),” “SKY Global” exchange program, and “Lift UP” graduate projects. She currently serves as an Associate Professor at the Department of Economics and Statistics.",
+          achievements: "Aynura Ismayilova holds both Bachelor’s and Master’s degrees from Baku State University. In 2021, she earned her PhD in Economics, specializing in econometrics and economic statistics. She also holds the internationally recognized IPMA Level B certification in project management. In 2014, she was awarded the “Progress” Medal by the President of the Republic of Azerbaijan.",
+          researchInterestsTitle: "Academic research interests",
+          researchInterests: [
+            "Project Management",
+            "Regional Economic Cooperation",
+            "University–Industry Collaboration Models",
+            "Innovation Policy and Institutional Development",
+            "Lifelong Learning and Competency-Based Education Models",
+            "Digital Transformation and Higher Education Governance"
+          ],
+          educationTitle: "Education",
+          educationItems: [
+            { period: "2012–2016", degree: "Doctoral Student", inst: "Institute for Scientific Research on Economic Reforms (ISRER), Ministry of Economics of the Republic of Azerbaijan" },
+            { period: "2001–2003", degree: "Master’s Degree", inst: "Baku State University, Faculty of Applied Mathematics and Cybernetics" },
+            { period: "1997–2001", degree: "Bachelor’s Degree", inst: "Baku State University, Faculty of Applied Mathematics and Cybernetics" }
+          ]
+        },
+        staffTitle: "Staff members",
+        staffDescription: "Information about staff members of the Graduate School:",
+        staff: [
+          { name: "Hajar Aliyeva", pos: "Doctoral Program Manager", degree: "None", email: "hecer.aliyeva@aztu.edu.az", phone: "+994 050 584 20 73" },
+          { name: "Kamran Abilov", pos: "Master’s Program Manager", degree: "None", email: "kamran.ebilov@aztu.edu.az", phone: "+994 077 761 59 22" },
+          { name: "Aynur Huseynova", pos: "Student Affairs Specialist", degree: "None", email: "aynur.huseynova@aztu.edu.az", phone: "+994 055 449 96 06" }
+        ],
+        contactInfo: {
+          title: "Contact information",
+          address: "Main Academic Building I, Room 414",
+          phone: "internal № 3201",
+          email: "yti@aztu.edu.az",
+          hours: "09:00–18:00 (I-V) and 18:00–21:00 (II-II-IV)"
+        },
+        board: {
+          title: "Management Board",
+          intro: "Duties of the Management Board of the Institute of Higher Education (IHE):",
+          duties: [
+            "To determine the strategic directions of IHE and prepare medium and long-term strategic development plans of IHE covering five and ten years;",
+            "To approve the annual action plans of the IHE, accepted by the Scientific Council of the IHE and approved by the director of the IHE;"
+          ],
+          note: "The Board of Directors operates on a public basis.",
+          rightsTitle: "Rights of the Board of Directors are as follows:",
+          rights: [
+            "Establish partnership relations with industrial enterprises on behalf of IHE;",
+            "To report directly to the Scientific Council and the Rector of AzTU concerning the annual activity of IHE."
+          ],
+          compositionTitle: "The Management Board includes:",
+          composition: [
+            "The composition of the Management Board consists of 10 members and a chairman;",
+            "5 members are determined from AzTU, 6 members from industrial enterprises;",
+            "Members from AzTU are appointed by order of AzTU rector. One of them is appointed as the Chairman of the Management Board according to the order of the Rector.",
+            "6 members representing industrial enterprises are formed from the representatives presented by AzTU rector, and vice-rector for Educational Affairs in his absence on the basis of an official letter to large local and foreign enterprises operating in the Republic of Azerbaijan. Only 1 representative can represent each enterprise.",
+            "All members of the Management Board are appointed for a term of 1 year and they are appointed by AzTU and nominated by industrial enterprises every year.",
+            "Industrial enterprises can present the same person to the membership of the Board of Directors an unlimited number of times.",
+            "The same member from AzTU including the Chairman of the Management Board cannot be appointed more than twice."
+          ],
+          requirementsTitle: "Requirements for members of the Board of Directors:",
+          requirements: [
+            "Members from industrial enterprises - The potential candidate should be the head of the strategic development department of the enterprise, a member of the Board of Directors, the Deputy Executive Director and such a person involved in making strategic and management decisions of the enterprise.",
+            "Requirements for members appointed by AzTU: At least a Ph.D; At least 1 (one) year of scientific and pedagogical experience; At least 1 (one) year of administrative management experience at AzTU - dean, deputy dean, chairman, head of department, deputy head of department, director of the institute, adviser to the rector, vice-rector. Preference will be given to those with experience in public and private enterprises."
+          ],
+          chairman: "Chairman of the Board dss. (The Doctor of Social Science) F.O. Mammadov. (fariz.mammadov@aztu.edu.az)."
+        },
+        related: [
+          { title: "Partner Universities", href: "/about/partner-universities-and-related-institutes" },
+          { title: "Strategic Plan", href: "/about/vision-mission/strategic-plan" },
+        ]
+      },
+
       history: {
         eyebrow: "Our Legacy",
         title: "History of AzTU",
@@ -181,6 +369,25 @@ const en = {
           { title: "Vision", href: "/about/vision-mission/vision" },
           { title: "Strategic Plan", href: "/about/vision-mission/strategic-plan" },
           { title: "History of AzTU", href: "/about/vision-mission/history-of-aztu" },
+        ],
+      },
+
+
+      visionMissionGoal: {
+        eyebrow: "Our Identity",
+        title: "Vision, Mission and Goal",
+        subtitle: "The core principles and aspirations that define AzTU.",
+        breadcrumb: "Vision, Mission & Goal",
+        missionTitle: "Mission",
+        missionText: "To possess advanced education and research potential in the fields of engineering sciences and the application of smart technologies.",
+        visionTitle: "Vision",
+        visionText: "Our vision is to become a leading university in the region in the engineering fields of the future through innovation and the application of advanced technologies.",
+        goalTitle: "Goal",
+        goalText: "Our goal is to ensure the training of highly qualified specialists in these fields by delivering technological innovations and smart solutions on digital platforms.",
+        related: [
+          { title: "Strategic Plan", href: "/about/vision-mission/strategic-plan" },
+          { title: "History of AzTU", href: "/about/vision-mission/history-of-aztu" },
+          { title: "Anniversary Film", href: "/about/vision-mission/75th-anniversary-film" },
         ],
       },
 
@@ -1168,6 +1375,413 @@ const en = {
           ],
           image: "/research-seminars-training/Energy sustainability- risks and decision making.png"
         }
+      },
+      publications: {
+        openAccessPolicy: {
+          eyebrow: "Research",
+          title: "Open Access Policy",
+          subtitle: "AZTU supports the principles of Open Access and Open Science for advancing research and innovation.",
+          breadcrumb: "Open Access Policy",
+          documentInfo: {
+            title: "Open Access Policy of Azerbaijan Technical University",
+            type: "Policy",
+            scope: "All staff and students",
+            issued: "2023",
+            revised: "June 2024",
+            reviewCycle: "Every 2 years",
+            nextReview: "2026",
+            version: "v3.0",
+            authority: "University Council",
+            owner: "Library Information Center",
+            status: "Approved and Published",
+            location: "BAKU-2026"
+          },
+          pdfUrl: "http://api.aztu.edu.az/media/prod/policies/tid/tid_policies/open_access_policy_en.pdf",
+          downloadButton: "Download PDF",
+          content: [
+            {
+              id: "context",
+              title: "1. CONTEXT AND PURPOSE",
+              text: "Azerbaijan Technical University (AZTU) recognizes that open access to scientific knowledge is essential for advancing research, innovation, and societal development. The University supports the principles of Open Access and Open Science as fundamental components of a modern academic and research environment.\n\nThis policy is developed in accordance with and aligned to the legal and regulatory framework of the Republic of Azerbaijan, including:\n• the Law of the Republic of Azerbaijan “On Education”;\n• the Law of the Republic of Azerbaijan “On Science”;\n• the Law of the Republic of Azerbaijan “On Copyright and Related Rights”;\n• the Law of the Republic of Azerbaijan “On Information, Informatization and Protection of Information”;\n• the normative legal acts, regulations, and guidelines of the Ministry of Science and Education of the Republic of Azerbaijan; and\n• the decisions, rules, and requirements of the Higher Attestation Commission under the President of the Republic of Azerbaijan (AAK).\n\nAZTU is committed to ensuring that its research outputs are widely accessible while respecting intellectual property rights, legal obligations, and national interests.\n\nThe purpose of this policy is to establish a comprehensive framework for the open dissemination, accessibility, and preservation of research outputs produced at AZTU, while ensuring compliance with national legislation and institutional standards."
+            },
+            {
+              id: "definitions",
+              title: "2. KEY TERMS AND DEFINITIONS",
+              text: "For the purposes of this Policy, the following terms are used to ensure a shared and consistent understanding of academic freedom at AzTU:",
+              list: [
+                "Open Access (OA): The free, immediate, and unrestricted online access to research outputs produced at AZTU, enabling users to read, download, copy, distribute, and use the content in compliance with applicable legislation and copyright requirements.",
+                "Open Science: A research approach that promotes transparency, accessibility, and collaboration by ensuring that research processes, methodologies, and outputs are made openly available where appropriate and in line with legal and ethical standards.",
+                "Research Outputs: All scholarly and scientific materials generated within AZTU, including journal articles, conference papers, theses and dissertations, monographs, educational materials, research data, and other digital outputs covered by this Policy.",
+                "Institutional Repository: The official digital platform of AZTU for the collection, preservation, and dissemination of research outputs, ensuring their long-term accessibility and compliance with Open Access requirements.",
+                "Copyright and Related Rights: Legal protections granted under the legislation of the Republic of Azerbaijan that regulate the ownership, use, and distribution of intellectual works, which must be respected in all Open Access practices.",
+                "Licensing: The mechanism through which authors define the conditions for the use, sharing, and reuse of their research outputs, ensuring lawful dissemination in accordance with institutional and national requirements.",
+                "Research Data: Data generated or collected during research activities at AZTU, which may support publications and must be managed, stored, and shared in accordance with legal, ethical, and institutional standards.",
+                "Metadata: Structured descriptive information about research outputs (such as author, title, abstract, and publication date) that enables their identification, discovery, and proper management within the Institutional Repository.",
+                "Confidential and Restricted Information: Any information that cannot be made openly accessible due to legal obligations, contractual agreements, intellectual property protection, or national security considerations, as outlined in this Policy."
+              ]
+            },
+            {
+              id: "applicability",
+              title: "3. APPLICABILITY",
+              text: "This policy applies to all academic and research activities conducted at AZTU, including those carried out by academic staff, researchers, doctoral and master’s students, postdoctoral fellows, and relevant administrative units.\n\nThe policy covers scholarly outputs including, but not limited to, journal articles, conference papers, theses and dissertations, monographs, educational materials, research data, and other digital research outputs."
+            },
+            {
+              id: "governance",
+              title: "4. GOVERNANCE",
+              text: "The University Council approves this policy and oversees its implementation at the institutional level.\n\nThe University administration ensures compliance with applicable national legislation and provides strategic direction and allocates the necessary institutional resources.\n\nThe Research and Development Department coordinates the implementation of this policy, monitors compliance, and provides guidance on research dissemination and Open Access practices.\n\nThe University Library manages the Institutional Repository and provides technical, informational, and advisory support to researchers regarding Open Access, copyright, and data management.\n\nResearchers and academic staff are responsible for ensuring the lawful dissemination of their research outputs, compliance with copyright and licensing requirements, and the timely deposit of publications and related materials in the Institutional Repository.\n\nRelevant administrative and academic units support the implementation of this policy within their respective areas of responsibility and ensure alignment with institutional procedures."
+            },
+            {
+              id: "principles",
+              title: "5. PRINCIPLES, RISK AREAS, AND INSTITUTIONAL STANDARDS",
+              text: "The implementation of Open Access at AZTU is guided by the following principles:",
+              list: [
+                "compliance with the legislation of the Republic of Azerbaijan;",
+                "transparency and accessibility of research outputs;",
+                "protection of intellectual property rights;",
+                "ethical and responsible research conduct;",
+                "accountability in the use of public and institutional research resources;",
+                "protection of sensitive, confidential, and restricted information."
+              ]
+            },
+            {
+              id: "implementation",
+              title: "6. IMPLEMENTATION",
+              text: "AZTU shall ensure the effective implementation of this policy by:",
+              list: [
+                "developing and maintaining appropriate digital infrastructure, including the Institutional Repository;",
+                "providing training, guidance, and awareness programs on Open Access and research dissemination;",
+                "supporting researchers in copyright, licensing, and publishing matters;",
+                "monitoring compliance and reporting on Open Access performance."
+              ]
+            },
+            {
+              id: "compliance",
+              title: "7. COMPLIANCE",
+              text: "Compliance with this policy is mandatory and may be linked to academic evaluation, promotion procedures, eligibility for institutional research funding, and fulfillment of national academic requirements, including those established by the Higher Attestation Commission.\n\nFailure to comply may result in administrative limitations related to research support and evaluation processes."
+            },
+            {
+              id: "exceptions",
+              title: "8. EXCEPTIONS",
+              text: "Exceptions to this policy may be granted in cases involving legal or contractual restrictions, confidentiality requirements, intellectual property protection, or national security considerations.\n\nAll exceptions must be justified and approved in accordance with institutional procedures and applicable legislation."
+            },
+            {
+              id: "final",
+              title: "9. FINAL PROVISION",
+              text: "Azerbaijan Technical University is committed to fostering an open, transparent, and legally compliant research environment. Through this policy, the University ensures that its research outputs are accessible, visible, and aligned with both national requirements and international academic standards."
+            },
+            {
+              id: "evolution",
+              title: "10. POLICY EVOLUTION",
+              text: "This Policy is reviewed every two years or earlier where legislative changes, institutional developments, or monitoring outcomes require revision. Reviews consider evidence, stakeholder feedback, and international best practice. Revisions are approved through established governance processes. Procedural or operational changes are implemented through supporting instruments and do not form part of this Policy."
+            }
+          ],
+          related: [
+            { title: "Research Priorities", href: "/research/research-activity/research-priorities" },
+            { title: "Scientific Journals", href: "/research/conferences-and-events/scientific-journals" },
+          ]
+        }
+      }
+    },
+
+    internationalization: {
+      doubleDegreePrograms: {
+        eyebrow: "Internationalization",
+        title: "Dual Degree Programs",
+        subtitle: "Earn two internationally recognised degrees from AzTU and a leading partner university abroad.",
+        breadcrumb: "Double Degree Programs",
+        description: "Azerbaijan Technical University's Double Degree Programmes offer students the opportunity to earn two internationally recognised degrees — one from AzTU and one from a leading partner university abroad — within a single study period. These programmes are developed in line with AzTU's Internationalization Policy and 2030 Development Strategy, reflecting the university's commitment to providing globally competitive education at the Bachelor's, Master's, and doctoral levels.\n\nThrough Double Degree Programmes, students benefit from the academic strengths of two institutions, gain cross-cultural experience, and graduate with qualifications that are recognised both in Azerbaijan and internationally — giving them a significant advantage in the global job market.",
+        currentProgramsTitle: "Current Double Degree Programmes",
+        countries: [
+          {
+            name: "Türkiye",
+            programs: [
+              "Ankara University Electrical & Electronics Engineering — Bachelor's (launched 2022)",
+              "Gazi University Computer Engineering — Bachelor's (launched 2023)"
+            ]
+          },
+          {
+            name: "Germany",
+            programs: [
+              "Brandenburg University of Technology Mechanical & Materials Engineering — Master's",
+              "Brandenburg University of Technology Joint Doctorate Programme — PhD"
+            ]
+          },
+          {
+            name: "Israel",
+            programs: [
+              "Bar-Ilan University Electrical & Electronics Engineering (Nano & Microelectronics) — Master's (launched 2025)"
+            ]
+          }
+        ],
+        whyChooseTitle: "Why Choose a Double Degree Programme?",
+        benefits: [
+          "Graduate with two internationally recognised diplomas",
+          "Study at two leading universities across two countries",
+          "Build a global academic and professional network",
+          "Strengthen your career prospects in the international job market",
+          "Gain cross-cultural competence and language skills"
+        ],
+        related: [
+          { title: "Collaborations", href: "/community/university-cooperation/collaborations" },
+          { title: "Exchange Programs", href: "/students/postgraduates/exchange-programs" },
+        ]
+      },
+      orhunExchange: {
+        eyebrow: "Internationalization",
+        title: "Orhun Exchange Program",
+        subtitle: "A mobility initiative strengthening academic and cultural ties across the Turkic world.",
+        breadcrumb: "Orhun Exchange",
+        description: "Azerbaijan Technical University is an active member of the Turkic Universities Union (TÜRKÜNİB). Within this framework, the university participates in the Orhun Exchange Program.\n\nThe Orhun Exchange Program is a mobility initiative among member universities of the Turkic Universities Union, designed to strengthen academic collaboration and cultural integration across the Turkic world. It provides opportunities for students and academic staff to take part in study, teaching, and research exchanges at partner universities.",
+        countriesTitle: "Participating Countries",
+        countriesDescription: "The program involves universities from the following countries which are members of the broader Organization of Turkic States, under which the union operates:",
+        countries: [
+          "Azerbaijan",
+          "Türkiye",
+          "Kazakhstan",
+          "Kyrgyzstan",
+          "Uzbekistan"
+        ],
+        linksTitle: "Official Resources",
+        officialWebsite: "Official website",
+        programPage: "Orhun Program page",
+        related: [
+          { title: "Dual Degree Programs", href: "/internationalization/international-partnership/double-degree-programs" },
+          { title: "International Projects", href: "/internationalization/international-partnership/international-projects" },
+        ]
+      },
+      internationalProjects: {
+        eyebrow: "Internationalization",
+        title: "International Projects",
+        subtitle: "A global network of research and innovation partnerships.",
+        breadcrumb: "International Projects",
+        description: "Azerbaijan Technical University actively participates in various international research and educational projects, fostering global collaboration and enhancing institutional capacity.",
+        projects: [
+          {
+            id: 1,
+            title: "Enhancement of internal quality assurance of education in teaching, learning and assessment in HEIs of Azerbaijan and Russia (IQAinAR)",
+            fundedBy: "EU ERASMUS+ CBHE",
+            grantNo: "619477-EPP-1-2020-1-NL-EPPKA2-CBHE-JP",
+            period: "15/01/2021 - 14/01/2025",
+            objective: "The IQAinAR project aims to contribute to the enhancement and development of the internal quality assurance in HEIs in Azerbaijan in reference with international (EU) quality standards as benchmark while at the same time strengthening the HEIs towards local, regional and national policies and strategies implementation.",
+            website: "https://www.iqainar.org/",
+            tasks: [
+              "Benchmark analysis of the internal QA in HE in Europe",
+              "Baseline study of the internal Quality Assurance (IQA) at local/regional level (AZ)",
+              "Development and piloting internal Quality Assurance enhancement strategy in HEI (AZ)",
+              "Creation of IQA Indicators (IQAI) and assessment scale",
+              "Development of trainings programs and certification of HE experts in QA",
+              "Creation and launching of online platform with open access for HEIs"
+            ],
+            aztuImplementation: "Survey was conducted among the students and results are being analyzed. Pilot indicators were assigned to AzTU and is being applied in one of the faculties of the university. Article was developed by the representatives of the university for dissemination of results."
+          },
+          {
+            id: 2,
+            title: "Developing Research Capacity through Institutional Repositories Network in Azerbaijan (DIRNA)",
+            fundedBy: "EU ERASMUS+ CBHE",
+            grantNo: "101082124",
+            period: "01/01/2023 - 31/12/2025",
+            objective: "The project aims at building capacity in management of research output via establishing Open Access Institutional Repositories Network (OAIR).",
+            website: "https://dirna.khazar.org/",
+            tasks: [
+              "Design and build capacity for development of 7 OAIRs",
+              "Prepare training and teaching material meeting the local needs",
+              "Scale-up the Khazar University IR to serve as a flexible central repository",
+              "Maximize the visibility, use and impact of the scientific and academic output",
+              "Provide access to teaching and learning materials on inclusive education for disabled person",
+              "Produce or provide storage for the electronic publications of the Azerbaijani HEIs"
+            ],
+            aztuImplementation: "Study tours are organized to study best experience of Turkey, Italy and Norway partner institutions."
+          },
+          {
+            id: 3,
+            title: "Enhancing Sustainable Entrepreneurial Ecosystem in Higher Education of Azerbaijan (ENGAGE)",
+            fundedBy: "EU ERASMUS+ CBHE",
+            grantNo: "101083269",
+            period: "01/01/2023 - 31/12/2025",
+            objective: "The general objective of the project is to enhance the entrepreneurial mindset and environment in higher education by integrating the entrepreneurship in governance, management and curriculum.",
+            website: "https://engage.edu.az/",
+            tasks: [
+              "Establishment, restructuring and modernization of entrepreneurship and innovation center at AzTU",
+              "Equipping the established center with the appropriate equipment",
+              "Creation of a Working Group to analyse the current situation of entrepreneurial activities",
+              "To support the development of benchmark methodology and questionnaire",
+              "Organizing visits to partner universities from the EU to study best practices",
+              "Development of a strategic plan for innovation and entrepreneurship",
+              "Preparation of awarding rules for entrepreneurship in the HE system"
+            ],
+            aztuImplementation: "Kickoff meeting was held and duties and tasks of the project were discussed. Entrepreneurial experience of HEIs in Sweden, Estonia, Poland were studied."
+          },
+          {
+            id: 4,
+            title: "Increasing girls` participation in engineering education for sustainable development",
+            fundedBy: "UNESCO’s Participation program for 2020/2021",
+            grantNo: "1290116031",
+            period: "13/12/2022 - 30/04/2022",
+            objective: "Studying the international experience for increasing the participation of girls in engineering education and engineering-oriented professional fields, identifying opportunities and challenges for women in this field.",
+            website: "https://www.unesco.az/az",
+            tasks: [
+              "Increasing public awareness to eliminate stereotypes about girls’ engineering education",
+              "Conducting training in accordance with labor market requirements",
+              "Formation of the first experience in the field of engineering for female students",
+              "Organization of 'Everyone is Strong in Engineering' conference",
+              "STEM, Engineering design, Python tutorials for school girls",
+              "Career Days and workshop on developing successful CVs"
+            ],
+            aztuImplementation: "In total, 64 students from 4 higher education institutions had participated in the trainings."
+          },
+          {
+            id: 5,
+            title: "Bachelor, Professional Masters in Open and Distance Learning for Strategic Quality Management and Risk Management in Health in Russia, Kazakhstan and Azerbaijan (LMQsante)",
+            fundedBy: "EU ERASMUS + CBHE",
+            grantNo: "618860-EPP-1-2020-1-EL-EPPKA2-CBHE-JP",
+            period: "15/01/2021 - 14/11/2024",
+            objective: "To increase the potential of universities in the training of specialists in quality assurance and risk management in healthcare in Azerbaijan.",
+            website: "https://www.lmqs-erasmus.eu/",
+            tasks: [
+              "New study program on quality and risk management in health care services",
+              "Open a resource center equipped for distance format education",
+              "Preparation of the accreditation file of new specialties",
+              "Achieving wide dissemination and outreach of the new majors"
+            ],
+            aztuImplementation: "Master's degree major on 'Quality and risk management in healthcare' was opened. Equipment was purchased for the Economics and Management faculty. Five representatives and teachers participated in trainings in Greece."
+          },
+          {
+            id: 6,
+            title: "Establishment of Rectors Conference in Azerbaijan (ECAR)",
+            fundedBy: "EU ERASMUS + CBHE",
+            grantNo: "619354-EPP-1-2020-1-AZ-EPPKA2-CBHE-JP",
+            period: "15/01/2021 - 14/01/2025",
+            objective: "To establish the Rectors Conference in order to generalize and sharing positive experience in development of the educational institutions, higher and post-higher education.",
+            website: "http://ecar.net.az/",
+            tasks: [
+              "Promote scientific, educational, cultural and economic cooperation between Azerbaijan HEIs",
+              "Development of principles and standards in the higher education system",
+              "Support the establishment of a National Education network",
+              "Formulate and present opinions on important issues for science and education"
+            ],
+            aztuImplementation: "European experience was studied from Lithuania, Poland, Sweden, Belgium, Spain, Portugal. The internal management structure and regulations have been developed. Committees have been organized and staff determined."
+          },
+          {
+            id: 7,
+            title: "Enhancing capacity of universities to initiate and to participate in clusters development on innovation and sustainability principles (UniClaD)",
+            fundedBy: "EU ERASMUS + CBHE",
+            grantNo: "609944-EPP-1-2019-1-LT-EPPKA2-CBHE-JP",
+            period: "15/01/2020 - 19/11/2024",
+            objective: "To develop the potential of universities as an integral part of agro-industrial clusters and creation of innovative centers.",
+            website: "http://uniclad.net/",
+            tasks: [
+              "Studying European cluster experience",
+              "Development of the value chain: master - PhD - researcher",
+              "Increasing capacity for business, science and education to work within clusters",
+              "Creation of conditions for better integration of innovations into agro-industrial production"
+            ],
+            aztuImplementation: "Innovative Technologies Center was established at AzTU. Fodder Calculator pilot project was developed for farmers. Representatives attended study tours in Lithuania and Hungary."
+          },
+          {
+            id: 8,
+            title: "Crisis and Risks Engineering for Transport Service (CRENG)",
+            fundedBy: "EU ERASMUS + CBHE",
+            grantNo: "598218-EPP-1-2018-1-PL-EPPKA2-CBHE-JP",
+            period: "15/11/2018 - 15/07/2022",
+            objective: "Implementation of personnel training with modern knowledge and skills in the field of risk and crisis engineering in transport services.",
+            website: "www.creng.eu",
+            tasks: [
+              "Development of a new master's program and teaching materials",
+              "Development and use of 'project-based learning' methodology",
+              "Opening a service office and laboratory for crisis and risk engineering",
+              "Establishing University-Industry cooperation based on 'skills wallet' approach"
+            ],
+            aztuImplementation: "New study program at master degree was opened. 13 courses developed. CRENG service office and laboratory equipped with modern computer equipment was opened."
+          },
+          {
+            id: 9,
+            title: "Restructuring and development of doctoral studies in Azerbaijan in line with requirements of European higher education area (NIZAMI)",
+            fundedBy: "EU ERASMUS + CBHE",
+            grantNo: "561784-EPP-1-2015-1-FR-EPPKA2-CBHE-SP",
+            period: "01/10/2015 - 01/10/2018",
+            objective: "To establish doctoral schools within higher education institutions and achieve adaptation of doctoral education’s management at the national level.",
+            website: "https://doktorantura.az/",
+            tasks: [
+              "Establishment of doctoral schools within HEIs",
+              "Ensuring high standards and compliance with European standards",
+              "Sharing tools for professionalization and internationalization",
+              "Increasing professional skills of doctoral students"
+            ],
+            aztuImplementation: "Structuring of doctoral education has been carried out. NIZAMI self-assessment tool and National Management Portal were created. Guidebook for doctoral students prepared."
+          },
+          {
+            id: 10,
+            title: "Professional license in open and distance learning for the energy and environmental performance of buildings in the Russian Federation, China and Azerbaijan (LPEB)",
+            fundedBy: "EU ERASMUS + CBHE",
+            grantNo: "561732-EPP-1-2015-1-FR-EPPKA2-CBHE-JP",
+            period: "15/10/2015 - 14/10/2018",
+            objective: "Improvement of curricular and contents of energy efficiency and environmental protection subjects.",
+            website: "www.lpeb-erasmus.eu",
+            tasks: [
+              "Support reforms and modernization in HEIs",
+              "Improving the quality of higher education",
+              "Improvement of subject programs and contents",
+              "Creation of resource centers for buildings’ energy efficiency"
+            ],
+            aztuImplementation: "Specialization in 'Heat Energy' adapted and 'Renewable energy sources' opened at master level. 'Mastery Center' was created. Teachers participated in trainings in Paris and Lyon."
+          },
+          {
+            id: 11,
+            title: "Professional Bachelor and Master Programs in Hotel Management for Development of Tourism Industry in Georgia, Azerbaijan and Moldova (LMPH)",
+            fundedBy: "EU TEMPUS program",
+            grantNo: "N° 544191 Tempus 1-2013-1-PT JPCR",
+            period: "01/05/2014 - 30/05/2017",
+            objective: "Creating professionalized education and training programs (master degree) in hospitality and hotel management.",
+            website: "http://tempus.lmph.eu/",
+            tasks: [
+              "Professionalize education programs in hospitality per Bologna process",
+              "Create bachelor and two professional masters degrees",
+              "Improve employability of students in management positions",
+              "Create center of excellence / resource center"
+            ]
+          },
+          {
+            id: 12,
+            title: "Adaptation of engineering studies to the Bologna Process in Azerbaijan Universities",
+            fundedBy: "EU TEMPUS program",
+            grantNo: "516678-TEMPUS-1-2011-1-DE-TEMPUS-JPCR",
+            period: "2011-2015",
+            objective: "Accreditation certificates for 2 master's and 2 bachelor's degree majors presented to AzTU: Automation of processes (M), Electrical Power Engineering (M), Automation & Control (B), Electrical Engineering (B)."
+          }
+        ],
+        details: {
+          fundedBy: "Funded by",
+          grantNo: "Grant No",
+          period: "Period",
+          objective: "General Objective",
+          website: "Website",
+          tasks: "Project Tasks",
+          aztuImplementation: "AzTU Implementation"
+        },
+        related: [
+          { title: "Dual Degree Programs", href: "/internationalization/international-partnership/double-degree-programs" },
+          { title: "Collaborations", href: "/community/university-cooperation/collaborations" },
+        ]
+      },
+      partnerUniversities: {
+        eyebrow: "Internationalization",
+        title: "Partner Universities",
+        subtitle: "A global network of academic excellence.",
+        breadcrumb: "Partner Universities",
+        description: "Azerbaijan Technical University (AzTU) has built a robust global network of partner universities, reflecting its commitment to internationalization and world-class engineering education. Through bilateral cooperation agreements spanning Europe, Asia, CIS countries, and beyond, AzTU collaborates with leading institutions in areas such as joint programs, academic mobility, and scientific research. These partnerships create invaluable opportunities for students, academic staff, and the scientific community at large.",
+        tableHeaders: {
+          no: "№",
+          logo: "Logo",
+          university: "University",
+          country: "Country",
+          agreementType: "Type of agreement",
+          date: "Date",
+          website: "Website"
+        },
+        related: [
+          { title: "Dual Degree Programs", href: "/internationalization/international-partnership/double-degree-programs" },
+          { title: "International Projects", href: "/internationalization/international-partnership/international-projects" },
+        ]
       }
     },
 
@@ -1285,6 +1899,80 @@ const en = {
           }
         ]
       },
+      formerRectors: {
+        eyebrow: "COMMUNITY",
+        title: "Our Former Rectors",
+        subtitle: "The distinguished leaders who have shaped Azerbaijan Technical University through the decades.",
+        breadcrumb: "Former Rectors",
+        rectors: [
+          {
+            name: "Mahmud Mammadov",
+            tenure: "1950–1954",
+            bio: "Born in 1909, he graduated from the Azerbaijan Agricultural Institute in 1933. He served as a teacher and dean before completing his postgraduate studies in Moscow in 1939. He held positions as Deputy Minister of Agriculture and Deputy Chairman of the Council of Ministers (1942–1950). He was the first rector of the Azerbaijan Polytechnic Institute (now AzTU). He passed away in 1964.",
+            image: "/former-rectors/mahmud-mammadov.png"
+          },
+          {
+            name: "Abuzer Aliyev",
+            tenure: "1954–1961",
+            bio: "Born in 1911, he graduated from the Architecture and Construction faculty of the Azerbaijan Industrial Institute in 1937. During WWII, he served as chief engineer of a military plant and later as Deputy Minister of Construction. He was the first scientist in Azerbaijan to defend a PhD in construction and was awarded the 'Honored Engineer' title. He passed away in 1980.",
+            image: "/former-rectors/abuzer-aliyev.png"
+          },
+          {
+            name: "Enver Qasimzade",
+            tenure: "1962–1969",
+            bio: "Born in 1912 in Salyan, he was a prominent architect and statesman. He graduated from the Azerbaijan Industrial Institute in 1936 and held various high-level government roles, including Minister of Construction. A WWII veteran, he was awarded the 'Red Star' and 'Red Flag' orders. During his rectorship, he expanded the university by opening the Ganja branch and several new faculties. He passed away in 1969.",
+            image: "/former-rectors/enver-qasimzade.png"
+          },
+          {
+            name: "Rza Bedelov",
+            tenure: "1968–1976",
+            bio: "Born in 1915 in Baku, he graduated from the Azerbaijan Industrial Institute. He worked in the oil industry before becoming a professor and head of the theoretical mechanics department. He was a corresponding member of the Azerbaijan National Academy of Sciences. He passed away in 1987.",
+            image: "/former-rectors/rza-bedelov.png"
+          },
+          {
+            name: "Mirzeaga Bagirov",
+            tenure: "1976–1988",
+            bio: "Born in 1927 in Lankaran, he graduated from the Energy faculty of the Azerbaijan Industrial Institute in 1949. He worked at the Academy of Sciences and defended his doctoral dissertation in Moscow in 1966. He led the university for 12 years. He passed away in 2011.",
+            image: "/former-rectors/mirzeaga-bagirov.png"
+          },
+          {
+            name: "Ramiz Qurbanov",
+            tenure: "1989–1990",
+            bio: "Born in 1935 in Salyan, he graduated with honors from the Azerbaijan Industrial Institute in 1956. He worked in oil field operations and later served as a professor and vice-rector at the Azerbaijan Oil and Chemistry Institute. He was elected a corresponding member of the Academy of Sciences in 1989.",
+            image: "/former-rectors/ramiz-qurbanov.png"
+          },
+          {
+            name: "Ali Sadixov",
+            tenure: "1990–1992",
+            bio: "Born in 1938 in Baku, he graduated from the Azerbaijan Polytechnic Institute in 1962. He served as vice-rector before becoming rector. During his tenure (September 24, 1991), the institute was granted university status and renamed Azerbaijan Technical University (AzTU). He currently serves as a consultant professor.",
+            image: "/former-rectors/eli-sadixov.png"
+          },
+          {
+            name: "Allahverdi Orucov",
+            tenure: "1993 (July–December)",
+            bio: "Born in 1944 in Fuzuli, he graduated from AzPI in 1969. He served as the vice-rector for educational affairs from 1992 to 2000 and was the acting rector for the latter half of 1993.",
+            image: "/former-rectors/allahverdi-orucov.png"
+          },
+          {
+            name: "Rafiq Mehdiyev",
+            tenure: "1993–1999",
+            bio: "Born in 1936 in Jabrayil, he graduated from the Mechanical faculty of AzPI in 1958. He defended his doctoral dissertation in Leningrad in 1981. After his tenure as rector, he became a professor at the Istanbul Technical University in Turkey.",
+            image: "/former-rectors/rafiq-mehdiyev.png"
+          },
+          {
+            name: "Havar Mammadov",
+            tenure: "2000–2016",
+            bio: "Born in 1945 in Imishli, he graduated with honors from AzPI in 1968. He held various academic leadership roles and served as rector for 16 years. Following his tenure at AzTU, he served as the rector of Baku Engineering University (2017–2023).",
+            image: "/former-rectors/havar-mammadov.png"
+          },
+          {
+            name: "Xaliq Yahudov",
+            tenure: "2016–2019",
+            bio: "Born in 1946 in Zagatala, he graduated from Azerbaijan State University in 1969. He held multiple roles at AzTU, including dean and vice-rector for educational affairs. He served as the acting rector from September 2016 until July 2019.",
+            image: "/former-rectors/xaliq-yahudov.jpg"
+          }
+        ]
+      },
       ourHeroes: {
         eyebrow: "COMMUNITY",
         title: "Our Heroes",
@@ -1388,6 +2076,12 @@ const en = {
     title: "Discover Azerbaijan Technical University",
     button: "Explore More",
     videoAriaLabel: (n: number) => `Switch to video ${n}`,
+    stats: [
+      { label: "QS Ranking", value: "851+" },
+      { label: "THE World Ranking", value: "1501+" },
+      { label: "Green Metric Ranking", value: "835" },
+      { label: "International Accredited programs", value: "20+" },
+    ],
   },
 
   news: {

@@ -17,7 +17,6 @@ type Props = {
 export default function StaticSubPage({ section, item }: Props) {
     const pathname = usePathname();
     
-    // Auto-detect research paths
     const isResearchPage = pathname.startsWith('/az/tedqiqat') || pathname.startsWith('/en/research');
     const videoSrc = isResearchPage ? "/heroBgVideos/research.mp4" : null;
 
@@ -35,24 +34,8 @@ export default function StaticSubPage({ section, item }: Props) {
                     { label: item.title }
                 ]}
                 eyebrow={section.label}
-            >
-                {/* Video Background Override if exists */}
-                {videoSrc && (
-                    <div className="absolute inset-0 z-0">
-                        <video
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            className="w-full h-full object-cover opacity-50"
-                        >
-                            <source src={videoSrc} type="video/mp4" />
-                        </video>
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0b1330] via-[#0b1330]/40 to-transparent" />
-                        <div className="absolute inset-0 bg-gradient-to-r from-[#0b1330]/80 via-transparent to-transparent" />
-                    </div>
-                )}
-            </PageHero>
+                videoSrc={videoSrc || undefined}
+            />
 
             <PageContainer>
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 relative z-10">

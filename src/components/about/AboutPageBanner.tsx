@@ -22,7 +22,6 @@ interface AboutPageBannerProps {
 export default function AboutPageBanner({ eyebrow, title, subtitle, breadcrumbs, videoSrc }: AboutPageBannerProps) {
     const pathname = usePathname();
     
-    // Auto-detect research paths
     const isResearchPage = pathname.startsWith('/az/tedqiqat') || pathname.startsWith('/en/research');
     const finalVideoSrc = videoSrc || (isResearchPage ? "/heroBgVideos/research.mp4" : null);
 

@@ -188,7 +188,7 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
               className="flex items-center gap-2 px-4 h-10 rounded-lg bg-white/10 hover:bg-white/25 transition-all duration-300 cursor-pointer ml-1"
             >
               <ListIcon sx={{ color: "white", fontSize: 24 }} />
-              <span className="text-white font-bold text-sm">{t.common.quickMenu}</span>
+              <span className="text-white font-bold text-sm">{t.common.quickMenu.button}</span>
             </button>
           </div>
         </div>

@@ -39,7 +39,7 @@ export default function Dropdown({ header }: Props) {
       {/* BACKGROUND DECORATIONS */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {/* Dotted Grid Pattern */}
-          <div className="absolute inset-0 opacity-[0.12] dark:opacity-[0.04]" 
+          <div className="absolute inset-0 opacity-[0.12] dark:opacity-[0.04]"
                style={{ backgroundImage: 'radial-gradient(#ee7c7e 0.5px, transparent 0.5px)', backgroundSize: '32px 32px' }} />
 
           {/* Technical Blueprint Lines */}
