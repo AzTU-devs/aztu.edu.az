@@ -127,7 +127,6 @@ const en = {
       studentYouthOrg: "Student Youth Organization",
       universityCooperation: "University Cooperation",
       collaborations: "Collaborations",
-      formerRectors: "Former Rectors",
     },
   },
 
@@ -162,11 +161,11 @@ const en = {
         locationTitle: "Our Location",
         universityName: "Azerbaijan Technical University",
         buildingInfo: "Main academic building",
-      },
-    },
+        },
+        },
 
-    about: {
-      hei: {
+        about: {
+        hei: {
         eyebrow: "Education and Programs",
         title: "Higher Education Institute (HEI)",
         subtitle: "Preparing highly qualified, competitive professionals for the modern engineering landscape.",
@@ -306,8 +305,8 @@ const en = {
           { title: "Partner Universities", href: "/about/partner-universities-and-related-institutes" },
           { title: "Strategic Plan", href: "/about/vision-mission/strategic-plan" },
         ]
-      },
-      history: {
+        },
+        history: {
         eyebrow: "Our Legacy",
         title: "History of AzTU",
         subtitle: "A journey of innovation and excellence since 1887.",
@@ -1894,80 +1893,6 @@ const en = {
             award: "honorary professor",
             date: "31.12.1995",
             image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/13%20Ekart.jpg"
-          }
-        ]
-      },
-      formerRectors: {
-        eyebrow: "COMMUNITY",
-        title: "Our Former Rectors",
-        subtitle: "The distinguished leaders who have shaped Azerbaijan Technical University through the decades.",
-        breadcrumb: "Former Rectors",
-        rectors: [
-          {
-            name: "Mahmud Mammadov",
-            tenure: "1950–1954",
-            bio: "Born in 1909, he graduated from the Azerbaijan Agricultural Institute in 1933. He served as a teacher and dean before completing his postgraduate studies in Moscow in 1939. He held positions as Deputy Minister of Agriculture and Deputy Chairman of the Council of Ministers (1942–1950). He was the first rector of the Azerbaijan Polytechnic Institute (now AzTU). He passed away in 1964.",
-            image: "/former-rectors/mahmud-mammadov.png"
-          },
-          {
-            name: "Abuzer Aliyev",
-            tenure: "1954–1961",
-            bio: "Born in 1911, he graduated from the Architecture and Construction faculty of the Azerbaijan Industrial Institute in 1937. During WWII, he served as chief engineer of a military plant and later as Deputy Minister of Construction. He was the first scientist in Azerbaijan to defend a PhD in construction and was awarded the 'Honored Engineer' title. He passed away in 1980.",
-            image: "/former-rectors/abuzer-aliyev.png"
-          },
-          {
-            name: "Enver Qasimzade",
-            tenure: "1962–1969",
-            bio: "Born in 1912 in Salyan, he was a prominent architect and statesman. He graduated from the Azerbaijan Industrial Institute in 1936 and held various high-level government roles, including Minister of Construction. A WWII veteran, he was awarded the 'Red Star' and 'Red Flag' orders. During his rectorship, he expanded the university by opening the Ganja branch and several new faculties. He passed away in 1969.",
-            image: "/former-rectors/enver-qasimzade.png"
-          },
-          {
-            name: "Rza Bedelov",
-            tenure: "1968–1976",
-            bio: "Born in 1915 in Baku, he graduated from the Azerbaijan Industrial Institute. He worked in the oil industry before becoming a professor and head of the theoretical mechanics department. He was a corresponding member of the Azerbaijan National Academy of Sciences. He passed away in 1987.",
-            image: "/former-rectors/rza-bedelov.png"
-          },
-          {
-            name: "Mirzeaga Bagirov",
-            tenure: "1976–1988",
-            bio: "Born in 1927 in Lankaran, he graduated from the Energy faculty of the Azerbaijan Industrial Institute in 1949. He worked at the Academy of Sciences and defended his doctoral dissertation in Moscow in 1966. He led the university for 12 years. He passed away in 2011.",
-            image: "/former-rectors/mirzeaga-bagirov.png"
-          },
-          {
-            name: "Ramiz Qurbanov",
-            tenure: "1989–1990",
-            bio: "Born in 1935 in Salyan, he graduated with honors from the Azerbaijan Industrial Institute in 1956. He worked in oil field operations and later served as a professor and vice-rector at the Azerbaijan Oil and Chemistry Institute. He was elected a corresponding member of the Academy of Sciences in 1989.",
-            image: "/former-rectors/ramiz-qurbanov.png"
-          },
-          {
-            name: "Ali Sadixov",
-            tenure: "1990–1992",
-            bio: "Born in 1938 in Baku, he graduated from the Azerbaijan Polytechnic Institute in 1962. He served as vice-rector before becoming rector. During his tenure (September 24, 1991), the institute was granted university status and renamed Azerbaijan Technical University (AzTU). He currently serves as a consultant professor.",
-            image: "/former-rectors/eli-sadixov.png"
-          },
-          {
-            name: "Allahverdi Orucov",
-            tenure: "1993 (July–December)",
-            bio: "Born in 1944 in Fuzuli, he graduated from AzPI in 1969. He served as the vice-rector for educational affairs from 1992 to 2000 and was the acting rector for the latter half of 1993.",
-            image: "/former-rectors/allahverdi-orucov.png"
-          },
-          {
-            name: "Rafiq Mehdiyev",
-            tenure: "1993–1999",
-            bio: "Born in 1936 in Jabrayil, he graduated from the Mechanical faculty of AzPI in 1958. He defended his doctoral dissertation in Leningrad in 1981. After his tenure as rector, he became a professor at the Istanbul Technical University in Turkey.",
-            image: "/former-rectors/rafiq-mehdiyev.png"
-          },
-          {
-            name: "Havar Mammadov",
-            tenure: "2000–2016",
-            bio: "Born in 1945 in Imishli, he graduated with honors from AzPI in 1968. He held various academic leadership roles and served as rector for 16 years. Following his tenure at AzTU, he served as the rector of Baku Engineering University (2017–2023).",
-            image: "/former-rectors/havar-mammadov.png"
-          },
-          {
-            name: "Xaliq Yahudov",
-            tenure: "2016–2019",
-            bio: "Born in 1946 in Zagatala, he graduated from Azerbaijan State University in 1969. He held multiple roles at AzTU, including dean and vice-rector for educational affairs. He served as the acting rector from September 2016 until July 2019.",
-            image: "/former-rectors/xaliq-yahudov.jpg"
           }
         ]
       },

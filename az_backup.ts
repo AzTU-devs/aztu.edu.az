@@ -128,7 +128,6 @@ const az = {
       studentYouthOrg: "Tələbə Gənclər Təşkilatı",
       universityCooperation: "Universitet Əməkdaşlığı",
       collaborations: "Əməkdaşlıqlar",
-      formerRectors: "Sabiq Rektorlar",
     },
   },
 
@@ -164,9 +163,6 @@ const az = {
         universityName: "Azərbaycan Texniki Universiteti",
         buildingInfo: "Əsas tədris korpusu",
       },
-    },
-
-    about: {
       hei: {
         eyebrow: "Təhsil və Proqramlar",
         title: "Yüksək Təhsil İnstitutu (YTİ)",
@@ -309,6 +305,7 @@ const az = {
         ]
       },
 
+      about: {
       history: {
         eyebrow: "Mirasımız",
         title: "AzTU-nun Tarixi",
@@ -1897,80 +1894,6 @@ const az = {
             award: "fəxri professor",
             date: "31.12.1995",
             image: "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/8-2022/13%20Ekart.jpg"
-          }
-        ]
-      },
-      formerRectors: {
-        eyebrow: "İCMA",
-        title: "Sabiq Rektorlarımız",
-        subtitle: "Onilliklər ərzində Azərbaycan Texniki Universitetini formalaşdıran görkəmli rəhbərlər.",
-        breadcrumb: "Sabiq Rektorlar",
-        rectors: [
-          {
-            name: "Mahmud Məmmədov",
-            tenure: "1950–1954",
-            bio: "1909-cu ildə anadan olub, 1933-cü ildə Azərbaycan Kənd Təsərrüfatı İnstitutunu bitirib. 1939-cu ildə Moskvada aspiranturanı bitirənə qədər müəllim və dekan vəzifələrində çalışıb. Kənd Təsərrüfatı Nazirinin müavini və Nazirlər Soveti Sədrinin müavini (1942-1950) vəzifələrində çalışıb. Azərbaycan Politexnik İnstitutunun (indiki AzTU) ilk rektoru olub. 1964-cü ildə vəfat edib.",
-            image: "/former-rectors/mahmud-mammadov.png"
-          },
-          {
-            name: "Abuzər Əliyev",
-            tenure: "1954–1961",
-            bio: "1911-ci ildə anadan olub, 1937-ci ildə Azərbaycan Sənaye İnstitutunun Memarlıq və İnşaat fakültəsini bitirib. İkinci Dünya Müharibəsi illərində hərbi zavodun baş mühəndisi, sonra isə Tikinti Nazirinin müavini vəzifələrində çalışıb. Azərbaycanda inşaat üzrə fəlsəfə doktoru müdafiə edən ilk alim olub və 'Əməkdar Mühəndis' fəxri adına layiq görülüb. 1980-ci ildə vəfat edib.",
-            image: "/former-rectors/abuzer-aliyev.png"
-          },
-          {
-            name: "Ənvər Qasımzadə",
-            tenure: "1962–1969",
-            bio: "1912-ci ildə Salyanda anadan olmuş, görkəmli memar və dövlət xadimi olub. 1936-cı ildə Azərbaycan Sənaye İnstitutunu bitirmiş və müxtəlif yüksək dövlət vəzifələrində, o cümlədən Tikinti Naziri vəzifəsində çalışmışdır. İkinci Dünya Müharibəsi veteranı olan o, 'Qırmızı Ulduz' və 'Qırmızı Bayraq' ordenləri ilə təltif edilib. Rektorluğu dövründə Gəncə filialını və bir neçə yeni fakültəni açaraq universiteti genişləndirib. 1969-cu ildə vəfat edib.",
-            image: "/former-rectors/enver-qasimzade.png"
-          },
-          {
-            name: "Rza Bədəlov",
-            tenure: "1968–1976",
-            bio: "1915-ci ildə Bakıda anadan olub, Azərbaycan Sənaye İnstitutunu bitirib. Neft sənayesində çalışıb, sonra professor və nəzəri mexanika kafedrasının müdiri olub. Azərbaycan Milli Elmlər Akademiyasının müxbir üzvü idi. 1987-ci ildə vəfat edib.",
-            image: "/former-rectors/rza-bedelov.png"
-          },
-          {
-            name: "Mirzəağa Bağırov",
-            tenure: "1976–1988",
-            bio: "1927-ci ildə Lənkəranda anadan olub, 1949-cu ildə Azərbaycan Sənaye İnstitutunun Energetika fakültəsini bitirib. Elmlər Akademiyasında çalışıb və 1966-cı ildə Moskvada doktorluq dissertasiyasını müdafiə edib. 12 il universitetə rəhbərlik edib. 2011-ci ildə vəfat edib.",
-            image: "/former-rectors/mirzeaga-bagirov.png"
-          },
-          {
-            name: "Ramiz Qurbanov",
-            tenure: "1989–1990",
-            bio: "1935-ci ildə Salyanda anadan olub, 1956-cı ildə Azərbaycan Sənaye İnstitutunu fərqlənmə diplomu ilə bitirib. Neft yataqlarının istismarı sahəsində çalışıb, sonradan Azərbaycan Neft və Kimya İnstitutunda professor və prorektor vəzifələrində çalışıb. 1989-cu ildə Elmlər Akademiyasının müxbir üzvü seçilib.",
-            image: "/former-rectors/ramiz-qurbanov.png"
-          },
-          {
-            name: "Əli Sadıxov",
-            tenure: "1990–1992",
-            bio: "1938-ci ildə Bakıda anadan olub, 1962-ci ildə Azərbaycan Politexnik İnstitutunu bitirib. Rektor olmamışdan əvvəl prorektor vəzifəsində çalışıb. Onun rəhbərliyi dövründə (24 sentyabr 1991-ci il) instituta universitet statusu verilmiş və Azərbaycan Texniki Universiteti (AzTU) adlandırılmışdır. Hazırda məsləhətçi professor kimi fəaliyyət göstərir.",
-            image: "/former-rectors/eli-sadixov.png"
-          },
-          {
-            name: "Allahverdi Orucov",
-            tenure: "1993 (iyul–dekabr)",
-            bio: "1944-cü ildə Füzulidə anadan olub, 1969-cu ildə AzPİ-ni bitirib. 1992-2000-ci illərdə tədris işləri üzrə prorektor vəzifəsində çalışıb və 1993-cü ilin ikinci yarısında rektor vəzifəsini icra edib.",
-            image: "/former-rectors/allahverdi-orucov.png"
-          },
-          {
-            name: "Rafiq Mehdiyev",
-            tenure: "1993–1999",
-            bio: "1936-cı ildə Cəbrayılda anadan olub, 1958-ci ildə AzPİ-nin Maşınqayırma fakültəsini bitirib. 1981-ci ildə Leninqradda doktorluq dissertasiyasını müdafiə edib. Rektorluq fəaliyyətindən sonra Türkiyənin İstanbul Texniki Universitetində professor olub.",
-            image: "/former-rectors/rafiq-mehdiyev.png"
-          },
-          {
-            name: "Havar Məmmədov",
-            tenure: "2000–2016",
-            bio: "1945-ci ildə İmişlidə anadan olub, 1968-ci ildə AzPİ-ni fərqlənmə diplomu ilə bitirib. Müxtəlif akademik rəhbər vəzifələrdə çalışıb və 16 il rektor vəzifəsində fəaliyyət göstərib. AzTU-dakı fəaliyyətindən sonra Bakı Mühəndislik Universitetinin rektoru (2017-2023) vəzifəsində çalışıb.",
-            image: "/former-rectors/havar-mammadov.png"
-          },
-          {
-            name: "Xalıq Yahudov",
-            tenure: "2016–2019",
-            bio: "1946-cı ildə Zaqatalada anadan olub, 1969-cu ildə Azərbaycan Dövlət Universitetini bitirib. AzTU-da dekan, tədris işləri üzrə prorektor kimi bir çox vəzifələrdə çalışıb. 2016-cı ilin sentyabrından 2019-cu ilin iyuluna qədər rektor vəzifəsini icra edib.",
-            image: "/former-rectors/xaliq-yahudov.jpg"
           }
         ]
       },

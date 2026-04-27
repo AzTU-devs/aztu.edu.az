@@ -27,46 +27,6 @@ const SOCIAL_ICONS: Record<string, React.ElementType> = {
     youtube: YouTubeIcon,
 };
 
-const STATIC_RIGHT_SECTIONS = [
-    {
-        key: "platform",
-        title: "Platform",
-        items: [
-            { label: "LMS", url: "https://lms.aztu.edu.az" },
-            { label: "Internal Grant Competition", url: "#" },
-            { label: "Plan Report Information System", url: "#" },
-        ],
-    },
-    {
-        key: "alumni",
-        title: "Alumni",
-        items: [
-            { label: "Alumni Portal", url: "https://alumni.aztu.edu.az" },
-            { label: "Honorary Doctors", url: "/haqqimizda/honorary-doctors" },
-            { label: "Honorary Graduates", url: "/haqqimizda/honorary-graduates" },
-            { label: "Our Heroes", url: "/haqqimizda/heroes" },
-        ],
-    },
-    {
-        key: "why-aztu",
-        title: "Why AzTU?",
-        items: [
-            { label: "Infrastructure", url: "/niye-aztu/infrastructure" },
-            { label: "Startups", url: "/niye-aztu/startups" },
-            { label: "Dual Degree Diplomas", url: "/niye-aztu/dual-degree" },
-            { label: "Scholarships", url: "/niye-aztu/scholarships" },
-        ],
-    },
-];
-
-const STATIC_LEFT_ITEMS = [
-    { label: "Ranking", url: "/haqqimizda/rankings" },
-    { label: "Accreditation", url: "/haqqimizda/accreditation" },
-    { label: "Policies", url: "/haqqimizda/policies" },
-    { label: "Reports", url: "/haqqimizda/reports" },
-    { label: "FAQ", url: "/faq" },
-];
-
 const containerVariants: Variants = {
     closed: { x: "100%" },
     open: { 
@@ -90,6 +50,47 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
     const [activeSection, setActiveSection] = useState<string>("");
     const { lang } = useLanguage();
     const t = useTranslation();
+    const qm = t.common.quickMenu;
+
+    const TRANSLATED_RIGHT_SECTIONS = [
+        {
+            key: "platform",
+            title: qm.sections.platform.title,
+            items: [
+                { label: qm.sections.platform.items.lms, url: "https://lms.aztu.edu.az" },
+                { label: qm.sections.platform.items.internalGrants, url: "/research/internal-grants" },
+                { label: qm.sections.platform.items.planReport, url: "#" },
+            ],
+        },
+        {
+            key: "alumni",
+            title: qm.sections.alumni.title,
+            items: [
+                { label: qm.sections.alumni.items.portal, url: "https://alumni.aztu.edu.az" },
+                { label: qm.sections.alumni.items.honoraryDoctors, url: "/community/honorary-doctors" },
+                { label: qm.sections.alumni.items.honoraryGraduates, url: "/community/honorary-graduates" },
+                { label: qm.sections.alumni.items.heroes, url: "/community/our-heroes" },
+            ],
+        },
+        {
+            key: "why-aztu",
+            title: qm.sections.whyAztu.title,
+            items: [
+                { label: qm.sections.whyAztu.items.infrastructure, url: "/niye-aztu/infrastructure" },
+                { label: qm.sections.whyAztu.items.startups, url: "/niye-aztu/startups" },
+                { label: qm.sections.whyAztu.items.dualDegree, url: "/niye-aztu/dual-degree" },
+                { label: qm.sections.whyAztu.items.scholarships, url: "/niye-aztu/scholarships" },
+            ],
+        },
+    ];
+
+    const TRANSLATED_LEFT_ITEMS = [
+        { label: qm.leftItems.ranking, url: "/haqqimizda/rankings" },
+        { label: qm.leftItems.accreditation, url: "/haqqimizda/accreditation" },
+        { label: qm.leftItems.policies, url: "/haqqimizda/policies" },
+        { label: qm.leftItems.reports, url: "/haqqimizda/reports" },
+        { label: qm.leftItems.faq, url: "/faq" },
+    ];
 
     useEffect(() => {
         if (isOpen) {
@@ -104,8 +105,8 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
         }
     }, [isOpen, lang]);
 
-    const rightSections = menuData?.right_sections?.length ? menuData.right_sections : STATIC_RIGHT_SECTIONS;
-    const leftItems = menuData?.left_items?.length ? menuData.left_items : STATIC_LEFT_ITEMS;
+    const rightSections = menuData?.right_sections?.length ? menuData.right_sections : TRANSLATED_RIGHT_SECTIONS;
+    const leftItems = menuData?.left_items?.length ? menuData.left_items : TRANSLATED_LEFT_ITEMS;
     const contact = menuData?.contact;
     const socialLinks = menuData?.social_links?.length ? menuData.social_links : [
         { platform: "facebook", url: "https://www.facebook.com/aztu1950.official/" },
@@ -159,8 +160,8 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
                         {/* LEFT PANEL (Institutional Info) */}
                         <div className="relative z-10 w-full lg:w-[35%] border-r border-white/5 flex flex-col p-8 md:p-12 overflow-y-auto no-scrollbar">
                             <div className="mb-12">
-                                <span className="text-[#ee7c7e] text-[10px] font-black uppercase tracking-[0.5em] mb-4 block">Navigation</span>
-                                <h2 className="text-white font-black text-4xl tracking-tighter leading-none mb-2">QUICK<br/>ACCESS</h2>
+                                <span className="text-[#ee7c7e] text-[10px] font-black uppercase tracking-[0.5em] mb-4 block">{qm.navigation}</span>
+                                <h2 className="text-white font-black text-4xl tracking-tighter leading-none mb-2" dangerouslySetInnerHTML={{ __html: qm.title }} />
                                 <div className="w-12 h-1 bg-[#ee7c7e] rounded-full mt-6" />
                             </div>
 
@@ -220,7 +221,7 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
                         </div>
 
                         {/* RIGHT PANEL (Categorized Items) */}
-                        <div className="relative z-10 flex-1 flex flex-col p-8 md:p-12 bg-black/20 overflow-y-auto">
+                        <div className="relative z-10 flex-1 flex flex-col p-8 md:p-12 bg-black/20 overflow-y-auto no-scrollbar">
                             {/* Section Tabs */}
                             <div className="flex gap-2 p-1.5 rounded-[2rem] bg-white/5 border border-white/5 mb-12 self-start max-w-full overflow-x-auto no-scrollbar">
                                 {rightSections.map((section) => {
@@ -270,7 +271,7 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
                                                         <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-[#ee7c7e] group-hover:scale-110 transition-transform">
                                                             <ArrowOutwardIcon sx={{ fontSize: 24 }} />
                                                         </div>
-                                                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20 group-hover:text-[#ee7c7e] transition-colors">Portal</span>
+                                                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20 group-hover:text-[#ee7c7e] transition-colors">{qm.portal}</span>
                                                     </div>
 
                                                     <h3 className="relative z-10 text-xl font-black text-white group-hover:text-[#ee7c7e] transition-colors leading-tight tracking-tight mt-6">
@@ -287,7 +288,7 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
 
                             {/* Bottom Brand Slogan */}
                             <div className="mt-12 text-center opacity-10">
-                                <p className="text-[10px] font-black uppercase tracking-[0.8em] text-white">Shaping the engineering future</p>
+                                <p className="text-[10px] font-black uppercase tracking-[0.8em] text-white">{qm.slogan}</p>
                             </div>
                         </div>
                     </motion.div>

@@ -130,7 +130,7 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
                             className="flex items-center gap-1.5 px-4 h-10 rounded-full bg-gradient-to-br from-[#1a2355] to-[#3b6ea8] text-white font-semibold text-[13px] whitespace-nowrap cursor-pointer transition-shadow duration-200"
                         >
                             <ListIcon sx={{ fontSize: 17, color: "inherit" }} />
-                            {t.common.quickMenu}
+                            {t.common.quickMenu.button}
                         </motion.button>
                     </div>
                 </nav>
