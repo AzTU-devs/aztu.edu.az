@@ -32,68 +32,65 @@ export default function PersonCard({
   href,
 }: Props) {
   const avatarSize =
-    size === "lg" ? "w-28 h-28" : size === "sm" ? "w-14 h-14" : "w-20 h-20";
-  const iconSize = size === "lg" ? 48 : size === "sm" ? 24 : 36;
+    size === "lg" ? "w-24 h-24" : size === "sm" ? "w-12 h-12" : "w-16 h-16";
+  const iconSize = size === "lg" ? 40 : size === "sm" ? 20 : 28;
 
   const cardContent = (
-    <div className={`bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-[#1a2355]/20 dark:border-[#ee7c7e]/20 p-5 flex flex-col items-center text-center gap-3 hover:shadow-md transition-shadow${href ? " cursor-pointer hover:border-[#ee7c7e]/40 dark:hover:border-[#ee7c7e]/50" : ""}`}>
+    <div className={`group relative bg-white backdrop-blur-xl rounded-[1.5rem] border-2 border-[#1a2355]/5 p-4 flex flex-col items-center text-center gap-3 transition-all duration-500 hover:-translate-y-1 hover:border-[#ee7c7e]/40 hover:shadow-xl hover:shadow-blue-900/5 overflow-hidden${href ? " cursor-pointer" : ""}`}>
+      {/* Background Decorative Element */}
+      <div className="absolute -top-10 -right-10 w-24 h-24 bg-[#ee7c7e]/5 blur-2xl rounded-full group-hover:scale-150 transition-transform duration-700" />
+      
       {/* Avatar */}
       <div
-        className={`${avatarSize} rounded-full bg-[#1a2355]/10 dark:bg-[#1a2355]/20 flex items-center justify-center overflow-hidden flex-shrink-0`}
+        className={`${avatarSize} rounded-full bg-gray-50 border-2 border-[#1a2355]/5 flex items-center justify-center overflow-hidden flex-shrink-0 relative z-10 group-hover:border-[#ee7c7e]/50 transition-colors duration-500 shadow-sm`}
       >
         {photoUrl ? (
           <img
             src={photoUrl}
             alt={fullName}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
           />
         ) : (
-          <PersonIcon sx={{ fontSize: iconSize, color: "#1a2355" }} />
+          <PersonIcon sx={{ fontSize: iconSize, color: "#1a2355", opacity: 0.15 }} />
         )}
       </div>
 
       {/* Info */}
-      <div className="flex-1">
-        <p className="font-bold text-[#1a2355] dark:text-white text-sm leading-snug">
+      <div className="flex-1 relative z-10 w-full">
+        <p className="font-black text-[#1a2355] text-sm leading-tight group-hover:text-[#ee7c7e] transition-colors">
           {fullName}
         </p>
         {academicDegree && (
-          <p className="text-xs text-[#ee7c7e] font-medium mt-0.5">
+          <p className="text-[9px] uppercase tracking-wider text-[#ee7c7e] font-black mt-1 bg-[#ee7c7e]/5 px-2 py-0.5 rounded-full inline-block">
             {academicDegree}
           </p>
         )}
         {title && (
-          <p className="text-xs text-gray-500 dark:text-slate-400 mt-1">
+          <p className="text-xs text-[#1a2355] font-black mt-2 leading-tight break-words">
             {title}
-          </p>
-        )}
-        {department && (
-          <p className="text-xs text-gray-400 dark:text-slate-500 mt-0.5">
-            {department}
           </p>
         )}
       </div>
 
       {/* Contact & CV */}
       {(email || phone || cvUrl) && (
-        <div className="flex items-center gap-2 mt-1 flex-wrap justify-center">
+        <div className="flex items-center gap-2 mt-1 flex-wrap justify-center relative z-10">
           {email && (
             <a
               href={`mailto:${email}`}
-              className="flex items-center gap-1 text-xs text-gray-500 dark:text-slate-400 hover:text-[#1a2355] dark:hover:text-white transition-colors"
+              className="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-[#ee7c7e] hover:text-white transition-all duration-300 border border-gray-100"
               title={email}
             >
-              <EmailIcon sx={{ fontSize: 14 }} />
-              <span className="truncate max-w-[120px]">{email}</span>
+              <EmailIcon sx={{ fontSize: 16 }} />
             </a>
           )}
           {phone && (
             <a
               href={`tel:${phone}`}
-              className="flex items-center gap-1 text-xs text-gray-500 dark:text-slate-400 hover:text-[#1a2355] dark:hover:text-white transition-colors"
+              className="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-[#ee7c7e] hover:text-white transition-all duration-300 border border-gray-100"
+              title={phone}
             >
-              <PhoneIcon sx={{ fontSize: 14 }} />
-              {phone}
+              <PhoneIcon sx={{ fontSize: 16 }} />
             </a>
           )}
           {cvUrl && (
@@ -101,10 +98,10 @@ export default function PersonCard({
               href={cvUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-xs text-[#ee7c7e] hover:text-[#d96b6d] transition-colors font-semibold"
+              className="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center text-[#ee7c7e] hover:bg-[#ee7c7e] hover:text-white transition-all duration-300 border border-gray-100"
+              title="Download CV"
             >
-              <DownloadIcon sx={{ fontSize: 14 }} />
-              CV
+              <DownloadIcon sx={{ fontSize: 16 }} />
             </a>
           )}
         </div>

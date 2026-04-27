@@ -45,28 +45,28 @@ export default function DekanMuavinleriPage({ params }: Props) {
         </p>
 
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1,2,3].map(i => <div key={i} className="h-80 rounded-[3rem] bg-gray-100 dark:bg-white/5 animate-pulse" />)}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1,2,3].map(i => <div key={i} className="h-64 rounded-3xl bg-gray-100 animate-pulse" />)}
           </div>
         ) : deputyDeans.length === 0 ? (
-          <ComingSoon label={currentLang === "az" ? "Dekan müavinləri haqqında məlumat əlavə ediləcək" : "Information about deputy deans will be added soon"} />
+          <ComingSoon label={currentLang === "az" ? "Məlumat əlavə ediləcək" : "Information will be added soon"} />
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {deputyDeans.map((vd, index) => {
               const fullName = [vd.first_name, vd.last_name, vd.father_name].filter(Boolean).join(" ");
               return (
                 <motion.div
                   key={vd.id}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, ease: [0.23, 1, 0.32, 1] }}
-                  className="bg-white dark:bg-white/5 rounded-[2.5rem] p-8 shadow-2xl shadow-blue-900/5 border border-gray-100 dark:border-white/10 hover:-translate-y-2 hover:border-[#ee7c7e]/30 transition-all duration-700 group overflow-hidden relative"
+                  transition={{ delay: index * 0.05 }}
+                  className="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 hover:border-[#ee7c7e]/30 transition-all duration-500 group overflow-hidden relative"
                 >
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 dark:bg-white/5 rounded-bl-[4rem] -mr-8 -mt-8 transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 rounded-bl-[4rem] -mr-12 -mt-12 transition-transform duration-700 group-hover:scale-125" />
                   
                   <div className="relative z-10">
                     <PersonCard
-                      fullName={fullName || "Naməlum əməkdaş"}
+                      fullName={fullName || "Naməlum"}
                       title={vd.duty || vd.scientific_name}
                       academicDegree={vd.scientific_degree}
                       photoUrl={getImageUrl(vd.profile_image)}
@@ -74,9 +74,9 @@ export default function DekanMuavinleriPage({ params }: Props) {
                       phone={vd.phone}
                       size="md"
                     />
-                    <div className="mt-8 pt-6 border-t border-gray-100 dark:border-white/10 flex flex-col items-center">
-                       <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#ee7c7e] text-center px-4 py-2 bg-[#ee7c7e]/10 rounded-xl">
-                         {vd.duty || (currentLang === "az" ? "Dekan Müavini" : "Deputy Dean")}
+                    <div className="mt-6 pt-4 border-t border-gray-50 flex flex-col items-center">
+                       <span className="text-[10px] font-black uppercase tracking-widest text-[#ee7c7e] text-center px-4 py-2 bg-[#ee7c7e]/5 rounded-xl border border-[#ee7c7e]/10 leading-tight">
+                         {vd.duty || (currentLang === "az" ? "Müavin" : "Deputy")}
                        </span>
                     </div>
                   </div>
@@ -92,23 +92,23 @@ export default function DekanMuavinleriPage({ params }: Props) {
         initial={{ opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        className="relative p-10 rounded-[3rem] bg-gradient-to-br from-[#1a2355] to-[#2a3a8a] text-white shadow-2xl overflow-hidden group"
+        className="relative p-8 rounded-[2rem] bg-[#1a2355] text-white shadow-2xl overflow-hidden group"
       >
-        <div className="absolute inset-0 opacity-10 pointer-events-none" 
-             style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+             style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
         
-        <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
-           <div className="w-20 h-20 rounded-[2rem] bg-white/10 flex items-center justify-center flex-shrink-0 shadow-2xl group-hover:scale-110 transition-transform duration-700">
-              <BadgeIcon sx={{ fontSize: 40, color: '#ee7c7e' }} />
+        <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
+           <div className="w-16 h-16 rounded-[1.5rem] bg-white/10 flex items-center justify-center flex-shrink-0 shadow-xl group-hover:scale-110 transition-transform duration-700">
+              <BadgeIcon sx={{ fontSize: 32, color: '#ee7c7e' }} />
            </div>
            <div>
-              <h4 className="text-2xl font-black uppercase tracking-tighter mb-4">
+              <h4 className="text-xl font-black uppercase tracking-tighter mb-2">
                 {currentLang === "az" ? "Effektiv İdarəetmə" : "Effective Management"}
               </h4>
-              <p className="text-white/60 font-medium leading-relaxed max-w-2xl text-lg">
+              <p className="text-white/50 font-medium leading-relaxed max-w-2xl text-sm">
                 {currentLang === "az" 
-                  ? "Dekan müavinləri fakültənin gündəlik fəaliyyətinin tənzimlənməsində və strateji hədəflərin reallaşdırılmasında mühüm rol oynayırlar." 
-                  : "Deputy deans play a crucial role in regulating the daily activities of the faculty and realizing strategic goals."}
+                  ? "Dekan müavinləri fakültənin gündəlik fəaliyyətinin tənzimlənməsində mühüm rol oynayırlar." 
+                  : "Deputy deans play a crucial role in faculty operations."}
               </p>
            </div>
         </div>

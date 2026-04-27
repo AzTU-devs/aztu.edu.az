@@ -14,38 +14,31 @@ interface Props {
 export default function SectionBlock({ title, children, className = "", accent = false, dark = false }: Props) {
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+      initial={{ opacity: 0, scale: 0.98, y: 20 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
       className={`
-        relative rounded-[2.5rem] p-8 md:p-12 transition-all duration-500 overflow-hidden border-premium
+        relative rounded-[2rem] p-6 md:p-10 transition-all duration-500 overflow-hidden
         ${dark 
-          ? 'bg-[#1a2355] text-white shadow-2xl' 
-          : 'bg-white/70 dark:bg-white/5 backdrop-blur-xl text-[#1a2355] dark:text-white shadow-xl shadow-blue-900/5'
+          ? 'bg-[#1a2355] text-white shadow-2xl border-2 border-[#ee7c7e]/30' 
+          : 'bg-white/80 backdrop-blur-3xl text-[#1a2355] shadow-2xl border-2 border-[#1a2355]/5 group hover:border-[#ee7c7e]/30'
         }
         ${className}
       `}
     >
-      {/* Subtle Background Glow for Dark Mode */}
-      {dark && (
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl pointer-events-none" />
-      )}
+      {/* Background Glows */}
+      <div className="absolute top-0 right-0 w-48 h-48 bg-[#ee7c7e]/5 blur-[80px] rounded-full pointer-events-none group-hover:bg-[#ee7c7e]/10 transition-colors" />
+      <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-600/5 blur-[80px] rounded-full pointer-events-none" />
 
       {title && (
-        <div className="flex flex-col gap-4 mb-10">
+        <div className="flex flex-col gap-3 mb-8">
           <div className="flex items-center gap-3">
-            {accent && (
-              <div className="flex gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#ee7c7e] animate-pulse" />
-                <span className="w-1.5 h-1.5 rounded-full bg-[#ee7c7e]/40" />
-              </div>
-            )}
-            <h2 className={`text-sm font-black uppercase tracking-[0.3em] ${dark ? 'text-[#ee7c7e]' : 'text-[#ee7c7e]'}`}>
+            <div className="w-1.5 h-6 bg-[#ee7c7e] rounded-full shadow-[0_0_15px_rgba(238,124,126,0.5)]" />
+            <h2 className={`text-xl md:text-2xl font-black uppercase tracking-tighter ${dark ? 'text-white' : 'text-[#1a2355]'}`}>
               {title}
             </h2>
           </div>
-          <div className={`h-px w-20 bg-gradient-to-r from-[#ee7c7e] to-transparent`} />
         </div>
       )}
       

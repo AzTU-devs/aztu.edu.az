@@ -19,6 +19,7 @@ import EngineeringIcon from '@mui/icons-material/Engineering';
 
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
+import Timeline from "@/components/shared/Timeline";
 
 export default function HEIPage() {
     const t = useTranslation();
@@ -297,16 +298,13 @@ export default function HEIPage() {
 
                         <div className="lg:col-span-4">
                             <h4 className="text-sm font-black uppercase tracking-widest text-[#1a2355] dark:text-white mb-8">{p.director.educationTitle}</h4>
-                            <div className="relative space-y-8 before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-gray-100 dark:before:bg-white/10">
-                                {p.director.educationItems.map((item: any, i: number) => (
-                                    <div key={i} className="relative pl-10">
-                                        <div className="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-white dark:bg-[#0b1330] border-4 border-[#ee7c7e] z-10" />
-                                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#ee7c7e] mb-1 block">{item.period}</span>
-                                        <h5 className="font-black text-[#1a2355] dark:text-white text-sm mb-1">{item.degree}</h5>
-                                        <p className="text-xs text-gray-500 leading-relaxed">{item.inst}</p>
-                                    </div>
-                                ))}
-                            </div>
+                            <Timeline 
+                                items={p.director.educationItems.map((item: any) => ({
+                                    period: item.period,
+                                    title: item.degree,
+                                    inst: item.inst
+                                }))} 
+                            />
                         </div>
                     </div>
 

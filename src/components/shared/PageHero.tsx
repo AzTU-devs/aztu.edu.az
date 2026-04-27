@@ -33,8 +33,8 @@ export default function PageHero({
   const { lang } = useLanguage();
 
   return (
-    <div className={`relative overflow-hidden bg-[#0b1330] pt-44 pb-32 px-4 md:px-10 lg:px-20 w-full min-h-[500px] lg:min-h-[650px] flex flex-col justify-end ${className}`}>
-      {/* STUNNING BACKGROUND GRAPHICS */}
+    <div className={`relative overflow-hidden bg-[#0b1330] pt-32 pb-20 px-4 md:px-10 lg:px-20 w-full min-h-[400px] lg:min-h-[500px] flex flex-col justify-end ${className}`}>
+      {/* STUNNING BACKGROUND GRAPHICS - VIBRANT BLUE */}
       <div className="absolute inset-0 z-0 bg-[#0b1330]">
         {/* Deep Gradient Base */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0b1330] via-[#1a2355] to-[#13365E]" />
@@ -46,11 +46,11 @@ export default function PageHero({
               loop
               muted
               playsInline
-              className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay"
+              className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-overlay"
             >
               <source src={videoSrc} type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-[#0b1330]/40" />
+            <div className="absolute inset-0 bg-[#0b1330]/60" />
           </>
         ) : (
           <>
@@ -58,31 +58,31 @@ export default function PageHero({
             <motion.div 
                 animate={{ 
                     x: [-500, 500],
-                    opacity: [0, 0.3, 0]
+                    opacity: [0, 0.4, 0]
                 }}
                 transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                className="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-white/40 to-transparent skew-x-[-45deg] blur-sm"
+                className="absolute top-0 left-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-[#ee7c7e]/40 to-transparent skew-x-[-45deg] blur-md"
             />
             <motion.div 
                 animate={{ 
                     x: [500, -500],
-                    opacity: [0, 0.2, 0]
+                    opacity: [0, 0.3, 0]
                 }}
                 transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                className="absolute top-0 right-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-[#ee7c7e]/40 to-transparent skew-x-[45deg] blur-sm"
+                className="absolute top-0 right-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-blue-400/30 to-transparent skew-x-[45deg] blur-md"
             />
           </>
         )}
 
-        {/* Massive Glow Orbs */}
-        <div className="absolute top-[-20%] right-[-10%] w-[1000px] h-[1000px] bg-blue-600/20 blur-[180px] rounded-full animate-pulse" />
-        <div className="absolute bottom-[-10%] left-[-5%] w-[700px] h-[700px] bg-[#ee7c7e]/15 blur-[150px] rounded-full" />
+        {/* Massive Glow Orbs - More colorful on blue */}
+        <div className="absolute top-[-20%] right-[-10%] w-[1000px] h-[1000px] bg-blue-600/30 blur-[200px] rounded-full animate-pulse" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[700px] h-[700px] bg-[#ee7c7e]/20 blur-[180px] rounded-full" style={{ animationDelay: '2s' }} />
         
         {/* Parallax Dust/Particles Overlay */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none" 
+        <div className="absolute inset-0 opacity-[0.15] pointer-events-none" 
              style={{ 
                backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)', 
-               backgroundSize: '40px 40px' 
+               backgroundSize: '50px 50px' 
              }} 
         />
       </div>
@@ -93,22 +93,22 @@ export default function PageHero({
         <motion.nav 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex flex-wrap items-center gap-3 mb-12"
+            className="flex flex-wrap items-center gap-3 mb-8"
         >
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-white/50 text-[10px] font-black uppercase tracking-[0.3em]">
-            <Link href="/" className="hover:text-[#ee7c7e] transition-colors flex items-center gap-1.5">
+          <div className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white/5 backdrop-blur-2xl border-2 border-white/10 text-white/70 text-[10px] font-black uppercase tracking-[0.3em] shadow-2xl">
+            <Link href="/" className="hover:text-[#ee7c7e] transition-colors flex items-center gap-2">
                 <HomeIcon sx={{ fontSize: 14 }} />
                 Home
             </Link>
             {breadcrumbs.map((crumb, idx) => (
                 <div key={idx} className="flex items-center gap-2">
-                <ChevronRightIcon sx={{ fontSize: 12 }} />
+                <ChevronRightIcon sx={{ fontSize: 12 }} className="text-[#ee7c7e]" />
                 {crumb.href ? (
                     <Link href={crumb.href} className="hover:text-[#ee7c7e] transition-colors">
                     {crumb.label}
                     </Link>
                 ) : (
-                    <span className="text-white/90">{crumb.label}</span>
+                    <span className="text-white font-black">{crumb.label}</span>
                 )}
                 </div>
             ))}
@@ -119,24 +119,24 @@ export default function PageHero({
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-4 mb-8"
+            className="flex items-center gap-4 mb-6"
           >
-            <div className="w-12 h-0.5 bg-[#ee7c7e]" />
-            <span className="text-[#ee7c7e] text-[11px] font-black uppercase tracking-[0.5em]">
+            <div className="w-12 h-1 bg-gradient-to-r from-[#ee7c7e] to-transparent rounded-full shadow-[0_0_15px_rgba(238,124,126,0.5)]" />
+            <span className="text-[#ee7c7e] text-[10px] font-black uppercase tracking-[0.6em] drop-shadow-sm">
                 {eyebrow}
             </span>
           </motion.div>
         )}
 
-        <div className="max-w-5xl">
+        <div className="max-w-4xl">
             <motion.h1 
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
-                className="text-5xl md:text-8xl lg:text-9xl font-black text-white mb-10 leading-[0.9] tracking-tighter"
+                className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1] tracking-tighter drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
             >
                 {title.split(' ').map((word, i) => (
-                    <span key={i} className="inline-block mr-4 last:mr-0 last:text-transparent last:bg-clip-text last:bg-gradient-to-r last:from-white last:to-[#ee7c7e]">
+                    <span key={i} className="inline-block mr-4 md:mr-6 last:mr-0 last:text-transparent last:bg-clip-text last:bg-gradient-to-br last:from-white last:to-[#ee7c7e]">
                         {word}
                     </span>
                 ))}
@@ -147,7 +147,7 @@ export default function PageHero({
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.8 }}
-                className="text-white/60 text-xl md:text-2xl max-w-3xl leading-relaxed font-medium border-l-2 border-[#ee7c7e] pl-10"
+                className="text-white/70 text-lg md:text-xl max-w-2xl leading-relaxed font-bold border-l-4 border-[#ee7c7e] pl-8 drop-shadow-md"
             >
                 {description}
             </motion.p>
@@ -158,11 +158,11 @@ export default function PageHero({
       </div>
       
       {/* Stunner: Glass light sweep divider */}
-      <div className="absolute bottom-0 left-0 right-0 h-[2px] overflow-hidden">
+      <div className="absolute bottom-0 left-0 right-0 h-[4px] overflow-hidden">
           <motion.div 
             animate={{ x: ['-100%', '100%'] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="w-1/2 h-full bg-gradient-to-r from-transparent via-[#ee7c7e] to-transparent"
+            className="w-1/2 h-full bg-gradient-to-r from-transparent via-[#ee7c7e] to-transparent opacity-80 shadow-[0_0_20px_#ee7c7e]"
           />
       </div>
     </div>

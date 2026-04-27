@@ -64,6 +64,7 @@ export default function FacultyHaqqimizdaPage({ params }: Props) {
   const { lang: currentLang } = useLanguage();
   const [faculty, setFaculty] = useState<FacultyDetail | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -94,6 +95,9 @@ export default function FacultyHaqqimizdaPage({ params }: Props) {
     const hasItems = items && items.length > 0;
     const hasHtml = htmlContent !== undefined && htmlContent !== null && htmlContent !== "";
     if (!hasItems && !hasHtml) return null;
+
+    const isAboutSection = id === "haqqinda";
+
     return (
       <motion.div 
         id={id} 
@@ -106,25 +110,55 @@ export default function FacultyHaqqimizdaPage({ params }: Props) {
         <SectionBlock accent title={title}>
           <div className="relative">
             {htmlContent ? (
-              <div
-                className="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 leading-relaxed font-medium"
-                dangerouslySetInnerHTML={{ __html: htmlContent }}
-              />
+              <div className="relative">
+                <motion.div
+                  initial={false}
+                  animate={{ height: isAboutSection && !isExpanded ? 240 : "auto" }}
+                  className={`overflow-hidden transition-all duration-500 ease-in-out`}
+                >
+                  <div
+                    className="prose prose-sm md:prose-base max-w-none text-gray-600 leading-relaxed text-justify font-medium"
+                    dangerouslySetInnerHTML={{ __html: htmlContent }}
+                  />
+                </motion.div>
+                
+                {isAboutSection && (
+                  <div className={`
+                    ${!isExpanded ? "absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white via-white/80 to-transparent flex items-end justify-center pb-2" : "mt-6 flex justify-center"}
+                    z-10
+                  `}>
+                    <button
+                      onClick={() => setIsExpanded(!isExpanded)}
+                      className="group flex items-center gap-3 px-8 py-3 rounded-2xl bg-[#ee7c7e] text-white font-black text-[10px] uppercase tracking-[0.3em] shadow-xl shadow-[#ee7c7e]/30 hover:scale-[1.05] active:scale-95 transition-all"
+                    >
+                      {isExpanded 
+                        ? (currentLang === "az" ? "Daha az oxu" : "Read Less") 
+                        : (currentLang === "az" ? "Daha çox oxu" : "Read More")}
+                      <motion.div
+                        animate={{ rotate: isExpanded ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <AccountTreeIcon sx={{ fontSize: 16 }} />
+                      </motion.div>
+                    </button>
+                  </div>
+                )}
+              </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 {items?.map((item, idx) => (
                   <motion.div 
                     key={item.id}
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.05 }}
-                    className="group bg-gray-50 dark:bg-white/5 rounded-2xl p-6 border border-gray-100 dark:border-white/10 transition-all hover:border-[#ee7c7e]/30 hover:shadow-xl hover:shadow-blue-900/5"
+                    className="group bg-gray-50 rounded-2xl p-5 border border-gray-100 transition-all hover:border-[#ee7c7e]/30 hover:shadow-xl hover:shadow-blue-900/5"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="mt-1 w-2 h-2 rounded-full bg-[#ee7c7e] group-hover:scale-150 transition-transform flex-shrink-0 shadow-[0_0_8px_#ee7c7e]" />
+                      <div className="mt-1 w-1.5 h-1.5 rounded-full bg-[#ee7c7e] group-hover:scale-150 transition-transform flex-shrink-0 shadow-[0_0_8px_#ee7c7e]" />
                       <div>
-                        <p className="font-black text-[#1a2355] dark:text-white text-base mb-2 group-hover:text-[#ee7c7e] transition-colors">{item.title}</p>
-                        {item.description && <p className="text-sm text-gray-500 dark:text-white/60 leading-relaxed font-medium">{item.description}</p>}
+                        <p className="font-black text-[#1a2355] text-sm mb-1.5 group-hover:text-[#ee7c7e] transition-colors">{item.title}</p>
+                        {item.description && <p className="text-xs text-gray-500 leading-relaxed font-medium">{item.description}</p>}
                       </div>
                     </div>
                   </motion.div>
@@ -163,6 +197,9 @@ export default function FacultyHaqqimizdaPage({ params }: Props) {
           {/* 1. Faculty About */}
           {renderContentSection("haqqinda", <InfoIcon sx={{ color: "white" }} />, currentLang === "az" ? "Fakültə haqqında" : "About Faculty", undefined, faculty?.html_content)}
 
+          {/* 1.5 Directions of Action - Moved here */}
+          {renderContentSection("istiqametler", <AccountTreeIcon sx={{ color: "white" }} />, currentLang === "az" ? "Fəaliyyət istiqamətləri" : "Directions of Action", faculty?.directions_of_action)}
+
           {/* 2. Metrics / Dynamic Stats Section */}
           {!loading && stats.length > 0 && (
             <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -184,7 +221,7 @@ export default function FacultyHaqqimizdaPage({ params }: Props) {
             >
               <SectionBlock title={currentLang === "az" ? "Davamlı İnkişaf Məqsədləri" : "Sustainable Development Goals"} accent>
                  <p className="text-gray-500 dark:text-white/40 text-sm font-black uppercase tracking-[0.2em] mb-10">United Nations Strategic Alignment</p>
-                 <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
+                 <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6">
                    {faculty.sdgs.map((sdgId, idx) => (
                      <motion.div 
                        key={sdgId} 
@@ -192,13 +229,13 @@ export default function FacultyHaqqimizdaPage({ params }: Props) {
                        whileInView={{ opacity: 1, scale: 1 }}
                        transition={{ delay: idx * 0.05 }}
                        whileHover={{ y: -8, scale: 1.1, rotate: 2 }}
-                       className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl shadow-black/10 border border-gray-100 dark:border-white/10 group cursor-pointer"
+                       className="relative aspect-square rounded-[2rem] overflow-hidden shadow-2xl shadow-blue-900/10 border-4 border-white group cursor-pointer"
                        title={`SDG Goal ${sdgId}`}
                      >
                        <img 
                          src={`https://open-sdg.github.io/sdg-translations/assets/img/goals/en/${sdgId}.png`}
                          alt={`SDG ${sdgId}`}
-                         className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                         className="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-500"
                          onError={(e) => {
                            (e.target as any).style.display = 'none';
                            (e.target as any).parentElement.style.backgroundColor = '#1a2355';
@@ -221,8 +258,8 @@ export default function FacultyHaqqimizdaPage({ params }: Props) {
 
           {/* Modern Anchor Nav */}
           {faculty && (
-            <div className="sticky top-[84px] lg:top-4 z-20 -mx-4 px-4 py-3 bg-white/40 dark:bg-[#0b1330]/40 backdrop-blur-xl border-y border-gray-100 dark:border-white/5 shadow-2xl shadow-black/5">
-              <div className="max-w-[1600px] mx-auto flex gap-3 overflow-x-auto pb-1 scrollbar-hide no-scrollbar">
+            <div className="sticky top-[84px] lg:top-4 z-20 -mx-4 px-4 py-4 bg-white/60 backdrop-blur-xl border-y border-gray-100 shadow-xl shadow-blue-900/5">
+              <div className="max-w-[1600px] mx-auto flex gap-4 overflow-x-auto pb-1 scrollbar-hide no-scrollbar">
                 {navSections.map((s) => {
                   const hasContent = 
                     (s.id === "haqqinda" && (faculty.html_content !== undefined && faculty.html_content !== null && faculty.html_content !== "")) ||
@@ -241,7 +278,7 @@ export default function FacultyHaqqimizdaPage({ params }: Props) {
                     <a
                       key={s.id}
                       href={`#${s.id}`}
-                      className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1a2355] dark:text-white bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:border-[#ee7c7e] hover:text-white hover:bg-[#ee7c7e] px-6 py-2.5 rounded-full transition-all whitespace-nowrap shadow-sm active:scale-95"
+                      className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1a2355] bg-white border-2 border-gray-100 hover:border-[#ee7c7e] hover:text-white hover:bg-[#ee7c7e] px-8 py-3 rounded-2xl transition-all whitespace-nowrap shadow-sm active:scale-95"
                     >
                       {s.title}
                     </a>
@@ -255,7 +292,6 @@ export default function FacultyHaqqimizdaPage({ params }: Props) {
           <div className="space-y-16 pb-20">
             {renderContentSection("meqsed", <TrackChangesIcon sx={{ color: "white" }} />, currentLang === "az" ? "Fəaliyyət məqsədləri" : "Strategic Objectives", faculty?.objectives)}
             {renderContentSection("vezifeler", <AssignmentIcon sx={{ color: "white" }} />, currentLang === "az" ? "Vəzifələr" : "Duties & Responsibilities", faculty?.duties)}
-            {renderContentSection("istiqametler", <AccountTreeIcon sx={{ color: "white" }} />, currentLang === "az" ? "Fəaliyyət istiqamətləri" : "Directions of Action", faculty?.directions_of_action)}
             {renderContentSection("laboratoriyalar", <ScienceIcon sx={{ color: "white" }} />, currentLang === "az" ? "Laboratoriyalar" : "Laboratories", faculty?.laboratories)}
             {renderContentSection("tedqiqat", <ScienceIcon sx={{ color: "white" }} />, currentLang === "az" ? "Elmi tədqiqat işləri" : "Scientific Research", faculty?.research_works)}
             {renderContentSection("layiheler", <AssignmentIcon sx={{ color: "white" }} />, currentLang === "az" ? "Layihələr" : "Projects & Initiatives", faculty?.projects)}
