@@ -52,10 +52,13 @@ export default function FacultiesPage() {
     };
 
     return (
-        <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden pb-32">
-            {/* STUNNING BACKGROUND ELEMENTS - MATCHING HOME PAGE */}
-            <div className="bg-mesh" />
-            <div className="bg-grid-premium" />
+        <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden pb-32 bg-white">
+            {/* STUNNING BACKGROUND ELEMENTS */}
+            <div className="bg-mesh opacity-100" />
+            <div className="bg-grid-premium opacity-10" />
+            
+            <div className="fixed top-1/4 -left-20 w-[600px] h-[600px] bg-blue-600/5 blur-[150px] rounded-full animate-pulse" />
+            <div className="fixed bottom-1/4 -right-20 w-[600px] h-[600px] bg-[#ee7c7e]/5 blur-[150px] rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
 
             <PageHero
                 title={t.title}
@@ -66,22 +69,22 @@ export default function FacultiesPage() {
                 eyebrow="Academic Excellence"
             />
 
-            <PageContainer>
+            <PageContainer fullWidth>
                 {loading ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 -mt-24 relative z-10">
                         {Array.from({ length: 8 }).map((_, i) => (
-                            <div key={i} className="animate-pulse bg-white/80 dark:bg-slate-800/50 backdrop-blur-xl rounded-[3rem] shadow-xl border-2 border-[#1a2355]/10 dark:border-white/10 p-10 h-80" />
+                            <div key={i} className="animate-pulse bg-white/60 backdrop-blur-xl rounded-[3rem] shadow-2xl border-2 border-gray-100 p-8 h-80" />
                         ))}
                     </div>
                 ) : faculties.length === 0 ? (
-                    <div className="text-center py-40 bg-white/80 dark:bg-slate-800/50 backdrop-blur-xl rounded-[4rem] border-2 border-dashed border-[#1a2355]/20 dark:border-white/10 shadow-sm relative z-10">
-                        <SchoolIcon sx={{ fontSize: 80, color: "#1a2355", opacity: 0.1 }} className="mb-6" />
+                    <div className="text-center py-40 bg-white/60 backdrop-blur-3xl rounded-[4rem] border-2 border-dashed border-gray-200 shadow-2xl relative z-10 -mt-24">
+                        <SchoolIcon sx={{ fontSize: 80, color: "#ee7c7e", opacity: 0.2 }} className="mb-6 animate-pulse" />
                         <p className="text-gray-400 font-black uppercase tracking-[0.3em] text-sm">
                             {t.noContent}
                         </p>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 relative z-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 relative z-10 -mt-24">
                         {faculties.map((faculty, i) => {
                             const slug = slugify(faculty.title);
                             const academicPrefix = currentLang === "az" ? "akademik" : "academic";
@@ -89,13 +92,12 @@ export default function FacultiesPage() {
                             const baseLink = `/${currentLang}/${academicPrefix}/${facultyPrefix}/${slug}`;
                             const aboutLink = `${baseLink}/${currentLang === "az" ? "haqqimizda" : "about"}`;
 
-                            // Determine card colors based on index or code
                             const accentColors = [
-                                "from-blue-600 to-indigo-600 shadow-blue-500/20",
-                                "from-emerald-600 to-teal-600 shadow-emerald-500/20",
+                                "from-blue-600 to-indigo-700 shadow-blue-500/20",
+                                "from-emerald-600 to-teal-700 shadow-emerald-500/20",
                                 "from-[#ee7c7e] to-[#f09395] shadow-red-500/20",
-                                "from-purple-600 to-violet-600 shadow-purple-500/20",
-                                "from-orange-600 to-amber-600 shadow-orange-500/20"
+                                "from-purple-600 to-violet-700 shadow-purple-500/20",
+                                "from-orange-600 to-amber-700 shadow-orange-500/20"
                             ];
                             const cardColor = accentColors[i % accentColors.length];
 
@@ -105,57 +107,53 @@ export default function FacultiesPage() {
                                     custom={i}
                                     variants={cardVariants}
                                     initial="hidden"
-                                    animate="visible"
+                                    whileInView="visible"
+                                    viewport={{ once: true }}
                                     className="h-full"
                                 >
                                     <Link
                                         href={aboutLink}
-                                        className="group block relative h-full bg-white/80 dark:bg-slate-800/50 backdrop-blur-xl rounded-[3rem] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/10 dark:border-white/5 p-10 transition-all duration-700 overflow-hidden hover:-translate-y-2 hover:border-[#ee7c7e]/30"
+                                        className="group block relative h-full bg-white backdrop-blur-3xl rounded-[3rem] shadow-2xl shadow-blue-900/5 border-2 border-gray-100 p-8 transition-all duration-700 overflow-hidden hover:-translate-y-3 hover:border-[#ee7c7e]/30 hover:shadow-blue-900/10"
                                     >
-                                        {/* Decorative Background Elements */}
-                                        <div className="absolute top-0 right-0 w-32 h-32 bg-[#1a2355]/5 dark:bg-white/5 rounded-bl-[4rem] -mr-8 -mt-8 transition-transform duration-700 group-hover:scale-110" />
-                                        <div className={`absolute bottom-0 left-0 w-full h-1.5 bg-gradient-to-r ${cardColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                                        <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 rounded-bl-[4rem] -mr-8 -mt-8 transition-transform duration-700 group-hover:scale-110 group-hover:bg-blue-50" />
+                                        <div className={`absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r ${cardColor} opacity-20 group-hover:opacity-100 transition-opacity duration-500`} />
                                         
                                         <div className="relative z-10 flex flex-col h-full">
-                                            {/* Card Header */}
-                                            <div className="flex items-center justify-between mb-10">
-                                                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${cardColor} flex items-center justify-center text-white shadow-lg duration-500 group-hover:scale-110 group-hover:rotate-6`}>
+                                            <div className="flex items-center justify-between mb-8">
+                                                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${cardColor} flex items-center justify-center text-white shadow-xl duration-500 group-hover:scale-110 group-hover:rotate-6`}>
                                                     <SchoolIcon sx={{ fontSize: 32 }} />
                                                 </div>
-                                                <span className="text-[10px] font-black text-gray-400 dark:text-white/30 uppercase tracking-[0.2em] border border-[#1a2355]/10 dark:border-white/10 px-4 py-2 rounded-xl">
+                                                <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] border-2 border-gray-50 px-4 py-2 rounded-xl group-hover:text-[#ee7c7e] transition-colors bg-white/50">
                                                     {faculty.faculty_code}
                                                 </span>
                                             </div>
 
-                                            {/* Faculty Title */}
-                                            <h2 className="text-[#1a2355] dark:text-white font-black text-2xl leading-[1.2] group-hover:text-[#ee7c7e] transition-colors duration-500 mb-8 tracking-tighter">
+                                            <h2 className="text-[#1a2355] font-black text-xl lg:text-2xl leading-[1.2] group-hover:text-[#ee7c7e] transition-colors duration-500 mb-8 tracking-tight">
                                                 {faculty.title}
                                             </h2>
 
-                                            {/* Stats Section */}
-                                            <div className="grid grid-cols-2 gap-4 mt-auto pt-8 border-t border-[#1a2355]/5 dark:border-white/10">
+                                            <div className="grid grid-cols-2 gap-4 mt-auto pt-8 border-t border-gray-50">
                                                 <div className="flex flex-col">
                                                     <div className="flex items-center gap-2 mb-1">
-                                                        <AccountTreeIcon sx={{ fontSize: 14 }} className="text-[#ee7c7e]" />
-                                                        <span className="text-xl font-black text-[#1a2355] dark:text-white leading-none">{faculty.cafedra_count || 0}</span>
+                                                        <AccountTreeIcon sx={{ fontSize: 16 }} className="text-[#ee7c7e]" />
+                                                        <span className="text-2xl font-black text-[#1a2355] leading-none">{faculty.cafedra_count || 0}</span>
                                                     </div>
                                                     <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{t.cafedra}</span>
                                                 </div>
                                                 <div className="flex flex-col text-right">
                                                     <div className="flex items-center gap-2 justify-end mb-1">
-                                                        <span className="text-xl font-black text-[#1a2355] dark:text-white leading-none">{faculty.deputy_dean_count || 0}</span>
-                                                        <GroupsIcon sx={{ fontSize: 14 }} className="text-[#ee7c7e]" />
+                                                        <span className="text-2xl font-black text-[#1a2355] leading-none">{faculty.deputy_dean_count || 0}</span>
+                                                        <GroupsIcon sx={{ fontSize: 16 }} className="text-[#ee7c7e]" />
                                                     </div>
                                                     <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{t.deputy}</span>
                                                 </div>
                                             </div>
 
-                                            {/* View More Button */}
-                                            <div className="flex items-center justify-between mt-10">
-                                                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1a2355] dark:text-white/60 group-hover:text-[#ee7c7e] transition-colors">
+                                            <div className="flex items-center justify-between mt-8 pt-4">
+                                                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a2355]/40 group-hover:text-[#1a2355] transition-colors">
                                                     {t.viewMore}
                                                 </span>
-                                                <div className="w-12 h-12 rounded-2xl bg-[#1a2355]/5 dark:bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white group-hover:translate-x-2 border border-[#1a2355]/5">
+                                                <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white group-hover:translate-x-2 shadow-lg border border-gray-100">
                                                     <ChevronRightIcon sx={{ fontSize: 24 }} />
                                                 </div>
                                             </div>

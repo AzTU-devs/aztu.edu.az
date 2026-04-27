@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface NavSubItem {
@@ -98,74 +99,83 @@ export default function FacultySidebar({ facultyId }: Props) {
   };
 
   return (
-    <nav className="bg-white dark:bg-slate-800 rounded-[2rem] shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden">
-      <div className="px-6 py-5 border-b border-gray-50 dark:border-slate-700 bg-gray-50/50 dark:bg-slate-800/50">
-        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1a2355] dark:text-blue-300">
-          {lang === "az" ? "Fakültə Menyu" : "Faculty Menu"}
+    <nav className="bg-white rounded-[2.5rem] shadow-2xl shadow-blue-900/5 border border-gray-100 overflow-hidden">
+      <div className="px-8 py-6 border-b-2 border-gray-50 bg-gray-50/30">
+        <p className="text-[11px] font-black uppercase tracking-[0.3em] text-[#1a2355]/60 flex items-center gap-3">
+          <div className="w-1.5 h-1.5 rounded-full bg-[#ee7c7e] animate-pulse" />
+          {lang === "az" ? "Fakültə Portalı" : "Faculty Portal"}
         </p>
       </div>
-      <ul className="p-4 space-y-2">
+      <ul className="p-6 space-y-3">
         {navItems.map((item) =>
           item.subItems ? (
             <li key={item.label}>
-              <div>
+              <div className="space-y-2">
                 <button
                   onClick={() => toggle(item.label)}
-                  className={`w-full flex items-center justify-between px-4 py-3.5 rounded-2xl text-sm font-bold transition-all ${
+                  className={`w-full flex items-center justify-between px-6 py-4 rounded-2xl text-[13px] font-black transition-all ${
                     isParentActive(item)
-                      ? "bg-[#1a2355] text-white shadow-lg shadow-blue-900/20"
-                      : "text-[#1a2355] dark:text-slate-200 hover:bg-gray-50 dark:hover:bg-slate-700"
+                      ? "bg-[#1a2355] text-white shadow-xl shadow-blue-900/20"
+                      : "text-[#1a2355] hover:bg-gray-50 hover:text-[#ee7c7e]"
                   }`}
                 >
                   <Link
                     href={item.href}
-                    className="flex-1 text-left"
+                    className="flex-1 text-left uppercase tracking-wider"
                     onClick={(e) => e.stopPropagation()}
                   >
                     {item.label}
                   </Link>
                   <span
-                    className={`transition-transform duration-300 ${
+                    className={`transition-transform duration-500 ${
                       expanded.includes(item.label) ? "rotate-180" : ""
                     }`}
                   >
-                    <ExpandMoreIcon sx={{ fontSize: 18 }} />
+                    <ExpandMoreIcon sx={{ fontSize: 20 }} />
                   </span>
                 </button>
-                {expanded.includes(item.label) && (
-                  <ul className="mt-2 ml-4 space-y-1 border-l-2 border-[#1a2355]/5 dark:border-slate-700 pl-4">
-                    {item.subItems.map((sub) => (
-                      <li key={sub.href}>
-                        <Link
-                          href={sub.href}
-                          className={`block px-4 py-2.5 rounded-xl text-xs font-bold transition-all ${
-                            pathname === sub.href
-                              ? "bg-[#ee7c7e]/10 text-[#ee7c7e]"
-                              : "text-gray-500 dark:text-slate-400 hover:text-[#1a2355] dark:hover:text-white"
-                          }`}
-                        >
-                          {sub.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <AnimatePresence>
+                  {expanded.includes(item.label) && (
+                    <motion.ul 
+                      initial={{ opacity: 0, y: -10, height: 0 }}
+                      animate={{ opacity: 1, y: 0, height: "auto" }}
+                      exit={{ opacity: 0, y: -10, height: 0 }}
+                      className="ml-4 space-y-1.5 border-l-2 border-gray-100 pl-4 overflow-hidden"
+                    >
+                      {item.subItems.map((sub) => (
+                        <li key={sub.href}>
+                          <Link
+                            href={sub.href}
+                            className={`block px-5 py-3 rounded-xl text-xs font-bold transition-all relative group ${
+                              pathname === sub.href
+                                ? "bg-[#ee7c7e]/10 text-[#ee7c7e]"
+                                : "text-gray-500 hover:text-[#1a2355] hover:bg-gray-50"
+                            }`}
+                          >
+                            <div className={`absolute left-0 top-1/2 -translate-y-1/2 w-1 h-0 bg-[#ee7c7e] transition-all duration-300 group-hover:h-1/2 ${pathname === sub.href ? 'h-1/2' : ''}`} />
+                            {sub.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </motion.ul>
+                  )}
+                </AnimatePresence>
               </div>
             </li>
           ) : (
             <li key={item.label}>
               <Link
                 href={item.href}
-                className={`flex items-center justify-between px-4 py-3.5 rounded-2xl text-sm font-bold transition-all ${
+                className={`flex items-center justify-between px-6 py-4 rounded-2xl text-[13px] font-black transition-all group ${
                   isParentActive(item)
-                    ? "bg-[#1a2355] text-white shadow-lg shadow-blue-900/20"
-                    : "text-[#1a2355] dark:text-slate-200 hover:bg-gray-50 dark:hover:bg-slate-700"
+                    ? "bg-[#1a2355] text-white shadow-xl shadow-blue-900/20"
+                    : "text-[#1a2355] hover:bg-gray-50 hover:text-[#ee7c7e]"
                 }`}
               >
-                {item.label}
+                <span className="uppercase tracking-wider">{item.label}</span>
                 <ChevronRightIcon
-                  sx={{ fontSize: 18 }}
-                  className={`transition-transform duration-300 ${isParentActive(item) ? "translate-x-1" : "opacity-20"}`}
+                  sx={{ fontSize: 20 }}
+                  className={`transition-all duration-500 ${isParentActive(item) ? "translate-x-1" : "opacity-20 group-hover:opacity-100 group-hover:translate-x-1"}`}
                 />
               </Link>
             </li>

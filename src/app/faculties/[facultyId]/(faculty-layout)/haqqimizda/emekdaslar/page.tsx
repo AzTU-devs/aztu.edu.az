@@ -80,7 +80,7 @@ export default function EmekdaslarPage({ params }: Props) {
               />
             </motion.div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {filtered.map((w, index) => {
                 const fullName = [w.first_name, w.last_name, w.father_name].filter(Boolean).join(" ");
                 return (
@@ -97,7 +97,7 @@ export default function EmekdaslarPage({ params }: Props) {
                       academicDegree={w.scientific_degree}
                       photoUrl={getImageUrl(w.profile_image)}
                       email={w.email}
-                      size="sm"
+                      size="md"
                     />
                   </motion.div>
                 );

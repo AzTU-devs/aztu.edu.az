@@ -17,7 +17,9 @@ const INTERNAL_FOLDERS = [
   "niye-aztu",
   "media",
   "faculties",
+  "fakulteler",
   "community",
+  "icma",
   "elaqe",
   "privacy-policy",
   "terms-conditions",
@@ -126,6 +128,29 @@ const SLUG_MAP: Record<string, string> = {
     "higher-education-institute-hei": "yuksek-tehsil-institutu-yti",
     "yuksek-tehsil-institutu-yti": "higher-education-institute-hei",
 
+    "faculties": "fakulteler",
+    "fakulteler": "faculties",
+    "international-relations": "beynelxalq-elaqeler",
+    "beynelxalq-elaqeler": "international-relations",
+    "specialties": "ixtisaslar",
+    "ixtisaslar": "specialties",
+    "departments": "kafedralar",
+    "kafedralar": "departments",
+    "specializations": "ixtisaslar",
+    "ixtisaslar": "specializations",
+    "dean": "dekan",
+    "dekan": "dean",
+    "deputy-deans": "dekan-muavinleri",
+    "dekan-muavinleri": "deputy-deans",
+    "scientific-council": "elmi-sura",
+    "elmi-sura": "scientific-council",
+    "academic-staff": "akademik-heyat",
+    "akademik-heyat": "academic-staff",
+    "staff": "emekdaslar",
+    "emekdaslar": "staff",
+    "contact": "elaqe",
+    "elaqe": "contact",
+
     // Other
     "privacy-policy": "mexfilik-siyaseti",
     "mexfilik-siyaseti": "privacy-policy",
@@ -145,7 +170,9 @@ const EN_SLUGS = new Set([
     "former-rectors",
     "international-partnership", "double-degree-programs", "international-projects", "partner-universities",
     "exchange-programs", "orhun-exchange-program", "privacy-policy", "terms-conditions",
-    "education-and-programs", "higher-education-institute-hei"
+    "education-and-programs", "higher-education-institute-hei", "faculties",
+    "international-relations", "specialties", "departments",
+    "specializations", "dean", "deputy-deans", "scientific-council", "academic-staff", "staff", "contact"
     ]);
 
 export function middleware(request: NextRequest) {
@@ -239,6 +266,62 @@ export function middleware(request: NextRequest) {
         if ((segments_rest[1] === "education-and-programs" || segments_rest[1] === "tehsil-ve-proqramlar") &&
             (segments_rest[2] === "higher-education-institute-hei" || segments_rest[2] === "yuksek-tehsil-institutu-yti")) {
             segments_rest = ["about", "hei"];
+        } else if (segments_rest[1] === "faculties" || segments_rest[1] === "fakulteler") {
+            if (segments_rest[2]) {
+                const facultySlug = segments_rest[2];
+                if (segments_rest[3]) {
+                    let aboutSub = segments_rest[3];
+                    if (aboutSub === "about") aboutSub = "haqqimizda";
+                    if (aboutSub === "international-relations") aboutSub = "beynelxalq-elaqeler";
+                    if (aboutSub === "specialties" || aboutSub === "specializations") aboutSub = "ixtisaslar";
+                    if (aboutSub === "departments") aboutSub = "kafedralar";
+
+                    if (segments_rest[4]) {
+                        let subSlug = segments_rest[4];
+                        if (subSlug === "dean") subSlug = "dekan";
+                        if (subSlug === "deputy-deans") subSlug = "dekan-muavinleri";
+                        if (subSlug === "scientific-council") subSlug = "elmi-sura";
+                        if (subSlug === "academic-staff") subSlug = "akademik-heyat";
+                        if (subSlug === "staff") subSlug = "emekdaslar";
+                        if (subSlug === "contact") subSlug = "elaqe";
+                        segments_rest = ["faculties", facultySlug, aboutSub, subSlug];
+                    } else {
+                        segments_rest = ["faculties", facultySlug, aboutSub];
+                    }
+                } else {
+                    segments_rest = ["faculties", facultySlug];
+                }
+            } else {
+                segments_rest = ["faculties"];
+            }
+        }
+    } else if (segments_rest[0] === "faculties" || segments_rest[0] === "fakulteler") {
+        if (segments_rest[1]) {
+            const facultySlug = segments_rest[1];
+            if (segments_rest[2]) {
+                let aboutSub = segments_rest[2];
+                if (aboutSub === "about") aboutSub = "haqqimizda";
+                if (aboutSub === "international-relations") aboutSub = "beynelxalq-elaqeler";
+                if (aboutSub === "specialties" || aboutSub === "specializations") aboutSub = "ixtisaslar";
+                if (aboutSub === "departments") aboutSub = "kafedralar";
+
+                if (segments_rest[3]) {
+                    let subSlug = segments_rest[3];
+                    if (subSlug === "dean") subSlug = "dekan";
+                    if (subSlug === "deputy-deans") subSlug = "dekan-muavinleri";
+                    if (subSlug === "scientific-council") subSlug = "elmi-sura";
+                    if (subSlug === "academic-staff") subSlug = "akademik-heyat";
+                    if (subSlug === "staff") subSlug = "emekdaslar";
+                    if (subSlug === "contact") subSlug = "elaqe";
+                    segments_rest = ["faculties", facultySlug, aboutSub, subSlug];
+                } else {
+                    segments_rest = ["faculties", facultySlug, aboutSub];
+                }
+            } else {
+                segments_rest = ["faculties", facultySlug];
+            }
+        } else {
+            segments_rest = ["faculties"];
         }
     } else if (segments_rest[0] === "community" || segments_rest[0] === "icma") {
         segments_rest[0] = "community";
