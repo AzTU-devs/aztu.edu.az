@@ -119,6 +119,8 @@ const SLUG_MAP: Record<string, string> = {
     "ittifaq-ve-teskilatlar": "unions-and-organizations",
     "trade-union": "hemkarlar-ittifaqi",
     "hemkarlar-ittifaqi": "trade-union",
+    "student-trade-union": "telebe-hemkarlar-ittifaqi",
+    "telebe-hemkarlar-ittifaqi": "student-trade-union",
 
     // International sub-slugs
     "international-partnership": "beynelxalq-terefdasliq",
@@ -179,7 +181,7 @@ const EN_SLUGS = new Set([
     "75th-anniversary-film", "leadership-and-management", "rector", "rectors-office", "vice-rector", "scientific-board",
     "partner-universities-and-related-institutes", "structural-units", "aztus-honors", "honorary-doctors", "our-heroes",
     "former-rectors", "campus-life", "aztu-polyclinic",
-    "unions-and-organizations", "alliances-and-organizations", "trade-union",
+    "unions-and-organizations", "alliances-and-organizations", "trade-union", "student-trade-union",
     "international-partnership", "double-degree-programs", "international-projects", "partner-universities",
     "exchange-programs", "orhun-exchange-program", "privacy-policy", "terms-conditions",
     "education-and-programs", "higher-education-institute-hei", "faculties",
