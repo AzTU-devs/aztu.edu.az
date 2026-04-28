@@ -110,6 +110,10 @@ const SLUG_MAP: Record<string, string> = {
     "qehremanlarimiz": "our-heroes",
     "former-rectors": "sabiq-rektorlarimiz",
     "sabiq-rektorlarimiz": "former-rectors",
+    "unions-and-organizations": "ittifaq-ve-teskilatlar",
+    "ittifaq-ve-teskilatlar": "unions-and-organizations",
+    "trade-union": "hemkarlar-ittifaqi",
+    "hemkarlar-ittifaqi": "trade-union",
 
     // International sub-slugs
     "international-partnership": "beynelxalq-terefdasliq",
@@ -169,7 +173,7 @@ const EN_SLUGS = new Set([
     "research-institutes", "research-laboratories", "vision-mission", "vizion-mission-goal", "history-of-aztu",
     "75th-anniversary-film", "leadership-and-management", "rector", "rectors-office", "vice-rector", "scientific-board",
     "partner-universities-and-related-institutes", "structural-units", "aztus-honors", "honorary-doctors", "our-heroes",
-    "former-rectors",
+    "former-rectors", "unions-and-organizations", "trade-union",
     "international-partnership", "double-degree-programs", "international-projects", "partner-universities",
     "exchange-programs", "orhun-exchange-program", "privacy-policy", "terms-conditions",
     "education-and-programs", "higher-education-institute-hei", "faculties",
@@ -337,6 +341,11 @@ export function middleware(request: NextRequest) {
                 segments_rest = ["community", "our-heroes"];
             } else if (segments_rest[2] === "former-rectors" || segments_rest[2] === "sabiq-rektorlarimiz") {
                 segments_rest = ["community", "former-rectors"];
+            }
+        } else if (segments_rest[1] === "unions-and-organizations" || segments_rest[1] === "ittifaq-ve-teskilatlar") {
+            segments_rest[1] = "ittifaq-ve-teskilatlar";
+            if (segments_rest[2] === "trade-union" || segments_rest[2] === "hemkarlar-ittifaqi") {
+                segments_rest = ["community", "ittifaq-ve-teskilatlar", "hemkarlar-ittifaqi"];
             }
         }
     }
