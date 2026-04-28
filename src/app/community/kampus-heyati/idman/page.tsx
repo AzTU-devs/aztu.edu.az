@@ -75,6 +75,7 @@ const DATA = {
       societies: "Klub həmçinin \"Gənclik\" Tələbə İdman Cəmiyyəti və Bakı Şəhər Gənclər və İdman Baş İdarəsinin təşkil etdiyi yarışlarda fəal iştirak edir."
     },
     contact: {
+      title: "Əlaqə",
       address: "H.Cavid prospekti 25, Bakı, Azərbaycan AZ 1073",
       phone: "(+994 12) 538 33 83",
       hotline: "(+994 12) 539 13 05",
@@ -138,6 +139,7 @@ const DATA = {
       societies: "The club also actively participates in competitions organized by the 'Genclik' Student Sports Society and the Baku City Head Office of Youth and Sports."
     },
     contact: {
+      title: "Contact",
       address: "25 H. Javid Avenue, Baku, Azerbaijan AZ 1073",
       phone: "(+994 12) 538 33 83",
       hotline: "(+994 12) 539 13 05",
