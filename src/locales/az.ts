@@ -2108,7 +2108,8 @@ const az = {
     sectionTitle: "Universitetimiz haqqında",
     items: [
       { label: "Fakültə", sublabel: "Tədris fakültəsi" },
-      { label: "İxtisas", sublabel: "Bakalavr & magistr" },
+      { label: "Bakalavr", sublabel: "İxtisas" },
+      { label: "Magistr", sublabel: "İxtisas" },
       { label: "Tələbə", sublabel: "Aktiv tələbə" },
       { label: "Müəllim", sublabel: "Akademik heyət" },
       { label: "Tərəfdaş", sublabel: "Beynəlxalq əməkdaşlıq" },

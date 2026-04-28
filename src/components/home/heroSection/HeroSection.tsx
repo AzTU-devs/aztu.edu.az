@@ -2,14 +2,20 @@
 
 import { useEffect, useRef, useState, useCallback } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward"
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium'
 import GroupsIcon from '@mui/icons-material/Groups'
-import PublicIcon from '@mui/icons-material/Public'
 import { useTranslation } from "@/hooks/useTranslation"
 import { useLanguage } from "@/context/LanguageContext"
+import QsLogo from "@/../public/logos/qs-logo.svg"
+import TheLogo from "@/../public/logos/the-logo.svg"
+import GreenMetricLogo from "@/../public/logos/greenmetric-logo.png"
+import ScopusLogo from "@/../public/logos/scopus-logo.svg"
+import WosLogo from "@/../public/logos/wos-logo.svg"
+import { getArticleCounters } from "@/services/article/articleService"
 
 const LOCAL_VIDEOS = [
     "/heroVideos/video5.mp4",
@@ -28,6 +34,9 @@ export default function HeroSection() {
     const [videos, setVideos] = useState<string[]>(LOCAL_VIDEOS)
     const [activeIndex, setActiveIndex] = useState(0)
     const [progressKey, setProgressKey] = useState(0)
+    const [scopus, setScopus] = useState<string | null>(null)
+    const [wos, setWos] = useState<string | null>(null)
+    const [countersLoading, setCountersLoading] = useState(true)
     const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
     const thumbRefs = useRef<(HTMLVideoElement | null)[]>([])
     const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
@@ -36,6 +45,14 @@ export default function HeroSection() {
     useEffect(() => {
         videosLengthRef.current = videos.length
     }, [videos.length])
+
+    useEffect(() => {
+        getArticleCounters().then((data) => {
+            setScopus(data.scopus)
+            setWos(data.wos)
+            setCountersLoading(false)
+        })
+    }, [])
 
     useEffect(() => {
         fetch(`${API_BASE}/api/hero/public`)
@@ -92,8 +109,11 @@ export default function HeroSection() {
 
     const currentTitle = t.hero.title;
 
+    const RANKING_LOGOS = [QsLogo, TheLogo, GreenMetricLogo];
+
     const quickStats = t.hero.stats.map((stat: any, i: number) => ({
         icon: i === 3 ? GroupsIcon : WorkspacePremiumIcon,
+        logo: i < 3 ? RANKING_LOGOS[i] : null,
         label: stat.label,
         value: stat.value,
     }));
@@ -235,8 +255,12 @@ export default function HeroSection() {
                                 className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-2xl md:rounded-[2.5rem] p-4 md:p-6 lg:p-7 flex items-center gap-4 md:gap-6 group hover:bg-white/10 transition-all duration-500 shadow-[0_30px_60px_rgba(0,0,0,0.3)] relative overflow-hidden"
                             >
                                 <div className="absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-2xl group-hover:bg-[#ee7c7e]/10 transition-colors" />
-                                <div className="w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-xl md:rounded-2xl bg-white/10 flex items-center justify-center group-hover:bg-[#ee7c7e] transition-all duration-500 shadow-xl group-hover:shadow-[#ee7c7e]/40 shrink-0">
-                                    <stat.icon className="text-white group-hover:scale-110 transition-transform duration-500" sx={{ fontSize: { xs: 20, md: 28, lg: 32 } }} />
+                                <div className={`rounded-xl md:rounded-2xl flex items-center justify-center transition-all duration-500 shadow-xl shrink-0 overflow-hidden ${stat.logo ? 'w-20 h-10 md:w-28 md:h-12 lg:w-32 lg:h-14 bg-white px-2 py-1' : 'w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-white/10 group-hover:bg-[#ee7c7e]'}`}>
+                                    {stat.logo ? (
+                                        <Image src={stat.logo} alt={stat.label} width={100} height={40} className="object-contain w-full h-full" />
+                                    ) : (
+                                        <stat.icon className="text-white group-hover:scale-110 transition-transform duration-500" sx={{ fontSize: { xs: 20, md: 28, lg: 32 } }} />
+                                    )}
                                 </div>
                                 <div className="min-w-0">
                                     <p className="text-[9px] md:text-[10px] lg:text-[11px] font-black uppercase tracking-[0.2em] md:tracking-[0.4em] text-white/40 mb-1 group-hover:text-[#ee7c7e] transition-colors truncate">{stat.label}</p>
@@ -244,6 +268,46 @@ export default function HeroSection() {
                                 </div>
                             </motion.div>
                         ))}
+
+                        {/* Scopus & WoS — after Beynəlxalq Akkreditə bar */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 80 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 2.2, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+                            className="grid grid-cols-2 gap-3"
+                        >
+                            {/* Scopus */}
+                            <div className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-2xl md:rounded-[2rem] p-3 md:p-4 lg:p-5 flex flex-col items-center gap-2 group hover:bg-white/10 transition-all duration-500 shadow-[0_20px_40px_rgba(0,0,0,0.3)] relative overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-br from-[#F08300]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                <div className="relative z-10 flex items-center justify-center h-7 w-full">
+                                    <Image src={ScopusLogo} alt="Scopus" width={72} height={22} className="object-contain max-h-full" />
+                                </div>
+                                <div className="relative z-10 text-center">
+                                    {countersLoading ? (
+                                        <div className="w-5 h-5 border-2 border-[#F08300] border-t-transparent rounded-full animate-spin mx-auto" />
+                                    ) : (
+                                        <span className="text-base md:text-xl font-black text-[#F08300] leading-none">{scopus ?? "—"}</span>
+                                    )}
+                                    <p className="text-[8px] md:text-[9px] font-black uppercase tracking-widest text-white/30 mt-0.5">məqalə</p>
+                                </div>
+                            </div>
+
+                            {/* Web of Science */}
+                            <div className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-2xl md:rounded-[2rem] p-3 md:p-4 lg:p-5 flex flex-col items-center gap-2 group hover:bg-white/10 transition-all duration-500 shadow-[0_20px_40px_rgba(0,0,0,0.3)] relative overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-br from-[#005A9C]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                <div className="relative z-10 flex items-center justify-center h-7 w-full">
+                                    <Image src={WosLogo} alt="Web of Science" width={80} height={22} className="object-contain max-h-full" />
+                                </div>
+                                <div className="relative z-10 text-center">
+                                    {countersLoading ? (
+                                        <div className="w-5 h-5 border-2 border-[#005A9C] border-t-transparent rounded-full animate-spin mx-auto" />
+                                    ) : (
+                                        <span className="text-base md:text-xl font-black text-[#005A9C] leading-none">{wos ?? "—"}</span>
+                                    )}
+                                    <p className="text-[8px] md:text-[9px] font-black uppercase tracking-widest text-white/30 mt-0.5">məqalə</p>
+                                </div>
+                            </div>
+                        </motion.div>
                     </div>
                 </div>
             </div>

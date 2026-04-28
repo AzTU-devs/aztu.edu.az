@@ -20,10 +20,11 @@ interface Stat {
 
 const STAT_META = [
     { icon: SchoolIcon,       value: 6,     suffix: "" },
-    { icon: MenuBookIcon,     value: 50,    suffix: "+" },
-    { icon: GroupsIcon,       value: 15000, suffix: "+" },
-    { icon: EmojiEventsIcon,  value: 700,   suffix: "+" },
-    { icon: PublicIcon,       value: 40,    suffix: "+" },
+    { icon: MenuBookIcon,     value: 36,    suffix: "+" },
+    { icon: MenuBookIcon,     value: 126,    suffix: "+" },
+    { icon: GroupsIcon,       value: 10000, suffix: "+" },
+    { icon: EmojiEventsIcon,  value: 1000,   suffix: "+" },
+    { icon: PublicIcon,       value: 150,    suffix: "+" },
     { icon: ScienceIcon,      value: 100,   suffix: "+" },
 ];
 
@@ -163,8 +164,8 @@ export default function StatsSection() {
                     </motion.h2>
                 </div>
 
-                {/* Stats Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+                {/* Stats Grid — all items in one row */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4 lg:gap-6">
                     {stats.map((stat, i) => (
                         <StatCard key={i} stat={stat} index={i} isInView={isInView} />
                     ))}

@@ -3,30 +3,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
 import type { MenuHeader } from "@/services/menu/menuService";
-import { getArticleCounters, type ArticleCounters } from "@/services/article/articleService";
 import AzTUBg from "@/../public/aztu.png";
-import ScopusLogo from "@/../public/logos/scopus-logo.svg";
-import WosLogo from "@/../public/logos/wos-logo.svg";
 
 type Props = {
   header: MenuHeader;
 };
 
 export default function Dropdown({ header }: Props) {
-  const isResearch = header.slug === "tedqiqat";
-  const [counters, setCounters] = useState<ArticleCounters | null>(null);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (!isResearch) return;
-    setLoading(true);
-    getArticleCounters().then((data) => {
-      setCounters(data);
-      setLoading(false);
-    });
-  }, [isResearch]);
 
   return (
     <motion.div
@@ -168,40 +152,6 @@ export default function Dropdown({ header }: Props) {
         </div>
       </div>
 
-      {/* Scopus & WoS counter widget — only for the Research (Tedqiqat) dropdown */}
-      {isResearch && (
-        <div className="absolute bottom-8 right-[40px] md:right-[60px] xl:right-[80px] z-20 flex gap-3">
-          {/* Scopus card */}
-          <div className="flex flex-col items-center gap-2 bg-white dark:bg-white/5 border border-[#1a2355]/15 dark:border-[#ee7c7e]/15 rounded-2xl px-5 py-3 shadow-lg min-w-[120px]">
-            <Image src={ScopusLogo} alt="Scopus" width={90} height={28} className="object-contain" />
-            <div className="text-center">
-              {loading ? (
-                <div className="w-5 h-5 border-2 border-[#F08300] border-t-transparent rounded-full animate-spin mx-auto" />
-              ) : (
-                <span className="text-xl font-black text-[#F08300]">
-                  {counters?.scopus ?? "—"}
-                </span>
-              )}
-              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-white/30 mt-0.5">articles</p>
-            </div>
-          </div>
-
-          {/* Web of Science card */}
-          <div className="flex flex-col items-center gap-2 bg-white dark:bg-white/5 border border-[#1a2355]/15 dark:border-[#ee7c7e]/15 rounded-2xl px-5 py-3 shadow-lg min-w-[120px]">
-            <Image src={WosLogo} alt="Web of Science" width={110} height={28} className="object-contain" />
-            <div className="text-center">
-              {loading ? (
-                <div className="w-5 h-5 border-2 border-[#005A9C] border-t-transparent rounded-full animate-spin mx-auto" />
-              ) : (
-                <span className="text-xl font-black text-[#005A9C]">
-                  {counters?.wos ?? "—"}
-                </span>
-              )}
-              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-white/30 mt-0.5">articles</p>
-            </div>
-          </div>
-        </div>
-      )}
     </motion.div>
   );
 }
