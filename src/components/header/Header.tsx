@@ -11,6 +11,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import PersonIcon from "@mui/icons-material/Person";
 import SchoolIcon from "@mui/icons-material/School";
 import ConnectedTvIcon from "@mui/icons-material/ConnectedTv";
+import GradingIcon from "@mui/icons-material/Grading";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import AzTULogoDark from "@/../public/logo/aztu-logo-dark.png";
@@ -73,6 +74,17 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
         <div className="flex flex-col items-end gap-3">
           {/* Utility row */}
           <div className="flex items-center gap-3">
+            <Link
+              href={`/${lang}/${lang === "az" ? "kts" : "qa"}`}
+              className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-bold transition-all duration-300 cursor-pointer ${
+                isOpen
+                  ? "bg-[#1a2355] dark:bg-[#1e3a5f] text-white hover:bg-[#1a2355]/80"
+                  : "bg-white/10 text-white hover:bg-white/25"
+              }`}
+            >
+              <GradingIcon sx={{ fontSize: 20 }} />
+              {t.common.kts}
+            </Link>
             {[
               { icon: <PersonIcon sx={{ fontSize: 20 }} />, label: t.common.lms, href: "https://lms.aztu.edu.az" },
               { icon: <SchoolIcon sx={{ fontSize: 20 }} />, label: t.common.alumni, href: "https://alumni.aztu.edu.az" },

@@ -5,6 +5,7 @@ const az = {
     loading: "Yüklənir...",
     home: "Ana səhifə",
     lms: "LMS",
+    kts: "QA",
     alumni: "Alumni",
     aztuTv: "AzTU TV",
     quickMenu: {

@@ -5,6 +5,7 @@ const en = {
     loading: "Loading...",
     home: "Home",
     lms: "LMS",
+    kts: "QA",
     alumni: "Alumni",
     aztuTv: "AzTU TV",
     quickMenu: {

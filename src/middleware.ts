@@ -25,7 +25,8 @@ const INTERNAL_FOLDERS = [
   "terms-conditions",
   "beynelmillesme",
   "about",
-  "research"
+  "research",
+  "kts",
 ];
 
 // Global mapping for slug translation
@@ -152,7 +153,11 @@ const SLUG_MAP: Record<string, string> = {
     "privacy-policy": "mexfilik-siyaseti",
     "mexfilik-siyaseti": "privacy-policy",
     "terms-and-conditions": "sertler-ve-qaydalar",
-    "sertler-ve-qaydalar": "terms-and-conditions"
+    "sertler-ve-qaydalar": "terms-and-conditions",
+
+    // Quality Assurance
+    "qa": "kts",
+    "kts": "qa",
 };
 
 // Key EN slugs to help identify language direction in mapping
@@ -169,7 +174,8 @@ const EN_SLUGS = new Set([
     "exchange-programs", "orhun-exchange-program", "privacy-policy", "terms-conditions",
     "education-and-programs", "higher-education-institute-hei", "faculties",
     "international-relations", "specialties", "departments",
-    "specializations", "dean", "deputy-deans", "scientific-council", "academic-staff", "staff", "contact"
+    "specializations", "dean", "deputy-deans", "scientific-council", "academic-staff", "staff", "contact",
+    "qa",
     ]);
 
 export function middleware(request: NextRequest) {
@@ -320,6 +326,8 @@ export function middleware(request: NextRequest) {
         } else {
             segments_rest = ["faculties"];
         }
+    } else if (segments_rest[0] === "kts" || segments_rest[0] === "qa") {
+        segments_rest[0] = "kts";
     } else if (segments_rest[0] === "community" || segments_rest[0] === "icma") {
         segments_rest[0] = "community";
         if (segments_rest[1] === "aztus-honors" || segments_rest[1] === "aztu-nun-fexrileri") {
