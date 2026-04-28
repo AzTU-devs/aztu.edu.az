@@ -8,6 +8,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import PersonIcon from "@mui/icons-material/Person";
 import SchoolIcon from "@mui/icons-material/School";
 import ScienceIcon from "@mui/icons-material/Science";
 import { getFacultyBySlug, getImageUrl } from "@/services/facultyService/facultyService";
