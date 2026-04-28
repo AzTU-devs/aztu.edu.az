@@ -114,6 +114,8 @@ const SLUG_MAP: Record<string, string> = {
     "kampus-heyati": "campus-life",
     "aztu-polyclinic": "aztu-poliklinikasi",
     "aztu-poliklinikasi": "aztu-polyclinic",
+    "clubs": "klublar",
+    "klublar": "clubs",
     "unions-and-organizations": "ittifaq-ve-teskilatlar",
     "alliances-and-organizations": "ittifaq-ve-teskilatlar",
     "ittifaq-ve-teskilatlar": "unions-and-organizations",
@@ -182,7 +184,7 @@ const EN_SLUGS = new Set([
     "research-institutes", "research-laboratories", "vision-mission", "vizion-mission-goal", "history-of-aztu",
     "75th-anniversary-film", "leadership-and-management", "rector", "rectors-office", "vice-rector", "scientific-board",
     "partner-universities-and-related-institutes", "structural-units", "aztus-honors", "honorary-doctors", "our-heroes",
-    "former-rectors", "campus-life", "aztu-polyclinic",
+    "former-rectors", "campus-life", "aztu-polyclinic", "clubs",
     "unions-and-organizations", "alliances-and-organizations", "trade-union", "student-trade-union", "student-youth-organization",
     "international-partnership", "double-degree-programs", "international-projects", "partner-universities",
     "exchange-programs", "orhun-exchange-program", "privacy-policy", "terms-conditions",
@@ -358,6 +360,8 @@ export function middleware(request: NextRequest) {
             segments_rest[1] = "kampus-heyati";
             if (segments_rest[2] === "aztu-polyclinic" || segments_rest[2] === "aztu-poliklinikasi") {
                 segments_rest = ["community", "kampus-heyati", "aztu-poliklinikasi"];
+            } else if (segments_rest[2] === "clubs" || segments_rest[2] === "klublar") {
+                segments_rest = ["community", "kampus-heyati", "klublar"];
             }
         } else if (segments_rest[1] === "unions-and-organizations" || segments_rest[1] === "alliances-and-organizations" || segments_rest[1] === "ittifaq-ve-teskilatlar") {
             segments_rest[1] = "ittifaq-ve-teskilatlar";
