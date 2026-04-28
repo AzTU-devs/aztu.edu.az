@@ -122,7 +122,7 @@ export default function HeroSection() {
         <section className="w-full h-screen relative overflow-hidden bg-black">
             <style>{`
                 @keyframes hero-ring {
-                    from { stroke-dashoffset: ${RING_CIRCUMFERENCE}; }
+                    from { stroke-dashoffset: ${2 * Math.PI * 24}; }
                     to   { stroke-dashoffset: 0; }
                 }
                 .hero-ring-progress {
@@ -169,8 +169,8 @@ export default function HeroSection() {
             </div>
 
             {/* Content Container */}
-            <div className="absolute inset-0 z-20 flex items-center px-6 md:px-[80px] xl:px-[120px] pt-20 lg:pt-0">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center w-full">
+            <div className="absolute inset-0 z-20 flex items-center px-5 md:px-12 xl:px-20 pt-16 lg:pt-0">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center w-full">
 
                     {/* LEFT: Main Text */}
                     <div className="lg:col-span-7 xl:col-span-8">
@@ -182,60 +182,60 @@ export default function HeroSection() {
                                 exit={{ opacity: 0, x: 40 }}
                                 transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
                             >
-                                <div className="inline-flex items-center gap-3 px-4 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl bg-white/10 backdrop-blur-2xl border border-white/20 mb-6 md:mb-10 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
-                                    <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-[#ee7c7e] shadow-[0_0_15px_#ee7c7e] animate-pulse" />
-                                    <span className="text-white text-[10px] md:text-[13px] font-black uppercase tracking-[0.4em] md:tracking-[0.6em]">
+                                <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-lg md:rounded-xl bg-white/10 backdrop-blur-2xl border border-white/20 mb-4 md:mb-6 shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
+                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#ee7c7e] shadow-[0_0_10px_#ee7c7e] animate-pulse" />
+                                    <span className="text-white text-[9px] md:text-[11px] font-black uppercase tracking-[0.3em] md:tracking-[0.5em]">
                                         {lang === 'az' ? 'Azərbaycan Texniki Universiteti' : 'Azerbaijan Technical University'}
                                     </span>
                                 </div>
 
-                                <h1 className="text-4xl md:text-7xl xl:text-8xl font-black text-white mb-6 md:mb-10 leading-[0.9] tracking-tighter">
+                                <h1 className="text-2xl md:text-4xl xl:text-5xl font-black text-white mb-4 md:mb-5 leading-[1] tracking-tighter">
                                     {currentTitle.split(' ').map((word, i) => (
                                         <motion.span
                                             key={i}
-                                            className="inline-block mr-3 md:mr-6 last:mr-0 drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] last:text-transparent last:bg-clip-text last:bg-gradient-to-br last:from-white last:to-[#ee7c7e]"
-                                            initial={{ opacity: 0, y: 40, rotateX: -45 }}
+                                            className="inline-block mr-2 md:mr-3 last:mr-0 drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] last:text-transparent last:bg-clip-text last:bg-gradient-to-br last:from-white last:to-[#ee7c7e]"
+                                            initial={{ opacity: 0, y: 30, rotateX: -30 }}
                                             animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                                            transition={{ delay: 0.2 + (i * 0.15), duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+                                            transition={{ delay: 0.2 + (i * 0.1), duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
                                         >
                                             {word}
                                         </motion.span>
                                     ))}
                                 </h1>
 
-                                <motion.p 
-                                    initial={{ opacity: 0, y: 30 }}
+                                <motion.p
+                                    initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.8, duration: 0.8 }}
-                                    className="text-white/60 text-base md:text-xl xl:text-2xl font-medium mb-8 md:mb-12 max-w-2xl leading-relaxed border-l-2 border-[#ee7c7e] pl-6 md:pl-10"
+                                    transition={{ delay: 0.7, duration: 0.7 }}
+                                    className="text-white/60 text-xs md:text-sm xl:text-base font-medium mb-5 md:mb-7 max-w-xl leading-relaxed border-l-2 border-[#ee7c7e] pl-4 md:pl-5"
                                 >
-                                    {lang === 'az' 
-                                        ? "Gələcəyin texnologiyalarını bu gün bizimlə öyrənin. İnnovativ təhsil, real təcrübə." 
+                                    {lang === 'az'
+                                        ? "Gələcəyin texnologiyalarını bu gün bizimlə öyrənin. İnnovativ təhsil, real təcrübə."
                                         : "Learn the technologies of the future with us today. Innovative education, real experience."}
                                 </motion.p>
 
-                                <motion.div 
+                                <motion.div
                                     initial={{ opacity: 0, scale: 0.9 }}
                                     animate={{ opacity: 1, scale: 1 }}
-                                    transition={{ delay: 1.1, duration: 0.6 }}
-                                    className="flex flex-wrap gap-4 md:gap-8 items-center"
+                                    transition={{ delay: 1.0, duration: 0.5 }}
+                                    className="flex flex-wrap gap-3 md:gap-4 items-center"
                                 >
                                     <button
                                         onClick={handleScroll}
-                                        className="group flex items-center gap-3 md:gap-5 bg-white text-[#1a2355] font-black px-6 py-3 md:px-10 md:py-5 rounded-full md:rounded-[2rem] hover:bg-[#ee7c7e] hover:text-white transition-all duration-700 shadow-[0_40px_80px_rgba(0,0,0,0.5)] hover:shadow-[#ee7c7e]/50 cursor-pointer overflow-hidden relative active:scale-95"
+                                        className="group flex items-center gap-2 md:gap-3 bg-white text-[#1a2355] font-black px-4 py-2 md:px-6 md:py-3 rounded-full md:rounded-2xl hover:bg-[#ee7c7e] hover:text-white transition-all duration-500 shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:shadow-[#ee7c7e]/40 cursor-pointer active:scale-95"
                                     >
-                                        <span className="relative z-10 uppercase tracking-[0.2em] md:tracking-[0.3em] text-[11px] md:text-[13px]">{t.hero.button}</span>
-                                        <div className="relative z-10 w-8 h-8 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-[#1a2355]/5 group-hover:bg-white/20 flex items-center justify-center transition-colors">
-                                            <ArrowDownwardIcon className="group-hover:translate-y-1 transition-transform" sx={{ fontSize: { xs: 18, md: 24 } }} />
+                                        <span className="relative z-10 uppercase tracking-[0.2em] text-[10px] md:text-[11px]">{t.hero.button}</span>
+                                        <div className="relative z-10 w-6 h-6 md:w-8 md:h-8 rounded-lg md:rounded-xl bg-[#1a2355]/10 group-hover:bg-white/20 flex items-center justify-center transition-colors">
+                                            <ArrowDownwardIcon className="group-hover:translate-y-0.5 transition-transform" sx={{ fontSize: { xs: 14, md: 18 } }} />
                                         </div>
                                     </button>
 
                                     <Link href="/virtual-tour">
-                                        <button className="group flex items-center gap-3 md:gap-5 bg-white/5 backdrop-blur-2xl border border-white/20 text-white font-black px-6 py-3 md:px-10 md:py-5 rounded-full md:rounded-[2rem] hover:bg-white/10 transition-all duration-700 cursor-pointer active:scale-95">
-                                            <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform group-hover:bg-[#ee7c7e] group-hover:shadow-[0_0_20px_#ee7c7e]">
-                                                <PlayArrowIcon sx={{ fontSize: { xs: 20, md: 28 } }} />
+                                        <button className="group flex items-center gap-2 md:gap-3 bg-white/5 backdrop-blur-2xl border border-white/20 text-white font-black px-4 py-2 md:px-6 md:py-3 rounded-full md:rounded-2xl hover:bg-white/10 transition-all duration-500 cursor-pointer active:scale-95">
+                                            <div className="w-6 h-6 md:w-8 md:h-8 rounded-lg md:rounded-xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform group-hover:bg-[#ee7c7e] group-hover:shadow-[0_0_14px_#ee7c7e]">
+                                                <PlayArrowIcon sx={{ fontSize: { xs: 14, md: 18 } }} />
                                             </div>
-                                            <span className="uppercase tracking-[0.2em] md:tracking-[0.3em] text-[11px] md:text-[13px]">{lang === 'az' ? 'Virtual Tur' : 'Virtual Tour'}</span>
+                                            <span className="uppercase tracking-[0.2em] text-[10px] md:text-[11px]">{lang === 'az' ? 'Virtual Tur' : 'Virtual Tour'}</span>
                                         </button>
                                     </Link>
                                 </motion.div>
@@ -243,68 +243,68 @@ export default function HeroSection() {
                         </AnimatePresence>
                     </div>
 
-                    {/* RIGHT: Stunning Stats */}
-                    <div className="lg:col-span-5 xl:col-span-4 flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-col gap-3 md:gap-4 lg:gap-6 mt-10 lg:mt-0">
+                    {/* RIGHT: Stats */}
+                    <div className="lg:col-span-5 xl:col-span-4 flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-col gap-2 md:gap-2.5 lg:gap-3 mt-6 lg:mt-0">
                         {quickStats.map((stat, i) => (
                             <motion.div
                                 key={i}
-                                initial={{ opacity: 0, x: 80 }}
+                                initial={{ opacity: 0, x: 60 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 1.4 + (i * 0.2), duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-                                whileHover={{ x: -10, scale: 1.02, transition: { duration: 0.4 } }}
-                                className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-2xl md:rounded-[2.5rem] p-4 md:p-6 lg:p-7 flex items-center gap-4 md:gap-6 group hover:bg-white/10 transition-all duration-500 shadow-[0_30px_60px_rgba(0,0,0,0.3)] relative overflow-hidden"
+                                transition={{ delay: 1.3 + (i * 0.15), duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
+                                whileHover={{ x: -6, scale: 1.01, transition: { duration: 0.3 } }}
+                                className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-xl md:rounded-2xl p-2.5 md:p-3.5 flex items-center gap-3 group hover:bg-white/10 transition-all duration-400 shadow-[0_15px_30px_rgba(0,0,0,0.25)] relative overflow-hidden"
                             >
-                                <div className="absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-2xl group-hover:bg-[#ee7c7e]/10 transition-colors" />
-                                <div className={`rounded-xl md:rounded-2xl flex items-center justify-center transition-all duration-500 shadow-xl shrink-0 overflow-hidden ${stat.logo ? 'w-20 h-10 md:w-28 md:h-12 lg:w-32 lg:h-14 bg-white px-2 py-1' : 'w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-white/10 group-hover:bg-[#ee7c7e]'}`}>
+                                <div className="absolute top-0 right-0 w-14 h-14 md:w-20 md:h-20 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-xl group-hover:bg-[#ee7c7e]/10 transition-colors" />
+                                <div className={`rounded-lg md:rounded-xl flex items-center justify-center transition-all duration-400 shadow-md shrink-0 overflow-hidden ${stat.logo ? 'w-16 h-8 md:w-20 md:h-9 bg-white px-1.5 py-1' : 'w-8 h-8 md:w-10 md:h-10 bg-white/10 group-hover:bg-[#ee7c7e]'}`}>
                                     {stat.logo ? (
-                                        <Image src={stat.logo} alt={stat.label} width={100} height={40} className="object-contain w-full h-full" />
+                                        <Image src={stat.logo} alt={stat.label} width={80} height={36} className="object-contain w-full h-full" />
                                     ) : (
-                                        <stat.icon className="text-white group-hover:scale-110 transition-transform duration-500" sx={{ fontSize: { xs: 20, md: 28, lg: 32 } }} />
+                                        <stat.icon className="text-white group-hover:scale-110 transition-transform duration-400" sx={{ fontSize: { xs: 16, md: 20 } }} />
                                     )}
                                 </div>
                                 <div className="min-w-0">
-                                    <p className="text-[9px] md:text-[10px] lg:text-[11px] font-black uppercase tracking-[0.2em] md:tracking-[0.4em] text-white/40 mb-1 group-hover:text-[#ee7c7e] transition-colors truncate">{stat.label}</p>
-                                    <p className="text-lg md:text-2xl lg:text-3xl font-black text-white tracking-tighter truncate">{stat.value}</p>
+                                    <p className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] text-white/40 mb-0.5 group-hover:text-[#ee7c7e] transition-colors truncate">{stat.label}</p>
+                                    <p className="text-sm md:text-lg lg:text-xl font-black text-white tracking-tighter truncate">{stat.value}</p>
                                 </div>
                             </motion.div>
                         ))}
 
-                        {/* Scopus & WoS — after Beynəlxalq Akkreditə bar */}
+                        {/* Scopus & WoS */}
                         <motion.div
-                            initial={{ opacity: 0, x: 80 }}
+                            initial={{ opacity: 0, x: 60 }}
                             animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 2.2, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-                            className="grid grid-cols-2 gap-3"
+                            transition={{ delay: 2.0, duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
+                            className="grid grid-cols-2 gap-2"
                         >
                             {/* Scopus */}
-                            <div className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-2xl md:rounded-[2rem] p-3 md:p-4 lg:p-5 flex flex-col items-center gap-2 group hover:bg-white/10 transition-all duration-500 shadow-[0_20px_40px_rgba(0,0,0,0.3)] relative overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-br from-[#F08300]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                <div className="relative z-10 flex items-center justify-center h-7 w-full">
-                                    <Image src={ScopusLogo} alt="Scopus" width={72} height={22} className="object-contain max-h-full" />
+                            <div className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-xl md:rounded-2xl p-2 md:p-3 flex flex-col items-center gap-1.5 group hover:bg-white/10 transition-all duration-400 relative overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-br from-[#F08300]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+                                <div className="relative z-10 flex items-center justify-center h-5 w-full">
+                                    <Image src={ScopusLogo} alt="Scopus" width={60} height={18} className="object-contain max-h-full" />
                                 </div>
                                 <div className="relative z-10 text-center">
                                     {countersLoading ? (
-                                        <div className="w-5 h-5 border-2 border-[#F08300] border-t-transparent rounded-full animate-spin mx-auto" />
+                                        <div className="w-4 h-4 border-2 border-[#F08300] border-t-transparent rounded-full animate-spin mx-auto" />
                                     ) : (
-                                        <span className="text-base md:text-xl font-black text-[#F08300] leading-none">{scopus ?? "—"}</span>
+                                        <span className="text-sm md:text-base font-black text-[#F08300] leading-none">{scopus ?? "—"}</span>
                                     )}
-                                    <p className="text-[8px] md:text-[9px] font-black uppercase tracking-widest text-white/30 mt-0.5">məqalə</p>
+                                    <p className="text-[7px] md:text-[8px] font-black uppercase tracking-widest text-white/30 mt-0.5">məqalə</p>
                                 </div>
                             </div>
 
                             {/* Web of Science */}
-                            <div className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-2xl md:rounded-[2rem] p-3 md:p-4 lg:p-5 flex flex-col items-center gap-2 group hover:bg-white/10 transition-all duration-500 shadow-[0_20px_40px_rgba(0,0,0,0.3)] relative overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-br from-[#005A9C]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                <div className="relative z-10 flex items-center justify-center h-7 w-full">
-                                    <Image src={WosLogo} alt="Web of Science" width={80} height={22} className="object-contain max-h-full" />
+                            <div className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-xl md:rounded-2xl p-2 md:p-3 flex flex-col items-center gap-1.5 group hover:bg-white/10 transition-all duration-400 relative overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-br from-[#005A9C]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+                                <div className="relative z-10 flex items-center justify-center h-5 w-full">
+                                    <Image src={WosLogo} alt="Web of Science" width={68} height={18} className="object-contain max-h-full" />
                                 </div>
                                 <div className="relative z-10 text-center">
                                     {countersLoading ? (
-                                        <div className="w-5 h-5 border-2 border-[#005A9C] border-t-transparent rounded-full animate-spin mx-auto" />
+                                        <div className="w-4 h-4 border-2 border-[#005A9C] border-t-transparent rounded-full animate-spin mx-auto" />
                                     ) : (
-                                        <span className="text-base md:text-xl font-black text-[#005A9C] leading-none">{wos ?? "—"}</span>
+                                        <span className="text-sm md:text-base font-black text-[#005A9C] leading-none">{wos ?? "—"}</span>
                                     )}
-                                    <p className="text-[8px] md:text-[9px] font-black uppercase tracking-widest text-white/30 mt-0.5">məqalə</p>
+                                    <p className="text-[7px] md:text-[8px] font-black uppercase tracking-widest text-white/30 mt-0.5">məqalə</p>
                                 </div>
                             </div>
                         </motion.div>
@@ -312,9 +312,9 @@ export default function HeroSection() {
                 </div>
             </div>
 
-            {/* Video thumbnail indicators — refined */}
+            {/* Video thumbnail indicators */}
             <div
-                className="absolute right-8 md:right-12 bottom-12 flex flex-col gap-6 items-center z-30"
+                className="absolute right-4 md:right-6 bottom-8 flex flex-col gap-3 items-center z-30"
             >
                 {videos.map((src, i) => (
                     <motion.div
@@ -323,29 +323,29 @@ export default function HeroSection() {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 1.5 + (i * 0.1), type: 'spring' }}
                         className="relative flex items-center justify-center group/thumb"
-                        style={{ width: "80px", height: "80px" }}
+                        style={{ width: "52px", height: "52px" }}
                     >
                         <svg
                             className="absolute inset-0 w-full h-full transition-transform duration-500 group-hover/thumb:scale-110"
-                            viewBox="0 0 80 80"
+                            viewBox="0 0 52 52"
                             style={{ transform: "rotate(-90deg)" }}
                         >
                             <circle
-                                cx="40" cy="40" r="37"
+                                cx="26" cy="26" r="24"
                                 fill="none"
                                 stroke={i === activeIndex ? "rgba(238,124,126,0.3)" : "rgba(255,255,255,0.1)"}
-                                strokeWidth="3"
+                                strokeWidth="2"
                             />
                             {i === activeIndex && (
                                 <circle
                                     key={progressKey}
-                                    cx="40" cy="40" r="37"
+                                    cx="26" cy="26" r="24"
                                     fill="none"
                                     stroke="#ee7c7e"
-                                    strokeWidth="3"
+                                    strokeWidth="2"
                                     strokeLinecap="round"
-                                    strokeDasharray={RING_CIRCUMFERENCE}
-                                    strokeDashoffset={RING_CIRCUMFERENCE}
+                                    strokeDasharray={2 * Math.PI * 24}
+                                    strokeDashoffset={2 * Math.PI * 24}
                                     className="hero-ring-progress"
                                 />
                             )}
@@ -353,15 +353,15 @@ export default function HeroSection() {
 
                         <button
                             onClick={() => goTo(i)}
-                            className="relative overflow-hidden focus:outline-none cursor-pointer group-hover/thumb:scale-105 transition-transform duration-500 shadow-2xl"
+                            className="relative overflow-hidden focus:outline-none cursor-pointer group-hover/thumb:scale-105 transition-transform duration-500 shadow-xl"
                             style={{
-                                width: "60px",
-                                height: "60px",
+                                width: "40px",
+                                height: "40px",
                                 borderRadius: "50%",
                                 background: "black",
                                 border: i === activeIndex
-                                    ? "3px solid #ee7c7e"
-                                    : "2px solid rgba(255,255,255,0.2)",
+                                    ? "2px solid #ee7c7e"
+                                    : "1.5px solid rgba(255,255,255,0.2)",
                                 flexShrink: 0,
                             }}
                         >
@@ -382,15 +382,15 @@ export default function HeroSection() {
             </div>
 
             {/* Scroll Indicator */}
-            <motion.div 
+            <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 2, duration: 1 }}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 hidden md:block"
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 hidden md:block"
             >
-                <div className="flex flex-col items-center gap-3">
-                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-white/30 rotate-90 mb-8 origin-left">Scroll</p>
-                    <div className="w-1 h-12 rounded-full bg-gradient-to-b from-[#ee7c7e] to-transparent" />
+                <div className="flex flex-col items-center gap-2">
+                    <p className="text-[8px] font-black uppercase tracking-[0.4em] text-white/30 rotate-90 mb-6 origin-left">Scroll</p>
+                    <div className="w-px h-8 rounded-full bg-gradient-to-b from-[#ee7c7e] to-transparent" />
                 </div>
             </motion.div>
         </section>
