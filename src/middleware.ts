@@ -121,6 +121,8 @@ const SLUG_MAP: Record<string, string> = {
     "hemkarlar-ittifaqi": "trade-union",
     "student-trade-union": "telebe-hemkarlar-ittifaqi",
     "telebe-hemkarlar-ittifaqi": "student-trade-union",
+    "student-youth-organization": "telebe-gencler-teskilati",
+    "telebe-gencler-teskilati": "student-youth-organization",
 
     // International sub-slugs
     "international-partnership": "beynelxalq-terefdasliq",
@@ -181,7 +183,7 @@ const EN_SLUGS = new Set([
     "75th-anniversary-film", "leadership-and-management", "rector", "rectors-office", "vice-rector", "scientific-board",
     "partner-universities-and-related-institutes", "structural-units", "aztus-honors", "honorary-doctors", "our-heroes",
     "former-rectors", "campus-life", "aztu-polyclinic",
-    "unions-and-organizations", "alliances-and-organizations", "trade-union", "student-trade-union",
+    "unions-and-organizations", "alliances-and-organizations", "trade-union", "student-trade-union", "student-youth-organization",
     "international-partnership", "double-degree-programs", "international-projects", "partner-universities",
     "exchange-programs", "orhun-exchange-program", "privacy-policy", "terms-conditions",
     "education-and-programs", "higher-education-institute-hei", "faculties",
@@ -361,6 +363,10 @@ export function middleware(request: NextRequest) {
             segments_rest[1] = "ittifaq-ve-teskilatlar";
             if (segments_rest[2] === "trade-union" || segments_rest[2] === "hemkarlar-ittifaqi") {
                 segments_rest = ["community", "ittifaq-ve-teskilatlar", "hemkarlar-ittifaqi"];
+            } else if (segments_rest[2] === "student-trade-union" || segments_rest[2] === "telebe-hemkarlar-ittifaqi") {
+                segments_rest = ["community", "ittifaq-ve-teskilatlar", "telebe-hemkarlar-ittifaqi"];
+            } else if (segments_rest[2] === "student-youth-organization" || segments_rest[2] === "telebe-gencler-teskilati") {
+                segments_rest = ["community", "ittifaq-ve-teskilatlar", "telebe-gencler-teskilati"];
             }
         }
     }
