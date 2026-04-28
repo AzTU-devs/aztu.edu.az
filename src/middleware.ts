@@ -111,6 +111,7 @@ const SLUG_MAP: Record<string, string> = {
     "former-rectors": "sabiq-rektorlarimiz",
     "sabiq-rektorlarimiz": "former-rectors",
     "unions-and-organizations": "ittifaq-ve-teskilatlar",
+    "alliances-and-organizations": "ittifaq-ve-teskilatlar",
     "ittifaq-ve-teskilatlar": "unions-and-organizations",
     "trade-union": "hemkarlar-ittifaqi",
     "hemkarlar-ittifaqi": "trade-union",
@@ -173,7 +174,7 @@ const EN_SLUGS = new Set([
     "research-institutes", "research-laboratories", "vision-mission", "vizion-mission-goal", "history-of-aztu",
     "75th-anniversary-film", "leadership-and-management", "rector", "rectors-office", "vice-rector", "scientific-board",
     "partner-universities-and-related-institutes", "structural-units", "aztus-honors", "honorary-doctors", "our-heroes",
-    "former-rectors", "unions-and-organizations", "trade-union",
+    "former-rectors", "unions-and-organizations", "alliances-and-organizations", "trade-union",
     "international-partnership", "double-degree-programs", "international-projects", "partner-universities",
     "exchange-programs", "orhun-exchange-program", "privacy-policy", "terms-conditions",
     "education-and-programs", "higher-education-institute-hei", "faculties",
@@ -330,6 +331,8 @@ export function middleware(request: NextRequest) {
         } else {
             segments_rest = ["faculties"];
         }
+    } else if (segments_rest[0] === "management" || segments_rest[0] === "idareetme") {
+        segments_rest[0] = "idareetme";
     } else if (segments_rest[0] === "kts" || segments_rest[0] === "qa") {
         segments_rest[0] = "kts";
     } else if (segments_rest[0] === "community" || segments_rest[0] === "icma") {
@@ -342,7 +345,7 @@ export function middleware(request: NextRequest) {
             } else if (segments_rest[2] === "former-rectors" || segments_rest[2] === "sabiq-rektorlarimiz") {
                 segments_rest = ["community", "former-rectors"];
             }
-        } else if (segments_rest[1] === "unions-and-organizations" || segments_rest[1] === "ittifaq-ve-teskilatlar") {
+        } else if (segments_rest[1] === "unions-and-organizations" || segments_rest[1] === "alliances-and-organizations" || segments_rest[1] === "ittifaq-ve-teskilatlar") {
             segments_rest[1] = "ittifaq-ve-teskilatlar";
             if (segments_rest[2] === "trade-union" || segments_rest[2] === "hemkarlar-ittifaqi") {
                 segments_rest = ["community", "ittifaq-ve-teskilatlar", "hemkarlar-ittifaqi"];
