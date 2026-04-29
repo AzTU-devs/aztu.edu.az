@@ -130,6 +130,7 @@ const az = {
       universityCooperation: "Universitet Əməkdaşlığı",
       collaborations: "Əməkdaşlıqlar",
       formerRectors: "Sabiq Rektorlar",
+      rankings: "Reytinqlər",
     },
   },
 
@@ -1809,6 +1810,181 @@ const az = {
         related: [
           { title: "İkili Diplom Proqramları", href: "/beynelmillesme/beynelxalq-terefdasliq/ikili-diplom-proqramlari" },
           { title: "Əməkdaşlıqlar", href: "/icma/universitet-emekdasliqi/collaborations" },
+        ]
+      },
+      foreignStudentsAdmission: {
+        eyebrow: "Xarici Tələbələr",
+        title: "Xarici Tələbələrin Qəbulu",
+        breadcrumb: "Qəbul",
+        description: "Azərbaycan Texniki Universiteti xarici tələbələrin müraciətlərini məmnuniyyətlə qəbul edir. Qəbul prosesi Beynəlxalq Qəbul İdarəsi tərəfindən koordinasiya edilir və Azərbaycan Respublikası Elm və Təhsil Nazirliyinin tənzimləmələrinə uyğun aparılır.",
+        documentsTitle: "Tələb olunan sənədlər",
+        documents: [
+          "Doldurulmuş ərizə forması",
+          "Orta təhsil diplomu və ya müvafiq sənəd (Azərbaycan və ya rus dilinə notarial təsdiqli tərcüməsi ilə birlikdə)",
+          "Əvvəlki təhsilin akademik cədvəli",
+          "Etibarlı pasportun surəti (bütün səhifələr)",
+          "Ərizəçinin yoluxucu xəstəlikdən azad olduğunu təsdiq edən tibbi arayış",
+          "4 ədəd pasport formatında foto (3×4 sm)",
+          "Tədris dilini bilmə sertifikatı (tətbiq olunarsa)",
+          "AzTU tərəfindən verilmiş dəvətnamə (qəbulun təsdiqindən sonra təqdim edilir)"
+        ],
+        processTitle: "Müraciət Prosesi",
+        processDescription: "Bakalavr proqramları üçün müraciətlər Tələbə Qəbulu üzrə Dövlət Komissiyasının (TQDK) portalı vasitəsilə həyata keçirilir. Magistratura proqramları üçün ərizəçilər birbaşa Beynəlxalq Qəbul İdarəsi ilə əlaqə saxlayır. Təqdim edilən bütün sənədlər qəbul komitəsi tərəfindən nəzərdən keçirilir, müvəffəq olan ərizəçilərə rəsmi dəvətnamə göndərilir.",
+        videoInstruction: {
+          text: "Onlayn müraciəti necə dolduracağınızı addım-addım izah edən video bələdçimizə baxın.",
+          link: "https://www.youtube.com/watch?v=example",
+          linkText: "Video Bələdçiyə Bax"
+        },
+        reviewTitle: "Sənədlərin Yoxlanması",
+        reviewDescription: "Təqdim edilən bütün sənədlər Beynəlxalq Qəbul İdarəsi tərəfindən diqqətlə yoxlanır. Tam sənəd paketi təqdim edildikdən sonra 10–15 iş günü ərzində qərar barədə məlumatlandırılacaqsınız.",
+        languageRequirementsTitle: "Dil Tələbləri",
+        languageRequirementsDescription: "AzTU-da tədris Azərbaycan və rus dillərində aparılır. Xarici tələbələrin seçdikləri proqramın tədris dilini kifayət qədər bilmələri gözlənilir.\n\nDil tələbini ödəməyən ərizəçilər dərəcə proqramına başlamazdan əvvəl universitetin təklif etdiyi bir illik hazırlıq dil kursuna yazıla bilərlər.",
+        importantNoteTitle: "Vacib Qeyd",
+        importantNoteDescription: "AzTU-da oxumaq istəyən bütün xarici vətəndaşlar Azərbaycana gəlməzdən əvvəl müvafiq tələbə vizasını almalıdırlar. AzTU-nun Beynəlxalq Qəbul İdarəsi viza dəvəti prosesində yardım göstərir.\n\nƏtraflı və aktual qəbul tələbləri haqqında məlumat almaq üçün Beynəlxalq Qəbul İdarəsi ilə əlaqə saxlayın və ya TQDK-nın rəsmi saytına daxil olun.",
+        related: [
+          { title: "Viza və Miqrasiya", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Yerləşmə", href: "/beynelmillesme/xarici-telebeler/yerlesme" },
+          { title: "Təqaüd İmkanları", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+        ]
+      },
+      scholarship: {
+        eyebrow: "Xarici Tələbələr",
+        title: "Təqaüd İmkanları",
+        breadcrumb: "Təqaüdlər",
+        description: "Azərbaycan Texniki Universiteti və onun beynəlxalq tərəfdaşları istedadlı xarici tələbələri dəstəkləmək üçün bir sıra təqaüd və qrant proqramları təklif edir.",
+        programs: [
+          {
+            title: "Azərbaycan Dövlət Təqaüdü",
+            link: "https://www.azscience.gov.az",
+            description: "Azərbaycan Respublikasının Dövlət Təqaüd Proqramı rəqabətli seçim əsasında Azərbaycan ali təhsil müəssisələrinə qəbul edilmiş xarici tələbələrə maliyyə dəstəyi göstərir.",
+            objectives: [
+              "Beynəlxalq akademik əlaqələri möhkəmləndirmək",
+              "İstedadlı xarici tələbələri Azərbaycan universitetlərinə cəlb etmək",
+              "Mədəni mübadilə və qarşılıqlı anlaşmanı təşviq etmək"
+            ],
+            levels: ["Bakalavr", "Magistr", "Doktorantura"],
+            benefits: ["Tam təhsil haqqının ödənilməsi", "Aylıq təqaüd", "Yerləşmə müavinəti"],
+            nominationNote: "Namizədlər öz ölkələrinin Təhsil Nazirliyi vasitəsilə və ya birbaşa təqaüd portalı üzərindən namizəd göstərilir."
+          },
+          {
+            title: "AzTU Daxili Fəaliyyət Qrantı",
+            description: "AzTU təhsil dövründə fərqli akademik nailiyyətlər nümayiş etdirən xarici tələbələrə daxili fəaliyyət əsaslı qrantlar verir.",
+            objectives: [
+              "Akademik üstünlüyü mükafatlandırmaq",
+              "Yüksək nəticə göstərən tələbələri motivasiya etmək",
+              "Maliyyə yükü olmadan təhsilin davam etdirilməsinə dəstək olmaq"
+            ],
+            requirements: ["GPA 91+", "Tam zamanlı qeydiyyat", "Müsbət davranış qeydi"],
+            benefits: ["Qismən təhsil haqqı azalması", "Yataqxanaya üstünlük"],
+            selectionNote: "Qrantlar hər akademik semestr sonunda GPA və davranışa əsasən yenidən nəzərdən keçirilir."
+          },
+          {
+            title: "Erasmus+ Beynəlxalq Kredit Mobilitesi",
+            link: "https://erasmus-plus.ec.europa.eu",
+            description: "Erasmus+ Beynəlxalq Kredit Mobilitesi müqavilələri çərçivəsində tərəfdaş ölkələrdən olan xarici tələbələr tam maliyyə dəstəyi ilə bir və ya iki semestr AzTU-da oxuya bilərlər.",
+            objectives: [
+              "Mədəniyyətlərarası akademik mübadiləni təşviq etmək",
+              "AzTU-nun Avropa tərəfdaşlıqlarını güclündirmək",
+              "Kampusun beynəlmiləlləşməsini artırmaq"
+            ],
+            levels: ["Bakalavr", "Magistr"],
+            benefits: ["Aylıq yaşayış müavinəti", "Səyahət töhfəsi", "Təhsil haqqından azadolma"],
+            nominationNote: "Tələbələr öz universitetləri tərəfindən namizəd göstərilməlidir. Ətraflı məlumat üçün Erasmus+ koordinatorunuzla əlaqə saxlayın."
+          }
+        ],
+        related: [
+          { title: "Qəbul", href: "/beynelmillesme/xarici-telebeler/qebul" },
+          { title: "Viza və Miqrasiya", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Yerləşmə", href: "/beynelmillesme/xarici-telebeler/yerlesme" },
+        ]
+      },
+      accommodation: {
+        eyebrow: "Xarici Tələbələr",
+        title: "Tələbə Yerləşməsi",
+        breadcrumb: "Yerləşmə",
+        description: "AzTU xarici tələbələr üçün rahat və əlverişli qiymətli kampus yataqxana imkanları, eləcə də Bakıda uyğun özəl mənzil tapmaqda yardım təklif edir.",
+        content: [
+          "AzTU-nun kampus yataqxanaları akademik binalar və universitetin infrastrukturuna yaxın məsafədə xarici tələbələr üçün mebelli otaqlar təklif edir. Otaqlar tək və ortaq istifadə variantlarında mövcuddur. Bütün yataqxanalar internet bağlantısı, camaşırxana və ümumi istifadə sahələri ilə təchiz olunmuşdur.",
+          "Özəl mənzil üstünlük verən xarici tələbələr Bakıda müxtəlif qiymət sıralarında geniş çeşiddə mənzil və ortaq icarə variantları tapa bilərlər. Beynəlxalq Ofis tövsiyə olunan məhəllələr siyahısı və axtarışda yardım edəcək etibarlı agentliklər haqqında məlumat verə bilər.",
+          "AzTU-nun Tələbə Dəstəyi Xidmətləri komandası il boyu xarici tələbələrə yerləşmə ilə bağlı suallarda, kampus mənzillərindəki problemlərin həllində və yerli dəstək şəbəkələrinə bağlanmaqda kömək etmək üçün hazırdır."
+        ],
+        supportTitle: "Tələbə Mənzil Dəstəyi",
+        supportDescription: "Xüsusi mənzil dəstəyi komandamız hər bir xarici tələbəyə gəlişdən yerləşməyə qədər kömək edir. Kampusda və ya xaricdə mənzil seçiminizdən asılı olmayaraq, Bakıda rahat və təhlükəsiz qalmanızı təmin etmək üçün buradayıq.",
+        related: [
+          { title: "Qəbul", href: "/beynelmillesme/xarici-telebeler/qebul" },
+          { title: "Viza və Miqrasiya", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Təqaüd İmkanları", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+        ]
+      },
+      visaMigration: {
+        eyebrow: "Xarici Tələbələr",
+        title: "Viza və Miqrasiya",
+        breadcrumb: "Viza və Miqrasiya",
+        description: "AzTU-ya qəbul olunan bütün xarici tələbələr Azərbaycana gəlməzdən əvvəl müvafiq tələbə vizasını almalıdırlar. Beynəlxalq Qəbul İdarəsi bütün viza və miqrasiya prosesi boyunca rəhbərlik və dəstək göstərir.",
+        visaSections: [
+          {
+            title: "Tələbə Vizası",
+            description: "AzTU-da oxumağa qəbul olunmuş xarici vətəndaşlar öz ölkəsindəki Azərbaycan səfirliyinə və ya konsulluğuna müraciət edərək tələbə vizası almalıdırlar. AzTU qəbulun təsdiqindən sonra viza üçün tələb olunan rəsmi dəvətnamə verir."
+          },
+          {
+            title: "Vizasız Ölkələr",
+            description: "Bəzi ölkələrin vətəndaşları qısa müddətli səfərlər üçün vizasız Azərbaycana girə bilərlər. Lakin dərəcə proqramına yazılan tələbələr üçün tələbə vizası və ya yaşayış icazəsi hələ də tələb olunur. Hazırkı vizasız sazişlər siyahısı üçün rəsmi miqrasiya orqanının saytına baxın."
+          },
+          {
+            title: "ASAN Viza (e-Viza)",
+            description: "Bir çox ölkənin vətəndaşları gəlişdən əvvəl ASAN Viza portalı vasitəsilə Azərbaycan e-Vizası üçün müraciət edə bilərlər. e-Viza turizm və qısa ziyarətlər üçündür; dərəcə proqramına yazılan tələbələr Azərbaycan diplomatik missiyasından rəsmi tələbə vizası almalıdır."
+          },
+          {
+            title: "Vizanın Uzadılması",
+            description: "Proqramı ilk viza müddətindən artıq davam edən tələbələr Dövlət Miqrasiya Xidməti vasitəsilə viza uzadılması üçün müraciət etməlidirlər. Beynəlxalq Ofis tələbələrə uzatma müraciəti üçün tələb olunan sənədlərin hazırlanmasında kömək edir."
+          }
+        ],
+        supportNote: "AzTU-nun Beynəlxalq Qəbul İdarəsi viza tələbləri, dəvətnamələr və miqrasiya prosedurları ilə bağlı fərdi rəhbərlik göstərir. Planlaşdırılan gəliş tarixinizdən xeyli əvvəl ofisimizlə əlaqə saxlamanızı tövsiyə edirik.",
+        registrationTitle: "Miqrasiya Qeydiyyatı",
+        registrationDescription: "Azərbaycanda 15 gündən artıq yaşayan bütün xarici vətəndaşlar Dövlət Miqrasiya Xidmətində qeydiyyatdan keçməlidirlər. AzTU beynəlxalq tələbələrə bu qeydiyyatı tələb olunan müddət ərzində tamamlamaqda yardım edir.",
+        registrationMethodsTitle: "Qeydiyyat Üsulları",
+        registrationMethods: [
+          "Dövlət Miqrasiya Xidmətinin e-portalı vasitəsilə onlayn qeydiyyat",
+          "Ən yaxın Dövlət Miqrasiya Xidməti filialında şəxsən qeydiyyat",
+          "AzTU-nun Beynəlxalq Qəbul İdarəsi vasitəsilə qeydiyyat (köməkli xidmət)"
+        ],
+        addressChangeNote: "Azərbaycanda qaldıqları müddət ərzində yaşayış yerini dəyişən tələbələr qeydiyyatlarını yeniləməlidirlər.",
+        permitTitle: "Müvəqqəti İqamət İcazəsi",
+        permitDescription: "Bir ildən artıq davam edən proqrama yazılan xarici tələbələr Müvəqqəti İqamət İcazəsi (Mİİ) üçün müraciət edə bilərlər. Bu icazə illik yenidən qeydiyyat tələblərini sadələşdirir və təhsil dövrü ərzində daha böyük hüquqi müəyyənlik təmin edir.",
+        permitDocumentsTitle: "Mİİ üçün Tələb Olunan Sənədlər",
+        permitDocuments: [
+          "Cari tələbə vizalı etibarlı pasport",
+          "AzTU tərəfindən verilmiş qeydiyyat arayışı",
+          "Yaşayış yerinin sübütu (yataqxana müqaviləsi və ya icarə müqaviləsi)",
+          "Tibbi sığorta sertifikatı",
+          "Doldurulmuş ərizə forması (Dövlət Miqrasiya Xidmətindən əldə edilə bilər)"
+        ],
+        permitNote: "Müvəqqəti İqamət İcazəsi adətən bir il müddətinə verilir və hər il yenilənməlidir. AzTU-nun Beynəlxalq Ofisi yeniləmə son tarixinizdən əvvəl sizi məlumatlandıracaq.",
+        related: [
+          { title: "Qəbul", href: "/beynelmillesme/xarici-telebeler/qebul" },
+          { title: "Yerləşmə", href: "/beynelmillesme/xarici-telebeler/yerlesme" },
+          { title: "Təqaüd İmkanları", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+        ]
+      },
+      bilateralExchange: {
+        eyebrow: "Beynəlmiləlləşmə",
+        title: "İkitərəfli Mübadilə Proqramları",
+        subtitle: "AzTU-nun dünya universitetləri ilə ikitərəfli akademik mübadilə müqavilələri vasitəsilə üfüqlərinizi genişləndirin.",
+        breadcrumb: "İkitərəfli Mübadilə",
+        description: "Azərbaycan Texniki Universiteti Avropa, Asiya və MDB ölkələrindəki tərəfdaş universitetlərlə ikitərəfli mübadilə müqavilələri bağlamışdır. Bu müqavilələr tələbə və akademik heyətin xarici aparıcı universitetlərdə qısamüddətli akademik mübadilə, elmi tədqiqat səfərləri və tədris semestrləri keçirməsinə imkan yaradır.\n\nİkitərəfli mübadilə proqramları iştirakçılara unikal mədəniyyətlərarası təcrübə qazandırır, beynəlxalq akademik əlaqələri möhkəmləndirir və AzTU tələbə və müəllim heyətinin şəxsi və peşəkar inkişafına töhfə verir.",
+        opportunitiesTitle: "Mübadilə İmkanları",
+        opportunities: [
+          "Xaricdə semestr və ya tədris ili",
+          "Qısamüddətli tədqiqat və təcrübə yerləşdirmələri",
+          "Yay məktəbləri və intensiv proqramlar",
+          "Akademik heyətin tədris və tədqiqat mobilitesi",
+          "Dissertasiya və tezislərin birgə rəhbərliyi",
+          "Beynəlxalq elmi konfranslarda iştirak"
+        ],
+        related: [
+          { title: "İkili Diplom Proqramları", href: "/beynelmillesme/beynelxalq-terefdasliq/ikili-diplom-proqramlari" },
+          { title: "Orhun Mübadilə Proqramı", href: "/beynelmillesme/mubadile-proqramlari/orhun-mubadiле" },
+          { title: "Beynəlxalq Layihələr", href: "/beynelmillesme/beynelxalq-terefdasliq/beynelxalq-layiheler" },
         ]
       },
       partnerUniversities: {

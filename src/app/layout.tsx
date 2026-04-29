@@ -6,12 +6,7 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import ReduxProvider from "@/redux/Provider";
 import HeaderChanger from "@/components/header/HeaderChanger";
 import Footer from "@/components/footer/Footer";
-import dynamic from "next/dynamic";
-
-const ChatbotWidget = dynamic(
-  () => import("@/components/chatbot/ChatbotWidget"),
-  { ssr: false }
-);
+import ChatbotWidgetLoader from "@/components/chatbot/ChatbotWidgetLoader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -52,7 +47,7 @@ export default function RootLayout({
                 </div>
                 <Footer />
               </div>
-              <ChatbotWidget />
+              <ChatbotWidgetLoader />
             </ThemeProvider>
           </LanguageProvider>
         </ReduxProvider>
