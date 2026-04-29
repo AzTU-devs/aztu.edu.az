@@ -2250,6 +2250,15 @@ const en = {
     defaultLabel: "This section is being prepared",
     subtitle: "Information will be added soon",
   },
+
+  chatbot: {
+    title: "AzTU Assistant",
+    placeholder: "Ask your question...",
+    send: "Send",
+    close: "Close",
+    welcome_message: "Hello! I am the official AzTU assistant. You can ask me anything about the university.",
+    error_message: "An error occurred. Please try again.",
+  },
 };
 
 export default en;

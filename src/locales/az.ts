@@ -2253,6 +2253,15 @@ const az = {
     defaultLabel: "Bu bölmə hazırlanır",
     subtitle: "Məlumat tezliklə əlavə olunacaq",
   },
+
+  chatbot: {
+    title: "AzTU Köməkçisi",
+    placeholder: "Sualınızı yazın...",
+    send: "Göndər",
+    close: "Bağla",
+    welcome_message: "Salam! Mən AzTU-nun rəsmi köməkçisiyəm. Universitet haqqında suallarınızı verə bilərsiniz.",
+    error_message: "Xəta baş verdi. Zəhmət olmasa yenidən cəhd edin.",
+  },
 };
 
 export default az;
