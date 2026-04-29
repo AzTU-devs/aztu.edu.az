@@ -25,9 +25,10 @@ export default function RankingsPage() {
     const sections = getNavSections(t, lang as any);
     const aboutSection = sections.find(s => s.key === "about");
     
-    // Fallback if translations aren't loaded yet
-    const rankings = t.pages?.about?.rankings || {};
-    const nav = t.nav?.sections || {};
+    // Fallback and type-safe access
+    const aboutPages = (t.pages as any)?.about || {};
+    const rankings = aboutPages.rankings || {};
+    const nav = (t.nav as any)?.sections || {};
 
     const systemLogos: Record<string, any> = {
         "QS World University Rankings": QsLogo,

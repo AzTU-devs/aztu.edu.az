@@ -173,6 +173,8 @@ const SLUG_MAP: Record<string, string> = {
     "mexfilik-siyaseti": "privacy-policy",
     "terms-and-conditions": "sertler-ve-qaydalar",
     "sertler-ve-qaydalar": "terms-and-conditions",
+    "rankings": "reytinqler",
+    "reytinqler": "rankings",
 
     // Quality Assurance
     "qa": "kts",
@@ -188,7 +190,7 @@ const EN_SLUGS = new Set([
     "research-institutes", "research-laboratories", "vision-mission", "vizion-mission-goal", "history-of-aztu",
     "75th-anniversary-film", "leadership-and-management", "rector", "rectors-office", "vice-rector", "scientific-board",
     "partner-universities-and-related-institutes", "structural-units", "aztus-honors", "honorary-doctors", "our-heroes",
-    "former-rectors", "campus-life", "aztu-polyclinic", "clubs", "sports",
+    "former-rectors", "rankings", "campus-life", "aztu-polyclinic", "clubs", "sports",
     "unions-and-organizations", "alliances-and-organizations", "trade-union", "student-trade-union",
     "lifelong-learning", "student-youth-organization",
     "international-partnership", "double-degree-programs", "international-projects", "partner-universities",
@@ -280,6 +282,8 @@ export function middleware(request: NextRequest) {
             } else if (segments_rest[2] === "75th-anniversary-film" || segments_rest[2] === "75-illik-yubiley-filmi") {
                 segments_rest = ["about", "anniversary-film"];
             }
+        } else if (segments_rest[1] === "rankings" || segments_rest[1] === "reytinqler") {
+            segments_rest = ["about", "rankings"];
         } else if (segments_rest[1] === "leadership-and-management" || segments_rest[1] === "rehbetlik-ve-idareetme") {
             if (segments_rest[2] === "rector" || segments_rest[2] === "rektor") segments_rest = ["about", "rector"];
             else if (segments_rest[2] === "rectors-office" || segments_rest[2] === "rektorluq") segments_rest = ["about", "rectors-office"];

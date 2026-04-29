@@ -85,7 +85,7 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
     ];
 
     const TRANSLATED_LEFT_ITEMS = [
-        { label: qm.leftItems.ranking, url: "/haqqimizda/rankings" },
+        { label: qm.leftItems.ranking, url: lang === "az" ? "/haqqimizda/reytinqler" : "/about/rankings" },
         { label: qm.leftItems.accreditation, url: "/haqqimizda/accreditation" },
         { label: qm.leftItems.policies, url: "/haqqimizda/policies" },
         { label: qm.leftItems.reports, url: "/haqqimizda/reports" },

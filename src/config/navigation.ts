@@ -76,6 +76,10 @@ export function getNavSections(t: Locale, lang: Lang): NavSection[] {
                         { title: n.procedureGuidelines, slug: "procedure-guidelines" },
                     ],
                 },
+                {
+                    title: n.rankings,
+                    slug: lang === "az" ? "reytinqler" : "rankings",
+                },
             ],
         },
         {
@@ -274,6 +278,10 @@ export const NAV_SECTIONS: NavSection[] = [
                     { title: "Sustainability Policies", slug: "sustainability-policies" },
                     { title: "Procedure & Guidelines", slug: "procedure-guidelines" },
                 ],
+            },
+            {
+                title: "Rankings",
+                slug: "rankings",
             },
         ],
     },

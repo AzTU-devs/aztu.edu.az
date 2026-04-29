@@ -237,7 +237,7 @@ export default function Footer() {
                         <div className="xl:col-span-4 flex flex-wrap gap-4 justify-center xl:justify-end">
                             {[
                                 { Icon: ImportContactsIcon, label: t.footer.quickLinks[0].label, href: "/research/library" },
-                                { Icon: TrendingUpIcon, label: t.footer.quickLinks[1].label, href: "/haqqimizda/rankings" },
+                                { Icon: TrendingUpIcon, label: t.footer.quickLinks[1].label, href: lang === "az" ? "/haqqimizda/reytinqler" : "/about/rankings" },
                                 { Icon: SchoolIcon, label: t.footer.quickLinks[2].label, href: "/tehsil/admission" },
                             ].map(({ Icon, label, href }) => (
                                 <Link

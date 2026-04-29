@@ -309,6 +309,51 @@ const en = {
         ]
       },
 
+      rankings: {
+        eyebrow: "Rankings",
+        title: "International Rankings",
+        subtitle: "Global recognition of AzTU and international indicators of educational quality.",
+        breadcrumb: "Rankings",
+        importanceTitle: "Importance",
+        importanceItems: [
+          "Enhances global visibility and recognition of universities.",
+          "Enables comparative evaluation of educational quality.",
+          "Supports attraction of international students and partners.",
+          "Contributes to strategic planning and institutional development."
+        ],
+        systems: [
+          {
+            name: "QS World University Rankings",
+            criteria: "Academic reputation, Employer reputation, Research impact, Level of internationalization.",
+            methodology: "https://www.topuniversities.com/world-university-rankings/methodology",
+            logo: "/logos/qs-logo.svg"
+          },
+          {
+            name: "Times Higher Education (THE) Rankings",
+            criteria: "Teaching quality, Research performance, Citation impact, Industry income, International outlook.",
+            methodology: "https://www.timeshighereducation.com/world-university-rankings/methodology",
+            logo: "/logos/the-logo.svg"
+          },
+          {
+            name: "UI GreenMetric World University Rankings",
+            criteria: "Energy usage and climate change efforts, Waste management, Transportation policies, Water resource management, Environmental education and research.",
+            methodology: "https://uigreenmetric.com/rankings",
+            logo: "/logos/greenmetric-logo.svg"
+          }
+        ],
+        positionsTitle: "Our Position in International Rankings",
+        positions: [
+          { name: "QS Europe 2026", position: "476" },
+          { name: "QS Europe 2026 (Western Asia)", position: "30" },
+          { name: "QS World University Rankings (New Entrant)", position: "851-900" },
+          { name: "QS World University Rankings by Subject 2026", position: "701-750" },
+          { name: "The World's Most Sustainable University (2025)", position: "835" },
+          { name: "The World's Most Sustainable University (2024)", position: "1014" }
+        ],
+        profileLink: "AzTU Profile on THE",
+        profileUrl: "https://www.timeshighereducation.com/world-university-rankings/azerbaijan-technical-university-aztu"
+      },
+
       history: {
         eyebrow: "Our Legacy",
         title: "History of AzTU",
