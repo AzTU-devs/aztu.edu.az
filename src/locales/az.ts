@@ -7,7 +7,7 @@ const az = {
     lms: "LMS",
     kts: "QA",
     alumni: "Alumni",
-    aztuTv: "AzTU TV",
+    libraryAztu: "Kitabxana",
     quickMenu: {
       button: "Sürətli Keçid",
       navigation: "Naviqasiya",

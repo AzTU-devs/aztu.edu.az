@@ -180,7 +180,7 @@ export default function ResponsiveHeader() {
                                 {[
                                     { icon: <PersonIcon sx={{ fontSize: 24 }} />, label: t.common.lms, color: "hover:bg-blue-500/20 hover:border-blue-500/30", href: "https://lms.aztu.edu.az" },
                                     { icon: <SchoolIcon sx={{ fontSize: 24 }} />, label: t.common.alumni, color: "hover:bg-emerald-500/20 hover:border-emerald-500/30", href: "https://alumni.aztu.edu.az" },
-                                    { icon: <ConnectedTvIcon sx={{ fontSize: 24 }} />, label: t.common.aztuTv, color: "hover:bg-[#ee7c7e]/20 hover:border-[#ee7c7e]/30", href: "https://www.youtube.com/channel/UCu_PoZ-9DKNYs3hxuK9pW1Q" },
+                                    { icon: <ConnectedTvIcon sx={{ fontSize: 24 }} />, label: t.common.libraryAztu, color: "hover:bg-[#ee7c7e]/20 hover:border-[#ee7c7e]/30", href: "https://www.youtube.com/channel/UCu_PoZ-9DKNYs3hxuK9pW1Q" },
                                 ].map(({ icon, label, color, href }) => (
                                     <motion.a
                                         key={label}

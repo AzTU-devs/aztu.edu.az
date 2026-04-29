@@ -7,7 +7,7 @@ const en = {
     lms: "LMS",
     kts: "QA",
     alumni: "Alumni",
-    aztuTv: "AzTU TV",
+    libraryAztu: "Library",
     quickMenu: {
       button: "Quick Menu",
       navigation: "Navigation",
