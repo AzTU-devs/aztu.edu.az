@@ -125,6 +125,8 @@ const SLUG_MAP: Record<string, string> = {
     "hemkarlar-ittifaqi": "trade-union",
     "student-trade-union": "telebe-hemkarlar-ittifaqi",
     "telebe-hemkarlar-ittifaqi": "student-trade-union",
+    "lifelong-learning": "omurboyu-tehsil",
+    "omurboyu-tehsil": "lifelong-learning",
     "student-youth-organization": "telebe-gencler-teskilati",
     "telebe-gencler-teskilati": "student-youth-organization",
 
@@ -187,7 +189,8 @@ const EN_SLUGS = new Set([
     "75th-anniversary-film", "leadership-and-management", "rector", "rectors-office", "vice-rector", "scientific-board",
     "partner-universities-and-related-institutes", "structural-units", "aztus-honors", "honorary-doctors", "our-heroes",
     "former-rectors", "campus-life", "aztu-polyclinic", "clubs", "sports",
-    "unions-and-organizations", "alliances-and-organizations", "trade-union", "student-trade-union", "student-youth-organization",
+    "unions-and-organizations", "alliances-and-organizations", "trade-union", "student-trade-union",
+    "lifelong-learning", "student-youth-organization",
     "international-partnership", "double-degree-programs", "international-projects", "partner-universities",
     "exchange-programs", "orhun-exchange-program", "privacy-policy", "terms-conditions",
     "education-and-programs", "higher-education-institute-hei", "faculties",
