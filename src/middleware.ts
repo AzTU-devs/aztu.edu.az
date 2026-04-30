@@ -153,6 +153,8 @@ const SLUG_MAP: Record<string, string> = {
     "kitabxana-informasiya-merkezi": "library-information-center",
     "career-and-employment-center": "karyera-ve-mesgulluq-merkezi",
     "karyera-ve-mesgulluq-merkezi": "career-and-employment-center",
+    "sabah-programs": "sabah-merkezi",
+    "sabah-merkezi": "sabah-programs",
     "lifelong-education": "omurboyu-tehsil",
 
     // Community sub-slugs
@@ -258,7 +260,7 @@ const EN_SLUGS = new Set([
     "exchange-programs", "orhun-exchange-program", "privacy-policy", "terms-conditions",
     "education-and-programs", "higher-education-institute-hei", "faculties",
     "offices-and-centers", "nabran-recreation-center", "library-information-center",
-    "career-and-employment-center", "lifelong-education",
+    "career-and-employment-center", "sabah-programs", "lifelong-education",
     "international-relations", "specialties", "departments",
     "specializations", "dean", "deputy-deans", "scientific-council", "academic-staff", "staff", "contact", "leadership",
     "qa",
@@ -440,6 +442,7 @@ export function middleware(request: NextRequest) {
                 "nabran-recreation-center": "nabran-istirahet-merkezi",
                 "library-information-center": "kitabxana-informasiya-merkezi",
                 "career-and-employment-center": "karyera-ve-mesgulluq-merkezi",
+                "sabah-programs": "sabah-merkezi",
                 "lifelong-education": "omurboyu-tehsil",
             };
             if (segments_rest[2] && officeMap[segments_rest[2]]) {

@@ -183,12 +183,14 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
               "nabran-istirahet-merkezi": "nabran-recreation-center",
               "kitabxana-informasiya-merkezi": "library-information-center",
               "karyera-ve-mesgulluq-merkezi": "career-and-employment-center",
+              "sabah-merkezi": "sabah-programs",
               "omurboyu-tehsil": "lifelong-education",
           };
           const officeEnToAz: Record<string, string> = {
               "nabran-recreation-center": "nabran-istirahet-merkezi",
               "library-information-center": "kitabxana-informasiya-merkezi",
               "career-and-employment-center": "karyera-ve-mesgulluq-merkezi",
+              "sabah-programs": "sabah-merkezi",
               "lifelong-education": "omurboyu-tehsil",
           };
           if (newLang === "en") {
