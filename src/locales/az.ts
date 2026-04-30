@@ -1132,6 +1132,54 @@ const az = {
         staffPdfUrl:
           "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/9-2025/LMS_Heyet.pdf",
       },
+      cdio: {
+        eyebrow: "Tələbələr",
+        title: "CDIO Təşəbbüsü",
+        subtitle: "Öyrən, Layihələndir, Reallaşdır, İşlət — mühəndisləri real həyata hazırlamaq.",
+        breadcrumb: "CDIO",
+        intro:
+          "CDIO (Conceive, Design, Implement, Operate — Öyrən, Layihələndir, Reallaşdır, İşlət) ötən əsrin 90-cı illərinin sonunda Massaçusets Texnologiya İnstitutu (MIT) tərəfindən başladılmış qlobal mühəndislik təhsili təşəbbüsüdür. Bu təşəbbüs dünya üzrə 100-dən çox aparıcı texniki universiteti birləşdirərək mühəndislik təhsilindəki nəzəri bilik ilə praktiki təcrübə arasındakı boşluğu aradan qaldırmağı hədəfləyir.",
+        whatIsCdio: {
+          title: "CDIO nədir?",
+          paragraphs: [
+            "CDIO təşəbbüsü ötən əsrin 90-cı illərinin sonunda Massaçusets Texnologiya İnstitutunun (MIT) rəhbərliyi altında İsveçin üç universiteti — Çalmers Texniki Universiteti, Linköpinq Universiteti və Kral Texnologiya İnstitutu ilə əməkdaşlıq nəticəsində yaradılmışdır. Hazırda bu təşəbbüsə dünya üzrə 100-dən çox aparıcı texniki universitet daxildir: ABŞ-ın Stenford, Dyuk, Notr-Dam, Böyük Britaniyanın Aston və Lankaster, İspaniyanın Madrid Texniki Universiteti, Rusiyanın Moskva Aviasiya İnstitutu, Bauman adına Dövlət Texniki Universiteti, Skolkovo Elm və Texnologiya İnstitutu, eləcə də Fransa, Almaniya, Norveç, Finlandiya, Braziliya, Çin, Avstraliya və digər ölkələrin aparıcı elm ocaqları.",
+            "CDIO – ingilis dilindəki Conceive, Design, Implement, Operate sözlərinin baş hərflərindən əmələ gəlib — mühəndislik təhsilindəki nəzəri biliklər ilə praktiki təcrübə arasındakı boşluğu aradan qaldırmağı hədəfləyən çərçivə sistemidir.",
+            "Ənənəvi olaraq mühəndis müəyyən dar ixtisaslı funksiyaları yerinə yetirən mütəxəssis kimi qəbul olunurdu. Ancaq 21-ci əsr özü ilə yeni çağırışlar gətirdi: bu gün qlobal rəqabət şəraitində mühəndis yalnız innovativ ideyalar fikirləşən adam yox, həm də bacarıqlı menecer olmalıdır. Ona görə də CDIO-nun hədəfi çox sadədir: ali təhsil alan mühəndis yeni məhsul və ya texniki ideyanı fikirləşməli, onun həyata keçirilməsi üçün bütün qurğu işlərini həyata keçirməli, yaxud bunu edəcək şəxslərə lazımi göstərişlər verməli, sonra isə alınan məhsulu istehsala tətbiq etməlidir.",
+            "CDIO təşəbbüsü nəticəsində konkret təhsil proqramlarının xüsusiyyətləri nəzərə alınaraq çox sayda metodiki material işlənib hazırlanıb. Bu resurslar gələcək mühəndislərin şəxsi keyfiyyətlərinin artırılması, peşəkar davranışlarının müəyyənləşdirilməsi və məhsul, proses, sistemlərin yaradılması bacarıqlarını tədris edən fənlər vasitəsilə mühəndislik proqramlarının formalaşdırılması üçün nəzərdə tutulub.",
+            "CDIO konsepsiyası 12 standart üzərində fəaliyyət göstərir: proqramın ümumi fəlsəfəsi, tədris planlarının və praktiki məsələlərin hazırlanması, məşğələlər üçün məkanların layihələndirilməsi, yeni tədris metodları, professor-müəllim heyətinin inkişafı, tələbələrin fəal iştirakı və proqramların audit və qiymətləndirilməsi."
+          ]
+        },
+        institutes: {
+          title: "AzTU-da CDIO Tədqiqat İnstitutları",
+          subtitle: "AzTU CDIO prinsiplərinə uyğun fəaliyyət göstərən səkkiz ixtisaslaşmış tədqiqat institutuna malikdir",
+          items: [
+            "Sənaye Dizaynı, Yeni Material və Texnologiyalar İnstitutu",
+            "Müdafiə Texnologiyaları və Kibertəhlükəsizlik İnstitutu",
+            "Data Elmi və Süni İntellekt İnstitutu",
+            "Logistika və Nəqliyyat İnstitutu",
+            "Enerji və Dayanıqlı İnkişaf İnstitutu",
+            "Biotibbi Mühəndislik İnstitutu",
+            "Təhsildə İT və Metodik Dəstək İnstitutu",
+            "Mühəndis Dizaynı Təhsil Mərkəzi"
+          ]
+        },
+        studentSociety: {
+          title: "Tələbə Elmi Cəmiyyəti",
+          subtitle: "Bakalavr və magistratura tələbələri arasında elmi-tədqiqat və innovasiyanın dəstəklənməsi",
+          objectives: [
+            "Tələbələr arasında elmi yaradıcılığın inkişafı",
+            "Tədqiqat metodologiyası bacarıqlarının formalaşdırılması",
+            "Seçilmiş ixtisasa peşəkar münasibətin aşılanması",
+            "Müstəqil problem həlletmə yanaşmalarının öyrədilməsi",
+            "Elmi karyeraya potensial gənc kadrların müəyyənləşdirilməsi",
+            "Digər ali məktəblərin elmi cəmiyyətləri ilə əməkdaşlıq",
+            "Seminarlar, konfranslar, müsabiqələr və müzakirə klublarının təşkili",
+            "Tələbə tədqiqatlarının yayılmasına dəstək",
+            "Sahibkarlıq ruhunun və innovasiyanın təşviqi",
+            "Universitetin elmi fəaliyyətinin ictimaiyyətə tanıdılması"
+          ]
+        }
+      },
     },
     research: {
       priorities: {

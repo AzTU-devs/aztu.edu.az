@@ -981,6 +981,54 @@ const en = {
         staffPdfUrl:
           "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/9-2025/LMS_Heyet.pdf",
       },
+      cdio: {
+        eyebrow: "Students",
+        title: "CDIO Initiative",
+        subtitle: "Conceive, Design, Implement, Operate — preparing engineers for real-world impact.",
+        breadcrumb: "CDIO",
+        intro:
+          "CDIO (Conceive, Design, Implement, Operate) is a global engineering education initiative launched in the late 1990s by the Massachusetts Institute of Technology (MIT). The initiative brings together over 100 of the world's leading technical universities to bridge the gap between theoretical knowledge and practical experience in engineering education.",
+        whatIsCdio: {
+          title: "What is CDIO?",
+          paragraphs: [
+            "The CDIO initiative was established in the late 1990s under the leadership of the Massachusetts Institute of Technology (MIT), in collaboration with three Swedish universities — Chalmers University of Technology, Linköping University, and KTH Royal Institute of Technology. The initiative now unites more than 100 leading technical universities worldwide, including Stanford, Duke, Notre Dame (USA), Aston and Lancaster (UK), the Technical University of Madrid (Spain), Moscow Aviation Institute, Bauman Moscow State Technical University, Skolkovo Institute of Science and Technology (Russia), as well as leading institutions from France, Germany, Norway, Finland, Brazil, China, Australia, and other countries.",
+            "CDIO stands for Conceive, Design, Implement, Operate — a framework designed to close the gap between theoretical education and practical engineering experience.",
+            "Traditionally, an engineer was regarded as a specialist performing a defined set of narrow technical functions. However, the 21st century brought new challenges: in today's global competitive environment, an engineer must be not only an innovator with ideas but also a competent manager. For this reason, the goal of CDIO is straightforward — a university-educated engineer should be able to conceive a new product or technical idea, execute all the necessary implementation steps, and then bring the resulting product into production.",
+            "The CDIO initiative has produced a wide range of methodological materials tailored to the specific characteristics of engineering programs. These resources are designed to enhance the personal qualities of future engineers, define professional behaviors, and structure engineering curricula around disciplines that teach product, process, and systems creation in an interconnected way.",
+            "The CDIO framework operates on 12 standards, covering the overall philosophy of the program, curriculum and practical problem design, workspace planning, new teaching and learning methods, faculty professional development, student engagement, and program audit and evaluation."
+          ]
+        },
+        institutes: {
+          title: "CDIO Research Institutes at AzTU",
+          subtitle: "AzTU operates eight specialized research institutes aligned with CDIO principles",
+          items: [
+            "Institute of Industrial Design, New Materials and Technologies",
+            "Institute of Defense Technologies and Cybersecurity",
+            "Institute of Data Science and Artificial Intelligence",
+            "Institute of Logistics and Transport",
+            "Institute of Energy and Sustainable Development",
+            "Institute of Biomedical Engineering",
+            "Institute of IT and Methodological Support in Education",
+            "Engineering Design Education Center"
+          ]
+        },
+        studentSociety: {
+          title: "Student Scientific Society",
+          subtitle: "Supporting research and innovation among students at bachelor's and master's levels",
+          objectives: [
+            "Promote scientific creativity among students",
+            "Develop research methodology skills",
+            "Foster professional attitudes toward chosen fields",
+            "Teach independent problem-solving approaches",
+            "Identify talented youth for academic careers",
+            "Collaborate with other institutions' scientific societies",
+            "Organize seminars, conferences, competitions, and discussion clubs",
+            "Support dissemination of student research",
+            "Encourage entrepreneurship and innovation",
+            "Publicize university scientific activities"
+          ]
+        }
+      },
     },
     research: {
       priorities: {
