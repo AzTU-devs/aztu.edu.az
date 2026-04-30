@@ -129,6 +129,7 @@ const en = {
       universityCooperation: "University Cooperation",
       collaborations: "Collaborations",
       formerRectors: "Former Rectors",
+      rankings: "Rankings",
     },
   },
 
