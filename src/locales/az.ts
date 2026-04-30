@@ -144,7 +144,7 @@ const az = {
       { label: "QS Reytinqi", value: "1001+" },
       { label: "THE Reytinqi", value: "1501+" },
       { label: "GreenMetric", value: "Top 800" },
-      { label: "Tələbələr", value: "9000+" },
+      { label: "Tələbələr", value: "10000+" },
     ],
   },
 

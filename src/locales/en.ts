@@ -143,7 +143,7 @@ const en = {
       { label: "QS Ranking", value: "1001+" },
       { label: "THE Ranking", value: "1501+" },
       { label: "GreenMetric", value: "Top 800" },
-      { label: "Students", value: "9000+" },
+      { label: "Students", value: "10000+" },
     ],
   },
 

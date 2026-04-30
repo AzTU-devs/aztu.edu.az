@@ -32,7 +32,7 @@ const DATA = {
     eyebrow: "İcma",
     breadcrumbSection: "İttifaq və Təşkilatlar",
     title: "Tələbə Həmkarlar İttifaqı Komitəsi",
-    subtitle: "9000-dən artıq tələbəni özündə birləşdirən, dövlət qeydiyyatından keçən yeganə ictimai tələbə təşkilatı",
+    subtitle: "10000-dən artıq tələbəni özündə birləşdirən, dövlət qeydiyyatından keçən yeganə ictimai tələbə təşkilatı",
     homeLabel: "Ana səhifə",
     communityLabel: "İcma",
     tabs: [
@@ -49,10 +49,10 @@ const DATA = {
         "Tələbələr həmişə gənclərin ən aktiv hissəsi olaraq tanınıblar. Təbii ki, bu enerjini tənzimləyən, onu doğru istiqamətə aparan və ona kömək edən strukturlara böyük ehtiyac duyulmaqdadır.",
         "Tələbə həmkarlar komitələri yuxarı təşkilatların dəstəyi ilə tələbələrin təhsilalma şəraitlərinin yaxşılaşdırılması, çətin həyat durumlarına maddi dəstək verilməsi və işlə təmin olunmasına yardım göstərirlər.",
         "Sovet dönəmində ali məktəblərində tələbələrin problemləri ilə bir neçə təşkilat məşğul olurdu: partiya, komsomol və həmkarlar təşkilatları. Yeni formalaşmış müasir sistemdə isə həmkarlar təşkilatlarının rolu daha da artıb.",
-        "Bu nöqteyi-nəzərdən AzTU-nun Tələbə Həmkarlar İttifaqı Komitəsinin (THİK) fəaliyyəti böyük önəm daşıyır. 9000-dən artıq bakalavr, magistr və doktorant kollektivini özündə birləşdirən və dövlət qeydiyyatından keçən yeganə ictimai tələbə təşkilatı olan THİK universitetin idarə olunmasında da yaxından iştirak edir.",
+        "Bu nöqteyi-nəzərdən AzTU-nun Tələbə Həmkarlar İttifaqı Komitəsinin (THİK) fəaliyyəti böyük önəm daşıyır. 10000-dən artıq bakalavr, magistr və doktorant kollektivini özündə birləşdirən və dövlət qeydiyyatından keçən yeganə ictimai tələbə təşkilatı olan THİK universitetin idarə olunmasında da yaxından iştirak edir.",
       ],
       stats: [
-        { value: "9000+", label: "Üzv" },
+        { value: "10000+", label: "Üzv" },
         { value: "2021", label: "Cari Sədr seçildi" },
         { value: "3", label: "Klub" },
         { value: "300+", label: "Yataqxana tələbəsi" },
@@ -176,7 +176,7 @@ const DATA = {
         "From this perspective, the activities of AzTU's Student Trade Union Committee (STUC) are of great importance. STUC, which unites a collective of more than 9,000 bachelor's, master's, and doctoral students and is the only registered public student organization, is also closely involved in the management of the university.",
       ],
       stats: [
-        { value: "9000+", label: "Members" },
+        { value: "10000+", label: "Members" },
         { value: "2021", label: "Current Chair elected" },
         { value: "3", label: "Clubs" },
         { value: "300+", label: "Dormitory students" },
