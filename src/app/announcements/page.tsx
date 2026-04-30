@@ -101,7 +101,7 @@ export default function AnnouncementsPage() {
                             <motion.div
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="group relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[4rem] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/10 dark:border-white/10 overflow-hidden flex flex-col lg:flex-row hover:border-[#ee7c7e]/30 transition-all duration-700"
+                                className="group relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[4rem] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/30 dark:border-white/10 overflow-hidden flex flex-col lg:flex-row hover:border-[#ee7c7e]/30 transition-all duration-700"
                             >
                                 {/* Left: Date column */}
                                 {(() => {
@@ -135,7 +135,7 @@ export default function AnnouncementsPage() {
 
                                     <div className="flex items-center gap-4 text-[#1a2355] dark:text-white font-black text-xs uppercase tracking-[0.3em] group-hover:text-[#ee7c7e] transition-all mt-6">
                                         {lang === 'az' ? 'ƏTRAFLI OXU' : 'READ MORE'}
-                                        <div className="w-12 h-12 rounded-2xl bg-[#1a2355]/5 dark:bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white group-hover:translate-x-2 border border-[#1a2355]/5">
+                                        <div className="w-12 h-12 rounded-2xl bg-[#1a2355]/5 dark:bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white group-hover:translate-x-2 border border-[#1a2355]/30">
                                             <ChevronRightIcon sx={{ fontSize: 24 }} />
                                         </div>
                                     </div>
@@ -159,7 +159,7 @@ export default function AnnouncementsPage() {
                                     className="h-full"
                                 >
                                     <Link href={`/announcements/${item.id}`} className="group block h-full">
-                                        <div className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[3.5rem] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/10 dark:border-white/10 overflow-hidden flex flex-col h-full hover:border-[#ee7c7e]/30 transition-all duration-700 hover:-translate-y-2">
+                                        <div className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[3.5rem] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/30 dark:border-white/10 overflow-hidden flex flex-col h-full hover:border-[#ee7c7e]/30 transition-all duration-700 hover:-translate-y-2">
                                             <div className="p-12 flex flex-col h-full gap-8 relative z-10">
                                                 <div className="flex items-center justify-between">
                                                     <div className="flex items-center gap-3 text-gray-400 dark:text-white/20 text-[10px] font-black uppercase tracking-widest">
@@ -173,11 +173,11 @@ export default function AnnouncementsPage() {
                                                     {item.title}
                                                 </h3>
 
-                                                <div className="flex items-center justify-between mt-auto pt-8 border-t border-[#1a2355]/5 dark:border-white/5">
+                                                <div className="flex items-center justify-between mt-auto pt-8 border-t border-[#1a2355]/30 dark:border-white/5">
                                                     <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a2355] dark:text-white/60 group-hover:text-[#ee7c7e] transition-colors">
                                                         {lang === 'az' ? 'ƏTRAFLI' : 'DETAILS'}
                                                     </span>
-                                                    <div className="w-10 h-10 rounded-xl bg-[#1a2355]/5 dark:bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white group-hover:translate-x-2 border border-[#1a2355]/5">
+                                                    <div className="w-10 h-10 rounded-xl bg-[#1a2355]/5 dark:bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white group-hover:translate-x-2 border border-[#1a2355]/30">
                                                         <ChevronRightIcon sx={{ fontSize: 20 }} />
                                                     </div>
                                                 </div>

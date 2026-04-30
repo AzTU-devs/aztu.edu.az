@@ -160,7 +160,7 @@ export default function SorgularPage() {
   }[lang];
 
   return (
-    <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden bg-white dark:bg-[#080f25]">
+    <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden bg-page dark:bg-[#080f25]">
       <div className="bg-mesh opacity-100" />
       <div className="bg-grid-premium opacity-10" />
       <div className="fixed top-1/4 -left-20 w-96 h-96 bg-blue-600/5 blur-[120px] rounded-full animate-pulse pointer-events-none" />
@@ -186,7 +186,7 @@ export default function SorgularPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.05 }}
-                className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-xl rounded-[2rem] border-2 border-[#1a2355]/5 dark:border-white/5 p-6 shadow-lg hover:border-[#ee7c7e]/25 transition-all duration-300 relative overflow-hidden group"
+                className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-xl rounded-[2rem] border-2 border-[#1a2355]/30 dark:border-white/5 p-6 shadow-lg hover:border-[#ee7c7e]/25 transition-all duration-300 relative overflow-hidden group"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/3 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:scale-150 transition-transform pointer-events-none" />
                 <div className="flex items-start gap-5 relative z-10">

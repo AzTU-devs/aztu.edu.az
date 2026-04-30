@@ -91,7 +91,7 @@ export default function DirectorCard({ director }: DirectorCardProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {/* Working Hours Card */}
             {workingHours.length > 0 && (
-              <div className="p-8 rounded-[2rem] bg-[#1a2355]/5 dark:bg-white/5 border border-[#1a2355]/10 dark:border-white/10">
+              <div className="p-8 rounded-[2rem] bg-[#1a2355]/5 dark:bg-white/5 border border-[#1a2355]/30 dark:border-white/10">
                 <h4 className="text-sm font-black text-[#1a2355] dark:text-white mb-6 uppercase tracking-[0.2em] flex items-center gap-2">
                   <AccessTimeIcon sx={{ fontSize: 20, color: "#ee7c7e" }} />
                   {t.reception}

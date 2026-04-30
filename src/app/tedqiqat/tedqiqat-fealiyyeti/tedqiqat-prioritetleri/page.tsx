@@ -1,254 +1,261 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { motion } from "framer-motion";
+
 import HomeIcon from "@mui/icons-material/Home";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import PsychologyIcon from "@mui/icons-material/Psychology";
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturing";
-import ScienceIcon from "@mui/icons-material/Science";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import NaturePeopleIcon from "@mui/icons-material/NaturePeople";
+import ScienceIcon from "@mui/icons-material/Science";
+import HubIcon from "@mui/icons-material/Hub";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+
+import PageHero from "@/components/shared/PageHero";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
 
-const PRIORITY_ICONS = [
-    PsychologyIcon,
-    ElectricBoltIcon,
-    PrecisionManufacturingIcon,
-    ScienceIcon,
-    NaturePeopleIcon,
+const PRIORITIES_THEME = [
+    {
+        icon: PsychologyIcon,
+        gradient: "from-blue-600 to-indigo-700",
+        soft: "from-blue-500/15 to-indigo-500/5",
+        text: "text-blue-700 dark:text-blue-300",
+        glow: "shadow-blue-500/30",
+    },
+    {
+        icon: ElectricBoltIcon,
+        gradient: "from-amber-500 to-orange-600",
+        soft: "from-amber-500/15 to-orange-500/5",
+        text: "text-amber-600 dark:text-amber-300",
+        glow: "shadow-amber-500/30",
+    },
+    {
+        icon: PrecisionManufacturingIcon,
+        gradient: "from-[#ee7c7e] to-[#fb7185]",
+        soft: "from-[#ee7c7e]/15 to-rose-500/5",
+        text: "text-[#ee7c7e]",
+        glow: "shadow-[#ee7c7e]/30",
+    },
+    {
+        icon: RocketLaunchIcon,
+        gradient: "from-purple-500 to-violet-700",
+        soft: "from-purple-500/15 to-violet-500/5",
+        text: "text-purple-600 dark:text-purple-300",
+        glow: "shadow-purple-500/30",
+    },
+    {
+        icon: NaturePeopleIcon,
+        gradient: "from-emerald-500 to-teal-600",
+        soft: "from-emerald-500/15 to-teal-500/5",
+        text: "text-emerald-600 dark:text-emerald-300",
+        glow: "shadow-emerald-500/30",
+    },
+    {
+        icon: HubIcon,
+        gradient: "from-cyan-500 to-sky-600",
+        soft: "from-cyan-500/15 to-sky-500/5",
+        text: "text-cyan-600 dark:text-cyan-300",
+        glow: "shadow-cyan-500/30",
+    },
 ];
-
-function GridBackground() {
-    return (
-        <div className="absolute inset-0 pointer-events-none">
-            <div 
-                className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
-                style={{
-                    backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
-                    backgroundSize: "40px 40px",
-                }}
-            />
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-current to-transparent opacity-10" />
-            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-current to-transparent opacity-10" />
-        </div>
-    );
-}
-
-function PriorityCard({ item, index, icon: Icon }: { item: any; index: number; icon: any }) {
-    return (
-        <motion.section
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: index * 0.1, ease: [0.23, 1, 0.32, 1] }}
-            className="group relative flex flex-col p-8 md:p-10 rounded-[2.5rem] bg-white dark:bg-white/5 backdrop-blur-xl border border-gray-100 dark:border-white/10 hover:border-[#ee7c7e]/30 transition-all duration-500 shadow-2xl overflow-hidden"
-        >
-            {/* Hover Glow */}
-            <div className="absolute -inset-24 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-3xl pointer-events-none" />
-            
-            <div className="relative z-10 flex flex-col md:flex-row gap-8 items-start">
-                <div className="flex-shrink-0 w-20 h-20 rounded-3xl bg-gray-50 dark:bg-white/10 flex items-center justify-center group-hover:bg-[#ee7c7e] group-hover:scale-110 transition-all duration-500 shadow-inner group-hover:shadow-[0_10px_30px_rgba(238,124,126,0.4)]">
-                    <Icon className="text-[#1a2355] dark:text-white/90 group-hover:text-white transition-colors duration-500" sx={{ fontSize: 36 }} />
-                </div>
-                
-                <div className="flex-1">
-                    <div className="inline-block px-4 py-1.5 rounded-full bg-[#ee7c7e]/10 border border-[#ee7c7e]/20 mb-4">
-                        <span className="text-[#ee7c7e] text-[10px] font-black uppercase tracking-[0.3em]">
-                            {index + 1}. Istiqamət
-                        </span>
-                    </div>
-                    <h2 className="text-2xl md:text-3xl font-black text-[#1a2355] dark:text-white mb-6 leading-tight group-hover:text-[#ee7c7e] transition-colors duration-300 tracking-tighter">
-                        {item.title.replace(/^[0-9.]+\s*/, '')}
-                    </h2>
-                    <div className="text-gray-600 dark:text-white/60 text-base md:text-lg leading-relaxed space-y-4 whitespace-pre-wrap font-medium">
-                        {item.content}
-                    </div>
-                </div>
-            </div>
-
-            {/* Corner Decorative Element */}
-            <div className="absolute top-0 right-0 p-8 opacity-0 group-hover:opacity-10 transition-opacity duration-500">
-                <Icon sx={{ fontSize: 120 }} />
-            </div>
-            
-            {/* Bottom Accent */}
-            <div className="absolute bottom-0 left-0 w-0 h-1.5 bg-[#ee7c7e] group-hover:w-full transition-all duration-700 ease-in-out" />
-        </motion.section>
-    );
-}
 
 export default function ResearchPrioritiesPage() {
     const t = useTranslation();
     const { lang } = useLanguage();
     const p = t.pages.research.priorities;
-    const bannerRef = useRef(null);
-    const { scrollY } = useScroll();
-    const y = useTransform(scrollY, [0, 500], [0, 200]);
+    const items = p.items ?? [];
+
+    const homeHref = "/";
+    const researchHref = lang === "az" ? "/tedqiqat" : "/research";
+    const description =
+        (p as { description?: string }).description ??
+        (lang === "az"
+            ? "AzTU-nun strateji elmi hədəfləri."
+            : "AzTU's strategic scientific goals.");
 
     return (
-        <main className="min-h-screen bg-[#fafafa] dark:bg-[#0b1330] selection:bg-[#ee7c7e]/30">
-            
-            {/* FUTURISTIC HERO BANNER */}
-            <section ref={bannerRef} className="relative h-[80vh] min-h-[600px] w-full flex items-center overflow-hidden bg-black">
-                {/* Video Background Layer */}
-                <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="absolute inset-0 w-full h-full object-cover opacity-50 transition-opacity duration-1000"
-                    style={{ filter: "brightness(0.6) contrast(1.1) saturate(0.8)" }}
+        <main className="min-h-screen bg-page dark:bg-[#0b1330] selection:bg-[#ee7c7e]/30">
+            <PageHero
+                title={p.title}
+                description={p.subtitle}
+                eyebrow={p.eyebrow}
+                breadcrumbs={[
+                    { label: t.nav.sections.research, href: researchHref },
+                    { label: p.breadcrumb },
+                ]}
+            />
+
+            <section className="relative max-w-[1400px] mx-auto px-4 md:px-10 lg:px-16 -mt-12 pb-20 z-10 space-y-10">
+                {/* INTRO + STAT STRIP */}
+                <motion.div
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.55 }}
+                    className="relative overflow-hidden rounded-[2rem] bg-white dark:bg-slate-900/70 backdrop-blur-xl border-2 border-[#1a2355]/15 dark:border-white/10 p-6 md:p-8 shadow-xl"
                 >
-                    <source src="/heroBgVideos/research.mp4" type="video/mp4" />
-                </video>
+                    <div className="absolute -top-24 -right-24 w-72 h-72 bg-[#ee7c7e]/15 blur-3xl rounded-full pointer-events-none" />
+                    <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-blue-500/10 blur-3xl rounded-full pointer-events-none" />
 
-                {/* Parallax Overlay Gradients */}
-                <motion.div style={{ y }} className="absolute inset-0 z-10">
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b1330] via-transparent to-black/20" />
-                    <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-[#0b1330]/60 to-transparent" />
-                </motion.div>
-
-                {/* Animated Background Elements */}
-                <div className="absolute inset-0 z-10 pointer-events-none">
-                    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#ee7c7e]/10 blur-[120px] rounded-full animate-pulse" />
-                    <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-500/5 blur-[150px] rounded-full" />
-                </div>
-
-                {/* Content Container */}
-                <div className="relative z-20 w-full px-[40px] md:px-[80px] xl:px-[120px]">
-                    <div className="max-w-5xl">
-                        {/* Breadcrumb - Futuristic style */}
-                        <motion.nav 
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            className="flex items-center gap-4 text-white/40 text-[10px] font-black uppercase tracking-[0.4em] mb-12"
-                        >
-                            <Link href="/" className="hover:text-[#ee7c7e] transition-colors flex items-center gap-2 group">
-                                <HomeIcon sx={{ fontSize: 14 }} className="group-hover:scale-110 transition-transform" />
-                                {t.common.home}
-                            </Link>
-                            <ChevronRightIcon sx={{ fontSize: 12 }} />
-                            <span className="cursor-default">{t.nav.sections.research}</span>
-                            <ChevronRightIcon sx={{ fontSize: 12 }} />
-                            <span className="text-white/90">{p.breadcrumb}</span>
-                        </motion.nav>
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8 }}
-                        >
-                            <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 mb-8 shadow-2xl">
-                                <div className="w-2.5 h-2.5 rounded-full bg-[#ee7c7e] shadow-[0_0_12px_#ee7c7e] animate-pulse" />
-                                <span className="text-white text-[12px] font-black uppercase tracking-[0.5em]">
-                                    {p.eyebrow}
+                    <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                        <div className="lg:col-span-8">
+                            <div className="flex items-center gap-3 mb-3">
+                                <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#1a2355] to-[#3b82f6] text-white flex items-center justify-center shadow-md shadow-blue-500/30">
+                                    <ScienceIcon sx={{ fontSize: 20 }} />
+                                </div>
+                                <span className="text-[10px] font-black uppercase tracking-[0.35em] text-[#ee7c7e]">
+                                    {lang === "az" ? "Strateji baxış" : "Strategic outlook"}
                                 </span>
                             </div>
-
-                            <h1 className="text-4xl md:text-7xl font-black text-white mb-8 leading-[1.05] tracking-tighter drop-shadow-2xl">
-                                {p.title.split(' ').map((word, i) => (
-                                    <motion.span 
-                                        key={i} 
-                                        className="inline-block mr-4 last:mr-0"
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.2 + (i * 0.1), duration: 0.6 }}
-                                    >
-                                        {word}
-                                    </motion.span>
-                                ))}
-                            </h1>
-                            
-                            <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.7, duration: 0.8 }}
-                                className="text-white/70 text-lg md:text-xl max-w-2xl leading-relaxed border-l-4 border-[#ee7c7e] pl-8"
-                            >
-                                {p.subtitle}
-                            </motion.p>
-                        </motion.div>
-                    </div>
-                </div>
-
-                {/* Decorative Scroll Line */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 pb-8 z-20">
-                    <div className="w-px h-16 bg-gradient-to-b from-white/20 via-[#ee7c7e] to-transparent" />
-                </div>
-            </section>
-
-            {/* MAIN CONTENT AREA */}
-            <div className="relative pt-24 pb-32">
-                <GridBackground />
-                
-                <div className="max-w-[1400px] mx-auto px-[40px] md:px-[80px] xl:px-[120px]">
-                    
-                    {/* Visionary Intro Card */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="relative mb-32 p-10 md:p-16 rounded-[3rem] bg-[#1a2355] dark:bg-white/[0.02] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.2)] overflow-hidden text-center group"
-                    >
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-                        <div className="relative z-10 max-w-4xl mx-auto">
-                            <h2 className="text-white/40 text-xs font-black uppercase tracking-[0.5em] mb-8">Strategiyamız</h2>
-                            <p className="text-white text-xl md:text-3xl font-black leading-snug tracking-tight">
-                                {p.description}
+                            <p className="text-sm md:text-base text-gray-600 dark:text-slate-300 leading-relaxed">
+                                {description}
                             </p>
                         </div>
-                    </motion.div>
 
-                    {/* Priorities Detailed Grid */}
-                    <div className="space-y-12">
-                        {p.items.map((item, i) => (
-                            <PriorityCard key={i} item={item} index={i} icon={PRIORITY_ICONS[i]} />
-                        ))}
-                    </div>
-
-                    {/* FUTURISTIC RELATED NAVIGATION */}
-                    <div className="mt-40">
-                        <div className="flex flex-col md:flex-row items-end justify-between gap-8 mb-16">
-                            <div className="max-w-xl">
-                                <span className="text-[#ee7c7e] text-xs font-black uppercase tracking-[0.4em] mb-4 block">{t.common.moreInSection}</span>
-                                <h3 className="text-3xl md:text-5xl font-black text-[#1a2355] dark:text-white tracking-tighter">Digər Maraqlı Bölmələr</h3>
+                        <div className="lg:col-span-4 grid grid-cols-2 gap-3">
+                            <div className="bg-gradient-to-br from-[#1a2355] to-[#0f172a] rounded-2xl p-4 text-white relative overflow-hidden">
+                                <div className="absolute -top-10 -right-10 w-28 h-28 bg-[#ee7c7e]/20 blur-3xl rounded-full" />
+                                <p className="relative text-[9px] uppercase tracking-widest text-white/50 font-black">
+                                    {lang === "az" ? "İstiqamət" : "Directions"}
+                                </p>
+                                <p className="relative text-3xl font-black tabular-nums tracking-tighter mt-1">
+                                    {items.length}
+                                </p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 border-2 border-[#1a2355]/15 dark:border-white/10 rounded-2xl p-4">
+                                <p className="text-[9px] uppercase tracking-widest text-gray-400 dark:text-slate-400 font-black">
+                                    {lang === "az" ? "Sahə" : "Domain"}
+                                </p>
+                                <p className="text-sm font-black text-[#1a2355] dark:text-white mt-1 leading-snug">
+                                    {lang === "az" ? "Mühəndislik və texnologiya" : "Engineering & technology"}
+                                </p>
                             </div>
                         </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {[
-                                { title: t.nav.items.researchInstitutes, href: lang === "az" ? "/tedqiqat/tedqiqat-fealiyyeti/tedqiqat-institutlari" : "/research/research-activity/research-institutes", color: "#1a2355" },
-                                // { title: t.nav.items.projects, href: "/projects", color: "#ee7c7e" },
-                                { title: t.nav.sections.about, href: "/about", color: "#2563eb" },
-                            ].map((link, i) => (
-                                <Link
-                                    key={link.href}
-                                    href={link.href}
-                                    className="group relative h-64 rounded-[2.5rem] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 p-10 flex flex-col justify-between hover:scale-[1.02] hover:shadow-2xl transition-all duration-500 overflow-hidden"
-                                >
-                                    <div 
-                                        className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" 
-                                        style={{ backgroundColor: link.color }}
-                                    />
-                                    <div className="relative z-10 w-12 h-12 rounded-2xl bg-gray-50 dark:bg-white/10 flex items-center justify-center group-hover:bg-[#ee7c7e] transition-colors duration-500">
-                                        <ArrowForwardIcon className="text-[#1a2355] dark:text-white group-hover:text-white -rotate-45 group-hover:rotate-0 transition-all duration-500" sx={{ fontSize: 24 }} />
-                                    </div>
-                                    <div className="relative z-10">
-                                        <p className="text-[#1a2355] dark:text-white text-2xl font-black tracking-tighter leading-tight group-hover:text-[#ee7c7e] transition-colors">
-                                            {link.title}
-                                        </p>
-                                    </div>
-                                </Link>
-                            ))}
-                        </div>
                     </div>
+                </motion.div>
+
+                {/* PRIORITIES GRID */}
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+                    {items.map((item: { title: string; content: string }, i: number) => {
+                        const theme = PRIORITIES_THEME[i % PRIORITIES_THEME.length];
+                        const Icon = theme.icon;
+                        const cleanTitle = item.title.replace(/^[0-9.]+\s*/, "");
+                        const num = String(i + 1).padStart(2, "0");
+
+                        return (
+                            <motion.article
+                                key={item.title}
+                                initial={{ opacity: 0, y: 18 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-50px" }}
+                                transition={{ duration: 0.5, delay: Math.min(i * 0.06, 0.4) }}
+                                className={`group relative h-full bg-white dark:bg-slate-900/70 backdrop-blur-xl rounded-[1.75rem] border-2 border-[#1a2355]/10 dark:border-white/10 p-6 transition-all duration-500 overflow-hidden hover:-translate-y-1 hover:border-transparent hover:shadow-2xl ${theme.glow}`}
+                            >
+                                <div
+                                    className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${theme.gradient} opacity-80 group-hover:opacity-100 transition-opacity`}
+                                />
+                                <div
+                                    className={`absolute inset-0 bg-gradient-to-br ${theme.soft} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}
+                                />
+                                <div className="absolute -top-12 -right-12 w-40 h-40 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent blur-3xl rounded-full pointer-events-none transition-transform duration-700 group-hover:scale-125" />
+
+                                <div className="relative z-10 flex flex-col h-full">
+                                    <div className="flex items-start justify-between gap-3 mb-4">
+                                        <div
+                                            className={`w-12 h-12 rounded-xl bg-gradient-to-br ${theme.gradient} flex items-center justify-center text-white shadow-lg ${theme.glow} group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500`}
+                                        >
+                                            <Icon sx={{ fontSize: 24 }} />
+                                        </div>
+                                        <span
+                                            className={`text-3xl font-black tabular-nums tracking-tighter leading-none ${theme.text} opacity-30 group-hover:opacity-70 transition-opacity`}
+                                        >
+                                            {num}
+                                        </span>
+                                    </div>
+
+                                    <h2 className="text-base md:text-lg font-black text-[#1a2355] dark:text-white leading-snug tracking-tight group-hover:text-[#ee7c7e] transition-colors mb-3">
+                                        {cleanTitle}
+                                    </h2>
+
+                                    <p className="text-sm text-gray-600 dark:text-slate-400 leading-relaxed flex-1">
+                                        {item.content}
+                                    </p>
+
+                                    <div className="mt-5 pt-4 border-t border-[#1a2355]/10 dark:border-white/5 flex items-center justify-between">
+                                        <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#1a2355]/50 dark:text-white/40">
+                                            {lang === "az" ? "Tədqiqat istiqaməti" : "Research direction"}
+                                        </span>
+                                        <span className={`inline-flex w-7 h-7 rounded-full items-center justify-center bg-gradient-to-br ${theme.gradient} text-white shadow-sm`}>
+                                            <ArrowForwardIcon sx={{ fontSize: 14 }} />
+                                        </span>
+                                    </div>
+                                </div>
+                            </motion.article>
+                        );
+                    })}
                 </div>
-            </div>
+
+                {/* RELATED LINKS */}
+                <section className="pt-8 border-t border-[#1a2355]/15 dark:border-white/10">
+                    <div className="flex items-center gap-3 mb-6">
+                        <div className="w-2 h-9 bg-[#ee7c7e] rounded-full animate-pulse shadow-[0_0_15px_rgba(238,124,126,0.5)]" />
+                        <h2 className="text-xl font-black text-[#1a2355] dark:text-white tracking-tight">
+                            {t.common.moreInSection}
+                        </h2>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        {[
+                            {
+                                title: lang === "az" ? "Tədqiqat İnstitutları" : "Research Institutes",
+                                href:
+                                    lang === "az"
+                                        ? "/tedqiqat/tedqiqat-fealiyyeti/tedqiqat-institutlari"
+                                        : "/research/research-activity/research-institutes",
+                                gradient: "from-blue-600 to-indigo-700",
+                            },
+                            {
+                                title: lang === "az" ? "Tədqiqat Layihələri" : "Research Projects",
+                                href:
+                                    lang === "az"
+                                        ? "/tedqiqat/tedqiqat-fealiyyeti/tedqiqat-layiheleri"
+                                        : "/research/research-activity/research-projects",
+                                gradient: "from-[#ee7c7e] to-[#f97316]",
+                            },
+                            {
+                                title: lang === "az" ? "Daxili Qrantlar" : "Internal Grants",
+                                href:
+                                    lang === "az"
+                                        ? "/tedqiqat/performans-ve-qiymetlendirme/daxili-qrant-proqramlari"
+                                        : "/research/performance-and-evaluation/internal-grant-programs",
+                                gradient: "from-emerald-500 to-teal-600",
+                            },
+                        ].map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className={`group relative flex items-center justify-between bg-white dark:bg-slate-900/60 backdrop-blur-xl rounded-2xl border-2 border-[#1a2355]/10 dark:border-white/10 p-5 transition-all duration-500 overflow-hidden hover:-translate-y-0.5 hover:border-transparent hover:shadow-xl`}
+                            >
+                                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${link.gradient} opacity-70 group-hover:opacity-100 transition-opacity`} />
+                                <span className="text-sm font-black text-[#1a2355] dark:text-white group-hover:text-[#ee7c7e] transition-colors">
+                                    {link.title}
+                                </span>
+                                <span className={`inline-flex w-9 h-9 rounded-xl items-center justify-center bg-gradient-to-br ${link.gradient} text-white shadow-md group-hover:scale-105 transition-transform`}>
+                                    <ChevronRightIcon sx={{ fontSize: 18 }} />
+                                </span>
+                            </Link>
+                        ))}
+                    </div>
+                </section>
+
+                {/* HIDDEN: home anchor for accessibility tools */}
+                <Link href={homeHref} className="sr-only">
+                    <HomeIcon /> Home
+                </Link>
+            </section>
         </main>
     );
 }

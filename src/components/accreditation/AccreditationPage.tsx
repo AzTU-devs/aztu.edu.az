@@ -12,6 +12,7 @@ import PublicIcon from "@mui/icons-material/Public";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import ArticleIcon from "@mui/icons-material/Article";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
 
 const AQAS_PROGRAMS = {
   az: [
@@ -219,17 +220,14 @@ export default function AccreditationPage() {
   const aboutHref = lang === "az" ? "/haqqimizda" : "/about";
 
   const card =
-    "bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-3xl rounded-[2.5rem] border-2 border-[#1a2355]/5 dark:border-white/5 p-8 md:p-12 shadow-xl shadow-blue-900/5 relative overflow-hidden";
+    "bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-3xl rounded-[2.5rem] border-2 border-[#1a2355]/30 dark:border-white/5 p-8 md:p-12 shadow-xl shadow-blue-900/5 relative overflow-hidden";
 
   return (
     <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
       {/* HERO */}
       <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <div className="absolute inset-0 bg-[#0b1330]" />
-          <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[5rem] lg:rounded-bl-[20rem]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1330] via-[#0b1330]/80 to-transparent hidden lg:block" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#ee7c7e]/5 rounded-full blur-3xl" />
+            <AboutHeroVideoBg />
         </div>
 
         <div className="relative z-10 flex-1 flex flex-col max-w-[1400px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-16">
@@ -385,7 +383,7 @@ export default function AccreditationPage() {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-[#1a2355]/5 dark:bg-white/5 hover:bg-[#ee7c7e]/10 border-2 border-[#1a2355]/10 dark:border-white/10 hover:border-[#ee7c7e]/30 transition-all duration-300 text-sm font-bold text-[#1a2355] dark:text-white group w-fit"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-[#1a2355]/5 dark:bg-white/5 hover:bg-[#ee7c7e]/10 border-2 border-[#1a2355]/30 dark:border-white/10 hover:border-[#ee7c7e]/30 transition-all duration-300 text-sm font-bold text-[#1a2355] dark:text-white group w-fit"
                 >
                   <ArticleIcon sx={{ fontSize: 18 }} className="text-[#ee7c7e] shrink-0" />
                   {link.label}
@@ -509,7 +507,7 @@ export default function AccreditationPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-xl rounded-[2rem] border-2 border-[#1a2355]/5 dark:border-white/5 overflow-hidden shadow-lg hover:border-[#ee7c7e]/30 transition-all duration-300 group flex flex-col"
+                className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-xl rounded-[2rem] border-2 border-[#1a2355]/30 dark:border-white/5 overflow-hidden shadow-lg hover:border-[#ee7c7e]/30 transition-all duration-300 group flex flex-col"
               >
                 <div className="relative w-full aspect-[4/3] bg-gray-50 dark:bg-[#050d20]">
                   <Image

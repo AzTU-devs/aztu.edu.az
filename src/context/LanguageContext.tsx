@@ -176,8 +176,36 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         }
       }
 
+      // Translate slugs for offices & centers (under management)
+      if ((segments[1] === "management" || segments[1] === "idareetme") &&
+          (segments[2] === "offices-and-centers" || segments[2] === "ofis-ve-merkezler")) {
+          const officeAzToEn: Record<string, string> = {
+              "nabran-istirahet-merkezi": "nabran-recreation-center",
+              "kitabxana-informasiya-merkezi": "library-information-center",
+              "karyera-ve-mesgulluq-merkezi": "career-and-employment-center",
+              "omurboyu-tehsil": "lifelong-education",
+          };
+          const officeEnToAz: Record<string, string> = {
+              "nabran-recreation-center": "nabran-istirahet-merkezi",
+              "library-information-center": "kitabxana-informasiya-merkezi",
+              "career-and-employment-center": "karyera-ve-mesgulluq-merkezi",
+              "lifelong-education": "omurboyu-tehsil",
+          };
+          if (newLang === "en") {
+              segments[1] = "management";
+              segments[2] = "offices-and-centers";
+              if (segments[3] && officeAzToEn[segments[3]]) segments[3] = officeAzToEn[segments[3]];
+          } else {
+              segments[1] = "idareetme";
+              segments[2] = "ofis-ve-merkezler";
+              if (segments[3] && officeEnToAz[segments[3]]) segments[3] = officeEnToAz[segments[3]];
+          }
+      }
+
       // Translate slugs for departments
-      if ((segments[1] === "management" || segments[1] === "idareetme") && segments[2] && segments[3]) {
+      if ((segments[1] === "management" || segments[1] === "idareetme") &&
+          segments[2] && segments[3] &&
+          segments[2] !== "offices-and-centers" && segments[2] !== "ofis-ve-merkezler") {
         const azToEnDept: Record<string, string> = {
             "struktur-bolmeler": "structural-units",
             "haqqimizda": "about",
@@ -205,7 +233,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       }
 
       // Translate slugs for Rector
-      if ((segments[1] === "about" || segments[1] === "haqqimizda") && 
+      if ((segments[1] === "about" || segments[1] === "haqqimizda") &&
           (segments[2] === "leadership-and-management" || segments[2] === "rehbetlik-ve-idareetme") &&
           (segments[3] === "rector" || segments[3] === "rektor")) {
           if (newLang === "en") {
@@ -216,6 +244,64 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
               segments[1] = "haqqimizda";
               segments[2] = "rehbetlik-ve-idareetme";
               segments[3] = "rektor";
+          }
+      }
+
+      // Translate slugs for Rector's Office (Rektoratlıq)
+      if ((segments[1] === "about" || segments[1] === "haqqimizda") &&
+          (segments[2] === "leadership-and-management" || segments[2] === "rehbetlik-ve-idareetme") &&
+          (segments[3] === "rectors-office" || segments[3] === "rektoratliq" || segments[3] === "rektorluq")) {
+          if (newLang === "en") {
+              segments[1] = "about";
+              segments[2] = "leadership-and-management";
+              segments[3] = "rectors-office";
+          } else {
+              segments[1] = "haqqimizda";
+              segments[2] = "rehbetlik-ve-idareetme";
+              segments[3] = "rektoratliq";
+          }
+      }
+
+      // Translate slugs for Vice-Rector (preserve detail slug at segments[4])
+      if ((segments[1] === "about" || segments[1] === "haqqimizda") &&
+          (segments[2] === "leadership-and-management" || segments[2] === "rehbetlik-ve-idareetme") &&
+          (segments[3] === "vice-rector" || segments[3] === "prorektor")) {
+          if (newLang === "en") {
+              segments[1] = "about";
+              segments[2] = "leadership-and-management";
+              segments[3] = "vice-rector";
+          } else {
+              segments[1] = "haqqimizda";
+              segments[2] = "rehbetlik-ve-idareetme";
+              segments[3] = "prorektor";
+          }
+      }
+
+      // Translate slugs for Partner Universities & Related Institutes
+      if ((segments[1] === "about" || segments[1] === "haqqimizda") &&
+          (segments[2] === "partner-universities-and-related-institutes" || segments[2] === "terefdas-universitet-ve-elaqeli-institutlar")) {
+          const partnerMap: Record<string, string> = {
+              "tau": "turk-azerbaycan-universiteti-tau",
+              "iit": "informasiya-texnalogiyalari-institutu",
+              "ics": "idareetme-sistemleri-insitutu",
+              "baku-technical-colleges": "baki-texniki-kollecleri",
+              "baku-state-colleges": "baki-rabite-ve-neqliyayt-dovlet-kollecleri",
+          };
+          const reversePartnerMap: Record<string, string> = {
+              "turk-azerbaycan-universiteti-tau": "tau",
+              "informasiya-texnalogiyalari-institutu": "iit",
+              "idareetme-sistemleri-insitutu": "ics",
+              "baki-texniki-kollecleri": "baku-technical-colleges",
+              "baki-rabite-ve-neqliyayt-dovlet-kollecleri": "baku-state-colleges",
+          };
+          if (newLang === "en") {
+              segments[1] = "about";
+              segments[2] = "partner-universities-and-related-institutes";
+              if (segments[3] && reversePartnerMap[segments[3]]) segments[3] = reversePartnerMap[segments[3]];
+          } else {
+              segments[1] = "haqqimizda";
+              segments[2] = "terefdas-universitet-ve-elaqeli-institutlar";
+              if (segments[3] && partnerMap[segments[3]]) segments[3] = partnerMap[segments[3]];
           }
       }
 

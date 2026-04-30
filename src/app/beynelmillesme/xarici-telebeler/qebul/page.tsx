@@ -19,7 +19,7 @@ export default function ForeignStudentsAdmissionPage() {
     const p = t.pages.internationalization.foreignStudentsAdmission;
 
     return (
-        <main className="min-h-screen bg-white dark:bg-[#0a0c1a] selection:bg-[#ee7c7e]/30 transition-colors duration-500">
+        <main className="min-h-screen bg-page dark:bg-[#0a0c1a] selection:bg-[#ee7c7e]/30 transition-colors duration-500">
             {/* HERO SECTION */}
             <div className="relative min-h-[70vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
                 {/* Background Refined Graphics */}
@@ -106,7 +106,7 @@ export default function ForeignStudentsAdmissionPage() {
                                 {p.processDescription}
                             </p>
                             
-                            <div className="p-8 rounded-2xl bg-[#1a2355]/5 dark:bg-[#ee7c7e]/5 border border-[#1a2355]/10 dark:border-[#ee7c7e]/10 flex flex-col md:flex-row items-center gap-6">
+                            <div className="p-8 rounded-2xl bg-[#1a2355]/5 dark:bg-[#ee7c7e]/5 border border-[#1a2355]/30 dark:border-[#ee7c7e]/10 flex flex-col md:flex-row items-center gap-6">
                                 <div className="w-16 h-16 rounded-2xl bg-[#ee7c7e] text-white flex items-center justify-center shrink-0 shadow-lg shadow-[#ee7c7e]/20">
                                     <OndemandVideoIcon />
                                 </div>
@@ -146,7 +146,7 @@ export default function ForeignStudentsAdmissionPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="bg-white dark:bg-slate-900 rounded-[2.5rem] border-2 border-[#1a2355]/5 dark:border-[#ee7c7e]/10 p-10 shadow-xl shadow-blue-900/5 group"
+                                className="bg-white dark:bg-slate-900 rounded-[2.5rem] border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/10 p-10 shadow-xl shadow-blue-900/5 group"
                             >
                                 <div className="w-12 h-12 rounded-xl bg-[#1a2355]/5 dark:bg-[#ee7c7e]/10 flex items-center justify-center mb-8">
                                     <LanguageIcon className="text-[#ee7c7e]" />
@@ -174,7 +174,7 @@ export default function ForeignStudentsAdmissionPage() {
                     <div className="lg:col-span-4 space-y-8">
                         <div className="sticky top-28 space-y-8">
                             {/* CTA Card */}
-                            <div className="p-10 rounded-[3rem] bg-white dark:bg-slate-900 border-2 border-[#1a2355]/10 dark:border-[#ee7c7e]/20 shadow-2xl relative overflow-hidden group">
+                            <div className="p-10 rounded-[3rem] bg-white dark:bg-slate-900 border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/20 shadow-2xl relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
                                 <div className="relative z-10">
                                     <div className="w-14 h-14 rounded-2xl bg-[#1a2355] text-white flex items-center justify-center mb-8 shadow-xl shadow-blue-900/20">

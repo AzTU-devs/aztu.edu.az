@@ -14,6 +14,7 @@ import RestaurantIcon from "@mui/icons-material/Restaurant";
 import SportsIcon from "@mui/icons-material/Sports";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import ShowerIcon from "@mui/icons-material/Shower";
+import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
 
 const DATA = {
   az: {
@@ -121,14 +122,7 @@ export default function NabranPage() {
       {/* HERO */}
       <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <div className="absolute inset-0 bg-[#0b1330]" />
-          <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#0d4a2f] rounded-bl-[5rem] lg:rounded-bl-[20rem] transition-all duration-1000" />
-          <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: "radial-gradient(white 0.5px, transparent 0.5px)", backgroundSize: "32px 32px" }} />
-          {/* Hero background image */}
-          <div
-            className="absolute top-0 right-0 w-full lg:w-[85%] h-full opacity-20 rounded-bl-[5rem] lg:rounded-bl-[20rem] overflow-hidden"
-            style={{ backgroundImage: `url(${IMAGES[0]})`, backgroundSize: "cover", backgroundPosition: "center" }}
-          />
+            <AboutHeroVideoBg />
         </div>
 
         <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-20">

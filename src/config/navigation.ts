@@ -70,7 +70,7 @@ export function getNavSections(t: Locale, lang: Lang): NavSection[] {
                 {
                     title: n.policiesDocuments,
                     subItems: [
-                        { title: n.generalPolicies, slug: "general-policies" },
+                        { title: n.generalPolicies, slug: lang === "az" ? "normativ-senedler/siyaset-senedleri" : "regulatory-documents/policy-documents" },
                         { title: n.academicPolicies, slug: "academic-policies" },
                         { title: n.sustainabilityPolicies, slug: "sustainability-policies" },
                         { title: n.procedureGuidelines, slug: "procedure-guidelines" },
@@ -273,7 +273,7 @@ export const NAV_SECTIONS: NavSection[] = [
             {
                 title: "Policies & Documents",
                 subItems: [
-                    { title: "General Policies", slug: "general-policies" },
+                    { title: "General Policies", slug: "regulatory-documents/policy-documents" },
                     { title: "Academic Policies", slug: "academic-policies" },
                     { title: "Sustainability Policies", slug: "sustainability-policies" },
                     { title: "Procedure & Guidelines", slug: "procedure-guidelines" },

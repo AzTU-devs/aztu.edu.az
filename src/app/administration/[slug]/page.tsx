@@ -26,7 +26,7 @@ export default function AdminDepartmentPage() {
   if (!dept) {
     return (
       <>
-        <main className="min-h-screen bg-gray-50 dark:bg-[#0f172a] flex flex-col items-center justify-center gap-6 px-4">
+        <main className="min-h-screen bg-page dark:bg-[#0f172a] flex flex-col items-center justify-center gap-6 px-4">
           <div className="text-center space-y-3">
             <h1 className="text-2xl font-bold text-[#1a2355] dark:text-white">Bölmə tapılmadı</h1>
             <p className="text-gray-500 dark:text-slate-400 text-sm">
@@ -56,7 +56,7 @@ export default function AdminDepartmentPage() {
 
   return (
     <>
-      <main className="min-h-screen bg-gray-50 dark:bg-[#0f172a]">
+      <main className="min-h-screen bg-page dark:bg-[#0f172a]">
         {/* Banner */}
         <div className="bg-[#1a2355] text-white px-4 md:px-10 lg:px-20 py-12 md:py-16">
           <p className="text-[#ee7c7e] text-xs font-bold uppercase tracking-widest mb-2">

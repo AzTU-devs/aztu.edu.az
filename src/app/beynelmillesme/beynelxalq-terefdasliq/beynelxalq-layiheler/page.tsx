@@ -147,7 +147,7 @@ export default function InternationalProjectsPage() {
                                                 )}
 
                                                 {project.aztuImplementation && (
-                                                    <div className="mt-8 p-6 rounded-2xl bg-[#1a2355]/5 dark:bg-white/5 border border-[#1a2355]/10 dark:border-white/10">
+                                                    <div className="mt-8 p-6 rounded-2xl bg-[#1a2355]/5 dark:bg-white/5 border border-[#1a2355]/30 dark:border-white/10">
                                                         <h4 className="text-xs font-black text-[#1a2355] dark:text-white uppercase tracking-wider mb-3">
                                                             {p.details.aztuImplementation}
                                                         </h4>
@@ -168,7 +168,7 @@ export default function InternationalProjectsPage() {
                     <div className="lg:col-span-4 space-y-8">
                         <div className="sticky top-28 space-y-8">
                             {/* CTA Card */}
-                            <div className="p-10 rounded-[3rem] bg-white dark:bg-slate-900 border-2 border-[#1a2355]/10 dark:border-[#ee7c7e]/20 shadow-2xl relative overflow-hidden group">
+                            <div className="p-10 rounded-[3rem] bg-white dark:bg-slate-900 border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/20 shadow-2xl relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
                                 <div className="relative z-10">
                                     <div className="w-14 h-14 rounded-2xl bg-[#1a2355] text-white flex items-center justify-center mb-8 shadow-xl shadow-blue-900/20">

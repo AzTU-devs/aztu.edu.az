@@ -83,8 +83,9 @@ export default function CafedraSidebar({ facultyId, cafedraId }: Props) {
     pathname === item.href || pathname.startsWith(item.href + "/");
 
   return (
-    <nav className="bg-white dark:bg-slate-800 rounded-[2rem] shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden">
-      <div className="px-6 py-5 border-b border-gray-50 dark:border-slate-700 bg-gray-50/50 dark:bg-slate-800/50">
+    <nav className="relative bg-white dark:bg-slate-800 rounded-[2rem] shadow-2xl shadow-[#1a2355]/15 border-2 border-[#1a2355]/30 dark:border-slate-700 overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#1a2355] via-[#ee7c7e] to-[#1a2355]" />
+      <div className="px-6 py-5 border-b-2 border-[#1a2355]/15 dark:border-slate-700 bg-[#1a2355]/5 dark:bg-slate-800/50">
         <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1a2355] dark:text-blue-300">
           {lang === "az" ? "Kafedra Menyu" : "Department Menu"}
         </p>
@@ -118,7 +119,7 @@ export default function CafedraSidebar({ facultyId, cafedraId }: Props) {
                   </span>
                 </button>
                 {expanded.includes(item.label) && (
-                  <ul className="mt-2 ml-4 space-y-1 border-l-2 border-[#1a2355]/5 dark:border-slate-700 pl-4">
+                  <ul className="mt-2 ml-4 space-y-1 border-l-2 border-[#1a2355]/30 dark:border-slate-700 pl-4">
                     {item.subItems.map((sub) => (
                       <li key={sub.href}>
                         <Link

@@ -89,14 +89,14 @@ export default function HonoraryDoctorsPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.05 }}
-                                className="group relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 flex flex-col items-center text-center gap-6 shadow-[0_4px_20px_-4px_rgba(26,35,85,0.1)] hover:shadow-[0_40px_80px_-15px_rgba(26,35,85,0.2)] border-2 border-[#1a2355]/10 dark:border-[#1a2355]/30 transition-all duration-500 hover:-translate-y-2 overflow-hidden"
+                                className="group relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 flex flex-col items-center text-center gap-6 shadow-[0_4px_20px_-4px_rgba(26,35,85,0.1)] hover:shadow-[0_40px_80px_-15px_rgba(26,35,85,0.2)] border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 transition-all duration-500 hover:-translate-y-2 overflow-hidden"
                             >
                                 {/* Colorful gradient top bar on hover */}
                                 <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#ee7c7e] via-[#1a2355] to-[#ee7c7e] opacity-20 group-hover:opacity-100 transition-opacity duration-500" />
                                 
                                 {/* Avatar */}
                                 <div className="relative p-2 rounded-full border-2 border-dashed border-[#ee7c7e]/40 group-hover:border-[#ee7c7e] transition-all duration-500 group-hover:scale-105">
-                                    <div className="w-40 h-40 rounded-full bg-[#1a2355]/5 dark:bg-[#1a2355]/20 overflow-hidden shadow-inner flex items-center justify-center text-[#1a2355]/20 group-hover:bg-[#ee7c7e]/10 transition-all duration-500 relative border border-[#1a2355]/5">
+                                    <div className="w-40 h-40 rounded-full bg-[#1a2355]/5 dark:bg-[#1a2355]/20 overflow-hidden shadow-inner flex items-center justify-center text-[#1a2355]/20 group-hover:bg-[#ee7c7e]/10 transition-all duration-500 relative border border-[#1a2355]/30">
                                         {doctor.image ? (
                                             <Image 
                                                 src={doctor.image} 
@@ -118,7 +118,7 @@ export default function HonoraryDoctorsPage() {
                                         <h3 className="font-black text-[#1a2355] dark:text-white text-xl leading-tight group-hover:text-[#ee7c7e] transition-colors duration-300">
                                             {doctor.name}
                                         </h3>
-                                        <div className="inline-block px-4 py-1.5 rounded-full bg-[#1a2355]/5 dark:bg-white/5 border border-[#1a2355]/10 dark:border-white/10 text-[#1a2355] dark:text-white/70 text-[10px] font-black uppercase tracking-widest">
+                                        <div className="inline-block px-4 py-1.5 rounded-full bg-[#1a2355]/5 dark:bg-white/5 border border-[#1a2355]/30 dark:border-white/10 text-[#1a2355] dark:text-white/70 text-[10px] font-black uppercase tracking-widest">
                                             {doctor.award}
                                         </div>
                                     </div>
@@ -128,7 +128,7 @@ export default function HonoraryDoctorsPage() {
                                     </p>
                                 </div>
 
-                                <div className="w-full pt-6 border-t border-[#1a2355]/5 dark:border-white/5">
+                                <div className="w-full pt-6 border-t border-[#1a2355]/30 dark:border-white/5">
                                     <div className="flex items-center justify-center gap-2 text-[#1a2355] dark:text-white/60 font-black text-xs uppercase tracking-widest">
                                         <CalendarTodayIcon sx={{ fontSize: 16, color: "#ee7c7e" }} />
                                         {doctor.date}

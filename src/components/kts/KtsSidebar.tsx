@@ -71,8 +71,8 @@ export default function KtsSidebar() {
 
   return (
     <div className="sticky top-28 space-y-4">
-      <div className="bg-white dark:bg-[#0d1b3e] rounded-[2rem] border-2 border-[#1a2355]/10 dark:border-[#ee7c7e]/10 overflow-hidden shadow-xl">
-        <div className="px-6 py-5 border-b border-[#1a2355]/10 dark:border-white/10">
+      <div className="bg-white dark:bg-[#0d1b3e] rounded-[2rem] border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/10 overflow-hidden shadow-xl">
+        <div className="px-6 py-5 border-b border-[#1a2355]/30 dark:border-white/10">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 bg-[#ee7c7e] rounded-xl flex items-center justify-center shrink-0">
               <GradingIcon sx={{ color: "white", fontSize: 18 }} />

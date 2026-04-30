@@ -19,7 +19,7 @@ export default function TehsilSlugPage() {
     if (!section || !item) {
         return (
             <>
-                <main className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4">
+                <main className="min-h-screen flex flex-col items-center justify-center bg-page px-4">
                     <h1 className="text-3xl font-bold text-[#1a2355] mb-4">Səhifə tapılmadı</h1>
                     <p className="text-gray-500 mb-8">Axtardığınız səhifə mövcud deyil.</p>
                     <Link href="/" className="flex items-center gap-1 bg-[#1a2355] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#1a2355]/90 transition-colors">

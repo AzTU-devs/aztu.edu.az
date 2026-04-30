@@ -109,7 +109,7 @@ export default function KomitePage() {
   const copy = COMMITTEE_DATA[lang];
 
   return (
-    <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden bg-white dark:bg-[#080f25]">
+    <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden bg-page dark:bg-[#080f25]">
       <div className="bg-mesh opacity-100" />
       <div className="bg-grid-premium opacity-10" />
       <div className="fixed top-1/4 -left-20 w-96 h-96 bg-blue-600/5 blur-[120px] rounded-full animate-pulse pointer-events-none" />
@@ -134,7 +134,7 @@ export default function KomitePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: "easeOut" }}
-              className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-xl rounded-[3rem] border-2 border-[#1a2355]/5 dark:border-white/5 p-10 md:p-12 shadow-2xl relative overflow-hidden"
+              className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-xl rounded-[3rem] border-2 border-[#1a2355]/30 dark:border-white/5 p-10 md:p-12 shadow-2xl relative overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#ee7c7e] to-transparent opacity-30" />
               <div className="flex items-center gap-4 mb-8">
@@ -180,7 +180,7 @@ export default function KomitePage() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.08 }}
-                    className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-xl rounded-[2rem] border-2 border-[#1a2355]/5 dark:border-white/5 p-6 shadow-lg relative overflow-hidden group hover:border-[#ee7c7e]/30 transition-all duration-300"
+                    className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-xl rounded-[2rem] border-2 border-[#1a2355]/30 dark:border-white/5 p-6 shadow-lg relative overflow-hidden group hover:border-[#ee7c7e]/30 transition-all duration-300"
                   >
                     <div className="absolute top-0 right-0 w-20 h-20 bg-[#ee7c7e]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-xl group-hover:scale-150 transition-transform pointer-events-none" />
                     <span className="text-[10px] font-black text-[#ee7c7e] uppercase tracking-[0.3em] block mb-3">
@@ -223,7 +223,7 @@ export default function KomitePage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.45, delay: idx * 0.07 }}
-                    className="flex items-center gap-4 bg-white/70 dark:bg-[#0d1b3e]/70 backdrop-blur-xl rounded-2xl border-2 border-[#1a2355]/5 dark:border-white/5 px-6 py-4 shadow-md hover:border-[#ee7c7e]/20 transition-all duration-300"
+                    className="flex items-center gap-4 bg-white/70 dark:bg-[#0d1b3e]/70 backdrop-blur-xl rounded-2xl border-2 border-[#1a2355]/30 dark:border-white/5 px-6 py-4 shadow-md hover:border-[#ee7c7e]/20 transition-all duration-300"
                   >
                     <div className="w-9 h-9 rounded-xl bg-[#1a2355]/5 dark:bg-white/5 flex items-center justify-center shrink-0">
                       <PersonIcon sx={{ fontSize: 18 }} className="text-[#1a2355]/40 dark:text-white/40" />
@@ -258,7 +258,7 @@ export default function KomitePage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.45, delay: idx * 0.07 }}
-                    className="flex items-center gap-4 bg-white/70 dark:bg-[#0d1b3e]/70 backdrop-blur-xl rounded-2xl border-2 border-[#1a2355]/5 dark:border-white/5 px-6 py-4 shadow-md hover:border-[#ee7c7e]/20 transition-all duration-300"
+                    className="flex items-center gap-4 bg-white/70 dark:bg-[#0d1b3e]/70 backdrop-blur-xl rounded-2xl border-2 border-[#1a2355]/30 dark:border-white/5 px-6 py-4 shadow-md hover:border-[#ee7c7e]/20 transition-all duration-300"
                   >
                     <div className="w-9 h-9 rounded-xl bg-[#ee7c7e]/10 flex items-center justify-center shrink-0">
                       <PersonIcon sx={{ fontSize: 18 }} className="text-[#ee7c7e]" />
@@ -289,9 +289,9 @@ export default function KomitePage() {
                 {copy.docs.map((doc, idx) => (
                   <div
                     key={idx}
-                    className="bg-white/70 dark:bg-[#0d1b3e]/70 backdrop-blur-xl rounded-[2rem] border-2 border-[#1a2355]/5 dark:border-white/5 overflow-hidden shadow-lg hover:border-[#ee7c7e]/30 transition-all duration-300"
+                    className="bg-white/70 dark:bg-[#0d1b3e]/70 backdrop-blur-xl rounded-[2rem] border-2 border-[#1a2355]/30 dark:border-white/5 overflow-hidden shadow-lg hover:border-[#ee7c7e]/30 transition-all duration-300"
                   >
-                    <div className="flex items-center gap-4 px-8 py-5 border-b border-[#1a2355]/5 dark:border-white/5">
+                    <div className="flex items-center gap-4 px-8 py-5 border-b border-[#1a2355]/30 dark:border-white/5">
                       <div className="w-10 h-10 rounded-xl bg-[#ee7c7e]/10 flex items-center justify-center shrink-0">
                         {doc.icon === "photos" ? (
                           <PhotoLibraryIcon sx={{ fontSize: 20 }} className="text-[#ee7c7e]" />

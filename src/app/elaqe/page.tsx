@@ -273,7 +273,7 @@ export default function ContactPage() {
                         transition={{ duration: 0.7, delay: 0.1 }}
                         className="lg:col-span-7"
                     >
-                        <div className="relative overflow-hidden bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[3rem] border-2 border-[#1a2355]/10 dark:border-[#1a2355]/30 p-10 md:p-14 shadow-2xl shadow-blue-900/5">
+                        <div className="relative overflow-hidden bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[3rem] border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 p-10 md:p-14 shadow-2xl shadow-blue-900/5">
                             <div className="absolute top-0 right-0 w-48 h-48 bg-[#ee7c7e]/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl pointer-events-none" />
 
                             <div className="relative z-10">
@@ -402,7 +402,7 @@ export default function ContactPage() {
                             {t.mapTitle}
                         </h2>
                     </div>
-                    <div className="relative rounded-[3rem] overflow-hidden border-2 border-[#1a2355]/10 dark:border-[#1a2355]/30 shadow-2xl shadow-blue-900/10 h-[450px] md:h-[520px]">
+                    <div className="relative rounded-[3rem] overflow-hidden border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 shadow-2xl shadow-blue-900/10 h-[450px] md:h-[520px]">
                         <iframe
                             title="AzTU Map"
                             src="https://www.google.com/maps?q=H.Cavid+25,+Baku,+Azerbaijan&output=embed"
@@ -434,7 +434,7 @@ function FormField({
                 {label}
             </span>
             <div
-                className={`flex ${align === "top" ? "items-start" : "items-center"} gap-4 px-5 py-4 rounded-2xl bg-white dark:bg-slate-950/40 border-2 border-[#1a2355]/10 dark:border-white/10 focus-within:border-[#ee7c7e] focus-within:ring-4 focus-within:ring-[#ee7c7e]/10 transition-all duration-300`}
+                className={`flex ${align === "top" ? "items-start" : "items-center"} gap-4 px-5 py-4 rounded-2xl bg-white dark:bg-slate-950/40 border-2 border-[#1a2355]/30 dark:border-white/10 focus-within:border-[#ee7c7e] focus-within:ring-4 focus-within:ring-[#ee7c7e]/10 transition-all duration-300`}
             >
                 <span className={`text-[#1a2355]/40 dark:text-white/40 ${align === "top" ? "mt-1" : ""}`}>{icon}</span>
                 {children}

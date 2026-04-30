@@ -111,7 +111,7 @@ export default function AnnouncementDetailPage({ params }: { params: Promise<{ i
                 style={{ scaleX: scrollYProgress }}
             />
 
-            <main ref={containerRef} className="min-h-screen bg-gray-50">
+            <main ref={containerRef} className="min-h-screen bg-page">
 
                 {loading && (
                     <div className="flex items-center justify-center min-h-screen">

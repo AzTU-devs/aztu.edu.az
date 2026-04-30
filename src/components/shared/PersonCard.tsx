@@ -32,17 +32,17 @@ export default function PersonCard({
   href,
 }: Props) {
   const avatarSize =
-    size === "lg" ? "w-24 h-24" : size === "sm" ? "w-12 h-12" : "w-16 h-16";
-  const iconSize = size === "lg" ? 40 : size === "sm" ? 20 : 28;
+    size === "lg" ? "w-32 h-32" : size === "sm" ? "w-16 h-16" : "w-24 h-24";
+  const iconSize = size === "lg" ? 56 : size === "sm" ? 28 : 44;
 
   const cardContent = (
-    <div className={`group relative bg-white backdrop-blur-xl rounded-[1.5rem] border-2 border-[#1a2355]/5 p-4 flex flex-col items-center text-center gap-3 transition-all duration-500 hover:-translate-y-1 hover:border-[#ee7c7e]/40 hover:shadow-xl hover:shadow-blue-900/5 overflow-hidden${href ? " cursor-pointer" : ""}`}>
+    <div className={`group relative bg-white backdrop-blur-xl rounded-[1.5rem] border-2 border-[#1a2355]/30 p-4 flex flex-col items-center text-center gap-3 transition-all duration-500 hover:-translate-y-1 hover:border-[#ee7c7e] hover:shadow-xl hover:shadow-[#1a2355]/20 overflow-hidden${href ? " cursor-pointer" : ""}`}>
       {/* Background Decorative Element */}
       <div className="absolute -top-10 -right-10 w-24 h-24 bg-[#ee7c7e]/5 blur-2xl rounded-full group-hover:scale-150 transition-transform duration-700" />
       
       {/* Avatar */}
       <div
-        className={`${avatarSize} rounded-full bg-gray-50 border-2 border-[#1a2355]/5 flex items-center justify-center overflow-hidden flex-shrink-0 relative z-10 group-hover:border-[#ee7c7e]/50 transition-colors duration-500 shadow-sm`}
+        className={`${avatarSize} rounded-full bg-gray-50 border-2 border-[#1a2355]/30 flex items-center justify-center overflow-hidden flex-shrink-0 relative z-10 group-hover:border-[#ee7c7e]/50 transition-colors duration-500 shadow-sm`}
       >
         {photoUrl ? (
           <img

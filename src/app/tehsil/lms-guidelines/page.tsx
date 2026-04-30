@@ -88,7 +88,7 @@ export default function LMSGuidelinesPage() {
     if (!data) return null;
 
     return (
-        <main className="min-h-screen bg-white dark:bg-[#0a0c1a] transition-colors duration-500">
+        <main className="min-h-screen bg-page dark:bg-[#0a0c1a] transition-colors duration-500">
              <AboutPageBanner
                 eyebrow={data.eyebrow}
                 title={data.title}

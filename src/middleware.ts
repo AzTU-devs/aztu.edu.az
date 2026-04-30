@@ -120,7 +120,8 @@ const SLUG_MAP: Record<string, string> = {
     "rehbetlik-ve-idareetme": "leadership-and-management",
     "rector": "rektor",
     "rektor": "rector",
-    "rectors-office": "rektorluq",
+    "rectors-office": "rektoratliq",
+    "rektoratliq": "rectors-office",
     "rektorluq": "rectors-office",
     "vice-rector": "prorektor",
     "prorektor": "vice-rector",
@@ -128,10 +129,31 @@ const SLUG_MAP: Record<string, string> = {
     "elmi-sura": "scientific-board",
     "partner-universities-and-related-institutes": "terefdas-universitet-ve-elaqeli-institutlar",
     "terefdas-universitet-ve-elaqeli-institutlar": "partner-universities-and-related-institutes",
+    "tau": "turk-azerbaycan-universiteti-tau",
+    "turk-azerbaycan-universiteti-tau": "tau",
+    "iit": "informasiya-texnalogiyalari-institutu",
+    "informasiya-texnalogiyalari-institutu": "iit",
+    "ics": "idareetme-sistemleri-insitutu",
+    "idareetme-sistemleri-insitutu": "ics",
+    "baku-technical-colleges": "baki-texniki-kollecleri",
+    "baki-texniki-kollecleri": "baku-technical-colleges",
+    "baku-state-colleges": "baki-rabite-ve-neqliyayt-dovlet-kollecleri",
+    "baki-rabite-ve-neqliyayt-dovlet-kollecleri": "baku-state-colleges",
 
     // Management sub-slugs
     "structural-units": "struktur-bolmeler",
     "struktur-bolmeler": "structural-units",
+    "leadership": "rehberlik",
+    "rehberlik": "leadership",
+    "offices-and-centers": "ofis-ve-merkezler",
+    "ofis-ve-merkezler": "offices-and-centers",
+    "nabran-recreation-center": "nabran-istirahet-merkezi",
+    "nabran-istirahet-merkezi": "nabran-recreation-center",
+    "library-information-center": "kitabxana-informasiya-merkezi",
+    "kitabxana-informasiya-merkezi": "library-information-center",
+    "career-and-employment-center": "karyera-ve-mesgulluq-merkezi",
+    "karyera-ve-mesgulluq-merkezi": "career-and-employment-center",
+    "lifelong-education": "omurboyu-tehsil",
 
     // Community sub-slugs
     "aztus-honors": "aztu-nun-fexrileri",
@@ -158,7 +180,7 @@ const SLUG_MAP: Record<string, string> = {
     "student-trade-union": "telebe-hemkarlar-ittifaqi",
     "telebe-hemkarlar-ittifaqi": "student-trade-union",
     "lifelong-learning": "omurboyu-tehsil",
-    "omurboyu-tehsil": "lifelong-learning",
+    "omurboyu-tehsil": "lifelong-education",
     "student-youth-organization": "telebe-gencler-teskilati",
     "telebe-gencler-teskilati": "student-youth-organization",
 
@@ -215,8 +237,8 @@ const SLUG_MAP: Record<string, string> = {
     // Policies & Documents
     "regulatory-documents": "normativ-senedler",
     "normativ-senedler": "regulatory-documents",
-    "umumi-siyasetler": "general-policies",
-    "general-policies": "umumi-siyasetler",
+    "siyaset-senedleri": "policy-documents",
+    "policy-documents": "siyaset-senedleri",
 };
 
 // Key EN slugs to help identify language direction in mapping
@@ -227,18 +249,21 @@ const EN_SLUGS = new Set([
     "internal-grant-programs", "seminars-and-trainings", "research-projects", "intellectual-property-and-patents",
     "research-institutes", "research-laboratories", "vision-mission", "vizion-mission-goal", "history-of-aztu",
     "75th-anniversary-film", "leadership-and-management", "rector", "rectors-office", "vice-rector", "scientific-board",
-    "partner-universities-and-related-institutes", "structural-units", "aztus-honors", "honorary-doctors", "our-heroes",
+    "partner-universities-and-related-institutes", "tau", "iit", "ics", "baku-technical-colleges", "baku-state-colleges",
+    "structural-units", "aztus-honors", "honorary-doctors", "our-heroes",
     "former-rectors", "rankings", "campus-life", "aztu-polyclinic", "clubs", "sports",
     "unions-and-organizations", "alliances-and-organizations", "trade-union", "student-trade-union",
     "lifelong-learning", "student-youth-organization",
     "international-partnership", "double-degree-programs", "international-projects", "partner-universities",
     "exchange-programs", "orhun-exchange-program", "privacy-policy", "terms-conditions",
     "education-and-programs", "higher-education-institute-hei", "faculties",
+    "offices-and-centers", "nabran-recreation-center", "library-information-center",
+    "career-and-employment-center", "lifelong-education",
     "international-relations", "specialties", "departments",
-    "specializations", "dean", "deputy-deans", "scientific-council", "academic-staff", "staff", "contact",
+    "specializations", "dean", "deputy-deans", "scientific-council", "academic-staff", "staff", "contact", "leadership",
     "qa",
     "students",
-    "regulatory-documents", "general-policies",
+    "regulatory-documents", "policy-documents",
     ]);
 
 export function middleware(request: NextRequest) {
@@ -325,14 +350,23 @@ export function middleware(request: NextRequest) {
         } else if (segments_rest[1] === "rankings" || segments_rest[1] === "reytinqler") {
             segments_rest = ["about", "rankings"];
         } else if (segments_rest[1] === "regulatory-documents" || segments_rest[1] === "normativ-senedler") {
-            if (segments_rest[2] === "general-policies" || segments_rest[2] === "umumi-siyasetler") {
+            if (segments_rest[2] === "policy-documents" || segments_rest[2] === "siyaset-senedleri") {
                 segments_rest = ["about", "general-policies"];
             }
         } else if (segments_rest[1] === "leadership-and-management" || segments_rest[1] === "rehbetlik-ve-idareetme") {
             if (segments_rest[2] === "rector" || segments_rest[2] === "rektor") segments_rest = ["about", "rector"];
-            else if (segments_rest[2] === "rectors-office" || segments_rest[2] === "rektorluq") segments_rest = ["about", "rectors-office"];
-            else if (segments_rest[2] === "vice-rector" || segments_rest[2] === "prorektor") segments_rest = ["about", "vice-rector"];
+            else if (segments_rest[2] === "rectors-office" || segments_rest[2] === "rektoratliq" || segments_rest[2] === "rektorluq") segments_rest = ["about", "rectors-office"];
+            else if (segments_rest[2] === "vice-rector" || segments_rest[2] === "prorektor") {
+                if (segments_rest[3]) segments_rest = ["about", "vice-rector", segments_rest[3]];
+                else segments_rest = ["about", "vice-rector"];
+            }
             else if (segments_rest[2] === "scientific-board" || segments_rest[2] === "elmi-sura") segments_rest = ["about", "scientific-board"];
+        } else if (segments_rest[1] === "partner-universities-and-related-institutes" || segments_rest[1] === "terefdas-universitet-ve-elaqeli-institutlar") {
+            if (segments_rest[2] === "tau" || segments_rest[2] === "turk-azerbaycan-universiteti-tau") segments_rest = ["about", "tau"];
+            else if (segments_rest[2] === "iit" || segments_rest[2] === "informasiya-texnalogiyalari-institutu") segments_rest = ["about", "iit"];
+            else if (segments_rest[2] === "ics" || segments_rest[2] === "idareetme-sistemleri-insitutu") segments_rest = ["about", "ics"];
+            else if (segments_rest[2] === "baku-technical-colleges" || segments_rest[2] === "baki-texniki-kollecleri") segments_rest = ["about", "baku-technical-colleges"];
+            else if (segments_rest[2] === "baku-state-colleges" || segments_rest[2] === "baki-rabite-ve-neqliyayt-dovlet-kollecleri") segments_rest = ["about", "baku-state-colleges"];
         }
     } else if (segments_rest[0] === "academic" || segments_rest[0] === "akademik") {
         if ((segments_rest[1] === "education-and-programs" || segments_rest[1] === "tehsil-ve-proqramlar") &&
@@ -397,6 +431,29 @@ export function middleware(request: NextRequest) {
         }
     } else if (segments_rest[0] === "management" || segments_rest[0] === "idareetme") {
         segments_rest[0] = "idareetme";
+        if (segments_rest[1] === "offices-and-centers" || segments_rest[1] === "ofis-ve-merkezler") {
+            segments_rest[1] = "ofis-ve-merkezler";
+            const officeMap: Record<string, string> = {
+                "nabran-recreation-center": "nabran-istirahet-merkezi",
+                "library-information-center": "kitabxana-informasiya-merkezi",
+                "career-and-employment-center": "karyera-ve-mesgulluq-merkezi",
+                "lifelong-education": "omurboyu-tehsil",
+            };
+            if (segments_rest[2] && officeMap[segments_rest[2]]) {
+                segments_rest[2] = officeMap[segments_rest[2]];
+            }
+        } else if (segments_rest[1] === "structural-units" || segments_rest[1] === "struktur-bolmeler") {
+            segments_rest[1] = "struktur-bolmeler";
+            // segments_rest[2] is the department slug (kept as-is; API resolves by lang)
+            if (segments_rest[3]) {
+                const subMap: Record<string, string> = {
+                    "about": "haqqimizda",
+                    "leadership": "rehberlik",
+                    "staff": "emekdaslar",
+                };
+                if (subMap[segments_rest[3]]) segments_rest[3] = subMap[segments_rest[3]];
+            }
+        }
     } else if (segments_rest[0] === "students" || segments_rest[0] === "telebeler") {
         segments_rest[0] = "tehsil";
         const lastSeg = segments_rest[segments_rest.length - 1];

@@ -247,7 +247,7 @@ function FAQAccordion({
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all duration-500 ${
                     isOpen 
                     ? "border-[#ee7c7e] text-[#ee7c7e] rotate-180" 
-                    : "border-[#1a2355]/10 dark:border-white/10 text-[#1a2355]/30 dark:text-white/30"
+                    : "border-[#1a2355]/30 dark:border-white/10 text-[#1a2355]/30 dark:text-white/30"
                 }`}>
                     <ExpandMoreIcon sx={{ fontSize: 20 }} />
                 </div>

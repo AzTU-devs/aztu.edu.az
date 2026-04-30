@@ -2,138 +2,149 @@
 
 import { use, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import SectionBlock from "@/components/shared/SectionBlock";
 import ComingSoon from "@/components/shared/ComingSoon";
+import StaffPageHeader from "@/components/faculty/StaffPageHeader";
+import { STAFF_PALETTES } from "@/components/faculty/StaffCard";
 import { getFacultyBySlug } from "@/services/facultyService/facultyService";
 import type { FacultyDetail, PersonnelItem } from "@/types/faculty";
 import { useLanguage } from "@/context/LanguageContext";
 import GroupsIcon from "@mui/icons-material/Groups";
+import GavelIcon from "@mui/icons-material/Gavel";
 
 interface Props {
-  params: Promise<{ facultyId: string }>;
+    params: Promise<{ facultyId: string }>;
 }
 
 export default function ElmiSuraPage({ params }: Props) {
-  const { facultyId: facultySlug } = use(params);
-  const { lang: currentLang } = useLanguage();
-  const [faculty, setFaculty] = useState<FacultyDetail | null>(null);
-  const [loading, setLoading] = useState(true);
+    const { facultyId: facultySlug } = use(params);
+    const { lang: currentLang } = useLanguage();
+    const [faculty, setFaculty] = useState<FacultyDetail | null>(null);
+    const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    setLoading(true);
-    getFacultyBySlug(facultySlug, currentLang)
-      .then((result) => {
-        setFaculty(result);
-        setLoading(false);
-      })
-      .catch(() => {
-        setFaculty(null);
-        setLoading(false);
-      });
-  }, [facultySlug, currentLang]);
+    useEffect(() => {
+        setLoading(true);
+        getFacultyBySlug(facultySlug, currentLang)
+            .then((result) => {
+                setFaculty(result);
+                setLoading(false);
+            })
+            .catch(() => {
+                setFaculty(null);
+                setLoading(false);
+            });
+    }, [facultySlug, currentLang]);
 
-  const members: PersonnelItem[] = faculty?.scientific_council ?? [];
+    const members: PersonnelItem[] = faculty?.scientific_council ?? [];
 
-  return (
-    <div className="space-y-10">
-      <SectionBlock title={currentLang === "az" ? "Fakültə elmi şurası" : "Faculty Scientific Council"} accent>
-        <p className="text-gray-500 dark:text-white/40 text-sm font-black uppercase tracking-[0.2em] mb-12 max-w-2xl leading-relaxed">
-          {currentLang === "az" 
-            ? "Fakültənin elmi və tədris fəaliyyətini tənzimləyən ali kollegial idarəetmə orqanının tərkibi." 
-            : "Composition of the supreme collegial governing body regulating the scientific and academic activities of the faculty."}
-        </p>
+    return (
+        <div className="space-y-10">
+            <StaffPageHeader
+                icon={GavelIcon}
+                eyebrow={currentLang === "az" ? "Kollegial idarəetmə" : "Collegial governance"}
+                title={currentLang === "az" ? "Fakültə Elmi Şurası" : "Faculty Scientific Council"}
+                description={
+                    currentLang === "az"
+                        ? "Fakültənin elmi və tədris fəaliyyətini tənzimləyən ali kollegial idarəetmə orqanının tərkibi."
+                        : "Composition of the supreme collegial body that governs scientific and academic work of the faculty."
+                }
+                stats={
+                    members.length > 0
+                        ? [
+                              {
+                                  label: currentLang === "az" ? "Üzv" : "Members",
+                                  value: members.length,
+                                  icon: GroupsIcon,
+                              },
+                          ]
+                        : undefined
+                }
+            />
 
-        {loading ? (
-          <div className="animate-pulse space-y-6">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} className="h-16 rounded-[1.5rem] bg-gray-100 dark:bg-white/5" />
-            ))}
-          </div>
-        ) : members.length === 0 ? (
-          <ComingSoon label={currentLang === "az" ? "Elmi şura üzvləri haqqında məlumat əlavə ediləcək" : "Information about scientific council members will be added soon"} />
-        ) : (
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-            className="overflow-hidden rounded-[2.5rem] border border-gray-100 dark:border-white/10 bg-white dark:bg-white/5 shadow-[0_40px_80px_-20px_rgba(26,35,85,0.1)] backdrop-blur-sm"
-          >
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className="bg-gray-50 dark:bg-white/10">
-                    <th className="py-8 px-8 text-[10px] font-black uppercase tracking-[0.3em] text-[#1a2355] dark:text-white/50 border-b border-gray-100 dark:border-white/10">
-                      №
-                    </th>
-                    <th className="py-8 px-8 text-[10px] font-black uppercase tracking-[0.3em] text-[#1a2355] dark:text-white/50 border-b border-gray-100 dark:border-white/10">
-                      {currentLang === "az" ? "Soyadı, adı, ata adı" : "Full Name"}
-                    </th>
-                    <th className="py-8 px-8 text-[10px] font-black uppercase tracking-[0.3em] text-[#1a2355] dark:text-white/50 border-b border-gray-100 dark:border-white/10">
-                      {currentLang === "az" ? "Vəzifəsi" : "Duty / Position"}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-50 dark:divide-white/5">
-                  {members.map((m, idx) => {
-                    const fullName = [m.first_name, m.last_name, m.father_name].filter(Boolean).join(" ");
-                    return (
-                      <motion.tr
-                        key={m.id}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: idx * 0.05 }}
-                        className="hover:bg-gray-50/50 dark:hover:bg-white/5 transition-all duration-300 group"
-                      >
-                        <td className="py-6 px-8">
-                           <div className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-white/10 flex items-center justify-center text-[10px] font-black text-gray-400 dark:text-white/30 group-hover:bg-[#ee7c7e] group-hover:text-white transition-all">
-                             {String(idx + 1).padStart(2, '0')}
-                           </div>
-                        </td>
-                        <td className="py-6 px-8">
-                          <span className="font-black text-base text-[#1a2355] dark:text-white block group-hover:text-[#ee7c7e] transition-colors">{fullName || "—"}</span>
-                          {m.scientific_degree && (
-                            <span className="text-[10px] font-bold text-gray-400 dark:text-white/30 uppercase tracking-widest mt-1 block">{m.scientific_degree}</span>
-                          )}
-                        </td>
-                        <td className="py-6 px-8">
-                           <div className="inline-flex px-4 py-1.5 rounded-xl bg-[#1a2355]/5 dark:bg-white/5 border border-[#1a2355]/10 dark:border-white/10 text-[#1a2355] dark:text-white/70 text-[11px] font-black uppercase tracking-wider group-hover:border-[#ee7c7e]/30 group-hover:text-[#ee7c7e] transition-all">
-                             {m.duty || "—"}
-                           </div>
-                        </td>
-                      </motion.tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </motion.div>
-        )}
-      </SectionBlock>
+            {loading ? (
+                <div className="space-y-3">
+                    {Array.from({ length: 8 }).map((_, i) => (
+                        <div
+                            key={i}
+                            className="h-20 rounded-2xl bg-gray-100 dark:bg-white/5 animate-pulse"
+                        />
+                    ))}
+                </div>
+            ) : members.length === 0 ? (
+                <ComingSoon
+                    label={
+                        currentLang === "az"
+                            ? "Elmi şura üzvləri haqqında məlumat əlavə ediləcək"
+                            : "Information about scientific council members will be added soon"
+                    }
+                />
+            ) : (
+                <div className="space-y-3">
+                    {members.map((m, idx) => {
+                        const palette = STAFF_PALETTES[idx % STAFF_PALETTES.length];
+                        const fullName = [m.first_name, m.last_name, m.father_name]
+                            .filter(Boolean)
+                            .join(" ");
+                        return (
+                            <motion.div
+                                key={m.id}
+                                initial={{ opacity: 0, x: -10 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, margin: "-50px" }}
+                                transition={{ delay: Math.min(idx * 0.03, 0.3), duration: 0.4 }}
+                                className="group relative bg-white dark:bg-slate-900/70 backdrop-blur-xl rounded-2xl border-2 border-[#1a2355]/10 dark:border-white/10 overflow-hidden hover:-translate-x-0.5 hover:border-transparent hover:shadow-xl transition-all duration-300"
+                            >
+                                <div
+                                    className={`absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b ${palette.gradient}`}
+                                />
+                                <div
+                                    className={`absolute inset-0 bg-gradient-to-r ${palette.soft} opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none`}
+                                />
 
-      {/* Decorative Summary Card */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.98 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        className="relative p-10 rounded-[3rem] bg-[#1a2355] text-white shadow-2xl overflow-hidden group"
-      >
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-1000" />
-        <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
-           <div className="w-20 h-20 rounded-[2rem] bg-[#ee7c7e] flex items-center justify-center flex-shrink-0 shadow-[0_0_30px_rgba(238,124,126,0.3)]">
-              <GroupsIcon sx={{ fontSize: 40 }} />
-           </div>
-           <div>
-              <h4 className="text-2xl font-black uppercase tracking-tighter mb-4">
-                {currentLang === "az" ? "Kollektiv İdarəetmə" : "Collective Governance"}
-              </h4>
-              <p className="text-white/60 font-medium leading-relaxed max-w-2xl">
-                {currentLang === "az" 
-                  ? "Elmi Şura fakültənin strateji inkişafını, tədrisin keyfiyyətini və elmi fəaliyyətini tənzimləyən əsas qərar qəbul edici orqandır." 
-                  : "The Scientific Council is the primary decision-making body regulating the strategic development, academic quality, and scientific activities of the faculty."}
-              </p>
-           </div>
+                                <div className="relative z-10 flex items-center gap-4 md:gap-6 p-4 md:p-5 pl-6 md:pl-8">
+                                    {/* Number badge */}
+                                    <div
+                                        className={`shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${palette.gradient} text-white flex items-center justify-center shadow-md ${palette.glow} text-sm font-black tabular-nums`}
+                                    >
+                                        {String(idx + 1).padStart(2, "0")}
+                                    </div>
+
+                                    {/* Name + degree */}
+                                    <div className="flex-1 min-w-0">
+                                        <p className="text-base md:text-lg font-black text-[#1a2355] dark:text-white leading-tight tracking-tight group-hover:text-[#ee7c7e] transition-colors truncate">
+                                            {fullName || "—"}
+                                        </p>
+                                        {m.scientific_degree && (
+                                            <p className="text-[10px] font-bold text-gray-500 dark:text-slate-400 uppercase tracking-widest mt-1 truncate">
+                                                {m.scientific_degree}
+                                            </p>
+                                        )}
+                                    </div>
+
+                                    {/* Duty */}
+                                    {m.duty && (
+                                        <span
+                                            className={`hidden sm:inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border ${palette.chip}`}
+                                        >
+                                            {m.duty}
+                                        </span>
+                                    )}
+                                </div>
+
+                                {/* Mobile duty under */}
+                                {m.duty && (
+                                    <div className="sm:hidden relative z-10 px-6 pb-4">
+                                        <span
+                                            className={`inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border ${palette.chip}`}
+                                        >
+                                            {m.duty}
+                                        </span>
+                                    </div>
+                                )}
+                            </motion.div>
+                        );
+                    })}
+                </div>
+            )}
         </div>
-      </motion.div>
-    </div>
-  );
+    );
 }

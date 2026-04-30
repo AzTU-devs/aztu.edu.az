@@ -12,7 +12,7 @@
 }
 
 :root {
-  --background: #ffffff;
+  --background: #eef1f8;
   --foreground: #1a2355;
   --primary: #1a2355;
   --accent: #ee7c7e;
@@ -55,12 +55,12 @@ body {
   height: 100%;
   z-index: -1;
   background-color: var(--background);
-  background-image: 
-    radial-gradient(at 0% 0%, rgba(26, 35, 85, 0.12) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(238, 124, 126, 0.18) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(238, 124, 126, 0.15) 0px, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(26, 35, 85, 0.05) 0px, transparent 50%);
+  background-image:
+    radial-gradient(at 0% 0%, rgba(26, 35, 85, 0.25) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(238, 124, 126, 0.22) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(26, 35, 85, 0.20) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(238, 124, 126, 0.18) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(26, 35, 85, 0.12) 0px, transparent 50%);
   filter: blur(60px);
   opacity: 1;
 }
@@ -120,7 +120,7 @@ p {
 
 /* Premium Border Styles - Vibrant Colored Borders on White */
 .border-premium {
-  border: 2px solid rgba(26, 35, 85, 0.1);
+  border: 2px solid rgba(26, 35, 85, 0.3);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -185,4 +185,32 @@ p {
 
 .text-balance {
   text-wrap: balance;
+}
+
+/* ============================================================
+   PAGE BACKGROUND — dotted AzTU-blue pattern for non-home pages
+   ============================================================ */
+.bg-page {
+  position: relative;
+  background-color: #eef1f8;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(26, 35, 85, 0.18) 1px, transparent 0),
+    radial-gradient(at 12% 0%, rgba(26, 35, 85, 0.10) 0px, transparent 45%),
+    radial-gradient(at 88% 0%, rgba(238, 124, 126, 0.10) 0px, transparent 45%),
+    radial-gradient(at 88% 100%, rgba(26, 35, 85, 0.08) 0px, transparent 45%),
+    radial-gradient(at 12% 100%, rgba(238, 124, 126, 0.08) 0px, transparent 45%);
+  background-size: 22px 22px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-attachment: fixed, fixed, fixed, fixed, fixed;
+}
+
+.dark .bg-page {
+  background-color: #0a0c1a;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0),
+    radial-gradient(at 12% 0%, rgba(26, 35, 85, 0.35) 0px, transparent 45%),
+    radial-gradient(at 88% 0%, rgba(238, 124, 126, 0.18) 0px, transparent 45%),
+    radial-gradient(at 88% 100%, rgba(26, 35, 85, 0.30) 0px, transparent 45%),
+    radial-gradient(at 12% 100%, rgba(238, 124, 126, 0.15) 0px, transparent 45%);
+  background-size: 22px 22px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-attachment: fixed, fixed, fixed, fixed, fixed;
 }

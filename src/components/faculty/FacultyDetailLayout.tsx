@@ -36,45 +36,31 @@ export default function FacultyDetailLayout({ children, params }: Props) {
     const institutesListPath = `/${currentLang}/${currentLang === "az" ? "akademik/fakulteler" : "academic/faculties"}`;
 
     return (
-        <div className="min-h-screen transition-colors overflow-hidden bg-white">
+        <div className="min-h-screen transition-colors overflow-hidden bg-page">
             {/* Stunning Banner - VIBRANT BLUE */}
             <div className="relative overflow-hidden bg-[#0b1330] pt-32 pb-16 px-4 md:px-8 lg:px-12 w-full min-h-[450px] flex flex-col justify-end">
-                {/* Background Texture/Pattern */}
-                <div className="absolute inset-0 opacity-[0.05] pointer-events-none z-10" 
-                     style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
-
-                {/* Video Background */}
+                {/* Video Background — single smooth overlay so video is clearly visible */}
                 <div className="absolute inset-0 z-0">
                     <video
+                        key="academic-video"
                         autoPlay
                         loop
                         muted
                         playsInline
-                        className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay"
+                        className="absolute inset-0 w-full h-full object-cover"
                     >
-                        <source src="/heroBgVideos/research.mp4" type="video/mp4" />
+                        <source
+                            src={`${process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site"}/media/prod/hero/hero_videos/academic.mp4`}
+                            type="video/mp4"
+                        />
                     </video>
+                    {/* Soft uniform tint + slightly stronger fade at bottom for text contrast */}
+                    <div className="absolute inset-0 bg-[#0b1330]/30" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0b1330]/15 to-[#0b1330]/65" />
                 </div>
 
-                {/* Background Image of AzTU - fallback or overlay */}
-                <div
-                    className="absolute inset-0 z-0 opacity-10 grayscale-[0.5]"
-                    style={{
-                        backgroundImage: 'url("/aztu.png")',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                    }}
-                />
-                
-                {/* Multi-layer Overlays for Vibrancy on Blue */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1330] via-[#0b1330]/80 to-transparent z-0" />
-                <div className="absolute inset-0 bg-gradient-to-br from-[#1a2355]/60 to-transparent z-0" />
-
-                {/* Vibrant Glow Orbs */}
-                <div className="absolute inset-0 overflow-hidden opacity-30 z-10 pointer-events-none">
-                    <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-blue-500/20 blur-[200px] rounded-full translate-x-1/3 -translate-y-1/3" />
-                    <div className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-[#ee7c7e]/15 blur-[150px] rounded-full -translate-x-1/4 translate-y-1/4" />
-                </div>
+                {/* Subtle accent glow only, kept behind text */}
+                <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-[#ee7c7e]/10 blur-[140px] rounded-full pointer-events-none z-0" />
                 
                 <div className="relative z-20 w-full">
                     <motion.nav 

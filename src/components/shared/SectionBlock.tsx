@@ -20,16 +20,20 @@ export default function SectionBlock({ title, children, className = "", accent =
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`
         relative rounded-[2rem] p-6 md:p-10 transition-all duration-500 overflow-hidden
-        ${dark 
-          ? 'bg-[#1a2355] text-white shadow-2xl border-2 border-[#ee7c7e]/30' 
-          : 'bg-white/80 backdrop-blur-3xl text-[#1a2355] shadow-2xl border-2 border-[#1a2355]/5 group hover:border-[#ee7c7e]/30'
+        ${dark
+          ? 'bg-[#1a2355] text-white shadow-2xl shadow-[#1a2355]/30 border-2 border-[#ee7c7e]/40'
+          : 'bg-white backdrop-blur-3xl text-[#1a2355] shadow-2xl shadow-[#1a2355]/15 border-2 border-[#1a2355]/30 group hover:border-[#ee7c7e]'
         }
         ${className}
       `}
     >
+      {/* Top accent stripe */}
+      {!dark && (
+        <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#1a2355] via-[#ee7c7e] to-[#1a2355]" />
+      )}
       {/* Background Glows */}
-      <div className="absolute top-0 right-0 w-48 h-48 bg-[#ee7c7e]/5 blur-[80px] rounded-full pointer-events-none group-hover:bg-[#ee7c7e]/10 transition-colors" />
-      <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-600/5 blur-[80px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 right-0 w-48 h-48 bg-[#ee7c7e]/10 blur-[80px] rounded-full pointer-events-none group-hover:bg-[#ee7c7e]/20 transition-colors" />
+      <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#1a2355]/10 blur-[80px] rounded-full pointer-events-none" />
 
       {title && (
         <div className="flex flex-col gap-3 mb-8">

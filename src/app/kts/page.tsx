@@ -79,7 +79,7 @@ export default function KtsPage() {
   }[lang];
 
   return (
-    <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden bg-white dark:bg-[#080f25]">
+    <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden bg-page dark:bg-[#080f25]">
       <div className="bg-mesh opacity-100" />
       <div className="bg-grid-premium opacity-10" />
       <div className="fixed top-1/4 -left-20 w-96 h-96 bg-blue-600/5 blur-[120px] rounded-full animate-pulse pointer-events-none" />
@@ -103,14 +103,14 @@ export default function KtsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: "easeOut" }}
-              className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-3xl rounded-[3rem] border-2 border-[#1a2355]/5 dark:border-white/5 p-10 md:p-14 shadow-2xl shadow-blue-900/5 relative overflow-hidden"
+              className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-3xl rounded-[3rem] border-2 border-[#1a2355]/30 dark:border-white/5 p-10 md:p-14 shadow-2xl shadow-blue-900/5 relative overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#ee7c7e] to-transparent opacity-30" />
               <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight mb-6 flex items-center gap-3">
                 <span className="w-2 h-8 bg-[#ee7c7e] rounded-full" />
                 {copy.aboutTitle}
               </h2>
-              <div className="relative w-full rounded-[2rem] overflow-hidden mb-8 border-2 border-[#1a2355]/5 dark:border-white/5">
+              <div className="relative w-full rounded-[2rem] overflow-hidden mb-8 border-2 border-[#1a2355]/30 dark:border-white/5">
                 <Image
                   src="/kts/qa-1.png"
                   alt="Keyfiyyətin Təminatı"
@@ -130,7 +130,7 @@ export default function KtsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.05, ease: "easeOut" }}
-              className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-3xl rounded-[3rem] border-2 border-[#1a2355]/5 dark:border-white/5 p-10 md:p-14 shadow-2xl shadow-blue-900/5 relative overflow-hidden"
+              className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-3xl rounded-[3rem] border-2 border-[#1a2355]/30 dark:border-white/5 p-10 md:p-14 shadow-2xl shadow-blue-900/5 relative overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-30" />
               <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight mb-6 flex items-center gap-3">
@@ -140,7 +140,7 @@ export default function KtsPage() {
                 {copy.kpiTitle}
               </h2>
 
-              <div className="relative w-full rounded-[2rem] overflow-hidden mb-8 border-2 border-[#1a2355]/5 dark:border-white/5">
+              <div className="relative w-full rounded-[2rem] overflow-hidden mb-8 border-2 border-[#1a2355]/30 dark:border-white/5">
                 <Image
                   src="/kts/qa-2.png"
                   alt="AzTU KPI Dashboard Overview"
@@ -161,7 +161,7 @@ export default function KtsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-              className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-3xl rounded-[3rem] border-2 border-[#1a2355]/5 dark:border-white/5 p-10 md:p-14 shadow-2xl shadow-blue-900/5 relative overflow-hidden"
+              className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-3xl rounded-[3rem] border-2 border-[#1a2355]/30 dark:border-white/5 p-10 md:p-14 shadow-2xl shadow-blue-900/5 relative overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-30" />
               <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight mb-6 flex items-center gap-3">
@@ -170,7 +170,7 @@ export default function KtsPage() {
                 </span>
                 {copy.cultureTitle}
               </h2>
-              <div className="relative w-full rounded-[2rem] overflow-hidden mb-8 border-2 border-[#1a2355]/5 dark:border-white/5">
+              <div className="relative w-full rounded-[2rem] overflow-hidden mb-8 border-2 border-[#1a2355]/30 dark:border-white/5">
                 <Image
                   src="/kts/qa-3.png"
                   alt="Keyfiyyət mədəniyyəti"
@@ -203,7 +203,7 @@ export default function KtsPage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.08 }}
-                    className="bg-white/70 dark:bg-[#0d1b3e]/70 backdrop-blur-xl rounded-[2rem] border-2 border-[#1a2355]/5 dark:border-white/5 overflow-hidden shadow-lg hover:border-[#ee7c7e]/30 transition-all duration-300 group"
+                    className="bg-white/70 dark:bg-[#0d1b3e]/70 backdrop-blur-xl rounded-[2rem] border-2 border-[#1a2355]/30 dark:border-white/5 overflow-hidden shadow-lg hover:border-[#ee7c7e]/30 transition-all duration-300 group"
                   >
                     <div className="flex items-center gap-4 px-8 py-5">
                       <div className="w-8 h-8 rounded-xl bg-[#ee7c7e]/10 flex items-center justify-center shrink-0">
@@ -227,7 +227,7 @@ export default function KtsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-              className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-3xl rounded-[3rem] border-2 border-[#1a2355]/5 dark:border-white/5 p-10 md:p-14 shadow-2xl shadow-blue-900/5 relative overflow-hidden"
+              className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-3xl rounded-[3rem] border-2 border-[#1a2355]/30 dark:border-white/5 p-10 md:p-14 shadow-2xl shadow-blue-900/5 relative overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent opacity-30" />
               <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight mb-6 flex items-center gap-3">
@@ -236,7 +236,7 @@ export default function KtsPage() {
                 </span>
                 {copy.surveysTitle}
               </h2>
-              <div className="relative w-full rounded-[2rem] overflow-hidden mb-8 border-2 border-[#1a2355]/5 dark:border-white/5">
+              <div className="relative w-full rounded-[2rem] overflow-hidden mb-8 border-2 border-[#1a2355]/30 dark:border-white/5">
                 <Image
                   src="/kts/qa-4.png"
                   alt="Sorğular"
@@ -262,7 +262,7 @@ export default function KtsPage() {
                   <Link
                     key={link.slug}
                     href={`${basePath}/${link.slug}`}
-                    className="group flex flex-col items-center justify-center gap-2 p-6 bg-white/60 dark:bg-[#0d1b3e]/60 backdrop-blur-xl rounded-[2rem] border-2 border-[#1a2355]/5 dark:border-white/5 hover:border-[#ee7c7e]/40 hover:shadow-xl transition-all duration-300 text-center"
+                    className="group flex flex-col items-center justify-center gap-2 p-6 bg-white/60 dark:bg-[#0d1b3e]/60 backdrop-blur-xl rounded-[2rem] border-2 border-[#1a2355]/30 dark:border-white/5 hover:border-[#ee7c7e]/40 hover:shadow-xl transition-all duration-300 text-center"
                   >
                     <span className="font-black text-sm text-[#1a2355] dark:text-white group-hover:text-[#ee7c7e] transition-colors">
                       {lang === "az" ? link.labelAz : link.labelEn}

@@ -81,7 +81,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             <div className="flex-1 flex flex-col justify-between">
                 <div>
                     <div className="flex flex-wrap gap-3 mb-6">
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1a2355]/5 dark:bg-white/5 border border-[#1a2355]/10 dark:border-white/10">
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1a2355]/5 dark:bg-white/5 border border-[#1a2355]/30 dark:border-white/10">
                             <AssignmentIcon sx={{ fontSize: 14 }} className="text-[#ee7c7e]" />
                             <span className="text-[10px] font-black uppercase tracking-wider dark:text-white/70">{project.type}</span>
                         </div>

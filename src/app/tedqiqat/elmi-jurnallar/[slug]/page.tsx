@@ -104,7 +104,7 @@ export default function ScientificJournalPage({ params }: Props) {
     }
 
     if (!journal) return (
-         <main className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4">
+         <main className="min-h-screen flex flex-col items-center justify-center bg-page px-4">
             <h1 className="text-3xl font-bold text-[#1a2355] mb-4">{lang === 'az' ? 'Jurnal tapılmadı' : 'Journal not found'}</h1>
             <Link href="/" className="flex items-center gap-1 bg-[#1a2355] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#1a2355]/90 transition-colors">
                 {lang === 'az' ? 'Ana səhifəyə qayıt' : 'Back to home'}
@@ -125,7 +125,7 @@ export default function ScientificJournalPage({ params }: Props) {
     };
 
     return (
-        <main className="min-h-screen bg-white dark:bg-[#0b1330] transition-colors duration-500">
+        <main className="min-h-screen bg-page dark:bg-[#0b1330] transition-colors duration-500">
              <AboutPageBanner
                 eyebrow={data.eyebrow}
                 title={journal.title}

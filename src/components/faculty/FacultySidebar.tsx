@@ -99,8 +99,9 @@ export default function FacultySidebar({ facultyId }: Props) {
   };
 
   return (
-    <nav className="bg-white rounded-[2.5rem] shadow-2xl shadow-blue-900/5 border border-gray-100 overflow-hidden">
-      <div className="px-8 py-6 border-b-2 border-gray-50 bg-gray-50/30">
+    <nav className="relative bg-white rounded-[2.5rem] shadow-2xl shadow-[#1a2355]/15 border-2 border-[#1a2355]/30 overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#1a2355] via-[#ee7c7e] to-[#1a2355]" />
+      <div className="px-8 py-6 border-b-2 border-[#1a2355]/15 bg-[#1a2355]/5">
         <p className="text-[11px] font-black uppercase tracking-[0.3em] text-[#1a2355]/60 flex items-center gap-3">
           <div className="w-1.5 h-1.5 rounded-full bg-[#ee7c7e] animate-pulse" />
           {lang === "az" ? "Fakültə Portalı" : "Faculty Portal"}
@@ -140,7 +141,7 @@ export default function FacultySidebar({ facultyId }: Props) {
                       initial={{ opacity: 0, y: -10, height: 0 }}
                       animate={{ opacity: 1, y: 0, height: "auto" }}
                       exit={{ opacity: 0, y: -10, height: 0 }}
-                      className="ml-4 space-y-1.5 border-l-2 border-gray-100 pl-4 overflow-hidden"
+                      className="ml-4 space-y-1.5 border-l-2 border-[#1a2355]/30 pl-4 overflow-hidden"
                     >
                       {item.subItems.map((sub) => (
                         <li key={sub.href}>

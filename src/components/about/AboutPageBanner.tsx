@@ -21,12 +21,26 @@ interface AboutPageBannerProps {
 
 export default function AboutPageBanner({ eyebrow, title, subtitle, breadcrumbs, videoSrc }: AboutPageBannerProps) {
     const pathname = usePathname();
-    
+
+    const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site";
+
     const isResearchPage = pathname.startsWith('/az/tedqiqat') || pathname.startsWith('/en/research');
     const isStudentPage = pathname.startsWith('/az/telebeler') || pathname.startsWith('/en/students');
-    const studentVideoSrc = "http://api.aztu.edu.az/media/prod/hero/hero_videos/students.mp4";
+    const isAboutPage = pathname.startsWith('/az/haqqimizda') || pathname.startsWith('/en/about');
+    const isAcademicPage = pathname.startsWith('/az/akademik') || pathname.startsWith('/en/academic');
+    const isManagementPage = pathname.startsWith('/az/idareetme') || pathname.startsWith('/en/management');
 
-    const finalVideoSrc = videoSrc || (isStudentPage ? studentVideoSrc : (isResearchPage ? "/heroBgVideos/research.mp4" : null));
+    const studentVideoSrc = "http://api.aztu.edu.az/media/prod/hero/hero_videos/students.mp4";
+    const aboutVideoSrc = `${API_BASE}/media/prod/hero/hero_videos/about.mp4`;
+    const academicVideoSrc = `${API_BASE}/media/prod/hero/hero_videos/academic.mp4`;
+    const managementVideoSrc = `${API_BASE}/media/prod/hero/hero_videos/management.mp4`;
+
+    const finalVideoSrc = videoSrc
+        || (isAboutPage ? aboutVideoSrc : null)
+        || (isAcademicPage ? academicVideoSrc : null)
+        || (isManagementPage ? managementVideoSrc : null)
+        || (isStudentPage ? studentVideoSrc : null)
+        || (isResearchPage ? "/heroBgVideos/research.mp4" : null);
 
     return (
         <div className="bg-[#0a0c1a] px-4 md:px-10 lg:px-20 pt-44 pb-20 relative overflow-hidden min-h-[450px] flex flex-col justify-end">

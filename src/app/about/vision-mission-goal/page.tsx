@@ -12,6 +12,7 @@ import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 import StarIcon from '@mui/icons-material/Star';
+import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
 
 export default function VisionMissionGoalPage() {
     const t = useTranslation();
@@ -24,10 +25,7 @@ export default function VisionMissionGoalPage() {
             <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48">
                 {/* Background Graphics */}
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                    <div className="absolute inset-0 bg-[#0b1330]" />
-                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[5rem] lg:rounded-bl-[20rem] transition-all duration-1000" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#0b1330] via-[#0b1330]/80 to-transparent hidden lg:block" />
-                    <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#ee7c7e]/5 rounded-full blur-3xl animate-pulse" />
+                    <AboutHeroVideoBg />
                 </div>
 
                 <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-12">

@@ -172,7 +172,7 @@ export default function NewsDetailPage({
                 )}
             </AnimatePresence>
 
-            <main ref={containerRef} className="min-h-screen bg-gray-50 dark:bg-[#0f172a]">
+            <main ref={containerRef} className="min-h-screen bg-page dark:bg-[#0f172a]">
 
                 {/* ── Hero Banner ── */}
                 <section

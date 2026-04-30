@@ -21,7 +21,7 @@ export default function PolicyPDFPage({ title, subtitle, pdfUrl, downloadFilenam
 
     return (
         <>
-            <main className="min-h-screen bg-gray-50 dark:bg-[#0f172a]">
+            <main className="min-h-screen bg-page dark:bg-[#0f172a]">
                 <AboutPageBanner
                     eyebrow="Policies & Documents"
                     title={title}

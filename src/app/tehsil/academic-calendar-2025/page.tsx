@@ -19,7 +19,7 @@ export default function AcademicCalendar2025Page() {
     if (!data) return null;
 
     return (
-        <main className="min-h-screen transition-colors duration-500 bg-white dark:bg-[#0a0c1a]">
+        <main className="min-h-screen transition-colors duration-500 bg-page dark:bg-[#0a0c1a]">
             <PageHero
                 title={data.title}
                 description={data.subtitle}

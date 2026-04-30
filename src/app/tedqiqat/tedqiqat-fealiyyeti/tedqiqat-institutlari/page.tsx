@@ -55,7 +55,7 @@ export default function ResearchInstitutesPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-gray-50 dark:bg-slate-900 transition-colors pb-20">
+        <main className="min-h-screen bg-page dark:bg-slate-900 transition-colors pb-20">
             {/* Stunning Page Banner */}
             <div className="relative overflow-hidden bg-[#0b1330] pt-40 pb-20 px-4 md:px-10 lg:px-12 w-full min-h-[400px] flex flex-col justify-end">
                 {/* Video Background */}

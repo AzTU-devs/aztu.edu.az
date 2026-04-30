@@ -8,6 +8,7 @@ import LaunchIcon from "@mui/icons-material/Launch";
 import HomeIcon from "@mui/icons-material/Home";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
+import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
 
 export default function TAUPage() {
     const t = useTranslation();
@@ -23,16 +24,7 @@ export default function TAUPage() {
             <div className="relative min-h-[60vh] lg:min-h-[70vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
                 {/* Background Graphics */}
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                    <div className="absolute inset-0 bg-[#0b1330]" />
-                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[5rem] lg:rounded-bl-[20rem] transition-all duration-1000" />
-                    
-                    {/* Dotted Grid */}
-                    <div className="absolute inset-0 opacity-[0.1]" 
-                         style={{ backgroundImage: 'radial-gradient(white 0.5px, transparent 0.5px)', backgroundSize: '32px 32px' }} />
-                    
-                    {/* Glow Orbs */}
-                    <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse" />
-                    <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-[#ee7c7e]/10 rounded-full blur-2xl" />
+                    <AboutHeroVideoBg />
                 </div>
 
                 <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-20">

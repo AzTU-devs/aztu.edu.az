@@ -34,10 +34,23 @@ export default function PageHero({
   const { lang } = useLanguage();
   const pathname = usePathname();
 
-  const isStudentPage = pathname.startsWith("/az/telebeler") || pathname.startsWith("/en/students");
-  const studentVideoSrc = "http://api.aztu.edu.az/media/prod/hero/hero_videos/students.mp4";
+  const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site";
 
-  const finalVideoSrc = videoSrc || (isStudentPage ? studentVideoSrc : undefined);
+  const isStudentPage = pathname.startsWith("/az/telebeler") || pathname.startsWith("/en/students");
+  const isAboutPage = pathname.startsWith("/az/haqqimizda") || pathname.startsWith("/en/about");
+  const isAcademicPage = pathname.startsWith("/az/akademik") || pathname.startsWith("/en/academic");
+  const isManagementPage = pathname.startsWith("/az/idareetme") || pathname.startsWith("/en/management");
+
+  const studentVideoSrc = "http://api.aztu.edu.az/media/prod/hero/hero_videos/students.mp4";
+  const aboutVideoSrc = `${API_BASE}/media/prod/hero/hero_videos/about.mp4`;
+  const academicVideoSrc = `${API_BASE}/media/prod/hero/hero_videos/academic.mp4`;
+  const managementVideoSrc = `${API_BASE}/media/prod/hero/hero_videos/management.mp4`;
+
+  const finalVideoSrc = videoSrc
+    || (isAboutPage ? aboutVideoSrc : undefined)
+    || (isAcademicPage ? academicVideoSrc : undefined)
+    || (isManagementPage ? managementVideoSrc : undefined)
+    || (isStudentPage ? studentVideoSrc : undefined);
 
   return (
     <div className={`relative overflow-hidden bg-[#0a0c1a] pt-32 pb-20 px-4 md:px-10 lg:px-20 w-full min-h-[400px] lg:min-h-[500px] flex flex-col justify-end ${className}`}>
@@ -49,15 +62,17 @@ export default function PageHero({
         {finalVideoSrc ? (
           <>
             <video
+              key={finalVideoSrc}
               autoPlay
               loop
               muted
               playsInline
-              className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay"
+              className="absolute inset-0 w-full h-full object-cover"
             >
               <source src={finalVideoSrc} type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-[#0a0c1a]/50" />
+            <div className="absolute inset-0 bg-[#0a0c1a]/30" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0c1a]/15 to-[#0a0c1a]/70" />
           </>
         ) : (
           <>

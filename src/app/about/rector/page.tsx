@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 import VilayetVeliyev from "@/../public/vilayet_veliyev.jpg";
 import { useTranslation } from "@/hooks/useTranslation";
@@ -10,8 +9,6 @@ import { useLanguage } from "@/context/LanguageContext";
 
 import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import SchoolIcon from '@mui/icons-material/School';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
@@ -22,7 +19,7 @@ import PageHero from "@/components/shared/PageHero";
 import PageContainer from "@/components/shared/PageContainer";
 
 const rectorData = {
-    fullName: "Vilayet Veliyev",
+    fullName: "Vilayat Valiyev",
     academicDegree: "Doctor of Technical Sciences, Professor",
     title: "Rector of Azerbaijan Technical University",
     email: "rector@aztu.edu.az",
@@ -59,7 +56,7 @@ function ContinuousGallery({ items }: { items: { image: string }[] }) {
                 {doubledItems.map((item, idx) => (
                     <div 
                         key={idx}
-                        className="relative w-80 md:w-96 aspect-[4/3] rounded-[2rem] overflow-hidden border-2 border-[#1a2355]/10 dark:border-white/10 shadow-lg group hover:scale-[1.02] transition-transform duration-500"
+                        className="relative w-80 md:w-96 aspect-[4/3] rounded-[2rem] overflow-hidden border-2 border-[#1a2355]/30 dark:border-white/10 shadow-lg group hover:scale-[1.02] transition-transform duration-500"
                     >
                         <Image
                             src={item.image}
@@ -101,7 +98,7 @@ export default function RectorPage() {
                 <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     <div className="lg:col-span-7">
                         <p className="text-lg lg:text-xl text-white/80 font-medium mb-10 max-w-2xl leading-relaxed italic">
-                            &quot;{p.message[0].substring(0, 150)}...&quot;
+                            &quot;{p.message[1]}&quot;
                         </p>
 
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
@@ -165,14 +162,22 @@ export default function RectorPage() {
                     </div>
                     
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-                        <div className="lg:col-span-8 space-y-8">
-                            {p.message.map((para, i) => (
-                                <p key={i} className="text-base lg:text-lg text-gray-600 dark:text-slate-300 leading-relaxed text-justify">
-                                    {para}
-                                </p>
-                            ))}
+                        <div className="lg:col-span-8 space-y-5">
+                            {p.message.map((para, i) => {
+                                const isSalutation = i === 0;
+                                const isClosing = i >= p.message.length - 3;
+                                const isBold = isSalutation || isClosing;
+                                return (
+                                    <p
+                                        key={i}
+                                        className={`text-base lg:text-lg text-gray-600 dark:text-slate-300 text-justify ${isSalutation || isClosing ? "leading-tight" : "leading-snug"} ${isBold ? "font-bold" : ""}`}
+                                    >
+                                        {para}
+                                    </p>
+                                );
+                            })}
                         </div>
-                        <div className="lg:col-span-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl p-10 rounded-[3rem] border-2 border-[#1a2355]/10 dark:border-white/10 shadow-xl relative overflow-hidden">
+                        <div className="lg:col-span-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl p-10 rounded-[3rem] border-2 border-[#1a2355]/30 dark:border-white/10 shadow-xl relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
                             <FormatQuoteIcon className="absolute -top-6 -left-6 text-[#ee7c7e]/20" sx={{ fontSize: 100 }} />
                             <h3 className="text-xl font-black text-[#1a2355] dark:text-white mb-6 relative z-10">
@@ -196,15 +201,15 @@ export default function RectorPage() {
                             <div className="max-w-2xl">
                                 <div className="inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-white/10 border border-white/20 mb-6">
                                     <div className="w-1.5 h-1.5 rounded-full bg-[#ee7c7e] animate-pulse" />
-                                    <span className="text-white text-[10px] font-black uppercase tracking-[0.3em]">Management</span>
+                                    <span className="text-white text-[10px] font-black uppercase tracking-[0.3em]">{p.departmentsTag}</span>
                                 </div>
                                 <h2 className="text-4xl lg:text-5xl font-black mb-6 tracking-tighter">{p.departmentsTitle}</h2>
-                                <p className="text-white/60 text-lg">The following administrative and academic divisions operate directly under the Rector&#39;s supervision.</p>
+                                <p className="text-white/60 text-lg">{p.departmentsSubtitle}</p>
                             </div>
                             <div className="flex items-center gap-4 px-8 py-5 rounded-[2rem] bg-white/10 border border-white/20 backdrop-blur-xl">
                                 <span className="text-4xl font-black text-[#ee7c7e]">{p.departments.length}</span>
                                 <div className="h-10 w-px bg-white/20 mx-2" />
-                                <span className="text-[10px] font-black uppercase tracking-widest text-white/60">Total Units</span>
+                                <span className="text-[10px] font-black uppercase tracking-widest text-white/60">{p.totalUnitsLabel}</span>
                             </div>
                         </div>
 
@@ -235,7 +240,7 @@ export default function RectorPage() {
                             <div className="w-2.5 h-12 bg-[#ee7c7e] rounded-full animate-pulse shadow-[0_0_15px_rgba(238,124,126,0.5)]" />
                             <div>
                                 <h2 className="text-4xl lg:text-5xl font-black text-[#1a2355] dark:text-white tracking-tighter uppercase">{p.galleryTitle}</h2>
-                                <p className="text-gray-500 dark:text-slate-400 font-medium">Moments from the Rector&#39;s academic and administrative activities.</p>
+                                <p className="text-gray-500 dark:text-slate-400 font-medium">{p.gallerySubtitle}</p>
                             </div>
                         </div>
                         <div className="flex-1 h-px bg-gradient-to-r from-[#1a2355]/10 via-[#1a2355]/5 to-transparent dark:from-white/10 dark:via-white/5 ml-10" />
@@ -244,7 +249,7 @@ export default function RectorPage() {
                 </section>
 
                 {/* RELATED LINKS */}
-                <section className="pt-20 border-t border-[#1a2355]/10 dark:border-white/10">
+                <section className="pt-20 border-t border-[#1a2355]/30 dark:border-white/10">
                     <h2 className="text-2xl font-black text-[#1a2355] dark:text-white mb-10 flex items-center gap-4">
                         <div className="w-2.5 h-10 bg-[#ee7c7e] rounded-full animate-pulse shadow-[0_0_15px_rgba(238,124,126,0.5)]" />
                         {t.common.moreInSection}
@@ -254,11 +259,11 @@ export default function RectorPage() {
                             <Link 
                                 key={link.href} 
                                 href={link.href}
-                                className="group relative flex items-center justify-between bg-white/80 dark:bg-slate-900/50 backdrop-blur-xl p-8 rounded-[2rem] border-2 border-[#1a2355]/10 dark:border-[#1a2355]/30 hover:border-[#ee7c7e]/40 dark:hover:border-[#ee7c7e]/50 transition-all duration-500 shadow-lg hover:shadow-2xl overflow-hidden"
+                                className="group relative flex items-center justify-between bg-white/80 dark:bg-slate-900/50 backdrop-blur-xl p-8 rounded-[2rem] border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 hover:border-[#ee7c7e]/40 dark:hover:border-[#ee7c7e]/50 transition-all duration-500 shadow-lg hover:shadow-2xl overflow-hidden"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/5 via-transparent to-[#1a2355]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 <span className="relative text-[#1a2355] dark:text-white font-black text-base group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
-                                <div className="relative w-12 h-12 rounded-2xl bg-[#1a2355]/5 dark:bg-white/5 flex items-center justify-center group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300 border border-[#1a2355]/5 dark:border-white/5">
+                                <div className="relative w-12 h-12 rounded-2xl bg-[#1a2355]/5 dark:bg-white/5 flex items-center justify-center group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300 border border-[#1a2355]/30 dark:border-white/5">
                                     <ChevronRightIcon sx={{ fontSize: 24 }} className="group-hover:translate-x-1 transition-transform" />
                                 </div>
                             </Link>

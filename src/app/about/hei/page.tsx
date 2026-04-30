@@ -20,6 +20,7 @@ import EngineeringIcon from '@mui/icons-material/Engineering';
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
 import Timeline from "@/components/shared/Timeline";
+import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
 
 export default function HEIPage() {
     const t = useTranslation();
@@ -31,9 +32,7 @@ export default function HEIPage() {
             {/* STUNNING HERO SECTION */}
             <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                    <div className="absolute inset-0 bg-[#0b1330]" />
-                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[5rem] lg:rounded-bl-[20rem] transition-all duration-1000" />
-                    <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: 'radial-gradient(white 0.5px, transparent 0.5px)', backgroundSize: '32px 32px' }} />
+                    <AboutHeroVideoBg />
                 </div>
 
                 <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-20">

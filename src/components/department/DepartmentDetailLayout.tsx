@@ -55,7 +55,7 @@ export default function DepartmentDetailLayout({ children, params }: Props) {
         : "/en/management/structural-units";
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-slate-900 transition-colors text-[#1a2355] dark:text-white">
+        <div className="min-h-screen bg-page dark:bg-slate-900 transition-colors text-[#1a2355] dark:text-white">
             {/* Stunning Banner */}
             <div className="relative overflow-hidden bg-[#1a2355] pt-32 pb-16 md:pt-40 md:pb-24">
                 <div 

@@ -18,7 +18,7 @@ export default function ScholarshipOpportunitiesPage() {
     const p = t.pages.internationalization.scholarship;
 
     return (
-        <main className="min-h-screen bg-white dark:bg-[#0a0c1a] selection:bg-[#ee7c7e]/30 transition-colors duration-500">
+        <main className="min-h-screen bg-page dark:bg-[#0a0c1a] selection:bg-[#ee7c7e]/30 transition-colors duration-500">
             {/* HERO SECTION */}
             <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
                 <div className="absolute inset-0 z-0">

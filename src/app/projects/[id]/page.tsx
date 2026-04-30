@@ -47,7 +47,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                 style={{ scaleX: scrollYProgress }}
             />
 
-            <main ref={containerRef} className="min-h-screen bg-gray-50 dark:bg-[#0f172a]">
+            <main ref={containerRef} className="min-h-screen bg-page dark:bg-[#0f172a]">
 
                 {/* Hero banner */}
                 <section className="relative bg-gradient-to-br from-[#060d1f] via-[#1a2355] to-[#0f2a4a] overflow-hidden">
