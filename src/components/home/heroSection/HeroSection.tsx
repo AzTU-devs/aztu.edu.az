@@ -277,36 +277,26 @@ export default function HeroSection() {
                             className="grid grid-cols-2 gap-2"
                         >
                             {/* Scopus */}
-                            <div className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-xl md:rounded-2xl p-2 md:p-3 flex flex-col items-center gap-1.5 group hover:bg-white/10 transition-all duration-400 relative overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-br from-[#F08300]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
-                                <div className="relative z-10 flex items-center justify-center h-5 w-full">
-                                    <Image src={ScopusLogo} alt="Scopus" width={60} height={18} className="object-contain max-h-full" />
-                                </div>
-                                <div className="relative z-10 text-center">
-                                    {countersLoading ? (
-                                        <div className="w-4 h-4 border-2 border-[#F08300] border-t-transparent rounded-full animate-spin mx-auto" />
-                                    ) : (
-                                        <span className="text-sm md:text-base font-black text-[#F08300] leading-none">{scopus ?? "—"}</span>
-                                    )}
-                                    <p className="text-[7px] md:text-[8px] font-black uppercase tracking-widest text-white/30 mt-0.5">məqalə</p>
-                                </div>
-                            </div>
+                            <a
+                                href="https://www.scopus.com/pages/organization/60071968"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group relative overflow-hidden rounded-xl md:rounded-2xl border border-white/10 hover:border-[#F08300]/40 hover:scale-105 active:scale-95 transition-all duration-400 cursor-pointer h-[48px] md:h-[56px]"
+                            >
+                                <div className="absolute inset-0 bg-gradient-to-br from-[#F08300]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 z-10" />
+                                <img src="/logos/scopus-logo.svg" alt="Scopus" className="w-full h-full object-fill" />
+                            </a>
 
                             {/* Web of Science */}
-                            <div className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-xl md:rounded-2xl p-2 md:p-3 flex flex-col items-center gap-1.5 group hover:bg-white/10 transition-all duration-400 relative overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-br from-[#005A9C]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
-                                <div className="relative z-10 flex items-center justify-center h-5 w-full">
-                                    <Image src={WosLogo} alt="Web of Science" width={68} height={18} className="object-contain max-h-full" />
-                                </div>
-                                <div className="relative z-10 text-center">
-                                    {countersLoading ? (
-                                        <div className="w-4 h-4 border-2 border-[#005A9C] border-t-transparent rounded-full animate-spin mx-auto" />
-                                    ) : (
-                                        <span className="text-sm md:text-base font-black text-[#005A9C] leading-none">{wos ?? "—"}</span>
-                                    )}
-                                    <p className="text-[7px] md:text-[8px] font-black uppercase tracking-widest text-white/30 mt-0.5">məqalə</p>
-                                </div>
-                            </div>
+                            <a
+                                href="https://www.webofscience.com/wos/woscc/summary/5667f913-5f6b-4e0b-8fe9-e12d8f6be1f1-01af1662f4/relevance/1?state=%7B%22searchType%22:%22generalSearch%22%7D"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group relative overflow-hidden rounded-xl md:rounded-2xl border border-white/10 hover:border-[#005A9C]/40 hover:scale-105 active:scale-95 transition-all duration-400 cursor-pointer h-[48px] md:h-[56px]"
+                            >
+                                <div className="absolute inset-0 bg-gradient-to-br from-[#005A9C]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 z-10" />
+                                <img src="/logos/wos-logo.svg" alt="Web of Science" className="w-full h-full object-fill" />
+                            </a>
                         </motion.div>
                     </div>
                 </div>

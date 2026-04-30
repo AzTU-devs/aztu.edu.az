@@ -9,6 +9,8 @@ import SmartToyIcon from "@mui/icons-material/SmartToy";
 import { useTranslation } from "@/hooks/useTranslation";
 import apiClient from "@/util/apiClient";
 
+const SESSION_KEY = "aztu_chat_session_id";
+
 interface Message {
   role: "user" | "bot";
   text: string;
@@ -20,7 +22,12 @@ export default function ChatbotWidget() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const sessionIdRef = useRef<string | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    sessionIdRef.current = localStorage.getItem(SESSION_KEY);
+  }, []);
 
   useEffect(() => {
     if (open && messages.length === 0) {
@@ -41,10 +48,18 @@ export default function ChatbotWidget() {
     setLoading(true);
 
     try {
-      const res = await apiClient.post<{ reply: string }>("/api/chat/message", {
-        message: text,
-      });
-      setMessages((prev) => [...prev, { role: "bot", text: res.data.reply }]);
+      const res = await apiClient.post<{ reply: string; session_id: string }>(
+        "/api/chat/message",
+        { message: text, session_id: sessionIdRef.current }
+      );
+      const { reply, session_id } = res.data;
+
+      if (session_id && session_id !== sessionIdRef.current) {
+        sessionIdRef.current = session_id;
+        localStorage.setItem(SESSION_KEY, session_id);
+      }
+
+      setMessages((prev) => [...prev, { role: "bot", text: reply }]);
     } catch {
       setMessages((prev) => [
         ...prev,
