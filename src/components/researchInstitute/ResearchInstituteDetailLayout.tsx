@@ -61,7 +61,10 @@ export default function ResearchInstituteDetailLayout({ children, params }: Prop
 
     // Auto-detect research paths for video
     const isResearchPage = pathname.startsWith('/az/tedqiqat') || pathname.startsWith('/en/research');
-    const videoSrc = isResearchPage ? "/heroBgVideos/research.mp4" : null;
+    const isStudentPage = pathname.startsWith('/az/telebeler') || pathname.startsWith('/en/students');
+    const studentVideoSrc = "http://api.aztu.edu.az/media/prod/hero/hero_videos/students.mp4";
+
+    const videoSrc = isStudentPage ? studentVideoSrc : (isResearchPage ? "/heroBgVideos/research.mp4" : null);
 
     return (
         <div className="min-h-screen transition-colors">

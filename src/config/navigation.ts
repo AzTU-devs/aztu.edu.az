@@ -414,5 +414,21 @@ export function getSectionByKey(key: string): NavSection | undefined {
 
 export function getItemBySlug(sectionKey: string, slug: string): NavItem | undefined {
     const section = getSectionByKey(sectionKey);
-    return section?.items.find((i) => i.slug === slug);
+    if (!section) return undefined;
+
+    // Search top-level items and their sub-items
+    for (const item of section.items) {
+        if (item.slug === slug) return item;
+        if (item.subItems) {
+            const found = item.subItems.find((si) => si.slug === slug);
+            if (found) {
+                // Wrap NavSubItem as NavItem
+                return {
+                    title: found.title,
+                    slug: found.slug,
+                };
+            }
+        }
+    }
+    return undefined;
 }

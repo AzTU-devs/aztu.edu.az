@@ -23,12 +23,15 @@ export default function AboutPageBanner({ eyebrow, title, subtitle, breadcrumbs,
     const pathname = usePathname();
     
     const isResearchPage = pathname.startsWith('/az/tedqiqat') || pathname.startsWith('/en/research');
-    const finalVideoSrc = videoSrc || (isResearchPage ? "/heroBgVideos/research.mp4" : null);
+    const isStudentPage = pathname.startsWith('/az/telebeler') || pathname.startsWith('/en/students');
+    const studentVideoSrc = "http://api.aztu.edu.az/media/prod/hero/hero_videos/students.mp4";
+
+    const finalVideoSrc = videoSrc || (isStudentPage ? studentVideoSrc : (isResearchPage ? "/heroBgVideos/research.mp4" : null));
 
     return (
-        <div className="bg-[#0b1330] px-4 md:px-10 lg:px-20 pt-44 pb-20 relative overflow-hidden min-h-[450px] flex flex-col justify-end">
+        <div className="bg-[#0a0c1a] px-4 md:px-10 lg:px-20 pt-44 pb-20 relative overflow-hidden min-h-[450px] flex flex-col justify-end">
             {/* Background Texture/Pattern */}
-            <div className="absolute inset-0 opacity-[0.05] pointer-events-none z-10" 
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-10" 
                  style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
             {/* Video Background */}
@@ -39,20 +42,20 @@ export default function AboutPageBanner({ eyebrow, title, subtitle, breadcrumbs,
                         loop
                         muted
                         playsInline
-                        className="w-full h-full object-cover opacity-50"
+                        className="w-full h-full object-cover opacity-30"
                     >
                         <source src={finalVideoSrc} type="video/mp4" />
                     </video>
                     {/* Multi-layer Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b1330] via-[#0b1330]/40 to-transparent" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#0b1330]/80 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0c1a] via-[#0a0c1a]/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0a0c1a]/60 via-transparent to-transparent" />
                 </div>
             )}
 
             {!finalVideoSrc && (
-                 <div className="absolute inset-0 bg-gradient-to-br from-[#0b1330] via-[#1a2355] to-[#13365E] z-0">
-                    <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/10 blur-[150px] rounded-full translate-x-1/2 -translate-y-1/2" />
-                    <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#ee7c7e]/10 blur-[120px] rounded-full -translate-x-1/4 translate-y-1/4" />
+                 <div className="absolute inset-0 bg-gradient-to-br from-[#0a0c1a] via-[#111827] to-[#0f172a] z-0">
+                    <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-900/10 blur-[150px] rounded-full translate-x-1/2 -translate-y-1/2" />
+                    <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#ee7c7e]/5 blur-[120px] rounded-full -translate-x-1/4 translate-y-1/4" />
                  </div>
             )}
 

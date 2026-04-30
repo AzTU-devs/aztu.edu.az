@@ -45,6 +45,38 @@ const SLUG_MAP: Record<string, string> = {
     "contact-us": "elaqe",
     "elaqe": "contact-us",
 
+    // Students sub-slugs
+    "students": "telebeler",
+    "telebeler": "students",
+    "tedris-teqvimi-ve-qaydalar": "academic-calendar-and-rules",
+    "academic-calendar-and-rules": "tedris-teqvimi-ve-qaydalar",
+    "2025-2026-tedris-ili-teqvimi": "academic-calendar-2025",
+    "academic-calendar-2025": "2025-2026-tedris-ili-teqvimi",
+    "qiymetlendirme-ve-imtahan-teskili-qaydalari": "assessment-rules",
+    "assessment-rules": "qiymetlendirme-ve-imtahan-teskili-qaydalari",
+    "bakalavr-ve-magistratura-seviyyelerinde-kredit-sistemi": "credit-system",
+    "credit-system": "bakalavr-ve-magistratura-seviyyelerinde-kredit-sistemi",
+    "lms-telimatlari": "lms-guidelines",
+    "lms-guidelines": "lms-telimatlari",
+    "academic-calendar-2026": "2026-2027-tedris-ili-teqvimi",
+    "2026-2027-tedris-ili-teqvimi": "academic-calendar-2026",
+
+    "undergraduate-specialties": "bakalavr-ixtisaslari",
+    "bakalavr-ixtisaslari": "undergraduate-specialties",
+    "undergraduate-curriculum": "bakalavr-tedris-plani",
+    "bakalavr-tedris-plani": "undergraduate-curriculum",
+    "undergraduate-outcomes": "bakalavr-oyrenme-neticeleri",
+    "bakalavr-oyrenme-neticeleri": "undergraduate-outcomes",
+    "undergraduate-tuition": "bakalavr-tedris-haqqi",
+    "bakalavr-tedris-haqqi": "undergraduate-tuition",
+
+    "postgraduate-specialties": "magistratura-ixtisaslari",
+    "magistratura-ixtisaslari": "postgraduate-specialties",
+    "postgraduate-curriculum": "magistratura-tedris-plani",
+    "magistratura-tedris-plani": "postgraduate-curriculum",
+    "international-students": "beynekhalq-telebeler",
+    "beynekhalq-telebeler": "international-students",
+
     // Research sub-slugs
     "research-activity": "tedqiqat-fealiyyeti",
     "tedqiqat-fealiyyeti": "research-activity",
@@ -179,6 +211,12 @@ const SLUG_MAP: Record<string, string> = {
     // Quality Assurance
     "qa": "kts",
     "kts": "qa",
+
+    // Policies & Documents
+    "regulatory-documents": "normativ-senedler",
+    "normativ-senedler": "regulatory-documents",
+    "umumi-siyasetler": "general-policies",
+    "general-policies": "umumi-siyasetler",
 };
 
 // Key EN slugs to help identify language direction in mapping
@@ -199,6 +237,8 @@ const EN_SLUGS = new Set([
     "international-relations", "specialties", "departments",
     "specializations", "dean", "deputy-deans", "scientific-council", "academic-staff", "staff", "contact",
     "qa",
+    "students",
+    "regulatory-documents", "general-policies",
     ]);
 
 export function middleware(request: NextRequest) {
@@ -284,6 +324,10 @@ export function middleware(request: NextRequest) {
             }
         } else if (segments_rest[1] === "rankings" || segments_rest[1] === "reytinqler") {
             segments_rest = ["about", "rankings"];
+        } else if (segments_rest[1] === "regulatory-documents" || segments_rest[1] === "normativ-senedler") {
+            if (segments_rest[2] === "general-policies" || segments_rest[2] === "umumi-siyasetler") {
+                segments_rest = ["about", "general-policies"];
+            }
         } else if (segments_rest[1] === "leadership-and-management" || segments_rest[1] === "rehbetlik-ve-idareetme") {
             if (segments_rest[2] === "rector" || segments_rest[2] === "rektor") segments_rest = ["about", "rector"];
             else if (segments_rest[2] === "rectors-office" || segments_rest[2] === "rektorluq") segments_rest = ["about", "rectors-office"];
@@ -353,6 +397,21 @@ export function middleware(request: NextRequest) {
         }
     } else if (segments_rest[0] === "management" || segments_rest[0] === "idareetme") {
         segments_rest[0] = "idareetme";
+    } else if (segments_rest[0] === "students" || segments_rest[0] === "telebeler") {
+        segments_rest[0] = "tehsil";
+        const lastSeg = segments_rest[segments_rest.length - 1];
+        
+        if (lastSeg === "2025-2026-tedris-ili-teqvimi" || lastSeg === "academic-calendar-2025") {
+            segments_rest = ["tehsil", "academic-calendar-2025"];
+        } else if (lastSeg === "qiymetlendirme-ve-imtahan-teskili-qaydalari" || lastSeg === "assessment-rules") {
+            segments_rest = ["tehsil", "assessment-rules"];
+        } else if (lastSeg === "bakalavr-ve-magistratura-seviyyelerinde-kredit-sistemi" || lastSeg === "credit-system") {
+            segments_rest = ["tehsil", "credit-system"];
+        } else if (lastSeg === "lms-telimatlari" || lastSeg === "lms-guidelines") {
+            segments_rest = ["tehsil", "lms-guidelines"];
+        } else if (segments_rest.length === 3) {
+            segments_rest = ["tehsil", lastSeg];
+        }
     } else if (segments_rest[0] === "kts" || segments_rest[0] === "qa") {
         segments_rest[0] = "kts";
     } else if (segments_rest[0] === "community" || segments_rest[0] === "icma") {

@@ -7,7 +7,7 @@ import StaticSubPage from "@/components/pages/StaticSubPage";
 import Link from "next/link";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
-const SECTION_KEY = "tehsil";
+const SECTION_KEY = "students";
 
 export default function TehsilSlugPage() {
     const params = useParams();

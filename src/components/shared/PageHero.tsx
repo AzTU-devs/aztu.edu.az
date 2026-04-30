@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import HomeIcon from "@mui/icons-material/Home";
+import { usePathname } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface Breadcrumb {
@@ -31,51 +32,57 @@ export default function PageHero({
   videoSrc,
 }: PageHeroProps) {
   const { lang } = useLanguage();
+  const pathname = usePathname();
+
+  const isStudentPage = pathname.startsWith("/az/telebeler") || pathname.startsWith("/en/students");
+  const studentVideoSrc = "http://api.aztu.edu.az/media/prod/hero/hero_videos/students.mp4";
+
+  const finalVideoSrc = videoSrc || (isStudentPage ? studentVideoSrc : undefined);
 
   return (
-    <div className={`relative overflow-hidden bg-[#0b1330] pt-32 pb-20 px-4 md:px-10 lg:px-20 w-full min-h-[400px] lg:min-h-[500px] flex flex-col justify-end ${className}`}>
-      {/* STUNNING BACKGROUND GRAPHICS - VIBRANT BLUE */}
-      <div className="absolute inset-0 z-0 bg-[#0b1330]">
-        {/* Deep Gradient Base */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0b1330] via-[#1a2355] to-[#13365E]" />
+    <div className={`relative overflow-hidden bg-[#0a0c1a] pt-32 pb-20 px-4 md:px-10 lg:px-20 w-full min-h-[400px] lg:min-h-[500px] flex flex-col justify-end ${className}`}>
+      {/* STUNNING BACKGROUND GRAPHICS - REFINED TINT */}
+      <div className="absolute inset-0 z-0 bg-[#0a0c1a]">
+        {/* Neutral-leaning Gradient Base */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a0c1a] via-[#111827] to-[#0f172a]" />
 
-        {videoSrc ? (
+        {finalVideoSrc ? (
           <>
             <video
               autoPlay
               loop
               muted
               playsInline
-              className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-overlay"
+              className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay"
             >
-              <source src={videoSrc} type="video/mp4" />
+              <source src={finalVideoSrc} type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-[#0b1330]/60" />
+            <div className="absolute inset-0 bg-[#0a0c1a]/50" />
           </>
         ) : (
           <>
             {/* Animated Light Beams */}
             <motion.div
-                animate={{ x: [-500, 500], opacity: [0, 0.4, 0] }}
+                animate={{ x: [-500, 500], opacity: [0, 0.3, 0] }}
                 transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                className="absolute top-0 left-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-[#ee7c7e]/40 to-transparent skew-x-[-45deg] blur-md"
+                className="absolute top-0 left-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-[#ee7c7e]/30 to-transparent skew-x-[-45deg] blur-md"
             />
             <motion.div
-                animate={{ x: [500, -500], opacity: [0, 0.3, 0] }}
+                animate={{ x: [500, -500], opacity: [0, 0.2, 0] }}
                 transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                className="absolute top-0 right-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-blue-400/30 to-transparent skew-x-[45deg] blur-md"
+                className="absolute top-0 right-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-blue-400/20 to-transparent skew-x-[45deg] blur-md"
             />
           </>
         )}
 
-        {/* Massive Glow Orbs - More colorful on blue */}
-        <div className="absolute top-[-20%] right-[-10%] w-[1000px] h-[1000px] bg-blue-600/30 blur-[200px] rounded-full animate-pulse" />
-        <div className="absolute bottom-[-10%] left-[-5%] w-[700px] h-[700px] bg-[#ee7c7e]/20 blur-[180px] rounded-full" style={{ animationDelay: '2s' }} />
+        {/* Subtle Glow Orbs */}
+        <div className="absolute top-[-20%] right-[-10%] w-[1000px] h-[1000px] bg-blue-900/20 blur-[200px] rounded-full animate-pulse" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[700px] h-[700px] bg-[#ee7c7e]/10 blur-[180px] rounded-full" style={{ animationDelay: '2s' }} />
         
         {/* Parallax Dust/Particles Overlay */}
-        <div className="absolute inset-0 opacity-[0.15] pointer-events-none" 
+        <div className="absolute inset-0 opacity-[0.1] pointer-events-none" 
              style={{ 
-               backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)', 
+               backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0)', 
                backgroundSize: '50px 50px' 
              }} 
         />

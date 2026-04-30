@@ -19,7 +19,7 @@ export default function AcademicCalendar2025Page() {
     if (!data) return null;
 
     return (
-        <main className="min-h-screen transition-colors duration-500 bg-[#050816]">
+        <main className="min-h-screen transition-colors duration-500 bg-white dark:bg-[#0a0c1a]">
             <PageHero
                 title={data.title}
                 description={data.subtitle}
@@ -40,13 +40,13 @@ export default function AcademicCalendar2025Page() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: idx * 0.1 }}
-                            className="bg-slate-900/40 backdrop-blur-3xl rounded-[4rem] p-10 md:p-16 border-2 border-[#ee7c7e]/20 shadow-2xl relative overflow-hidden"
+                            className="bg-white/80 dark:bg-slate-900/40 backdrop-blur-3xl rounded-[4rem] p-10 md:p-16 border-2 border-[#ee7c7e]/20 shadow-2xl relative overflow-hidden group hover:border-[#ee7c7e]/50 transition-all duration-500"
                         >
                             <div className="absolute top-0 right-0 w-64 h-64 bg-[#ee7c7e]/5 blur-[100px] rounded-full" />
                             
                             <div className="flex items-center gap-4 mb-12">
                                 <div className="w-2 h-10 bg-[#ee7c7e] rounded-full shadow-[0_0_15px_rgba(238,124,126,0.5)]" />
-                                <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter">
+                                <h2 className="text-3xl md:text-4xl font-black text-[#1a2355] dark:text-white uppercase tracking-tighter">
                                     {section.title}
                                 </h2>
                             </div>
@@ -62,8 +62,8 @@ export default function AcademicCalendar2025Page() {
                 </div>
 
                 {/* Notes Section */}
-                <div className="pt-24 border-t border-white/10">
-                    <h2 className="text-3xl font-black text-white uppercase tracking-tighter mb-12 flex items-center gap-4">
+                <div className="pt-24 border-t border-gray-100 dark:border-white/10">
+                    <h2 className="text-3xl font-black text-[#1a2355] dark:text-white uppercase tracking-tighter mb-12 flex items-center gap-4">
                         <span className="w-2.5 h-10 bg-[#ee7c7e] rounded-full animate-pulse shadow-[0_0_15px_rgba(238,124,126,0.5)]" />
                         {lang === 'az' ? 'Əlavə Məlumat' : 'Additional Information'}
                     </h2>
@@ -75,12 +75,12 @@ export default function AcademicCalendar2025Page() {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
-                                className="p-10 rounded-[3rem] bg-slate-900/60 backdrop-blur-xl border-2 border-white/5 shadow-2xl group hover:border-[#ee7c7e]/40 transition-all duration-500"
+                                className="p-10 rounded-[3rem] bg-gray-50 dark:bg-slate-900/60 backdrop-blur-xl border-2 border-transparent dark:border-white/5 shadow-2xl group hover:border-[#ee7c7e]/40 transition-all duration-500"
                             >
                                 <div className="w-16 h-16 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e] mb-8 group-hover:bg-[#ee7c7e] group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-lg">
                                     {i === 0 ? <SchoolIcon sx={{ fontSize: 32 }} /> : <InfoIcon sx={{ fontSize: 32 }} />}
                                 </div>
-                                <p className="text-gray-300 text-xl leading-relaxed font-bold">
+                                <p className="text-gray-600 dark:text-gray-300 text-xl leading-relaxed font-bold">
                                     {note}
                                 </p>
                             </motion.div>

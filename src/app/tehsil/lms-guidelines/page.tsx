@@ -33,17 +33,17 @@ function HomeStyleSection({
     return (
         <section
             ref={ref}
-            className={`relative px-4 md:px-10 lg:px-20 py-24 ${dark ? 'bg-[#0b1330]' : 'bg-white dark:bg-[#0b1330]'} overflow-hidden transition-colors duration-500`}
+            className={`relative px-4 md:px-10 lg:px-20 py-24 ${dark ? 'bg-[#0a0c1a]' : 'bg-white dark:bg-[#0a0c1a]'} overflow-hidden transition-colors duration-500`}
         >
             <div className="absolute inset-0 pointer-events-none">
-                <div className={`absolute inset-0 ${dark ? 'opacity-[0.04]' : 'opacity-[0.12] dark:opacity-[0.04]'}`} 
+                <div className={`absolute inset-0 ${dark ? 'opacity-[0.03]' : 'opacity-[0.1] dark:opacity-[0.03]'}`} 
                      style={{ backgroundImage: `radial-gradient(${dark ? 'white' : '#ee7c7e'} 0.5px, transparent 0.5px)`, backgroundSize: '32px 32px' }} />
                 
-                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#1a2355]/[0.03] dark:bg-[#1a2355]/[0.1] blur-[120px] rounded-full" />
-                <div className={`absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] ${dark ? 'bg-blue-500/[0.05]' : 'bg-[#ee7c7e]/[0.03] dark:bg-[#ee7c7e]/[0.08]'} blur-[100px] rounded-full animate-pulse`} />
+                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#1a2355]/[0.02] dark:bg-[#1a2355]/[0.05] blur-[120px] rounded-full" />
+                <div className={`absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] ${dark ? 'bg-blue-900/[0.03]' : 'bg-[#ee7c7e]/[0.02] dark:bg-[#ee7c7e]/[0.05]'} blur-[100px] rounded-full animate-pulse`} />
                 
                 {watermark && (
-                    <div className="absolute left-10 bottom-10 select-none opacity-[0.02] dark:opacity-[0.05]">
+                    <div className="absolute left-10 bottom-10 select-none opacity-[0.01] dark:opacity-[0.03]">
                         <h1 className={`text-[150px] font-black tracking-tighter leading-none ${dark ? 'text-white' : 'text-[#1a2355] dark:text-white'} uppercase`}>{watermark}</h1>
                     </div>
                 )}
@@ -88,7 +88,7 @@ export default function LMSGuidelinesPage() {
     if (!data) return null;
 
     return (
-        <main className="min-h-screen bg-white dark:bg-[#0b1330] transition-colors duration-500">
+        <main className="min-h-screen bg-white dark:bg-[#0a0c1a] transition-colors duration-500">
              <AboutPageBanner
                 eyebrow={data.eyebrow}
                 title={data.title}
@@ -206,7 +206,7 @@ export default function LMSGuidelinesPage() {
             </HomeStyleSection>
 
             {/* Features Highlight */}
-            <section className="px-4 md:px-10 lg:px-20 py-24 bg-gray-50 dark:bg-[#0b1330]">
+            <section className="px-4 md:px-10 lg:px-20 py-24 bg-gray-50 dark:bg-[#0a0c1a]">
                 <div className="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div className="p-10 rounded-[3rem] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 shadow-2xl relative overflow-hidden group hover:-translate-y-2 transition-all duration-500">
                          <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 dark:bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />

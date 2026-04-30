@@ -22,7 +22,7 @@ export default function AssessmentRulesPage() {
     if (!data) return null;
 
     return (
-        <main className="min-h-screen transition-colors duration-500">
+        <main className="min-h-screen transition-colors duration-500 bg-white dark:bg-[#0a0c1a]">
              <PageHero
                 title={data.title}
                 description={data.subtitle}
