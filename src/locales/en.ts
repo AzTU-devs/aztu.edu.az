@@ -142,7 +142,7 @@ const en = {
     stats: [
       { label: "QS Ranking", value: "851+" },
       { label: "THE Ranking", value: "1501+" },
-      { label: "GreenMetric", value: "Top 800" },
+      { label: "GreenMetric", value: "835" },
       { label: "Students", value: "10000+" },
     ],
   },
@@ -1044,6 +1044,345 @@ const en = {
         title: "Seminars and Trainings",
         subtitle: "Academic and scientific development through seminars, schools and training programs.",
         breadcrumb: "Seminars and Trainings",
+      },
+    },
+    internationalization: {
+      doubleDegreePrograms: {
+        eyebrow: "Internationalization",
+        title: "Dual Degree Programs",
+        subtitle: "Earn two internationally recognised degrees from AzTU and a leading partner university abroad.",
+        breadcrumb: "Double Degree Programs",
+        description: "Azerbaijan Technical University's Double Degree Programmes offer students the opportunity to earn two internationally recognised degrees — one from AzTU and one from a leading partner university abroad — within a single study period. These programmes are developed in line with AzTU's Internationalization Policy and 2030 Development Strategy, reflecting the university's commitment to providing globally competitive education at the Bachelor's, Master's, and doctoral levels.\n\nThrough Double Degree Programmes, students benefit from the academic strengths of two institutions, gain cross-cultural experience, and graduate with qualifications that are recognised both in Azerbaijan and internationally — giving them a significant advantage in the global job market.",
+        currentProgramsTitle: "Current Double Degree Programmes",
+        countries: [
+          {
+            name: "Türkiye",
+            programs: [
+              "Ankara University Electrical & Electronics Engineering — Bachelor's (launched 2022)",
+              "Gazi University Computer Engineering — Bachelor's (launched 2023)"
+            ]
+          },
+          {
+            name: "Germany",
+            programs: [
+              "Brandenburg University of Technology Mechanical & Materials Engineering — Master's",
+              "Brandenburg University of Technology Joint Doctorate Programme — PhD"
+            ]
+          },
+          {
+            name: "Israel",
+            programs: [
+              "Bar-Ilan University Electrical & Electronics Engineering (Nano & Microelectronics) — Master's (launched 2025)"
+            ]
+          }
+        ],
+        whyChooseTitle: "Why Choose a Double Degree Programme?",
+        benefits: [
+          "Graduate with two internationally recognised diplomas",
+          "Study at two leading universities across two countries",
+          "Build a global academic and professional network",
+          "Strengthen your career prospects in the international job market",
+          "Gain cross-cultural competence and language skills"
+        ],
+        related: [
+          { title: "Collaborations", href: "/community/university-cooperation/collaborations" },
+          { title: "Exchange Programs", href: "/students/postgraduates/exchange-programs" },
+        ]
+      },
+      orhunExchange: {
+        eyebrow: "Internationalization",
+        title: "Orhun Exchange Program",
+        subtitle: "A mobility initiative strengthening academic and cultural ties across the Turkic world.",
+        breadcrumb: "Orhun Exchange",
+        description: "Azerbaijan Technical University is an active member of the Turkic Universities Union (TÜRKÜNİB). Within this framework, the university participates in the Orhun Exchange Program.\n\nThe Orhun Exchange Program is a mobility initiative among member universities of the Turkic Universities Union, designed to strengthen academic collaboration and cultural integration across the Turkic world. It provides opportunities for students and academic staff to take part in study, teaching, and research exchanges at partner universities.",
+        countriesTitle: "Participating Countries",
+        countriesDescription: "The program involves universities from the following countries which are members of the broader Organization of Turkic States, under which the union operates:",
+        countries: [
+          "Azerbaijan",
+          "Türkiye",
+          "Kazakhstan",
+          "Kyrgyzstan",
+          "Uzbekistan"
+        ],
+        linksTitle: "Official Resources",
+        officialWebsite: "Official website",
+        programPage: "Orhun Program page",
+        related: [
+          { title: "Dual Degree Programs", href: "/internationalization/international-partnership/double-degree-programs" },
+          { title: "International Projects", href: "/internationalization/international-partnership/international-projects" },
+        ]
+      },
+      internationalProjects: {
+        eyebrow: "Internationalization",
+        title: "International Projects",
+        subtitle: "A global network of research and innovation partnerships.",
+        breadcrumb: "International Projects",
+        description: "Azerbaijan Technical University actively participates in various international research and educational projects, fostering global collaboration and enhancing institutional capacity.",
+        projects: [
+          {
+            id: 1,
+            title: "Enhancement of internal quality assurance of education in teaching, learning and assessment in HEIs of Azerbaijan and Russia (IQAinAR)",
+            fundedBy: "EU ERASMUS+ CBHE",
+            grantNo: "619477-EPP-1-2020-1-NL-EPPKA2-CBHE-JP",
+            period: "15/01/2021 - 14/01/2025",
+            objective: "The IQAinAR project aims to contribute to the enhancement and development of the internal quality assurance in HEIs in Azerbaijan in reference with international (EU) quality standards as benchmark while at the same time strengthening the HEIs towards local, regional and national policies and strategies implementation.",
+            website: "https://www.iqainar.org/",
+            tasks: [
+              "Benchmark analysis of the internal QA in HE in Europe",
+              "Baseline study of the internal Quality Assurance (IQA) at local/regional level (AZ)",
+              "Development and piloting internal Quality Assurance enhancement strategy in HEI (AZ)",
+              "Creation of IQA Indicators (IQAI) and assessment scale",
+              "Development of trainings programs and certification of HE experts in QA",
+              "Creation and launching of online platform with open access for HEIs"
+            ],
+            aztuImplementation: "Survey was conducted among the students and results are being analyzed. Pilot indicators were assigned to AzTU and is being applied in one of the faculties of the university. Article was developed by the representatives of the university for dissemination of results."
+          },
+          {
+            id: 2,
+            title: "Developing Research Capacity through Institutional Repositories Network in Azerbaijan (DIRNA)",
+            fundedBy: "EU ERASMUS+ CBHE",
+            grantNo: "101082124",
+            period: "01/01/2023 - 31/12/2025",
+            objective: "The project aims at building capacity in management of research output via establishing Open Access Institutional Repositories Network (OAIR).",
+            website: "https://dirna.khazar.org/",
+            tasks: [
+              "Design and build capacity for development of 7 OAIRs",
+              "Prepare training and teaching material meeting the local needs",
+              "Scale-up the Khazar University IR to serve as a flexible central repository",
+              "Maximize the visibility, use and impact of the scientific and academic output",
+              "Provide access to teaching and learning materials on inclusive education for disabled person",
+              "Produce or provide storage for the electronic publications of the Azerbaijani HEIs"
+            ],
+            aztuImplementation: "Study tours are organized to study best experience of Turkey, Italy and Norway partner institutions."
+          },
+          {
+            id: 3,
+            title: "Enhancing Sustainable Entrepreneurial Ecosystem in Higher Education of Azerbaijan (ENGAGE)",
+            fundedBy: "EU ERASMUS+ CBHE",
+            grantNo: "101083269",
+            period: "01/01/2023 - 31/12/2025",
+            objective: "The general objective of the project is to enhance the entrepreneurial mindset and environment in higher education by integrating the entrepreneurship in governance, management and curriculum.",
+            website: "https://engage.edu.az/",
+            tasks: [
+              "Establishment, restructuring and modernization of entrepreneurship and innovation center at AzTU",
+              "Equipping the established center with the appropriate equipment",
+              "Creation of a Working Group to analyse the current situation of entrepreneurial activities",
+              "To support the development of benchmark methodology and questionnaire",
+              "Organizing visits to partner universities from the EU to study best practices",
+              "Development of a strategic plan for innovation and entrepreneurship",
+              "Preparation of awarding rules for entrepreneurship in the HE system"
+            ],
+            aztuImplementation: "Kickoff meeting was held and duties and tasks of the project were discussed. Entrepreneurial experience of HEIs in Sweden, Estonia, Poland were studied."
+          }
+        ],
+        details: {
+          fundedBy: "Funded by",
+          grantNo: "Grant No",
+          period: "Period",
+          objective: "General Objective",
+          website: "Website",
+          tasks: "Project Tasks",
+          aztuImplementation: "AzTU Implementation"
+        },
+        related: [
+          { title: "Dual Degree Programs", href: "/internationalization/international-partnership/double-degree-programs" },
+          { title: "Collaborations", href: "/community/university-cooperation/collaborations" },
+        ]
+      },
+      partnerUniversities: {
+        eyebrow: "Internationalization",
+        title: "Partner Universities",
+        subtitle: "A global network of academic excellence.",
+        breadcrumb: "Partner Universities",
+        description: "Azerbaijan Technical University (AzTU) has built a robust global network of partner universities, reflecting its commitment to internationalization and world-class engineering education. Through bilateral cooperation agreements spanning Europe, Asia, CIS countries, and beyond, AzTU collaborates with leading institutions in areas such as joint programs, academic mobility, and scientific research. These partnerships create invaluable opportunities for students, academic staff, and the scientific community at large.",
+        tableHeaders: {
+          no: "№",
+          logo: "Logo",
+          university: "University",
+          country: "Country",
+          agreementType: "Type of agreement",
+          date: "Date",
+          website: "Website"
+        },
+        related: [
+          { title: "Dual Degree Programs", href: "/internationalization/international-partnership/double-degree-programs" },
+          { title: "International Projects", href: "/internationalization/international-partnership/international-projects" },
+        ]
+      },
+      foreignStudentsAdmission: {
+        eyebrow: "International Students",
+        title: "Admission for Foreign Students",
+        breadcrumb: "Admission",
+        description: "Azerbaijan Technical University welcomes applications from international students. The admission process is coordinated by the International Admissions Office and is aligned with the regulations of the Ministry of Science and Education of the Republic of Azerbaijan.",
+        documentsTitle: "Required Documents",
+        documents: [
+          "Completed application form",
+          "Secondary school diploma or equivalent (with certified translation into Azerbaijani or Russian)",
+          "Academic transcript of previous studies",
+          "Copy of valid passport (all pages)",
+          "Medical certificate confirming the applicant is free from contagious diseases",
+          "4 passport-size photographs (3×4 cm)",
+          "Certificate of proficiency in the language of instruction (if applicable)",
+          "Invitation letter issued by AzTU (provided after admission approval)"
+        ],
+        processTitle: "Application Process",
+        processDescription: "Applications are submitted through the State Student Admissions Commission (TQDK) portal for undergraduate programs. For postgraduate programs, applicants contact the International Admissions Office directly. All submitted documents are reviewed by the admissions committee, and successful applicants receive an official invitation letter.",
+        videoInstruction: {
+          text: "Watch our step-by-step video guide on how to complete your online application.",
+          link: "https://www.youtube.com/watch?v=example",
+          linkText: "Watch Video Guide"
+        },
+        reviewTitle: "Document Review",
+        reviewDescription: "All submitted documents are carefully reviewed by the International Admissions Office. You will be notified of the decision within 10–15 working days after submission of a complete application package.",
+        languageRequirementsTitle: "Language Requirements",
+        languageRequirementsDescription: "Instruction at AzTU is conducted in Azerbaijani and Russian. International students are expected to demonstrate sufficient proficiency in the language of their chosen program.\n\nApplicants who do not meet the language requirement may enroll in a one-year preparatory language course offered by the university before commencing their degree program.",
+        importantNoteTitle: "Important Notice",
+        importantNoteDescription: "All foreign citizens planning to study at AzTU must obtain the appropriate student visa before entering Azerbaijan. AzTU's International Admissions Office provides assistance with the visa invitation process.\n\nFor detailed and up-to-date admission requirements, please contact the International Admissions Office or visit the official TQDK website.",
+        related: [
+          { title: "Visa & Migration", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Accommodation", href: "/beynelmillesme/xarici-telebeler/yerlesme" },
+          { title: "Scholarship Opportunities", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+        ]
+      },
+      scholarship: {
+        eyebrow: "International Students",
+        title: "Scholarship Opportunities",
+        breadcrumb: "Scholarships",
+        description: "Azerbaijan Technical University and its international partners offer a range of scholarship and grant programs to support talented international students throughout their studies.",
+        programs: [
+          {
+            title: "Azerbaijan Government Scholarship",
+            link: "https://www.azscience.gov.az",
+            description: "The State Scholarship Programme of the Republic of Azerbaijan provides funding for international students admitted to Azerbaijani higher education institutions on a competitive basis.",
+            objectives: [
+              "Strengthen international academic ties",
+              "Attract talented foreign students to Azerbaijani universities",
+              "Promote cultural exchange and mutual understanding"
+            ],
+            levels: ["Bachelor's", "Master's", "PhD"],
+            benefits: ["Full tuition coverage", "Monthly stipend", "Accommodation allowance"],
+            nominationNote: "Candidates are nominated through their home country's Ministry of Education or directly via the scholarship portal."
+          },
+          {
+            title: "AzTU Internal Merit Grant",
+            description: "AzTU awards internal performance-based grants to international students who demonstrate outstanding academic achievement during their studies.",
+            objectives: [
+              "Reward academic excellence",
+              "Motivate high-performing students",
+              "Support continuation of studies without financial burden"
+            ],
+            requirements: ["GPA 91+", "Full-time enrollment", "Positive conduct record"],
+            benefits: ["Partial tuition reduction", "Priority housing"],
+            selectionNote: "Grants are reviewed at the end of each academic semester based on GPA and conduct."
+          },
+          {
+            title: "Erasmus+ International Credit Mobility",
+            link: "https://erasmus-plus.ec.europa.eu",
+            description: "Through Erasmus+ International Credit Mobility agreements, international students from partner countries can study at AzTU for one or two semesters with full financial support.",
+            objectives: [
+              "Promote cross-cultural academic exchange",
+              "Strengthen AzTU's European partnerships",
+              "Enhance the internationalisation of the campus"
+            ],
+            levels: ["Bachelor's", "Master's"],
+            benefits: ["Monthly living allowance", "Travel contribution", "Tuition waiver"],
+            nominationNote: "Students must be nominated by their home institution. Contact your Erasmus+ coordinator for details."
+          }
+        ],
+        related: [
+          { title: "Admission", href: "/beynelmillesme/xarici-telebeler/qebul" },
+          { title: "Visa & Migration", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Accommodation", href: "/beynelmillesme/xarici-telebeler/yerlesme" },
+        ]
+      },
+      accommodation: {
+        eyebrow: "International Students",
+        title: "Student Accommodation",
+        breadcrumb: "Accommodation",
+        description: "AzTU provides comfortable and affordable on-campus dormitory facilities for international students, as well as guidance on finding suitable private housing in Baku.",
+        content: [
+          "AzTU's on-campus dormitories offer furnished rooms for international students within easy reach of academic buildings and university facilities. Rooms are available on a single and shared occupancy basis. All dormitories are equipped with internet access, laundry facilities, and common areas.",
+          "International students who prefer private housing will find a wide range of apartments and shared flats available in Baku at various price points. The International Office can provide a list of recommended neighbourhoods and trusted agencies to assist with the search.",
+          "AzTU's Student Support Services team is available throughout the year to help international students with accommodation-related queries, address issues with on-campus housing, and connect students with local support networks."
+        ],
+        supportTitle: "Student Housing Support",
+        supportDescription: "Our dedicated housing support team assists every international student from arrival to settling in. Whether you choose on-campus or off-campus accommodation, we are here to ensure a smooth transition and a safe, comfortable stay in Baku.",
+        related: [
+          { title: "Admission", href: "/beynelmillesme/xarici-telebeler/qebul" },
+          { title: "Visa & Migration", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Scholarship Opportunities", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+        ]
+      },
+      visaMigration: {
+        eyebrow: "International Students",
+        title: "Visa & Migration",
+        breadcrumb: "Visa & Migration",
+        description: "All international students enrolling at AzTU must obtain the appropriate student visa before entering Azerbaijan. The International Admissions Office provides guidance and support throughout the entire visa and migration process.",
+        visaSections: [
+          {
+            title: "Student Visa",
+            description: "Foreign nationals accepted to study at AzTU must apply for a student visa at the Azerbaijani embassy or consulate in their home country. AzTU will issue an official invitation letter upon confirmation of admission, which is required for the visa application."
+          },
+          {
+            title: "Visa-Free Countries",
+            description: "Citizens of certain countries may enter Azerbaijan without a visa for short stays. However, a student visa or residence permit is still required for those enrolling in a degree programme. Please check the current list of visa-free agreements on the official migration authority website."
+          },
+          {
+            title: "ASAN Visa (e-Visa)",
+            description: "Citizens of many countries can apply for an Azerbaijani e-Visa through the ASAN Visa portal prior to arrival. The e-Visa is available for tourism and short visits; degree-seeking students must obtain a formal student visa from an Azerbaijani diplomatic mission."
+          },
+          {
+            title: "Visa Extension",
+            description: "Students whose programmes extend beyond the initial visa validity must apply for a visa extension through the State Migration Service. The International Office assists students in preparing the required documentation for extension applications."
+          }
+        ],
+        supportNote: "AzTU's International Admissions Office provides personalised guidance on visa requirements, invitation letters, and migration procedures. We recommend contacting our office well in advance of your planned arrival date.",
+        registrationTitle: "Migration Registration",
+        registrationDescription: "All foreign nationals residing in Azerbaijan for more than 15 days are required to register with the State Migration Service. AzTU assists international students in completing this registration within the required timeframe.",
+        registrationMethodsTitle: "Registration Methods",
+        registrationMethods: [
+          "Online registration via the State Migration Service e-portal",
+          "In-person registration at the nearest State Migration Service branch",
+          "Registration through AzTU's International Admissions Office (assisted service)"
+        ],
+        addressChangeNote: "Students must update their registration if they change their place of residence during their stay in Azerbaijan.",
+        permitTitle: "Temporary Residence Permit",
+        permitDescription: "International students enrolled in a programme lasting more than one year may apply for a Temporary Residence Permit (TRP), which simplifies annual re-registration requirements and provides greater legal certainty during the period of study.",
+        permitDocumentsTitle: "Documents Required for TRP",
+        permitDocuments: [
+          "Valid passport with current student visa",
+          "Enrolment certificate from AzTU",
+          "Proof of accommodation (dormitory contract or rental agreement)",
+          "Medical insurance certificate",
+          "Completed application form (available from the State Migration Service)"
+        ],
+        permitNote: "The Temporary Residence Permit is typically issued for one year and must be renewed annually. AzTU's International Office will notify you in advance of your renewal deadline.",
+        related: [
+          { title: "Admission", href: "/beynelmillesme/xarici-telebeler/qebul" },
+          { title: "Accommodation", href: "/beynelmillesme/xarici-telebeler/yerlesme" },
+          { title: "Scholarship Opportunities", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+        ]
+      },
+      bilateralExchange: {
+        eyebrow: "Internationalization",
+        title: "Bilateral Exchange Programs",
+        subtitle: "Expand your horizons through AzTU's bilateral academic exchange agreements with universities worldwide.",
+        breadcrumb: "Bilateral Exchange",
+        description: "Azerbaijan Technical University has established bilateral exchange agreements with partner universities across Europe, Asia, and the CIS region. These agreements enable students and academic staff to undertake short-term academic exchanges, research visits, and study semesters at leading institutions abroad.\n\nBilateral exchange programs provide participants with unique cross-cultural experiences, strengthen international academic ties, and contribute to the personal and professional development of AzTU students and faculty.",
+        opportunitiesTitle: "Exchange Opportunities",
+        opportunities: [
+          "Semester or academic year study abroad",
+          "Short-term research and internship placements",
+          "Summer schools and intensive programs",
+          "Academic staff teaching and research mobility",
+          "Joint supervision of thesis and dissertations",
+          "Participation in international scientific conferences"
+        ],
+        related: [
+          { title: "Dual Degree Programs", href: "/internationalization/international-partnership/double-degree-programs" },
+          { title: "Orhun Exchange Program", href: "/internationalization/exchange-programs/orhun-exchange" },
+          { title: "International Projects", href: "/internationalization/international-partnership/international-projects" },
+        ]
       },
     },
   },
