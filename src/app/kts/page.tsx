@@ -2,17 +2,19 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import PageHero from "@/components/shared/PageHero";
 import PageContainer from "@/components/shared/PageContainer";
 import KtsSidebar from "@/components/kts/KtsSidebar";
+import ImprovementPlanFlow from "@/components/kts/diagrams/ImprovementPlanFlow";
+import SatisfactionLevels from "@/components/kts/diagrams/SatisfactionLevels";
+import RespondentDistribution from "@/components/kts/diagrams/RespondentDistribution";
+import KpiOverview from "@/components/kts/diagrams/KpiOverview";
 import { useLanguage } from "@/context/LanguageContext";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import PollIcon from "@mui/icons-material/Poll";
-import VerifiedIcon from "@mui/icons-material/Verified";
 
 const QUICK_LINKS = [
   { labelAz: "Sənədlər", labelEn: "Documents", slug: "senedler" },
@@ -110,15 +112,7 @@ export default function KtsPage() {
                 <span className="w-2 h-8 bg-[#ee7c7e] rounded-full" />
                 {copy.aboutTitle}
               </h2>
-              <div className="relative w-full rounded-[2rem] overflow-hidden mb-8 border-2 border-[#1a2355]/30 dark:border-white/5">
-                <Image
-                  src="/kts/qa-1.png"
-                  alt="Keyfiyyətin Təminatı"
-                  width={900}
-                  height={480}
-                  className="w-full object-cover"
-                />
-              </div>
+              <ImprovementPlanFlow />
               <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed font-medium whitespace-pre-line">
                 {copy.aboutBody}
               </p>
@@ -140,15 +134,7 @@ export default function KtsPage() {
                 {copy.kpiTitle}
               </h2>
 
-              <div className="relative w-full rounded-[2rem] overflow-hidden mb-8 border-2 border-[#1a2355]/30 dark:border-white/5">
-                <Image
-                  src="/kts/qa-2.png"
-                  alt="AzTU KPI Dashboard Overview"
-                  width={900}
-                  height={480}
-                  className="w-full object-cover"
-                />
-              </div>
+              <SatisfactionLevels />
 
               <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed font-medium whitespace-pre-line">
                 {copy.kpiBody}
@@ -170,15 +156,7 @@ export default function KtsPage() {
                 </span>
                 {copy.cultureTitle}
               </h2>
-              <div className="relative w-full rounded-[2rem] overflow-hidden mb-8 border-2 border-[#1a2355]/30 dark:border-white/5">
-                <Image
-                  src="/kts/qa-3.png"
-                  alt="Keyfiyyət mədəniyyəti"
-                  width={900}
-                  height={480}
-                  className="w-full object-cover"
-                />
-              </div>
+              <RespondentDistribution />
               <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed font-medium whitespace-pre-line">
                 {copy.cultureBody}
               </p>
@@ -236,15 +214,7 @@ export default function KtsPage() {
                 </span>
                 {copy.surveysTitle}
               </h2>
-              <div className="relative w-full rounded-[2rem] overflow-hidden mb-8 border-2 border-[#1a2355]/30 dark:border-white/5">
-                <Image
-                  src="/kts/qa-4.png"
-                  alt="Sorğular"
-                  width={900}
-                  height={480}
-                  className="w-full object-cover"
-                />
-              </div>
+              <KpiOverview />
               <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed font-medium whitespace-pre-line">
                 {copy.surveysBody}
               </p>
