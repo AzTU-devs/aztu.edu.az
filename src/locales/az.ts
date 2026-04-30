@@ -1007,6 +1007,65 @@ const az = {
         subtitle: "Daxili prosedurlar və rəsmi nizamnamə qaydaları.",
         breadcrumb: "Prosedurlar və Qaydalar",
       },
+
+      mba: {
+        eyebrow: "Təhsil və Proqramlar",
+        title: "MBA Proqramı",
+        subtitle: "Qlobal iqtisadiyyat üçün biznese yönəlmiş mühəndislər və texniki liderlər yetişdiririk.",
+        breadcrumb: "MBA",
+        aboutTitle: "MBA Proqramı Haqqında",
+        paragraphs: [
+          "Azərbaycan Texniki Universitetinin (AzTU) MBA Proqramı, AzTU-nun Elmi Şurasının 27 dekabr 2021-ci il qərarı ilə yaradılmış Yüksək Təhsil İnstitutu (YTİ) tərəfindən həyata keçirilir. Proqram müasir tələblərə cavab verən peşəkar kadrlar — yaradıcı təfəkkür, tədqiqat qabiliyyəti və güclü idarəetmə bacarıqlarına malik mütəxəssislər hazırlamaq məqsədi daşıyır.",
+          "MBA proqramı texniki bilikləri iş dünyası ilə birləşdirərək məzunları mühəndislik təşkilatlarını idarə etmək, innovasiyaları istiqamətləndirmək və müasir sənayenin çağırışlarına cavab vermək üçün hazırlayır. Tədris dörd dildə — azərbaycan, ingilis, alman və rus dilləri — həyata keçirilir."
+        ],
+        programTitle: "Proqramın Əsas Göstəriciləri",
+        stats: [
+          { value: "36", label: "Tədris Sahəsi" },
+          { value: "126", label: "İxtisaslaşma" },
+          { value: "4", label: "Tədris Dili" },
+          { value: "3 247", label: "Qeydiyyatda olan tələbə" },
+        ],
+        languagesTitle: "Tədris Dilləri",
+        languages: ["Azərbaycan", "İngilis", "Alman", "Rus"],
+        structureTitle: "Proqramın Strukturu",
+        structureItems: [
+          "Strateji idarəetmə və liderlik",
+          "Mühəndislik iqtisadiyyatı və innovasiya idarəetməsi",
+          "Layihə idarəetməsi və təşkilati dizayn",
+          "Biznes analitikası və qərar qəbuletmə",
+          "Beynəlxalq biznes və sahibkarlıq"
+        ],
+        doctoralTitle: "Doktorantura İstiqamətləri",
+        doctoralDescription: "MBA proqramı məzunları doktorantura səviyyəsində təhsilini davam etdirə bilərlər. AzTU aşağıdakı doktorantura formatlarını təklif edir:",
+        doctoralFormats: [
+          "Əyani (istehsalatdan ayrılmaqla)",
+          "Qiyabi (istehsalatdan ayrılmadan)",
+          "Dissertasiya əsasında"
+        ],
+        doctoralDuration: {
+          title: "Təhsil Müddəti",
+          phd: {
+            title: "Fəlsəfə doktoru (PhD):",
+            items: ["Əyani: 3 il", "Qiyabi: 4 il", "Dissertasiya əsasında: 4 il"]
+          },
+          ds: {
+            title: "Elmlər doktoru:",
+            items: ["Əyani: 4 il", "Qiyabi: 5 il", "Dissertasiya əsasında: 5 il"]
+          }
+        },
+        contactTitle: "Əlaqə",
+        contact: {
+          address: "H.Cavid prospekti 25, Bakı, Azərbaycan AZ 1073 — Əsas tədris binası (IV–V mərtəbələr)",
+          phone: "+994 (12) 538-94-40",
+          hotline: "+994 (50) 225-92-77",
+          email: "yti@aztu.edu.az"
+        },
+        related: [
+          { title: "Yüksək Təhsil İnstitutu (YTİ)", href: "/haqqimizda/yuksek-tehsil-institutu-yti" },
+          { title: "Magistratura Proqramları", href: "/telebeler/magistratura/magistratura-ixtisaslari" },
+          { title: "İkili Diplom Proqramları", href: "/telebeler/magistratura/mubadile-proqramlari" },
+        ],
+      },
     },
     students: {
       academicCalendar2025: {

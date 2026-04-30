@@ -856,6 +856,65 @@ const en = {
         subtitle: "Internal procedures and official regulatory guidelines.",
         breadcrumb: "Procedures & Guidelines",
       },
+
+      mba: {
+        eyebrow: "Education and Programs",
+        title: "MBA Program",
+        subtitle: "Developing business-minded engineers and technical leaders for the global economy.",
+        breadcrumb: "MBA",
+        aboutTitle: "About the MBA Program",
+        paragraphs: [
+          "The MBA Program at Azerbaijan Technical University (AzTU) is administered by the Higher Education Institute (HEI), established by the University's Scientific Board on December 27, 2021. The program is designed to prepare professional personnel meeting contemporary standards — specialists equipped with creative thinking, research capability, and strong management skills.",
+          "The MBA program bridges technical expertise with business acumen, preparing graduates to lead engineering organizations, drive innovation, and navigate the challenges of modern industry. Instruction is provided in four languages: Azerbaijani, English, German, and Russian."
+        ],
+        programTitle: "Program Highlights",
+        stats: [
+          { value: "36", label: "Fields of Study" },
+          { value: "126", label: "Specializations" },
+          { value: "4", label: "Languages of Instruction" },
+          { value: "3 247", label: "Enrolled Students" },
+        ],
+        languagesTitle: "Languages of Instruction",
+        languages: ["Azerbaijani", "English", "German", "Russian"],
+        structureTitle: "Program Structure",
+        structureItems: [
+          "Strategic management and leadership",
+          "Engineering economics and innovation management",
+          "Project management and organizational design",
+          "Business analytics and decision-making",
+          "International business and entrepreneurship"
+        ],
+        doctoralTitle: "Doctoral Pathways",
+        doctoralDescription: "Graduates of the MBA program may continue to doctoral-level study. AzTU offers the following doctoral formats:",
+        doctoralFormats: [
+          "Full-time (with leave from production)",
+          "Part-time (without leave from production)",
+          "Dissertation-based"
+        ],
+        doctoralDuration: {
+          title: "Duration of Study",
+          phd: {
+            title: "Doctor of Philosophy (PhD):",
+            items: ["Full-time: 3 years", "Part-time: 4 years", "Dissertation-based: 4 years"]
+          },
+          ds: {
+            title: "Doctor of Sciences:",
+            items: ["Full-time: 4 years", "Part-time: 5 years", "Dissertation-based: 5 years"]
+          }
+        },
+        contactTitle: "Contact",
+        contact: {
+          address: "H. Javid Avenue 25, Baku, Azerbaijan AZ 1073 — Main Academic Building (Floors IV–V)",
+          phone: "+994 (12) 538-94-40",
+          hotline: "+994 (50) 225-92-77",
+          email: "yti@aztu.edu.az"
+        },
+        related: [
+          { title: "Higher Education Institute (HEI)", href: "/about/hei" },
+          { title: "Postgraduate Programs", href: "/students/postgraduates/postgraduate-specialties" },
+          { title: "Dual Degree Programs", href: "/students/postgraduates/exchange-programs" },
+        ],
+      },
     },
     students: {
       academicCalendar2025: {

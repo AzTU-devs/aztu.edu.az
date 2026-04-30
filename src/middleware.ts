@@ -372,6 +372,9 @@ export function middleware(request: NextRequest) {
         if ((segments_rest[1] === "education-and-programs" || segments_rest[1] === "tehsil-ve-proqramlar") &&
             (segments_rest[2] === "higher-education-institute-hei" || segments_rest[2] === "yuksek-tehsil-institutu-yti")) {
             segments_rest = ["about", "hei"];
+        } else if ((segments_rest[1] === "education-and-programs" || segments_rest[1] === "tehsil-ve-proqramlar") &&
+            segments_rest[2] === "mba") {
+            segments_rest = ["about", "mba"];
         } else if (segments_rest[1] === "faculties" || segments_rest[1] === "fakulteler") {
             if (segments_rest[2]) {
                 const facultySlug = segments_rest[2];
