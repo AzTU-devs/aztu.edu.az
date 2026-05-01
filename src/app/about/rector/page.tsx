@@ -18,7 +18,6 @@ import PageHero from "@/components/shared/PageHero";
 import PageContainer from "@/components/shared/PageContainer";
 
 const rectorData = {
-    fullName: "Vilayat Valiyev",
     academicDegree: "Doctor of Technical Sciences, Professor",
     title: "Rector of Azerbaijan Technical University",
     email: "rector@aztu.edu.az",
@@ -77,6 +76,7 @@ export default function RectorPage() {
 
     const leadershipLabel = lang === "az" ? "Rəhbərlik və İdarəetmə" : "Leadership and Management";
     const leadershipHref = lang === "az" ? "/haqqimizda/rehbetlik-ve-idareetme" : "/about/leadership-and-management";
+    const fullName = lang === "az" ? "Vilayət Vəliyev" : "Vilayat Valiyev";
 
     return (
         <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden">
@@ -85,7 +85,7 @@ export default function RectorPage() {
             <div className="bg-grid-premium" />
 
             <PageHero
-                title={rectorData.fullName}
+                title={fullName}
                 eyebrow={p.eyebrow}
                 breadcrumbs={[
                     { label: t.nav.sections.about, href: lang === "az" ? "/haqqimizda" : "/about" },
@@ -134,7 +134,7 @@ export default function RectorPage() {
                             <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden shadow-2xl z-10 border border-white/10">
                                 <Image
                                     src={VilayetVeliyev}
-                                    alt={rectorData.fullName}
+                                    alt={fullName}
                                     fill
                                     priority
                                     className="object-cover object-top"
