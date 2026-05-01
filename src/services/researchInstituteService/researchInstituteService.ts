@@ -671,6 +671,220 @@ const STATIC_INSTITUTES: StaticInstituteRecord[] = [
             updated_at: NOW,
         },
     },
+    {
+        az: {
+            id: 4,
+            institute_code: "logistika",
+            image_url: `${RI_MEDIA}/logistika/logo.jpg`,
+            name: "Logistika və Nəqliyyat İnstitutu",
+            about:
+                "<p>Azərbaycan Texniki Universitetinin Logistika və Nəqliyyat İnstitutu 2021-ci ilin sentyabr ayında yaradılmışdır. İnstitut yük və sərnişin daşımalarının təşkili, yol hərəkətinin təşkili və təhlükəsizliyi, logistik proseslərin idarə olunması istiqamətində tədqiqat strukturu kimi fəaliyyət göstərir. İnstitutun tərkibinə Azərbaycan Respublikasında yol hərəkətinin təhlükəsizliyinə dair “2019–2023-cü illər üçün Dövlət Proqramı” çərçivəsində yaradılmış “Yol hərəkətinin təşkili və təhlükəsizliyi Elmi-Tədqiqat Mərkəzi”, ERASMUS proqramı çərçivəsində yaradılmış CRENG Service Office və PTV laboratoriyası daxildir.</p>" +
+                "<p>Logistika və Nəqliyyat İnstitutu şəhər, region, ölkə və beynəlxalq səviyyələrdə nəqliyyat problemlərinin müasir yanaşmalara əsaslanan həllinə həsr olunmuş tədqiqatlar aparılmasını, ölkənin logistika və nəqliyyat sahəsindəki prioritetlərinə uyğun elmi nəticələrin əldə olunmasını hədəfləyir. Tədqiqat istiqamətlərinə nəqliyyat axınlarının öyrənilməsi və modelləşdirilməsi, daşınma proseslərinin öyrənilməsi, modelləşdirilməsi və idarə olunması, nəqliyyat texnologiyalarının təkmilləşdirilməsi və işlənib hazırlanması daxildir.</p>",
+            vision:
+                "Yol hərəkətinin təşkili və təhlükəsizliyi, daşınma proseslərinin təşkili və idarə edilməsi, logistik şəbəkələrin qurulması üzrə aparıcı regional tədqiqat mərkəzi kimi ölkənin və regionun nəqliyyat sahəsində inkişafına töhfə vermək, yeni həllər yarada bilən yüksək ixtisaslı tədqiqatçılar hazırlamaq.",
+            mission:
+                "Qabaqcıl texnologiyaların inteqrasiyasını təmin etməklə ölkənin və regionun strateji nəqliyyat və logistika problemlərinin elmi əsaslandırılmış və orijinal həllərini hazırlamaq, təhsilin və sənayenin inkişafını dəstəkləmək üçün əlverişli tədqiqat mühitini formalaşdırmaq.",
+            director: {
+                id: 5,
+                full_name: "Daşdəmirov Fuad Səmid oğlu",
+                email: "fuad.dashdamirov@aztu.edu.az",
+                office: "V korpus, 112-ci otaq",
+                image_url: `${RI_MEDIA}/logistika/${encodeURIComponent("Daşdəmirov Fuad.jpg")}`,
+                title: "Texnika elmləri doktoru, dosent",
+                biography:
+                    "<p>Daşdəmirov Fuad Səmid oğlu şəhər ictimai nəqliyyatı, daşınma proseslərinin idarə olunması sahələri üzrə ixtisaslaşmış alimdir. O, logistika və nəqliyyat texnologiyaları, nəqliyyat mühəndisliyi istiqamətlərində elmi və pedaqoji fəaliyyət göstərir.</p>" +
+                    "<p>Fuad Səmid oğlu Daşdəmirovun elmi tədqiqatlarının əsas istiqamətlərinə şəhər nəqliyyatının simulyasiya modelləşdirilməsi, nəqliyyat mobilliyinin təmin edilməsi, nəqliyyatda çoxfaktorlu seçim metodlarının tətbiqi, nəqliyyatda iş rejimlərinin koordinasiya texnologiyaları daxildir. Bu sahələr üzrə apardığı tədqiqatların nəticələri nüfuzlu elmi jurnallarda dərc olunmuşdur. 100-dən çox elmi əsərin, o cümlədən 3 kitabın, bir beynəlxalq kollektiv monoqrafiyanın müəllifidir.</p>" +
+                    "<p>Azərbaycan Respublikasının 44 şəhərində şəhərdaxili hərəkət (mobillik) planlarının hazırlanması, Baku Bus MMC şirkətində ixtisasartırma kurslarının təşkili ilə əlaqədar layihələrə rəhbərlik etmiş, Erasmus (“Nəqliyyat servisləri üçün risk və böhran mühəndisliyi” magistr proqramı) layihəsinin iştirakçısı olmuşdur.</p>" +
+                    "<p>2021-ci ildən Azərbaycan Texniki Universitetinin Logistika və Nəqliyyat İnstitutunun direktoru vəzifəsində çalışır. 2020-ci ildə Azərbaycan Respublikası Prezidentinin Sərəncamına əsasən “Tərəqqi” medalı ilə təltif edilmişdir.</p>" +
+                    "<p><strong>Telefon:</strong> +994 50 300 99 73</p>",
+                educations: [
+                    { id: 1, university: "Azərbaycan Texniki Universiteti", degree: "Mühəndis", start_year: "1989", end_year: "1994" },
+                    { id: 2, university: "Azərbaycan Texniki Universiteti", degree: "Elmlər namizədi (PhD)", start_year: "", end_year: "2012" },
+                    { id: 3, university: "Azərbaycan Texniki Universiteti", degree: "Elmlər doktoru (DSc)", start_year: "", end_year: "2026" },
+                ],
+                research_areas: [
+                    { id: 1, content: "Nəqliyyatda simulyasiya modelləşdirilməsi" },
+                    { id: 2, content: "Daşıma proseslərinin idarə edilməsi" },
+                    { id: 3, content: "Nəqliyyat mobilliyinin artırılması" },
+                    { id: 4, content: "Logistik şəbəkələrin dizaynı" },
+                    { id: 5, content: "Nəqliyyatda hərəkətin təşkili və təhlükəsizliyi" },
+                    { id: 6, content: "Nəqliyyatda və logistikada risk və böhran menecmenti" },
+                ],
+            },
+            objectives: [
+                { id: 1, content: "Logistika və nəqliyyat sahəsində elmi tədqiqatların aparılmasında müasir simulyasiya, izləmə və idarəetmə sistemlərindən istifadə etmək." },
+                { id: 2, content: "Logistika və nəqliyyat sahəsində həyata keçirilən beynəlxalq və yerli layihələrdə iştirak etmək." },
+                { id: 3, content: "Doktorant, dissertant və magistrantların elmi araşdırmalarını dəstəkləmək." },
+                { id: 4, content: "Sahə üzrə elmi nailiyyətləri və innovativ texnologiyaları təqib etməklə yüksək səviyyəli elmi kadrların hazırlığına kömək etmək." },
+                { id: 5, content: "Logistika və nəqliyyat sahəsində innovativ texnologiyaların inteqrasiyasını təmin etmək." },
+            ],
+            research_directions: [
+                { id: 1, content: "Logistika və nəqliyyat sahəsində güclü elmi potensialın formalaşdırılması" },
+                { id: 2, content: "Magistratura və doktorantura səviyyəsində proqramların hazırlanması və yenilənməsi" },
+                { id: 3, content: "Beynəlxalq konfrans, seminar və layihələrdə iştirak" },
+                { id: 4, content: "Yerli və xarici tədqiqat mərkəzləri ilə tərəfdaşlığın qurulması və inkişaf etdirilməsi" },
+                { id: 5, content: "AzTU-nun strateji hədəflərinə uyğun gələn digər fəaliyyətlərdə iştirak" },
+            ],
+            staff: [
+                {
+                    id: 1,
+                    full_name: "Tağızadə Əsgər Həbib oğlu",
+                    email: "tagizade.asger@aztu.edu.az",
+                    phone: "+994503313186",
+                    image_url: `${RI_MEDIA}/logistika/${encodeURIComponent("Tağızadə Əsgər.jpg")}`,
+                    title: "Tədqiqatçı professor — Texnika elmləri doktoru, professor",
+                },
+                {
+                    id: 2,
+                    full_name: "Əliyev Əlləz Hacıəhməd oğlu",
+                    email: "allaz.aliyev@aztu.edu.az",
+                    phone: "+994503272792",
+                    image_url: `${RI_MEDIA}/logistika/${encodeURIComponent("Əliyev Əlləz.jpg")}`,
+                    title: "“Yol hərəkətinin təşkili və təhlükəsizliyi” Elmi-Tədqiqat Mərkəzinin rəhbəri — Texnika üzrə fəlsəfə doktoru, dosent",
+                },
+                {
+                    id: 3,
+                    full_name: "Cavadlı Ülvi Yusif oğlu",
+                    email: "ulvi.javadli@aztu.edu.az",
+                    phone: "+994773430081",
+                    image_url: `${RI_MEDIA}/logistika/${encodeURIComponent("Cavadlı Ülvi.jpg")}`,
+                    title: "Böyük elmi işçi",
+                },
+                {
+                    id: 4,
+                    full_name: "Verdiyev Turan Şəmsi oğlu",
+                    email: "turan.verdiyev@aztu.edu.az",
+                    phone: "+994507628062",
+                    image_url: `${RI_MEDIA}/logistika/${encodeURIComponent("Verdiyev Turan.jpg")}`,
+                    title: "Böyük elmi işçi",
+                },
+                {
+                    id: 5,
+                    full_name: "Allahverdiyev Röyal Şöhrət oğlu",
+                    email: "royal.allahverdiyev@aztu.edu.az",
+                    phone: "+994773093343",
+                    image_url: `${RI_MEDIA}/logistika/${encodeURIComponent("Allahverdiyev Röyal.jpg")}`,
+                    title: "Böyük elmi işçi",
+                },
+                {
+                    id: 6,
+                    full_name: "Məmmədov Məmməd Qurban oğlu",
+                    email: "memmed.memmedov@aztu.edu.az",
+                    phone: "+994515266641",
+                    image_url: `${RI_MEDIA}/logistika/${encodeURIComponent("Məmmədov Məmməd.png")}`,
+                    title: "Elmi işçi",
+                },
+            ],
+            created_at: NOW,
+            updated_at: NOW,
+        },
+        en: {
+            id: 4,
+            institute_code: "logistika",
+            image_url: `${RI_MEDIA}/logistika/logo.jpg`,
+            name: "Logistics and Transport Institute",
+            about:
+                "<p>The Logistics and Transport Institute of Azerbaijan Technical University was established in September 2021. The institute operates as a research structure in the field of organization of cargo and passenger transportation, organization and safety of road traffic, and management of logistics processes. The institute includes the Scientific Research Center for Organization and Safety of Road Traffic — established within the framework of the “State Program for 2019–2023” on road traffic safety in the Republic of Azerbaijan — the CRENG Service Office established under the ERASMUS program, and the PTV laboratory.</p>" +
+                "<p>The Logistics and Transport Institute aims to conduct research dedicated to solving transport problems at the city, regional, national and international levels based on modern approaches, and to obtain scientific results aligned with the country's priorities in logistics and transport. Research areas include the study and modeling of transport flows; the study, modeling and management of transportation processes; and the development and improvement of transport technologies.</p>",
+            vision:
+                "To contribute to the development of the country and the region in the field of transport as a leading regional research center for the organization and safety of road traffic, the organization and management of transportation processes, and the establishment of logistics networks, and to train highly qualified researchers who can create new solutions.",
+            mission:
+                "To develop scientifically grounded and original solutions to the strategic transport and logistics problems of the country and the region by ensuring the integration of advanced technologies, and to form a favorable research environment that supports the development of education and industry.",
+            director: {
+                id: 5,
+                full_name: "Fuad Samid Dashdamirov",
+                email: "fuad.dashdamirov@aztu.edu.az",
+                office: "Building V, Room 112",
+                image_url: `${RI_MEDIA}/logistika/${encodeURIComponent("Daşdəmirov Fuad.jpg")}`,
+                title: "Doctor of Technical Sciences, Associate Professor",
+                biography:
+                    "<p>Fuad Dashdamirov is a scientist specializing in urban public transport and the management of transportation processes. He carries out scientific and pedagogical activities in the areas of logistics and transport technologies, and transport engineering.</p>" +
+                    "<p>The main directions of Fuad Dashdamirov's scientific research include simulation modeling of urban transport, ensuring transport mobility, application of multifactor selection methods in transport, and coordination technologies of work regimes in transport. The results of his research in these areas have been published in reputable scientific journals. He is the author of more than 100 scientific works, including 3 books and one international collective monograph.</p>" +
+                    "<p>He has led projects related to the preparation of urban movement (mobility) plans in 44 cities of the Republic of Azerbaijan, the organization of advanced training courses at Baku Bus LLC, and was a participant in the Erasmus project “Crisis and Risk Engineering for Transport Services” (master's program).</p>" +
+                    "<p>Since 2021, he has served as Director of the Logistics and Transport Institute of Azerbaijan Technical University. In 2020, he was awarded the “Progress” medal by Decree of the President of the Republic of Azerbaijan.</p>" +
+                    "<p><strong>Phone:</strong> +994 50 300 99 73</p>",
+                educations: [
+                    { id: 1, university: "Azerbaijan Technical University", degree: "Engineer", start_year: "1989", end_year: "1994" },
+                    { id: 2, university: "Azerbaijan Technical University", degree: "Candidate of Sciences (PhD)", start_year: "", end_year: "2012" },
+                    { id: 3, university: "Azerbaijan Technical University", degree: "Doctor of Sciences (DSc)", start_year: "", end_year: "2026" },
+                ],
+                research_areas: [
+                    { id: 1, content: "Simulation modeling in transport" },
+                    { id: 2, content: "Management of transportation processes" },
+                    { id: 3, content: "Increasing transport mobility" },
+                    { id: 4, content: "Design of logistics networks" },
+                    { id: 5, content: "Organization and safety of traffic in transport" },
+                    { id: 6, content: "Crisis and risk management in transport and logistics" },
+                ],
+            },
+            objectives: [
+                { id: 1, content: "Use modern simulation, tracking, and management systems in conducting scientific research in logistics and transport." },
+                { id: 2, content: "Participate in international and local projects implemented in the field of logistics and transport." },
+                { id: 3, content: "Support the scientific research of doctoral, dissertation and master's students." },
+                { id: 4, content: "Assist in training high-level scientific personnel by following scientific achievements and innovative technologies in the field." },
+                { id: 5, content: "Ensure the integration of innovative technologies in logistics and transport." },
+            ],
+            research_directions: [
+                { id: 1, content: "Formation of strong scientific potential in the field of logistics and transport" },
+                { id: 2, content: "Development and updating of programs at the master's and doctoral levels" },
+                { id: 3, content: "Participation in international conferences, seminars and projects" },
+                { id: 4, content: "Establishment and development of partnerships with local and foreign research centers" },
+                { id: 5, content: "Participation in other activities consistent with AzTU's strategic goals" },
+            ],
+            staff: [
+                {
+                    id: 1,
+                    full_name: "Asgar Habib Tagizade",
+                    email: "tagizade.asger@aztu.edu.az",
+                    phone: "+994503313186",
+                    image_url: `${RI_MEDIA}/logistika/${encodeURIComponent("Tağızadə Əsgər.jpg")}`,
+                    title: "Researcher Professor — Doctor of Technical Sciences, Professor",
+                },
+                {
+                    id: 2,
+                    full_name: "Allaz Hajiahmad Aliyev",
+                    email: "allaz.aliyev@aztu.edu.az",
+                    phone: "+994503272792",
+                    image_url: `${RI_MEDIA}/logistika/${encodeURIComponent("Əliyev Əlləz.jpg")}`,
+                    title: "Head of the Scientific Research Center “Road Traffic Organization and Safety” — PhD in Engineering, Associate Professor",
+                },
+                {
+                    id: 3,
+                    full_name: "Ulvi Yusif Javadli",
+                    email: "ulvi.javadli@aztu.edu.az",
+                    phone: "+994773430081",
+                    image_url: `${RI_MEDIA}/logistika/${encodeURIComponent("Cavadlı Ülvi.jpg")}`,
+                    title: "Senior Researcher",
+                },
+                {
+                    id: 4,
+                    full_name: "Turan Shamsi Verdiyev",
+                    email: "turan.verdiyev@aztu.edu.az",
+                    phone: "+994507628062",
+                    image_url: `${RI_MEDIA}/logistika/${encodeURIComponent("Verdiyev Turan.jpg")}`,
+                    title: "Senior Researcher",
+                },
+                {
+                    id: 5,
+                    full_name: "Royal Shohrat Allahverdiyev",
+                    email: "royal.allahverdiyev@aztu.edu.az",
+                    phone: "+994773093343",
+                    image_url: `${RI_MEDIA}/logistika/${encodeURIComponent("Allahverdiyev Röyal.jpg")}`,
+                    title: "Senior Researcher",
+                },
+                {
+                    id: 6,
+                    full_name: "Mammad Gurban Mammadov",
+                    email: "memmed.memmedov@aztu.edu.az",
+                    phone: "+994515266641",
+                    image_url: `${RI_MEDIA}/logistika/${encodeURIComponent("Məmmədov Məmməd.png")}`,
+                    title: "Researcher",
+                },
+            ],
+            created_at: NOW,
+            updated_at: NOW,
+        },
+    },
 ];
 
 function findRecordBySlug(slug: string): StaticInstituteRecord | undefined {
