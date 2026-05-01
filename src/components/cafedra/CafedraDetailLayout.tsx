@@ -45,6 +45,12 @@ export default function CafedraDetailLayout({ children, params }: Props) {
         portal: currentLang === "az" ? "Kafedra Portalı" : "Department Portal"
     };
 
+    const prettifiedFallback = cafedraId
+        .replace(/[_-]+/g, " ")
+        .replace(/\b\w/g, (c) => c.toLocaleUpperCase(currentLang === "az" ? "az" : "en"));
+
+    const displayTitle = cafedra?.title || prettifiedFallback;
+
     const academicPrefix = currentLang === "az" ? "akademik" : "academic";
     const facultyPrefix = currentLang === "az" ? "fakulteler" : "faculties";
     const facultiesPath = `/${currentLang}/${academicPrefix}/${facultyPrefix}`;
@@ -97,7 +103,7 @@ export default function CafedraDetailLayout({ children, params }: Props) {
                         </Link>
                         <ChevronRightIcon sx={{ fontSize: 12 }} />
                         <span className="text-[#ee7c7e] font-black truncate max-w-[250px]">
-                            {loading ? "..." : (cafedra?.title || cafedraId)}
+                            {loading ? "..." : displayTitle}
                         </span>
                     </motion.nav>
 
@@ -107,7 +113,7 @@ export default function CafedraDetailLayout({ children, params }: Props) {
                         transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
                     >
                         <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 leading-[1] max-w-4xl tracking-tighter">
-                            {loading ? "..." : (cafedra?.title || cafedraId)}
+                            {loading ? "..." : displayTitle}
                         </h1>
                         
                         <div className="flex flex-wrap items-center gap-4">
