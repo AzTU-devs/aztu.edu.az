@@ -25,6 +25,16 @@ const nextConfig: NextConfig = {
         hostname: "www.aztu.edu.az",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "api.aztu.edu.az",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "api.aztu.edu.az",
+        pathname: "/**",
+      },
     ],
   },
 };
