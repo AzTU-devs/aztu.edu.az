@@ -529,7 +529,7 @@ const en = {
         messageTitle: "Message from the Rector",
         message: [
           "Dear Colleagues, Students, Alumni, and Partners,",
-          "I welcome you to Azerbaijan Technical University (AzTU) — an institution with a distinguished legacy since 1887, now driving innovation and global engagement.",
+          "Azerbaijan Technical University stands at an exciting inflection point in its history. Our mission has always been to prepare engineers and scientists equipped not only with deep technical expertise, but also with the creativity, adaptability, and leadership required to shape the future.",
           "For over a century, AzTU has been a cornerstone of engineering education in Azerbaijan. Today, we are evolving into a modern, research-driven institution committed to excellence and industry collaboration.",
           "In an era of rapid digital transformation, our goal is to become a leading entrepreneurial university that transforms ideas into real-world solutions.",
           "We invite you to join us on this journey of learning, innovation, and leadership.",

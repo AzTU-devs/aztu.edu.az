@@ -589,7 +589,7 @@ const az = {
         messageTitle: "Rektorun Müraciəti",
         message: [
           "Hörmətli həmkarlar, tələbələr, məzunlar və tərəfdaşlar,",
-          "Sizi 1887-ci ildən gələn zəngin ənənələrə malik, bu gün isə innovasiya və elmi mükəmməlliklə inkişaf edən Azərbaycan Texniki Universitetində (AzTU) salamlayıram.",
+          "Azərbaycan Texniki Universiteti öz tarixinin mühüm və dönüş nöqtələrindən birində dayanır. Missiyamız hər zaman yalnız dərin texniki biliklərə malik deyil, eyni zamanda yaradıcılıq, çeviklik və liderlik keyfiyyətləri ilə seçilən mühəndis və alimlər hazırlamaq olmuşdur.",
           "Bir əsrdən artıq müddətdə AzTU ölkəmizin mühəndislik təhsili və texnoloji inkişafında aparıcı rol oynamışdır. Biz bu irsi qorumaqla yanaşı, müasir dövrün tələblərinə uyğun, tədqiqata əsaslanan və beynəlxalq əməkdaşlığa açıq bir universitet kimi inkişaf edirik.",
           "Sürətli texnoloji transformasiya dövründə universitetlərin rolu yalnız bilik ötürmək deyil, həm də innovasiya yaratmaq və sahibkarlığı təşviq etməkdir. AzTU-nun strateji hədəfi regionun aparıcı sahibkar universitetlərindən birinə çevrilməkdir.",
           "Təhsil modelimizi süni intellekt, kibertəhlükəsizlik və qabaqcıl mühəndislik həlləri kimi qlobal trendlərə uyğun mütəmadi yeniləyirik.",

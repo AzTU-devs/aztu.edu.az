@@ -8,7 +8,6 @@ import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
 
 import EmailIcon from "@mui/icons-material/Email";
-import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import SchoolIcon from '@mui/icons-material/School';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
@@ -23,7 +22,6 @@ const rectorData = {
     academicDegree: "Doctor of Technical Sciences, Professor",
     title: "Rector of Azerbaijan Technical University",
     email: "rector@aztu.edu.az",
-    phone: "+994 12 539 08 57",
 };
 
 const stats = [
@@ -121,10 +119,6 @@ export default function RectorPage() {
                             <a href={`mailto:${rectorData.email}`} className="flex items-center gap-3 px-6 py-3.5 bg-white text-[#1a2355] rounded-2xl font-black text-sm hover:bg-[#ee7c7e] hover:text-white transition-all duration-300 shadow-xl shadow-black/20 group">
                                 <EmailIcon sx={{ fontSize: 18 }} />
                                 {rectorData.email}
-                            </a>
-                            <a href={`tel:${rectorData.phone}`} className="flex items-center gap-3 px-6 py-3.5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-2xl font-black text-sm hover:bg-white/20 transition-all duration-300">
-                                <LocalPhoneIcon sx={{ fontSize: 18 }} />
-                                {rectorData.phone}
                             </a>
                         </div>
                     </div>
