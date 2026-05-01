@@ -267,6 +267,8 @@ const SLUG_MAP: Record<string, string> = {
     "normativ-senedler": "regulatory-documents",
     "siyaset-senedleri": "policy-documents",
     "policy-documents": "siyaset-senedleri",
+    "dayaniqliliq-senedleri": "sustainability-documents",
+    "sustainability-documents": "dayaniqliliq-senedleri",
 };
 
 // Key EN slugs to help identify language direction in mapping
@@ -294,7 +296,7 @@ const EN_SLUGS = new Set([
     "specializations", "dean", "deputy-deans", "scientific-council", "academic-staff", "staff", "contact", "leadership",
     "qa",
     "students",
-    "regulatory-documents", "policy-documents",
+    "regulatory-documents", "policy-documents", "sustainability-documents",
     ]);
 
 export function middleware(request: NextRequest) {
@@ -400,6 +402,8 @@ export function middleware(request: NextRequest) {
         } else if (segments_rest[1] === "regulatory-documents" || segments_rest[1] === "normativ-senedler") {
             if (segments_rest[2] === "policy-documents" || segments_rest[2] === "siyaset-senedleri") {
                 segments_rest = ["about", "general-policies"];
+            } else if (segments_rest[2] === "sustainability-documents" || segments_rest[2] === "dayaniqliliq-senedleri") {
+                segments_rest = ["about", "sustainability-documents"];
             }
         } else if (segments_rest[1] === "leadership-and-management" || segments_rest[1] === "rehbetlik-ve-idareetme") {
             if (segments_rest[2] === "rector" || segments_rest[2] === "rektor") segments_rest = ["about", "rector"];
