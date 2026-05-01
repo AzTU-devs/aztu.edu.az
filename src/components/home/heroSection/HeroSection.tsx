@@ -210,7 +210,7 @@ export default function HeroSection() {
                                     className="text-white/60 text-xs md:text-sm xl:text-base font-medium mb-5 md:mb-7 max-w-xl leading-relaxed border-l-2 border-[#ee7c7e] pl-4 md:pl-5"
                                 >
                                     {lang === 'az'
-                                        ? "Gələcəyin texnologiyalarını bu gün bizimlə öyrənin. İnnovativ təhsil, real təcrübə."
+                                        ? "Gələcəyin texnologiyalarını bu gün bizimlə öyrənin. innovativ təhsil, real təcrübə."
                                         : "Learn the technologies of the future with us today. Innovative education, real experience."}
                                 </motion.p>
 

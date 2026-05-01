@@ -12,7 +12,7 @@ const az = {
     alumni: "Məzunlar",
     libraryAztu: "Kitabxana",
     quickMenu: {
-      button: "Sürətli Keçid",
+      button: "Sürətli keçid",
       navigation: "Naviqasiya",
       title: "SÜRƏTLİ<br/>GİRİŞ",
       slogan: "Mühəndislik gələcəyini qururuq",
@@ -138,7 +138,7 @@ const az = {
   },
 
   hero: {
-    title: "Mühəndisliyin Gələcəyini Qururuq",
+    title: "Mühəndisliyin gələcəyini qururuq",
     button: "Daha çox kəşf et",
     stats: [
       { label: "QS Reytinqi", value: "851+" },
