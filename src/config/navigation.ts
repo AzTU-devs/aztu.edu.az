@@ -213,7 +213,7 @@ export function getNavSections(t: Locale, lang: Lang): NavSection[] {
                 {
                     title: n.campusLife,
                     subItems: [
-                        { title: n.studentLife, slug: "student-life" },
+                        { title: n.studentLife, slug: "telebe-heyati" },
                         { title: n.clubs, slug: "clubs" },
                         { title: n.sport, slug: "sport" },
                         { title: n.culturalEvents, slug: "cultural-events" },
@@ -388,7 +388,7 @@ export const NAV_SECTIONS: NavSection[] = [
             {
                 title: "Campus Life",
                 subItems: [
-                    { title: "Student Life", slug: "student-life" },
+                    { title: "Student Life", slug: "telebe-heyati" },
                     { title: "Clubs", slug: "clubs" },
                     { title: "Sport", slug: "sport" },
                     { title: "Cultural Events", slug: "cultural-events" },
