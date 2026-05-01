@@ -426,7 +426,7 @@ export function middleware(request: NextRequest) {
                         if (subSlug === "academic-staff") subSlug = "akademik-heyat";
                         if (subSlug === "staff") subSlug = "emekdaslar";
                         if (subSlug === "contact") subSlug = "elaqe";
-                        segments_rest = ["faculties", facultySlug, aboutSub, subSlug];
+                        segments_rest = ["faculties", facultySlug, aboutSub, subSlug, ...segments_rest.slice(5)];
                     } else {
                         segments_rest = ["faculties", facultySlug, aboutSub];
                     }
@@ -455,7 +455,7 @@ export function middleware(request: NextRequest) {
                     if (subSlug === "academic-staff") subSlug = "akademik-heyat";
                     if (subSlug === "staff") subSlug = "emekdaslar";
                     if (subSlug === "contact") subSlug = "elaqe";
-                    segments_rest = ["faculties", facultySlug, aboutSub, subSlug];
+                    segments_rest = ["faculties", facultySlug, aboutSub, subSlug, ...segments_rest.slice(4)];
                 } else {
                     segments_rest = ["faculties", facultySlug, aboutSub];
                 }
