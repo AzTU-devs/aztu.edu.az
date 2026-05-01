@@ -378,6 +378,15 @@ export function middleware(request: NextRequest) {
             segments_rest[2] = "elmi-jurnallar";
             if (segments_rest[3] === "machine-science" || segments_rest[3] === "masin-elmi") segments_rest[3] = "masin-elmi";
             if (segments_rest[3] === "energy-sustainability-risks-and-decision-making" || segments_rest[3] === "enerji-davamliligi-riskler-ve-qerarlarin-qebul-edilmesi") segments_rest[3] = "enerji-davamliligi-riskler-ve-qerarlarin-qebul-edilmesi";
+        } else if (segments_rest[1] === "tedqiqat-fealiyyeti" && segments_rest[2]) {
+            const researchActivityMap: Record<string, string> = {
+                "intellectual-property-and-patents": "eqli-mulkiyyet-ve-patentler",
+                "research-projects": "tedqiqat-layiheleri",
+                "research-institutes": "tedqiqat-institutlari",
+                "research-laboratories": "tedqiqat-laboratoriyalari",
+                "research-priorities": "tedqiqat-prioritetleri",
+            };
+            if (researchActivityMap[segments_rest[2]]) segments_rest[2] = researchActivityMap[segments_rest[2]];
         }
     } else if (segments_rest[0] === "about" || segments_rest[0] === "haqqimizda") {
         segments_rest[0] = "haqqimizda";
