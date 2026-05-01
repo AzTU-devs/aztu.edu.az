@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function Loading() {
     return (
-        <div className="fixed inset-0 z-[2000] flex flex-col items-center justify-center bg-[#0b1330] overflow-hidden">
+        <div className="fixed inset-0 z-[10000] flex flex-col items-center justify-center bg-[#0b1330] overflow-hidden">
             {/* STUNNING BACKGROUND ELEMENTS - MATCHING HOME PAGE */}
             <div className="absolute inset-0 pointer-events-none">
                 {/* Dotted Grid Pattern */}

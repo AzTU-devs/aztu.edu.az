@@ -99,10 +99,10 @@ export default function FacultySidebar({ facultyId }: Props) {
   };
 
   return (
-    <nav className="relative bg-white rounded-[2.5rem] shadow-2xl shadow-[#1a2355]/15 border-2 border-[#1a2355]/30 overflow-hidden">
+    <nav className="relative bg-white dark:bg-slate-800 rounded-[2.5rem] shadow-2xl shadow-[#1a2355]/15 dark:shadow-black/40 border-2 border-[#1a2355]/30 dark:border-white/10 overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#1a2355] via-[#ee7c7e] to-[#1a2355]" />
-      <div className="px-8 py-6 border-b-2 border-[#1a2355]/15 bg-[#1a2355]/5">
-        <p className="text-[11px] font-black uppercase tracking-[0.3em] text-[#1a2355]/60 flex items-center gap-3">
+      <div className="px-8 py-6 border-b-2 border-[#1a2355]/15 dark:border-white/10 bg-[#1a2355]/5 dark:bg-white/5">
+        <p className="text-[11px] font-black uppercase tracking-[0.3em] text-[#1a2355]/60 dark:text-white/60 flex items-center gap-3">
           <div className="w-1.5 h-1.5 rounded-full bg-[#ee7c7e] animate-pulse" />
           {lang === "az" ? "Fakültə Portalı" : "Faculty Portal"}
         </p>
@@ -117,7 +117,7 @@ export default function FacultySidebar({ facultyId }: Props) {
                   className={`w-full flex items-center justify-between px-6 py-4 rounded-2xl text-[13px] font-black transition-all ${
                     isParentActive(item)
                       ? "bg-[#1a2355] text-white shadow-xl shadow-blue-900/20"
-                      : "text-[#1a2355] hover:bg-gray-50 hover:text-[#ee7c7e]"
+                      : "text-[#1a2355] dark:text-white/80 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-[#ee7c7e] dark:hover:text-[#ee7c7e]"
                   }`}
                 >
                   <Link
@@ -141,7 +141,7 @@ export default function FacultySidebar({ facultyId }: Props) {
                       initial={{ opacity: 0, y: -10, height: 0 }}
                       animate={{ opacity: 1, y: 0, height: "auto" }}
                       exit={{ opacity: 0, y: -10, height: 0 }}
-                      className="ml-4 space-y-1.5 border-l-2 border-[#1a2355]/30 pl-4 overflow-hidden"
+                      className="ml-4 space-y-1.5 border-l-2 border-[#1a2355]/30 dark:border-white/10 pl-4 overflow-hidden"
                     >
                       {item.subItems.map((sub) => (
                         <li key={sub.href}>
@@ -150,7 +150,7 @@ export default function FacultySidebar({ facultyId }: Props) {
                             className={`block px-5 py-3 rounded-xl text-xs font-bold transition-all relative group ${
                               pathname === sub.href
                                 ? "bg-[#ee7c7e]/10 text-[#ee7c7e]"
-                                : "text-gray-500 hover:text-[#1a2355] hover:bg-gray-50"
+                                : "text-gray-500 dark:text-white/50 hover:text-[#1a2355] dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5"
                             }`}
                           >
                             <div className={`absolute left-0 top-1/2 -translate-y-1/2 w-1 h-0 bg-[#ee7c7e] transition-all duration-300 group-hover:h-1/2 ${pathname === sub.href ? 'h-1/2' : ''}`} />
@@ -170,7 +170,7 @@ export default function FacultySidebar({ facultyId }: Props) {
                 className={`flex items-center justify-between px-6 py-4 rounded-2xl text-[13px] font-black transition-all group ${
                   isParentActive(item)
                     ? "bg-[#1a2355] text-white shadow-xl shadow-blue-900/20"
-                    : "text-[#1a2355] hover:bg-gray-50 hover:text-[#ee7c7e]"
+                    : "text-[#1a2355] dark:text-white/80 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-[#ee7c7e] dark:hover:text-[#ee7c7e]"
                 }`}
               >
                 <span className="uppercase tracking-wider">{item.label}</span>

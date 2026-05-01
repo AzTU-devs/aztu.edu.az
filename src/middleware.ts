@@ -24,6 +24,7 @@ const INTERNAL_FOLDERS = [
   "privacy-policy",
   "terms-conditions",
   "beynelmillesme",
+  "beynelmilellesme",
   "about",
   "research",
   "kts",
@@ -38,8 +39,8 @@ const SLUG_MAP: Record<string, string> = {
     "haqqimizda": "about",
     "management": "idareetme",
     "idareetme": "management",
-    "internationalization": "beynelmillesme",
-    "beynelmillesme": "internationalization",
+    "internationalization": "beynelmilellesme",
+    "beynelmilellesme": "internationalization",
     "community": "icma",
     "icma": "community",
     "contact-us": "elaqe",
@@ -541,7 +542,15 @@ export function middleware(request: NextRequest) {
         }
     } else if (segments_rest[0] === "kts" || segments_rest[0] === "qa") {
         segments_rest[0] = "kts";
-    } else if (segments_rest[0] === "internationalization" || segments_rest[0] === "beynelmillesme") {
+    } else if (segments_rest[0] === "internationalization" || segments_rest[0] === "beynelmillesme" || segments_rest[0] === "beynelmilellesme") {
+        // Redirect legacy AZ slug "beynelmillesme" → "beynelmilellesme"
+        if (lang === "az" && segments_rest[0] === "beynelmillesme") {
+            const newSegments = ["beynelmilellesme", ...segments_rest.slice(1)];
+            return NextResponse.redirect(
+                new URL(`/${lang}/${newSegments.join("/")}`, request.url),
+                308
+            );
+        }
         segments_rest[0] = "beynelmillesme";
         if (segments_rest[1] === "international-partnership" || segments_rest[1] === "beynelxalq-terefdasliq") {
             segments_rest[1] = "beynelxalq-terefdasliq";

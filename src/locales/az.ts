@@ -711,7 +711,7 @@ const az = {
             name: "Prof. Nurəli Yusifbəyli",
             degree: "Texnika elmləri doktoru, professor",
             title: "Tədris işləri üzrə prorektor",
-            email: "vr.academic@aztu.edu.az",
+            email: "yusifbayli.n@aztu.edu.az",
             phone: "+994 12 539 08 57",
             photoUrl: `${VR_MEDIA}/nurali_yusifbayli.JPG`,
             biography: [
@@ -726,7 +726,7 @@ const az = {
             name: "Prof. Sübhan Namazov",
             degree: "Texnika elmləri doktoru, professor",
             title: "Elm və innovasiyalar üzrə prorektor",
-            email: "vr.research@aztu.edu.az",
+            email: "subhan.namazov@aztu.edu.az",
             phone: "+994 12 539 08 57",
             photoUrl: `${VR_MEDIA}/subhan_namazov.jpeg`,
             biography: [
@@ -742,7 +742,7 @@ const az = {
             name: "Dr. Fəriz Məmmədov",
             degree: "İqtisad elmləri üzrə fəlsəfə doktoru",
             title: "Beynəlxalq əlaqələr üzrə prorektor",
-            email: "vr.international@aztu.edu.az",
+            email: "fariz.mammadov@aztu.edu.az",
             phone: "+994 12 539 08 57",
             photoUrl: `${VR_MEDIA}/fariz_mammadov.jpeg`,
             biography: [
@@ -758,7 +758,7 @@ const az = {
             name: "Rəşad Əliyev",
             degree: "Ekonometriya üzrə fəlsəfə doktoru",
             title: "Maliyyə-təsərrüfat işləri üzrə prorektor",
-            email: "vr.admin@aztu.edu.az",
+            email: "rashad.aliyev@aztu.edu.az",
             phone: "+994 12 539 08 57",
             photoUrl: `${VR_MEDIA}/rashad_aliyev.JPG`,
             biography: [
@@ -1418,8 +1418,8 @@ const az = {
         officialWebsite: "Rəsmi veb-sayt",
         programPage: "Orhun Proqramı səhifəsi",
         related: [
-          { title: "İkili Diplom Proqramları", href: "/beynelmillesme/beynelxalq-terefdasliq/ikili-diplom-proqramlari" },
-          { title: "Beynəlxalq Layihələr", href: "/beynelmillesme/beynelxalq-terefdasliq/beynelxalq-layiheler" },
+          { title: "İkili Diplom Proqramları", href: "/beynelmilellesme/beynelxalq-terefdasliq/ikili-diplom-proqramlari" },
+          { title: "Beynəlxalq Layihələr", href: "/beynelmilellesme/beynelxalq-terefdasliq/beynelxalq-layiheler" },
         ]
       },
       internationalProjects: {
@@ -1492,7 +1492,7 @@ const az = {
           aztuImplementation: "AzTU-nun İcrası"
         },
         related: [
-          { title: "İkili Diplom Proqramları", href: "/beynelmillesme/beynelxalq-terefdasliq/ikili-diplom-proqramlari" },
+          { title: "İkili Diplom Proqramları", href: "/beynelmilellesme/beynelxalq-terefdasliq/ikili-diplom-proqramlari" },
           { title: "Əməkdaşlıqlar", href: "/icma/universitet-emekdasliqi/collaborations" },
         ]
       },
@@ -1512,8 +1512,8 @@ const az = {
           website: "Veb-sayt"
         },
         related: [
-          { title: "İkili Diplom Proqramları", href: "/beynelmillesme/beynelxalq-terefdasliq/ikili-diplom-proqramlari" },
-          { title: "Beynəlxalq Layihələr", href: "/beynelmillesme/beynelxalq-terefdasliq/beynelxalq-layiheler" },
+          { title: "İkili Diplom Proqramları", href: "/beynelmilellesme/beynelxalq-terefdasliq/ikili-diplom-proqramlari" },
+          { title: "Beynəlxalq Layihələr", href: "/beynelmilellesme/beynelxalq-terefdasliq/beynelxalq-layiheler" },
         ]
       },
       partnershipContact: {
@@ -1541,9 +1541,9 @@ const az = {
           }
         ],
         related: [
-          { title: "Tərəfdaş Universitetlər", href: "/beynelmillesme/beynelxalq-terefdasliq/terefdas-universitetler" },
-          { title: "İkili Diplom Proqramları", href: "/beynelmillesme/beynelxalq-terefdasliq/ikili-diplom-proqramlari" },
-          { title: "Beynəlxalq Layihələr", href: "/beynelmillesme/beynelxalq-terefdasliq/beynelxalq-layiheler" }
+          { title: "Tərəfdaş Universitetlər", href: "/beynelmilellesme/beynelxalq-terefdasliq/terefdas-universitetler" },
+          { title: "İkili Diplom Proqramları", href: "/beynelmilellesme/beynelxalq-terefdasliq/ikili-diplom-proqramlari" },
+          { title: "Beynəlxalq Layihələr", href: "/beynelmilellesme/beynelxalq-terefdasliq/beynelxalq-layiheler" }
         ]
       },
       foreignStudentsAdmission: {
@@ -1576,9 +1576,9 @@ const az = {
         importantNoteTitle: "Vacib Qeyd",
         importantNoteDescription: "AzTU-da oxumaq istəyən bütün xarici vətəndaşlar Azərbaycana gəlməzdən əvvəl müvafiq tələbə vizasını almalıdırlar. AzTU-nun Beynəlxalq Qəbul İdarəsi viza dəvəti prosesində yardım göstərir.\n\nƏtraflı məlumat üçün Beynəlxalq Qəbul İdarəsi ilə əlaqə saxlayın və ya TQDK-nın rəsmi saytına daxil olun.",
         related: [
-          { title: "Viza və Miqrasiya", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
-          { title: "Yerləşmə", href: "/beynelmillesme/xarici-telebeler/yerlesme" },
-          { title: "Təqaüd İmkanları", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+          { title: "Viza və Miqrasiya", href: "/beynelmilellesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Yerləşmə", href: "/beynelmilellesme/xarici-telebeler/yerlesme" },
+          { title: "Təqaüd İmkanları", href: "/beynelmilellesme/xarici-telebeler/teqaud-imkanlari" },
         ]
       },
       scholarship: {
@@ -1641,9 +1641,9 @@ const az = {
           }
         ],
         related: [
-          { title: "Qəbul", href: "/beynelmillesme/xarici-telebeler/qebul" },
-          { title: "Viza və Miqrasiya", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
-          { title: "Yerləşmə", href: "/beynelmillesme/xarici-telebeler/yerlesme" },
+          { title: "Qəbul", href: "/beynelmilellesme/xarici-telebeler/qebul" },
+          { title: "Viza və Miqrasiya", href: "/beynelmilellesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Yerləşmə", href: "/beynelmilellesme/xarici-telebeler/yerlesme" },
         ]
       },
       foundationProgram: {
@@ -1680,10 +1680,10 @@ const az = {
         nextLevels: ["Bakalavr", "Magistratura", "Doktorantura"],
         relatedTitle: "Əlaqəli Səhifələr",
         related: [
-          { title: "Qəbul", href: "/beynelmillesme/xarici-telebeler/qebul" },
-          { title: "Viza və Miqrasiya", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
-          { title: "Yerləşmə", href: "/beynelmillesme/xarici-telebeler/yerlesme" },
-          { title: "Təqaüd İmkanları", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+          { title: "Qəbul", href: "/beynelmilellesme/xarici-telebeler/qebul" },
+          { title: "Viza və Miqrasiya", href: "/beynelmilellesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Yerləşmə", href: "/beynelmilellesme/xarici-telebeler/yerlesme" },
+          { title: "Təqaüd İmkanları", href: "/beynelmilellesme/xarici-telebeler/teqaud-imkanlari" },
         ],
       },
       accommodation: {
@@ -1701,9 +1701,9 @@ const az = {
         supportTags: ["7/24 Dəstək", "Kampus Yataqxanası", "Özəl Mənzil Köməyi", "Yerləşmə Rehbərliyi"],
         relatedTitle: "Əlaqəli Səhifələr",
         related: [
-          { title: "Qəbul", href: "/beynelmillesme/xarici-telebeler/qebul" },
-          { title: "Viza və Miqrasiya", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
-          { title: "Təqaüd İmkanları", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+          { title: "Qəbul", href: "/beynelmilellesme/xarici-telebeler/qebul" },
+          { title: "Viza və Miqrasiya", href: "/beynelmilellesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Təqaüd İmkanları", href: "/beynelmilellesme/xarici-telebeler/teqaud-imkanlari" },
         ]
       },
       visaMigration: {
@@ -1751,9 +1751,9 @@ const az = {
         ],
         permitNote: "Müvəqqəti İqamət İcazəsi adətən bir il müddətinə verilir və hər il yenilənməlidir. AzTU-nun Beynəlxalq Ofisi yeniləmə son tarixinizdən əvvəl sizi məlumatlandıracaq.",
         related: [
-          { title: "Qəbul", href: "/beynelmillesme/xarici-telebeler/qebul" },
-          { title: "Yerləşmə", href: "/beynelmillesme/xarici-telebeler/yerlesme" },
-          { title: "Təqaüd İmkanları", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+          { title: "Qəbul", href: "/beynelmilellesme/xarici-telebeler/qebul" },
+          { title: "Yerləşmə", href: "/beynelmilellesme/xarici-telebeler/yerlesme" },
+          { title: "Təqaüd İmkanları", href: "/beynelmilellesme/xarici-telebeler/teqaud-imkanlari" },
         ]
       },
       bilateralExchange: {
@@ -1775,9 +1775,9 @@ const az = {
         sidebarDescription: "AzTU 30-dan çox ölkədə universitetlərlə aktiv ikitərəfli əməkdaşlıq müqavilələri bağlamışdır.",
         relatedTitle: "Əlaqəli Səhifələr",
         related: [
-          { title: "İkili Diplom Proqramları", href: "/beynelmillesme/beynelxalq-terefdasliq/ikili-diplom-proqramlari" },
-          { title: "Orhun Mübadilə Proqramı", href: "/beynelmillesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
-          { title: "Beynəlxalq Layihələr", href: "/beynelmillesme/beynelxalq-terefdasliq/beynelxalq-layiheler" },
+          { title: "İkili Diplom Proqramları", href: "/beynelmilellesme/beynelxalq-terefdasliq/ikili-diplom-proqramlari" },
+          { title: "Orhun Mübadilə Proqramı", href: "/beynelmilellesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
+          { title: "Beynəlxalq Layihələr", href: "/beynelmilellesme/beynelxalq-terefdasliq/beynelxalq-layiheler" },
         ]
       },
       exchangePartnerUniversities: {
@@ -1859,9 +1859,9 @@ const az = {
         ],
         relatedTitle: "Əlaqəli Səhifələr",
         related: [
-          { title: "Erasmus Mobilitesi", href: "/beynelmillesme/mubadile-proqramlari/erasmus-mubadile" },
-          { title: "İkitərəfli Mübadilə", href: "/beynelmillesme/mubadile-proqramlari/ikiterefli-mubadile" },
-          { title: "Orhun Mübadilə Proqramı", href: "/beynelmillesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
+          { title: "Erasmus Mobilitesi", href: "/beynelmilellesme/mubadile-proqramlari/erasmus-mubadile" },
+          { title: "İkitərəfli Mübadilə", href: "/beynelmilellesme/mubadile-proqramlari/ikiterefli-mubadile" },
+          { title: "Orhun Mübadilə Proqramı", href: "/beynelmilellesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
         ],
       },
       erasmusMobility: {
@@ -1940,9 +1940,9 @@ const az = {
         sidebarDescription: "AzTU-nun Erasmus+ proqramı tələbə və akademik heyəti üçün Avropa Birliyi tərəfindən tam maliyyələşdirilən mobilitet imkanları təqdim edir.",
         relatedTitle: "Əlaqəli Səhifələr",
         related: [
-          { title: "Tərəfdaş Universitetlər", href: "/beynelmillesme/mubadile-proqramlari/terefdas-universitetler" },
-          { title: "İkitərəfli Mübadilə", href: "/beynelmillesme/mubadile-proqramlari/ikiterefli-mubadile" },
-          { title: "Orhun Mübadilə Proqramı", href: "/beynelmillesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
+          { title: "Tərəfdaş Universitetlər", href: "/beynelmilellesme/mubadile-proqramlari/terefdas-universitetler" },
+          { title: "İkitərəfli Mübadilə", href: "/beynelmilellesme/mubadile-proqramlari/ikiterefli-mubadile" },
+          { title: "Orhun Mübadilə Proqramı", href: "/beynelmilellesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
         ],
       },
       exploreProgram: {
@@ -1963,10 +1963,10 @@ const az = {
         ctaButton: "Qəbul Haqqında",
         relatedTitle: "Əlaqəli Səhifələr",
         related: [
-          { title: "Qəbul", href: "/beynelmillesme/xarici-telebeler/qebul" },
-          { title: "Hazırlıq Proqramı", href: "/beynelmillesme/xarici-telebeler/hazirliq-proqrami" },
-          { title: "Viza və Miqrasiya", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
-          { title: "Təqaüd İmkanları", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+          { title: "Qəbul", href: "/beynelmilellesme/xarici-telebeler/qebul" },
+          { title: "Hazırlıq Proqramı", href: "/beynelmilellesme/xarici-telebeler/hazirliq-proqrami" },
+          { title: "Viza və Miqrasiya", href: "/beynelmilellesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Təqaüd İmkanları", href: "/beynelmilellesme/xarici-telebeler/teqaud-imkanlari" },
         ],
       },
       bilateralCooperationExchange: {
@@ -1994,9 +1994,9 @@ const az = {
         sidebarDescription: "AzTU 30-dan çox ölkədə universitetlərlə aktiv ikitərəfli əməkdaşlıq müqavilələri bağlamışdır.",
         relatedTitle: "Əlaqəli Səhifələr",
         related: [
-          { title: "Erasmus Mobilitesi", href: "/beynelmillesme/mubadile-proqramlari/erasmus-mubadile" },
-          { title: "Tərəfdaş Universitetlər", href: "/beynelmillesme/mubadile-proqramlari/terefdas-universitetler" },
-          { title: "Orhun Mübadilə Proqramı", href: "/beynelmillesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
+          { title: "Erasmus Mobilitesi", href: "/beynelmilellesme/mubadile-proqramlari/erasmus-mubadile" },
+          { title: "Tərəfdaş Universitetlər", href: "/beynelmilellesme/mubadile-proqramlari/terefdas-universitetler" },
+          { title: "Orhun Mübadilə Proqramı", href: "/beynelmilellesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
         ],
       },
       erasmusPartnerUniversities: {
@@ -2065,9 +2065,9 @@ const az = {
         ],
         relatedTitle: "Əlaqəli Səhifələr",
         related: [
-          { title: "Erasmus Mobilitesi", href: "/beynelmillesme/mubadile-proqramlari/erasmus-mubadile" },
-          { title: "Tərəfdaş Universitetlər", href: "/beynelmillesme/mubadile-proqramlari/terefdas-universitetler" },
-          { title: "İkitərəfli Mübadilə", href: "/beynelmillesme/mubadile-proqramlari/ikiterefli-mubadile" },
+          { title: "Erasmus Mobilitesi", href: "/beynelmilellesme/mubadile-proqramlari/erasmus-mubadile" },
+          { title: "Tərəfdaş Universitetlər", href: "/beynelmilellesme/mubadile-proqramlari/terefdas-universitetler" },
+          { title: "İkitərəfli Mübadilə", href: "/beynelmilellesme/mubadile-proqramlari/ikiterefli-mubadile" },
         ],
       },
     },

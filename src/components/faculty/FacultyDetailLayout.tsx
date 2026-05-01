@@ -78,7 +78,7 @@ export default function FacultyDetailLayout({ children, params }: Props) {
                                 {currentLang === "az" ? "Fakültələr" : "Faculties"}
                             </Link>
                             <ChevronRightIcon sx={{ fontSize: 12 }} className="text-[#ee7c7e]" />
-                            <span className="text-[#ee7c7e] font-black truncate max-w-[200px]">
+                            <span className="text-[#ee7c7e] font-black truncate max-w-[120px] md:max-w-[200px]">
                                 {faculty?.title ?? facultySlug}
                             </span>
                         </div>
@@ -112,13 +112,13 @@ export default function FacultyDetailLayout({ children, params }: Props) {
             </div>
 
             {/* Mobile sidebar toggle - Sticky */}
-            <div className="lg:hidden sticky top-0 z-30 px-6 py-4 border-b border-gray-100 bg-white/80 backdrop-blur-xl flex items-center justify-between shadow-xl shadow-blue-900/5">
-                <span className="text-[10px] font-black text-[#1a2355] uppercase tracking-widest">
+            <div className="lg:hidden sticky top-0 z-30 px-6 py-4 border-b border-gray-100 dark:border-white/10 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl flex items-center justify-between shadow-xl shadow-blue-900/5">
+                <span className="text-[10px] font-black text-[#1a2355] dark:text-white uppercase tracking-widest">
                     {currentLang === "az" ? "Portal Naviqasiyası" : "Portal Navigation"}
                 </span>
                 <button
                     onClick={() => setSidebarOpen((o) => !o)}
-                    className="w-10 h-10 flex items-center justify-center rounded-2xl bg-gray-50 text-[#1a2355] transition-all active:scale-95 border border-gray-100 shadow-sm"
+                    className="w-10 h-10 flex items-center justify-center rounded-2xl bg-gray-50 dark:bg-white/10 text-[#1a2355] dark:text-white transition-all active:scale-95 border border-gray-100 dark:border-white/10 shadow-sm"
                     aria-label="Toggle sidebar"
                 >
                     {sidebarOpen ? (
@@ -144,13 +144,13 @@ export default function FacultyDetailLayout({ children, params }: Props) {
                             animate={{ x: 0 }}
                             exit={{ x: "-100%" }}
                             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-                            className="absolute left-0 top-0 bottom-0 w-[300px] bg-white overflow-y-auto shadow-2xl"
+                            className="absolute left-0 top-0 bottom-0 w-[min(300px,85vw)] bg-white dark:bg-slate-900 overflow-y-auto shadow-2xl"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="p-8">
-                                <div className="mb-8 flex items-center justify-between border-b-2 border-gray-50 pb-4">
-                                    <span className="text-xl font-black text-[#1a2355] uppercase tracking-tighter">Menyu</span>
-                                    <button onClick={() => setSidebarOpen(false)} className="w-10 h-10 rounded-2xl bg-gray-50 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors">
+                                <div className="mb-8 flex items-center justify-between border-b-2 border-gray-50 dark:border-white/10 pb-4">
+                                    <span className="text-xl font-black text-[#1a2355] dark:text-white uppercase tracking-tighter">Menyu</span>
+                                    <button onClick={() => setSidebarOpen(false)} className="w-10 h-10 rounded-2xl bg-gray-50 dark:bg-white/10 flex items-center justify-center text-gray-400 dark:text-white/60 hover:text-gray-600 dark:hover:text-white transition-colors">
                                         <CloseIcon />
                                     </button>
                                 </div>

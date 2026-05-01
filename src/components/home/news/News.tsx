@@ -13,6 +13,7 @@ import { fetchNewsList } from "@/redux/features/newsSlice";
 import type { AppDispatch, RootState } from "@/redux/store";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
+import { stripHtml } from "@/util/htmlSanitizer";
 
 const categoryColors: Record<string, string> = {
     AzTU: "bg-[#1a2355]",
@@ -29,10 +30,6 @@ function formatDate(iso: string, lang: string) {
         month: "long",
         year: "numeric",
     });
-}
-
-function stripHtml(html: string) {
-    return html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
 }
 
 export default function News() {
@@ -144,6 +141,7 @@ export default function News() {
                                             src={`${featured.cover_image}`}
                                             alt={featured.title}
                                             fill
+                                            sizes="(max-width: 1024px) 100vw, 55vw"
                                             className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
                                             priority
                                         />
@@ -182,7 +180,7 @@ export default function News() {
                                             {featured.title}
                                         </h2>
                                         <p className="text-gray-500 dark:text-white/60 text-xl leading-relaxed line-clamp-3 mb-10 text-justify font-medium">
-                                            {stripHtml(featured.html_content)}
+                                            {stripHtml(featured.html_content, 240)}
                                         </p>
                                         <div className="flex items-center gap-4 text-[#1a2355] dark:text-[#ee7c7e] font-black uppercase tracking-[0.3em] text-[11px]">
                                             <span>{t.news.readMore}</span>
@@ -212,6 +210,7 @@ export default function News() {
                                                     src={`${item.cover_image}`}
                                                     alt={item.title}
                                                     fill
+                                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 22vw"
                                                     className="object-cover transition-transform duration-1000 group-hover:scale-110"
                                                 />
                                                 <div className="absolute inset-0 bg-gradient-to-t from-[#1a2355]/60 to-transparent" />

@@ -16,6 +16,7 @@ import { useLanguage } from "@/context/LanguageContext";
 
 import PageHero from "@/components/shared/PageHero";
 import PageContainer from "@/components/shared/PageContainer";
+import { stripHtml } from "@/util/htmlSanitizer";
 
 const PALETTE = [
     "bg-blue-600",
@@ -34,10 +35,6 @@ function formatDate(iso: string, lang: string) {
         month: "long",
         year: "numeric",
     });
-}
-
-function stripHtml(html: string) {
-    return html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
 }
 
 const cardVariants: any = {
@@ -177,7 +174,7 @@ export default function NewsPage() {
                                         {featured.title}
                                     </h2>
                                     <p className="text-gray-500 dark:text-white/60 text-lg leading-relaxed line-clamp-3 mb-12 text-justify font-medium">
-                                        {stripHtml(featured.html_content)}
+                                        {stripHtml(featured.html_content, 240)}
                                     </p>
                                     <div className="flex items-center gap-3 text-[#1a2355] dark:text-white font-black text-xs uppercase tracking-[0.2em] group-hover:text-[#ee7c7e] transition-all">
                                         {t.news.readMore}
@@ -223,7 +220,7 @@ export default function NewsPage() {
                                             {item.title}
                                         </h3>
                                         <p className="text-gray-500 dark:text-white/40 text-sm leading-relaxed line-clamp-3 mb-8 text-justify font-medium">
-                                            {stripHtml(item.html_content)}
+                                            {stripHtml(item.html_content, 180)}
                                         </p>
                                         <div className="mt-auto flex items-center justify-between">
                                             <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1a2355] dark:text-white/60 group-hover:text-[#ee7c7e] transition-colors">

@@ -631,7 +631,7 @@ const en = {
             name: "Prof. Nureli Yusifbeyli",
             degree: "Doctor of Technical Sciences, Professor",
             title: "Vice-Rector for Academic Affairs",
-            email: "vr.academic@aztu.edu.az",
+            email: "yusifbayli.n@aztu.edu.az",
             phone: "+994 12 539 08 57",
             photoUrl: `${VR_MEDIA}/nurali_yusifbayli.JPG`,
             biography: [
@@ -646,7 +646,7 @@ const en = {
             name: "Prof. Subhan Namazov",
             degree: "Doctor of Technical Sciences, Professor",
             title: "Vice-Rector for Science and Innovation",
-            email: "vr.research@aztu.edu.az",
+            email: "subhan.namazov@aztu.edu.az",
             phone: "+994 12 539 08 57",
             photoUrl: `${VR_MEDIA}/subhan_namazov.jpeg`,
             biography: [
@@ -662,7 +662,7 @@ const en = {
             name: "Dr. Fariz Mammadov",
             degree: "PhD in Economics (Econometrics and Economic Statistics)",
             title: "Vice-Rector for International Relations",
-            email: "vr.international@aztu.edu.az",
+            email: "fariz.mammadov@aztu.edu.az",
             phone: "+994 12 539 08 57",
             photoUrl: `${VR_MEDIA}/fariz_mammadov.jpeg`,
             biography: [
@@ -678,7 +678,7 @@ const en = {
             name: "Rashad Aliyev",
             degree: "PhD in Econometrics, MBA",
             title: "Vice-Rector for Finance and Operations",
-            email: "vr.admin@aztu.edu.az",
+            email: "rashad.aliyev@aztu.edu.az",
             phone: "+994 12 539 08 57",
             photoUrl: `${VR_MEDIA}/rashad_aliyev.JPG`,
             biography: [
@@ -1433,9 +1433,9 @@ const en = {
         importantNoteTitle: "Important Notice",
         importantNoteDescription: "All foreign citizens planning to study at AzTU must obtain the appropriate student visa before entering Azerbaijan. AzTU's International Admissions Office provides assistance with the visa invitation process.\n\nFor detailed and up-to-date admission requirements, please contact the International Admissions Office or visit the official TQDK website.",
         related: [
-          { title: "Visa & Migration", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
-          { title: "Accommodation", href: "/beynelmillesme/xarici-telebeler/yerlesme" },
-          { title: "Scholarship Opportunities", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+          { title: "Visa & Migration", href: "/beynelmilellesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Accommodation", href: "/beynelmilellesme/xarici-telebeler/yerlesme" },
+          { title: "Scholarship Opportunities", href: "/beynelmilellesme/xarici-telebeler/teqaud-imkanlari" },
         ]
       },
       scholarship: {
@@ -1498,9 +1498,9 @@ const en = {
           }
         ],
         related: [
-          { title: "Admission", href: "/beynelmillesme/xarici-telebeler/qebul" },
-          { title: "Visa & Migration", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
-          { title: "Accommodation", href: "/beynelmillesme/xarici-telebeler/yerlesme" },
+          { title: "Admission", href: "/beynelmilellesme/xarici-telebeler/qebul" },
+          { title: "Visa & Migration", href: "/beynelmilellesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Accommodation", href: "/beynelmilellesme/xarici-telebeler/yerlesme" },
         ]
       },
       foundationProgram: {
@@ -1537,10 +1537,10 @@ const en = {
         nextLevels: ["Bachelor's", "Master's", "PhD"],
         relatedTitle: "Related Pages",
         related: [
-          { title: "Admission", href: "/beynelmillesme/xarici-telebeler/qebul" },
-          { title: "Visa & Migration", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
-          { title: "Accommodation", href: "/beynelmillesme/xarici-telebeler/yerlesme" },
-          { title: "Scholarship Opportunities", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+          { title: "Admission", href: "/beynelmilellesme/xarici-telebeler/qebul" },
+          { title: "Visa & Migration", href: "/beynelmilellesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Accommodation", href: "/beynelmilellesme/xarici-telebeler/yerlesme" },
+          { title: "Scholarship Opportunities", href: "/beynelmilellesme/xarici-telebeler/teqaud-imkanlari" },
         ],
       },
       accommodation: {
@@ -1558,9 +1558,9 @@ const en = {
         supportTags: ["24/7 Support", "On-Campus Dormitory", "Private Housing Assistance", "Accommodation Guidance"],
         relatedTitle: "Related Pages",
         related: [
-          { title: "Admission", href: "/beynelmillesme/xarici-telebeler/qebul" },
-          { title: "Visa & Migration", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
-          { title: "Scholarship Opportunities", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+          { title: "Admission", href: "/beynelmilellesme/xarici-telebeler/qebul" },
+          { title: "Visa & Migration", href: "/beynelmilellesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Scholarship Opportunities", href: "/beynelmilellesme/xarici-telebeler/teqaud-imkanlari" },
         ]
       },
       visaMigration: {
@@ -1608,9 +1608,9 @@ const en = {
         ],
         permitNote: "The Temporary Residence Permit is typically issued for one year and must be renewed annually. AzTU's International Office will notify you in advance of your renewal deadline.",
         related: [
-          { title: "Admission", href: "/beynelmillesme/xarici-telebeler/qebul" },
-          { title: "Accommodation", href: "/beynelmillesme/xarici-telebeler/yerlesme" },
-          { title: "Scholarship Opportunities", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+          { title: "Admission", href: "/beynelmilellesme/xarici-telebeler/qebul" },
+          { title: "Accommodation", href: "/beynelmilellesme/xarici-telebeler/yerlesme" },
+          { title: "Scholarship Opportunities", href: "/beynelmilellesme/xarici-telebeler/teqaud-imkanlari" },
         ]
       },
       bilateralExchange: {
@@ -1716,9 +1716,9 @@ const en = {
         ],
         relatedTitle: "Related Pages",
         related: [
-          { title: "Erasmus Mobility", href: "/beynelmillesme/mubadile-proqramlari/erasmus-mubadile" },
-          { title: "Bilateral Exchange", href: "/beynelmillesme/mubadile-proqramlari/ikiterefli-mubadile" },
-          { title: "Orhun Exchange Program", href: "/beynelmillesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
+          { title: "Erasmus Mobility", href: "/beynelmilellesme/mubadile-proqramlari/erasmus-mubadile" },
+          { title: "Bilateral Exchange", href: "/beynelmilellesme/mubadile-proqramlari/ikiterefli-mubadile" },
+          { title: "Orhun Exchange Program", href: "/beynelmilellesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
         ],
       },
       erasmusMobility: {
@@ -1797,9 +1797,9 @@ const en = {
         sidebarDescription: "AzTU's Erasmus+ program offers fully EU-funded mobility opportunities for students and academic staff.",
         relatedTitle: "Related Pages",
         related: [
-          { title: "Partner Universities", href: "/beynelmillesme/mubadile-proqramlari/terefdas-universitetler" },
-          { title: "Bilateral Exchange", href: "/beynelmillesme/mubadile-proqramlari/ikiterefli-mubadile" },
-          { title: "Orhun Exchange Program", href: "/beynelmillesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
+          { title: "Partner Universities", href: "/beynelmilellesme/mubadile-proqramlari/terefdas-universitetler" },
+          { title: "Bilateral Exchange", href: "/beynelmilellesme/mubadile-proqramlari/ikiterefli-mubadile" },
+          { title: "Orhun Exchange Program", href: "/beynelmilellesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
         ],
       },
       exploreProgram: {
@@ -1820,10 +1820,10 @@ const en = {
         ctaButton: "Admission Information",
         relatedTitle: "Related Pages",
         related: [
-          { title: "Admission", href: "/beynelmillesme/xarici-telebeler/qebul" },
-          { title: "Foundation Program", href: "/beynelmillesme/xarici-telebeler/hazirliq-proqrami" },
-          { title: "Visa & Migration", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
-          { title: "Scholarship Opportunities", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+          { title: "Admission", href: "/beynelmilellesme/xarici-telebeler/qebul" },
+          { title: "Foundation Program", href: "/beynelmilellesme/xarici-telebeler/hazirliq-proqrami" },
+          { title: "Visa & Migration", href: "/beynelmilellesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Scholarship Opportunities", href: "/beynelmilellesme/xarici-telebeler/teqaud-imkanlari" },
         ],
       },
       bilateralCooperationExchange: {
@@ -1851,9 +1851,9 @@ const en = {
         sidebarDescription: "AzTU holds active bilateral cooperation agreements with universities in more than 30 countries.",
         relatedTitle: "Related Pages",
         related: [
-          { title: "Erasmus Mobility", href: "/beynelmillesme/mubadile-proqramlari/erasmus-mubadile" },
-          { title: "Partner Universities", href: "/beynelmillesme/mubadile-proqramlari/terefdas-universitetler" },
-          { title: "Orhun Exchange Program", href: "/beynelmillesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
+          { title: "Erasmus Mobility", href: "/beynelmilellesme/mubadile-proqramlari/erasmus-mubadile" },
+          { title: "Partner Universities", href: "/beynelmilellesme/mubadile-proqramlari/terefdas-universitetler" },
+          { title: "Orhun Exchange Program", href: "/beynelmilellesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
         ],
       },
       erasmusPartnerUniversities: {
@@ -1922,9 +1922,9 @@ const en = {
         ],
         relatedTitle: "Related Pages",
         related: [
-          { title: "Erasmus Mobility", href: "/beynelmillesme/mubadile-proqramlari/erasmus-mubadile" },
-          { title: "Partner Universities", href: "/beynelmillesme/mubadile-proqramlari/terefdas-universitetler" },
-          { title: "Bilateral Exchange", href: "/beynelmillesme/mubadile-proqramlari/ikiterefli-mubadile" },
+          { title: "Erasmus Mobility", href: "/beynelmilellesme/mubadile-proqramlari/erasmus-mubadile" },
+          { title: "Partner Universities", href: "/beynelmilellesme/mubadile-proqramlari/terefdas-universitetler" },
+          { title: "Bilateral Exchange", href: "/beynelmilellesme/mubadile-proqramlari/ikiterefli-mubadile" },
         ],
       },
     },

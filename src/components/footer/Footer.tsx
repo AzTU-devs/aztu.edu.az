@@ -97,7 +97,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="relative z-20 max-w-[1600px] mx-auto px-[40px] md:px-[80px] xl:px-[120px]">
+                <div className="relative z-20 max-w-[1600px] mx-auto px-5 sm:px-8 md:px-[60px] lg:px-[80px] xl:px-[120px]">
                     
                     {/* TOP SECTION: Branding & Social */}
                     <div className="flex flex-col lg:flex-row items-center justify-between gap-12 mb-20 pb-12 border-b border-white/5">
@@ -174,7 +174,7 @@ export default function Footer() {
                                         <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-[#ee7c7e] group-hover/phone:bg-[#ee7c7e] group-hover/phone:text-white transition-all duration-300 shadow-inner">
                                             {i === 0 ? <HeadsetMicIcon sx={{ fontSize: 24 }} /> : <LocalPhoneIcon sx={{ fontSize: 24 }} />}
                                         </div>
-                                        <span className="text-xl font-black text-white/80 group-hover/phone:text-white transition-colors tracking-tight">
+                                        <span className="text-base sm:text-lg md:text-xl font-black text-white/80 group-hover/phone:text-white transition-colors tracking-tight break-all">
                                             {phone}
                                         </span>
                                     </a>
@@ -257,7 +257,7 @@ export default function Footer() {
 
                 {/* COPYRIGHT BAR */}
                 <div className="bg-black/40 py-10 relative z-20">
-                    <div className="max-w-[1600px] mx-auto px-[40px] md:px-[80px] xl:px-[120px] flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div className="max-w-[1600px] mx-auto px-5 sm:px-8 md:px-[60px] lg:px-[80px] xl:px-[120px] flex flex-col md:flex-row items-center justify-between gap-6">
                         <div className="flex items-center gap-4">
                             <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/5 shadow-inner">
                                 <CopyrightIcon sx={{ color: "#ee7c7e", fontSize: 18 }} />

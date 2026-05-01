@@ -36,13 +36,13 @@ export default function PersonCard({
   const iconSize = size === "lg" ? 56 : size === "sm" ? 28 : 44;
 
   const cardContent = (
-    <div className={`group relative bg-white backdrop-blur-xl rounded-[1.5rem] border-2 border-[#1a2355]/30 p-4 flex flex-col items-center text-center gap-3 transition-all duration-500 hover:-translate-y-1 hover:border-[#ee7c7e] hover:shadow-xl hover:shadow-[#1a2355]/20 overflow-hidden${href ? " cursor-pointer" : ""}`}>
+    <div className={`group relative bg-white dark:bg-slate-800 backdrop-blur-xl rounded-[1.5rem] border-2 border-[#1a2355]/30 dark:border-white/10 p-4 flex flex-col items-center text-center gap-3 transition-all duration-500 hover:-translate-y-1 hover:border-[#ee7c7e] dark:hover:border-[#ee7c7e] hover:shadow-xl hover:shadow-[#1a2355]/20 dark:hover:shadow-black/40 overflow-hidden${href ? " cursor-pointer" : ""}`}>
       {/* Background Decorative Element */}
       <div className="absolute -top-10 -right-10 w-24 h-24 bg-[#ee7c7e]/5 blur-2xl rounded-full group-hover:scale-150 transition-transform duration-700" />
       
       {/* Avatar */}
       <div
-        className={`${avatarSize} rounded-full bg-gray-50 border-2 border-[#1a2355]/30 flex items-center justify-center overflow-hidden flex-shrink-0 relative z-10 group-hover:border-[#ee7c7e]/50 transition-colors duration-500 shadow-sm`}
+        className={`${avatarSize} rounded-full bg-gray-50 dark:bg-white/10 border-2 border-[#1a2355]/30 dark:border-white/10 flex items-center justify-center overflow-hidden flex-shrink-0 relative z-10 group-hover:border-[#ee7c7e]/50 transition-colors duration-500 shadow-sm`}
       >
         {photoUrl ? (
           <img
@@ -57,7 +57,7 @@ export default function PersonCard({
 
       {/* Info */}
       <div className="flex-1 relative z-10 w-full">
-        <p className="font-black text-[#1a2355] text-sm leading-tight group-hover:text-[#ee7c7e] transition-colors">
+        <p className="font-black text-[#1a2355] dark:text-white text-sm leading-tight group-hover:text-[#ee7c7e] transition-colors break-words">
           {fullName}
         </p>
         {academicDegree && (
@@ -66,7 +66,7 @@ export default function PersonCard({
           </p>
         )}
         {title && (
-          <p className="text-xs text-[#1a2355] font-black mt-2 leading-tight break-words">
+          <p className="text-xs text-[#1a2355] dark:text-white/80 font-black mt-2 leading-tight break-words">
             {title}
           </p>
         )}
@@ -78,7 +78,7 @@ export default function PersonCard({
           {email && (
             <a
               href={`mailto:${email}`}
-              className="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-[#ee7c7e] hover:text-white transition-all duration-300 border border-gray-100"
+              className="w-10 h-10 sm:w-9 sm:h-9 rounded-lg bg-gray-50 dark:bg-white/10 flex items-center justify-center text-gray-500 dark:text-white/60 hover:bg-[#ee7c7e] hover:text-white transition-all duration-300 border border-gray-100 dark:border-white/10"
               title={email}
             >
               <EmailIcon sx={{ fontSize: 16 }} />
@@ -87,7 +87,7 @@ export default function PersonCard({
           {phone && (
             <a
               href={`tel:${phone}`}
-              className="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-[#ee7c7e] hover:text-white transition-all duration-300 border border-gray-100"
+              className="w-10 h-10 sm:w-9 sm:h-9 rounded-lg bg-gray-50 dark:bg-white/10 flex items-center justify-center text-gray-500 dark:text-white/60 hover:bg-[#ee7c7e] hover:text-white transition-all duration-300 border border-gray-100 dark:border-white/10"
               title={phone}
             >
               <PhoneIcon sx={{ fontSize: 16 }} />
@@ -98,7 +98,7 @@ export default function PersonCard({
               href={cvUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center text-[#ee7c7e] hover:bg-[#ee7c7e] hover:text-white transition-all duration-300 border border-gray-100"
+              className="w-10 h-10 sm:w-9 sm:h-9 rounded-lg bg-gray-50 dark:bg-white/10 flex items-center justify-center text-[#ee7c7e] hover:bg-[#ee7c7e] hover:text-white transition-all duration-300 border border-gray-100 dark:border-white/10"
               title="Download CV"
             >
               <DownloadIcon sx={{ fontSize: 16 }} />
