@@ -125,6 +125,8 @@ const SLUG_MAP: Record<string, string> = {
     "rektorluq": "rectors-office",
     "vice-rector": "prorektor",
     "prorektor": "vice-rector",
+    "vice-rectors": "prorektorlar",
+    "prorektorlar": "vice-rectors",
     "scientific-board": "elmi-sura",
     "elmi-sura": "scientific-board",
     "partner-universities-and-related-institutes": "terefdas-universitet-ve-elaqeli-institutlar",
@@ -274,7 +276,7 @@ const EN_SLUGS = new Set([
     "open-access-policy", "scientific-journals", "machine-science", "energy-sustainability-risks-and-decision-making",
     "internal-grant-programs", "seminars-and-trainings", "research-projects", "intellectual-property-and-patents",
     "research-institutes", "research-laboratories", "vision-mission", "vizion-mission-goal", "history-of-aztu",
-    "75th-anniversary-film", "leadership-and-management", "rector", "rectors-office", "vice-rector", "scientific-board",
+    "75th-anniversary-film", "leadership-and-management", "rector", "rectors-office", "vice-rector", "vice-rectors", "scientific-board",
     "partner-universities-and-related-institutes", "tau", "iit", "ics", "baku-technical-colleges", "baku-state-colleges",
     "structural-units", "aztus-honors", "honorary-doctors", "our-heroes",
     "former-rectors", "rankings", "campus-life", "aztu-polyclinic", "clubs", "sports",
@@ -322,6 +324,23 @@ export function middleware(request: NextRequest) {
   if (SUPPORTED_LANGS.includes(firstSegment)) {
     const lang = firstSegment as "az" | "en";
     let segments_rest = segments.slice(1);
+
+    // Legacy redirects: singular vice-rector / prorektor → plural
+    if (
+        (lang === "az" &&
+            segments_rest[0] === "haqqimizda" &&
+            segments_rest[1] === "rehbetlik-ve-idareetme" &&
+            segments_rest[2] === "prorektor") ||
+        (lang === "en" &&
+            segments_rest[0] === "about" &&
+            segments_rest[1] === "leadership-and-management" &&
+            segments_rest[2] === "vice-rector")
+    ) {
+        const newSlug = lang === "az" ? "prorektorlar" : "vice-rectors";
+        const tail = segments_rest.slice(3);
+        const newPath = [firstSegment, segments_rest[0], segments_rest[1], newSlug, ...tail].join("/");
+        return NextResponse.redirect(new URL(`/${newPath}`, request.url), 308);
+    }
 
     if (segments_rest.length > 0) {
         let needsRedirect = false;
@@ -385,7 +404,7 @@ export function middleware(request: NextRequest) {
         } else if (segments_rest[1] === "leadership-and-management" || segments_rest[1] === "rehbetlik-ve-idareetme") {
             if (segments_rest[2] === "rector" || segments_rest[2] === "rektor") segments_rest = ["about", "rector"];
             else if (segments_rest[2] === "rectors-office" || segments_rest[2] === "rektoratliq" || segments_rest[2] === "rektorluq") segments_rest = ["about", "rectors-office"];
-            else if (segments_rest[2] === "vice-rector" || segments_rest[2] === "prorektor") {
+            else if (segments_rest[2] === "vice-rectors" || segments_rest[2] === "prorektorlar" || segments_rest[2] === "vice-rector" || segments_rest[2] === "prorektor") {
                 if (segments_rest[3]) segments_rest = ["about", "vice-rector", segments_rest[3]];
                 else segments_rest = ["about", "vice-rector"];
             }
