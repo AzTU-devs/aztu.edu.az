@@ -76,20 +76,22 @@ export default function ResponsiveHeader() {
                     : "bg-gradient-to-b from-black/40 to-transparent py-4"
                 }`}
             >
-                <nav className="flex items-center justify-between w-full px-6 md:px-10">
-                    <button
-                        onClick={() => setIsOpen(true)}
-                        className={`w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-300 ${
-                            scrolled 
-                            ? "bg-black/5 dark:bg-white/5 text-[#1a2355] dark:text-white" 
-                            : "bg-white/10 backdrop-blur-md border border-white/20 text-white shadow-lg"
-                        }`}
-                        aria-label="Open menu"
-                    >
-                        <MenuIcon sx={{ fontSize: 24 }} />
-                    </button>
+                <nav className="grid grid-cols-3 items-center w-full px-6 md:px-10">
+                    <div className="justify-self-start">
+                        <button
+                            onClick={() => setIsOpen(true)}
+                            className={`w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-300 ${
+                                scrolled
+                                ? "bg-black/5 dark:bg-white/5 text-[#1a2355] dark:text-white"
+                                : "bg-white/10 backdrop-blur-md border border-white/20 text-white shadow-lg"
+                            }`}
+                            aria-label="Open menu"
+                        >
+                            <MenuIcon sx={{ fontSize: 24 }} />
+                        </button>
+                    </div>
 
-                    <div className="flex-shrink-0">
+                    <div className="justify-self-center flex-shrink-0">
                         <Link href="/">
                             <Image
                                 src={scrolled && theme === 'light' ? AzTULogoDark : AzTULogoLight}
@@ -100,7 +102,7 @@ export default function ResponsiveHeader() {
                         </Link>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="justify-self-end flex items-center gap-2">
                         <button
                             onClick={toggleTheme}
                             aria-label="Toggle dark mode"

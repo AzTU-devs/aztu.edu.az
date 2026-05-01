@@ -169,7 +169,7 @@ export default function HeroSection() {
             </div>
 
             {/* Content Container */}
-            <div className="absolute inset-0 z-20 flex items-center px-5 md:px-12 xl:px-20 pt-16 lg:pt-0">
+            <div className="absolute inset-0 z-20 flex items-start lg:items-center px-5 md:px-12 xl:px-20 pt-24 sm:pt-28 lg:pt-0 pb-24 lg:pb-0 overflow-y-auto lg:overflow-visible">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center w-full">
 
                     {/* LEFT: Main Text */}
