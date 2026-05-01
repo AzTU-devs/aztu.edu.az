@@ -209,6 +209,202 @@ const STATIC_INSTITUTES: StaticInstituteRecord[] = [
             updated_at: NOW,
         },
     },
+    {
+        az: {
+            id: 2,
+            institute_code: "mtkt",
+            image_url: `${RI_MEDIA}/mtkt/logo.png`,
+            name: "Müdafiə Texnologiyaları və Kibertəhlükəsizlik İnstitutu",
+            about:
+                "<p>Müdafiə Texnologiyaları və Kibertəhlükəsizlik İnstitutu Azərbaycan Texniki Universitetində müasir texnologiyalar sahəsində elmi-tədqiqat və innovasiya fəaliyyətini inkişaf etdirmək məqsədilə yaradılmışdır. İnstitutun əsas fəaliyyəti süni intellekt, kibertəhlükəsizlik, müdafiə texnologiyaları və intellektual data analitikası istiqamətlərini əhatə edir.</p>" +
+                "<p>Burada qabaqcıl laboratoriyalar, tədqiqat layihələri və tətbiqi həllər vasitəsilə həm akademik, həm də sənaye yönümlü nəticələrin əldə olunması hədəflənir. İnstitut eyni zamanda müasir təhsil yanaşmalarının tətbiqi və yüksəkixtisaslı kadrların hazırlanması istiqamətində fəaliyyət göstərir.</p>",
+            vision:
+                "Müdafiə texnologiyaları, kibertəhlükəsizlik və süni intellekt sahələrində qabaqcıl elmi-tədqiqat və innovasiya mərkəzinə çevrilərək, milli təhlükəsizliyin gücləndirilməsinə və qlobal texnoloji inkişafda rəqabətqabiliyyətli mövqe tutmağa töhfə vermək.",
+            mission:
+                "Müdafiə texnologiyaları, kibertəhlükəsizlik və süni intellekt sahələrində elmi-tədqiqat, innovasiya və tətbiqi həlləri inkişaf etdirərək, yüksək ixtisaslı kadrların hazırlanmasına, müasir texnologiyaların tətbiqinə və milli təhlükəsizlik prioritetlərinin dəstəklənməsinə töhfə vermək.",
+            director: {
+                id: 2,
+                full_name: "Ələkbərli Rahid Zahid oğlu",
+                email: "rahid.alekberli@aztu.edu.az",
+                office: "II korpus, 505-ci otaq",
+                image_url: `${RI_MEDIA}/mtkt/${encodeURIComponent("Ələkbərli Rahid.jpg")}`,
+                title: "İdarəetmə üzrə fəlsəfə doktoru, dosent",
+                biography:
+                    "<p>Ələkbərli Rahid Zahid oğlu informasiya texnologiyaları, data idarəçiliyi və kibertəhlükəsizlik sahələrində uzunmüddətli təcrübəyə malik mütəxəssis və rəhbərdir. O, müxtəlif dövlət və özəl sektor qurumlarında yüksək vəzifələrdə çalışaraq texnoloji infrastruktur quruculuğu, kritik informasiya infrastukturları, rəqəmsal transformasiya, strateji idarəetmə və texnoloji inkişaf, beynəlxalq texnologiya layihələrinə rəhbərlik etmişdir.</p>" +
+                    "<p>Rahid Ələkbərli AzTU-da bakalavr, magistr təhsilini fərqlənmə diplomu ilə bitirmiş, beynəlxalq təhsil almış, idarəetmə və informasiya sistemləri sahəsində magistr və doktorantura dərəcələrinə yiyələnmişdir. Onun elmi fəaliyyəti əsasən böyük verilənlərin idarə olunması, texnoloji idarəçilik strategiyaları və süni intellektin tətbiqi istiqamətlərini əhatə edir.</p>" +
+                    "<p>Hazırda o, müdafiə texnologiyaları və kibertəhlükəsizlik sahəsində elmi-tədqiqat və innovasiya fəaliyyətlərinin inkişafı istiqamətində, yeni texnologiyaların tətbiqi və insan kapitalının gücləndirilməsi istiqamətində layihələr həyata keçirir. Rahid Ələkbərli həmçinin beynəlxalq əməkdaşlıqların qurulması və akademik mühitdə müasir yanaşmaların tətbiqi ilə seçilir.</p>" +
+                    "<p><strong>Qəbul saatları:</strong> Çərşənbə axşamı, 15:00–16:30</p>",
+                educations: [
+                    { id: 1, university: "Azərbaycan Texniki Universiteti", degree: "Bakalavr və magistr təhsili", start_year: "1994", end_year: "2000" },
+                    { id: 2, university: "University of Liverpool", degree: "MSc – Management Information Systems", start_year: "2017", end_year: "2020" },
+                    { id: 3, university: "Walden University", degree: "MPhil – Business Administration and Management", start_year: "2021", end_year: "2023" },
+                    { id: 4, university: "Walden University", degree: "PhD – Information Systems Management", start_year: "2021", end_year: "2024" },
+                ],
+                research_areas: [
+                    { id: 1, content: "Data Siyasəti və Strateji İdarəetmə – böyük verilənlərin korporativ strategiyalarla inteqrasiyası və qərar qəbuletmə mexanizmləri" },
+                    { id: 2, content: "Süni İntellekt və Analitika – Süni İntellekt modellərinin tətbiqi, qərar dəstək sistemləri və intellektual data analitikası" },
+                    { id: 3, content: "Kibertəhlükəsizlik və Rəqəmsal Dayanıqlılıq – kritik infrastrukturun qorunması və təhlükəsizlik idarəetməsi" },
+                    { id: 4, content: "IoT və Rəqəmsal Ekosistemlər – ağıllı sistemlər və sənaye tətbiqləri" },
+                    { id: 5, content: "Rəqəmsal Transformasiya və Texnoloji Strategiyalar – təşkilatların texnoloji inkişaf modelləri və innovasiya yanaşmaları" },
+                    { id: 6, content: "Süni İntellekt İdarəçiliyi və Etik İdarəetmə Modelləri – süni intellektin idarə olunması və etik çərçivə prinsiplərinin formalaşdırılması, tətbiqi və optimallaşdırılması" },
+                ],
+            },
+            deputy_director: {
+                id: 3,
+                full_name: "Kərimov Hikmət Məhəmməd oğlu",
+                email: "hikmat.karimov@aztu.edu.az",
+                office: "II korpus, 505-ci otaq",
+                image_url: `${RI_MEDIA}/mtkt/${encodeURIComponent("Kərimov Hikmət.jpg")}`,
+                title: "Kimya mühəndisliyi üzrə texniki elmlər doktoru, dosent",
+                biography:
+                    "<p>Kərimov Hikmət Məhəmməd oğlu, kimya mühəndisi və layihə meneceri, kimya mühəndisliyi üzrə elmlər doktoru dərəcəsinə malik, akademik tədqiqat, sənaye əməliyyatları və genişmiqyaslı layihə idarəçiliyi sahəsində 20 ildən artıq təcrübəyə malik mütəxəssis və rəhbərdir. Çoxşaxəli komandaları idarə etmək, beynəlxalq əməkdaşlıqları təşkil etmək və kimyəvi emal, tullantı sularının təmizlənməsi, kriogen ayrılma və polimer istehsalı, və bir çox bu kimi sahələrdə texniki layihələri həyata keçirmək təcrübəsinə malik mütəxəssisdir.</p>" +
+                    "<p>Azərbaycan Neft və Kimya İnstitutunun (indiki ADNSU) «Kimya-texnologiya» fakultəsini bitirmişdir. Azərbaycan Dövlət Neft Akademiyasında dissertasiya müdafiə edərək «Kimya elmləri namizədi» elmi dərəcəsi almışdır. Almaniya Federativ Respublikasının Heidelberg, Karlsruhe və Bayreuth, həmçinin Türkiyədə EGE universitetlərində elmi araşdırma aparmış və ixtisas artırma kurslarında iştirak etmişdir.</p>" +
+                    "<p>O, müxtəlif dövlət və özəl sektor qurumlarında yüksək vəzifələrdə, o cümlədən SOCAR Azərneftyağ NEZ-də İstehsalat-texniki şöbənin rəisi, baş texnoloq, Sumqayıt Texnologiyalar Parkında (STP) direktor, «AMEA Yüksək Texnologiyalar Parkında» şöbə rəisi, baş mühəndis vəzifəsində çalışmışdır. Azərbaycan Respublikası Prezidenti Yanında Ali Attestasiya Komissiyasının qərarı ilə «Texnika üzrə elmlər doktoru» elmi dərəcəsinə layiq görülmüşdür. 50 elmi əsər, o cümlədən 5 patent və ixtira, 3 ali məktəb tələbələri üçün dərslik və dərs vəsaiti, 1 monoqrafiya müəllifidir.</p>" +
+                    "<p><strong>Qəbul saatları:</strong> Çərşənbə axşamı, cümə axşamı, 15:00–17:00</p>",
+                educations: [
+                    { id: 1, university: "Azərbaycan Neft və Kimya İnstitutu", degree: "Kimya-texnologiya mühəndisi", start_year: "1982", end_year: "1989" },
+                    { id: 2, university: "Azərbaycan Neft və Kimya İnstitutu", degree: "Kimya elmlər namizədi", start_year: "1989", end_year: "1992" },
+                    { id: 3, university: "Heidelberg və Karlsruhe Universiteti, Engler-Bunte İnstitutu", degree: "Elmi araşdırma", start_year: "1999", end_year: "2000" },
+                    { id: 4, university: "Ege Universiteti, Kimya Mühəndisliyi bölümü", degree: "Elmi araşdırma", start_year: "2001", end_year: "2002" },
+                    { id: 5, university: "Bayreuth Universiteti", degree: "Elmi araşdırma", start_year: "2003", end_year: "2004" },
+                    { id: 6, university: "Azərbaycan Neft və Kimya İnstitutu", degree: "Texnika elmlər doktoru", start_year: "2006", end_year: "2009" },
+                ],
+                research_areas: [
+                    { id: 1, content: "Nadir torpaq metallarının katalitik xüsusiyyətləri – Ce yarım ailəsinin promotor xüsusiyyətlərinin tədqiqi" },
+                    { id: 2, content: "Parsial oksidləşmə – etanolun sirkə turşusuna katalitik parsial oksidləşməsinin tədqiqi" },
+                    { id: 3, content: "Yanar şistlərin kompleks emal texnologiyası – Azərbaycan yanar şistlərinin tədqiqi və onların əsasında müxtəlif məhsulların istehsal texnologiyasının işlənməsi" },
+                    { id: 4, content: "Kriogen texnologiyalar – yüksək təmizlikli maye Azot, Oksigen, Arqon və CO2 istehsalı" },
+                    { id: 5, content: "Korroziyadan müdafiə – qaynar sinkləmə prosesi" },
+                    { id: 6, content: "Neft emalı texnologiyaları – müxtəlif neft məhsulları, o cümlədən sürtkü yağları, aviasiya hidravlik mayeləri və s." },
+                ],
+            },
+            objectives: [
+                { id: 1, content: "Müdafiə texnologiyaları, kibertəhlükəsizlik və süni intellekt sahələrində prioritet elmi-tədqiqat istiqamətlərini inkişaf etdirmək." },
+                { id: 2, content: "Müasir laboratoriyalar və texnoloji infrastruktur vasitəsilə innovativ həllərin yaradılmasını təmin etmək." },
+                { id: 3, content: "Yüksək ixtisaslı mütəxəssislərin hazırlanmasına və insan kapitalının gücləndirilməsinə töhfə vermək." },
+                { id: 4, content: "Təhsil və tədqiqat fəaliyyətini beynəlxalq standartlara uyğunlaşdırmaq və keyfiyyətini artırmaq." },
+                { id: 5, content: "Yerli və beynəlxalq tərəfdaşlıqları genişləndirərək birgə layihələrin həyata keçirilməsini təşviq etmək." },
+                { id: 6, content: "Milli təhlükəsizlik və rəqəmsal dayanıqlılıq istiqamətində tətbiqi həllərin hazırlanmasına dəstək vermək." },
+            ],
+            research_directions: [
+                { id: 1, content: "Süni intellekt və intellektual data analitikası" },
+                { id: 2, content: "Kibertəhlükəsizlik və rəqəmsal dayanıqlılıq" },
+                { id: 3, content: "Müdafiə texnologiyaları və tətbiqi həllər" },
+                { id: 4, content: "Rəqəmsal transformasiya və texnoloji strategiyalar" },
+                { id: 5, content: "IoT və ağıllı sistemlər" },
+                { id: 6, content: "Süni intellekt idarəçiliyi və etik çərçivələr" },
+            ],
+            staff: [
+                {
+                    id: 1,
+                    full_name: "Qasımlı Fərid Fikrət oğlu",
+                    email: "farid.gasimli@aztu.edu.az",
+                    phone: "+994504030744",
+                    image_url: null,
+                    title: "Kibertəhlükəsizlik kafedrasının baş müəllimi",
+                },
+            ],
+            created_at: NOW,
+            updated_at: NOW,
+        },
+        en: {
+            id: 2,
+            institute_code: "mtkt",
+            image_url: `${RI_MEDIA}/mtkt/logo.png`,
+            name: "Institute of Defense Technologies and Cybersecurity",
+            about:
+                "<p>The Institute of Defense Technologies and Cybersecurity at Azerbaijan Technical University (AzTU) was established to advance research, innovation, and technological development in modern digital domains. The Institute focuses on artificial intelligence, cybersecurity, defense technologies, and intelligent data analytics.</p>" +
+                "<p>Through advanced laboratories, research initiatives, and applied solutions, it aims to deliver both academic excellence and industry-oriented outcomes. The Institute also promotes modern educational approaches and contributes to the development of highly qualified professionals.</p>",
+            vision:
+                "To become a leading research and innovation center in defense technologies, cybersecurity, and artificial intelligence, contributing to national security and achieving a competitive position in the global technological landscape.",
+            mission:
+                "To advance research, innovation, and applied solutions in defense technologies, cybersecurity, and artificial intelligence, while contributing to the development of highly skilled professionals and supporting national security priorities.",
+            director: {
+                id: 2,
+                full_name: "Rahid Zahid Alekberli",
+                email: "rahid.alekberli@aztu.edu.az",
+                office: "Building II, Room 505",
+                image_url: `${RI_MEDIA}/mtkt/${encodeURIComponent("Ələkbərli Rahid.jpg")}`,
+                title: "PhD in Management, Associate Professor",
+                biography:
+                    "<p>Rahid Zahid Alekberli is a distinguished expert and senior executive with extensive experience in information technologies, data governance, and cybersecurity. He has held senior positions across public and private sectors, leading major initiatives in technological infrastructure, critical information systems, digital transformation, and strategic management.</p>" +
+                    "<p>He graduated with distinction from Azerbaijan Technical University and pursued advanced international education in management and information systems. He holds an MSc from the University of Liverpool and both MPhil and PhD degrees from Walden University.</p>" +
+                    "<p>His research focuses on big data governance, technology-driven strategic management, and artificial intelligence applications. He currently contributes to advancing research and innovation in defense technologies and cybersecurity, while fostering international collaboration and modern academic practices.</p>" +
+                    "<p><strong>Office Hours:</strong> Tuesday, 15:00–16:30</p>",
+                educations: [
+                    { id: 1, university: "Azerbaijan Technical University", degree: "Bachelor's and Master's degrees", start_year: "1994", end_year: "2000" },
+                    { id: 2, university: "University of Liverpool", degree: "MSc – Management Information Systems", start_year: "2017", end_year: "2020" },
+                    { id: 3, university: "Walden University", degree: "MPhil – Business Administration and Management", start_year: "2021", end_year: "2023" },
+                    { id: 4, university: "Walden University", degree: "PhD – Information Systems Management", start_year: "2021", end_year: "2024" },
+                ],
+                research_areas: [
+                    { id: 1, content: "Data Governance and Strategic Management" },
+                    { id: 2, content: "Artificial Intelligence and Data Analytics" },
+                    { id: 3, content: "Cybersecurity and Digital Resilience" },
+                    { id: 4, content: "Internet of Things (IoT) and Digital Ecosystems" },
+                    { id: 5, content: "Digital Transformation and Technology Strategies" },
+                    { id: 6, content: "AI Governance and Ethical Frameworks" },
+                ],
+            },
+            deputy_director: {
+                id: 3,
+                full_name: "Karimov Hikmat Mahammad oglu",
+                email: "hikmat.karimov@aztu.edu.az",
+                office: "Building II, Room 505",
+                image_url: `${RI_MEDIA}/mtkt/${encodeURIComponent("Kərimov Hikmət.jpg")}`,
+                title: "Doctor of Technical Sciences in Chemical Engineering, Associate Professor",
+                biography:
+                    "<p>Karimov Hikmat Mahammad oglu is a chemical engineer and project manager, holding a Doctor of Sciences degree in Chemical Engineering. He is a specialist and leader with more than 20 years of experience in academic research, industrial operations, and large-scale project management. He has expertise in managing multidisciplinary teams, organizing international collaborations, and implementing technical projects in areas such as chemical processing, wastewater treatment, cryogenic separation, polymer production, and many others.</p>" +
+                    "<p>He graduated from the \"Chemical Technology\" faculty of the Azerbaijan Oil and Chemistry Institute (now ASOIU). He defended his dissertation at the Azerbaijan State Oil Academy and received the degree of Candidate of Chemical Sciences. He conducted scientific research and participated in advanced training courses at Heidelberg, Karlsruhe, and Bayreuth Universities in Germany, as well as at EGE University in Turkey.</p>" +
+                    "<p>He has held senior positions in various state and private sector organizations, including Head of the Production-Technical Department and Chief Technologist at SOCAR Azerneft Oil Refinery, Director at Sumgait Technologies Park (STP), Head of Department and Chief Engineer at the High Technologies Park of ANAS. By decision of the Supreme Attestation Commission under the President of the Republic of Azerbaijan, he was awarded the degree of Doctor of Technical Sciences. He is the author of 50 scientific works, including 5 patents and inventions, 3 textbooks and teaching aids for university students, and 1 monograph.</p>" +
+                    "<p><strong>Office Hours:</strong> Tuesday, Thursday, 15:00–17:00</p>",
+                educations: [
+                    { id: 1, university: "Azerbaijan Oil and Chemistry Institute", degree: "Chemical Technology Engineer", start_year: "1982", end_year: "1989" },
+                    { id: 2, university: "Azerbaijan Oil and Chemistry Institute", degree: "Candidate of Chemical Sciences", start_year: "1989", end_year: "1992" },
+                    { id: 3, university: "Heidelberg and Karlsruhe University, Engler-Bunte Institute", degree: "Scientific research", start_year: "1999", end_year: "2000" },
+                    { id: 4, university: "EGE University, Department of Chemical Engineering", degree: "Scientific research", start_year: "2001", end_year: "2002" },
+                    { id: 5, university: "Bayreuth University", degree: "Scientific research", start_year: "2003", end_year: "2004" },
+                    { id: 6, university: "Azerbaijan Oil and Chemistry Institute", degree: "Doctor of Technical Sciences", start_year: "2006", end_year: "2009" },
+                ],
+                research_areas: [
+                    { id: 1, content: "Catalytic properties of rare earth metals – study of promoter characteristics of the Ce subgroup" },
+                    { id: 2, content: "Partial oxidation – catalytic partial oxidation of ethanol to acetic acid" },
+                    { id: 3, content: "Complex processing technology of oil shales – study of Azerbaijani oil shales and development of production technologies for various products" },
+                    { id: 4, content: "Cryogenic technologies – production of high-purity liquid Nitrogen, Oxygen, Argon, and CO2" },
+                    { id: 5, content: "Corrosion protection – hot-dip galvanizing process" },
+                    { id: 6, content: "Oil refining technologies – production of various petroleum products, including lubricants, aviation hydraulic fluids, etc." },
+                ],
+            },
+            objectives: [
+                { id: 1, content: "Develop priority research areas in defense technologies, cybersecurity, and artificial intelligence." },
+                { id: 2, content: "Foster innovation through modern laboratories and technological infrastructure." },
+                { id: 3, content: "Contribute to the development of highly qualified human capital." },
+                { id: 4, content: "Align education and research activities with international standards." },
+                { id: 5, content: "Promote collaboration through local and international partnerships." },
+                { id: 6, content: "Support applied solutions for national security and digital resilience." },
+            ],
+            research_directions: [
+                { id: 1, content: "Artificial intelligence and intelligent data analytics" },
+                { id: 2, content: "Cybersecurity and digital resilience" },
+                { id: 3, content: "Defense technologies and applied solutions" },
+                { id: 4, content: "Digital transformation and technology strategies" },
+                { id: 5, content: "IoT and smart systems" },
+                { id: 6, content: "AI governance and ethical frameworks" },
+            ],
+            staff: [
+                {
+                    id: 1,
+                    full_name: "Farid Fikrat Gasimli",
+                    email: "farid.gasimli@aztu.edu.az",
+                    phone: "+994504030744",
+                    image_url: null,
+                    title: "Senior Lecturer, Department of Cybersecurity",
+                },
+            ],
+            created_at: NOW,
+            updated_at: NOW,
+        },
+    },
 ];
 
 function findRecordBySlug(slug: string): StaticInstituteRecord | undefined {

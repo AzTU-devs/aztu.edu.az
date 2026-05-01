@@ -51,6 +51,7 @@ export interface ResearchInstituteDetail {
   vision: string;
   mission: string;
   director: ResearchInstituteDirector | null;
+  deputy_director?: ResearchInstituteDirector | null;
   objectives: ResearchInstituteObjective[];
   research_directions: ResearchInstituteDirection[];
   staff: ResearchInstituteStaff[];
