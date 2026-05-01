@@ -405,6 +405,272 @@ const STATIC_INSTITUTES: StaticInstituteRecord[] = [
             updated_at: NOW,
         },
     },
+    {
+        az: {
+            id: 3,
+            institute_code: "sdt",
+            image_url: `${RI_MEDIA}/sdt/logo.png`,
+            name: "Sənaye Dizaynı və Texnologiyalar İnstitutu",
+            about:
+                "<p>Sənaye Dizaynı və Texnologiyalar İnstitutu Azərbaycan Texniki Universitetinin Maşınqayırma və metallurgiya fakültəsinin elmi və pedaqoji bazası üzərində formalaşmış, sənaye yönümlü mühəndislik yanaşmalarını müasir texnologiyalarla sintez edən ixtisaslaşmış akademik qurumdur. İnstitutun fəaliyyəti ənənəvi maşınqayırma məktəbinin fundamental prinsiplərini qorumaqla yanaşı, rəqəmsal transformasiya, innovasiya və tətbiqi tədqiqatların inteqrasiyasına əsaslanır.</p>" +
+                "<p>İnstitutun istiqamətləri fakültənin kafedralarının fəaliyyət sahələri ilə üzvi şəkildə əlaqələndirilmişdir. Bu çərçivədə mexaniki sistemlərin nəzəriyyəsi və tətbiqi, maşın hissələrinin konstruktiv layihələndirilməsi, materialşünaslıq və metallurgiya, istehsal texnologiyaları, qaynaq və tökmə prosesləri, səthlərin möhkəmləndirilməsi və funksionallaşdırılması kimi sahələr prioritet təşkil edir. Eyni zamanda, istehsalın avtomatlaşdırılması, texnoloji proseslərin idarə olunması və rəqəmsal mühəndislik yanaşmaları bu ənənəvi istiqamətlərlə paralel inkişaf etdirilir.</p>" +
+                "<p>Tədris prosesi kompleks yanaşma əsasında qurularaq tələbələrə həm fundamental mühəndislik bilikləri, həm də praktiki bacarıqlar qazandırır. Müasir layihələndirmə və modelləşdirmə alətləri, o cümlədən CAD/CAM/CAE sistemləri, rəqəmsal prototipləşdirmə, 3D istehsal texnologiyaları və avtomatlaşdırılmış istehsal mühitləri tədris prosesinin ayrılmaz hissəsini təşkil edir. Bu yanaşma məzunların həm klassik sənaye müəssisələrində, həm də yüksək texnologiyalı istehsal sahələrində rəqabətqabiliyyətli fəaliyyətini təmin edir.</p>" +
+                "<p>Elmi-tədqiqat fəaliyyəti institutun inkişaf strategiyasının əsas sütunlarından biridir. Bu sahədə aparılan işlər yeni materialların yaradılması və xassələrinin yaxşılaşdırılması, istehsal proseslərinin optimallaşdırılması, rəqəmsal əkiz texnologiyalarının tətbiqi, ağıllı istehsal sistemlərinin qurulması və enerji resurslarından səmərəli istifadə kimi istiqamətləri əhatə edir. Tədqiqat nəticələri yalnız nəzəri çərçivədə qalmır, eyni zamanda sənaye tətbiqlərinə yönəldilərək real problemlərin həllinə xidmət edir.</p>" +
+                "<p>İnstitut sənaye ilə qarşılıqlı əməkdaşlığa xüsusi önəm verir. Dövlət qurumları, istehsal müəssisələri və beynəlxalq tərəfdaşlarla həyata keçirilən birgə layihələr vasitəsilə tələbələrin istehsalat təcrübəsi gücləndirilir, innovativ ideyaların tətbiqi və kommersiyalaşdırılması üçün əlverişli mühit yaradılır. Bu əməkdaşlıq modeli həm təhsilin keyfiyyətinin yüksəldilməsinə, həm də elmi nəticələrin praktik əhəmiyyətinin artırılmasına xidmət edir.</p>" +
+                "<p>Beləliklə, institut maşınqayırma və metallurgiya fakültəsinin elmi ənənələrini müasir texnologiyalar və dizayn yanaşmaları ilə birləşdirərək, regionda sənaye və texnoloji inkişafın dəstəklənməsində mühüm rol oynayan, rəqabətqabiliyyətli və innovativ kadrların hazırlanmasına yönəlmiş qabaqcıl elmi-tədris mərkəzi kimi çıxış edir.</p>",
+            vision:
+                "Sənaye dizaynı və texnologiyalar sahəsində innovasiya yönümlü, beynəlxalq səviyyədə tanınan və sənaye ilə sıx inteqrasiya olunmuş qabaqcıl elmi-tədris mərkəzinə çevrilmək.",
+            mission:
+                "Sənaye dizaynı və müasir texnologiyaların inteqrasiyası əsasında yüksək ixtisaslı mühəndis kadrlar hazırlamaq, tətbiqyönümlü elmi tədqiqatlar aparmaq və sənaye ilə əməkdaşlıq vasitəsilə innovativ həllərin yaradılmasına töhfə vermək.",
+            director: {
+                id: 4,
+                full_name: "Namazov Manafəddin Bəşir oğlu",
+                email: "manafeddin.namazov@aztu.edu.az",
+                office: "4 korpus, 101-ci otaq",
+                image_url: `${RI_MEDIA}/sdt/${encodeURIComponent("Namazov Manafəddin.jpg")}`,
+                title: "Texnika elmləri namizədi, dosent",
+                biography:
+                    "<p>Namazov Manafəddin Bəşir oğlu 28 fevral 1963-cü ildə anadan olmuşdur. 1980-ci ildə Xanlar rayonunun Nərimanov kənd orta məktəbini bitirmiş və həmin il Leninqrad Elektronika İnstitutunun Avtomatika və Hesablama Texnikası fakültəsinin “Avtomatika və telemexanika” ixtisasına qəbul olunmuşdur. 1986-cı ildə ali təhsilini başa vurmuşdur. Təhsil aldığı müddətdə “Avtomatika və proseslərin idarəedilməsi” kafedrasında II dərəcəli radio-montajçı kimi fəaliyyət göstərmiş, eyni zamanda tələbə elmi cəmiyyətinin sədri olmuşdur.</p>" +
+                    "<p>1988–1991-ci illərdə Leninqrad şəhərində yerləşən SSRİ Elmlər Akademiyasının İnformatika və Avtomatlaşdırma İnstitutunun aspiranturasında təhsil almış və “Messbauer spektrlərinin emalı və identifikasiyası üçün alqoritmik və proqram təminatının işlənib hazırlanması” mövzusunda namizədlik dissertasiyasını müdafiə etmişdir.</p>" +
+                    "<h4>Əmək fəaliyyəti</h4>" +
+                    "<ul>" +
+                    "<li>1992–1994: Azərbaycan Milli Elmlər Akademiyasının Fizika İnstitutunda baş laborant və kiçik elmi işçi.</li>" +
+                    "<li>1994–1997: AzTU Avtomatika və idarəetmə kafedrasında baş müəllim.</li>" +
+                    "<li>1997–2006: həmin kafedrada dosent.</li>" +
+                    "<li>2000–2002: “Elektrotexnika fakültəsinin yeniləşdirilməsi (CD-2103-2000 AZB)” TEMPUS layihəsinin baş əlaqələndiricisi.</li>" +
+                    "<li>2002–2006: “Azərbaycanda mühəndislik təhsilinin yeniləşdirilməsi (MP-JEP-23264-2002)” TEMPUS layihəsinin baş əlaqələndiricisi.</li>" +
+                    "<li>2006–2012: Türkiyə, Sivas, Cumhuriyyət Universitetinin Mühəndislik fakültəsinin Elektrik və elektronika bölməsində dosent.</li>" +
+                    "<li>2012–2015: Bakı Ali Neft Məktəbinin Kompüter və informasiya-kommunikasiya texnologiyaları kafedrasında dosent.</li>" +
+                    "<li>2015–2018: həmin Ali məktəbin Proseslərin avtomatlaşdırılması kafedrasının müdiri.</li>" +
+                    "<li>2019 (yanvar) – 2024: Bakı Mühəndislik Universitetində beynəlxalq əlaqələr üzrə prorektor.</li>" +
+                    "<li>2024-dən: AzTU Sənaye Dizaynı və Texnologiyalar İnstitutunun direktoru.</li>" +
+                    "</ul>" +
+                    "<p>Elmi fəaliyyəti dövründə 67 elmi əsərin müəllifidir.</p>" +
+                    "<h4>Sertifikatlar</h4>" +
+                    "<ul>" +
+                    "<li>EPLAN Electrical P8 v2.3 üzrə təlim sertifikatı (2014).</li>" +
+                    "<li>AutoCAD proqramı üzrə sertifikat.</li>" +
+                    "<li>Electrical training course sertifikatı (2014).</li>" +
+                    "<li>ABŞ-ın Indiana Universiteti ilə birgə distant təhsil metodologiyası və proqram platformaları üzrə sertifikat (2004).</li>" +
+                    "<li>NATO tərəfindən maliyyələşdirilən “Virtual Silk Highway” distant təhsil seminarlarının iştirakçısı (2003).</li>" +
+                    "<li>Niderlandın Zuyd Ali Məktəbində Project Education və Project Management üzrə sertifikat (2003).</li>" +
+                    "<li>University of Applied Sciences Cologne – “Modern Automatisierungstechnik” üzrə sertifikat (Almaniya, 2003).</li>" +
+                    "<li>LEYBOLD DIDACTIC GmbH – Automatisierungstechnik (PLC), Mikrocomputertechnik və Regelungstechnik kursları üzrə sertifikatlar (Almaniya, 2002).</li>" +
+                    "<li>University of Applied Sciences Cologne – Alman dili kursu üzrə sertifikat.</li>" +
+                    "<li>Siemens (PRIMERGY, Intel əsaslı sürücü konfiqurasiyası) üzrə sertifikat.</li>" +
+                    "<li>PC və şəbəkə arxitekturası üzrə təlim (Köln, Almaniya, 1989–1992).</li>" +
+                    "</ul>" +
+                    "<h4>Əlavə məlumat</h4>" +
+                    "<ul>" +
+                    "<li>68 elmi məqalənin müəllifidir.</li>" +
+                    "<li>Almaniya (Köln): Proseslərin avtomatlaşdırılması texnologiyası üzrə təlim kursu (15.06.2001 – 09.12.2001).</li>" +
+                    "<li>Niderland (Heerlen): Control Engineering, Microprocessors və Automation Technology üzrə təlim kursu (01.09.2001 – 09.12.2001).</li>" +
+                    "<li>Almaniya (Köln): Process Control üzrə təlim kursu (01.11.2002 – 30.11.2002).</li>" +
+                    "<li>Almaniya (Köln): Web-based control texnologiyalarının tətbiqi üzrə təlim kursu (01.04.2004 – 30.04.2004).</li>" +
+                    "<li>İtaliya (Roma): “Tempus Projects Implementation” konfransında iştirak.</li>" +
+                    "<li>ABŞ: Indiana Universiteti ilə birgə Distance Education Partnership Program kursu.</li>" +
+                    "</ul>" +
+                    "<p><strong>Telefon:</strong> +994 50 346 57 07 &nbsp;·&nbsp; <strong>Qəbul saatları:</strong> Cümə, 14:00–17:00</p>" +
+                    "<p><strong>Ailə vəziyyəti:</strong> Ailəlidir, iki oğlu var.</p>",
+                educations: [
+                    {
+                        id: 1,
+                        university: "Leninqrad Elektronika İnstitutu, Avtomatika və Hesablama Texnikası fakültəsi",
+                        degree: "Avtomatika və telemexanika ixtisası (ali təhsil)",
+                        start_year: "1980",
+                        end_year: "1986",
+                    },
+                    {
+                        id: 2,
+                        university: "SSRİ Elmlər Akademiyasının İnformatika və Avtomatlaşdırma İnstitutu (Leninqrad)",
+                        degree: "Aspirantura — texnika elmləri namizədi",
+                        start_year: "1988",
+                        end_year: "1991",
+                    },
+                ],
+                research_areas: [
+                    { id: 1, content: "Avtomatika və proseslərin idarəedilməsi sistemləri" },
+                    { id: 2, content: "Sənaye proseslərinin modelləşdirilməsi və simulyasiyası" },
+                    { id: 3, content: "SCADA və sənaye idarəetmə sistemləri (AİTPİS)" },
+                    { id: 4, content: "Rəqəmsal və intellektual idarəetmə sistemləri" },
+                    { id: 5, content: "Süni intellekt alqoritmlərinin texniki sistemlərdə tətbiqi" },
+                    { id: 6, content: "Mikroprosessor sistemləri və sənaye elektronikasının tətbiqləri" },
+                    { id: 7, content: "Robototexnika və avtomatlaşdırılmış texnoloji sistemlər" },
+                    { id: 8, content: "Ölçmə sistemləri və sensor texnologiyaları" },
+                    { id: 9, content: "Proseslərin optimallaşdırılması və adaptiv idarəetmə metodları" },
+                    { id: 10, content: "Təhsil texnologiyaları və mühəndislik təhsilinin modernləşdirilməsi" },
+                ],
+            },
+            objectives: [
+                { id: 1, content: "Sənaye dizaynı və texnologiyalar sahəsində müasir, rəqabətqabiliyyətli təhsil proqramlarının hazırlanması və tətbiqi." },
+                { id: 2, content: "Maşınqayırmada yaşıl və davamlı istehsalın rəqəmsal texnologiyalar və riyazi modelləşdirmə əsasında optimallaşdırılması." },
+                { id: 3, content: "Hidromexaniki qurğuların mexaniki və termodinamik parametrlərinin elmi əsaslarla tədqiqi." },
+                { id: 4, content: "Texniki sistem və proseslərin süni intellekt alqoritmləri vasitəsilə diaqnostikası və idarə edilməsi." },
+                { id: 5, content: "Robototexniki sistemlərin və texnoloji maşınların etibarlılığının artırılması məqsədilə intellektual diaqnostika və proqnostik texniki xidmət metodologiyalarının işlənməsi." },
+                { id: 6, content: "Qabaqcıl materialların öyrənilməsi və müasir metallurgiya texnologiyalarının inkişaf etdirilməsi." },
+            ],
+            research_directions: [
+                { id: 1, content: "Mexaniki sistemlərin nəzəriyyəsi və tətbiqi, maşın hissələrinin konstruktiv layihələndirilməsi" },
+                { id: 2, content: "Materialşünaslıq, metallurgiya, qaynaq və tökmə prosesləri" },
+                { id: 3, content: "İstehsal texnologiyaları, səthlərin möhkəmləndirilməsi və funksionallaşdırılması" },
+                { id: 4, content: "İstehsalın avtomatlaşdırılması və texnoloji proseslərin idarə olunması" },
+                { id: 5, content: "CAD/CAM/CAE sistemləri, rəqəmsal prototipləşdirmə və 3D istehsal" },
+                { id: 6, content: "Rəqəmsal əkiz, ağıllı istehsal sistemləri və enerji resurslarından səmərəli istifadə" },
+            ],
+            staff: [
+                {
+                    id: 1,
+                    full_name: "İbrahimov Bahadur Nazim oğlu",
+                    email: "bahaduribrahimov@gmail.com",
+                    phone: "+994505744455",
+                    image_url: `${RI_MEDIA}/sdt/${encodeURIComponent("Ibrahimov Bahadur.png")}`,
+                    title: "Aparıcı tədqiqatçı — Robototexnika, sənaye robotları, kollaborativ robotlar, avtomatlaşdırma. Texnika elmləri üzrə fəlsəfə doktoru (PhD).",
+                },
+                {
+                    id: 2,
+                    full_name: "Abbas Əlili İlham oğlu",
+                    email: "abbas.alili@aztu.edu.az",
+                    phone: "+994505641015",
+                    image_url: `${RI_MEDIA}/sdt/${encodeURIComponent("Abbas Əlili.png")}`,
+                    title: "Tədqiqatçı — Robototexnika, avtomatlaşdırma, süni intellektin tibbi tətbiqləri. Texnika elmləri üzrə fəlsəfə doktoru (PhD).",
+                },
+            ],
+            created_at: NOW,
+            updated_at: NOW,
+        },
+        en: {
+            id: 3,
+            institute_code: "sdt",
+            image_url: `${RI_MEDIA}/sdt/logo.png`,
+            name: "Institute of Industrial Design and Technologies",
+            about:
+                "<p>The Institute of Industrial Design and Technologies is a specialized academic institution established on the scientific and pedagogical foundation of the Faculty of Mechanical Engineering and Metallurgy of Azerbaijan Technical University, synthesizing industry-oriented engineering approaches with modern technologies. The Institute's activities are based on preserving the fundamental principles of the traditional school of mechanical engineering while integrating digital transformation, innovation, and applied research.</p>" +
+                "<p>The Institute's areas of focus are organically aligned with the activities of the faculty's departments. Within this framework, priority is given to fields such as the theory and application of mechanical systems, the structural design of machine components, materials science and metallurgy, manufacturing technologies, welding and casting processes, and the strengthening and functionalization of surfaces. At the same time, the automation of production, the management of technological processes, and digital engineering approaches are developed in parallel with these traditional directions.</p>" +
+                "<p>The teaching process is structured on the basis of an integrated approach, providing students with both fundamental engineering knowledge and practical skills. Modern design and modeling tools, including CAD/CAM/CAE systems, digital prototyping, 3D manufacturing technologies, and automated production environments, form an integral part of the educational process. This approach ensures that graduates can compete effectively in both classical industrial enterprises and high-technology manufacturing sectors.</p>" +
+                "<p>Scientific research is one of the main pillars of the Institute's development strategy. Work in this area covers directions such as the creation of new materials and the improvement of their properties, the optimization of production processes, the application of digital twin technologies, the development of intelligent manufacturing systems, and the efficient use of energy resources. Research findings are not confined to the theoretical framework; they are also directed towards industrial applications, serving the resolution of real-world problems.</p>" +
+                "<p>The Institute places particular importance on cooperation with industry. Through joint projects carried out with state institutions, manufacturing enterprises, and international partners, students' industrial practice is strengthened, and a favorable environment is created for the implementation and commercialization of innovative ideas. This model of cooperation contributes both to enhancing the quality of education and to increasing the practical significance of scientific results.</p>" +
+                "<p>Thus, by combining the scientific traditions of the Faculty of Mechanical Engineering and Metallurgy with modern technologies and design approaches, the Institute serves as an advanced scientific and educational center dedicated to training competitive and innovative personnel, playing a significant role in supporting industrial and technological development in the region.</p>",
+            vision:
+                "To become an internationally recognized, advanced scientific and educational center in the field of industrial design and technologies, oriented towards innovation and closely integrated with industry.",
+            mission:
+                "To train highly qualified engineering personnel on the basis of integrating industrial design with modern technologies, to conduct application-oriented scientific research, and to contribute to the creation of innovative solutions through cooperation with industry.",
+            director: {
+                id: 4,
+                full_name: "Namazov Manafaddin Bashir oghlu",
+                email: "manafeddin.namazov@aztu.edu.az",
+                office: "Building 4, Room 101",
+                image_url: `${RI_MEDIA}/sdt/${encodeURIComponent("Namazov Manafəddin.jpg")}`,
+                title: "Candidate of Technical Sciences, Associate Professor",
+                biography:
+                    "<p>Namazov Manafaddin Bashir oghlu was born on 28 February 1963. In 1980, he graduated from Narimanov Village Secondary School in the Khanlar District and was admitted that same year to the Faculty of Automation and Computer Engineering of the Leningrad Institute of Electronics, in the specialty “Automation and Telemechanics.” He completed his higher education in 1986. During his studies, he worked as a second-class radio assembler in the Department of Automation and Process Control and also served as the chairperson of the Student Scientific Society.</p>" +
+                    "<p>From 1988 to 1991, he studied as a postgraduate at the Institute of Informatics and Automation of the USSR Academy of Sciences in Leningrad, where he defended his candidate's dissertation on “Development of Algorithmic and Software Support for the Processing and Identification of Mössbauer Spectra.”</p>" +
+                    "<h4>Professional Experience</h4>" +
+                    "<ul>" +
+                    "<li>1992–1994: Senior laboratory assistant and junior researcher, Institute of Physics, Azerbaijan National Academy of Sciences.</li>" +
+                    "<li>1994–1997: Senior lecturer, Department of Automation and Control, AzTU.</li>" +
+                    "<li>1997–2006: Associate professor in the same department.</li>" +
+                    "<li>2000–2002: Chief coordinator, TEMPUS project “Modernization of the Faculty of Electrical Engineering (CD-2103-2000 AZB).”</li>" +
+                    "<li>2002–2006: Chief coordinator, TEMPUS project “Modernization of Engineering Education in Azerbaijan (MP-JEP-23264-2002).”</li>" +
+                    "<li>2006–2012: Associate professor, Department of Electrical and Electronic Engineering, Cumhuriyet University, Sivas, Türkiye.</li>" +
+                    "<li>2012–2015: Associate professor, Department of Computer and ICT, Baku Higher Oil School.</li>" +
+                    "<li>2015–2018: Head of the Department of Process Automation, Baku Higher Oil School.</li>" +
+                    "<li>January 2019 – 2024: Vice-Rector for International Relations, Baku Engineering University.</li>" +
+                    "<li>Since 2024: Director, Institute of Industrial Design and Technologies, AzTU.</li>" +
+                    "</ul>" +
+                    "<p>He has authored 67 scientific works during his academic career.</p>" +
+                    "<h4>Certificates</h4>" +
+                    "<ul>" +
+                    "<li>EPLAN Electrical P8 v2.3 training certificate (2014).</li>" +
+                    "<li>AutoCAD certificate.</li>" +
+                    "<li>Electrical Training Course certificate (2014).</li>" +
+                    "<li>Distance education methodology and software platforms, jointly with Indiana University, USA (2004).</li>" +
+                    "<li>NATO-funded “Virtual Silk Highway” distance education seminars participant (2003).</li>" +
+                    "<li>Project Education and Project Management, Zuyd University of Applied Sciences, the Netherlands (2003).</li>" +
+                    "<li>“Modern Automatisierungstechnik”, University of Applied Sciences Cologne, Germany (2003).</li>" +
+                    "<li>LEYBOLD DIDACTIC GmbH — Automatisierungstechnik (PLC), Mikrocomputertechnik and Regelungstechnik courses, Germany (2002).</li>" +
+                    "<li>German language course, University of Applied Sciences Cologne.</li>" +
+                    "<li>Siemens (PRIMERGY, Intel-based server configuration) certificate.</li>" +
+                    "<li>PC and network architecture training (Cologne, Germany, 1989–1992).</li>" +
+                    "</ul>" +
+                    "<h4>Additional Information</h4>" +
+                    "<ul>" +
+                    "<li>Author of 68 scientific articles.</li>" +
+                    "<li>Germany (Cologne): Process automation technology training course (15.06.2001 – 09.12.2001).</li>" +
+                    "<li>The Netherlands (Heerlen): Control Engineering, Microprocessors and Automation Technology training (01.09.2001 – 09.12.2001).</li>" +
+                    "<li>Germany (Cologne): Process Control training (01.11.2002 – 30.11.2002).</li>" +
+                    "<li>Germany (Cologne): Application of web-based control technologies training (01.04.2004 – 30.04.2004).</li>" +
+                    "<li>Italy (Rome): Participation in the “Tempus Projects Implementation” conference.</li>" +
+                    "<li>USA: Distance Education Partnership Program with Indiana University.</li>" +
+                    "</ul>" +
+                    "<p><strong>Phone:</strong> +994 50 346 57 07 &nbsp;·&nbsp; <strong>Office Hours:</strong> Friday, 14:00–17:00</p>" +
+                    "<p><strong>Family Status:</strong> Married, with two sons.</p>",
+                educations: [
+                    {
+                        id: 1,
+                        university: "Leningrad Institute of Electronics, Faculty of Automation and Computer Engineering",
+                        degree: "Specialty “Automation and Telemechanics” (higher education)",
+                        start_year: "1980",
+                        end_year: "1986",
+                    },
+                    {
+                        id: 2,
+                        university: "Institute of Informatics and Automation, USSR Academy of Sciences (Leningrad)",
+                        degree: "Postgraduate studies — Candidate of Technical Sciences",
+                        start_year: "1988",
+                        end_year: "1991",
+                    },
+                ],
+                research_areas: [
+                    { id: 1, content: "Automation and process control systems" },
+                    { id: 2, content: "Modeling and simulation of industrial processes" },
+                    { id: 3, content: "SCADA and industrial control systems" },
+                    { id: 4, content: "Digital and intelligent control systems" },
+                    { id: 5, content: "Application of artificial intelligence algorithms in technical systems" },
+                    { id: 6, content: "Microprocessor systems and industrial electronics applications" },
+                    { id: 7, content: "Robotics and automated technological systems" },
+                    { id: 8, content: "Measurement systems and sensor technologies" },
+                    { id: 9, content: "Process optimization and adaptive control methods" },
+                    { id: 10, content: "Educational technologies and modernization of engineering education" },
+                ],
+            },
+            objectives: [
+                { id: 1, content: "Develop and implement modern, competitive educational programs in industrial design and technologies." },
+                { id: 2, content: "Optimize green and sustainable production in mechanical engineering through digital technologies and mathematical modeling." },
+                { id: 3, content: "Conduct scientifically grounded research into the mechanical and thermodynamic parameters of hydromechanical installations." },
+                { id: 4, content: "Diagnose and control technical systems and processes through artificial intelligence algorithms." },
+                { id: 5, content: "Develop methodologies for intelligent diagnostics and predictive maintenance to enhance the reliability of robotic systems and technological machines." },
+                { id: 6, content: "Study advanced materials and develop modern metallurgical technologies." },
+            ],
+            research_directions: [
+                { id: 1, content: "Theory and application of mechanical systems; structural design of machine components" },
+                { id: 2, content: "Materials science, metallurgy, welding and casting processes" },
+                { id: 3, content: "Manufacturing technologies; surface strengthening and functionalization" },
+                { id: 4, content: "Production automation and control of technological processes" },
+                { id: 5, content: "CAD/CAM/CAE systems, digital prototyping and 3D manufacturing" },
+                { id: 6, content: "Digital twin, intelligent manufacturing systems and efficient use of energy resources" },
+            ],
+            staff: [
+                {
+                    id: 1,
+                    full_name: "Ibrahimov Bahadur Nazim oghlu",
+                    email: "bahaduribrahimov@gmail.com",
+                    phone: "+994505744455",
+                    image_url: `${RI_MEDIA}/sdt/${encodeURIComponent("Ibrahimov Bahadur.png")}`,
+                    title: "Lead Researcher — Robotics, industrial robots, collaborative robots, automation. PhD in Technical Sciences.",
+                },
+                {
+                    id: 2,
+                    full_name: "Abbas Alili Ilham oghlu",
+                    email: "abbas.alili@aztu.edu.az",
+                    phone: "+994505641015",
+                    image_url: `${RI_MEDIA}/sdt/${encodeURIComponent("Abbas Əlili.png")}`,
+                    title: "Researcher — Robotics, automation, medical applications of artificial intelligence. PhD in Technical Sciences.",
+                },
+            ],
+            created_at: NOW,
+            updated_at: NOW,
+        },
+    },
 ];
 
 function findRecordBySlug(slug: string): StaticInstituteRecord | undefined {
