@@ -9,7 +9,7 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import SchoolIcon from "@mui/icons-material/School";
 import ScienceIcon from "@mui/icons-material/Science";
-import { getResearchInstituteBySlug } from "@/services/researchInstituteService/researchInstituteService";
+import { getResearchInstituteBySlug, getImageUrl } from "@/services/researchInstituteService/researchInstituteService";
 import type { ResearchInstituteDetail } from "@/types/researchInstitute";
 import { useLanguage } from "@/context/LanguageContext";
 import SanitizedHtml from "@/components/shared/SanitizedHtml";
@@ -19,7 +19,6 @@ interface Props {
 }
 
 export default function ResearchInstituteDirectorPage({ params }: Props) {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const { slug } = use(params);
   const { lang: currentLang } = useLanguage();
   const [institute, setInstitute] = useState<ResearchInstituteDetail | null | undefined>(undefined);
@@ -49,7 +48,7 @@ export default function ResearchInstituteDirectorPage({ params }: Props) {
                 <div className="aspect-[3/4] rounded-[2.5rem] overflow-hidden border-8 border-white dark:border-slate-800 shadow-2xl relative group">
                   {director.image_url ? (
                     <img
-                      src={`${baseUrl}/${director.image_url}`}
+                      src={getImageUrl(director.image_url)}
                       alt={directorFullName}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />

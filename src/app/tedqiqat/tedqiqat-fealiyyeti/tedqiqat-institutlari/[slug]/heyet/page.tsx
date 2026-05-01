@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import SectionBlock from "@/components/shared/SectionBlock";
 import PersonCard from "@/components/shared/PersonCard";
 import ComingSoon from "@/components/shared/ComingSoon";
-import { getResearchInstituteBySlug } from "@/services/researchInstituteService/researchInstituteService";
+import { getResearchInstituteBySlug, getImageUrl } from "@/services/researchInstituteService/researchInstituteService";
 import type { ResearchInstituteDetail } from "@/types/researchInstitute";
 import SearchIcon from "@mui/icons-material/Search";
 import { useLanguage } from "@/context/LanguageContext";
@@ -78,7 +78,7 @@ export default function ResearchInstituteStaffPage({ params }: Props) {
                     <PersonCard
                       fullName={w.full_name || "Naməlum əməkdaş"}
                       title={w.title}
-                      photoUrl={w.image_url || undefined}
+                      photoUrl={getImageUrl(w.image_url)}
                       email={w.email}
                       phone={w.phone}
                       size="sm"
