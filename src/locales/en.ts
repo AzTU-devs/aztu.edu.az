@@ -1316,6 +1316,36 @@ const en = {
           { title: "International Projects", href: "/internationalization/international-partnership/international-projects" },
         ]
       },
+      partnershipContact: {
+        eyebrow: "Internationalization",
+        title: "International Partnership Contacts",
+        breadcrumb: "Contact",
+        description: "Reach out to AzTU's international partnership offices for collaboration opportunities, joint programs, academic mobility, and global research initiatives.",
+        emailLabel: "Email",
+        phoneLabel: "Phone",
+        sections: [
+          {
+            title: "International Relations Office",
+            email: "international@aztu.edu.az",
+            phone: "+994 12 539 10 11"
+          },
+          {
+            title: "Partnership & Cooperation Department",
+            email: "partnership@aztu.edu.az",
+            phone: "+994 12 539 10 12"
+          },
+          {
+            title: "Joint & Dual Degree Programs",
+            email: "dualdegree@aztu.edu.az",
+            phone: "+994 12 539 10 13"
+          }
+        ],
+        related: [
+          { title: "Partner Universities", href: "/internationalization/international-partnership/partner-universities" },
+          { title: "Dual Degree Programs", href: "/internationalization/international-partnership/double-degree-programs" },
+          { title: "International Projects", href: "/internationalization/international-partnership/international-projects" }
+        ]
+      },
       foreignStudentsAdmission: {
         eyebrow: "International Students",
         title: "Admission for Foreign Students",

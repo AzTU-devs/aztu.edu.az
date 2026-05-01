@@ -1459,6 +1459,36 @@ const az = {
           { title: "Beynəlxalq Layihələr", href: "/beynelmillesme/beynelxalq-terefdasliq/beynelxalq-layiheler" },
         ]
       },
+      partnershipContact: {
+        eyebrow: "Beynəlmiləlləşmə",
+        title: "Beynəlxalq Tərəfdaşlıq Əlaqələri",
+        breadcrumb: "Əlaqə",
+        description: "Əməkdaşlıq imkanları, birgə proqramlar, akademik mobillik və qlobal tədqiqat təşəbbüsləri üçün AzTU-nun beynəlxalq tərəfdaşlıq ofisləri ilə əlaqə saxlayın.",
+        emailLabel: "E-poçt",
+        phoneLabel: "Telefon",
+        sections: [
+          {
+            title: "Beynəlxalq Əlaqələr İdarəsi",
+            email: "international@aztu.edu.az",
+            phone: "+994 12 539 10 11"
+          },
+          {
+            title: "Tərəfdaşlıq və Əməkdaşlıq Şöbəsi",
+            email: "partnership@aztu.edu.az",
+            phone: "+994 12 539 10 12"
+          },
+          {
+            title: "Birgə və İkili Diplom Proqramları",
+            email: "dualdegree@aztu.edu.az",
+            phone: "+994 12 539 10 13"
+          }
+        ],
+        related: [
+          { title: "Tərəfdaş Universitetlər", href: "/beynelmillesme/beynelxalq-terefdasliq/terefdas-universitetler" },
+          { title: "İkili Diplom Proqramları", href: "/beynelmillesme/beynelxalq-terefdasliq/ikili-diplom-proqramlari" },
+          { title: "Beynəlxalq Layihələr", href: "/beynelmillesme/beynelxalq-terefdasliq/beynelxalq-layiheler" }
+        ]
+      },
       foreignStudentsAdmission: {
         eyebrow: "Xarici Tələbələr",
         title: "Xarici Tələbələrin Qəbulu",
