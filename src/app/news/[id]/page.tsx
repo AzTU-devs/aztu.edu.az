@@ -30,6 +30,7 @@ import { fetchNewsById, clearNewsDetail, fetchNewsList } from "@/redux/features/
 import type { AppDispatch, RootState } from "@/redux/store";
 import { API_BASE_URL } from "@/util/apiClient";
 import { parseNewsSlug, newsSlug } from "@/util/slugify";
+import { useLanguage } from "@/context/LanguageContext";
 
 function decodeHtmlEntities(encoded: string): string {
     if (typeof window === "undefined") return encoded;
@@ -38,9 +39,9 @@ function decodeHtmlEntities(encoded: string): string {
     return textarea.value;
 }
 
-function formatDate(iso: string) {
+function formatDate(iso: string, lang: string = "az") {
     if (!iso) return "";
-    return new Date(iso).toLocaleDateString("az-AZ", {
+    return new Date(iso).toLocaleDateString(lang === "az" ? "az-AZ" : "en-US", {
         day: "2-digit",
         month: "long",
         year: "numeric",
@@ -64,9 +65,13 @@ export default function NewsDetailPage({
     const { id: slug } = use(params);
     const id = parseNewsSlug(slug);
     const dispatch = useDispatch<AppDispatch>();
+    const { lang } = useLanguage();
     const { detail, detailLoading, detailError, list } = useSelector(
         (s: RootState) => s.news
     );
+
+    const title = detail ? (lang === "en" ? detail.en_title || detail.az_title : detail.az_title) : "";
+    const htmlContent = detail ? (lang === "en" ? detail.en_html_content || detail.az_html_content : detail.az_html_content) : "";
 
     const containerRef = useRef<HTMLDivElement>(null);
     const heroRef = useRef<HTMLDivElement>(null);
@@ -84,12 +89,10 @@ export default function NewsDetailPage({
     const heroOpacity = useTransform(heroScroll, [0, 0.8], [1, 0]);
 
     useEffect(() => {
-        dispatch(fetchNewsById({ id: id, lang: "az" }));
-        if (list.length === 0) {
-            dispatch(fetchNewsList({ start: 0, end: 10, lang: "az" }));
-        }
+        dispatch(fetchNewsById({ id: id, lang }));
+        dispatch(fetchNewsList({ start: 0, end: 10, lang }));
         return () => { dispatch(clearNewsDetail()); };
-    }, [id, dispatch]);
+    }, [id, dispatch, lang]);
 
     // Lock body scroll when lightbox is open
     useEffect(() => {
@@ -196,7 +199,7 @@ export default function NewsDetailPage({
                                 <ChevronRightIcon sx={{ fontSize: 14 }} />
                                 <Link href="/news" className="hover:text-white/80 transition-colors">Xəbərlər</Link>
                                 <ChevronRightIcon sx={{ fontSize: 14 }} />
-                                <span className="text-white/60 truncate max-w-xs">{detail?.az_title ?? "..."}</span>
+                                <span className="text-white/60 truncate max-w-xs">{title || "..."}</span>
                             </motion.nav>
 
                             {/* Meta */}
@@ -213,7 +216,7 @@ export default function NewsDetailPage({
                                     <span className="text-white/40 text-xs flex items-center gap-1">
                                         <CalendarMonthIcon sx={{ fontSize: 13 }} />
                                         {list.find((n) => n.news_id === id)?.created_at
-                                            ? formatDate(list.find((n) => n.news_id === id)!.created_at)
+                                            ? formatDate(list.find((n) => n.news_id === id)!.created_at, lang)
                                             : ""}
                                     </span>
                                     {allImages.length > 1 && (
@@ -234,7 +237,7 @@ export default function NewsDetailPage({
                             >
                                 {detailLoading
                                     ? <span className="opacity-40">Yüklənir...</span>
-                                    : (detail?.az_title ?? "")}
+                                    : title}
                             </motion.h1>
 
                             {/* Hero cover image */}
@@ -249,7 +252,7 @@ export default function NewsDetailPage({
                                     <motion.div style={{ y: heroImageY }} className="absolute inset-0 scale-110">
                                         <Image
                                             src={`${detail.cover_image}`}
-                                            alt={detail.az_title}
+                                            alt={title}
                                             fill
                                             className="object-cover"
                                             priority
@@ -293,11 +296,11 @@ export default function NewsDetailPage({
                                 transition={{ duration: 0.55 }}
                                 className="text-gray-800 text-lg md:text-xl leading-relaxed font-medium border-l-4 border-[#1a2355] pl-6 mb-10 bg-blue-50/60 py-4 pr-4 rounded-r-xl"
                             >
-                                {detail.az_title}
+                                {title}
                             </motion.p>
                                 <SanitizedHtml
                                     className="text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg"
-                                    html={detail.az_html_content}
+                                    html={htmlContent}
                                 />
 
                                 <motion.div
@@ -439,7 +442,7 @@ export default function NewsDetailPage({
                                         >
                                             <Image
                                                 src={`${img}`}
-                                                alt={`${detail.az_title} — şəkil ${i + 1}`}
+                                                alt={`${title} — şəkil ${i + 1}`}
                                                 fill
                                                 className="object-cover"
                                             />
