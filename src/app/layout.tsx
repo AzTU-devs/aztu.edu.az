@@ -118,11 +118,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/logo/aztu-logo-light.png", type: "image/png" },
+      { url: "/aztu-logo-light.webp", type: "image/webp" },
     ],
-    shortcut: "/favicon.ico",
-    apple: "/logo/aztu-logo-light.png",
+    shortcut: "/aztu-logo-light.webp",
+    apple: "/aztu-logo-light.webp",
   },
   manifest: "/manifest.webmanifest",
   other: {
