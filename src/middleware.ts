@@ -203,8 +203,12 @@ const SLUG_MAP: Record<string, string> = {
     "orhun-exchange-program": "orhun-mubadile-proqrami",
     "ikiterefli-mubadile": "bilateral-exchange",
     "bilateral-exchange": "ikiterefli-mubadile",
+    "iki-terefli-emekdasliq-uzre-mubadile": "bilateral-cooperation-exchange",
+    "bilateral-cooperation-exchange": "iki-terefli-emekdasliq-uzre-mubadile",
     "erasmus-mubadile": "erasmus-mobility",
     "erasmus-mobility": "erasmus-mubadile",
+    "erasmus-mubadile-uzre-terefdas-universitetler": "erasmus-partner-universities",
+    "erasmus-partner-universities": "erasmus-mubadile-uzre-terefdas-universitetler",
     "foreign-students": "xarici-telebeler",
     "xarici-telebeler": "foreign-students",
     "admission": "qebul",
@@ -217,6 +221,8 @@ const SLUG_MAP: Record<string, string> = {
     "teqaud-imkanlari": "scholarship-opportunities",
     "foundation-program": "hazirliq-proqrami",
     "hazirliq-proqrami": "foundation-program",
+    "discover-programs": "proqramlari-kesf-edin",
+    "proqramlari-kesf-edin": "discover-programs",
     "education-and-programs": "tehsil-ve-proqramlar",
     "tehsil-ve-proqramlar": "education-and-programs",
     "higher-education-institute-hei": "yuksek-tehsil-institutu-yti",
@@ -276,7 +282,8 @@ const EN_SLUGS = new Set([
     "lifelong-learning", "student-youth-organization",
     "international-partnership", "double-degree-programs", "international-projects", "partner-universities",
     "exchange-programs", "orhun-exchange-program", "bilateral-exchange", "erasmus-mobility",
-    "foreign-students", "admission", "visa-and-migration", "accommodation", "scholarship-opportunities", "foundation-program",
+    "foreign-students", "admission", "visa-and-migration", "accommodation", "scholarship-opportunities", "foundation-program", "discover-programs",
+    "bilateral-cooperation-exchange", "erasmus-partner-universities",
     "privacy-policy", "terms-conditions",
     "education-and-programs", "higher-education-institute-hei", "faculties",
     "offices-and-centers", "nabran-recreation-center", "library-information-center",
@@ -521,8 +528,10 @@ export function middleware(request: NextRequest) {
             const exchangeMap: Record<string, string> = {
                 "orhun-exchange-program": "orhun-mubadile-proqrami",
                 "bilateral-exchange": "ikiterefli-mubadile",
+                "bilateral-cooperation-exchange": "iki-terefli-emekdasliq-uzre-mubadile",
                 "partner-universities": "terefdas-universitetler",
                 "erasmus-mobility": "erasmus-mubadile",
+                "erasmus-partner-universities": "erasmus-mubadile-uzre-terefdas-universitetler",
             };
             if (segments_rest[2] && exchangeMap[segments_rest[2]]) {
                 segments_rest[2] = exchangeMap[segments_rest[2]];
@@ -535,6 +544,7 @@ export function middleware(request: NextRequest) {
                 "accommodation": "yerlesme",
                 "scholarship-opportunities": "teqaud-imkanlari",
                 "foundation-program": "hazirliq-proqrami",
+                "discover-programs": "proqramlari-kesf-edin",
             };
             if (segments_rest[2] && foreignStudentsMap[segments_rest[2]]) {
                 segments_rest[2] = foreignStudentsMap[segments_rest[2]];

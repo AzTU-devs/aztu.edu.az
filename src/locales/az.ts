@@ -1529,6 +1529,20 @@ const az = {
         title: "Təqaüd İmkanları",
         breadcrumb: "Təqaüdlər",
         description: "Azərbaycan Texniki Universiteti və onun beynəlxalq tərəfdaşları istedadlı xarici tələbələri dəstəkləmək üçün bir sıra təqaüd və qrant proqramları təklif edir.",
+        labels: {
+          officialWebsite: "Rəsmi Sayt",
+          objectives: "Məqsədlər",
+          studyLevels: "Təhsil Səviyyələri",
+          requirements: "Tələblər",
+          benefits: "Üstünlüklər",
+        },
+        merit: {
+          title: "Akademik Fəaliyyət",
+          description: "AzTU-da yüksək akademik göstəriciləri olan xarici tələbələr daxili qrantlar üçün müraciət edə bilərlər.",
+          metric: "GPA 91+",
+          metricLabel: "Fəaliyyət Əsaslı Qrant Meyarı",
+        },
+        relatedTitle: "Əlaqəli Səhifələr",
         programs: [
           {
             title: "Azərbaycan Dövlət Təqaüdü",
@@ -1575,6 +1589,46 @@ const az = {
           { title: "Yerləşmə", href: "/beynelmillesme/xarici-telebeler/yerlesme" },
         ]
       },
+      foundationProgram: {
+        eyebrow: "Xarici Tələbələr",
+        title: "Hazırlıq Proqramı",
+        breadcrumb: "Hazırlıq Proqramı",
+        description: "AzTU-nun bir illik Hazırlıq Proqramı xarici tələbələrə Azərbaycan dili, riyaziyyat, fizika və kimya sahəsində lazımi akademik baza yaratmağa kömək edir. Proqramu müvəffəqiyyətlə bitirən tələbələr bakalavr, magistratura və doktorantura proqramlarına keçid etmək hüququ qazanırlar.",
+        facts: [
+          { label: "Müddət", value: "1 İl" },
+          { label: "Başlama Tarixi", value: "Sentyabr" },
+          { label: "Tədris Dili", value: "Azərbaycan / Rus" },
+        ],
+        eligibilityTitle: "Kimər Müraciət Edə Bilər?",
+        eligibilityDescription: "Azərbaycan universitetlərinin bakalavr proqramlarına qəbul olmaq istəyən, lakin Azərbaycan dilini kifayət qədər bilməyən xarici vətəndaşlar hazırlıq proqramına müraciət edə bilərlər. Orta məktəb attestatı tələb olunur.",
+        stagesTitle: "Proqramın Mərhələləri",
+        stagesIntro: "Proqram iki əsas mərhələdən ibarətdir: dil hazırlığı və ixtisas hazırlığı. Hər mərhələ ardıcıl inkişafı təmin edir.",
+        stages: [
+          {
+            number: "01",
+            title: "Dil Hazırlığı",
+            description: "İlk mərhələdə tələbələr Azərbaycan dilini intensiv şəkildə öyrənir, dinləmə, danışma, oxuma və yazma bacarıqlarını inkişaf etdirir.",
+            subjects: ["Azərbaycan Dili", "Akademik Yazı", "Dinləmə və Nitq"],
+          },
+          {
+            number: "02",
+            title: "İxtisas Hazırlığı",
+            description: "İkinci mərhələdə tələbələr seçdikləri ixtisasın tələblərinə uyğun olaraq riyaziyyat, fizika, kimya və informatika kurslarını öyrənirlər.",
+            subjects: ["Riyaziyyat", "Fizika", "Kimya", "İnformatika"],
+          },
+        ],
+        certificateTitle: "Hazırlıq Sertifikatı",
+        certificateDescription: "Proqramu uğurla bitirən tələbələrə AzTU tərəfindən rəsmi hazırlıq sertifikatı verilir. Bu sertifikat tələbənin seçdiyi ixtisas üzrə bakalavr proqramına imtahansız keçidini təmin edir.",
+        nextLevelsLabel: "Növbəti Addımlar",
+        nextLevels: ["Bakalavr", "Magistratura", "Doktorantura"],
+        relatedTitle: "Əlaqəli Səhifələr",
+        related: [
+          { title: "Qəbul", href: "/beynelmillesme/xarici-telebeler/qebul" },
+          { title: "Viza və Miqrasiya", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Yerləşmə", href: "/beynelmillesme/xarici-telebeler/yerlesme" },
+          { title: "Təqaüd İmkanları", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+        ],
+      },
       accommodation: {
         eyebrow: "Xarici Tələbələr",
         title: "Tələbə Yerləşməsi",
@@ -1587,6 +1641,8 @@ const az = {
         ],
         supportTitle: "Tələbə Mənzil Dəstəyi",
         supportDescription: "Xüsusi mənzil dəstəyi komandamız hər bir xarici tələbəyə gəlişdən yerləşməyə qədər kömək edir. Kampusda və ya xaricdə mənzil seçiminizdən asılı olmayaraq, Bakıda rahat və təhlükəsiz qalmanızı təmin etmək üçün buradayıq.",
+        supportTags: ["7/24 Dəstək", "Kampus Yataqxanası", "Özəl Mənzil Köməyi", "Yerləşmə Rehbərliyi"],
+        relatedTitle: "Əlaqəli Səhifələr",
         related: [
           { title: "Qəbul", href: "/beynelmillesme/xarici-telebeler/qebul" },
           { title: "Viza və Miqrasiya", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
@@ -1658,11 +1714,304 @@ const az = {
           "Dissertasiya və tezislərin birgə rəhbərliyi",
           "Beynəlxalq elmi konfranslarda iştirak"
         ],
+        sidebarTitle: "İkitərəfli Müqavilələr",
+        sidebarDescription: "AzTU 30-dan çox ölkədə universitetlərlə aktiv ikitərəfli əməkdaşlıq müqavilələri bağlamışdır.",
+        relatedTitle: "Əlaqəli Səhifələr",
         related: [
           { title: "İkili Diplom Proqramları", href: "/beynelmillesme/beynelxalq-terefdasliq/ikili-diplom-proqramlari" },
           { title: "Orhun Mübadilə Proqramı", href: "/beynelmillesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
           { title: "Beynəlxalq Layihələr", href: "/beynelmillesme/beynelxalq-terefdasliq/beynelxalq-layiheler" },
         ]
+      },
+      exchangePartnerUniversities: {
+        eyebrow: "Mübadilə Proqramları",
+        title: "Tərəfdaş Universitetlər",
+        breadcrumb: "Tərəfdaş Universitetlər",
+        description: "AzTU Avropa, Asiya və MDB ölkələrindəki aparıcı universitetlərlə mübadilə tərəfdaşlıqları qurmuşdur. Bu tərəfdaşlıqlar tələbə və akademik heyətin xarici universitetlərdə semestr keçirməsinə imkan yaradır.",
+        statsLabels: {
+          countries: "Ölkə",
+          universities: "Universitet",
+          opportunities: "Semestr / İl",
+        },
+        searchPlaceholder: "Ölkə və ya universitet axtar...",
+        emptyState: "Axtarış nəticəsinə uyğun universitet tapılmadı.",
+        countries: [
+          {
+            name: "Türkiyə",
+            universities: [
+              "İstanbul Texniki Universiteti",
+              "Orta Doğu Texniki Universiteti",
+              "Hacettepe Universiteti",
+              "Gazi Universiteti",
+              "Ankara Universiteti",
+            ],
+          },
+          {
+            name: "Almaniya",
+            universities: [
+              "Texniki Universiteti Münhen",
+              "RWTH Aachen Universiteti",
+              "Karlsruhe Texnologiya İnstitutu",
+              "Texniki Universiteti Berlin",
+            ],
+          },
+          {
+            name: "Polşa",
+            universities: [
+              "Varşava Texniki Universiteti",
+              "Aqh Elmlər Universiteti Krakov",
+              "Vroclaw Texniki Universiteti",
+            ],
+          },
+          {
+            name: "İtaliya",
+            universities: [
+              "Politecnico di Milano",
+              "Politecnico di Torino",
+              "Universita degli Studi di Roma La Sapienza",
+            ],
+          },
+          {
+            name: "Litva",
+            universities: [
+              "Vilnius Gediminas Texniki Universiteti",
+              "Kaunas Texnologiya Universiteti",
+            ],
+          },
+          {
+            name: "Latviya",
+            universities: [
+              "Riga Texniki Universiteti",
+              "Latviya Universiteti",
+            ],
+          },
+          {
+            name: "Rumıniya",
+            universities: [
+              "Politexnika Universiteti Buxarest",
+              "Texniki Universiteti Cluj-Napoca",
+            ],
+          },
+          {
+            name: "Çexiya",
+            universities: [
+              "Çexiya Texniki Universiteti Praqada",
+              "Brno Texniki Universiteti",
+            ],
+          },
+        ],
+        relatedTitle: "Əlaqəli Səhifələr",
+        related: [
+          { title: "Erasmus Mobilitesi", href: "/beynelmillesme/mubadile-proqramlari/erasmus-mubadile" },
+          { title: "İkitərəfli Mübadilə", href: "/beynelmillesme/mubadile-proqramlari/ikiterefli-mubadile" },
+          { title: "Orhun Mübadilə Proqramı", href: "/beynelmillesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
+        ],
+      },
+      erasmusMobility: {
+        eyebrow: "Mübadilə Proqramları",
+        title: "Erasmus+ Mobilitesi",
+        breadcrumb: "Erasmus Mobilitesi",
+        description: "Erasmus+ KA171 Beynəlxalq Kredit Mobilitesi proqramı AzTU tələbə və akademik heyətinə Avropa Birliyi tərəfdaş universitetlərində semestr keçirməyə, tədris aparmağa və tədqiqat fəaliyyəti həyata keçirməyə imkan verir.",
+        objectivesTitle: "Proqramın Məqsədləri",
+        objectives: [
+          "Mədəniyyətlərarası akademik mübadiləni təşviq etmək",
+          "AzTU-nun Avropa tərəfdaşlıqlarını güclündirmək",
+          "Kampusun beynəlmiləlləşməsini artırmaq",
+          "Tələbə və akademik heyətin beynəlxalq bacarıqlarını inkişaf etdirmək",
+        ],
+        benefitsTitle: "Üstünlüklər",
+        benefits: [
+          "AB tərəfindən ödənilən aylıq yaşayış müavinəti",
+          "Səyahət xərclərinin ödənilməsi",
+          "Tərəfdaş universitetdə təhsil haqqından azadolma",
+          "Beynəlxalq akademik şəbəkə qurma imkanı",
+          "Xarici dil bacarıqlarının inkişafı",
+        ],
+        durationTitle: "Mobilitet Müddəti",
+        durations: [
+          { label: "Tələbə Mübadiləsi", value: "3–12 ay" },
+          { label: "Akademik Heyət Tədris Mobilitesi", value: "5–60 gün" },
+          { label: "Akademik Heyət Təlim Mobilitesi", value: "5–60 gün" },
+        ],
+        eligibilityTitle: "Əhliyet Şərtləri",
+        studentsTitle: "Tələbələr",
+        studentsRequirements: [
+          "AzTU-da tam zamanlı qeydiyyat",
+          "Minimum 1 il tamamlanmış təhsil",
+          "Minimum CGPA 2.5/4.0",
+          "Dil biliyinin sübütu (tərəfdaşın tələbinə görə)",
+          "Tərəfdaş universitetin seçilmiş kursa qəbulu",
+        ],
+        staffTitle: "Akademik Heyət",
+        staffRequirements: [
+          "AzTU-nun tam zamanlı əməkdaşı olması",
+          "Tərəfdaş universitetlə tədris/əməkdaşlıq müqaviləsi",
+          "Mobilitets fəaliyyəti planı",
+        ],
+        euFundedBadge: "AB Tərəfindən Maliyyələşdirilir",
+        financialTitle: "Maliyyə Dəstəyi",
+        financialDescription: "Erasmus+ qrantları Avropa Birliyi tərəfindən tam maliyyələşdirilir. Müavinət məbləği ölkə qrupuna görə müəyyən edilir.",
+        financialItems: [
+          "Aylıq yaşayış müavinəti (ölkə qrupuna görə)",
+          "Biletlər üzrə səyahət töhfəsi",
+          "Xüsusi ehtiyaclı iştirakçılar üçün əlavə dəstək",
+        ],
+        documentsTitle: "Sənədlər",
+        documentSections: [
+          {
+            title: "Gedən Tələbələr",
+            links: [
+              { label: "Ərizə Forması (Gedən)", url: "#" },
+              { label: "Öyrənmə Müqaviləsi Şablonu", url: "#" },
+              { label: "Tərəfdaş Universitetlər Siyahısı", url: "#" },
+            ],
+          },
+          {
+            title: "Gələn Tələbələr",
+            links: [
+              { label: "Ərizə Forması (Gələn)", url: "#" },
+              { label: "Kurs Kataloqu", url: "#" },
+              { label: "Qəbul Məktubu Tələbi", url: "#" },
+            ],
+          },
+        ],
+        contactTitle: "Əlaqə",
+        contactAddress: "H.Cavid pr. 25, Bakı, Azərbaycan",
+        contactEmail: "erasmus@aztu.edu.az",
+        contactPhone: "+994 12 539 10 14",
+        sidebarTitle: "Erasmus+ KA171",
+        sidebarDescription: "AzTU-nun Erasmus+ proqramı tələbə və akademik heyəti üçün Avropa Birliyi tərəfindən tam maliyyələşdirilən mobilitet imkanları təqdim edir.",
+        relatedTitle: "Əlaqəli Səhifələr",
+        related: [
+          { title: "Tərəfdaş Universitetlər", href: "/beynelmillesme/mubadile-proqramlari/terefdas-universitetler" },
+          { title: "İkitərəfli Mübadilə", href: "/beynelmillesme/mubadile-proqramlari/ikiterefli-mubadile" },
+          { title: "Orhun Mübadilə Proqramı", href: "/beynelmillesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
+        ],
+      },
+      exploreProgram: {
+        eyebrow: "Xarici Tələbələr",
+        title: "Proqramları Kəşf Edin",
+        breadcrumb: "Proqramları Kəşf Edin",
+        description: "AzTU mühəndislik, informasiya texnologiyaları, memarlıq, iqtisadiyyat və digər sahələrdə bakalavr, magistratura və doktorantura proqramları təklif edir. Xarici tələbələr bütün proqramlara müraciət etmək hüququna malikdirlər.",
+        programs: [
+          { title: "Mühəndislik Elmləri", description: "Mexanika, elektrik, kimya mühəndisliyi və digər mühəndislik ixtisasları.", level: "Bakalavr / Magistr / Doktor" },
+          { title: "İnformasiya Texnologiyaları", description: "Kompüter elmləri, kibertəhlükəsizlik, süni intellekt və proqram mühəndisliyi.", level: "Bakalavr / Magistr / Doktor" },
+          { title: "Memarlıq və İnşaat", description: "Memarlıq, tikinti mühəndisliyi, şəhərsalma.", level: "Bakalavr / Magistr" },
+          { title: "İqtisadiyyat və İdarəetmə", description: "İşletme, maliyyə, layihə idarəetməsi.", level: "Bakalavr / Magistr" },
+          { title: "Energetika", description: "Energetika mühəndisliyi, bərpa olunan enerji, neft-qaz texnologiyaları.", level: "Bakalavr / Magistr / Doktor" },
+          { title: "Nəqliyyat və Logistika", description: "Nəqliyyat sistemləri, avtomobil mühəndisliyi, logistika.", level: "Bakalavr / Magistr" },
+        ],
+        ctaTitle: "Müraciət Etməyə Hazırsınız?",
+        ctaDescription: "Qəbul prosedurumuzu öyrənin və AzTU-da tələbə olmaq üçün ilk addımı atın.",
+        ctaButton: "Qəbul Haqqında",
+        relatedTitle: "Əlaqəli Səhifələr",
+        related: [
+          { title: "Qəbul", href: "/beynelmillesme/xarici-telebeler/qebul" },
+          { title: "Hazırlıq Proqramı", href: "/beynelmillesme/xarici-telebeler/hazirliq-proqrami" },
+          { title: "Viza və Miqrasiya", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Təqaüd İmkanları", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+        ],
+      },
+      bilateralCooperationExchange: {
+        eyebrow: "Mübadilə Proqramları",
+        title: "İkitərəfli Əməkdaşlıq üzrə Mübadilə",
+        breadcrumb: "İkitərəfli Əməkdaşlıq Mübadiləsi",
+        description: "AzTU dünya universitetləri ilə bağlanmış ikitərəfli əməkdaşlıq müqavilələri çərçivəsində tələbə və akademik heyət üçün mübadilə imkanları yaradır. Bu proqramlar birgə tədqiqat, tədris ziyarətləri və akademik mobilitetlə bağlı məqsədyönlü əməkdaşlığı dəstəkləyir.",
+        stepsTitle: "Müraciət Prosesi",
+        steps: [
+          { number: "01", title: "Tərəfdaş Seçin", description: "Aktiv ikitərəfli müqaviləmiz olan universitetlər siyahısından tərəfdaş seçin." },
+          { number: "02", title: "Müraciət Formasını Doldurun", description: "Beynəlxalq Ofis vasitəsilə mübadilə müraciəti formasını təqdim edin." },
+          { number: "03", title: "Təsdiqlənmə", description: "AzTU və tərəfdaş universitetin təsdiqindən sonra yerləşdirmə rəsmiləşdirilir." },
+          { number: "04", title: "Hazırlıq", description: "Viza, yaşayış və öyrənmə müqaviləsi üzrə hazırlıq prosesini tamamlayın." },
+        ],
+        partnersTitle: "Seçilmiş Tərəfdaş Universitetlər",
+        partners: [
+          "İstanbul Texniki Universiteti (Türkiyə)",
+          "Texniki Universiteti Münhen (Almaniya)",
+          "Varşava Texniki Universiteti (Polşa)",
+          "Politecnico di Milano (İtaliya)",
+          "Riga Texniki Universiteti (Latviya)",
+          "Çexiya Texniki Universiteti Praqada (Çexiya)",
+        ],
+        sidebarTitle: "İkitərəfli Müqavilələr",
+        sidebarDescription: "AzTU 30-dan çox ölkədə universitetlərlə aktiv ikitərəfli əməkdaşlıq müqavilələri bağlamışdır.",
+        relatedTitle: "Əlaqəli Səhifələr",
+        related: [
+          { title: "Erasmus Mobilitesi", href: "/beynelmillesme/mubadile-proqramlari/erasmus-mubadile" },
+          { title: "Tərəfdaş Universitetlər", href: "/beynelmillesme/mubadile-proqramlari/terefdas-universitetler" },
+          { title: "Orhun Mübadilə Proqramı", href: "/beynelmillesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
+        ],
+      },
+      erasmusPartnerUniversities: {
+        eyebrow: "Erasmus+ KA171",
+        title: "Erasmus Tərəfdaş Universitetlər",
+        breadcrumb: "Erasmus Tərəfdaş Universitetlər",
+        description: "AzTU-nun Erasmus+ KA171 proqramı çərçivəsində tərəfdaş olan Avropa universitetlərinin siyahısı. Bu universitetlərə AzTU tələbə və akademik heyəti mobilitet üçün müraciət edə bilər.",
+        statsLabels: {
+          countries: "Ölkə",
+          universities: "Universitet",
+          opportunities: "Semestr / İl",
+        },
+        searchPlaceholder: "Ölkə və ya universitet axtar...",
+        emptyState: "Axtarış nəticəsinə uyğun universitet tapılmadı.",
+        countries: [
+          {
+            name: "Almaniya",
+            universities: [
+              "Texniki Universiteti Münhen",
+              "RWTH Aachen Universiteti",
+              "Karlsruhe Texnologiya İnstitutu",
+            ],
+          },
+          {
+            name: "Polşa",
+            universities: [
+              "Varşava Texniki Universiteti",
+              "Vroclaw Texniki Universiteti",
+              "Aqh Elmlər Universiteti Krakov",
+            ],
+          },
+          {
+            name: "İtaliya",
+            universities: [
+              "Politecnico di Milano",
+              "Politecnico di Torino",
+            ],
+          },
+          {
+            name: "Litva",
+            universities: [
+              "Vilnius Gediminas Texniki Universiteti",
+              "Kaunas Texnologiya Universiteti",
+            ],
+          },
+          {
+            name: "Latviya",
+            universities: [
+              "Riga Texniki Universiteti",
+            ],
+          },
+          {
+            name: "Rumıniya",
+            universities: [
+              "Politexnika Universiteti Buxarest",
+              "Texniki Universiteti Cluj-Napoca",
+            ],
+          },
+          {
+            name: "Çexiya",
+            universities: [
+              "Çexiya Texniki Universiteti Praqada",
+              "Brno Texniki Universiteti",
+            ],
+          },
+        ],
+        relatedTitle: "Əlaqəli Səhifələr",
+        related: [
+          { title: "Erasmus Mobilitesi", href: "/beynelmillesme/mubadile-proqramlari/erasmus-mubadile" },
+          { title: "Tərəfdaş Universitetlər", href: "/beynelmillesme/mubadile-proqramlari/terefdas-universitetler" },
+          { title: "İkitərəfli Mübadilə", href: "/beynelmillesme/mubadile-proqramlari/ikiterefli-mubadile" },
+        ],
       },
     },
   },

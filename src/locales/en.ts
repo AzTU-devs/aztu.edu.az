@@ -1386,6 +1386,20 @@ const en = {
         title: "Scholarship Opportunities",
         breadcrumb: "Scholarships",
         description: "Azerbaijan Technical University and its international partners offer a range of scholarship and grant programs to support talented international students throughout their studies.",
+        labels: {
+          officialWebsite: "Official Website",
+          objectives: "Objectives",
+          studyLevels: "Study Levels",
+          requirements: "Requirements",
+          benefits: "Benefits",
+        },
+        merit: {
+          title: "Academic Merit",
+          description: "International students with outstanding academic performance at AzTU may apply for internal merit grants.",
+          metric: "GPA 91+",
+          metricLabel: "Performance-Based Grant Threshold",
+        },
+        relatedTitle: "Related Pages",
         programs: [
           {
             title: "Azerbaijan Government Scholarship",
@@ -1432,6 +1446,46 @@ const en = {
           { title: "Accommodation", href: "/beynelmillesme/xarici-telebeler/yerlesme" },
         ]
       },
+      foundationProgram: {
+        eyebrow: "International Students",
+        title: "Foundation Program",
+        breadcrumb: "Foundation Program",
+        description: "AzTU's one-year Foundation Program prepares international students with the academic grounding required for undergraduate study — covering Azerbaijani language, mathematics, physics, and chemistry. Students who complete the program successfully may progress to Bachelor's, Master's, or PhD programs.",
+        facts: [
+          { label: "Duration", value: "1 Year" },
+          { label: "Start Date", value: "September" },
+          { label: "Language of Instruction", value: "Azerbaijani / Russian" },
+        ],
+        eligibilityTitle: "Who Can Apply?",
+        eligibilityDescription: "International applicants who wish to enrol in AzTU's undergraduate programs but do not yet have sufficient proficiency in Azerbaijani are eligible to apply. A secondary school diploma is required.",
+        stagesTitle: "Program Stages",
+        stagesIntro: "The program is structured in two sequential stages — language preparation and subject preparation — ensuring progressive academic development.",
+        stages: [
+          {
+            number: "01",
+            title: "Language Preparation",
+            description: "In the first stage, students undertake an intensive Azerbaijani language course developing listening, speaking, reading, and writing skills for academic purposes.",
+            subjects: ["Azerbaijani Language", "Academic Writing", "Listening & Speaking"],
+          },
+          {
+            number: "02",
+            title: "Subject Preparation",
+            description: "In the second stage, students study subject-specific courses aligned with their chosen degree program, covering mathematics, physics, chemistry, and computing.",
+            subjects: ["Mathematics", "Physics", "Chemistry", "Computing"],
+          },
+        ],
+        certificateTitle: "Foundation Certificate",
+        certificateDescription: "Students who successfully complete the program are awarded an official AzTU Foundation Certificate. This certificate grants direct entry to the undergraduate program of the student's chosen discipline, without additional entrance examinations.",
+        nextLevelsLabel: "Progression Pathways",
+        nextLevels: ["Bachelor's", "Master's", "PhD"],
+        relatedTitle: "Related Pages",
+        related: [
+          { title: "Admission", href: "/beynelmillesme/xarici-telebeler/qebul" },
+          { title: "Visa & Migration", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Accommodation", href: "/beynelmillesme/xarici-telebeler/yerlesme" },
+          { title: "Scholarship Opportunities", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+        ],
+      },
       accommodation: {
         eyebrow: "International Students",
         title: "Student Accommodation",
@@ -1444,6 +1498,8 @@ const en = {
         ],
         supportTitle: "Student Housing Support",
         supportDescription: "Our dedicated housing support team assists every international student from arrival to settling in. Whether you choose on-campus or off-campus accommodation, we are here to ensure a smooth transition and a safe, comfortable stay in Baku.",
+        supportTags: ["24/7 Support", "On-Campus Dormitory", "Private Housing Assistance", "Accommodation Guidance"],
+        relatedTitle: "Related Pages",
         related: [
           { title: "Admission", href: "/beynelmillesme/xarici-telebeler/qebul" },
           { title: "Visa & Migration", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
@@ -1515,11 +1571,304 @@ const en = {
           "Joint supervision of thesis and dissertations",
           "Participation in international scientific conferences"
         ],
+        sidebarTitle: "Bilateral Agreements",
+        sidebarDescription: "AzTU holds active bilateral cooperation agreements with universities in more than 30 countries.",
+        relatedTitle: "Related Pages",
         related: [
           { title: "Dual Degree Programs", href: "/internationalization/international-partnership/double-degree-programs" },
           { title: "Orhun Exchange Program", href: "/internationalization/exchange-programs/orhun-exchange" },
           { title: "International Projects", href: "/internationalization/international-partnership/international-projects" },
         ]
+      },
+      exchangePartnerUniversities: {
+        eyebrow: "Exchange Programs",
+        title: "Partner Universities",
+        breadcrumb: "Partner Universities",
+        description: "AzTU has built exchange partnerships with leading universities across Europe, Asia, and the CIS. These partnerships enable students and academic staff to spend a semester abroad at a partner institution.",
+        statsLabels: {
+          countries: "Countries",
+          universities: "Universities",
+          opportunities: "Semester / Year",
+        },
+        searchPlaceholder: "Search by country or university...",
+        emptyState: "No universities found matching your search.",
+        countries: [
+          {
+            name: "Turkey",
+            universities: [
+              "Istanbul Technical University",
+              "Middle East Technical University",
+              "Hacettepe University",
+              "Gazi University",
+              "Ankara University",
+            ],
+          },
+          {
+            name: "Germany",
+            universities: [
+              "Technical University of Munich",
+              "RWTH Aachen University",
+              "Karlsruhe Institute of Technology",
+              "Technical University of Berlin",
+            ],
+          },
+          {
+            name: "Poland",
+            universities: [
+              "Warsaw University of Technology",
+              "AGH University of Science and Technology",
+              "Wroclaw University of Science and Technology",
+            ],
+          },
+          {
+            name: "Italy",
+            universities: [
+              "Politecnico di Milano",
+              "Politecnico di Torino",
+              "Universita degli Studi di Roma La Sapienza",
+            ],
+          },
+          {
+            name: "Lithuania",
+            universities: [
+              "Vilnius Gediminas Technical University",
+              "Kaunas University of Technology",
+            ],
+          },
+          {
+            name: "Latvia",
+            universities: [
+              "Riga Technical University",
+              "University of Latvia",
+            ],
+          },
+          {
+            name: "Romania",
+            universities: [
+              "Politehnica University of Bucharest",
+              "Technical University of Cluj-Napoca",
+            ],
+          },
+          {
+            name: "Czech Republic",
+            universities: [
+              "Czech Technical University in Prague",
+              "Brno University of Technology",
+            ],
+          },
+        ],
+        relatedTitle: "Related Pages",
+        related: [
+          { title: "Erasmus Mobility", href: "/beynelmillesme/mubadile-proqramlari/erasmus-mubadile" },
+          { title: "Bilateral Exchange", href: "/beynelmillesme/mubadile-proqramlari/ikiterefli-mubadile" },
+          { title: "Orhun Exchange Program", href: "/beynelmillesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
+        ],
+      },
+      erasmusMobility: {
+        eyebrow: "Exchange Programs",
+        title: "Erasmus+ Mobility",
+        breadcrumb: "Erasmus Mobility",
+        description: "The Erasmus+ KA171 International Credit Mobility program allows AzTU students and academic staff to spend a semester, conduct research, or deliver teaching at partner universities within the European Union.",
+        objectivesTitle: "Program Objectives",
+        objectives: [
+          "Promote cross-cultural academic exchange",
+          "Strengthen AzTU's European partnerships",
+          "Enhance the internationalisation of the campus",
+          "Develop the international competencies of students and academic staff",
+        ],
+        benefitsTitle: "Benefits",
+        benefits: [
+          "Monthly living allowance funded by the EU",
+          "Travel cost contribution",
+          "Tuition waiver at the partner university",
+          "International academic networking opportunity",
+          "Foreign language skill development",
+        ],
+        durationTitle: "Mobility Duration",
+        durations: [
+          { label: "Student Exchange", value: "3–12 months" },
+          { label: "Staff Teaching Mobility", value: "5–60 days" },
+          { label: "Staff Training Mobility", value: "5–60 days" },
+        ],
+        eligibilityTitle: "Eligibility",
+        studentsTitle: "Students",
+        studentsRequirements: [
+          "Full-time enrollment at AzTU",
+          "Minimum 1 completed year of study",
+          "Minimum CGPA 2.5/4.0",
+          "Language proficiency evidence (as required by the partner)",
+          "Acceptance to chosen courses at the partner university",
+        ],
+        staffTitle: "Academic Staff",
+        staffRequirements: [
+          "Full-time AzTU staff member",
+          "Teaching/collaboration agreement with partner university",
+          "Mobility activity plan",
+        ],
+        euFundedBadge: "EU-Funded",
+        financialTitle: "Financial Support",
+        financialDescription: "Erasmus+ grants are fully funded by the European Union. The grant amount is determined by the destination country group.",
+        financialItems: [
+          "Monthly living allowance (by country group)",
+          "Travel contribution based on distance",
+          "Additional support for participants with special needs",
+        ],
+        documentsTitle: "Documents",
+        documentSections: [
+          {
+            title: "Outgoing Students",
+            links: [
+              { label: "Application Form (Outgoing)", url: "#" },
+              { label: "Learning Agreement Template", url: "#" },
+              { label: "Partner Universities List", url: "#" },
+            ],
+          },
+          {
+            title: "Incoming Students",
+            links: [
+              { label: "Application Form (Incoming)", url: "#" },
+              { label: "Course Catalogue", url: "#" },
+              { label: "Acceptance Letter Request", url: "#" },
+            ],
+          },
+        ],
+        contactTitle: "Contact",
+        contactAddress: "H. Javid Ave. 25, Baku, Azerbaijan",
+        contactEmail: "erasmus@aztu.edu.az",
+        contactPhone: "+994 12 539 10 14",
+        sidebarTitle: "Erasmus+ KA171",
+        sidebarDescription: "AzTU's Erasmus+ program offers fully EU-funded mobility opportunities for students and academic staff.",
+        relatedTitle: "Related Pages",
+        related: [
+          { title: "Partner Universities", href: "/beynelmillesme/mubadile-proqramlari/terefdas-universitetler" },
+          { title: "Bilateral Exchange", href: "/beynelmillesme/mubadile-proqramlari/ikiterefli-mubadile" },
+          { title: "Orhun Exchange Program", href: "/beynelmillesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
+        ],
+      },
+      exploreProgram: {
+        eyebrow: "International Students",
+        title: "Discover Programs",
+        breadcrumb: "Discover Programs",
+        description: "AzTU offers Bachelor's, Master's, and PhD programs across engineering, information technology, architecture, economics, and more. International students are eligible to apply to all programs.",
+        programs: [
+          { title: "Engineering Sciences", description: "Mechanical, electrical, chemical engineering and other engineering disciplines.", level: "Bachelor's / Master's / PhD" },
+          { title: "Information Technology", description: "Computer science, cybersecurity, artificial intelligence, and software engineering.", level: "Bachelor's / Master's / PhD" },
+          { title: "Architecture & Construction", description: "Architecture, civil engineering, urban planning.", level: "Bachelor's / Master's" },
+          { title: "Economics & Management", description: "Business administration, finance, project management.", level: "Bachelor's / Master's" },
+          { title: "Energy", description: "Energy engineering, renewable energy, oil and gas technologies.", level: "Bachelor's / Master's / PhD" },
+          { title: "Transport & Logistics", description: "Transport systems, automotive engineering, logistics.", level: "Bachelor's / Master's" },
+        ],
+        ctaTitle: "Ready to Apply?",
+        ctaDescription: "Learn about our admissions process and take the first step to becoming an AzTU student.",
+        ctaButton: "Admission Information",
+        relatedTitle: "Related Pages",
+        related: [
+          { title: "Admission", href: "/beynelmillesme/xarici-telebeler/qebul" },
+          { title: "Foundation Program", href: "/beynelmillesme/xarici-telebeler/hazirliq-proqrami" },
+          { title: "Visa & Migration", href: "/beynelmillesme/xarici-telebeler/viza-ve-miqrasiya" },
+          { title: "Scholarship Opportunities", href: "/beynelmillesme/xarici-telebeler/teqaud-imkanlari" },
+        ],
+      },
+      bilateralCooperationExchange: {
+        eyebrow: "Exchange Programs",
+        title: "Bilateral Cooperation Exchange",
+        breadcrumb: "Bilateral Cooperation Exchange",
+        description: "AzTU creates exchange opportunities for students and academic staff under bilateral cooperation agreements signed with universities around the world. These programs support targeted collaboration around joint research, teaching visits, and academic mobility.",
+        stepsTitle: "Application Process",
+        steps: [
+          { number: "01", title: "Select a Partner", description: "Choose a university from the list of institutions with which AzTU holds an active bilateral agreement." },
+          { number: "02", title: "Complete the Application Form", description: "Submit the exchange application form through the International Office." },
+          { number: "03", title: "Confirmation", description: "Upon confirmation from both AzTU and the partner university, the placement is formalised." },
+          { number: "04", title: "Preparation", description: "Complete preparation steps for visa, accommodation, and learning agreement." },
+        ],
+        partnersTitle: "Selected Partner Universities",
+        partners: [
+          "Istanbul Technical University (Turkey)",
+          "Technical University of Munich (Germany)",
+          "Warsaw University of Technology (Poland)",
+          "Politecnico di Milano (Italy)",
+          "Riga Technical University (Latvia)",
+          "Czech Technical University in Prague (Czech Republic)",
+        ],
+        sidebarTitle: "Bilateral Agreements",
+        sidebarDescription: "AzTU holds active bilateral cooperation agreements with universities in more than 30 countries.",
+        relatedTitle: "Related Pages",
+        related: [
+          { title: "Erasmus Mobility", href: "/beynelmillesme/mubadile-proqramlari/erasmus-mubadile" },
+          { title: "Partner Universities", href: "/beynelmillesme/mubadile-proqramlari/terefdas-universitetler" },
+          { title: "Orhun Exchange Program", href: "/beynelmillesme/mubadile-proqramlari/orhun-mubadile-proqrami" },
+        ],
+      },
+      erasmusPartnerUniversities: {
+        eyebrow: "Erasmus+ KA171",
+        title: "Erasmus Partner Universities",
+        breadcrumb: "Erasmus Partner Universities",
+        description: "A list of European universities that are partners of AzTU under the Erasmus+ KA171 program. AzTU students and academic staff may apply for mobility to these institutions.",
+        statsLabels: {
+          countries: "Countries",
+          universities: "Universities",
+          opportunities: "Semester / Year",
+        },
+        searchPlaceholder: "Search by country or university...",
+        emptyState: "No universities found matching your search.",
+        countries: [
+          {
+            name: "Germany",
+            universities: [
+              "Technical University of Munich",
+              "RWTH Aachen University",
+              "Karlsruhe Institute of Technology",
+            ],
+          },
+          {
+            name: "Poland",
+            universities: [
+              "Warsaw University of Technology",
+              "Wroclaw University of Science and Technology",
+              "AGH University of Science and Technology",
+            ],
+          },
+          {
+            name: "Italy",
+            universities: [
+              "Politecnico di Milano",
+              "Politecnico di Torino",
+            ],
+          },
+          {
+            name: "Lithuania",
+            universities: [
+              "Vilnius Gediminas Technical University",
+              "Kaunas University of Technology",
+            ],
+          },
+          {
+            name: "Latvia",
+            universities: [
+              "Riga Technical University",
+            ],
+          },
+          {
+            name: "Romania",
+            universities: [
+              "Politehnica University of Bucharest",
+              "Technical University of Cluj-Napoca",
+            ],
+          },
+          {
+            name: "Czech Republic",
+            universities: [
+              "Czech Technical University in Prague",
+              "Brno University of Technology",
+            ],
+          },
+        ],
+        relatedTitle: "Related Pages",
+        related: [
+          { title: "Erasmus Mobility", href: "/beynelmillesme/mubadile-proqramlari/erasmus-mubadile" },
+          { title: "Partner Universities", href: "/beynelmillesme/mubadile-proqramlari/terefdas-universitetler" },
+          { title: "Bilateral Exchange", href: "/beynelmillesme/mubadile-proqramlari/ikiterefli-mubadile" },
+        ],
       },
     },
   },
