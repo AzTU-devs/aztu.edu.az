@@ -155,6 +155,8 @@ const SLUG_MAP: Record<string, string> = {
     "karyera-ve-mesgulluq-merkezi": "career-and-employment-center",
     "sabah-programs": "sabah-merkezi",
     "sabah-merkezi": "sabah-programs",
+    "technology-transfer-office-tto": "texnaloji-transfer-ofisi-tto",
+    "texnaloji-transfer-ofisi-tto": "technology-transfer-office-tto",
     "lifelong-education": "omurboyu-tehsil",
 
     // Community sub-slugs
@@ -199,6 +201,22 @@ const SLUG_MAP: Record<string, string> = {
     "exchange-programs": "mubadile-proqramlari",
     "orhun-mubadile-proqrami": "orhun-exchange-program",
     "orhun-exchange-program": "orhun-mubadile-proqrami",
+    "ikiterefli-mubadile": "bilateral-exchange",
+    "bilateral-exchange": "ikiterefli-mubadile",
+    "erasmus-mubadile": "erasmus-mobility",
+    "erasmus-mobility": "erasmus-mubadile",
+    "foreign-students": "xarici-telebeler",
+    "xarici-telebeler": "foreign-students",
+    "admission": "qebul",
+    "qebul": "admission",
+    "visa-and-migration": "viza-ve-miqrasiya",
+    "viza-ve-miqrasiya": "visa-and-migration",
+    "accommodation": "yerlesme",
+    "yerlesme": "accommodation",
+    "scholarship-opportunities": "teqaud-imkanlari",
+    "teqaud-imkanlari": "scholarship-opportunities",
+    "foundation-program": "hazirliq-proqrami",
+    "hazirliq-proqrami": "foundation-program",
     "education-and-programs": "tehsil-ve-proqramlar",
     "tehsil-ve-proqramlar": "education-and-programs",
     "higher-education-institute-hei": "yuksek-tehsil-institutu-yti",
@@ -257,10 +275,12 @@ const EN_SLUGS = new Set([
     "unions-and-organizations", "alliances-and-organizations", "trade-union", "student-trade-union",
     "lifelong-learning", "student-youth-organization",
     "international-partnership", "double-degree-programs", "international-projects", "partner-universities",
-    "exchange-programs", "orhun-exchange-program", "privacy-policy", "terms-conditions",
+    "exchange-programs", "orhun-exchange-program", "bilateral-exchange", "erasmus-mobility",
+    "foreign-students", "admission", "visa-and-migration", "accommodation", "scholarship-opportunities", "foundation-program",
+    "privacy-policy", "terms-conditions",
     "education-and-programs", "higher-education-institute-hei", "faculties",
     "offices-and-centers", "nabran-recreation-center", "library-information-center",
-    "career-and-employment-center", "sabah-programs", "lifelong-education",
+    "career-and-employment-center", "sabah-programs", "lifelong-education", "technology-transfer-office-tto",
     "international-relations", "specialties", "departments",
     "specializations", "dean", "deputy-deans", "scientific-council", "academic-staff", "staff", "contact", "leadership",
     "qa",
@@ -363,6 +383,7 @@ export function middleware(request: NextRequest) {
                 else segments_rest = ["about", "vice-rector"];
             }
             else if (segments_rest[2] === "scientific-board" || segments_rest[2] === "elmi-sura") segments_rest = ["about", "scientific-board"];
+            else if (segments_rest[2] === "former-rectors" || segments_rest[2] === "sabiq-rektorlarimiz") segments_rest = ["about", "former-rectors"];
         } else if (segments_rest[1] === "partner-universities-and-related-institutes" || segments_rest[1] === "terefdas-universitet-ve-elaqeli-institutlar") {
             if (segments_rest[2] === "tau" || segments_rest[2] === "turk-azerbaycan-universiteti-tau") segments_rest = ["about", "tau"];
             else if (segments_rest[2] === "iit" || segments_rest[2] === "informasiya-texnalogiyalari-institutu") segments_rest = ["about", "iit"];
@@ -377,6 +398,9 @@ export function middleware(request: NextRequest) {
         } else if ((segments_rest[1] === "education-and-programs" || segments_rest[1] === "tehsil-ve-proqramlar") &&
             segments_rest[2] === "mba") {
             segments_rest = ["about", "mba"];
+        } else if ((segments_rest[1] === "education-and-programs" || segments_rest[1] === "tehsil-ve-proqramlar") &&
+            segments_rest[2] === "cdio") {
+            segments_rest = ["tehsil", "cdio"];
         } else if (segments_rest[1] === "faculties" || segments_rest[1] === "fakulteler") {
             if (segments_rest[2]) {
                 const facultySlug = segments_rest[2];
@@ -444,6 +468,7 @@ export function middleware(request: NextRequest) {
                 "career-and-employment-center": "karyera-ve-mesgulluq-merkezi",
                 "sabah-programs": "sabah-merkezi",
                 "lifelong-education": "omurboyu-tehsil",
+                "technology-transfer-office-tto": "texnaloji-transfer-ofisi-tto",
             };
             if (segments_rest[2] && officeMap[segments_rest[2]]) {
                 segments_rest[2] = officeMap[segments_rest[2]];
@@ -477,6 +502,44 @@ export function middleware(request: NextRequest) {
         }
     } else if (segments_rest[0] === "kts" || segments_rest[0] === "qa") {
         segments_rest[0] = "kts";
+    } else if (segments_rest[0] === "internationalization" || segments_rest[0] === "beynelmillesme") {
+        segments_rest[0] = "beynelmillesme";
+        if (segments_rest[1] === "international-partnership" || segments_rest[1] === "beynelxalq-terefdasliq") {
+            segments_rest[1] = "beynelxalq-terefdasliq";
+            const partnershipMap: Record<string, string> = {
+                "partner-universities": "terefdas-universitetler",
+                "double-degree-programs": "ikili-diplom-proqramlari",
+                "international-projects": "beynelxalq-layiheler",
+                "contact": "elaqe",
+                "contact-us": "elaqe",
+            };
+            if (segments_rest[2] && partnershipMap[segments_rest[2]]) {
+                segments_rest[2] = partnershipMap[segments_rest[2]];
+            }
+        } else if (segments_rest[1] === "exchange-programs" || segments_rest[1] === "mubadile-proqramlari") {
+            segments_rest[1] = "mubadile-proqramlari";
+            const exchangeMap: Record<string, string> = {
+                "orhun-exchange-program": "orhun-mubadile-proqrami",
+                "bilateral-exchange": "ikiterefli-mubadile",
+                "partner-universities": "terefdas-universitetler",
+                "erasmus-mobility": "erasmus-mubadile",
+            };
+            if (segments_rest[2] && exchangeMap[segments_rest[2]]) {
+                segments_rest[2] = exchangeMap[segments_rest[2]];
+            }
+        } else if (segments_rest[1] === "foreign-students" || segments_rest[1] === "xarici-telebeler") {
+            segments_rest[1] = "xarici-telebeler";
+            const foreignStudentsMap: Record<string, string> = {
+                "admission": "qebul",
+                "visa-and-migration": "viza-ve-miqrasiya",
+                "accommodation": "yerlesme",
+                "scholarship-opportunities": "teqaud-imkanlari",
+                "foundation-program": "hazirliq-proqrami",
+            };
+            if (segments_rest[2] && foreignStudentsMap[segments_rest[2]]) {
+                segments_rest[2] = foreignStudentsMap[segments_rest[2]];
+            }
+        }
     } else if (segments_rest[0] === "community" || segments_rest[0] === "icma") {
         segments_rest[0] = "community";
         if (segments_rest[1] === "aztus-honors" || segments_rest[1] === "aztu-nun-fexrileri") {
@@ -485,7 +548,13 @@ export function middleware(request: NextRequest) {
             } else if (segments_rest[2] === "our-heroes" || segments_rest[2] === "qehremanlarimiz") {
                 segments_rest = ["community", "our-heroes"];
             } else if (segments_rest[2] === "former-rectors" || segments_rest[2] === "sabiq-rektorlarimiz") {
-                segments_rest = ["community", "former-rectors"];
+                // Moved to /about/leadership-and-management/former-rectors — redirect
+                return NextResponse.redirect(new URL(
+                    lang === "az"
+                        ? "/az/haqqimizda/rehbetlik-ve-idareetme/sabiq-rektorlarimiz"
+                        : "/en/about/leadership-and-management/former-rectors",
+                    request.url
+                ));
             }
         } else if (segments_rest[1] === "campus-life" || segments_rest[1] === "kampus-heyati") {
             segments_rest[1] = "kampus-heyati";

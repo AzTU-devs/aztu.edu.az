@@ -87,7 +87,7 @@ export default function ScholarshipOpportunitiesPage() {
                                                 target="_blank"
                                                 className="inline-flex items-center justify-center px-6 py-3 bg-[#ee7c7e]/10 text-[#ee7c7e] rounded-xl font-black text-xs uppercase tracking-widest hover:bg-[#ee7c7e] hover:text-white transition-all"
                                             >
-                                                Official Website <ChevronRightIcon sx={{ fontSize: 16 }} />
+                                                {p.labels.officialWebsite} <ChevronRightIcon sx={{ fontSize: 16 }} />
                                             </Link>
                                         )}
                                     </div>
@@ -100,7 +100,7 @@ export default function ScholarshipOpportunitiesPage() {
                                         <div>
                                             <h3 className="text-sm font-black text-[#1a2355] dark:text-white uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
                                                 <div className="w-1.5 h-6 bg-[#ee7c7e] rounded-full" />
-                                                Objectives
+                                                {p.labels.objectives}
                                             </h3>
                                             <ul className="space-y-4">
                                                 {program.objectives.map((obj: string, i: number) => (
@@ -112,30 +112,42 @@ export default function ScholarshipOpportunitiesPage() {
                                             </ul>
                                         </div>
                                         <div className="space-y-8">
-                                            <div>
-                                                <h3 className="text-sm font-black text-[#1a2355] dark:text-white uppercase tracking-[0.2em] mb-4">Study Levels</h3>
-                                                <div className="flex flex-wrap gap-2">
-                                                    {program.levels ? program.levels.map((level: string, i: number) => (
-                                                        <span key={i} className="px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-bold border border-slate-100 dark:border-slate-700">
-                                                            {level}
-                                                        </span>
-                                                    )) : program.requirements.map((req: string, i: number) => (
-                                                        <span key={i} className="px-4 py-2 rounded-lg bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 text-xs font-bold border border-amber-100 dark:border-amber-900/30">
-                                                            {req}
-                                                        </span>
-                                                    ))}
+                                            {program.levels && (
+                                                <div>
+                                                    <h3 className="text-sm font-black text-[#1a2355] dark:text-white uppercase tracking-[0.2em] mb-4">{p.labels.studyLevels}</h3>
+                                                    <div className="flex flex-wrap gap-2">
+                                                        {program.levels.map((level: string, i: number) => (
+                                                            <span key={i} className="px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-bold border border-slate-100 dark:border-slate-700">
+                                                                {level}
+                                                            </span>
+                                                        ))}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div>
-                                                <h3 className="text-sm font-black text-[#1a2355] dark:text-white uppercase tracking-[0.2em] mb-4">Benefits</h3>
-                                                <div className="flex flex-wrap gap-2">
-                                                    {program.benefits?.map((benefit: string, i: number) => (
-                                                        <span key={i} className="px-4 py-2 rounded-lg bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs font-bold border border-green-100 dark:border-green-900/30">
-                                                            {benefit}
-                                                        </span>
-                                                    ))}
+                                            )}
+                                            {program.requirements && (
+                                                <div>
+                                                    <h3 className="text-sm font-black text-[#1a2355] dark:text-white uppercase tracking-[0.2em] mb-4">{p.labels.requirements}</h3>
+                                                    <div className="flex flex-wrap gap-2">
+                                                        {program.requirements.map((req: string, i: number) => (
+                                                            <span key={i} className="px-4 py-2 rounded-lg bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 text-xs font-bold border border-amber-100 dark:border-amber-900/30">
+                                                                {req}
+                                                            </span>
+                                                        ))}
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            )}
+                                            {program.benefits && (
+                                                <div>
+                                                    <h3 className="text-sm font-black text-[#1a2355] dark:text-white uppercase tracking-[0.2em] mb-4">{p.labels.benefits}</h3>
+                                                    <div className="flex flex-wrap gap-2">
+                                                        {program.benefits.map((benefit: string, i: number) => (
+                                                            <span key={i} className="px-4 py-2 rounded-lg bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs font-bold border border-green-100 dark:border-green-900/30">
+                                                                {benefit}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
 
@@ -159,18 +171,18 @@ export default function ScholarshipOpportunitiesPage() {
                                 <div className="absolute top-0 left-0 w-32 h-32 bg-[#ee7c7e]/20 rounded-full -translate-y-1/2 -translate-x-1/2 blur-2xl" />
                                 <div className="relative z-10 text-center">
                                     <SchoolIcon className="text-[#ee7c7e] mb-6 mx-auto" sx={{ fontSize: 40 }} />
-                                    <h3 className="text-2xl font-black mb-4 tracking-tighter uppercase">Academic Merit</h3>
+                                    <h3 className="text-2xl font-black mb-4 tracking-tighter uppercase">{p.merit.title}</h3>
                                     <p className="text-white/60 text-sm font-medium mb-8">
-                                        AzTU rewards high-performing international students through internal grant programs.
+                                        {p.merit.description}
                                     </p>
-                                    <div className="text-4xl font-black text-[#ee7c7e] mb-2">GPA 91+</div>
-                                    <div className="text-[10px] text-white/40 uppercase tracking-[0.3em] font-black">Eligibility Criteria</div>
+                                    <div className="text-4xl font-black text-[#ee7c7e] mb-2">{p.merit.metric}</div>
+                                    <div className="text-[10px] text-white/40 uppercase tracking-[0.3em] font-black">{p.merit.metricLabel}</div>
                                 </div>
                             </div>
 
                             {/* Related Links */}
                             <div className="space-y-4">
-                                <h3 className="text-[#1a2355] dark:text-white font-black uppercase tracking-widest text-xs mb-6 px-4">Helpful Links</h3>
+                                <h3 className="text-[#1a2355] dark:text-white font-black uppercase tracking-widest text-xs mb-6 px-4">{p.relatedTitle}</h3>
                                 {p.related.map((link: any) => (
                                     <Link
                                         key={link.href}

@@ -93,15 +93,11 @@ export default function AccommodationPage() {
                                     {p.supportDescription}
                                 </p>
                                 <div className="flex flex-wrap gap-4">
-                                    <div className="px-6 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-sm font-bold">
-                                        Safe Housing
-                                    </div>
-                                    <div className="px-6 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-sm font-bold">
-                                        Accessible Locations
-                                    </div>
-                                    <div className="px-6 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-sm font-bold">
-                                        Affordable Rates
-                                    </div>
+                                    {p.supportTags.map((tag) => (
+                                        <div key={tag} className="px-6 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-sm font-bold">
+                                            {tag}
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </section>
@@ -111,7 +107,7 @@ export default function AccommodationPage() {
                         <div className="sticky top-28 space-y-8">
                             {/* Related Links */}
                             <div className="space-y-4">
-                                <h3 className="text-[#1a2355] dark:text-white font-black uppercase tracking-widest text-xs mb-6 px-4">Related Information</h3>
+                                <h3 className="text-[#1a2355] dark:text-white font-black uppercase tracking-widest text-xs mb-6 px-4">{p.relatedTitle}</h3>
                                 {p.related.map((link: any) => (
                                     <Link
                                         key={link.href}

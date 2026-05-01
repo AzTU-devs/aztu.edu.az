@@ -20,7 +20,7 @@ let isCachePopulated = false;
 export const getDepartments = async (params: { start?: number; end?: number; lang?: Lang } = {}) => {
   try {
     const { start = 0, end = 100, lang = "az" } = params;
-    const response = await apiClient.get(`/api/department/public/all?start=${start}&end=${end}`, {
+    const response = await apiClient.get(`/api/department/public/all?start=${start}&end=${end}&lang=${lang}`, {
       headers: { "Accept-Language": lang },
     });
 
@@ -72,23 +72,47 @@ export const getCodeBySlug = (slug: string): string | undefined => {
 
 /**
  * Translates a slug from one language to another.
+ *
+ * Falls back to the original slug whenever the target-language slug is not
+ * cached yet — this keeps the URL resolvable (the page resolver tolerates
+ * cross-language slugs) instead of producing a URL containing the raw
+ * department code.
  */
 export const translateDepartmentSlug = (slug: string, toLang: Lang): string => {
     const code = slugToCodeMap[slug];
     if (!code) return slug;
-    return getSlugByCode(code, toLang);
+    const targetSlug = codeToSlugMap[code]?.[toLang];
+    return targetSlug || slug;
 };
 
 export const getDepartmentBySlug = async (slug: string, lang: Lang = "az") => {
     let code = slugToCodeMap[slug];
-    
+
     if (!code) {
-        // Try fetching to populate cache
+        // Try fetching the current language to populate cache
         await getDepartments({ start: 0, end: 100, lang });
         code = slugToCodeMap[slug];
     }
 
-    if (!code) return null; // Important: don't call ByCode with a slug
+    if (!code) {
+        // The URL slug may belong to the OTHER language (e.g. user navigated
+        // /en/... using an AZ slug because the EN slug wasn't cached when the
+        // language was switched). Populate the other language too.
+        const otherLang: Lang = lang === "az" ? "en" : "az";
+        await getDepartments({ start: 0, end: 100, lang: otherLang });
+        code = slugToCodeMap[slug];
+    }
+
+    if (!code && codeToSlugMap[slug]) {
+        // The slug is actually a department code — accept it.
+        code = slug;
+    }
+
+    if (!code) {
+        // Last resort: query directly by treating the slug as a code. The API
+        // returns 200 only if it really is a code, otherwise null.
+        return getDepartmentByCode(slug, lang);
+    }
 
     return getDepartmentByCode(code, lang);
 };
@@ -96,7 +120,7 @@ export const getDepartmentBySlug = async (slug: string, lang: Lang = "az") => {
 export const getDepartmentByCode = async (departmentCode: string, lang: Lang = "az") => {
   if (!departmentCode) return null;
   try {
-    const response = await apiClient.get(`/api/department/${departmentCode}`, {
+    const response = await apiClient.get(`/api/department/${departmentCode}?lang=${lang}`, {
       headers: { "Accept-Language": lang },
     });
     if (response.data.status_code === 200) {

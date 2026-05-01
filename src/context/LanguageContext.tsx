@@ -40,8 +40,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.lang = langFromUrl;
     localStorage.setItem("aztu-lang", langFromUrl);
     
-    // Warm up caches
+    // Warm up caches in BOTH languages so the language switcher has the
+    // target-language slug available when translating URL segments.
     getDepartments({ lang: langFromUrl });
+    getDepartments({ lang: langFromUrl === "az" ? "en" : "az" });
     getResearchInstitutes({ lang: langFromUrl });
   }, [langFromUrl]);
 

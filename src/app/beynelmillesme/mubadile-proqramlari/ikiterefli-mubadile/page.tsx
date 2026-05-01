@@ -99,15 +99,19 @@ export default function BilateralExchangePage() {
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
                                 <div className="relative z-10">
                                     <SwapHorizIcon className="text-[#ee7c7e] mb-6" sx={{ fontSize: 40 }} />
-                                    <h3 className="text-2xl font-black mb-4 uppercase tracking-tighter">Global Mobility</h3>
+                                    <h3 className="text-2xl font-black mb-4 uppercase tracking-tighter">{p.sidebarTitle}</h3>
                                     <p className="text-white/60 text-sm font-medium mb-8">
-                                        Expand your academic horizons through our extensive network of partner universities.
+                                        {p.sidebarDescription}
                                     </p>
                                     <div className="w-12 h-1 bg-[#ee7c7e] rounded-full" />
                                 </div>
                             </div>
 
                             <div className="space-y-4">
+                                <h2 className="text-xl font-black text-[#1a2355] dark:text-white mb-4 flex items-center gap-3">
+                                    <div className="w-2 h-8 bg-[#ee7c7e] rounded-full" />
+                                    {p.relatedTitle}
+                                </h2>
                                 {p.related.map((link: any) => (
                                     <Link
                                         key={link.href}
