@@ -143,8 +143,8 @@ const az = {
     stats: [
       { label: "QS Reytinqi", value: "851+" },
       { label: "THE Reytinqi", value: "1501+" },
-      { label: "GreenMetric", value: "Top 800" },
-      { label: "Tələbələr", value: "10000+" },
+      { label: "GreenMetric", value: "835" },
+      { label: "Akkreditasiya", value: "20+" },
     ],
   },
 
@@ -1297,6 +1297,22 @@ const az = {
         title: "Seminarlar və Təlimlər",
         subtitle: "Akademik və elmi inkişaf üçün təşkil olunan seminar, məktəb və təlim proqramları.",
         breadcrumb: "Seminarlar və Təlimlər",
+      },
+      intellectualPropertyAndPatents: {
+        eyebrow: "Tədqiqat",
+        title: "Əqli Mülkiyyət və Patentlər",
+        subtitle: "AzTU əməkdaşlarının qeydiyyatdan keçirdiyi ixtiralar, faydalı modellər və patentlər.",
+        breadcrumb: "Əqli Mülkiyyət və Patentlər",
+        description:
+          "Azərbaycan Texniki Universitetinin alim və tədqiqatçıları tərəfindən hazırlanan ixtiralar və faydalı modellər milli və beynəlxalq səviyyədə qeydiyyatdan keçirilərək patentlərlə qorunur. Bu səhifədə universitetimizin əqli mülkiyyət portfelinə daxil olan patentlərin siyahısı təqdim olunur.",
+        tableHeaders: {
+          no: "№",
+          number: "Patent nömrəsi",
+          name: "Adı",
+          authors: "Müəlliflər",
+          link: "Sənəd",
+        },
+        years: [],
       },
     },
     internationalization: {

@@ -143,7 +143,7 @@ const en = {
       { label: "QS Ranking", value: "851+" },
       { label: "THE Ranking", value: "1501+" },
       { label: "GreenMetric", value: "835" },
-      { label: "Students", value: "10000+" },
+      { label: "Accreditation", value: "20+" },
     ],
   },
 
@@ -1151,6 +1151,22 @@ const en = {
         title: "Seminars and Trainings",
         subtitle: "Academic and scientific development through seminars, schools and training programs.",
         breadcrumb: "Seminars and Trainings",
+      },
+      intellectualPropertyAndPatents: {
+        eyebrow: "Research",
+        title: "Intellectual Property and Patents",
+        subtitle: "Inventions, utility models and patents registered by AzTU researchers.",
+        breadcrumb: "Intellectual Property and Patents",
+        description:
+          "Inventions and utility models developed by Azerbaijan Technical University's scholars and researchers are registered nationally and internationally and protected by patents. This page presents the list of patents in the university's intellectual property portfolio.",
+        tableHeaders: {
+          no: "No",
+          number: "Patent No",
+          name: "Title",
+          authors: "Authors",
+          link: "Document",
+        },
+        years: [],
       },
     },
     internationalization: {
