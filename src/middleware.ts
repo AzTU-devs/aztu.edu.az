@@ -307,6 +307,7 @@ export function middleware(request: NextRequest) {
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
+    pathname.startsWith("/sdg") ||
     pathname.includes(".") ||
     pathname === "/favicon.ico"
   ) {
@@ -315,6 +316,16 @@ export function middleware(request: NextRequest) {
 
   const segments = pathname.split("/").filter(Boolean);
   const firstSegment = segments[0];
+
+  // /az/sdg or /en/sdg → redirect to clean /sdg (handled by nginx, not Next)
+  if (
+    SUPPORTED_LANGS.includes(firstSegment) &&
+    segments[1] === "sdg"
+  ) {
+    const tail = segments.slice(2).join("/");
+    const cleanPath = tail ? `/sdg/${tail}` : "/sdg";
+    return NextResponse.redirect(new URL(cleanPath, request.url), 308);
+  }
 
   // Internal folder check
   if (INTERNAL_FOLDERS.includes(firstSegment)) {
