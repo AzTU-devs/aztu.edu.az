@@ -28,3 +28,12 @@ export function parseNewsSlug(slug: string): number {
     const parts = slug.split("-");
     return parseInt(parts[parts.length - 1], 10);
 }
+
+export function announcementSlug(id: number | string, title: string): string {
+    return `${slugify(title)}-${id}`;
+}
+
+export function parseAnnouncementSlug(slug: string): number {
+    const parts = slug.split("-");
+    return parseInt(parts[parts.length - 1], 10);
+}

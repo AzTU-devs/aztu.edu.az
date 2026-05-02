@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { buildMetadata, breadcrumbJsonLd, SITE_URL } from "@/util/seo";
 import { fetchAnnouncementList } from "@/util/fetchers";
+import { announcementSlug } from "@/util/slugify";
 
 export const metadata: Metadata = buildMetadata({
     titleAz: "Elanlar",
@@ -33,7 +34,7 @@ export default async function AnnouncementsLayout({ children }: { children: Reac
         itemListElement: items.map((a, i) => ({
             "@type": "ListItem",
             position: i + 1,
-            url: `${SITE_URL}/announcements/${a.announcement_id ?? a.id}`,
+            url: `${SITE_URL}/announcements/${announcementSlug((a.announcement_id ?? a.id) as number, a.title)}`,
             name: a.title,
         })),
     };

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { STATIC_FACULTIES, STATIC_CAFEDRAS } from "@/data/staticFaculties";
-import { newsSlug } from "@/util/slugify";
+import { newsSlug, announcementSlug } from "@/util/slugify";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://aztu.edu.az";
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://api-aztu.karamshukurlu.site";
@@ -138,7 +138,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         const id = a.announcement_id ?? a.id;
         if (!id) continue;
         entries.push({
-            url: `${SITE_URL}/announcements/${id}`,
+            url: `${SITE_URL}/announcements/${announcementSlug(id, a.title ?? "")}`,
             lastModified: a.published_date
                 ? new Date(a.published_date)
                 : a.created_at

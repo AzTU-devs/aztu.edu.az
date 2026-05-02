@@ -9,6 +9,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
 import SanitizedHtml from "@/components/shared/SanitizedHtml";
+import { announcementSlug } from "@/util/slugify";
 
 import PageHero from "@/components/shared/PageHero";
 import PageContainer from "@/components/shared/PageContainer";
@@ -97,7 +98,7 @@ export default function AnnouncementsPage() {
 
                 {featured && (
                     <div className="mb-20 relative z-10">
-                        <Link href={`/announcements/${featured.id}`}>
+                        <Link href={`/announcements/${announcementSlug(featured.id, featured.title)}`}>
                             <motion.div
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -158,7 +159,7 @@ export default function AnnouncementsPage() {
                                     animate="visible"
                                     className="h-full"
                                 >
-                                    <Link href={`/announcements/${item.id}`} className="group block h-full">
+                                    <Link href={`/announcements/${announcementSlug(item.id, item.title)}`} className="group block h-full">
                                         <div className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[3.5rem] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/30 dark:border-white/10 overflow-hidden flex flex-col h-full hover:border-[#ee7c7e]/30 transition-all duration-700 hover:-translate-y-2">
                                             <div className="p-12 flex flex-col h-full gap-8 relative z-10">
                                                 <div className="flex items-center justify-between">

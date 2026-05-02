@@ -7,6 +7,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import CampaignIcon from "@mui/icons-material/Campaign";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import { announcementSlug } from "@/util/slugify";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site";
 
@@ -136,7 +137,7 @@ export default function Announcements() {
                                     }}
                                     className="h-full"
                                 >
-                                    <Link href={`/announcements/${announcement.id}`}>
+                                    <Link href={`/announcements/${announcementSlug(announcement.id, announcement.title)}`}>
                                         <div className="group relative h-full flex flex-col bg-white/5 backdrop-blur-sm border border-white/5 rounded-[2.5rem] p-8 transition-all duration-500 hover:bg-white/[0.08] hover:border-[#ee7c7e]/30 hover:shadow-2xl hover:shadow-[#ee7c7e]/5 overflow-hidden">
                                             {/* Hover accent line */}
                                             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[3px] bg-[#ee7c7e] group-hover:w-1/2 transition-all duration-500 rounded-full" />

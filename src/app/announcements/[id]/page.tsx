@@ -11,6 +11,7 @@ import NewsScrollProgress from "@/components/news/NewsScrollProgress";
 import CopyLinkButton from "@/components/shared/CopyLinkButton";
 import { fetchAnnouncementDetail, fetchAnnouncementList } from "@/util/fetchers";
 import { absUrl } from "@/util/seo";
+import { parseAnnouncementSlug, announcementSlug } from "@/util/slugify";
 
 export const revalidate = 600;
 export const dynamicParams = true;
@@ -35,16 +36,17 @@ export default async function AnnouncementDetailPage({
 }: {
     params: Promise<{ id: string }>;
 }) {
-    const { id } = await params;
+    const { id: slug } = await params;
+    const numericId = parseAnnouncementSlug(slug);
+
+    if (!Number.isFinite(numericId)) notFound();
 
     const [announcement, list] = await Promise.all([
-        fetchAnnouncementDetail(id, "az"),
+        fetchAnnouncementDetail(String(numericId), "az"),
         fetchAnnouncementList({ start: 0, end: 12, lang: "az" }),
     ]);
 
     if (!announcement) notFound();
-
-    const numericId = parseInt(id, 10);
     const listEntry = list.find((a) => (a.announcement_id ?? a.id) === numericId);
     const createdAt = announcement.published_date
         ?? announcement.created_at
@@ -186,7 +188,7 @@ export default async function AnnouncementDetailPage({
                                             key={itemId}
                                             className="group bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
                                         >
-                                            <Link href={`/announcements/${itemId}`}>
+                                            <Link href={`/announcements/${announcementSlug(itemId, item.title ?? "")}`}>
                                                 <div className="h-1 bg-[#1a2355]" />
                                                 <div className="p-5 space-y-3">
                                                     <time
