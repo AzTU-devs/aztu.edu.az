@@ -528,7 +528,8 @@ export function middleware(request: NextRequest) {
     } else if (segments_rest[0] === "students" || segments_rest[0] === "telebeler") {
         segments_rest[0] = "tehsil";
         const lastSeg = segments_rest[segments_rest.length - 1];
-        
+        const secondSeg = segments_rest[1];
+
         if (lastSeg === "2025-2026-tedris-ili-teqvimi" || lastSeg === "academic-calendar-2025") {
             segments_rest = ["tehsil", "academic-calendar-2025"];
         } else if (lastSeg === "qiymetlendirme-ve-imtahan-teskili-qaydalari" || lastSeg === "assessment-rules") {
@@ -537,6 +538,11 @@ export function middleware(request: NextRequest) {
             segments_rest = ["tehsil", "credit-system"];
         } else if (lastSeg === "lms-telimatlari" || lastSeg === "lms-guidelines") {
             segments_rest = ["tehsil", "lms-guidelines"];
+        } else if ((secondSeg === "bakalavr" || secondSeg === "magistratura") && segments_rest.length === 3) {
+            // Placeholder pages: /telebeler|students/(bakalavr|magistratura)/(ixtisaslar|tedris-proqrami|oyrenme-neticeleri)
+            const placeholderSlugMap: Record<string, string> = { specialties: "ixtisaslar" };
+            const finalSlug = placeholderSlugMap[lastSeg] ?? lastSeg;
+            segments_rest = ["tehsil", secondSeg, finalSlug];
         } else if (segments_rest.length === 3) {
             segments_rest = ["tehsil", lastSeg];
         }
