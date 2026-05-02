@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
@@ -9,10 +9,13 @@ import HeaderChanger from "@/components/header/HeaderChanger";
 import Footer from "@/components/footer/Footer";
 import ChatbotWidgetLoader from "@/components/chatbot/ChatbotWidgetLoader";
 
-const geistSans = Geist({
+// Inter — stable rendering of Azerbaijani diacritics (ə, ş, ğ, ç, ö, ü, ı, İ)
+// on both Mac and Windows. "latin-ext" includes the full set used by Azerbaijani.
+const interSans = Inter({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   display: "swap",
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 const geistMono = Geist_Mono({
@@ -196,7 +199,7 @@ export default function RootLayout({
         <link rel="alternate" type="application/rss+xml" title="AzTU Xəbərləri" href="/feed.xml" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
+        className={`${interSans.variable} ${geistMono.variable} antialiased relative`}
       >
         <Script
           id="ld-json-organization"

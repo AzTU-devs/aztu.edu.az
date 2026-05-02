@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
 /* Enable class-based dark mode for Tailwind v4 */
@@ -42,7 +41,10 @@ body {
   overflow-x: hidden;
   background-color: var(--background);
   color: var(--foreground);
-  font-family: 'Montserrat', 'Noto Sans', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, Helvetica, sans-serif;
+  /* Inter (loaded via next/font as --font-geist-sans) is the primary face;
+     falls back to Noto Sans then platform UI fonts. All have full Azerbaijani
+     coverage (ə, ş, ğ, ç, ö, ü, ı, İ). */
+  font-family: var(--font-geist-sans), "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
