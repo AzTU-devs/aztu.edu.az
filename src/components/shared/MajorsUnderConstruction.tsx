@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -73,31 +74,14 @@ export default function MajorsUnderConstruction() {
 
             <div className="muc-container">
                 <div className="muc-logo-wrapper">
-                    <svg className="muc-logo-shield" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                        <path
-                            d="M 55 0 L 55 50 L 75 50 L 75 25 L 100 50 L 125 25 L 125 50 L 145 50 L 145 0 L 120 0 L 100 25 L 80 0 Z"
-                            fill="#1e3a8a"
-                        />
-                        <path
-                            d="M 40 60 L 40 200 L 100 250 L 160 200 L 160 60 Z M 75 80 L 125 80 L 125 175 Q 125 195 100 195 Q 75 195 75 175 Z"
-                            fill="#1e3a8a"
-                            fillRule="evenodd"
-                        />
-                    </svg>
-                    <svg className="muc-logo-text" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                        <text
-                            x="100"
-                            y="40"
-                            textAnchor="middle"
-                            fontFamily="Arial Black, sans-serif"
-                            fontSize="44"
-                            fontWeight="900"
-                            fill="#fff"
-                            letterSpacing="2"
-                        >
-                            AZTU
-                        </text>
-                    </svg>
+                    <Image
+                        src="/aztu-logo-light.webp"
+                        alt="AZTU"
+                        width={140}
+                        height={180}
+                        priority
+                        className="muc-logo-shield"
+                    />
                 </div>
 
                 <div className="muc-badge">
@@ -193,14 +177,14 @@ export default function MajorsUnderConstruction() {
                     gap: 16px;
                 }
                 .muc-logo-shield {
-                    width: 110px;
+                    width: 120px;
                     height: auto;
-                    filter: drop-shadow(0 10px 30px rgba(59, 130, 246, 0.4));
+                    object-fit: contain;
+                    background: #fff;
+                    padding: 14px 18px;
+                    border-radius: 18px;
+                    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
                     animation: muc-float 3s ease-in-out infinite;
-                }
-                .muc-logo-text {
-                    width: 140px;
-                    height: auto;
                 }
                 @keyframes muc-float {
                     0%, 100% { transform: translateY(0); }
