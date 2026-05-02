@@ -1151,6 +1151,61 @@ const en = {
         title: "Seminars and Trainings",
         subtitle: "Academic and scientific development through seminars, schools and training programs.",
         breadcrumb: "Seminars and Trainings",
+        description:
+          "Azerbaijan Technical University regularly organises scientific seminars, short-term schools and professional development trainings for academic staff, doctoral candidates and students. The events cover research methodology, grant writing, academic publishing, international collaboration and digital tools.",
+        upcomingTitle: "Upcoming Events",
+        upcomingEmpty: "No upcoming events are currently scheduled. Information about new trainings and seminars will be published on this page soon.",
+      },
+      publications: {
+        openAccessPolicy: {
+          eyebrow: "Publications & Editorial",
+          title: "Open Access Policy",
+          subtitle:
+            "AzTU's institutional policy ensuring open, free and sustainable access to scientific publications and research outputs.",
+          breadcrumb: "Open Access Policy",
+          downloadButton: "Download Document",
+          pdfUrl: "#",
+          documentInfo: {
+            title: "Document Information",
+            documentType: "Institutional Policy",
+            approvedBy: "AzTU Scientific Council",
+            version: "1.0",
+            language: "Azerbaijani",
+            location: "Baku, Azerbaijan",
+          },
+          content: [
+            {
+              id: "purpose",
+              title: "Purpose",
+              text: "The purpose of this policy is to ensure that scientific publications and research materials produced by Azerbaijan Technical University staff are made available to the wider public on the basis of open access principles.",
+            },
+            {
+              id: "scope",
+              title: "Scope",
+              text: "The policy applies to journal articles, conference proceedings, monographs and other scholarly outputs authored by all academic and research staff of AzTU.",
+            },
+            {
+              id: "principles",
+              title: "Core Principles",
+              text: "The open access policy is built on the following core principles:",
+              list: [
+                "Unrestricted and free dissemination of research results",
+                "Protection of authors' rights and intellectual property",
+                "Alignment with international open access standards",
+                "Long-term archiving through the institutional repository",
+              ],
+            },
+            {
+              id: "implementation",
+              title: "Implementation",
+              text: "AzTU staff are encouraged to deposit the final accepted versions of their published works in the university's institutional repository. The university provides methodological and technical support throughout this process.",
+            },
+          ],
+          related: [
+            { title: "Research Priorities", href: "/research/research-activity/tedqiqat-prioritetleri" },
+            { title: "Internal Grant Programs", href: "/research/performance-and-evaluation/internal-grant-programs" },
+          ],
+        },
       },
       intellectualPropertyAndPatents: {
         eyebrow: "Research",

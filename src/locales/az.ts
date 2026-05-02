@@ -1297,6 +1297,61 @@ const az = {
         title: "Seminarlar və Təlimlər",
         subtitle: "Akademik və elmi inkişaf üçün təşkil olunan seminar, məktəb və təlim proqramları.",
         breadcrumb: "Seminarlar və Təlimlər",
+        description:
+          "Azərbaycan Texniki Universiteti müntəzəm olaraq akademik heyət, doktorant və tələbələr üçün elmi seminarlar, qısa müddətli məktəblər və peşəkar inkişaf təlimləri təşkil edir. Tədbirlər tədqiqat metodologiyası, qrant yazısı, akademik nəşrlər, beynəlxalq əməkdaşlıq və rəqəmsal alətlər mövzularını əhatə edir.",
+        upcomingTitle: "Yaxınlaşan Tədbirlər",
+        upcomingEmpty: "Hazırda elan olunmuş yaxın tədbir yoxdur. Yeni təlimlər və seminarlar barədə məlumatlar tezliklə bu səhifədə dərc olunacaq.",
+      },
+      publications: {
+        openAccessPolicy: {
+          eyebrow: "Nəşrlər və Yayım",
+          title: "Açıq Giriş Siyasəti",
+          subtitle:
+            "AzTU-nun elmi nəşrlərə və tədqiqat nəticələrinə açıq, sərbəst və davamlı çıxışı təmin edən institusional siyasəti.",
+          breadcrumb: "Açıq Giriş Siyasəti",
+          downloadButton: "Sənədi Yüklə",
+          pdfUrl: "#",
+          documentInfo: {
+            title: "Sənəd Məlumatları",
+            documentType: "İnstitusional Siyasət",
+            approvedBy: "AzTU Elmi Şurası",
+            version: "1.0",
+            language: "Azərbaycan dili",
+            location: "Bakı, Azərbaycan",
+          },
+          content: [
+            {
+              id: "purpose",
+              title: "Məqsəd",
+              text: "Bu siyasətin məqsədi Azərbaycan Texniki Universitetinin əməkdaşları tərəfindən hazırlanan elmi nəşrlərin və tədqiqat materiallarının açıq giriş prinsipləri əsasında geniş ictimaiyyətə təqdim edilməsini təmin etməkdir.",
+            },
+            {
+              id: "scope",
+              title: "Əhatə Dairəsi",
+              text: "Siyasət AzTU-nun bütün akademik və tədqiqat heyətinin müəllif olduğu jurnal məqalələri, konfrans materialları, monoqrafiyalar və digər elmi nəşrlərə şamil olunur.",
+            },
+            {
+              id: "principles",
+              title: "Əsas Prinsiplər",
+              text: "Açıq giriş siyasəti aşağıdakı əsas prinsiplərə əsaslanır:",
+              list: [
+                "Tədqiqat nəticələrinin maneəsiz və ödənişsiz yayımı",
+                "Müəllif hüquqlarının və əqli mülkiyyətin qorunması",
+                "Beynəlxalq açıq giriş standartlarına uyğunluq",
+                "İnstitusional repozitoriya vasitəsilə uzunmüddətli arxivləşdirmə",
+              ],
+            },
+            {
+              id: "implementation",
+              title: "Tətbiq Mexanizmi",
+              text: "AzTU əməkdaşları nəşr olunmuş elmi əsərlərinin son qəbul edilmiş versiyalarını universitetin institusional repozitoriyasına yerləşdirməyə təşviq olunur. Universitet bu prosesi metodik və texniki olaraq dəstəkləyir.",
+            },
+          ],
+          related: [
+            { title: "Tədqiqat Prioritetləri", href: "/tedqiqat/tedqiqat-fealiyyeti/tedqiqat-prioritetleri" },
+            { title: "Daxili Qrant Proqramları", href: "/tedqiqat/performans-ve-qiymetlendirme/daxili-qrant-proqramlari" },
+          ],
+        },
       },
       intellectualPropertyAndPatents: {
         eyebrow: "Tədqiqat",
