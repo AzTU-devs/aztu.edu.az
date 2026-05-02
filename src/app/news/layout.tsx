@@ -1,26 +1,68 @@
 import type { Metadata } from "next";
+import Script from "next/script";
+import { buildMetadata, breadcrumbJsonLd, SITE_URL } from "@/util/seo";
+import { fetchNewsList } from "@/util/fetchers";
+import { newsSlug } from "@/util/slugify";
 
-export const metadata: Metadata = {
-    title: "Xəbərlər | News",
-    description:
-        "Azərbaycan Texniki Universitetinin son xəbərləri, akademik və beynəlxalq tədbirləri, elmi nailiyyətləri.",
-    keywords: ["AzTU xəbərlər", "AzTU news", "university news Azerbaijan", "Bakı universitet xəbərləri"],
-    alternates: {
-        canonical: "/az/news",
-        languages: {
-            "az-AZ": "/az/news",
-            "en-US": "/en/news",
-            "x-default": "/az/news",
-        },
-    },
-    openGraph: {
-        title: "Xəbərlər | AzTU",
-        description: "AzTU-nun son xəbərləri və elanları.",
-        url: "/az/news",
-        type: "website",
-    },
-};
+export const metadata: Metadata = buildMetadata({
+    titleAz: "Xəbərlər",
+    titleEn: "News",
+    descriptionAz:
+        "Azərbaycan Texniki Universitetinin son xəbərləri, akademik və beynəlxalq tədbirləri, elmi nailiyyətləri və universitet həyatına dair yeniliklər.",
+    descriptionEn:
+        "Latest news from Azerbaijan Technical University — academic events, international cooperation, scientific achievements and university life updates.",
+    pathAz: "/news",
+    keywords: [
+        "AzTU xəbərlər",
+        "AzTU news",
+        "university news Azerbaijan",
+        "Azərbaycan Texniki Universiteti xəbərləri",
+        "Bakı universitet xəbərləri",
+        "elmi xəbərlər",
+        "akademik xəbərlər",
+    ],
+});
 
-export default function NewsLayout({ children }: { children: React.ReactNode }) {
-    return <>{children}</>;
+export default async function NewsLayout({ children }: { children: React.ReactNode }) {
+    // Server-fetch first page of items for ItemList JSON-LD (helps Google
+    // discover individual articles even before they index the sitemap).
+    const items = await fetchNewsList({ start: 0, end: 20, lang: "az" });
+
+    const itemListJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "AzTU Xəbərləri",
+        numberOfItems: items.length,
+        itemListElement: items.map((n, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            url: `${SITE_URL}/news/${newsSlug(n.news_id, n.title)}`,
+            name: n.title,
+        })),
+    };
+
+    const breadcrumb = breadcrumbJsonLd([
+        { name: "Ana səhifə", path: "/" },
+        { name: "Xəbərlər", path: "/news" },
+    ]);
+
+    return (
+        <>
+            <Script
+                id="ld-news-itemlist"
+                type="application/ld+json"
+                strategy="beforeInteractive"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+            />
+            <Script
+                id="ld-news-breadcrumb"
+                type="application/ld+json"
+                strategy="beforeInteractive"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+            />
+            {children}
+        </>
+    );
 }
+
+export const revalidate = 600;

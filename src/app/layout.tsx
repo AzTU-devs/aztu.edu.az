@@ -74,11 +74,6 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "/",
-    languages: {
-      "az-AZ": "/az",
-      "en-US": "/en",
-      "x-default": "/az",
-    },
   },
   openGraph: {
     type: "website",
@@ -184,15 +179,9 @@ const websiteJsonLd = {
   alternateName: SITE_NAME_EN,
   publisher: { "@id": `${SITE_URL}/#organization` },
   inLanguage: ["az-AZ", "en-US"],
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${SITE_URL}/az/search?q={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
-  },
 };
+
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://api-aztu.karamshukurlu.site";
 
 export default function RootLayout({
   children,
@@ -201,6 +190,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="az" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href={API_BASE} crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href={API_BASE} />
+        <link rel="alternate" type="application/rss+xml" title="AzTU Xəbərləri" href="/feed.xml" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
       >

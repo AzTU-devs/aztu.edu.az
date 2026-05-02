@@ -1,35 +1,16 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { parseNewsSlug } from "@/util/slugify";
-import { buildMetadata, breadcrumbJsonLd, stripHtml, SITE_URL, SITE_NAME_AZ } from "@/util/seo";
-
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://api-aztu.karamshukurlu.site";
-
-interface NewsDetail {
-    news_id: number;
-    az_title: string;
-    az_html_content: string;
-    en_title: string;
-    en_html_content: string;
-    category_id: string;
-    cover_image: string;
-    gallery_images?: { image: string }[];
-}
-
-async function fetchNews(id: number, lang: "az" | "en"): Promise<NewsDetail | null> {
-    try {
-        const res = await fetch(`${API_BASE}/api/news/${id}?lang=${lang}`, {
-            headers: { "Accept-Language": lang },
-            next: { revalidate: 600 },
-        });
-        if (!res.ok) return null;
-        const data = await res.json();
-        if (data?.status_code !== 200) return null;
-        return data.news as NewsDetail;
-    } catch {
-        return null;
-    }
-}
+import {
+    buildMetadata,
+    breadcrumbJsonLd,
+    stripHtml,
+    SITE_URL,
+    SITE_NAME_AZ,
+    PUBLISHER_JSONLD,
+    absUrl,
+} from "@/util/seo";
+import { fetchNewsDetail, fetchNewsList } from "@/util/fetchers";
 
 export async function generateMetadata({
     params,
@@ -46,7 +27,7 @@ export async function generateMetadata({
             noindex: true,
         });
     }
-    const [az, en] = await Promise.all([fetchNews(id, "az"), fetchNews(id, "en")]);
+    const [az, en] = await Promise.all([fetchNewsDetail(id, "az"), fetchNewsDetail(id, "en")]);
     const detail = az ?? en;
     if (!detail) {
         return buildMetadata({
@@ -62,23 +43,30 @@ export async function generateMetadata({
     const descAz = stripHtml(detail.az_html_content || detail.en_html_content);
     const descEn = stripHtml(detail.en_html_content || detail.az_html_content);
 
+    // Dates may not be on the detail endpoint — fall back to the list endpoint which has created_at.
+    const list = await fetchNewsList({ start: 0, end: 200, lang: "az" });
+    const listEntry = list.find((n) => n.news_id === id);
+    const publishedTime = detail.published_date ?? detail.created_at ?? listEntry?.created_at;
+    const modifiedTime = detail.updated_at ?? publishedTime;
+
     return buildMetadata({
         titleAz,
         titleEn,
         descriptionAz: descAz,
         descriptionEn: descEn,
         pathAz: `/news/${slug}`,
-        pathEn: `/news/${slug}`,
-        image: detail.cover_image,
+        image: absUrl(detail.cover_image),
         type: "article",
         section: detail.category_id,
+        publishedTime,
+        modifiedTime,
         keywords: [
             "AzTU xəbər",
             "AzTU news",
             detail.category_id,
             titleAz,
             "Azərbaycan Texniki Universiteti",
-        ],
+        ].filter(Boolean),
     });
 }
 
@@ -91,33 +79,48 @@ export default async function NewsDetailLayout({
 }) {
     const { id: slug } = await params;
     const id = parseNewsSlug(slug);
-    const detail = Number.isFinite(id) ? await fetchNews(id, "az") : null;
+    const detail = Number.isFinite(id) ? await fetchNewsDetail(id, "az") : null;
+
+    let datePublished: string | undefined;
+    let dateModified: string | undefined;
+    if (detail) {
+        const list = await fetchNewsList({ start: 0, end: 200, lang: "az" });
+        const listEntry = list.find((n) => n.news_id === id);
+        datePublished = detail.published_date ?? detail.created_at ?? listEntry?.created_at;
+        dateModified = detail.updated_at ?? datePublished;
+    }
 
     const articleJsonLd = detail
         ? {
               "@context": "https://schema.org",
               "@type": "NewsArticle",
-              "@id": `${SITE_URL}/az/news/${slug}#article`,
+              "@id": `${SITE_URL}/news/${slug}#article`,
               headline: detail.az_title,
               alternativeHeadline: detail.en_title,
               description: stripHtml(detail.az_html_content),
               image: [
-                  detail.cover_image,
-                  ...(detail.gallery_images?.map((g) => g.image) ?? []),
+                  absUrl(detail.cover_image),
+                  ...(detail.gallery_images?.map((g) => absUrl(g.image)) ?? []),
               ].filter(Boolean),
-              mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/az/news/${slug}` },
+              mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/news/${slug}` },
               articleSection: detail.category_id,
               inLanguage: "az-AZ",
               isAccessibleForFree: true,
-              publisher: { "@id": `${SITE_URL}/#organization` },
-              author: { "@id": `${SITE_URL}/#organization` },
+              datePublished,
+              dateModified,
+              author: {
+                  "@type": "Organization",
+                  name: SITE_NAME_AZ,
+                  url: SITE_URL,
+              },
+              publisher: PUBLISHER_JSONLD,
           }
         : null;
 
     const breadcrumb = breadcrumbJsonLd([
-        { name: "Ana səhifə", path: "/az" },
-        { name: "Xəbərlər", path: "/az/news" },
-        { name: detail?.az_title ?? "Xəbər", path: `/az/news/${slug}` },
+        { name: "Ana səhifə", path: "/" },
+        { name: "Xəbərlər", path: "/news" },
+        { name: detail?.az_title ?? "Xəbər", path: `/news/${slug}` },
     ]);
 
     return (

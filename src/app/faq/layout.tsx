@@ -17,7 +17,7 @@ export const metadata: Metadata = buildMetadata({
 const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "@id": `${SITE_URL}/az/faq#faq`,
+    "@id": `${SITE_URL}/faq#faq`,
     mainEntity: [
         {
             "@type": "Question",

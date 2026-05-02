@@ -94,17 +94,17 @@ export default async function FacultyIdLayout({
     const departmentJsonLd = {
         "@context": "https://schema.org",
         "@type": "EducationalOrganization",
-        "@id": `${SITE_URL}/az/faculties/${facultyId}#faculty`,
+        "@id": `${SITE_URL}/faculties/${facultyId}#faculty`,
         name,
-        url: `${SITE_URL}/az/faculties/${facultyId}`,
+        url: `${SITE_URL}/faculties/${facultyId}`,
         description,
         parentOrganization: { "@id": `${SITE_URL}/#organization` },
     };
 
     const breadcrumb = breadcrumbJsonLd([
-        { name: "Ana səhifə", path: "/az" },
-        { name: "Fakültələr", path: "/az/faculties" },
-        { name, path: `/az/faculties/${facultyId}` },
+        { name: "Ana səhifə", path: "/" },
+        { name: "Fakültələr", path: "/faculties" },
+        { name, path: `/faculties/${facultyId}` },
     ]);
 
     return (

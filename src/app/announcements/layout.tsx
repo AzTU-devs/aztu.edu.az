@@ -1,26 +1,65 @@
 import type { Metadata } from "next";
+import Script from "next/script";
+import { buildMetadata, breadcrumbJsonLd, SITE_URL } from "@/util/seo";
+import { fetchAnnouncementList } from "@/util/fetchers";
 
-export const metadata: Metadata = {
-    title: "Elanlar | Announcements",
-    description:
-        "AzTU-nun rəsmi elanları — qəbul, müsabiqələr, tədris cədvəlləri, akademik və idari bildirişlər.",
-    keywords: ["AzTU elanlar", "AzTU announcements", "qəbul elanı", "müsabiqə elanı"],
-    alternates: {
-        canonical: "/az/announcements",
-        languages: {
-            "az-AZ": "/az/announcements",
-            "en-US": "/en/announcements",
-            "x-default": "/az/announcements",
-        },
-    },
-    openGraph: {
-        title: "Elanlar | AzTU",
-        description: "AzTU-nun rəsmi elanları.",
-        url: "/az/announcements",
-        type: "website",
-    },
-};
+export const metadata: Metadata = buildMetadata({
+    titleAz: "Elanlar",
+    titleEn: "Announcements",
+    descriptionAz:
+        "AzTU-nun rəsmi elanları — qəbul, müsabiqələr, tədris cədvəlləri, akademik və idari bildirişlər. Vəzifə müsabiqələri və universitet xəbərləri.",
+    descriptionEn:
+        "Official announcements from Azerbaijan Technical University — admissions, competitions, academic schedules, administrative notices and vacancies.",
+    pathAz: "/announcements",
+    keywords: [
+        "AzTU elanlar",
+        "AzTU announcements",
+        "qəbul elanı",
+        "müsabiqə elanı",
+        "vəzifə müsabiqəsi",
+        "AzTU vakansiya",
+        "universitet elanları",
+    ],
+});
 
-export default function AnnouncementsLayout({ children }: { children: React.ReactNode }) {
-    return <>{children}</>;
+export default async function AnnouncementsLayout({ children }: { children: React.ReactNode }) {
+    const items = await fetchAnnouncementList({ start: 0, end: 20, lang: "az" });
+
+    const itemListJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "AzTU Elanları",
+        numberOfItems: items.length,
+        itemListElement: items.map((a, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            url: `${SITE_URL}/announcements/${a.announcement_id ?? a.id}`,
+            name: a.title,
+        })),
+    };
+
+    const breadcrumb = breadcrumbJsonLd([
+        { name: "Ana səhifə", path: "/" },
+        { name: "Elanlar", path: "/announcements" },
+    ]);
+
+    return (
+        <>
+            <Script
+                id="ld-announcements-itemlist"
+                type="application/ld+json"
+                strategy="beforeInteractive"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+            />
+            <Script
+                id="ld-announcements-breadcrumb"
+                type="application/ld+json"
+                strategy="beforeInteractive"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+            />
+            {children}
+        </>
+    );
 }
+
+export const revalidate = 600;

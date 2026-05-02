@@ -12,7 +12,9 @@ export interface SeoInput {
     titleEn?: string;
     descriptionAz: string;
     descriptionEn?: string;
+    /** Canonical path used as the real URL (no locale prefix). Must start with `/`. */
     pathAz: string;
+    /** Optional alternate path. Currently unused (the site does not have separate localized URLs). Reserved for future `[lang]` migration. */
     pathEn?: string;
     keywords?: string[];
     image?: string;
@@ -24,6 +26,21 @@ export interface SeoInput {
     noindex?: boolean;
 }
 
+/**
+ * Resolve any image path to an absolute URL suitable for OG/Twitter/JSON-LD.
+ * - Already absolute (http/https) → returned as-is.
+ * - Site-relative (starts with `/`) → prepended with SITE_URL.
+ * - Bare path → prepended with API base.
+ * - Empty/null → falls back to default OG image on SITE_URL.
+ */
+export function absUrl(path: string | null | undefined): string {
+    if (!path) return `${SITE_URL}${DEFAULT_OG_IMAGE}`;
+    if (/^https?:\/\//i.test(path)) return path;
+    if (path.startsWith("/")) return `${SITE_URL}${path}`;
+    const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL ?? SITE_URL;
+    return `${apiBase.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
+}
+
 export function buildMetadata(input: SeoInput): Metadata {
     const {
         titleAz,
@@ -31,9 +48,8 @@ export function buildMetadata(input: SeoInput): Metadata {
         descriptionAz,
         descriptionEn,
         pathAz,
-        pathEn,
         keywords,
-        image = DEFAULT_OG_IMAGE,
+        image,
         type = "website",
         publishedTime,
         modifiedTime,
@@ -42,34 +58,28 @@ export function buildMetadata(input: SeoInput): Metadata {
         noindex,
     } = input;
 
-    const azPath = pathAz.startsWith("/") ? pathAz : `/${pathAz}`;
-    const enPath = (pathEn ?? pathAz).startsWith("/") ? (pathEn ?? pathAz) : `/${pathEn ?? pathAz}`;
-    const azCanonical = `/az${azPath === "/" ? "" : azPath}`;
-    const enCanonical = `/en${enPath === "/" ? "" : enPath}`;
+    const path = pathAz.startsWith("/") ? pathAz : `/${pathAz}`;
+    const canonical = path === "/" ? "/" : path;
+    const ogImage = absUrl(image);
 
     return {
         title: titleAz,
         description: descriptionAz,
         keywords,
         alternates: {
-            canonical: azCanonical,
-            languages: {
-                "az-AZ": azCanonical,
-                "en-US": enCanonical,
-                "x-default": azCanonical,
-            },
+            canonical,
         },
         openGraph: {
             type: type === "profile" ? "profile" : type,
             locale: "az_AZ",
             alternateLocale: ["en_US"],
-            url: azCanonical,
+            url: canonical,
             siteName: SITE_NAME_AZ,
             title: titleAz,
             description: descriptionAz,
             images: [
                 {
-                    url: image,
+                    url: ogImage,
                     width: 1200,
                     height: 630,
                     alt: titleAz,
@@ -88,7 +98,7 @@ export function buildMetadata(input: SeoInput): Metadata {
             card: "summary_large_image",
             title: titleEn ?? titleAz,
             description: descriptionEn ?? descriptionAz,
-            images: [image],
+            images: [ogImage],
         },
         robots: noindex
             ? { index: false, follow: false }
@@ -138,3 +148,18 @@ export function stripHtml(html: string, max = 160): string {
     if (text.length <= max) return text;
     return text.slice(0, max - 1).trimEnd() + "…";
 }
+
+/**
+ * Organization publisher block reused across article-type JSON-LD.
+ * Matches the @id from the root CollegeOrUniversity in app/layout.tsx.
+ */
+export const PUBLISHER_JSONLD = {
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
+    name: SITE_NAME_AZ,
+    url: SITE_URL,
+    logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo/aztu-logo-light.png`,
+    },
+} as const;

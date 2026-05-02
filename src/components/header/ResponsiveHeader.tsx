@@ -24,20 +24,10 @@ import { useTranslation } from "@/hooks/useTranslation";
 
 const drawerVariants: Variants = {
     closed: { x: "-100%" },
-    open: { 
+    open: {
         x: 0,
-        transition: { 
-            duration: 0.5, 
-            ease: [0.23, 1, 0.32, 1],
-            staggerChildren: 0.05,
-            delayChildren: 0.2
-        }
+        transition: { duration: 0.28, ease: [0.23, 1, 0.32, 1] }
     }
-};
-
-const itemVariants: Variants = {
-    closed: { opacity: 0, x: -20 },
-    open: { opacity: 1, x: 0 }
 };
 
 export default function ResponsiveHeader() {
@@ -50,8 +40,19 @@ export default function ResponsiveHeader() {
     const { lang } = useLanguage();
 
     useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 20);
-        window.addEventListener("scroll", handleScroll);
+        let ticking = false;
+        const handleScroll = () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                setScrolled((prev) => {
+                    const next = window.scrollY > 20;
+                    return prev === next ? prev : next;
+                });
+                ticking = false;
+            });
+        };
+        window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
@@ -138,8 +139,8 @@ export default function ResponsiveHeader() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="fixed inset-0 z-[60] bg-[#0b1330]/80 backdrop-blur-sm"
+                        transition={{ duration: 0.2 }}
+                        className="fixed inset-0 z-[60] bg-[#0b1330]/85"
                         onClick={() => setIsOpen(false)}
                     />
                 )}
@@ -155,12 +156,15 @@ export default function ResponsiveHeader() {
                         exit="closed"
                         className="fixed top-0 left-0 h-full w-[360px] max-w-[90vw] z-[70] bg-[#0b1330] shadow-[0_0_50px_rgba(0,0,0,0.5)] flex flex-col overflow-hidden border-r border-white/5"
                     >
-                        {/* DECORATIVE BACKGROUND */}
-                        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
-                            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(white 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }} />
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-[#ee7c7e]/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
-                            <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-500/10 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2" />
-                        </div>
+                        {/* Lightweight background — single pattern, no blur filters */}
+                        <div
+                            className="absolute inset-0 pointer-events-none opacity-20"
+                            aria-hidden
+                            style={{
+                                backgroundImage: 'radial-gradient(white 0.5px, transparent 0.5px)',
+                                backgroundSize: '24px 24px',
+                            }}
+                        />
 
                         {/* Drawer Header */}
                         <div className="relative z-10 flex items-center justify-between px-6 py-8 border-b border-white/5">
@@ -184,20 +188,18 @@ export default function ResponsiveHeader() {
                                     { icon: <SchoolIcon sx={{ fontSize: 24 }} />, label: t.common.alumni, color: "hover:bg-emerald-500/20 hover:border-emerald-500/30", href: "https://alumni.aztu.edu.az" },
                                     { icon: <ConnectedTvIcon sx={{ fontSize: 24 }} />, label: t.common.libraryAztu, color: "hover:bg-[#ee7c7e]/20 hover:border-[#ee7c7e]/30", href: "https://www.youtube.com/channel/UCu_PoZ-9DKNYs3hxuK9pW1Q" },
                                 ].map(({ icon, label, color, href }) => (
-                                    <motion.a
+                                    <a
                                         key={label}
                                         href={href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        variants={itemVariants}
-                                        whileTap={{ scale: 0.95 }}
-                                        className={`flex flex-col items-center justify-center gap-3 rounded-[1.5rem] p-4 text-white/60 bg-white/5 border border-white/5 transition-all duration-300 group ${color} hover:text-white`}
+                                        className={`flex flex-col items-center justify-center gap-3 rounded-[1.5rem] p-4 text-white/60 bg-white/5 border border-white/5 transition-all duration-300 group ${color} hover:text-white active:scale-95`}
                                     >
                                         <div className="group-hover:scale-110 group-hover:text-inherit transition-transform duration-300">
                                             {icon}
                                         </div>
                                         <span className="text-[10px] font-black uppercase tracking-widest line-clamp-1">{label}</span>
-                                    </motion.a>
+                                    </a>
                                 ))}
                             </div>
                             
@@ -227,48 +229,42 @@ export default function ResponsiveHeader() {
                                     
                                     if (header.direct_url) {
                                       return (
-                                        <motion.div key={header.id} variants={itemVariants}>
+                                        <div key={header.id}>
                                             <Link
                                                 href={header.direct_url}
                                                 onClick={() => setIsOpen(false)}
-                                                className="w-full flex items-center px-6 py-5 rounded-[1.5rem] text-[14px] font-black text-white/70 hover:text-white bg-white/5 hover:bg-white/10 border border-white/5 transition-all duration-300 uppercase tracking-[0.2em] shadow-xl group"
+                                                className="w-full flex items-center px-6 py-5 rounded-[1.5rem] text-[14px] font-black text-white/70 hover:text-white bg-white/5 hover:bg-white/10 border border-white/5 transition-colors uppercase tracking-[0.2em] shadow-xl group"
                                             >
                                                 <span className="flex-1">{header.title}</span>
                                                 <ChevronRightIcon sx={{ fontSize: 18 }} className="opacity-20 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                                             </Link>
-                                        </motion.div>
+                                        </div>
                                       );
                                     }
 
                                     return (
-                                        <motion.div key={header.id} variants={itemVariants} className="space-y-2">
+                                        <div key={header.id} className="space-y-2">
                                             <button
                                                 onClick={() => toggleHeader(header.id)}
-                                                className={`w-full flex items-center justify-between px-6 py-5 rounded-[1.5rem] text-left text-[14px] font-black uppercase tracking-[0.2em] transition-all duration-500 shadow-xl border ${
-                                                    isExpanded 
-                                                    ? "bg-[#ee7c7e] text-white border-[#ee7c7e] shadow-[#ee7c7e]/20" 
+                                                className={`w-full flex items-center justify-between px-6 py-5 rounded-[1.5rem] text-left text-[14px] font-black uppercase tracking-[0.2em] transition-colors duration-200 shadow-xl border ${
+                                                    isExpanded
+                                                    ? "bg-[#ee7c7e] text-white border-[#ee7c7e] shadow-[#ee7c7e]/20"
                                                     : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white border-white/5"
                                                 }`}
                                             >
                                                 {header.title}
-                                                <motion.span
-                                                    animate={{ rotate: isExpanded ? 180 : 0 }}
-                                                    transition={{ duration: 0.4, ease: "circOut" }}
+                                                <span
+                                                    className="inline-flex transition-transform duration-300 will-change-transform"
+                                                    style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)' }}
                                                 >
                                                     <ExpandMoreIcon sx={{ fontSize: 24 }} />
-                                                </motion.span>
+                                                </span>
                                             </button>
 
-                                            <AnimatePresence initial={false}>
-                                                {isExpanded && (
-                                                    <motion.div
-                                                        key="items"
-                                                        initial={{ height: 0, opacity: 0, y: -10 }}
-                                                        animate={{ height: "auto", opacity: 1, y: 0 }}
-                                                        exit={{ height: 0, opacity: 0, y: -10 }}
-                                                        transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                                                        className="overflow-hidden rounded-[1.5rem] bg-white/[0.03] border border-white/5 px-2 py-2 mb-4"
-                                                    >
+                                            {isExpanded && (
+                                                <div
+                                                    className="overflow-hidden rounded-[1.5rem] bg-white/[0.03] border border-white/5 px-2 py-2 mb-4"
+                                                >
                                                         {header.items.map((item) => (
                                                             <div key={item.id} className="py-1">
                                                                 {item.direct_url ? (
@@ -298,10 +294,9 @@ export default function ResponsiveHeader() {
                                                                 ))}
                                                             </div>
                                                         ))}
-                                                    </motion.div>
-                                                )}
-                                            </AnimatePresence>
-                                        </motion.div>
+                                                </div>
+                                            )}
+                                        </div>
                                     );
                                 })}
                             </div>

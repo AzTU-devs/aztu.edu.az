@@ -1,33 +1,15 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { buildMetadata, breadcrumbJsonLd, stripHtml, SITE_URL } from "@/util/seo";
-
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://api-aztu.karamshukurlu.site";
-
-interface AnnouncementDetail {
-    announcement_id: number;
-    title: string;
-    html_content: string;
-    image: string | null;
-    published_date?: string;
-    created_at?: string;
-    is_active: boolean;
-}
-
-async function fetchAnnouncement(id: string, lang: "az" | "en"): Promise<AnnouncementDetail | null> {
-    try {
-        const res = await fetch(`${API_BASE}/api/announcement/${id}?lang=${lang}`, {
-            headers: { "Accept-Language": lang },
-            next: { revalidate: 600 },
-        });
-        if (!res.ok) return null;
-        const data = await res.json();
-        if (data?.status_code !== 200) return null;
-        return data.announcement as AnnouncementDetail;
-    } catch {
-        return null;
-    }
-}
+import {
+    buildMetadata,
+    breadcrumbJsonLd,
+    stripHtml,
+    SITE_URL,
+    SITE_NAME_AZ,
+    PUBLISHER_JSONLD,
+    absUrl,
+} from "@/util/seo";
+import { fetchAnnouncementDetail, fetchAnnouncementList } from "@/util/fetchers";
 
 export async function generateMetadata({
     params,
@@ -35,7 +17,10 @@ export async function generateMetadata({
     params: Promise<{ id: string }>;
 }): Promise<Metadata> {
     const { id } = await params;
-    const [az, en] = await Promise.all([fetchAnnouncement(id, "az"), fetchAnnouncement(id, "en")]);
+    const [az, en] = await Promise.all([
+        fetchAnnouncementDetail(id, "az"),
+        fetchAnnouncementDetail(id, "en"),
+    ]);
     const detail = az ?? en;
     if (!detail) {
         return buildMetadata({
@@ -51,22 +36,33 @@ export async function generateMetadata({
     const descAz = stripHtml(az?.html_content ?? detail.html_content);
     const descEn = stripHtml(en?.html_content ?? detail.html_content);
 
+    // Pull dates from list endpoint if detail endpoint omits them
+    const numericId = parseInt(id, 10);
+    let publishedTime = detail.published_date ?? detail.created_at;
+    if (!publishedTime && Number.isFinite(numericId)) {
+        const list = await fetchAnnouncementList({ start: 0, end: 200, lang: "az" });
+        const entry = list.find((a) => (a.announcement_id ?? a.id) === numericId);
+        publishedTime = entry?.published_date ?? entry?.created_at;
+    }
+    const modifiedTime = detail.updated_at ?? publishedTime;
+
     return buildMetadata({
         titleAz,
         titleEn,
         descriptionAz: descAz,
         descriptionEn: descEn,
         pathAz: `/announcements/${id}`,
-        pathEn: `/announcements/${id}`,
-        image: detail.image || undefined,
+        image: absUrl(detail.image),
         type: "article",
         section: "Announcements",
+        publishedTime,
+        modifiedTime,
         keywords: [
             "AzTU elan",
             "AzTU announcement",
             titleAz,
             "Azərbaycan Texniki Universiteti",
-        ],
+        ].filter(Boolean),
     });
 }
 
@@ -78,30 +74,47 @@ export default async function AnnouncementDetailLayout({
     params: Promise<{ id: string }>;
 }) {
     const { id } = await params;
-    const detail = await fetchAnnouncement(id, "az");
+    const detail = await fetchAnnouncementDetail(id, "az");
+
+    let datePublished: string | undefined;
+    let dateModified: string | undefined;
+    if (detail) {
+        datePublished = detail.published_date ?? detail.created_at;
+        if (!datePublished) {
+            const numericId = parseInt(id, 10);
+            const list = await fetchAnnouncementList({ start: 0, end: 200, lang: "az" });
+            const entry = list.find((a) => (a.announcement_id ?? a.id) === numericId);
+            datePublished = entry?.published_date ?? entry?.created_at;
+        }
+        dateModified = detail.updated_at ?? datePublished;
+    }
 
     const announcementJsonLd = detail
         ? {
               "@context": "https://schema.org",
               "@type": "Article",
-              "@id": `${SITE_URL}/az/announcements/${id}#announcement`,
+              "@id": `${SITE_URL}/announcements/${id}#announcement`,
               headline: detail.title,
               description: stripHtml(detail.html_content),
-              ...(detail.image ? { image: [detail.image] } : {}),
-              datePublished: detail.published_date ?? detail.created_at,
-              dateModified: detail.published_date ?? detail.created_at,
-              mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/az/announcements/${id}` },
+              ...(detail.image ? { image: [absUrl(detail.image)] } : { image: [absUrl(null)] }),
+              datePublished,
+              dateModified,
+              mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/announcements/${id}` },
               inLanguage: "az-AZ",
               isAccessibleForFree: true,
-              publisher: { "@id": `${SITE_URL}/#organization` },
-              author: { "@id": `${SITE_URL}/#organization` },
+              author: {
+                  "@type": "Organization",
+                  name: SITE_NAME_AZ,
+                  url: SITE_URL,
+              },
+              publisher: PUBLISHER_JSONLD,
           }
         : null;
 
     const breadcrumb = breadcrumbJsonLd([
-        { name: "Ana səhifə", path: "/az" },
-        { name: "Elanlar", path: "/az/announcements" },
-        { name: detail?.title ?? "Elan", path: `/az/announcements/${id}` },
+        { name: "Ana səhifə", path: "/" },
+        { name: "Elanlar", path: "/announcements" },
+        { name: detail?.title ?? "Elan", path: `/announcements/${id}` },
     ]);
 
     return (
