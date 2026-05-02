@@ -425,11 +425,16 @@ export function middleware(request: NextRequest) {
             else if (segments_rest[2] === "scientific-board" || segments_rest[2] === "elmi-sura") segments_rest = ["about", "scientific-board"];
             else if (segments_rest[2] === "former-rectors" || segments_rest[2] === "sabiq-rektorlarimiz") segments_rest = ["about", "former-rectors"];
         } else if (segments_rest[1] === "partner-universities-and-related-institutes" || segments_rest[1] === "terefdas-universitet-ve-elaqeli-institutlar") {
-            if (segments_rest[2] === "tau" || segments_rest[2] === "turk-azerbaycan-universiteti-tau") segments_rest = ["about", "tau"];
-            else if (segments_rest[2] === "iit" || segments_rest[2] === "informasiya-texnalogiyalari-institutu") segments_rest = ["about", "iit"];
-            else if (segments_rest[2] === "ics" || segments_rest[2] === "idareetme-sistemleri-insitutu") segments_rest = ["about", "ics"];
-            else if (segments_rest[2] === "baku-technical-colleges" || segments_rest[2] === "baki-texniki-kollecleri") segments_rest = ["about", "baku-technical-colleges"];
-            else if (segments_rest[2] === "baku-state-colleges" || segments_rest[2] === "baki-rabite-ve-neqliyayt-dovlet-kollecleri") segments_rest = ["about", "baku-state-colleges"];
+            const tauSlugs = new Set(["tau", "turk-azerbaycan-universiteti-tau", "turkish-azerbaijani-university-tau", "turkiye-azerbaycan-universiteti-tau"]);
+            const iitSlugs = new Set(["iit", "informasiya-texnalogiyalari-institutu", "informasiya-texnologiyalari-institutu", "institute-of-information-technologies", "institute-of-information-technology"]);
+            const icsSlugs = new Set(["ics", "idareetme-sistemleri-insitutu", "idareetme-sistemleri-institutu", "management-systems-institute", "institute-of-control-systems"]);
+            const techCollegeSlugs = new Set(["baku-technical-colleges", "baki-texniki-kollecleri", "baku-technical-college", "baki-texniki-kolleci"]);
+            const stateCollegeSlugs = new Set(["baku-state-colleges", "baki-rabite-ve-neqliyayt-dovlet-kollecleri", "baki-rabite-ve-neqliyyat-dovlet-kollecleri", "baku-state-college-of-communication-and-transport", "baki-rabite-ve-neqliyyat-dovlet-kolleci"]);
+            if (tauSlugs.has(segments_rest[2])) segments_rest = ["about", "tau"];
+            else if (iitSlugs.has(segments_rest[2])) segments_rest = ["about", "iit"];
+            else if (icsSlugs.has(segments_rest[2])) segments_rest = ["about", "ics"];
+            else if (techCollegeSlugs.has(segments_rest[2])) segments_rest = ["about", "baku-technical-colleges"];
+            else if (stateCollegeSlugs.has(segments_rest[2])) segments_rest = ["about", "baku-state-colleges"];
         }
     } else if (segments_rest[0] === "academic" || segments_rest[0] === "akademik") {
         if ((segments_rest[1] === "education-and-programs" || segments_rest[1] === "tehsil-ve-proqramlar") &&
