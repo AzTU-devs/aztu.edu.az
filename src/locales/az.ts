@@ -739,14 +739,14 @@ const az = {
           },
           {
             slug: "fariz-mammadov",
-            name: "Dr. Fəriz Məmmədov",
+            name: "Dr. Fariz Məmmədov",
             degree: "İqtisad elmləri üzrə fəlsəfə doktoru",
             title: "Beynəlxalq əlaqələr üzrə prorektor",
             email: "fariz.mammadov@aztu.edu.az",
             phone: "+994 12 539 08 57",
             photoUrl: `${VR_MEDIA}/fariz_mammadov.jpeg`,
             biography: [
-              "Dr. Fəriz Məmmədov ali təhsil idarəçiliyi, enerji siyasəti və strateji inkişaf sahəsində geniş təcrübəyə malik tanınmış mütəxəssisdir. O, hazırda Azərbaycan Texniki Universitetində Beynəlxalq əlaqələr üzrə prorektor vəzifəsində çalışır və universitetin beynəlmiləlləşmə strategiyasına rəhbərlik edir. Bu çərçivədə o, xarici ali təhsil müəssisələri ilə strateji tərəfdaşlıqların qurulması, beynəlxalq akademik şəbəkələrdə iştirak, ikili diplom proqramlarının inkişafı, eləcə də beynəlxalq tədris, tədqiqat və akademik mobillik layihələrinin həyata keçirilməsini təmin edir. O, eyni zamanda AzTU-nun nəzdində fəaliyyət göstərən MBA proqramının rəhbəridir.",
+              "Dr. Fariz Məmmədov ali təhsil idarəçiliyi, enerji siyasəti və strateji inkişaf sahəsində geniş təcrübəyə malik tanınmış mütəxəssisdir. O, hazırda Azərbaycan Texniki Universitetində Beynəlxalq əlaqələr üzrə prorektor vəzifəsində çalışır və universitetin beynəlmiləlləşmə strategiyasına rəhbərlik edir. Bu çərçivədə o, xarici ali təhsil müəssisələri ilə strateji tərəfdaşlıqların qurulması, beynəlxalq akademik şəbəkələrdə iştirak, ikili diplom proqramlarının inkişafı, eləcə də beynəlxalq tədris, tədqiqat və akademik mobillik layihələrinin həyata keçirilməsini təmin edir. O, eyni zamanda AzTU-nun nəzdində fəaliyyət göstərən MBA proqramının rəhbəridir.",
               "Dr. Məmmədov enerji siyasəti, strateji planlaşdırma, iqtisadi təhlil və ali təhsil idarəçiliyi istiqamətlərində çoxşaxəli peşəkar təcrübəyə malikdir. O, əvvəlki fəaliyyətində Azərbaycan Respublikası İqtisadiyyat Nazirliyinin İqtisadi İslahatlar Elmi-Tədqiqat İnstitutunda tədqiqat fəaliyyəti ilə məşğul olmuş, həmçinin “Azərenerji” ASC-də rəhbər vəzifələrdə çalışmışdır.",
               "O, Dünya Bankı, Asiya İnkişaf Bankı, Avropa İttifaqı və BMT-nin İnkişaf Proqramı kimi nüfuzlu beynəlxalq təşkilatlarla əməkdaşlıq çərçivəsində bir sıra mühüm layihələrdə enerji eksperti, milli məsləhətçi, iqtisadçı və layihə əlaqələndiricisi kimi iştirak etmişdir. Bu fəaliyyət çərçivəsində Azərbaycanın enerji siyasətinin inkişafı, enerji sektorunun modernləşdirilməsi, iqlim fəaliyyət planları və strateji islahat təşəbbüslərinə mühüm töhfələr vermişdir.",
               "Dr. Məmmədov iqtisad elmləri üzrə fəlsəfə doktorudur (ekonometrika və iqtisadi statistika). O, ADA Universiteti və Maastricht İdarəetmə Məktəbinin (Niderland) birgə proqramı üzrə Biznesin təşkili və idarə olunması üzrə magistr dərəcəsinə, həmçinin Bakı Dövlət Universitetində Siyasi elmlər üzrə magistr dərəcəsinə malikdir.",
