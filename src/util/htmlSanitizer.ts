@@ -26,14 +26,20 @@ function decodeEntities(s: string): string {
 
 export function stripHtml(html?: string, maxLength?: number): string {
   if (!html) return "";
-  const text = decodeEntities(
-    html
-      .replace(/<style[\s\S]*?<\/style>/gi, " ")
-      .replace(/<script[\s\S]*?<\/script>/gi, " ")
-      .replace(/<\/(p|div|br|li|h[1-6]|tr)\s*>/gi, " ")
-      .replace(/<br\s*\/?>(\s*)/gi, " ")
-      .replace(/<[^>]+>/g, " ")
-  )
+
+  let working = html;
+  for (let i = 0; i < 3; i++) {
+    const decoded = decodeEntities(working);
+    if (decoded === working) break;
+    working = decoded;
+  }
+
+  const text = working
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<\/(p|div|br|li|h[1-6]|tr)\s*>/gi, " ")
+    .replace(/<br\s*\/?>(\s*)/gi, " ")
+    .replace(/<[^>]+>/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 

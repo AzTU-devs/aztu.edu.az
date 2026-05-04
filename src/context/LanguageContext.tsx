@@ -317,6 +317,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
               segments[2] = "vision-mission";
               if (segments[3] === "vizyon") segments[3] = "vision";
               if (segments[3] === "missiya") segments[3] = "mission";
+              if (segments[3] === "vizyon-missiya-meqsed") segments[3] = "vision-mission-goal";
               if (segments[3] === "aztu-nun-tarixi") segments[3] = "history-of-aztu";
               if (segments[3] === "75-illik-yubiley-filmi") segments[3] = "75th-anniversary-film";
           } else {
@@ -324,6 +325,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
               segments[2] = "vizyon-ve-missiya";
               if (segments[3] === "vision") segments[3] = "vizyon";
               if (segments[3] === "mission") segments[3] = "missiya";
+              if (segments[3] === "vision-mission-goal") segments[3] = "vizyon-missiya-meqsed";
               if (segments[3] === "history-of-aztu") segments[3] = "aztu-nun-tarixi";
               if (segments[3] === "75th-anniversary-film") segments[3] = "75-illik-yubiley-filmi";
           }

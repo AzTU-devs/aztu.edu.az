@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
+import { API_BASE_URL } from "@/util/apiClient";
 
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import EmailIcon from "@mui/icons-material/Email";
@@ -25,6 +26,14 @@ interface StaffMember {
     title: string;
     email: string;
     phone: string;
+    image?: string;
+}
+
+function buildImageUrl(path?: string): string | undefined {
+    if (!path) return undefined;
+    if (path.startsWith("http://") || path.startsWith("https://")) return path;
+    const base = (API_BASE_URL ?? "").replace(/\/$/, "");
+    return `${base}/${path.replace(/^\//, "")}`;
 }
 
 export default function RectorsOfficePage() {
@@ -297,9 +306,18 @@ export default function RectorsOfficePage() {
                                 className="group relative bg-white/85 dark:bg-slate-900/70 backdrop-blur-xl rounded-[2rem] border border-[#1a2355]/15 dark:border-white/10 hover:border-[#ee7c7e]/40 hover:shadow-2xl hover:shadow-[#1a2355]/10 transition-all duration-500 overflow-hidden flex flex-col sm:flex-row"
                             >
                                 {/* Left: photo */}
-                                <div className="relative w-full sm:w-[40%] aspect-[4/5] sm:aspect-auto bg-gradient-to-br from-[#1a2355] to-[#0f172a] flex items-center justify-center shrink-0">
+                                <div className="relative w-full sm:w-[40%] aspect-[4/5] sm:aspect-auto bg-gradient-to-br from-[#1a2355] to-[#0f172a] flex items-center justify-center shrink-0 overflow-hidden">
+                                    {member.image ? (
+                                        <img
+                                            src={buildImageUrl(member.image)}
+                                            alt={member.name}
+                                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                        />
+                                    ) : (
+                                        <PersonIcon sx={{ fontSize: 96, color: "white", opacity: 0.25 }} />
+                                    )}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/70 via-transparent to-transparent" />
                                     <div className="absolute inset-0 bg-[#ee7c7e]/0 group-hover:bg-[#ee7c7e]/10 transition-colors duration-500" />
-                                    <PersonIcon sx={{ fontSize: 96, color: "white", opacity: 0.25 }} />
                                     <div className="absolute bottom-4 left-4 right-4">
                                         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[9px] font-black uppercase tracking-widest text-white">
                                             <div className="w-1.5 h-1.5 rounded-full bg-[#ee7c7e] animate-pulse" />

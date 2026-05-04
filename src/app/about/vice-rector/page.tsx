@@ -97,18 +97,20 @@ export default function ViceRectorPage() {
 
                                     {/* Avatar */}
                                     <div className="relative z-10 flex items-center justify-center mb-5">
-                                        <div className="relative w-32 h-32 rounded-full bg-gradient-to-br from-[#1a2355] to-[#0f172a] border-4 border-white dark:border-slate-800 shadow-xl flex items-center justify-center overflow-hidden group-hover:border-[#ee7c7e]/40 transition-colors duration-500">
-                                            {vr.photoUrl ? (
-                                                // eslint-disable-next-line @next/next/no-img-element
-                                                <img
-                                                    src={vr.photoUrl}
-                                                    alt={vr.name}
-                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                                />
-                                            ) : (
-                                                <PersonIcon sx={{ fontSize: 64, color: "white", opacity: 0.4 }} />
-                                            )}
-                                            <div className="absolute -bottom-1 -right-1 w-9 h-9 rounded-full bg-[#ee7c7e] border-4 border-white dark:border-slate-800 flex items-center justify-center shadow-lg">
+                                        <div className="relative w-32 h-32">
+                                            <div className="w-full h-full rounded-full bg-gradient-to-br from-[#1a2355] to-[#0f172a] border-4 border-white dark:border-slate-800 shadow-xl flex items-center justify-center overflow-hidden group-hover:border-[#ee7c7e]/40 transition-colors duration-500">
+                                                {vr.photoUrl ? (
+                                                    // eslint-disable-next-line @next/next/no-img-element
+                                                    <img
+                                                        src={vr.photoUrl}
+                                                        alt={vr.name}
+                                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                                    />
+                                                ) : (
+                                                    <PersonIcon sx={{ fontSize: 64, color: "white", opacity: 0.4 }} />
+                                                )}
+                                            </div>
+                                            <div className="absolute bottom-0 right-0 w-9 h-9 rounded-full bg-[#ee7c7e] border-4 border-white dark:border-slate-800 flex items-center justify-center shadow-lg z-10">
                                                 <SchoolIcon sx={{ fontSize: 14, color: "white" }} />
                                             </div>
                                         </div>

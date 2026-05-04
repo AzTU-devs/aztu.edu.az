@@ -50,7 +50,7 @@ export const getDepartments = async (params: { start?: number; end?: number; lan
     }
     return "ERROR";
   } catch (error) {
-    console.error("Error fetching departments:", error);
+    console.warn("Error fetching departments:", error);
     return "ERROR";
   }
 };
@@ -136,7 +136,7 @@ export const getDepartmentByCode = async (departmentCode: string, lang: Lang = "
     }
     return null;
   } catch (error) {
-    console.error(`Error fetching department ${departmentCode}:`, error);
+    console.warn(`Error fetching department ${departmentCode}:`, error);
     return null;
   }
 };

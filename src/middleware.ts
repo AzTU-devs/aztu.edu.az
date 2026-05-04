@@ -111,8 +111,8 @@ const SLUG_MAP: Record<string, string> = {
     // About sub-slugs
     "vision-mission": "vizyon-ve-missiya",
     "vizyon-ve-missiya": "vision-mission",
-    "vizion-mission-goal": "vizyon-missiya-meqsed",
-    "vizyon-missiya-meqsed": "vizion-mission-goal",
+    "vision-mission-goal": "vizyon-missiya-meqsed",
+    "vizyon-missiya-meqsed": "vision-mission-goal",
     "history-of-aztu": "aztu-nun-tarixi",
     "aztu-nun-tarixi": "history-of-aztu",
     "75th-anniversary-film": "75-illik-yubiley-filmi",
@@ -278,8 +278,9 @@ const EN_SLUGS = new Set([
     "research-activity", "performance-and-evaluation", "conferences-and-events", "publications-and-broadcasting",
     "open-access-policy", "scientific-journals", "machine-science", "energy-sustainability-risks-and-decision-making",
     "internal-grant-programs", "seminars-and-trainings", "research-projects", "intellectual-property-and-patents",
-    "research-institutes", "research-laboratories", "vision-mission", "vizion-mission-goal", "history-of-aztu",
+    "research-institutes", "research-laboratories", "vision-mission", "history-of-aztu",
     "75th-anniversary-film", "leadership-and-management", "rector", "rectors-office", "vice-rector", "vice-rectors", "scientific-board",
+    "vision-mission-goal",
     "partner-universities-and-related-institutes", "tau", "iit", "ics", "baku-technical-colleges", "baku-state-colleges",
     "structural-units", "aztus-honors", "honorary-doctors", "our-heroes",
     "former-rectors", "rankings", "campus-life", "aztu-polyclinic", "clubs", "sports",
@@ -405,7 +406,7 @@ export function middleware(request: NextRequest) {
     } else if (segments_rest[0] === "about" || segments_rest[0] === "haqqimizda") {
         segments_rest[0] = "haqqimizda";
         if (segments_rest[1] === "vision-mission" || segments_rest[1] === "vizyon-ve-missiya") {
-            if (segments_rest[2] === "vizion-mission-goal" || segments_rest[2] === "vizyon-missiya-meqsed") {
+            if (segments_rest[2] === "vision-mission-goal" || segments_rest[2] === "vizyon-missiya-meqsed") {
                 segments_rest = ["about", "vision-mission-goal"]; // Use internal app path
             } else if (segments_rest[2] === "vision" || segments_rest[2] === "vizyon") {
                 segments_rest = ["about", "vision"];

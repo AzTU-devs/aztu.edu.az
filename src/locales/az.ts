@@ -684,13 +684,15 @@ const az = {
             name: "Nicat Əhmədov",
             email: "nijat.ahmadov@aztu.edu.az",
             phone: "+994 12 538 32 80",
-            title: "Rektorun köməkçisi"
+            title: "Rektorun köməkçisi",
+            image: "/media/prod/rectors_office/nicat_ahmedov.jpeg"
           },
           {
             name: "Mehriban Əliyeva",
             email: "mehriban.aliyeva@aztu.edu.az",
             phone: "+994 12 537 01 12",
-            title: "Rektorun referenti"
+            title: "Rektorun referenti",
+            image: "/media/prod/rectors_office/mehriban_aliyeva.jpeg"
           }
         ]
       },

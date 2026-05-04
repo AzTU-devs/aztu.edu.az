@@ -476,6 +476,24 @@ const en = {
         ],
       },
 
+      visionMissionGoal: {
+        eyebrow: "Our Identity",
+        title: "Vision, Mission & Goal",
+        subtitle: "The core principles that define AzTU.",
+        breadcrumb: "Vision, Mission & Goal",
+        missionTitle: "Mission",
+        missionText: "To enhance the educational and research potential in engineering sciences and smart technologies.",
+        visionTitle: "Vision",
+        visionText: "To become the regional leader in the engineering of the future through innovative approaches.",
+        goalTitle: "Goal",
+        goalText: "To prepare highly qualified specialists by introducing technological innovations on digital platforms.",
+        related: [
+          { title: "Strategic Plan", href: "/about/vision-mission/strategic-plan" },
+          { title: "History of AzTU", href: "/about/vision-mission/history-of-aztu" },
+          { title: "Anniversary Film", href: "/about/vision-mission/75th-anniversary-film" },
+        ],
+      },
+
       strategicPlan: {
         eyebrow: "Vision 2030",
         title: "Strategic Development Plan",
@@ -610,8 +628,8 @@ const en = {
         subtitle: "The administrative staff of the Rectorate.",
         breadcrumb: "Rectorate",
         staff: [
-          { name: "Nijat Ahmadov", email: "nijat.ahmadov@aztu.edu.az", phone: "+994 12 538 32 80", title: "Assistant to the Rector" },
-          { name: "Mehriban Aliyeva", email: "mehriban.aliyeva@aztu.edu.az", phone: "+994 12 537 01 12", title: "Rector’s Secretary" }
+          { name: "Nijat Ahmadov", email: "nijat.ahmadov@aztu.edu.az", phone: "+994 12 538 32 80", title: "Assistant to the Rector", image: "/media/prod/rectors_office/nicat_ahmedov.jpeg" },
+          { name: "Mehriban Aliyeva", email: "mehriban.aliyeva@aztu.edu.az", phone: "+994 12 537 01 12", title: "Rector’s Secretary", image: "/media/prod/rectors_office/mehriban_aliyeva.jpeg" }
         ]
       },
 
@@ -725,7 +743,32 @@ const en = {
           members: [
             ["1", "Telman Akhundov", "Head of 'Akhundoff Network', Chairman"],
             ["2", "Vilayat Valiyev", "Rector of AzTU"],
-          ]
+            ["3", "Rashad Aliyev", "Vice-Rector of AzTU"],
+            ["4", "Osman Gunduz", "Chairman of the Public Council"],
+            ["5", "Edgar Abdullayev", "CEO of 'United Payment'"],
+            ["6", "Javharat Dinavasova", "Head of the Protocol Sector"],
+            ["7", "Manafaddin Namazov", "Institute Director"],
+            ["8", "Aynura Ismayilova", "YTI Director"],
+            ["9", "Nadir Aghayev", "Head of Department"],
+            ["10", "Vagif Gasimov", "Head of Department"],
+            ["11", "Arzu Suleymanov", "Head of Department"],
+            ["12", "Yadullah Babayev", "TTO Director"],
+            ["13", "Javid Abbasli", "Lecturer"],
+            ["14", "Rauf Hasanov", "Head of 'Bestcomp'"],
+            ["15", "Rasim Bakhshi", "Head of 'Lenovo' Azerbaijan Representative Office"],
+            ["16", "Emin Akhundov", "IT Expert"],
+            ["17", "Ulvi Aslanov", "Head of 'Code Academy'"],
+            ["18", "Ramil Maharramov", "Advisor"],
+            ["19", "Elshad Yusifli", "IT Expert"],
+            ["20", "Ruslan Talibov", "Chairman of the Fintech Association"],
+          ],
+          secretariat: {
+            title: "Secretariat",
+            members: [
+              ["1", "Chingiz Hajizade", "Lecturer"],
+              ["2", "Chingiz Alakbarov", "Master's Student"]
+            ]
+          }
         },
         related: [
           { title: "Rector", href: "/about/rector" },
