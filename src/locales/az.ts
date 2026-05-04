@@ -589,21 +589,27 @@ const az = {
         messageTitle: "Rektorun Müraciəti",
         message: [
           "Hörmətli həmkarlar, tələbələr, məzunlar və tərəfdaşlar,",
-          "Azərbaycan Texniki Universiteti öz tarixinin mühüm və dönüş nöqtələrindən birində dayanır. Missiyamız hər zaman yalnız dərin texniki biliklərə malik deyil, eyni zamanda yaradıcılıq, çeviklik və liderlik keyfiyyətləri ilə seçilən mühəndis və alimlər hazırlamaq olmuşdur.",
-          "Bir əsrdən artıq müddətdə AzTU ölkəmizin mühəndislik təhsili və texnoloji inkişafında aparıcı rol oynamışdır. Biz bu irsi qorumaqla yanaşı, müasir dövrün tələblərinə uyğun, tədqiqata əsaslanan və beynəlxalq əməkdaşlığa açıq bir universitet kimi inkişaf edirik.",
-          "Sürətli texnoloji transformasiya dövründə universitetlərin rolu yalnız bilik ötürmək deyil, həm də innovasiya yaratmaq və sahibkarlığı təşviq etməkdir. AzTU-nun strateji hədəfi regionun aparıcı sahibkar universitetlərindən birinə çevrilməkdir.",
-          "Təhsil modelimizi süni intellekt, kibertəhlükəsizlik və qabaqcıl mühəndislik həlləri kimi qlobal trendlərə uyğun mütəmadi yeniləyirik.",
-          `Əsas fəaliyyət istiqamətlərimiz:
-  • Universitet–sənaye əməkdaşlığını və texnologiya transferini gücləndirmək
-  • Tədris proqramlarını qlobal trendlərə uyğun müasirləşdirmək
-  • Layihə əsaslı və tədqiqat yönümlü təhsili genişləndirmək
-  • Ömürboyu öyrənmə və innovativ düşüncə mədəniyyətini təşviq etmək
-  • Elmi tədqiqatların keyfiyyətini artırmaq`,
-          "AzTU olaraq inanırıq ki, təhsil gələcəyin liderlərini formalaşdırmaq — düşünən, yaradan və dəyişikliklərə istiqamət verən fərdlər yetişdirməkdir.",
-          "Sizi bu inkişaf yolunun bir parçası olmağa dəvət edirəm.",
+          "Sizi 1887-ci ildən zəngin ənənələrə malik olan və bu gün innovasiya, elmi mükəmməllik və qlobal baxışla inkişaf edən Azərbaycan Texniki Universitetində (AzTU) salamlayıram.",
+          "Bir əsrdən artıq müddətdə AzTU mühəndislik təhsili, elmi tədqiqat və texnoloji inkişaf sahəsində ölkəmizin aparıcı ali təhsil müəssisələrindən biri kimi formalaşmışdır. Bu gün isə biz yalnız bu irsi qorumaqla kifayətlənmir, eyni zamanda müasir dövrün tələblərinə uyğun olaraq daim yenilənən, tədqiqata əsaslanan və beynəlxalq əməkdaşlığa açıq universitet kimi inkişaf edirik. Məzunlarımız akademik biliklə yanaşı liderlik, innovativ düşüncə və peşəkar bacarıqları ilə cəmiyyətin müxtəlif sahələrində mühüm rol oynayırlar.",
+          "Müasir dünya sürətli texnoloji transformasiya dövrünü yaşayır. Rəqəmsallaşma, süni intellekt və qabaqcıl mühəndislik həlləri iqtisadiyyatları və cəmiyyətləri köklü şəkildə dəyişdirir. Bu reallıq universitetlərin rolunu yenidən müəyyən edir – artıq ali təhsil müəssisələri yalnız bilik ötürən deyil, həm də innovasiya yaradan, sahibkarlığı təşviq edən və dayanıqlı inkişafı təmin edən mərkəzlər olmalıdır.",
+          "AzTU olaraq strateji hədəfimiz regionun aparıcı sahibkar universitetlərindən birinə çevrilmək, təhsil, tədqiqat və sənaye əməkdaşlığını vahid ekosistemdə birləşdirərək innovasiyaların real nəticələrə çevrilməsini təmin etməkdir.",
+          "Bu gün tədqiqatlar artıq yalnız akademik mühitlə məhdudlaşmır. Universitetimizdə formalaşan bilik və ideyalar texnoparklar, innovasiya mərkəzləri və sənaye tərəfdaşlıqları vasitəsilə kommersiyalaşdırılaraq iqtisadi və sosial dəyər yaradır. Bu yanaşma universitet–sənaye inteqrasiyasının yeni mərhələsini formalaşdırır.",
+          "Eyni zamanda, qlobal əmək bazarının dəyişən tələblərini nəzərə alaraq təhsil modelimizi daim yeniləyirik. Məqsədimiz tələbələrimizi yalnız mövcud biliklərlə deyil, həm də gələcəyin bacarıqları ilə təmin etməkdir. Süni intellekt, Əşyaların İnterneti, kibertəhlükəsizlik və digər qabaqcıl sahələr üzrə kompetensiyaların inkişafı bu istiqamətdə prioritetlərimizdəndir.",
+        ],
+        priorityIntro: "Əsas fəaliyyət istiqamətlərimiz:",
+        priorities: [
+          "Universitet–sənaye əməkdaşlığını gücləndirmək və texnologiya transferini inkişaf etdirmək",
+          "Tədris proqramlarını qlobal texnoloji trendlərə uyğun müasirləşdirmək",
+          "Bütün təhsil pillələrində layihə əsaslı və tədqiqat yönümlü təhsili genişləndirmək",
+          "Ömürboyu öyrənmə və innovativ düşüncə mədəniyyətini təşviq etmək",
+          "Elmi tədqiqatların keyfiyyətini və beynəlxalq təsirini artırmaq",
+        ],
+        messageClosing: [
+          "AzTU olaraq inanırıq ki, təhsil yalnız bilik qazandırmaq deyil, həm də gələcəyin liderlərini formalaşdırmaqdır — düşünən, yaradan və dəyişikliklərə istiqamət verən fərdlər yetişdirməkdir.",
+          "Sizi bu inkişaf yolunun bir parçası olmağa dəvət edir, birlikdə öyrənməyə, yaratmağa və gələcəyi formalaşdırmağa çağırıram.",
           "Hörmətlə,",
           "Prof. Vilayət Vəliyev",
-          "Rektor"
+          "Rektor",
         ],
         responsibilitiesTitle: "Vəzifə Öhdəlikləri",
         responsibilities: [

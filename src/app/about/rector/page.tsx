@@ -159,12 +159,33 @@ export default function RectorPage() {
                         <div className="lg:col-span-8 space-y-5">
                             {p.message.map((para, i) => {
                                 const isSalutation = i === 0;
-                                const isClosing = i >= p.message.length - 3;
-                                const isBold = isSalutation || isClosing;
                                 return (
                                     <p
-                                        key={i}
-                                        className={`text-base lg:text-lg text-gray-600 dark:text-slate-300 text-justify ${isSalutation || isClosing ? "leading-tight" : "leading-snug"} ${isBold ? "font-bold" : ""}`}
+                                        key={`m-${i}`}
+                                        className={`text-base lg:text-lg text-gray-600 dark:text-slate-300 text-justify ${isSalutation ? "leading-tight font-bold" : "leading-snug"}`}
+                                    >
+                                        {para}
+                                    </p>
+                                );
+                            })}
+
+                            <p className="text-base lg:text-lg text-gray-600 dark:text-slate-300 leading-snug font-bold">
+                                {p.priorityIntro}
+                            </p>
+                            <ul className="list-disc pl-6 space-y-2 text-base lg:text-lg text-gray-600 dark:text-slate-300 marker:text-[#ee7c7e]">
+                                {p.priorities.map((item, i) => (
+                                    <li key={`pr-${i}`} className="leading-snug">
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+
+                            {p.messageClosing.map((para, i) => {
+                                const isSignature = i >= p.messageClosing.length - 3;
+                                return (
+                                    <p
+                                        key={`c-${i}`}
+                                        className={`text-base lg:text-lg text-gray-600 dark:text-slate-300 text-justify ${isSignature ? "leading-tight font-bold" : "leading-snug"}`}
                                     >
                                         {para}
                                     </p>

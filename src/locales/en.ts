@@ -547,13 +547,27 @@ const en = {
         messageTitle: "Message from the Rector",
         message: [
           "Dear Colleagues, Students, Alumni, and Partners,",
-          "Azerbaijan Technical University stands at an exciting inflection point in its history. Our mission has always been to prepare engineers and scientists equipped not only with deep technical expertise, but also with the creativity, adaptability, and leadership required to shape the future.",
-          "For over a century, AzTU has been a cornerstone of engineering education in Azerbaijan. Today, we are evolving into a modern, research-driven institution committed to excellence and industry collaboration.",
-          "In an era of rapid digital transformation, our goal is to become a leading entrepreneurial university that transforms ideas into real-world solutions.",
-          "We invite you to join us on this journey of learning, innovation, and leadership.",
+          "It is my great pleasure to welcome you to Azerbaijan Technical University (AzTU) — an institution with a distinguished legacy dating back to 1887 and a forward-looking vision shaped by innovation, excellence, and global engagement.",
+          "For more than a century, AzTU has stood at the forefront of engineering education, research, and technological advancement in Azerbaijan. Today, we continue to evolve as a modern, research-driven university, committed to nurturing highly skilled professionals, advancing knowledge, and contributing meaningfully to society and industry. Our graduates distinguish themselves not only through academic excellence but also through leadership, innovation, and impactful contributions across public and private sectors.",
+          "We are living in an era defined by rapid technological transformation, where digitalization, artificial intelligence, and advanced engineering are reshaping economies and societies. In this dynamic landscape, universities must go beyond traditional education — they must become engines of innovation, entrepreneurship, and sustainable development.",
+          "Our strategic ambition is clear: to develop into a leading entrepreneurial university in the region, one that seamlessly integrates education, research, and industry collaboration. We are committed to fostering an ecosystem where ideas are transformed into innovations, and innovations into real-world solutions.",
+          "Research today extends far beyond academic laboratories. Through our growing network of technoparks, innovation hubs, and industry partnerships, we actively support the commercialization of knowledge, enabling scientific discoveries to generate tangible economic and societal value.",
+          "In response to the evolving demands of the global workforce, we are continuously transforming our educational model. We emphasize interdisciplinary learning, project-based education, and close collaboration with industry to ensure that our students are equipped with the competencies required for the future — including expertise in Artificial Intelligence, the Internet of Things, cybersecurity, and other emerging fields.",
+        ],
+        priorityIntro: "Our key priorities include:",
+        priorities: [
+          "Strengthening university–industry collaboration and advancing technology transfer",
+          "Modernizing curricula in line with global digital and technological trends",
+          "Expanding project-based and research-integrated learning across all levels of education",
+          "Promoting lifelong learning and cultivating adaptive, innovative mindsets",
+          "Enhancing the quality, impact, and international visibility of our research",
+        ],
+        messageClosing: [
+          "We believe that education is not only about knowledge but also about shaping future leaders — individuals who can think critically, act responsibly, and drive meaningful change in an increasingly complex world.",
+          "We invite you to be part of this journey — to learn, to innovate, and to lead.",
           "Sincerely,",
           "Prof. Vilayat Valiyev",
-          "Rector"
+          "Rector",
         ],
         responsibilitiesTitle: "Responsibilities",
         responsibilities: [
