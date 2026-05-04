@@ -130,7 +130,7 @@ export default function NewsGallery({ images, title }: Props) {
                         navigation={{ prevEl: ".gallery-prev", nextEl: ".gallery-next" }}
                         thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
                         spaceBetween={16}
-                        className="rounded-2xl overflow-hidden h-[55vh] md:h-[70vh]"
+                        className="rounded-2xl overflow-hidden h-[55vh] md:h-[70vh] bg-black/60"
                     >
                         {images.map((img, i) => (
                             <SwiperSlide key={i}>
@@ -146,7 +146,7 @@ export default function NewsGallery({ images, title }: Props) {
                                         alt={`${title} — şəkil ${i + 1}`}
                                         fill
                                         sizes="(max-width: 1024px) 100vw, 80vw"
-                                        className="object-cover"
+                                        className="object-contain"
                                     />
                                 </div>
                             </SwiperSlide>

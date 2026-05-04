@@ -149,7 +149,7 @@ export default async function NewsDetailPage({
                             {title}
                         </h1>
 
-                        <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] rounded-t-3xl overflow-hidden">
+                        <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] rounded-t-3xl overflow-hidden bg-black/60">
                             <Image
                                 src={heroSrc}
                                 alt={title}
@@ -157,7 +157,7 @@ export default async function NewsDetailPage({
                                 sizes="(max-width: 1024px) 100vw, 1280px"
                                 priority
                                 fetchPriority="high"
-                                className="object-cover"
+                                className="object-contain"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
                             {allImages.length > 1 && (
