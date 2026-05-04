@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
@@ -12,20 +13,51 @@ import NewsScrollProgress from "@/components/news/NewsScrollProgress";
 import NewsGallery from "@/components/news/NewsGallery";
 import CopyLinkButton from "@/components/shared/CopyLinkButton";
 import { parseNewsSlug, newsSlug } from "@/util/slugify";
-import { fetchNewsDetail, fetchNewsList } from "@/util/fetchers";
+import { fetchNewsDetail, fetchNewsList, type Lang } from "@/util/fetchers";
 import { absUrl, SITE_URL } from "@/util/seo";
 
 export const revalidate = 600;
 export const dynamicParams = true;
 
-function formatDate(iso?: string) {
+function formatDate(iso: string | undefined, lang: Lang) {
     if (!iso) return "";
-    return new Date(iso).toLocaleDateString("az-AZ", {
+    return new Date(iso).toLocaleDateString(lang === "en" ? "en-US" : "az-AZ", {
         day: "2-digit",
         month: "long",
         year: "numeric",
     });
 }
+
+const UI = {
+    az: {
+        home: "Ana səhifə",
+        news: "Xəbərlər",
+        images: "şəkil",
+        backToNews: "Xəbərlərə qayıt",
+        aboutNews: "Xəbər haqqında",
+        date: "Tarix",
+        category: "Kateqoriya",
+        gallery: "Qalereya",
+        share: "Paylaş",
+        otherNews: "Digər xəbərlər",
+        readMore: "Ətraflı oxu",
+        allNews: "Bütün xəbərlər",
+    },
+    en: {
+        home: "Home",
+        news: "News",
+        images: "images",
+        backToNews: "Back to news",
+        aboutNews: "About this news",
+        date: "Date",
+        category: "Category",
+        gallery: "Gallery",
+        share: "Share",
+        otherNews: "Other news",
+        readMore: "Read more",
+        allNews: "All news",
+    },
+} as const;
 
 export default async function NewsDetailPage({
     params,
@@ -37,12 +69,24 @@ export default async function NewsDetailPage({
 
     if (!Number.isFinite(id)) notFound();
 
+    const cookieStore = await cookies();
+    const lang: Lang = cookieStore.get("aztu-lang")?.value === "en" ? "en" : "az";
+    const t = UI[lang];
+
     const [detail, list] = await Promise.all([
-        fetchNewsDetail(id, "az"),
-        fetchNewsList({ start: 0, end: 12, lang: "az" }),
+        fetchNewsDetail(id, lang),
+        fetchNewsList({ start: 0, end: 12, lang }),
     ]);
 
     if (!detail) notFound();
+
+    const azFallback = (a?: string, b?: string) => (a && a.trim() ? a : b ?? "");
+    const title = lang === "en"
+        ? azFallback(detail.title, azFallback(detail.en_title, detail.az_title))
+        : azFallback(detail.title, detail.az_title);
+    const htmlContent = lang === "en"
+        ? azFallback(detail.html_content, azFallback(detail.en_html_content, detail.az_html_content))
+        : azFallback(detail.html_content, detail.az_html_content);
 
     const listEntry = list.find((n) => n.news_id === id);
     const createdAt = detail.published_date ?? detail.created_at ?? listEntry?.created_at;
@@ -68,14 +112,14 @@ export default async function NewsDetailPage({
                             className="flex items-center gap-1.5 text-white/40 text-xs mb-8 flex-wrap"
                         >
                             <Link href="/" className="hover:text-white/80 transition-colors">
-                                Ana səhifə
+                                {t.home}
                             </Link>
                             <ChevronRightIcon sx={{ fontSize: 14 }} />
                             <Link href="/news" className="hover:text-white/80 transition-colors">
-                                Xəbərlər
+                                {t.news}
                             </Link>
                             <ChevronRightIcon sx={{ fontSize: 14 }} />
-                            <span className="text-white/60 truncate max-w-xs">{detail.az_title}</span>
+                            <span className="text-white/60 truncate max-w-xs">{title}</span>
                         </nav>
 
                         <div className="flex flex-wrap items-center gap-3 mb-5">
@@ -90,25 +134,25 @@ export default async function NewsDetailPage({
                                     className="text-white/40 text-xs flex items-center gap-1"
                                 >
                                     <CalendarMonthIcon sx={{ fontSize: 13 }} />
-                                    {formatDate(createdAt)}
+                                    {formatDate(createdAt, lang)}
                                 </time>
                             )}
                             {allImages.length > 1 && (
                                 <span className="text-white/40 text-xs flex items-center gap-1">
                                     <CollectionsIcon sx={{ fontSize: 13 }} />
-                                    {allImages.length} şəkil
+                                    {allImages.length} {t.images}
                                 </span>
                             )}
                         </div>
 
                         <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight max-w-4xl mb-12">
-                            {detail.az_title}
+                            {title}
                         </h1>
 
                         <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] rounded-t-3xl overflow-hidden">
                             <Image
                                 src={heroSrc}
-                                alt={detail.az_title}
+                                alt={title}
                                 fill
                                 sizes="(max-width: 1024px) 100vw, 1280px"
                                 priority
@@ -119,7 +163,7 @@ export default async function NewsDetailPage({
                             {allImages.length > 1 && (
                                 <div className="absolute bottom-4 right-4 bg-black/50 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5">
                                     <CollectionsIcon sx={{ fontSize: 14 }} />
-                                    {allImages.length} şəkil
+                                    {allImages.length} {t.images}
                                 </div>
                             )}
                         </div>
@@ -131,12 +175,12 @@ export default async function NewsDetailPage({
                     <div className="flex flex-col lg:flex-row gap-10">
                         <article className="flex-1 min-w-0">
                             <p className="text-gray-800 dark:text-gray-200 text-lg md:text-xl leading-relaxed font-medium border-l-4 border-[#1a2355] pl-6 mb-10 bg-blue-50/60 dark:bg-slate-800/40 py-4 pr-4 rounded-r-xl">
-                                {detail.az_title}
+                                {title}
                             </p>
 
                             <SanitizedHtml
                                 className="text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg"
-                                html={detail.az_html_content}
+                                html={htmlContent}
                             />
 
                             <div className="h-px bg-gradient-to-r from-[#1a2355]/30 via-gray-300 to-transparent mt-12 mb-8" />
@@ -146,7 +190,7 @@ export default async function NewsDetailPage({
                                 className="inline-flex items-center gap-2 text-[#1a2355] dark:text-white font-semibold text-sm bg-white dark:bg-[#1e293b] rounded-xl px-4 py-2.5 shadow-md hover:shadow-lg transition-shadow"
                             >
                                 <ArrowBackIcon sx={{ fontSize: 18 }} />
-                                Xəbərlərə qayıt
+                                {t.backToNews}
                             </Link>
                         </article>
 
@@ -155,14 +199,14 @@ export default async function NewsDetailPage({
                                 <div className="bg-white dark:bg-[#1e293b] rounded-2xl shadow-md overflow-hidden">
                                     <div className="bg-gradient-to-r from-[#1a2355] to-[#13365E] px-5 py-4">
                                         <h2 className="text-white font-bold text-sm uppercase tracking-widest">
-                                            Xəbər haqqında
+                                            {t.aboutNews}
                                         </h2>
                                     </div>
                                     <div className="p-5 space-y-4 text-sm">
                                         <div className="flex gap-3">
-                                            <span className="text-gray-400 dark:text-gray-500 min-w-[72px]">Tarix</span>
+                                            <span className="text-gray-400 dark:text-gray-500 min-w-[72px]">{t.date}</span>
                                             <span className="text-[#1a2355] dark:text-white font-semibold">
-                                                {createdAt ? formatDate(createdAt) : "—"}
+                                                {createdAt ? formatDate(createdAt, lang) : "—"}
                                             </span>
                                         </div>
                                         {detail.category_id && (
@@ -170,7 +214,7 @@ export default async function NewsDetailPage({
                                                 <div className="h-px bg-gray-100 dark:bg-slate-700" />
                                                 <div className="flex gap-3">
                                                     <span className="text-gray-400 dark:text-gray-500 min-w-[72px]">
-                                                        Kateqoriya
+                                                        {t.category}
                                                     </span>
                                                     <span className="bg-[#1a2355] text-white text-xs font-bold px-2.5 py-1 rounded-full self-start">
                                                         {detail.category_id}
@@ -183,11 +227,11 @@ export default async function NewsDetailPage({
                                                 <div className="h-px bg-gray-100 dark:bg-slate-700" />
                                                 <div className="flex gap-3">
                                                     <span className="text-gray-400 dark:text-gray-500 min-w-[72px]">
-                                                        Qalereya
+                                                        {t.gallery}
                                                     </span>
                                                     <span className="text-[#1a2355] dark:text-white font-semibold flex items-center gap-1.5">
                                                         <CollectionsIcon sx={{ fontSize: 15 }} />
-                                                        {allImages.length} şəkil
+                                                        {allImages.length} {t.images}
                                                     </span>
                                                 </div>
                                             </>
@@ -197,7 +241,7 @@ export default async function NewsDetailPage({
 
                                 <div className="bg-white dark:bg-[#1e293b] rounded-2xl shadow-md p-5 space-y-3">
                                     <h2 className="text-[#1a2355] dark:text-white font-bold text-sm uppercase tracking-widest">
-                                        Paylaş
+                                        {t.share}
                                     </h2>
                                     <CopyLinkButton />
                                 </div>
@@ -206,14 +250,14 @@ export default async function NewsDetailPage({
                     </div>
                 </section>
 
-                {galleryAbs.length > 1 && <NewsGallery images={galleryAbs} title={detail.az_title} />}
+                {galleryAbs.length > 1 && <NewsGallery images={galleryAbs} title={title} />}
 
                 {related.length > 0 && (
                     <section className="bg-white dark:bg-[#1e293b] py-16 px-4 md:px-10 lg:px-20">
                         <div className="max-w-7xl mx-auto">
                             <div className="flex items-center gap-4 mb-10">
                                 <h2 className="text-xl font-bold text-[#1a2355] dark:text-white flex-shrink-0">
-                                    Digər xəbərlər
+                                    {t.otherNews}
                                 </h2>
                                 <div className="flex-1 h-px bg-gradient-to-r from-gray-300 to-transparent dark:from-slate-600" />
                             </div>
@@ -245,13 +289,13 @@ export default async function NewsDetailPage({
                                                     className="flex items-center gap-1 text-gray-400 text-xs"
                                                 >
                                                     <CalendarMonthIcon sx={{ fontSize: 13 }} />
-                                                    <span>{formatDate(item.created_at)}</span>
+                                                    <span>{formatDate(item.created_at, lang)}</span>
                                                 </time>
                                                 <h3 className="text-[#1a2355] dark:text-white font-bold text-sm leading-snug line-clamp-2 group-hover:underline decoration-[#1a2355]/30 underline-offset-2">
                                                     {item.title}
                                                 </h3>
                                                 <span className="flex items-center gap-1 text-[#1a2355] dark:text-[#5A9BD3] font-semibold text-xs pt-1">
-                                                    Ətraflı oxu
+                                                    {t.readMore}
                                                     <ChevronRightIcon
                                                         sx={{ fontSize: 14 }}
                                                         className="transition-transform duration-300 group-hover:translate-x-1"
@@ -268,7 +312,7 @@ export default async function NewsDetailPage({
                                     href="/news"
                                     className="flex items-center gap-2 border-2 border-[#1a2355] text-[#1a2355] dark:border-white dark:text-white font-bold px-8 py-3 rounded-xl hover:bg-[#1a2355] hover:text-white transition-colors duration-300"
                                 >
-                                    Bütün xəbərlər
+                                    {t.allNews}
                                     <ChevronRightIcon sx={{ fontSize: 18 }} />
                                 </Link>
                             </div>

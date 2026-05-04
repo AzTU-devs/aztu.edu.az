@@ -25,6 +25,8 @@ export interface GalleryImage {
 // --- Full news detail returned by /api/news/:id ---
 export interface NewsDetail {
     news_id: number;
+    title?: string;
+    html_content?: string;
     az_title: string;
     az_html_content: string;
     en_title: string;
