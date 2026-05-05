@@ -89,7 +89,7 @@ export async function fetchAnnouncementDetail(
     try {
         const res = await fetch(`${API_BASE}/api/announcement/${id}?lang=${lang}`, {
             headers: { "Accept-Language": lang },
-            next: { revalidate: 600 },
+            next: { revalidate: 30 },
         });
         if (!res.ok) return null;
         const data = await res.json();
@@ -111,7 +111,7 @@ export async function fetchAnnouncementList(params: {
             `${API_BASE}/api/announcement/public/all?start=${start}&end=${end}&lang=${lang}`,
             {
                 headers: { "Accept-Language": lang },
-                next: { revalidate: 600 },
+                next: { revalidate: 30 },
             }
         );
         if (!res.ok) return [];

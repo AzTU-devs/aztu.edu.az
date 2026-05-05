@@ -139,4 +139,4 @@ export default async function AnnouncementDetailLayout({
 }
 
 export const dynamicParams = true;
-export const revalidate = 600;
+export const revalidate = 30;
