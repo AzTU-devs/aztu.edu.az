@@ -57,7 +57,7 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
             key: "platform",
             title: qm.sections.platform.title,
             items: [
-                { label: qm.sections.platform.items.lms, url: "https://lms.aztu.edu.az" },
+                { label: qm.sections.platform.items.lms, url: "https://sso.aztu.edu.az" },
                 { label: qm.sections.platform.items.internalGrants, url: "/research/internal-grants" },
                 { label: qm.sections.platform.items.planReport, url: "#" },
             ],

@@ -86,7 +86,7 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
               {t.common.kts}
             </Link>
             {[
-              { icon: <PersonIcon sx={{ fontSize: 20 }} />, label: t.common.lms, href: "https://lms.aztu.edu.az" },
+              { icon: <PersonIcon sx={{ fontSize: 20 }} />, label: t.common.lms, href: "https://sso.aztu.edu.az" },
               { icon: <SchoolIcon sx={{ fontSize: 20 }} />, label: t.common.alumni, href: "https://alumni.aztu.edu.az" },
               { icon: <ConnectedTvIcon sx={{ fontSize: 20 }} />, label: t.common.libraryAztu, href: "https://library.aztu.edu.az/" },
             ].map(({ icon, label, href }) => (

@@ -180,7 +180,7 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
                         {/* Utility buttons */}
                         <div className="flex items-center gap-2 px-4 py-3 bg-[#1a2355]">
                             {[
-                                { icon: <PersonIcon sx={{ fontSize: 18 }} />, label: t.common.lms, href: "https://lms.aztu.edu.az" },
+                                { icon: <PersonIcon sx={{ fontSize: 18 }} />, label: t.common.lms, href: "https://sso.aztu.edu.az" },
                                 { icon: <SchoolIcon sx={{ fontSize: 18 }} />, label: t.common.alumni, href: "https://alumni.aztu.edu.az" },
                                 { icon: <ConnectedTvIcon sx={{ fontSize: 18 }} />, label: t.common.libraryAztu, href: "https://www.youtube.com/channel/UCu_PoZ-9DKNYs3hxuK9pW1Q" },
                             ].map(({ icon, label, href }) => (
