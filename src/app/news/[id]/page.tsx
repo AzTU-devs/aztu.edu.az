@@ -124,7 +124,7 @@ export default async function NewsDetailPage({
 
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                             {/* Left: title + meta */}
-                            <div className="order-2 lg:order-1">
+                            <div className="order-1 lg:order-1">
                                 <div className="flex flex-wrap items-center gap-3 mb-5">
                                     {detail.category_id && (
                                         <span className="bg-white/15 text-white text-xs font-bold px-3 py-1.5 rounded-full">
@@ -154,7 +154,7 @@ export default async function NewsDetailPage({
                             </div>
 
                             {/* Right: cover image */}
-                            <figure className="relative order-1 lg:order-2 w-full">
+                            <figure className="relative order-2 lg:order-2 w-full">
                                 <Image
                                     src={heroSrc}
                                     alt={title}
