@@ -8,7 +8,8 @@ const AZ_MAP: Record<string, string> = {
     ç: "c", Ç: "c",
 };
 
-export function slugify(text: string): string {
+export function slugify(text: string | null | undefined): string {
+    if (!text) return "";
     return text
         .toLowerCase()
         .split("")
@@ -20,8 +21,9 @@ export function slugify(text: string): string {
         .replace(/^-|-$/g, "");
 }
 
-export function newsSlug(newsId: number, title: string): string {
-    return `${slugify(title)}-${newsId}`;
+export function newsSlug(newsId: number, title: string | null | undefined): string {
+    const slug = slugify(title);
+    return slug ? `${slug}-${newsId}` : `${newsId}`;
 }
 
 export function parseNewsSlug(slug: string): number {
@@ -29,8 +31,9 @@ export function parseNewsSlug(slug: string): number {
     return parseInt(parts[parts.length - 1], 10);
 }
 
-export function announcementSlug(id: number | string, title: string): string {
-    return `${slugify(title)}-${id}`;
+export function announcementSlug(id: number | string, title: string | null | undefined): string {
+    const slug = slugify(title);
+    return slug ? `${slug}-${id}` : `${id}`;
 }
 
 export function parseAnnouncementSlug(slug: string): number {
