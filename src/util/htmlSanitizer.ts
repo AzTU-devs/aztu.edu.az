@@ -15,6 +15,17 @@ const NAMED_ENTITIES: Record<string, string> = {
   trade: "™",
 };
 
+export function decodeHtmlEntities(s?: string): string {
+  if (!s) return "";
+  let working = s;
+  for (let i = 0; i < 3; i++) {
+    const decoded = decodeEntities(working);
+    if (decoded === working) break;
+    working = decoded;
+  }
+  return working;
+}
+
 function decodeEntities(s: string): string {
   return s
     .replace(/&#x([0-9a-fA-F]+);/g, (_, hex) =>

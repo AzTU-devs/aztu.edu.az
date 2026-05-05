@@ -16,7 +16,7 @@ import { useLanguage } from "@/context/LanguageContext";
 
 import PageHero from "@/components/shared/PageHero";
 import PageContainer from "@/components/shared/PageContainer";
-import { stripHtml } from "@/util/htmlSanitizer";
+import { stripHtml, decodeHtmlEntities } from "@/util/htmlSanitizer";
 
 const PALETTE = [
     "bg-blue-600",
@@ -171,7 +171,7 @@ export default function NewsPage() {
                                         </span>
                                     </div>
                                     <h2 className="text-3xl md:text-5xl font-black text-[#1a2355] dark:text-white mb-8 leading-[1.1] tracking-tighter group-hover:text-[#ee7c7e] transition-colors duration-500">
-                                        {featured.title}
+                                        {decodeHtmlEntities(featured.title)}
                                     </h2>
                                     <p className="text-gray-500 dark:text-white/60 text-lg leading-relaxed line-clamp-3 mb-12 text-justify font-medium">
                                         {stripHtml(featured.html_content, 240)}
@@ -217,7 +217,7 @@ export default function NewsPage() {
                                             <span>{formatDate(item.created_at, lang)}</span>
                                         </div>
                                         <h3 className="text-xl font-black text-[#1a2355] dark:text-white leading-[1.3] mb-6 group-hover:text-[#ee7c7e] transition-colors duration-500 tracking-tight">
-                                            {item.title}
+                                            {decodeHtmlEntities(item.title)}
                                         </h3>
                                         <p className="text-gray-500 dark:text-white/40 text-sm leading-relaxed line-clamp-3 mb-8 text-justify font-medium">
                                             {stripHtml(item.html_content, 180)}

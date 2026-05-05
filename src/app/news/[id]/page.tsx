@@ -9,6 +9,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import CollectionsIcon from "@mui/icons-material/Collections";
 
 import SanitizedHtml from "@/components/shared/SanitizedHtml";
+import { decodeHtmlEntities } from "@/util/htmlSanitizer";
 import NewsScrollProgress from "@/components/news/NewsScrollProgress";
 import NewsGallery from "@/components/news/NewsGallery";
 import CopyLinkButton from "@/components/shared/CopyLinkButton";
@@ -81,9 +82,11 @@ export default async function NewsDetailPage({
     if (!detail) notFound();
 
     const azFallback = (a?: string, b?: string) => (a && a.trim() ? a : b ?? "");
-    const title = lang === "en"
-        ? azFallback(detail.title, azFallback(detail.en_title, detail.az_title))
-        : azFallback(detail.title, detail.az_title);
+    const title = decodeHtmlEntities(
+        lang === "en"
+            ? azFallback(detail.title, azFallback(detail.en_title, detail.az_title))
+            : azFallback(detail.title, detail.az_title)
+    );
     const htmlContent = lang === "en"
         ? azFallback(detail.html_content, azFallback(detail.en_html_content, detail.az_html_content))
         : azFallback(detail.html_content, detail.az_html_content);
@@ -298,7 +301,7 @@ export default async function NewsDetailPage({
                                                     <span>{formatDate(item.created_at, lang)}</span>
                                                 </time>
                                                 <h3 className="text-[#1a2355] dark:text-white font-bold text-sm leading-snug line-clamp-2 group-hover:underline decoration-[#1a2355]/30 underline-offset-2">
-                                                    {item.title}
+                                                    {decodeHtmlEntities(item.title)}
                                                 </h3>
                                                 <span className="flex items-center gap-1 text-[#1a2355] dark:text-[#5A9BD3] font-semibold text-xs pt-1">
                                                     {t.readMore}
