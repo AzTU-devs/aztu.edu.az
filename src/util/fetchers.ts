@@ -44,7 +44,7 @@ export async function fetchNewsDetail(id: number, lang: Lang = "az"): Promise<Ne
     try {
         const res = await fetch(`${API_BASE}/api/news/${id}?lang=${lang}`, {
             headers: { "Accept-Language": lang },
-            next: { revalidate: 600 },
+            next: { revalidate: 30, tags: [`news:${id}`] },
         });
         if (!res.ok) return null;
         const data = await res.json();
@@ -71,7 +71,7 @@ export async function fetchNewsList(params: {
     try {
         const res = await fetch(`${API_BASE}/api/news/public/all?${query.toString()}`, {
             headers: { "Accept-Language": lang },
-            next: { revalidate: 600 },
+            next: { revalidate: 30, tags: ["news:list"] },
         });
         if (!res.ok) return [];
         const data = await res.json();

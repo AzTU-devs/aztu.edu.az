@@ -17,7 +17,7 @@ import { parseNewsSlug, newsSlug } from "@/util/slugify";
 import { fetchNewsDetail, fetchNewsList, type Lang } from "@/util/fetchers";
 import { absUrl, SITE_URL } from "@/util/seo";
 
-export const revalidate = 600;
+export const revalidate = 30;
 export const dynamicParams = true;
 
 function formatDate(iso: string | undefined, lang: Lang) {

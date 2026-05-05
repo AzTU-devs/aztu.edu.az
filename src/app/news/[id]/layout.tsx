@@ -145,6 +145,6 @@ export default async function NewsDetailLayout({
 }
 
 export const dynamicParams = true;
-export const revalidate = 600;
+export const revalidate = 30;
 // suppress unused
 void SITE_NAME_AZ;
