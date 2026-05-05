@@ -106,10 +106,10 @@ export default async function NewsDetailPage({
                     <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-3xl pointer-events-none" />
                     <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#ee7c7e]/10 blur-3xl pointer-events-none" />
 
-                    <div className="relative z-10 px-4 md:px-10 lg:px-20 pt-32 pb-10 max-w-5xl mx-auto">
+                    <div className="relative z-10 px-4 md:px-10 lg:px-20 pt-32 pb-12 max-w-7xl mx-auto">
                         <nav
                             aria-label="Breadcrumb"
-                            className="flex items-center gap-1.5 text-white/40 text-xs mb-6 flex-wrap"
+                            className="flex items-center gap-1.5 text-white/40 text-xs mb-8 flex-wrap"
                         >
                             <Link href="/" className="hover:text-white/80 transition-colors">
                                 {t.home}
@@ -122,51 +122,57 @@ export default async function NewsDetailPage({
                             <span className="text-white/60 truncate max-w-xs">{title}</span>
                         </nav>
 
-                        <div className="flex flex-wrap items-center gap-3 mb-4">
-                            {detail.category_id && (
-                                <span className="bg-white/15 text-white text-xs font-bold px-3 py-1.5 rounded-full">
-                                    {detail.category_id}
-                                </span>
-                            )}
-                            {createdAt && (
-                                <time
-                                    dateTime={createdAt}
-                                    className="text-white/40 text-xs flex items-center gap-1"
-                                >
-                                    <CalendarMonthIcon sx={{ fontSize: 13 }} />
-                                    {formatDate(createdAt, lang)}
-                                </time>
-                            )}
-                            {allImages.length > 1 && (
-                                <span className="text-white/40 text-xs flex items-center gap-1">
-                                    <CollectionsIcon sx={{ fontSize: 13 }} />
-                                    {allImages.length} {t.images}
-                                </span>
-                            )}
-                        </div>
-
-                        <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-white leading-tight max-w-3xl mb-8">
-                            {title}
-                        </h1>
-
-                        <figure className="relative inline-block w-full">
-                            <Image
-                                src={heroSrc}
-                                alt={title}
-                                width={1280}
-                                height={720}
-                                sizes="(max-width: 1024px) 100vw, 960px"
-                                priority
-                                fetchPriority="high"
-                                className="block w-auto h-auto max-w-full max-h-[70vh] mx-auto rounded-2xl shadow-2xl"
-                            />
-                            {allImages.length > 1 && (
-                                <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5">
-                                    <CollectionsIcon sx={{ fontSize: 14 }} />
-                                    {allImages.length} {t.images}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                            {/* Left: title + meta */}
+                            <div className="order-2 lg:order-1">
+                                <div className="flex flex-wrap items-center gap-3 mb-5">
+                                    {detail.category_id && (
+                                        <span className="bg-white/15 text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                                            {detail.category_id}
+                                        </span>
+                                    )}
+                                    {createdAt && (
+                                        <time
+                                            dateTime={createdAt}
+                                            className="text-white/40 text-xs flex items-center gap-1"
+                                        >
+                                            <CalendarMonthIcon sx={{ fontSize: 13 }} />
+                                            {formatDate(createdAt, lang)}
+                                        </time>
+                                    )}
+                                    {allImages.length > 1 && (
+                                        <span className="text-white/40 text-xs flex items-center gap-1">
+                                            <CollectionsIcon sx={{ fontSize: 13 }} />
+                                            {allImages.length} {t.images}
+                                        </span>
+                                    )}
                                 </div>
-                            )}
-                        </figure>
+
+                                <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                                    {title}
+                                </h1>
+                            </div>
+
+                            {/* Right: cover image */}
+                            <figure className="relative order-1 lg:order-2 w-full">
+                                <Image
+                                    src={heroSrc}
+                                    alt={title}
+                                    width={1280}
+                                    height={720}
+                                    sizes="(max-width: 1024px) 100vw, 600px"
+                                    priority
+                                    fetchPriority="high"
+                                    className="block w-auto h-auto max-w-full max-h-[60vh] mx-auto rounded-2xl shadow-2xl"
+                                />
+                                {allImages.length > 1 && (
+                                    <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                                        <CollectionsIcon sx={{ fontSize: 14 }} />
+                                        {allImages.length} {t.images}
+                                    </div>
+                                )}
+                            </figure>
+                        </div>
                     </div>
                 </section>
 
