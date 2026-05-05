@@ -150,6 +150,7 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
                     <li key={header.id} onMouseEnter={() => setActiveHeader(null)}>
                       <Link
                         href={header.direct_url}
+                        onClick={() => setActiveHeader(null)}
                         className={`relative text-[13px] xl:text-[14px] font-bold px-3 py-2 rounded-lg transition-all duration-200 block ${
                           isOpen
                             ? "text-[#1a2355] dark:text-white/70 hover:text-[#ee7c7e] dark:hover:text-white"
@@ -209,7 +210,7 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
       {/* Dropdown panel */}
       <AnimatePresence>
         {activeHeader && (
-          <Dropdown header={activeHeader} />
+          <Dropdown header={activeHeader} onClose={() => setActiveHeader(null)} />
         )}
       </AnimatePresence>
     </header>

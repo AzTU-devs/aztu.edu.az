@@ -8,9 +8,10 @@ import AzTUBg from "@/../public/aztu.png";
 
 type Props = {
   header: MenuHeader;
+  onClose?: () => void;
 };
 
-export default function Dropdown({ header }: Props) {
+export default function Dropdown({ header, onClose }: Props) {
 
   return (
     <motion.div
@@ -110,6 +111,7 @@ export default function Dropdown({ header }: Props) {
                             {item.direct_url ? (
                                 <Link
                                     href={item.direct_url}
+                                    onClick={onClose}
                                     className="inline-flex items-center group/title"
                                 >
                                     <span className="text-[13px] font-black uppercase tracking-[0.25em] text-[#1a2355] dark:text-blue-300 group-hover/title:text-[#ee7c7e] transition-colors duration-300">
@@ -132,6 +134,7 @@ export default function Dropdown({ header }: Props) {
                                     <li key={sub.id}>
                                         <Link
                                             href={sub.direct_url}
+                                            onClick={onClose}
                                             className="group/link flex items-center py-2 text-[14.5px] font-bold text-gray-500 dark:text-white/50 hover:text-[#1a2355] dark:hover:text-white transition-all duration-300"
                                         >
                                             <span className="group-hover:translate-x-1.5 transition-transform duration-300">
