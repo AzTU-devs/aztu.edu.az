@@ -95,9 +95,14 @@ export default async function NewsDetailPage({
     const createdAt = detail.published_date ?? detail.created_at ?? listEntry?.created_at;
     const related = list.filter((n) => n.news_id !== id).slice(0, 3);
 
-    const allImages = [detail.cover_image, ...(detail.gallery_images ?? []).map((g) => g.image)];
-    const galleryAbs = allImages.map((img) => absUrl(img));
     const heroSrc = absUrl(detail.cover_image);
+    const galleryOnly = (detail.gallery_images ?? [])
+        .map((g) => g.image)
+        .filter((img) => img && img !== detail.cover_image);
+    const galleryAbs = Array.from(
+        new Set(galleryOnly.map((img) => absUrl(img)).filter((u) => u && u !== heroSrc))
+    );
+    const allImages = [detail.cover_image, ...galleryOnly];
 
     return (
         <>
@@ -259,7 +264,7 @@ export default async function NewsDetailPage({
                     </div>
                 </section>
 
-                {galleryAbs.length > 1 && <NewsGallery images={galleryAbs} title={title} />}
+                {galleryAbs.length > 0 && <NewsGallery images={galleryAbs} title={title} />}
 
                 {related.length > 0 && (
                     <section className="bg-white dark:bg-[#1e293b] py-16 px-4 md:px-10 lg:px-20">

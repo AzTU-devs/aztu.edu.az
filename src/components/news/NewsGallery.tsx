@@ -31,7 +31,7 @@ export default function NewsGallery({ images, title }: Props) {
         };
     }, [lightboxOpen]);
 
-    if (images.length <= 1) return null;
+    if (images.length < 1) return null;
 
     return (
         <>
