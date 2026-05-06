@@ -3,6 +3,18 @@ import type { NewsDetail, NewsListItem } from "@/types/news";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://api-aztu.karamshukurlu.site";
 
+// Server-only API key. The backend's API-key middleware exempts requests whose
+// Origin/Referer matches aztu.edu.az (i.e. real browser traffic). SSR fetches
+// are server-to-server and don't carry those headers, so we attach the key
+// here. Without `NEXT_PUBLIC_` prefix this never reaches the browser bundle.
+const API_KEY = process.env.API_KEY ?? "";
+
+function authHeaders(lang: Lang): Record<string, string> {
+    const headers: Record<string, string> = { "Accept-Language": lang };
+    if (API_KEY) headers["X-API-Key"] = API_KEY;
+    return headers;
+}
+
 export type Lang = "az" | "en";
 
 export interface AnnouncementDetail {
@@ -43,7 +55,7 @@ export async function fetchNewsDetail(id: number, lang: Lang = "az"): Promise<Ne
     if (!Number.isFinite(id)) return null;
     try {
         const res = await fetch(`${API_BASE}/api/news/${id}?lang=${lang}`, {
-            headers: { "Accept-Language": lang },
+            headers: authHeaders(lang),
             next: { revalidate: 30, tags: [`news:${id}`] },
         });
         if (!res.ok) return null;
@@ -70,7 +82,7 @@ export async function fetchNewsList(params: {
     if (categoryId) query.set("category_id", categoryId);
     try {
         const res = await fetch(`${API_BASE}/api/news/public/all?${query.toString()}`, {
-            headers: { "Accept-Language": lang },
+            headers: authHeaders(lang),
             next: { revalidate: 30, tags: ["news:list"] },
         });
         if (!res.ok) return [];
@@ -88,7 +100,7 @@ export async function fetchAnnouncementDetail(
 ): Promise<AnnouncementDetail | null> {
     try {
         const res = await fetch(`${API_BASE}/api/announcement/${id}?lang=${lang}`, {
-            headers: { "Accept-Language": lang },
+            headers: authHeaders(lang),
             next: { revalidate: 30 },
         });
         if (!res.ok) return null;
@@ -110,7 +122,7 @@ export async function fetchAnnouncementList(params: {
         const res = await fetch(
             `${API_BASE}/api/announcement/public/all?start=${start}&end=${end}&lang=${lang}`,
             {
-                headers: { "Accept-Language": lang },
+                headers: authHeaders(lang),
                 next: { revalidate: 30 },
             }
         );
@@ -126,7 +138,7 @@ export async function fetchAnnouncementList(params: {
 export async function fetchNewsCategories(lang: Lang = "az"): Promise<{ category_id: string; title: string }[]> {
     try {
         const res = await fetch(`${API_BASE}/api/news-category/all?lang=${lang}`, {
-            headers: { "Accept-Language": lang },
+            headers: authHeaders(lang),
             next: { revalidate: 3600 },
         });
         if (!res.ok) return [];

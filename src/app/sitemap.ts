@@ -4,6 +4,8 @@ import { newsSlug, announcementSlug } from "@/util/slugify";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://aztu.edu.az";
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://api-aztu.karamshukurlu.site";
+// Server-only API key for the backend's API-key middleware (see fetchers.ts).
+const API_KEY = process.env.API_KEY ?? "";
 
 // Real, flat routes that exist in the App Router. The site serves both AZ and EN
 // content from the same URL via LanguageContext, so there is no /az or /en prefix.
@@ -73,7 +75,10 @@ interface AnnouncementListLite {
 
 async function safeFetchJson<T = unknown>(url: string): Promise<T | null> {
     try {
-        const res = await fetch(url, { next: { revalidate: 600 } });
+        const res = await fetch(url, {
+            headers: API_KEY ? { "X-API-Key": API_KEY } : {},
+            next: { revalidate: 600 },
+        });
         if (!res.ok) return null;
         return (await res.json()) as T;
     } catch {
