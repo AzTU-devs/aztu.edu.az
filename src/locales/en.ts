@@ -198,6 +198,20 @@ const en = {
     placeholder: "Type to search...",
     popularLabel: "Popular searches",
     suggestions: ["Admissions", "Programs", "Scholarships", "International", "Library"],
+    searching: "Searching...",
+    noResults: "No results found",
+    degraded: "Search temporarily unavailable",
+    sections: {
+      news: "News",
+      announcement: "Announcements",
+      project: "Projects",
+      collaboration: "Collaborations",
+      faculty: "Faculties",
+      cafedra: "Departments (cafedras)",
+      department: "Departments",
+      employee: "People",
+      research_institute: "Research institutes",
+    },
   },
 
   pages: {

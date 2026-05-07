@@ -1,13 +1,17 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
+import { useLanguage } from "@/context/LanguageContext";
 import { AnimatePresence, motion } from "framer-motion";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import AzTULogoDark from "@/../public/logo/aztu-logo-dark.png";
+import { searchAll } from "@/services/searchService/searchService";
+import type { SearchDocType, SearchHit, SearchResults } from "@/types/search";
 
 
 type Props = {
@@ -15,18 +19,36 @@ type Props = {
     onClose: () => void;
 };
 
+const SECTION_ORDER: SearchDocType[] = [
+    "news",
+    "announcement",
+    "faculty",
+    "cafedra",
+    "department",
+    "employee",
+    "research_institute",
+    "project",
+    "collaboration",
+];
+
+type Status = "idle" | "loading" | "results" | "empty" | "degraded";
+
 export default function SearchOverlay({ isOpen, onClose }: Props) {
     const t = useTranslation();
+    const { lang } = useLanguage();
     const [searchQuery, setSearchQuery] = useState("");
+    const [results, setResults] = useState<SearchResults>({});
+    const [status, setStatus] = useState<Status>("idle");
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         if (isOpen) {
-            const t = setTimeout(() => inputRef.current?.focus(), 130);
-            return () => clearTimeout(t);
-        } else {
-            setSearchQuery("");
+            const timeoutId = setTimeout(() => inputRef.current?.focus(), 130);
+            return () => clearTimeout(timeoutId);
         }
+        setSearchQuery("");
+        setResults({});
+        setStatus("idle");
     }, [isOpen]);
 
     useEffect(() => {
@@ -36,6 +58,62 @@ export default function SearchOverlay({ isOpen, onClose }: Props) {
         window.addEventListener("keydown", handler);
         return () => window.removeEventListener("keydown", handler);
     }, [onClose]);
+
+    useEffect(() => {
+        const trimmed = searchQuery.trim();
+        if (trimmed.length < 2) {
+            setResults({});
+            setStatus("idle");
+            return;
+        }
+
+        const controller = new AbortController();
+        setStatus("loading");
+        const timeoutId = setTimeout(async () => {
+            try {
+                const response = await searchAll(trimmed, lang, { signal: controller.signal });
+                if (controller.signal.aborted) return;
+                if (response.degraded) {
+                    setResults({});
+                    setStatus("degraded");
+                    return;
+                }
+                setResults(response.results);
+                setStatus(response.total > 0 ? "results" : "empty");
+            } catch {
+                // CanceledError or transient — stay in loading until next debounce tick
+            }
+        }, 300);
+
+        return () => {
+            clearTimeout(timeoutId);
+            controller.abort();
+        };
+    }, [searchQuery, lang]);
+
+    const renderHit = (hit: SearchHit) => (
+        <Link
+            key={`${hit.type}-${hit.id}`}
+            href={hit.url ?? "#"}
+            onClick={onClose}
+            className="block rounded-xl border border-white/[0.07] bg-white/[0.03] hover:bg-[#5A9BD3]/15 hover:border-[#5A9BD3]/40 transition-all duration-200 px-4 py-3"
+        >
+            <div
+                className="text-white/90 text-sm font-semibold leading-snug line-clamp-2"
+                dangerouslySetInnerHTML={{ __html: hit.title ?? "" }}
+            />
+            {hit.snippet && (
+                <div
+                    className="text-white/45 text-xs mt-1 line-clamp-2"
+                    dangerouslySetInnerHTML={{ __html: hit.snippet }}
+                />
+            )}
+        </Link>
+    );
+
+    const sectionsWithHits = SECTION_ORDER
+        .map((type) => ({ type, hits: results[type] ?? [] }))
+        .filter((s) => s.hits.length > 0);
 
     return (
         <AnimatePresence>
@@ -73,7 +151,7 @@ export default function SearchOverlay({ isOpen, onClose }: Props) {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 16 }}
                         transition={{ duration: 0.3, ease: "easeOut", delay: 0.07 }}
-                        className="flex-1 flex flex-col items-center justify-center px-5 sm:px-10 -mt-10"
+                        className="flex-1 flex flex-col items-center px-5 sm:px-10 pt-16 pb-10 overflow-y-auto"
                     >
                         <p className="text-[#5A9BD3] text-[11px] font-bold uppercase tracking-[0.22em] mb-6 select-none">
                             {t.search.header}
@@ -110,36 +188,61 @@ export default function SearchOverlay({ isOpen, onClose }: Props) {
                                 )}
                             </AnimatePresence>
 
-                            {/* Focus glow line */}
                             <div className="absolute -bottom-px left-8 right-8 h-px bg-gradient-to-r from-transparent via-[#5A9BD3]/50 to-transparent opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
                         </div>
 
-                        {/* Suggestions */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3, delay: 0.18 }}
-                            className="mt-8 w-full max-w-2xl"
-                        >
-                            <p className="text-white/25 text-xs font-semibold uppercase tracking-widest mb-3 select-none">
-                                {t.search.popularLabel}
-                            </p>
-                            <div className="flex flex-wrap gap-2">
-                                {t.search.suggestions.map((term, i) => (
-                                    <motion.button
-                                        key={term}
-                                        initial={{ opacity: 0, y: 8 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.25, delay: 0.22 + i * 0.04 }}
-                                        onClick={() => setSearchQuery(term)}
-                                        className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-white/[0.09] bg-white/[0.04] hover:bg-[#5A9BD3]/20 hover:border-[#5A9BD3]/45 text-white/50 hover:text-white text-[13px] font-medium transition-all duration-200 cursor-pointer"
-                                    >
-                                        <ArrowForwardIcon sx={{ fontSize: 13 }} className="opacity-60" />
-                                        {term}
-                                    </motion.button>
-                                ))}
-                            </div>
-                        </motion.div>
+                        {/* Body: idle suggestions, loading, results, empty, degraded */}
+                        <div className="mt-8 w-full max-w-2xl">
+                            {status === "idle" && (
+                                <div>
+                                    <p className="text-white/25 text-xs font-semibold uppercase tracking-widest mb-3 select-none">
+                                        {t.search.popularLabel}
+                                    </p>
+                                    <div className="flex flex-wrap gap-2">
+                                        {t.search.suggestions.map((term, i) => (
+                                            <motion.button
+                                                key={term}
+                                                initial={{ opacity: 0, y: 8 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ duration: 0.25, delay: 0.18 + i * 0.04 }}
+                                                onClick={() => setSearchQuery(term)}
+                                                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-white/[0.09] bg-white/[0.04] hover:bg-[#5A9BD3]/20 hover:border-[#5A9BD3]/45 text-white/50 hover:text-white text-[13px] font-medium transition-all duration-200 cursor-pointer"
+                                            >
+                                                <ArrowForwardIcon sx={{ fontSize: 13 }} className="opacity-60" />
+                                                {term}
+                                            </motion.button>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {status === "loading" && (
+                                <p className="text-white/40 text-sm text-center mt-6">{t.search.searching}</p>
+                            )}
+
+                            {status === "empty" && (
+                                <p className="text-white/40 text-sm text-center mt-6">{t.search.noResults}</p>
+                            )}
+
+                            {status === "degraded" && (
+                                <p className="text-white/40 text-sm text-center mt-6">{t.search.degraded}</p>
+                            )}
+
+                            {status === "results" && (
+                                <div className="space-y-6">
+                                    {sectionsWithHits.map(({ type, hits }) => (
+                                        <section key={type}>
+                                            <p className="text-[#5A9BD3] text-[11px] font-bold uppercase tracking-widest mb-2">
+                                                {t.search.sections[type]}
+                                            </p>
+                                            <div className="space-y-2">
+                                                {hits.map(renderHit)}
+                                            </div>
+                                        </section>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
                     </motion.div>
 
                     {/* Bottom accent */}

@@ -199,6 +199,20 @@ const az = {
     placeholder: "Axtarış üçün yazın...",
     popularLabel: "Populyar axtarışlar",
     suggestions: ["Qəbul", "İxtisaslar", "Təqaüd", "Beynəlxalq", "Kitabxana"],
+    searching: "Axtarılır...",
+    noResults: "Heç bir nəticə tapılmadı",
+    degraded: "Axtarış müvəqqəti əlçatan deyil",
+    sections: {
+      news: "Xəbərlər",
+      announcement: "Elanlar",
+      project: "Layihələr",
+      collaboration: "Əməkdaşlıqlar",
+      faculty: "Fakültələr",
+      cafedra: "Kafedralar",
+      department: "Şöbələr",
+      employee: "İşçilər",
+      research_institute: "Tədqiqat institutları",
+    },
   },
 
   pages: {
