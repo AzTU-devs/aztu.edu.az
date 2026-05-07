@@ -94,7 +94,7 @@ export default function RectorPage() {
                 ]}
             >
                 <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    <div className="lg:col-span-7">
+                    <div className="lg:col-span-7 order-2 lg:order-1">
                         <p className="text-lg lg:text-xl text-white/80 font-medium mb-10 max-w-2xl leading-relaxed italic">
                             &quot;{p.message[1]}&quot;
                         </p>
@@ -123,14 +123,14 @@ export default function RectorPage() {
                         </div>
                     </div>
                     
-                    <div className="lg:col-span-5 hidden lg:block">
+                    <div className="lg:col-span-5 order-1 lg:order-2">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            className="relative aspect-square max-w-md mx-auto"
+                            className="relative aspect-square max-w-xs sm:max-w-sm lg:max-w-md mx-auto"
                         >
-                            <div className="absolute -top-6 -left-6 w-24 h-24 border-t-4 border-l-4 border-[#ee7c7e] rounded-tl-3xl z-20" />
-                            <div className="absolute -bottom-6 -right-6 w-24 h-24 border-b-4 border-r-4 border-[#ee7c7e] rounded-br-3xl z-20" />
+                            <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 lg:-top-6 lg:-left-6 w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 border-t-4 border-l-4 border-[#ee7c7e] rounded-tl-3xl z-20" />
+                            <div className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 lg:-bottom-6 lg:-right-6 w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 border-b-4 border-r-4 border-[#ee7c7e] rounded-br-3xl z-20" />
                             <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden shadow-2xl z-10 border border-white/10">
                                 <Image
                                     src={VilayetVeliyev}

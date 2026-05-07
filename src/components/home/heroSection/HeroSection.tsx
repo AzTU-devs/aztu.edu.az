@@ -376,7 +376,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 2, duration: 1 }}
-                className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 hidden md:block"
+                className="absolute bottom-2 md:bottom-6 left-1/2 -translate-x-1/2 z-30 block"
             >
                 <div className="flex flex-col items-center gap-2">
                     <p className="text-[8px] font-black uppercase tracking-[0.4em] text-white/30 rotate-90 mb-6 origin-left">Scroll</p>

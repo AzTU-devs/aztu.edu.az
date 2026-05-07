@@ -197,10 +197,11 @@ export default function SustainabilityDocumentsPage() {
                                         href={buildUrl(active.file)}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="hidden sm:inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-[#1a2355] dark:text-white bg-gray-50 dark:bg-slate-800 hover:bg-[#1a2355] hover:text-white px-3 py-2 rounded-lg transition-colors"
+                                        aria-label={c.openNewTab}
+                                        className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-[#1a2355] dark:text-white bg-gray-50 dark:bg-slate-800 hover:bg-[#1a2355] hover:text-white px-2.5 sm:px-3 py-2 rounded-lg transition-colors"
                                     >
                                         <OpenInNewIcon sx={{ fontSize: 14 }} />
-                                        {c.openNewTab}
+                                        <span className="hidden sm:inline">{c.openNewTab}</span>
                                     </a>
                                     <a
                                         href={buildUrl(active.file)}

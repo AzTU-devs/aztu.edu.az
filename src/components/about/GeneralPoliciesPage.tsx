@@ -657,7 +657,7 @@ export default function GeneralPoliciesPage() {
                                 </div>
                                 <div className="flex-1 min-w-0">
                                     <span
-                                        className={`hidden md:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest border mb-1 ${CATEGORIES[active.category].chip}`}
+                                        className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest border mb-1 ${CATEGORIES[active.category].chip}`}
                                     >
                                         {lang === "az" ? CATEGORIES[active.category].az : CATEGORIES[active.category].en}
                                     </span>
@@ -665,23 +665,25 @@ export default function GeneralPoliciesPage() {
                                         {activeTitle}
                                     </h2>
                                 </div>
-                                <div className="hidden md:flex items-center gap-2">
+                                <div className="flex items-center gap-2">
                                     <a
                                         href={activeUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-[#1a2355]/5 dark:bg-white/5 text-[#1a2355] dark:text-white hover:bg-[#ee7c7e]/10 hover:text-[#ee7c7e] border border-[#1a2355]/30 dark:border-white/10 transition-colors"
+                                        aria-label={c.openTab}
+                                        className="inline-flex items-center gap-2 px-2.5 md:px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-[#1a2355]/5 dark:bg-white/5 text-[#1a2355] dark:text-white hover:bg-[#ee7c7e]/10 hover:text-[#ee7c7e] border border-[#1a2355]/30 dark:border-white/10 transition-colors"
                                     >
                                         <OpenInNewIcon sx={{ fontSize: 14 }} />
-                                        {c.openTab}
+                                        <span className="hidden md:inline">{c.openTab}</span>
                                     </a>
                                     <a
                                         href={activeUrl}
                                         download
-                                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-[#ee7c7e] text-white hover:bg-[#d96b6d] transition-colors shadow-md"
+                                        aria-label={c.download}
+                                        className="inline-flex items-center gap-2 px-2.5 md:px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-[#ee7c7e] text-white hover:bg-[#d96b6d] transition-colors shadow-md"
                                     >
                                         <DownloadIcon sx={{ fontSize: 14 }} />
-                                        {c.download}
+                                        <span className="hidden md:inline">{c.download}</span>
                                     </a>
                                 </div>
                                 <button

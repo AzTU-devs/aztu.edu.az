@@ -249,7 +249,7 @@ export default function DekanPage({ params }: Props) {
             {/* EDUCATION TIMELINE */}
             {sortedEducations.length > 0 && (
                 <section>
-                    <div className="flex items-center justify-between gap-6 mb-10">
+                    <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 mb-10">
                         <div className="flex items-center gap-4">
                             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#1a2355] to-[#3b82f6] flex items-center justify-center shadow-lg shadow-blue-500/30">
                                 <SchoolIcon className="text-white" />
@@ -263,7 +263,7 @@ export default function DekanPage({ params }: Props) {
                                 </h2>
                             </div>
                         </div>
-                        <span className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 dark:bg-slate-900/60 backdrop-blur-md border border-[#1a2355]/15 dark:border-white/10 text-[10px] font-black uppercase tracking-widest text-[#1a2355] dark:text-white">
+                        <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 dark:bg-slate-900/60 backdrop-blur-md border border-[#1a2355]/15 dark:border-white/10 text-[10px] font-black uppercase tracking-widest text-[#1a2355] dark:text-white">
                             <AutoAwesomeIcon sx={{ fontSize: 14 }} className="text-[#ee7c7e]" />
                             {sortedEducations.length}{" "}
                             {currentLang === "az" ? "mərhələ" : "milestones"}
