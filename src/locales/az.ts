@@ -642,11 +642,14 @@ const az = {
         ],
         aboutRectorTitle: "Rektor haqqında",
         aboutRector: [
-          "Prof. Vilayət Vəliyev mühəndislik, enerji iqtisadiyyatı və tətbiqi riyaziyyat sahələrində geniş təcrübəyə malik tanınmış alim və akademik rəhbərdir. Azərbaycan Respublikasının Prezidenti İlham Əliyevin Sərəncamı ilə 31 iyul 2019-cu ildə AzTU-nun rektoru təyin edilmiş, 29 iyul 2024-cü ildə yenidən bu vəzifəyə təyin olunmuşdur.",
-          "30 ildən artıq elmi və idarəçilik təcrübəsinə malikdir. Azərbaycan Milli Elmlər Akademiyasında rəhbər vəzifələrdə çalışmış, 2009–2019-cu illərdə İİETİ-nin direktoru olmuşdur.",
-          "Texnika üzrə fəlsəfə doktoru və iqtisad elmləri doktorudur. Professor elmi adına malikdir. ABŞ-da, Oklahoma Universitetində və müxtəlif beynəlxalq şirkətlərdə tədqiqatlar aparmışdır.",
-          "100-dən artıq elmi əsərin müəllifidir. 2014-cü ildə “Əməkdar elm xadimi” fəxri adına layiq görülmüşdür.",
-          "Rus və ingilis dillərini bilir. Ailəlidir, iki övladı var."
+          "Prof.Dr. Vilayət Vəliyev enerji iqtisadiyyatı, ekonometrika və tətbiqi riyaziyyat sahələrində geniş elmi bilik və idarəçilik təcrübəsinə malik tanınmış alim və akademik rəhbərdir.",
+          "O, 1978–1983-cü illərdə Azərbaycan Dövlət Universitetinin (indiki Bakı Dövlət Universitetinin) Tətbiqi riyaziyyat fakültəsini bitirib. 2000–2004-cü illərdə həmin universitetin Beynəlxalq hüquq fakültəsində (fərqlənmə ilə) ikinci ali təhsil alıb.",
+          "Vilayət Vəliyev müxtəlif dövrlərdə elmi-tədqiqat və dövlət idarəçiliyi strukturlarında rəhbər vəzifələrdə çalışıb. O, 2009–2019-cu illərdə Azərbaycan Respublikası İqtisadiyyat Nazirliyi İqtisadi İslahatlar Elmi Tədqiqat İnstitutunun direktoru vəzifəsində işləyib.",
+          "İqtisad elmləri doktoru, texnika elmləri namizədi (fəlsəfə doktoru), professordur.",
+          "Vilayət Vəliyev 2014-cü ildə Prezidentin Sərəncamı ilə “Azərbaycan Respublikasının əməkdar elm xadimi” fəxri adına layiq görülüb.",
+          "O, ABŞ-nin Oklahoma Universitetində və müxtəlif beynəlxalq təşkilatlarda elmi-tədqiqat fəaliyyəti ilə məşğul olub. 100-dən çox elmi əsərin, 40-dan artıq xaricdə çap olunmuş əsərin, həmçinin 1 monoqrafiya və 1 dərsliyin müəllifidir.",
+          "Prezident İlham Əliyevin Sərəncamı ilə 31 iyul 2019-cu ildə Azərbaycan Texniki Universitetinin rektoru təyin olunub və 2024-cü ildə yenidən bu vəzifəyə təsdiqlənib.",
+          "Azərbaycan, rus və ingilis dillərini bilir. Ailəlidir, iki övladı var."
         ],
         departmentsTag: "İdarəetmə",
         departmentsTitle: "Rektora tabe olan strukturlar",
