@@ -22,7 +22,7 @@ const ALLOWED_TAGS = new Set([
 
 // Per-tag allowed attributes. Keys missing here use GLOBAL_ATTRS only.
 const TAG_ATTRS: Record<string, Set<string>> = {
-    a: new Set(["href", "title", "target", "rel"]),
+    a: new Set(["href", "title", "target", "rel", "download"]),
     img: new Set(["src", "alt", "title", "width", "height", "loading"]),
     iframe: new Set(["src", "width", "height", "title", "allow", "allowfullscreen", "frameborder"]),
     table: new Set(["summary"]),

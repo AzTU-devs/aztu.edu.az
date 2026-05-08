@@ -20,9 +20,20 @@ export default function SanitizedHtml({ html, className = "" }: SanitizedHtmlPro
     : `${defaultProseClasses} ${className}`;
 
   return (
-    <div
-      className={combinedClassName}
-      dangerouslySetInnerHTML={{ __html: sanitized || " " }}
-    />
+    <>
+      <style>{`
+        .sanitized-attachment-link a[download] {
+          color: #2563eb;
+          text-decoration: underline;
+        }
+        .sanitized-attachment-link a[download]:hover {
+          color: #1d4ed8;
+        }
+      `}</style>
+      <div
+        className={`${combinedClassName} sanitized-attachment-link`}
+        dangerouslySetInnerHTML={{ __html: sanitized || " " }}
+      />
+    </>
   );
 }
