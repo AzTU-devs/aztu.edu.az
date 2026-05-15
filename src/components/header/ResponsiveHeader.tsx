@@ -35,9 +35,30 @@ export default function ResponsiveHeader() {
     const [scrolled, setScrolled] = useState(false);
     const [expandedHeaderId, setExpandedHeaderId] = useState<number | null>(null);
     const [menuHeaders, setMenuHeaders] = useState<MenuHeader[]>([]);
+    const [shareCopied, setShareCopied] = useState(false);
     const t = useTranslation();
     const { theme, toggleTheme } = useTheme();
     const { lang } = useLanguage();
+
+    const handleShare = async () => {
+        const url = window.location.href;
+        const title = document.title;
+        if (typeof navigator !== "undefined" && (navigator as Navigator & { share?: (data: ShareData) => Promise<void> }).share) {
+            try {
+                await (navigator as Navigator & { share: (data: ShareData) => Promise<void> }).share({ title, url });
+                return;
+            } catch {
+                // fall through
+            }
+        }
+        try {
+            await navigator.clipboard.writeText(url);
+            setShareCopied(true);
+            setTimeout(() => setShareCopied(false), 2000);
+        } catch {
+            // ignore
+        }
+    };
 
     useEffect(() => {
         let ticking = false;
@@ -205,12 +226,21 @@ export default function ResponsiveHeader() {
                             
                             <div className="flex items-center justify-between mt-6 px-1">
                                 <LanguageSwitcher variant="drawer" />
-                                <button 
-                                    onClick={() => navigator.clipboard.writeText(window.location.href)}
-                                    className="rounded-2xl w-12 h-12 flex items-center justify-center text-white/40 bg-white/5 border border-white/5 hover:bg-white/10 hover:text-white transition-all active:scale-90"
-                                >
-                                    <ShareIcon sx={{ fontSize: 20 }} />
-                                </button>
+                                <div className="relative">
+                                    <button
+                                        onClick={handleShare}
+                                        aria-label="Share this page"
+                                        title="Share this page"
+                                        className="rounded-2xl w-12 h-12 flex items-center justify-center text-white/40 bg-white/5 border border-white/5 hover:bg-white/10 hover:text-white transition-all active:scale-90"
+                                    >
+                                        <ShareIcon sx={{ fontSize: 20 }} />
+                                    </button>
+                                    {shareCopied && (
+                                        <span className="absolute bottom-full mb-2 right-0 whitespace-nowrap rounded-md bg-[#ee7c7e] text-white text-xs font-semibold px-2.5 py-1 shadow-lg z-50">
+                                            Link copied
+                                        </span>
+                                    )}
+                                </div>
                             </div>
                         </div>
 

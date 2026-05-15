@@ -68,6 +68,11 @@ export function buildMetadata(input: SeoInput): Metadata {
         keywords,
         alternates: {
             canonical,
+            languages: {
+                "az-AZ": canonical,
+                "en-US": canonical,
+                "x-default": canonical,
+            },
         },
         openGraph: {
             type: type === "profile" ? "profile" : type,

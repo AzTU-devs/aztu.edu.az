@@ -77,6 +77,21 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "/",
+    languages: {
+      "az-AZ": "/",
+      "en-US": "/",
+      "x-default": "/",
+    },
+    types: {
+      "application/rss+xml": "/feed.xml",
+    },
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || undefined,
+    yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || undefined,
+    other: process.env.NEXT_PUBLIC_BING_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION }
+      : undefined,
   },
   openGraph: {
     type: "website",
@@ -173,6 +188,35 @@ const universityJsonLd = {
   },
 };
 
+// Helps Google generate rich sitelinks for the brand SERP (Elanlar, LMS, KOICA, etc.)
+const siteNavigationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "@id": `${SITE_URL}/#sitelinks`,
+  name: "AzTU Sitelinks",
+  itemListElement: [
+    { name: "Elanlar", url: `${SITE_URL}/announcements` },
+    { name: "Xəbərlər", url: `${SITE_URL}/news` },
+    { name: "Fakültələr", url: `${SITE_URL}/faculties` },
+    { name: "Kafedralar", url: `${SITE_URL}/cafedras` },
+    { name: "Haqqımızda", url: `${SITE_URL}/haqqimizda` },
+    { name: "Təhsil", url: `${SITE_URL}/tehsil` },
+    { name: "Tədqiqat", url: `${SITE_URL}/tedqiqat` },
+    { name: "Beynəlxalq əlaqələr", url: `${SITE_URL}/beynelxalq` },
+    { name: "Əlaqə", url: `${SITE_URL}/elaqe` },
+    { name: "LMS", url: "https://sso.aztu.edu.az" },
+    { name: "Plan Hesabat İnformasiya Sistemi", url: "https://plan-report.aztu.edu.az" },
+    { name: "Elmi Əsərlər (Proceedings)", url: "https://proceedings.aztu.edu.az" },
+    { name: "KOICA", url: `${SITE_URL}/projects` },
+    { name: "Virtual Tur", url: `${SITE_URL}/virtual-tour` },
+  ].map((it, i) => ({
+    "@type": "SiteNavigationElement",
+    position: i + 1,
+    name: it.name,
+    url: it.url,
+  })),
+};
+
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -206,6 +250,12 @@ export default function RootLayout({
           type="application/ld+json"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(universityJsonLd) }}
+        />
+        <Script
+          id="ld-json-sitenavigation"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationJsonLd) }}
         />
         <Script
           id="ld-json-website"

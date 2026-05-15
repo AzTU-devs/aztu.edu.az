@@ -255,6 +255,48 @@ export default function Footer() {
                     </div>
                 </div>
 
+                {/* SUBDOMAIN / SISTEM LİNKLƏRİ — surfaced for Google sitelinks */}
+                <nav
+                    aria-label="AzTU sistem və alt-domen linkləri"
+                    className="border-t border-white/10 bg-black/30 py-6 relative z-20"
+                >
+                    <div className="max-w-[1600px] mx-auto px-5 sm:px-8 md:px-[60px] lg:px-[80px] xl:px-[120px] flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+                        {[
+                            { label: "LMS", href: "https://sso.aztu.edu.az", title: "AzTU LMS" },
+                            { label: "Elanlar", href: "/announcements", title: "Elanlar | AzTU" },
+                            { label: "Xəbərlər", href: "/news", title: "Xəbərlər | AzTU" },
+                            { label: "Fakültələr", href: "/faculties", title: "Fakültələr | AzTU" },
+                            { label: "Plan Hesabat", href: "https://plan-report.aztu.edu.az", title: "Plan Hesabat İnformasiya Sistemi | AzTU" },
+                            { label: "Elmi Əsərlər", href: "https://proceedings.aztu.edu.az", title: "Elmi Əsərlər | AzTU" },
+                            { label: "KOICA", href: "/projects", title: "KOICA layihəsi | AzTU" },
+                            { label: "Tədqiqat", href: "/tedqiqat", title: "Tədqiqat | AzTU" },
+                            { label: "Əlaqə", href: "/elaqe", title: "Əlaqə | AzTU" },
+                        ].map(({ label, href, title }) => {
+                            const isExternal = href.startsWith("http");
+                            return isExternal ? (
+                                <a
+                                    key={label}
+                                    href={href}
+                                    title={title}
+                                    rel="noopener"
+                                    className="text-[11px] font-black text-white/60 hover:text-[#ee7c7e] uppercase tracking-widest transition-colors"
+                                >
+                                    {label}
+                                </a>
+                            ) : (
+                                <Link
+                                    key={label}
+                                    href={href}
+                                    title={title}
+                                    className="text-[11px] font-black text-white/60 hover:text-[#ee7c7e] uppercase tracking-widest transition-colors"
+                                >
+                                    {label}
+                                </Link>
+                            );
+                        })}
+                    </div>
+                </nav>
+
                 {/* COPYRIGHT BAR */}
                 <div className="bg-black/40 py-10 relative z-20">
                     <div className="max-w-[1600px] mx-auto px-5 sm:px-8 md:px-[60px] lg:px-[80px] xl:px-[120px] flex flex-col md:flex-row items-center justify-between gap-6">

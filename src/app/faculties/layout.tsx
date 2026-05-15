@@ -15,17 +15,17 @@ export const metadata: Metadata = {
         "computer engineering",
     ],
     alternates: {
-        canonical: "/az/faculties",
+        canonical: "/faculties",
         languages: {
-            "az-AZ": "/az/faculties",
+            "az-AZ": "/faculties",
             "en-US": "/en/faculties",
-            "x-default": "/az/faculties",
+            "x-default": "/faculties",
         },
     },
     openGraph: {
         title: "Fakültələr | AzTU",
         description: "AzTU-nun fakültələri, kafedraları və ixtisasları.",
-        url: "/az/faculties",
+        url: "/faculties",
         type: "website",
     },
 };

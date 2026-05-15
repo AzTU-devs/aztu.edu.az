@@ -92,16 +92,28 @@ function sanitizeAttributes(tag: string, rawAttrs: string): string {
         if (!allowed) continue;
 
         // URL-bearing attributes: validate.
+        let finalValue = value;
         if (name === "href" || name === "src") {
             if (tag === "iframe" && name === "src") {
                 if (!isAllowedIframeSrc(value)) continue;
             } else if (!isSafeUrl(value)) {
                 continue;
             }
+            // For <a href>: if the value looks like a bare domain (e.g. "example.com",
+            // "www.foo.az") with no scheme and no leading slash/anchor/query, prepend
+            // https:// so the browser doesn't treat it as a relative path.
+            if (tag === "a" && name === "href") {
+                const trimmed = value.trim();
+                const hasScheme = /^[a-z][a-z0-9+.-]*:/i.test(trimmed);
+                const isRelative = /^[\/#?]/.test(trimmed);
+                if (!hasScheme && !isRelative && /\.[a-z]{2,}(\/|$)/i.test(trimmed)) {
+                    finalValue = `https://${trimmed}`;
+                }
+            }
         }
 
         // Force safe defaults on links: rel includes noopener noreferrer when target=_blank.
-        out.push(`${name}="${escapeAttr(value)}"`);
+        out.push(`${name}="${escapeAttr(finalValue)}"`);
     }
 
     if (tag === "a") {

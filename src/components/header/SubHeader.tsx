@@ -31,7 +31,28 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [expandedHeaderId, setExpandedHeaderId] = useState<number | null>(null);
     const [menuHeaders, setMenuHeaders] = useState<MenuHeader[]>([]);
+    const [shareCopied, setShareCopied] = useState(false);
     const t = useTranslation();
+
+    const handleShare = async () => {
+        const url = window.location.href;
+        const title = document.title;
+        if (typeof navigator !== "undefined" && (navigator as Navigator & { share?: (data: ShareData) => Promise<void> }).share) {
+            try {
+                await (navigator as Navigator & { share: (data: ShareData) => Promise<void> }).share({ title, url });
+                return;
+            } catch {
+                // fall through
+            }
+        }
+        try {
+            await navigator.clipboard.writeText(url);
+            setShareCopied(true);
+            setTimeout(() => setShareCopied(false), 2000);
+        } catch {
+            // ignore
+        }
+    };
     const { theme, toggleTheme } = useTheme();
     const { lang } = useLanguage();
 
@@ -196,12 +217,21 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
                                 </a>
                             ))}
                             <LanguageSwitcher variant="drawer" />
-                            <button 
-                                onClick={() => navigator.clipboard.writeText(window.location.href)}
-                                className="rounded-lg w-8 h-8 flex items-center justify-center text-white bg-white/10 hover:bg-white/25 transition-all cursor-pointer"
-                            >
-                                <ShareIcon sx={{ fontSize: 18 }} />
-                            </button>
+                            <div className="relative">
+                                <button
+                                    onClick={handleShare}
+                                    aria-label="Share this page"
+                                    title="Share this page"
+                                    className="rounded-lg w-8 h-8 flex items-center justify-center text-white bg-white/10 hover:bg-white/25 transition-all cursor-pointer"
+                                >
+                                    <ShareIcon sx={{ fontSize: 18 }} />
+                                </button>
+                                {shareCopied && (
+                                    <span className="absolute top-full mt-2 right-0 whitespace-nowrap rounded-md bg-[#1a2355] dark:bg-[#ee7c7e] text-white text-xs font-semibold px-2.5 py-1 shadow-lg z-50">
+                                        Link copied
+                                    </span>
+                                )}
+                            </div>
                         </div>
 
                         {/* Nav sections */}

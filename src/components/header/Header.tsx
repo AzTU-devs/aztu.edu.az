@@ -30,9 +30,30 @@ type HeaderProps = {
 export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
   const [activeHeader, setActiveHeader] = useState<MenuHeader | null>(null);
   const [menuHeaders, setMenuHeaders] = useState<MenuHeader[]>([]);
+  const [shareCopied, setShareCopied] = useState(false);
   const t = useTranslation();
   const { theme, toggleTheme } = useTheme();
   const { lang } = useLanguage();
+
+  const handleShare = async () => {
+    const url = window.location.href;
+    const title = document.title;
+    if (typeof navigator !== "undefined" && (navigator as Navigator & { share?: (data: ShareData) => Promise<void> }).share) {
+      try {
+        await (navigator as Navigator & { share: (data: ShareData) => Promise<void> }).share({ title, url });
+        return;
+      } catch {
+        // user cancelled or share failed — fall through to clipboard
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      setShareCopied(true);
+      setTimeout(() => setShareCopied(false), 2000);
+    } catch {
+      // ignore
+    }
+  };
 
   useEffect(() => {
     getHeaderMenu(lang).then((data) => {
@@ -108,18 +129,25 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
 
             <LanguageSwitcher variant={isOpen ? "header-open" : "header-closed"} />
 
-            <button
-              onClick={() => {
-                navigator.clipboard.writeText(window.location.href);
-              }}
-              className={`rounded-lg w-10 h-10 flex items-center justify-center transition-all duration-300 cursor-pointer ${
-                isOpen
-                  ? "bg-[#1a2355] dark:bg-[#1e3a5f]"
-                  : "bg-white/10 hover:bg-white/25"
-              }`}
-            >
-              <ShareIcon sx={{ color: "white", fontSize: 22 }} />
-            </button>
+            <div className="relative">
+              <button
+                onClick={handleShare}
+                aria-label="Share this page"
+                title="Share this page"
+                className={`rounded-lg w-10 h-10 flex items-center justify-center transition-all duration-300 cursor-pointer ${
+                  isOpen
+                    ? "bg-[#1a2355] dark:bg-[#1e3a5f] hover:bg-[#1a2355]/80"
+                    : "bg-white/10 hover:bg-white/25"
+                }`}
+              >
+                <ShareIcon sx={{ color: "white", fontSize: 22 }} />
+              </button>
+              {shareCopied && (
+                <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-[#1a2355] dark:bg-[#ee7c7e] text-white text-xs font-semibold px-2.5 py-1 shadow-lg z-50">
+                  Link copied
+                </span>
+              )}
+            </div>
 
             {/* Dark/Light mode toggle */}
             <button
