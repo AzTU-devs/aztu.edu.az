@@ -2,8 +2,9 @@ import apiClient, { Lang } from "@/util/apiClient";
 import type { NewsListItem, NewsDetail } from "@/types/news";
 
 export interface NewsCategoryItem {
-    category_id: string;
+    category_id: number;
     title: string;
+    news_count?: number;
 }
 
 export const getNewsCategories = async (lang: Lang = "az"): Promise<NewsCategoryItem[]> => {
@@ -11,8 +12,9 @@ export const getNewsCategories = async (lang: Lang = "az"): Promise<NewsCategory
         const response = await apiClient.get(`/api/news-category/all?lang=${lang}`, {
             headers: { "Accept-Language": lang },
         });
-        if (response.data.status_code === 200 && Array.isArray(response.data.categories)) {
-            return response.data.categories as NewsCategoryItem[];
+        if (response.data.status_code === 200) {
+            const list = response.data.news_categories ?? response.data.categories;
+            if (Array.isArray(list)) return list as NewsCategoryItem[];
         }
         return [];
     } catch {

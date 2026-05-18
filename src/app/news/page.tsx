@@ -16,6 +16,7 @@ import { useLanguage } from "@/context/LanguageContext";
 
 import PageHero from "@/components/shared/PageHero";
 import PageContainer from "@/components/shared/PageContainer";
+import SDGBadges from "@/components/news/SDGBadges";
 import { stripHtml, decodeHtmlEntities } from "@/util/htmlSanitizer";
 
 const PALETTE = [
@@ -55,8 +56,15 @@ export default function NewsPage() {
     const { list, listLoading } = useSelector((s: RootState) => s.news);
     const [categories, setCategories] = useState<NewsCategoryItem[]>([]);
     const [activeCategoryId, setActiveCategoryId] = useState<string>(ALL_CATEGORY_ID);
+    const [activeSdgs, setActiveSdgs] = useState<number[]>([]);
     const [page, setPage] = useState(0);
     const PAGE_SIZE = 12;
+
+    const toggleSdg = (n: number) => {
+        setActiveSdgs((prev) =>
+            prev.includes(n) ? prev.filter((x) => x !== n) : [...prev, n].sort((a, b) => a - b)
+        );
+    };
 
     useEffect(() => {
         getNewsCategories(lang).then((cats) => setCategories(cats));
@@ -87,17 +95,27 @@ export default function NewsPage() {
         setPage(nextPage);
     };
 
-    const categoryColor = (categoryId: string) => {
-        const idx = categories.findIndex((c) => c.category_id === categoryId);
+    const categoryColor = (categoryId: number | string | undefined) => {
+        if (categoryId == null) return "bg-[#1a2355]";
+        const idx = categories.findIndex((c) => String(c.category_id) === String(categoryId));
+        if (idx < 0) return "bg-[#1a2355]";
         return PALETTE[idx % PALETTE.length] ?? "bg-[#1a2355]";
     };
 
-    const categoryLabel = (categoryId: string) => {
-        return categories.find((c) => c.category_id === categoryId)?.title ?? categoryId;
+    const categoryLabel = (categoryId: number | string | undefined) => {
+        if (categoryId == null) return "";
+        const found = categories.find((c) => String(c.category_id) === String(categoryId));
+        return found?.title ?? String(categoryId);
     };
 
-    const featured = list[0];
-    const rest = list.slice(1);
+    const filteredList = activeSdgs.length === 0
+        ? list
+        : list.filter((n) =>
+              Array.isArray(n.sdg_numbers) && activeSdgs.every((s) => n.sdg_numbers!.includes(s))
+          );
+
+    const featured = filteredList[0];
+    const rest = filteredList.slice(1);
 
     return (
         <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden pb-32">
@@ -125,22 +143,83 @@ export default function NewsPage() {
                     >
                         {t.news.categoryAll}
                     </button>
-                    {categories.map((cat) => (
-                        <button
-                            key={cat.category_id}
-                            onClick={() => setActiveCategoryId(cat.category_id)}
-                            className={`flex-shrink-0 px-8 py-3.5 rounded-[1.8rem] font-black text-[10px] uppercase tracking-[0.2em] transition-all duration-500 cursor-pointer ${activeCategoryId === cat.category_id
-                                    ? "bg-[#1a2355] text-white shadow-xl"
-                                    : "text-[#1a2355] dark:text-white/60 hover:bg-[#1a2355]/5 dark:hover:bg-white/5"
-                                }`}
-                        >
-                            {cat.title}
-                        </button>
-                    ))}
+                    {categories.map((cat) => {
+                        const id = String(cat.category_id);
+                        const active = activeCategoryId === id;
+                        return (
+                            <button
+                                key={id}
+                                onClick={() => setActiveCategoryId(id)}
+                                className={`flex-shrink-0 px-8 py-3.5 rounded-[1.8rem] font-black text-[10px] uppercase tracking-[0.2em] transition-all duration-500 cursor-pointer ${active
+                                        ? "bg-[#1a2355] text-white shadow-xl"
+                                        : "text-[#1a2355] dark:text-white/60 hover:bg-[#1a2355]/5 dark:hover:bg-white/5"
+                                    }`}
+                            >
+                                {cat.title}
+                            </button>
+                        );
+                    })}
+                </div>
+            </div>
+
+            {/* ── SDG Filter ── */}
+            <div className="mx-4 md:mx-10 lg:mx-20 mt-4">
+                <div className="bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl border border-[#1a2355]/15 dark:border-white/10 rounded-3xl shadow-md max-w-[1600px] mx-auto p-4 flex flex-wrap items-center gap-3">
+                    <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#1a2355]/70 dark:text-white/60 px-2">
+                        SDG
+                    </span>
+                    <button
+                        onClick={() => setActiveSdgs([])}
+                        className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all ${activeSdgs.length === 0
+                                ? "bg-[#1a2355] text-white shadow"
+                                : "bg-gray-100 dark:bg-white/5 text-[#1a2355] dark:text-white/60 hover:bg-[#1a2355]/10"
+                            }`}
+                    >
+                        {lang === "en" ? "All" : "Hamısı"}
+                    </button>
+                    <div className="flex flex-wrap items-center gap-2">
+                        {Array.from({ length: 17 }, (_, i) => i + 1).map((n) => {
+                            const active = activeSdgs.includes(n);
+                            return (
+                                <button
+                                    key={n}
+                                    onClick={() => toggleSdg(n)}
+                                    title={`SDG ${n}`}
+                                    className={`w-9 h-9 inline-flex items-center justify-center rounded-lg text-[12px] font-black transition-all border ${active
+                                            ? "bg-emerald-500 text-white border-emerald-600 shadow"
+                                            : "bg-white dark:bg-white/5 text-[#1a2355] dark:text-white/70 border-gray-200 dark:border-white/10 hover:bg-emerald-50"
+                                        }`}
+                                >
+                                    {n}
+                                </button>
+                            );
+                        })}
+                    </div>
+                    {activeSdgs.length > 0 && (
+                        <span className="ml-auto text-[11px] font-semibold text-gray-500 dark:text-white/50">
+                            {filteredList.length} {lang === "en" ? "results" : "nəticə"}
+                        </span>
+                    )}
                 </div>
             </div>
 
             <PageContainer>
+                {!listLoading && filteredList.length === 0 && activeSdgs.length > 0 && (
+                    <div className="text-center py-24">
+                        <p className="text-lg font-bold text-[#1a2355] dark:text-white">
+                            {lang === "en"
+                                ? "No news matches the selected SDG filter."
+                                : "Seçilmiş SDG filtri üzrə xəbər tapılmadı."}
+                        </p>
+                        <button
+                            onClick={() => setActiveSdgs([])}
+                            className="mt-4 px-6 py-2.5 rounded-2xl bg-[#1a2355] text-white text-[11px] font-black uppercase tracking-[0.25em] hover:bg-[#ee7c7e] transition-colors"
+                        >
+                            {lang === "en" ? "Clear filter" : "Filtri təmizlə"}
+                        </button>
+                    </div>
+                )}
+
                 {/* Featured News */}
                 {featured && !listLoading && (
                     <motion.div
@@ -162,17 +241,20 @@ export default function NewsPage() {
                                 </div>
                                 <div className="lg:w-2/5 w-full p-12 md:p-20 flex flex-col justify-center relative z-10">
                                     <div className="flex items-center gap-4 mb-8">
-                                        <span className={`${categoryColor(featured.cateogry_id)} text-white text-[10px] font-black px-5 py-2 rounded-full uppercase tracking-widest shadow-lg`}>
-                                            {categoryLabel(featured.cateogry_id)}
+                                        <span className={`${categoryColor(featured.category_id)} text-white text-[10px] font-black px-5 py-2 rounded-full uppercase tracking-widest shadow-lg`}>
+                                            {categoryLabel(featured.category_id)}
                                         </span>
                                         <span className="text-gray-400 dark:text-white/30 text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
                                             <CalendarMonthIcon sx={{ fontSize: 16 }} />
                                             {formatDate(featured.created_at, lang)}
                                         </span>
                                     </div>
-                                    <h2 className="text-3xl md:text-5xl font-black text-[#1a2355] dark:text-white mb-8 leading-[1.1] tracking-tighter group-hover:text-[#ee7c7e] transition-colors duration-500">
+                                    <h2 className="text-3xl md:text-5xl font-black text-[#1a2355] dark:text-white mb-6 leading-[1.1] tracking-tighter group-hover:text-[#ee7c7e] transition-colors duration-500">
                                         {decodeHtmlEntities(featured.title)}
                                     </h2>
+                                    {featured.sdg_numbers && featured.sdg_numbers.length > 0 && (
+                                        <SDGBadges numbers={featured.sdg_numbers} size={48} className="mb-6" />
+                                    )}
                                     <p className="text-gray-500 dark:text-white/60 text-lg leading-relaxed line-clamp-3 mb-12 text-justify font-medium">
                                         {stripHtml(featured.html_content, 240)}
                                     </p>
@@ -207,8 +289,8 @@ export default function NewsPage() {
                                             fill
                                             className="object-cover transition-transform duration-1000 group-hover:scale-110"
                                         />
-                                        <div className={`absolute top-6 left-6 ${categoryColor(item.cateogry_id)} text-white text-[9px] font-black px-4 py-1.5 rounded-lg uppercase tracking-widest shadow-xl`}>
-                                            {categoryLabel(item.cateogry_id)}
+                                        <div className={`absolute top-6 left-6 ${categoryColor(item.category_id)} text-white text-[9px] font-black px-4 py-1.5 rounded-lg uppercase tracking-widest shadow-xl`}>
+                                            {categoryLabel(item.category_id)}
                                         </div>
                                     </div>
                                     <div className="p-10 flex flex-col flex-1 relative z-10">
@@ -216,9 +298,12 @@ export default function NewsPage() {
                                             <CalendarMonthIcon sx={{ fontSize: 14 }} />
                                             <span>{formatDate(item.created_at, lang)}</span>
                                         </div>
-                                        <h3 className="text-xl font-black text-[#1a2355] dark:text-white leading-[1.3] mb-6 group-hover:text-[#ee7c7e] transition-colors duration-500 tracking-tight">
+                                        <h3 className="text-xl font-black text-[#1a2355] dark:text-white leading-[1.3] mb-4 group-hover:text-[#ee7c7e] transition-colors duration-500 tracking-tight">
                                             {decodeHtmlEntities(item.title)}
                                         </h3>
+                                        {item.sdg_numbers && item.sdg_numbers.length > 0 && (
+                                            <SDGBadges numbers={item.sdg_numbers} size={36} className="mb-4" />
+                                        )}
                                         <p className="text-gray-500 dark:text-white/40 text-sm leading-relaxed line-clamp-3 mb-8 text-justify font-medium">
                                             {stripHtml(item.html_content, 180)}
                                         </p>

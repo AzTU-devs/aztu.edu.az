@@ -6,7 +6,9 @@ import { newsSlug } from "@/util/slugify";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import { useEffect, useRef } from "react";
+import PublicIcon from "@mui/icons-material/Public";
+import SDGBadges from "@/components/news/SDGBadges";
+import { useEffect, useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchNewsList } from "@/redux/features/newsSlice";
@@ -14,14 +16,17 @@ import type { AppDispatch, RootState } from "@/redux/store";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import { stripHtml, decodeHtmlEntities } from "@/util/htmlSanitizer";
+import { getNewsCategories, type NewsCategoryItem } from "@/services/newsService/newsService";
 
-const categoryColors: Record<string, string> = {
-    AzTU: "bg-[#1a2355]",
-    Elm: "bg-emerald-500",
-    Tələbə: "bg-violet-500",
-    Əməkdaşlıq: "bg-amber-500",
-    Qəbul: "bg-[#ee7c7e]",
-};
+const CATEGORY_PALETTE = [
+    "bg-[#1a2355]",
+    "bg-emerald-500",
+    "bg-violet-500",
+    "bg-amber-500",
+    "bg-[#ee7c7e]",
+    "bg-cyan-600",
+    "bg-indigo-600",
+];
 
 function formatDate(iso: string, lang: string) {
     if (!iso) return "";
@@ -40,9 +45,28 @@ export default function News() {
     const { list, listLoading } = useSelector((s: RootState) => s.news);
     const { lang } = useLanguage();
 
+    const [categories, setCategories] = useState<NewsCategoryItem[]>([]);
+
     useEffect(() => {
         dispatch(fetchNewsList({ start: 0, end: 5, lang }));
     }, [dispatch, lang]);
+
+    useEffect(() => {
+        getNewsCategories(lang).then((cats) => setCategories(cats));
+    }, [lang]);
+
+    const categoryLabel = (cid: number | string | null | undefined): string => {
+        if (cid == null) return "";
+        const found = categories.find((c) => String(c.category_id) === String(cid));
+        return found?.title ?? String(cid);
+    };
+
+    const categoryColor = (cid: number | string | null | undefined): string => {
+        if (cid == null) return "bg-[#1a2355]";
+        const idx = categories.findIndex((c) => String(c.category_id) === String(cid));
+        if (idx < 0) return "bg-[#1a2355]";
+        return CATEGORY_PALETTE[idx % CATEGORY_PALETTE.length];
+    };
 
     const featured = list[0] ?? null;
     const rest = list.slice(1, 5);
@@ -160,25 +184,37 @@ export default function News() {
 
                                         {/* Labels */}
                                         <div className="absolute top-8 left-8 flex items-center gap-3">
-                                            <span className={`px-5 py-2 ${categoryColors[featured.cateogry_id] ?? "bg-[#1a2355]"} text-white text-[11px] font-black uppercase tracking-[0.2em] rounded-full shadow-2xl border border-white/10 flex items-center gap-2.5`}>
+                                            <span className={`px-5 py-2 ${categoryColor(featured.category_id)} text-white text-[11px] font-black uppercase tracking-[0.2em] rounded-full shadow-2xl border border-white/10 flex items-center gap-2.5`}>
                                                 <LocalOfferIcon sx={{ fontSize: 14 }} />
-                                                {featured.cateogry_id}
+                                                {categoryLabel(featured.category_id)}
                                             </span>
                                         </div>
 
-                                        <div className="absolute bottom-8 left-8">
+                                        <div className="absolute bottom-8 left-8 flex flex-wrap items-center gap-3">
                                             <span className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 text-white text-[12px] font-black shadow-2xl">
                                                 <CalendarMonthIcon sx={{ fontSize: 16, color: '#ee7c7e' }} />
                                                 {formatDate(featured.created_at, lang)}
                                             </span>
+                                            {featured.sdg_numbers && featured.sdg_numbers.length > 0 && (
+                                                <span
+                                                    className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-emerald-500/90 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-2xl border border-white/20"
+                                                    title={`SDG: ${featured.sdg_numbers.join(", ")}`}
+                                                >
+                                                    <PublicIcon sx={{ fontSize: 14 }} />
+                                                    SDG · {featured.sdg_numbers.length}
+                                                </span>
+                                            )}
                                         </div>
                                     </div>
 
                                     {/* Content Section */}
                                     <div className="p-12 md:p-16 relative z-10">
-                                        <h2 className="text-3xl md:text-5xl font-black text-[#1a2355] dark:text-white leading-[1.1] mb-8 tracking-tighter group-hover:text-[#ee7c7e] transition-colors duration-500">
+                                        <h2 className="text-3xl md:text-5xl font-black text-[#1a2355] dark:text-white leading-[1.1] mb-6 tracking-tighter group-hover:text-[#ee7c7e] transition-colors duration-500">
                                             {decodeHtmlEntities(featured.title)}
                                         </h2>
+                                        {featured.sdg_numbers && featured.sdg_numbers.length > 0 && (
+                                            <SDGBadges numbers={featured.sdg_numbers} size={40} className="mb-6" />
+                                        )}
                                         <p className="text-gray-500 dark:text-white/60 text-xl leading-relaxed line-clamp-3 mb-10 text-justify font-medium">
                                             {stripHtml(featured.html_content, 240)}
                                         </p>
@@ -214,9 +250,18 @@ export default function News() {
                                                     className="object-cover transition-transform duration-1000 group-hover:scale-110"
                                                 />
                                                 <div className="absolute inset-0 bg-gradient-to-t from-[#1a2355]/60 to-transparent" />
-                                                <span className={`absolute top-5 left-5 ${categoryColors[item.cateogry_id] ?? "bg-[#1a2355]"} text-white text-[10px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full shadow-2xl border border-white/10`}>
-                                                    {item.cateogry_id}
+                                                <span className={`absolute top-5 left-5 ${categoryColor(item.category_id)} text-white text-[10px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full shadow-2xl border border-white/10`}>
+                                                    {categoryLabel(item.category_id)}
                                                 </span>
+                                                {item.sdg_numbers && item.sdg_numbers.length > 0 && (
+                                                    <span
+                                                        className="absolute top-5 right-5 inline-flex items-center gap-1.5 bg-emerald-500/90 text-white text-[10px] font-black uppercase tracking-[0.18em] px-3 py-1.5 rounded-full shadow-2xl border border-white/15"
+                                                        title={`SDG: ${item.sdg_numbers.join(", ")}`}
+                                                    >
+                                                        <PublicIcon sx={{ fontSize: 12 }} />
+                                                        SDG · {item.sdg_numbers.length}
+                                                    </span>
+                                                )}
                                             </div>
 
                                             <div className="p-8 flex flex-col flex-1 relative z-10">

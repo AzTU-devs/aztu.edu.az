@@ -67,6 +67,27 @@ export async function fetchNewsDetail(id: number, lang: Lang = "az"): Promise<Ne
     }
 }
 
+export interface NewsCategoryItem {
+    category_id: number;
+    title: string;
+    news_count?: number;
+}
+
+export async function fetchNewsCategories(lang: Lang = "az"): Promise<NewsCategoryItem[]> {
+    try {
+        const res = await fetch(`${API_BASE}/api/news-category/all?lang=${lang}`, {
+            headers: authHeaders(lang),
+            next: { revalidate: 60, tags: ["news:categories"] },
+        });
+        if (!res.ok) return [];
+        const data = await res.json();
+        if (data?.status_code !== 200) return [];
+        return (data.news_categories ?? data.categories ?? []) as NewsCategoryItem[];
+    } catch {
+        return [];
+    }
+}
+
 export async function fetchNewsList(params: {
     start?: number;
     end?: number;
@@ -135,17 +156,3 @@ export async function fetchAnnouncementList(params: {
     }
 }
 
-export async function fetchNewsCategories(lang: Lang = "az"): Promise<{ category_id: string; title: string }[]> {
-    try {
-        const res = await fetch(`${API_BASE}/api/news-category/all?lang=${lang}`, {
-            headers: authHeaders(lang),
-            next: { revalidate: 3600 },
-        });
-        if (!res.ok) return [];
-        const data = await res.json();
-        if (data?.status_code !== 200) return [];
-        return (data.categories ?? []) as { category_id: string; title: string }[];
-    } catch {
-        return [];
-    }
-}

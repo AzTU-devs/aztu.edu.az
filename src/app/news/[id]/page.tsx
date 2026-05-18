@@ -12,9 +12,10 @@ import SanitizedHtml from "@/components/shared/SanitizedHtml";
 import { decodeHtmlEntities } from "@/util/htmlSanitizer";
 import NewsScrollProgress from "@/components/news/NewsScrollProgress";
 import NewsGallery from "@/components/news/NewsGallery";
+import SDGBadges from "@/components/news/SDGBadges";
 import CopyLinkButton from "@/components/shared/CopyLinkButton";
 import { parseNewsSlug, newsSlug } from "@/util/slugify";
-import { fetchNewsDetail, fetchNewsList, type Lang } from "@/util/fetchers";
+import { fetchNewsDetail, fetchNewsList, fetchNewsCategories, type Lang } from "@/util/fetchers";
 import { absUrl, SITE_URL } from "@/util/seo";
 
 export const revalidate = 30;
@@ -74,10 +75,17 @@ export default async function NewsDetailPage({
     const lang: Lang = cookieStore.get("aztu-lang")?.value === "en" ? "en" : "az";
     const t = UI[lang];
 
-    const [detail, list] = await Promise.all([
+    const [detail, list, categories] = await Promise.all([
         fetchNewsDetail(id, lang),
         fetchNewsList({ start: 0, end: 12, lang }),
+        fetchNewsCategories(lang),
     ]);
+
+    const categoryLabel = (cid: number | string | null | undefined): string => {
+        if (cid == null) return "";
+        const found = categories.find((c) => String(c.category_id) === String(cid));
+        return found?.title ?? String(cid);
+    };
 
     if (!detail) notFound();
 
@@ -134,9 +142,9 @@ export default async function NewsDetailPage({
                             {/* Left: title + meta */}
                             <div className="order-1 lg:order-1">
                                 <div className="flex flex-wrap items-center gap-3 mb-5">
-                                    {detail.category_id && (
+                                    {(detail.category_title || detail.category_id) && (
                                         <span className="bg-white/15 text-white text-xs font-bold px-3 py-1.5 rounded-full">
-                                            {detail.category_id}
+                                            {detail.category_title || categoryLabel(detail.category_id)}
                                         </span>
                                     )}
                                     {createdAt && (
@@ -159,6 +167,11 @@ export default async function NewsDetailPage({
                                 <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
                                     {title}
                                 </h1>
+                                {detail.sdg_numbers && detail.sdg_numbers.length > 0 && (
+                                    <div className="mt-6">
+                                        <SDGBadges numbers={detail.sdg_numbers} size={72} />
+                                    </div>
+                                )}
                             </div>
 
                             {/* Right: cover image */}
@@ -231,7 +244,7 @@ export default async function NewsDetailPage({
                                                         {t.category}
                                                     </span>
                                                     <span className="bg-[#1a2355] text-white text-xs font-bold px-2.5 py-1 rounded-full self-start">
-                                                        {detail.category_id}
+                                                        {detail.category_title || categoryLabel(detail.category_id)}
                                                     </span>
                                                 </div>
                                             </>
@@ -291,9 +304,9 @@ export default async function NewsDetailPage({
                                                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                                                 />
-                                                {item.cateogry_id && (
+                                                {item.category_id != null && (
                                                     <span className="absolute top-3 left-3 bg-[#1a2355] text-white text-xs font-bold px-2 py-1 rounded-lg">
-                                                        {item.cateogry_id}
+                                                        {categoryLabel(item.category_id)}
                                                     </span>
                                                 )}
                                             </div>

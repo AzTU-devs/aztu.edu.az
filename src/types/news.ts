@@ -1,13 +1,18 @@
 // --- News list item returned by /api/news/public/all ---
 export interface NewsListItem {
     news_id: number;
-    cateogry_id: string;
+    category_id: number;
+    /** @deprecated old typo kept for backwards-compat with feed/route consumers */
+    cateogry_id?: string;
     display_order: number;
     is_active: boolean;
     title: string;
     html_content: string;
     cover_image: string;
     created_at: string;
+    sdg_numbers?: number[];
+    faculty_code?: string | null;
+    cafedra_code?: string | null;
 }
 
 export interface NewsListResponse {
@@ -32,8 +37,14 @@ export interface NewsDetail {
     en_title: string;
     en_html_content: string;
     category_id: string;
+    category_title?: string;
     cover_image: string;
     gallery_images: GalleryImage[];
+    sdg_numbers?: number[];
+    faculty_code?: string | null;
+    cafedra_code?: string | null;
+    created_at?: string;
+    published_date?: string;
 }
 
 export interface NewsDetailResponse {
