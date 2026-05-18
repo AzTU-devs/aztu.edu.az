@@ -732,21 +732,6 @@ const az = {
         backToList: "Bütün prorektorlara qayıt",
         viceRectors: [
           {
-            slug: "nureli-yusifbeyli",
-            name: "Prof. Nurəli Yusifbəyli",
-            degree: "Texnika elmləri doktoru, professor",
-            title: "Tədris işləri üzrə prorektor",
-            email: "yusifbayli.n@aztu.edu.az",
-            phone: "+994 12 539 08 57",
-            photoUrl: `${VR_MEDIA}/nurali_yusifbayli.JPG`,
-            biography: [
-              "Prof. Nurəli Yusifbəyli Azərbaycan Texniki Universitetinin Tədris işləri üzrə prorektoru, enerji sistemləri və strateji planlaşdırma sahəsində tanınmış alim və yüksək səviyyəli idarəçidir. O, texnika elmləri doktoru və professor elmi dərəcələrinə malikdir və elektroenergetika, enerji təhlükəsizliyi və dayanıqlı enerji sistemləri sahəsində geniş elmi və praktiki təcrübəyə sahibdir. 18 yanvar 2021-ci il tarixində Azərbaycan Respublikası Təhsil Nazirinin K-44 nömrəli əmrinə əsasən Azərbaycan Texniki Universitetinin Tədris işləri üzrə prorektoru vəzifəsinə təyin olunmuşdur.",
-              "Prof. Yusifbəyli enerji sektorunda uzunmüddətli peşəkar fəaliyyətə malik olmaqla, “Azərenerji” ASC-də yüksək rəhbər vəzifələrdə, o cümlədən Mərkəzi Dispetçer İdarəsinin rəisi kimi çalışmış, enerji sistemlərinin idarə olunması və inkişafında mühüm rol oynamışdır. Daha sonra o, dövlət idarəçiliyində fəaliyyətini davam etdirərək Azərbaycan Respublikasının İqtisadiyyat və Sənaye Nazirliyində strateji planlaşdırma istiqamətinə rəhbərlik etmiş, həmçinin Alternativ və Bərpaolunan Enerji Mənbələri üzrə Dövlət Agentliyi sədrinin müavini vəzifəsində çalışmışdır.",
-              "Onun elmi fəaliyyəti enerji təhlükəsizliyi, elektroenergetika sistemlərinin inkişafı və bərpaolunan enerji mənbələrinin inteqrasiyası sahələrini əhatə edir. Prof. Yusifbəyli 200-dən çox elmi əsərin, 8 kitabın, patentlərin və standartların müəllifidir və bir sıra beynəlxalq layihələrə, o cümlədən ECO regionunun enerji strategiyası və Xəzər regionunun enerji təhlükəsizliyi layihələrinə rəhbərlik etmişdir.",
-              "O, “Electroenergetics, Technics, Mechanics + Control” beynəlxalq jurnalının baş redaktoru, IEEE üzvü və “ECO Academy”nin akademikidir. Onun elmi və təşkilati fəaliyyəti yüksək qiymətləndirilmiş, “Əməkdar mühəndis”, “Əməkdar elm xadimi” və “MDB-nin Əməkdar energetiki” kimi nüfuzlu fəxri adlara layiq görülmüşdür.",
-            ],
-          },
-          {
             slug: "subhan-namazov",
             name: "Prof. Sübhan Namazov",
             degree: "Texnika elmləri doktoru, professor",

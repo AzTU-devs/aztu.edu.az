@@ -673,21 +673,6 @@ const en = {
         backToList: "Back to all Vice-Rectors",
         viceRectors: [
           {
-            slug: "nureli-yusifbeyli",
-            name: "Prof. Nureli Yusifbeyli",
-            degree: "Doctor of Technical Sciences, Professor",
-            title: "Vice-Rector for Academic Affairs",
-            email: "yusifbayli.n@aztu.edu.az",
-            phone: "+994 12 539 08 57",
-            photoUrl: `${VR_MEDIA}/nurali_yusifbayli.JPG`,
-            biography: [
-              "Prof. Nureli Yusifbeyli is Vice-Rector for Academic Affairs at Azerbaijan Technical University and a distinguished scholar in energy systems and strategic planning. He holds a Doctor of Technical Sciences degree and the academic title of Professor, with extensive expertise in electroenergetics, energy security, and sustainable energy systems. He was appointed to his current position on January 18, 2021, by the order of the Ministry of Education of the Republic of Azerbaijan.",
-              "Prof. Yusifbeyli brings decades of leadership experience in the energy sector, having held senior positions at Azerenerji JSC, including Head of the Central Dispatch Administration, where he played a key role in the management and development of national energy systems. He later served in public administration at the Ministry of Economy and Industry of Azerbaijan, leading strategic planning initiatives, and as Deputy Chairman of the State Agency for Alternative and Renewable Energy Sources.",
-              "His research focuses on energy security, power system development, and the integration of renewable energy sources. He is the author of over 200 scientific publications, 8 books, patents, and national standards, and has led major international projects, including the ECO regional energy strategy and Caspian region energy security initiatives.",
-              "Prof. Yusifbeyli serves as Editor-in-Chief of the international journal “Electroenergetics, Technics, Mechanics + Control”, is a member of IEEE, and an academician of the ECO Academy. His contributions have been recognized with prestigious honors, including the titles of Honored Engineer, Honored Scientist of Azerbaijan, and Honored Power Engineer of the CIS.",
-            ],
-          },
-          {
             slug: "subhan-namazov",
             name: "Prof. Subhan Namazov",
             degree: "Doctor of Technical Sciences, Professor",
