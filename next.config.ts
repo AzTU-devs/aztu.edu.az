@@ -9,6 +9,15 @@ const nextConfig: NextConfig = {
   },
   compress: true,
   poweredByHeader: false,
+  productionBrowserSourceMaps: false,
+  experimental: {
+    optimizePackageImports: [
+      "@mui/icons-material",
+      "@mui/material",
+      "framer-motion",
+      "swiper",
+    ],
+  },
   async headers() {
     return [
       {

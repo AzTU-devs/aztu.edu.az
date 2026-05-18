@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import dynamic from "next/dynamic";
 import { motion, useInView } from "framer-motion";
-import News from "@/components/home/news/News";
-import Loading from "@/components/loading/Loading";
-import Projects from "@/components/home/projects/Projects";
-import Collaborators from "@/components/home/collaborators/Collaborators";
-import Announcements from "@/components/home/announcements.tsx/Announcements";
 import HeroSection from "@/components/home/heroSection/HeroSection";
 import StatsSection from "@/components/home/stats/StatsSection";
+
+const News = dynamic(() => import("@/components/home/news/News"), { ssr: false });
+const Announcements = dynamic(() => import("@/components/home/announcements.tsx/Announcements"), { ssr: false });
+const Collaborators = dynamic(() => import("@/components/home/collaborators/Collaborators"), { ssr: false });
+const Projects = dynamic(() => import("@/components/home/projects/Projects"), { ssr: false });
 
 function SectionReveal({
   children,
@@ -36,46 +37,22 @@ function SectionReveal({
 }
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 800);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <>
-      <main>
-        {/* Hero — no reveal wrapper, plays immediately */}
-        <HeroSection />
-
-        {/* University metrics */}
-        <StatsSection />
-
-        {/* News section */}
-        <SectionReveal>
-          <News />
-        </SectionReveal>
-
-        {/* Announcements — dark band */}
-        <SectionReveal delay={0.05}>
-          <Announcements />
-        </SectionReveal>
-
-        {/* Collaborators */}
-        <SectionReveal delay={0.05}>
-          <Collaborators />
-        </SectionReveal>
-
-        {/* Projects */}
-        <SectionReveal delay={0.05}>
-          <Projects />
-        </SectionReveal>
-      </main>
-
-      {isLoading && <Loading />}
-    </>
+    <main>
+      <HeroSection />
+      <StatsSection />
+      <SectionReveal>
+        <News />
+      </SectionReveal>
+      <SectionReveal delay={0.05}>
+        <Announcements />
+      </SectionReveal>
+      <SectionReveal delay={0.05}>
+        <Collaborators />
+      </SectionReveal>
+      <SectionReveal delay={0.05}>
+        <Projects />
+      </SectionReveal>
+    </main>
   );
 }
