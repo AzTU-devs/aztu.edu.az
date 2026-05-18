@@ -298,6 +298,12 @@ const EN_SLUGS = new Set([
     "specializations", "dean", "deputy-deans", "scientific-council", "academic-staff", "staff", "contact", "leadership",
     "qa",
     "students",
+    "academic-calendar-and-rules", "academic-calendar-2025", "academic-calendar-2026",
+    "assessment-rules", "credit-system", "lms-guidelines",
+    "undergraduate-specialties", "postgraduate-specialties",
+    "undergraduate-curriculum", "postgraduate-curriculum",
+    "undergraduate-outcomes", "undergraduate-tuition",
+    "international-students",
     "regulatory-documents", "policy-documents", "sustainability-documents",
     ]);
 

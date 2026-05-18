@@ -15,9 +15,9 @@ interface Props {
 }
 
 function pickVideoSrc(pathname: string): string | null {
-    if (pathname.startsWith("/az/haqqimizda") || pathname.startsWith("/en/about")) return VIDEOS.about;
-    if (pathname.startsWith("/az/akademik") || pathname.startsWith("/en/academic")) return VIDEOS.academic;
-    if (pathname.startsWith("/az/idareetme") || pathname.startsWith("/en/management")) return VIDEOS.management;
+    if (pathname.startsWith("/az/haqqimizda") || pathname.startsWith("/en/about") || pathname.startsWith("/en/haqqimizda") || pathname.startsWith("/az/about")) return VIDEOS.about;
+    if (pathname.startsWith("/az/akademik") || pathname.startsWith("/en/academic") || pathname.startsWith("/en/akademik") || pathname.startsWith("/az/academic")) return VIDEOS.academic;
+    if (pathname.startsWith("/az/idareetme") || pathname.startsWith("/en/management") || pathname.startsWith("/en/idareetme") || pathname.startsWith("/az/management")) return VIDEOS.management;
     return null;
 }
 

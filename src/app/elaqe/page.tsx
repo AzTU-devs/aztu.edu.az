@@ -405,7 +405,7 @@ export default function ContactPage() {
                     <div className="relative rounded-[3rem] overflow-hidden border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 shadow-2xl shadow-blue-900/10 h-[450px] md:h-[520px]">
                         <iframe
                             title="AzTU Map"
-                            src="https://www.google.com/maps?q=H.Cavid+25,+Baku,+Azerbaijan&output=embed"
+                            src="https://www.google.com/maps?q=Azerbaijan+Technical+University,+H.Javid+Avenue+25,+Baku&output=embed"
                             className="absolute inset-0 w-full h-full"
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade"

@@ -215,6 +215,22 @@ const en = {
   },
 
   pages: {
+    community: {
+      honoraryDoctors: {
+        eyebrow: "AzTU's Honors",
+        title: "Honorary Doctors",
+        subtitle: "Distinguished individuals awarded the title of Honorary Doctor by our university.",
+        breadcrumb: "Honorary Doctors",
+        doctors: [],
+      },
+      ourHeroes: {
+        eyebrow: "AzTU's Honors",
+        title: "Our Heroes",
+        subtitle: "AzTU alumni and staff who gave their lives for our Motherland.",
+        breadcrumb: "Our Heroes",
+        chapters: [],
+      },
+    },
     contact: {
       eyebrow: "Contact",
       title: "Contact Us",
@@ -508,12 +524,24 @@ const en = {
         ],
       },
 
+      anniversaryFilm: {
+        eyebrow: "Event",
+        title: "75th Anniversary Film",
+        subtitle: "Discover AzTU's history and achievements through our documentary film.",
+        breadcrumb: "Anniversary Film",
+        related: [
+          { title: "Vision", href: "/about/vision-mission/vision" },
+          { title: "Mission", href: "/about/vision-mission/mission" },
+          { title: "History of AzTU", href: "/about/vision-mission/history-of-aztu" },
+        ],
+      },
+
       strategicPlan: {
         eyebrow: "Vision 2030",
         title: "Strategic Development Plan",
         subtitle: "Towards 2030: Becoming a leading entrepreneurial research university.",
         breadcrumb: "Strategic Plan",
-        pdfUrl: "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/9-2025/Strategic_Development_Plan_2024-2030.pdf",
+        pdfUrl: "https://api.aztu.edu.az/media/prod/strategic-plan/Strategic_Development_Plan_2024-2030%20(2).pdf",
         vision: "To become a leading regional entrepreneurial research university specializing in engineering and technology.",
         mission: "To educate competitive professionals, conduct innovative research, and provide high-value services to industry.",
         pillars: [
@@ -547,9 +575,8 @@ const en = {
           "Accreditation for 50%+ of programs"
         ],
         related: [
-          { title: "Vision", href: "/about/vision" },
-          { title: "Mission", href: "/about/mission" },
-          { title: "History", href: "/about/history" },
+          { title: "Vision, Mission & Goal", href: "/about/vision-mission/vision-mission-goal" },
+          { title: "History of AzTU", href: "/about/vision-mission/history-of-aztu" },
         ],
       },
 
@@ -644,9 +671,9 @@ const en = {
           { image: "/rector_gallery/TAG_3712 (4).JPG", caption: "Future technologies exhibition at AzTU" },
         ],
         related: [
-          { title: "Vice-Rectors", href: "/about/vice-rector" },
-          { title: "Scientific Board", href: "/about/scientific-board" },
-          { title: "Strategic Plan", href: "/about/strategic-plan" },
+          { title: "Vice-Rectors", href: "/about/leadership-and-management/vice-rectors" },
+          { title: "Scientific Board", href: "/about/leadership-and-management/scientific-board" },
+          { title: "Strategic Plan", href: "/about/vision-mission/strategic-plan" },
         ],
       },
 
@@ -1146,6 +1173,36 @@ const en = {
       },
     },
     research: {
+      scientificJournals: {
+        eyebrow: "Research",
+        subtitle: "Scientific journals published by AzTU.",
+        breadcrumb: "Scientific Journals",
+        machineScience: {
+          title: "Machine Science",
+          about: "A scientific journal published by AzTU. Publishes original research in engineering and technology.",
+          details: {
+            issn: "2227-6912",
+            eissn: "2790-0479",
+            year: "1948",
+            issuesPerYear: "2",
+            language: "Azerbaijani, Russian, English",
+            founder: "Azerbaijan Technical University",
+            link: "https://aztu.edu.az/elmi-jurnallar/masin-elmi",
+          },
+        },
+        energySustainability: {
+          title: "Energy Sustainability, Risks and Decision-Making",
+          about: "An international scientific journal on energy sustainability, risk management and decision making processes.",
+          details: {
+            issn: "3023-5294",
+            language: "English",
+            year: "2023",
+            issuesPerYear: "2",
+            founder: "Azerbaijan Technical University",
+            link: "https://aztu.edu.az/elmi-jurnallar/enerji-davamliligi",
+          },
+        },
+      },
       priorities: {
         eyebrow: "Research",
         title: "Priority Research Areas",

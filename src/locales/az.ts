@@ -216,6 +216,22 @@ const az = {
   },
 
   pages: {
+    community: {
+      honoraryDoctors: {
+        eyebrow: "AzTU-nun Fəxriləri",
+        title: "Fəxri Doktorlar",
+        subtitle: "Universitetimizin Fəxri Doktor adı verdiyi şəxsiyyətlər.",
+        breadcrumb: "Fəxri Doktorlar",
+        doctors: [],
+      },
+      ourHeroes: {
+        eyebrow: "AzTU-nun Fəxriləri",
+        title: "Qəhrəmanlarımız",
+        subtitle: "AzTU-nun Vətən uğrunda canından keçən qəhrəman məzunları və işçiləri.",
+        breadcrumb: "Qəhrəmanlarımız",
+        chapters: [],
+      },
+    },
     contact: {
       eyebrow: "Əlaqə",
       title: "Bizimlə Əlaqə",
@@ -537,7 +553,7 @@ const az = {
         title: "Strateji İnkişaf Planı",
         subtitle: "2030-cu ilə doğru: Regionun aparıcı sahibkar tədqiqat universitetinə çevrilmək.",
         breadcrumb: "Strateji Plan",
-        pdfUrl: "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/5-2025/Strateji%20inki%C5%9Faf%20plan%C4%B1%202024-2030.pdf",
+        pdfUrl: "https://api.aztu.edu.az/media/prod/strategic-plan/Strategic_Development_Plan_2024-2030%20(2).pdf",
         vision: "Mühəndislik və texnologiya sahəsində regionun aparıcı sahibkar tədqiqat universitetinə çevrilmək və milli iqtisadiyyatın davamlı inkişrinə töhfə vermək.",
         mission: "Yüksək ixtisaslı, rəqabətədavamlı mütəxəssislər hazırlamaq, innovativ elmi tədqiqatlar aparmaq, cəmiyyətə və sənayeyə yüksək dəyərli xidmətlər təqdim etmək.",
         pillars: [
@@ -589,8 +605,7 @@ const az = {
           "Tədris proqramlarının minimum 50%-i üçün beynəlxalq akkreditasiya"
         ],
         related: [
-          { title: "Vizyon", href: "/haqqimizda/vizyon-ve-missiya/vizyon" },
-          { title: "Missiya", href: "/haqqimizda/vizyon-ve-missiya/missiya" },
+          { title: "Vizyon, Missiya və Məqsəd", href: "/haqqimizda/vizyon-ve-missiya/vizyon-missiya-meqsed" },
           { title: "AzTU-nun Tarixi", href: "/haqqimizda/vizyon-ve-missiya/aztu-nun-tarixi" },
         ],
       },
@@ -636,9 +651,9 @@ const az = {
           "Tədqiqat mükəmməlliyini və innovasiyanı dəstəkləmək",
         ],
         related: [
-          { title: "Prorektorlar", href: "/about/vice-rector" },
-          { title: "Elmi Şura", href: "/about/scientific-board" },
-          { title: "Strateji Plan", href: "/about/strategic-plan" },
+          { title: "Prorektorlar", href: "/haqqimizda/rehbetlik-ve-idareetme/prorektorlar" },
+          { title: "Elmi Şura", href: "/haqqimizda/rehbetlik-ve-idareetme/elmi-sura" },
+          { title: "Strateji Plan", href: "/haqqimizda/vizyon-ve-missiya/strateji-plan" },
         ],
         aboutRectorTitle: "Rektor haqqında",
         aboutRector: [
@@ -1251,6 +1266,36 @@ const az = {
       },
     },
     research: {
+      scientificJournals: {
+        eyebrow: "Tədqiqat",
+        subtitle: "AzTU-nun nəşr etdiyi elmi jurnallar.",
+        breadcrumb: "Elmi Jurnallar",
+        machineScience: {
+          title: "Maşın Elmi",
+          about: "AzTU tərəfindən nəşr edilən elmi jurnal. Mühəndislik və texnologiya sahəsində orijinal tədqiqat işlərini dərc edir.",
+          details: {
+            issn: "2227-6912",
+            eissn: "2790-0479",
+            year: "1948",
+            issuesPerYear: "2",
+            language: "Azərbaycan, Rus, İngilis",
+            founder: "Azərbaycan Texniki Universiteti",
+            link: "https://aztu.edu.az/elmi-jurnallar/masin-elmi",
+          },
+        },
+        energySustainability: {
+          title: "Enerji Davamlılığı, Risklər və Qərarların Qəbul Edilməsi",
+          about: "Enerji davamlılığı, risk idarəetməsi və qərar qəbul etmə proseslərinə dair beynəlxalq elmi jurnal.",
+          details: {
+            issn: "3023-5294",
+            language: "İngilis",
+            year: "2023",
+            issuesPerYear: "2",
+            founder: "Azərbaycan Texniki Universiteti",
+            link: "https://aztu.edu.az/elmi-jurnallar/enerji-davamliligi",
+          },
+        },
+      },
       priorities: {
         eyebrow: "Tədqiqat",
         title: "Prioritet Tədqiqat İstiqamətləri",

@@ -309,6 +309,22 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
           }
       }
 
+      // Translate slugs for Academic > Education & Programs (e.g. /akademik/tehsil-ve-proqramlar/mba)
+      if ((segments[1] === "academic" || segments[1] === "akademik") &&
+          segments[2] !== "faculties" && segments[2] !== "fakulteler") {
+          const eduMap: Record<string, string> = {
+              "tehsil-ve-proqramlar": "education-and-programs",
+              "education-and-programs": "tehsil-ve-proqramlar",
+          };
+          if (newLang === "en") {
+              segments[1] = "academic";
+              if (segments[2] && eduMap[segments[2]]) segments[2] = eduMap[segments[2]];
+          } else {
+              segments[1] = "akademik";
+              if (segments[2] && eduMap[segments[2]]) segments[2] = eduMap[segments[2]];
+          }
+      }
+
       // Translate slugs for Vision & Mission
       if ((segments[1] === "about" || segments[1] === "haqqimizda") && 
           (segments[2] === "vision-mission" || segments[2] === "vizyon-ve-missiya")) {

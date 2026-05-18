@@ -86,12 +86,12 @@ const DATA = {
 };
 
 const IMAGES = [
-  "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/10-2022/1-2_11zon.jpg",
-  "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/10-2022/1-1.jpg",
-  "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/10-2022/1-7.jpg",
-  "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/10-2022/1-8.jpg",
-  "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/10-2022/1-5.jpg",
-  "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/10-2022/1-6.jpg",
+  "https://api.aztu.edu.az/media/prod/nabran-recreation/1-2_11zon.jpg",
+  "https://api.aztu.edu.az/media/prod/nabran-recreation/1-1.jpg",
+  "https://api.aztu.edu.az/media/prod/nabran-recreation/1-7.jpg",
+  "https://api.aztu.edu.az/media/prod/nabran-recreation/1-8.jpg",
+  "https://api.aztu.edu.az/media/prod/nabran-recreation/1-5.jpg",
+  "https://api.aztu.edu.az/media/prod/nabran-recreation/1-6.jpg",
 ];
 
 const facilityIcons: Record<string, React.ReactNode> = {

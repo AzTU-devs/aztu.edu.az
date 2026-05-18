@@ -66,7 +66,7 @@ export default function DepartmentLeadershipPage({ params }: Props) {
     const sortedEducations = [...educations].sort((a, b) => {
         const ay = parseInt(String(a.year ?? "0"), 10) || 0;
         const by = parseInt(String(b.year ?? "0"), 10) || 0;
-        return ay - by;
+        return by - ay;
     });
 
     const t = {

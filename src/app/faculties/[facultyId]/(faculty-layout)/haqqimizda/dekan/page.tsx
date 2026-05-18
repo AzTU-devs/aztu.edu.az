@@ -71,7 +71,7 @@ export default function DekanPage({ params }: Props) {
     const sortedEducations = [...educations].sort((a, b) => {
         const ay = parseInt(a.start_year, 10) || 0;
         const by = parseInt(b.start_year, 10) || 0;
-        return ay - by;
+        return by - ay;
     });
 
     const heading = currentLang === "az" ? "Dekan haqqında" : "About the Dean";
