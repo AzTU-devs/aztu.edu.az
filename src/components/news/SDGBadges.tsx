@@ -74,7 +74,7 @@ export default function SDGBadges({
                     {useImages ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img
-                            src={`/sdg/E-WEB-Goal-${n.toString().padStart(2, "0")}.jpg`}
+                            src={`/sdg-icons/E-WEB-Goal-${n.toString().padStart(2, "0")}.jpg`}
                             alt={`SDG ${n}: ${SDG_NAMES[n]}`}
                             width={size}
                             height={size}
