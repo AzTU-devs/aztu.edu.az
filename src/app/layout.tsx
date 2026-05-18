@@ -238,7 +238,7 @@ export default function RootLayout({
   return (
     <html lang="az" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href={API_BASE} crossOrigin="anonymous" />
+        <link rel="preconnect" href={API_BASE} />
         <link rel="dns-prefetch" href={API_BASE} />
         <link rel="alternate" type="application/rss+xml" title="AzTU Xəbərləri" href="/feed.xml" />
       </head>

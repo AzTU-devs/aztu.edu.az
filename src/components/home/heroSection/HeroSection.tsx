@@ -177,10 +177,10 @@ export default function HeroSection() {
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={activeIndex}
-                                initial={{ opacity: 0, x: -60 }}
+                                initial={activeIndex === 0 ? false : { opacity: 0, x: -60 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: 40 }}
-                                transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
+                                transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
                             >
                                 <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-lg md:rounded-xl bg-white/10 backdrop-blur-2xl border border-white/20 mb-4 md:mb-6 shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
                                     <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#ee7c7e] shadow-[0_0_10px_#ee7c7e] animate-pulse" />
@@ -194,9 +194,9 @@ export default function HeroSection() {
                                         <motion.span
                                             key={i}
                                             className="inline-block mr-2 md:mr-3 last:mr-0 drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] last:text-transparent last:bg-clip-text last:bg-gradient-to-br last:from-white last:to-[#ee7c7e]"
-                                            initial={{ opacity: 0, y: 30, rotateX: -30 }}
+                                            initial={activeIndex === 0 ? false : { opacity: 0, y: 30, rotateX: -30 }}
                                             animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                                            transition={{ delay: 0.2 + (i * 0.1), duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
+                                            transition={{ delay: 0.05 + (i * 0.05), duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
                                         >
                                             {word}
                                         </motion.span>

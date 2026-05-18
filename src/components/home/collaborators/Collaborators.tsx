@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -105,14 +106,15 @@ export default function Collaborators() {
                                         <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                         
                                         <div className="relative z-10 flex flex-col items-center gap-4 px-6">
-                                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                                            <img
+                                            <Image
                                                 src={`${API_BASE_URL}/${collab.logo}`}
                                                 alt={collab.name}
+                                                width={112}
+                                                height={56}
+                                                loading="lazy"
+                                                sizes="112px"
                                                 className="max-h-14 max-w-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-100 group-hover:scale-110"
-                                                onError={(e) => {
-                                                    (e.target as HTMLImageElement).style.display = "none";
-                                                }}
+                                                unoptimized={false}
                                             />
                                             <span className="text-[10px] font-black text-[#1a2355]/30 dark:text-white/20 group-hover:text-[#1a2355] dark:group-hover:text-white text-center uppercase tracking-[0.2em] transition-colors duration-500 line-clamp-1 max-w-full">
                                                 {collab.name}

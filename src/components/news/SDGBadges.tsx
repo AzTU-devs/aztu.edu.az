@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 // Official UN SDG colors (1..17)
 const SDG_COLORS: Record<number, string> = {
     1: "#E5243B",
@@ -72,14 +74,13 @@ export default function SDGBadges({
                     className="inline-flex"
                 >
                     {useImages ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
+                        <Image
                             src={`/sdg-icons/E-WEB-Goal-${n.toString().padStart(2, "0")}.jpg`}
                             alt={`SDG ${n}: ${SDG_NAMES[n]}`}
                             width={size}
                             height={size}
                             loading="lazy"
-                            decoding="async"
+                            sizes={`${size}px`}
                             style={{ width: size, height: size, objectFit: "cover" }}
                             className="rounded-md shadow-md block"
                         />
