@@ -24,7 +24,6 @@ const nextConfig: NextConfig = {
       "@reduxjs/toolkit",
       "react-redux",
     ],
-    optimizeCss: true,
   },
   async headers() {
     return [
