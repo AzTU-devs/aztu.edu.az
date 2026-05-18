@@ -1,12 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Header from "./Header";
-import SubHeader from "./SubHeader";
-import QuickMenu from "../menu/QuickMenu";
-import ResponsiveHeader from "./ResponsiveHeader";
-import SearchOverlay from "./SearchOverlay";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+
+const SubHeader = dynamic(() => import("./SubHeader"), { ssr: false });
+const ResponsiveHeader = dynamic(() => import("./ResponsiveHeader"), { ssr: false });
+const QuickMenu = dynamic(() => import("../menu/QuickMenu"), { ssr: false });
+const SearchOverlay = dynamic(() => import("./SearchOverlay"), { ssr: false });
 
 export default function HeaderChanger() {
   const pathname = usePathname();

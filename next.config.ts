@@ -11,12 +11,20 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
   experimental: {
+    browsersListForSwc: true,
+    legacyBrowsers: false,
     optimizePackageImports: [
       "@mui/icons-material",
       "@mui/material",
+      "@mui/system",
+      "@emotion/react",
+      "@emotion/styled",
       "framer-motion",
       "swiper",
+      "@reduxjs/toolkit",
+      "react-redux",
     ],
+    optimizeCss: true,
   },
   async headers() {
     return [
