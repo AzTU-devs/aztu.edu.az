@@ -58,8 +58,8 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
             title: qm.sections.platform.title,
             items: [
                 { label: qm.sections.platform.items.lms, url: "https://sso.aztu.edu.az" },
-                { label: qm.sections.platform.items.internalGrants, url: "/research/internal-grants" },
-                { label: qm.sections.platform.items.planReport, url: "#" },
+                { label: qm.sections.platform.items.internalGrants, url: "http://e-grant.aztu.az" },
+                { label: qm.sections.platform.items.planReport, url: "https://plan-report.aztu.az" },
             ],
         },
         {
@@ -67,9 +67,19 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
             title: qm.sections.alumni.title,
             items: [
                 { label: qm.sections.alumni.items.portal, url: "https://alumni.aztu.edu.az" },
-                { label: qm.sections.alumni.items.honoraryDoctors, url: "/community/honorary-doctors" },
+                {
+                    label: qm.sections.alumni.items.honoraryDoctors,
+                    url: lang === "az"
+                        ? "https://aztu.edu.az/az/icma/aztu-nun-fexrileri/fexri-doktorlar"
+                        : "https://aztu.edu.az/en/community/aztus-honors/honorary-doctors",
+                },
                 { label: qm.sections.alumni.items.honoraryGraduates, url: "/community/honorary-graduates" },
-                { label: qm.sections.alumni.items.heroes, url: "/community/our-heroes" },
+                {
+                    label: qm.sections.alumni.items.heroes,
+                    url: lang === "az"
+                        ? "https://aztu.edu.az/az/icma/aztu-nun-fexrileri/qehremanlarimiz"
+                        : "https://aztu.edu.az/en/community/aztus-honors/our-heroes",
+                },
             ],
         },
         {
@@ -78,8 +88,18 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
             items: [
                 { label: qm.sections.whyAztu.items.infrastructure, url: "/niye-aztu/infrastructure" },
                 { label: qm.sections.whyAztu.items.startups, url: "/niye-aztu/startups" },
-                { label: qm.sections.whyAztu.items.dualDegree, url: "/niye-aztu/dual-degree" },
-                { label: qm.sections.whyAztu.items.scholarships, url: "/niye-aztu/scholarships" },
+                {
+                    label: qm.sections.whyAztu.items.dualDegree,
+                    url: lang === "az"
+                        ? "https://aztu.edu.az/az/beynelmilellesme/beynelxalq-terefdasliq/ikili-diplom-proqramlari"
+                        : "https://aztu.edu.az/en/internationalization/international-partnership/double-degree-programs",
+                },
+                {
+                    label: qm.sections.whyAztu.items.scholarships,
+                    url: lang === "az"
+                        ? "https://aztu.edu.az/az/beynelmilellesme/xarici-telebeler/teqaud-imkanlari"
+                        : "https://aztu.edu.az/en/internationalization/foreign-students/scholarship-opportunities",
+                },
             ],
         },
     ];
