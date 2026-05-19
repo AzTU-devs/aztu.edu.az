@@ -58,8 +58,8 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
             title: qm.sections.platform.title,
             items: [
                 { label: qm.sections.platform.items.lms, url: "https://sso.aztu.edu.az" },
-                { label: qm.sections.platform.items.internalGrants, url: "http://e-grant.aztu.az" },
-                { label: qm.sections.platform.items.planReport, url: "https://plan-report.aztu.az" },
+                { label: qm.sections.platform.items.internalGrants, url: "http://e-grant.aztu.edu.az" },
+                { label: qm.sections.platform.items.planReport, url: "https://plan-report.aztu.edu.az" },
             ],
         },
         {
