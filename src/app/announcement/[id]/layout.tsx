@@ -10,23 +10,26 @@ import {
     absUrl,
 } from "@/util/seo";
 import { fetchAnnouncementDetail, fetchAnnouncementList } from "@/util/fetchers";
+import { parseAnnouncementSlug } from "@/util/slugify";
 
 export async function generateMetadata({
     params,
 }: {
     params: Promise<{ id: string }>;
 }): Promise<Metadata> {
-    const { id } = await params;
+    const { id: slug } = await params;
+    const numericId = parseAnnouncementSlug(slug);
+    const fetchId = Number.isFinite(numericId) ? String(numericId) : slug;
     const [az, en] = await Promise.all([
-        fetchAnnouncementDetail(id, "az"),
-        fetchAnnouncementDetail(id, "en"),
+        fetchAnnouncementDetail(fetchId, "az"),
+        fetchAnnouncementDetail(fetchId, "en"),
     ]);
     const detail = az ?? en;
     if (!detail) {
         return buildMetadata({
             titleAz: "Elan tapılmadı",
             descriptionAz: "Bu elan tapılmadı.",
-            pathAz: `/announcement/${id}`,
+            pathAz: `/announcement/${slug}`,
             noindex: true,
         });
     }
@@ -37,7 +40,6 @@ export async function generateMetadata({
     const descEn = stripHtml(en?.html_content ?? detail.html_content);
 
     // Pull dates from list endpoint if detail endpoint omits them
-    const numericId = parseInt(id, 10);
     let publishedTime = detail.published_date ?? detail.created_at;
     if (!publishedTime && Number.isFinite(numericId)) {
         const list = await fetchAnnouncementList({ start: 0, end: 200, lang: "az" });
@@ -51,7 +53,7 @@ export async function generateMetadata({
         titleEn,
         descriptionAz: descAz,
         descriptionEn: descEn,
-        pathAz: `/announcement/${id}`,
+        pathAz: `/announcement/${slug}`,
         image: absUrl(detail.image),
         type: "article",
         section: "Announcements",
@@ -73,15 +75,16 @@ export default async function AnnouncementDetailLayout({
     children: React.ReactNode;
     params: Promise<{ id: string }>;
 }) {
-    const { id } = await params;
-    const detail = await fetchAnnouncementDetail(id, "az");
+    const { id: slug } = await params;
+    const numericId = parseAnnouncementSlug(slug);
+    const fetchId = Number.isFinite(numericId) ? String(numericId) : slug;
+    const detail = await fetchAnnouncementDetail(fetchId, "az");
 
     let datePublished: string | undefined;
     let dateModified: string | undefined;
     if (detail) {
         datePublished = detail.published_date ?? detail.created_at;
-        if (!datePublished) {
-            const numericId = parseInt(id, 10);
+        if (!datePublished && Number.isFinite(numericId)) {
             const list = await fetchAnnouncementList({ start: 0, end: 200, lang: "az" });
             const entry = list.find((a) => (a.announcement_id ?? a.id) === numericId);
             datePublished = entry?.published_date ?? entry?.created_at;
@@ -93,13 +96,13 @@ export default async function AnnouncementDetailLayout({
         ? {
               "@context": "https://schema.org",
               "@type": "Article",
-              "@id": `${SITE_URL}/announcement/${id}#announcement`,
+              "@id": `${SITE_URL}/announcement/${slug}#announcement`,
               headline: detail.title,
               description: stripHtml(detail.html_content),
               ...(detail.image ? { image: [absUrl(detail.image)] } : { image: [absUrl(null)] }),
               datePublished,
               dateModified,
-              mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/announcement/${id}` },
+              mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/announcement/${slug}` },
               inLanguage: "az-AZ",
               isAccessibleForFree: true,
               author: {
@@ -114,21 +117,21 @@ export default async function AnnouncementDetailLayout({
     const breadcrumb = breadcrumbJsonLd([
         { name: "Ana səhifə", path: "/" },
         { name: "Elanlar", path: "/announcement" },
-        { name: detail?.title ?? "Elan", path: `/announcement/${id}` },
+        { name: detail?.title ?? "Elan", path: `/announcement/${slug}` },
     ]);
 
     return (
         <>
             {announcementJsonLd && (
                 <Script
-                    id={`ld-announcement-${id}`}
+                    id={`ld-announcement-${slug}`}
                     type="application/ld+json"
                     strategy="beforeInteractive"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(announcementJsonLd) }}
                 />
             )}
             <Script
-                id={`ld-breadcrumb-announcement-${id}`}
+                id={`ld-breadcrumb-announcement-${slug}`}
                 type="application/ld+json"
                 strategy="beforeInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
