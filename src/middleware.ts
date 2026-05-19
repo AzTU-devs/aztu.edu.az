@@ -406,6 +406,8 @@ export function middleware(request: NextRequest) {
                 "research-institutes": "tedqiqat-institutlari",
                 "research-laboratories": "tedqiqat-laboratoriyalari",
                 "research-priorities": "tedqiqat-prioritetleri",
+                "multidisciplinary-research": "coxsaheli-tedqiqat",
+                "coxsaheli-tedqiqat": "coxsaheli-tedqiqat",
             };
             if (researchActivityMap[segments_rest[2]]) segments_rest[2] = researchActivityMap[segments_rest[2]];
         }

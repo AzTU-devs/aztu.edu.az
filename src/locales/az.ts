@@ -1326,6 +1326,91 @@ const az = {
           },
         ],
       },
+      multidisciplinary: {
+        eyebrow: "Tədqiqat",
+        title: "Çoxsahəli Tədqiqat",
+        subtitle: "Azərbaycan Texniki Universitetində fənlərarası tədqiqat və innovasiya.",
+        breadcrumb: "Çoxsahəli Tədqiqat",
+        intro:
+          "Azərbaycan Texniki Universiteti (AzTU) Azərbaycanın aparıcı universitetlərindən biri olaraq fənlərarası tədqiqatların və innovasiyaların inkişafına sadiqdir. Müxtəlif təşəbbüslər, ixtisaslaşmış institutlar və strateji əməkdaşlıqlar vasitəsilə AzTU mürəkkəb qlobal çağırışlara cavab vermək üçün bilik sahələrinin inteqrasiyasını təşviq edir. Müxtəlif elm sahələri arasında körpü quraraq universitet həm akademiyaya, həm də sənayeyə töhfə verən elmi nailiyyətlərə və praktiki həllərə zəmin yaradır.",
+        sections: [
+          {
+            id: "initiatives",
+            title: "Fənlərarası Tədqiqat Təşəbbüsləri",
+            text: "AzTU ixtisaslaşmış tədqiqat mərkəzləri, sənaye tərəfindən maliyyələşdirilən layihələr və texnologiya transferi təşəbbüsləri vasitəsilə fənlərarası tədqiqatları fəal şəkildə dəstəkləyir. Universitet mühəndislik, süni intellekt, enerji sistemləri və davamlı inkişaf kimi əsas istiqamətlər üzrə müxtəlif tədqiqat institutları yaratmışdır. Bu təşəbbüslər müxtəlif akademik sahələr arasında əməkdaşlığı stimullaşdıraraq real problemlərə innovativ həllər tapmağa xidmət edir.",
+            highlightsTitle: "AzTU-da əsas fənlərarası tədqiqat təşəbbüsləri:",
+            highlights: [
+              {
+                title: "Ağıllı Texnologiyalar və Süni İntellekt Tədqiqatları",
+                content: "Avtomatlaşdırma, robototexnika və kibertəhlükəsizlik üçün süni intellekt əsaslı həllərin işlənib hazırlanması.",
+              },
+              {
+                title: "Bərpa Olunan Enerji və Davamlılıq",
+                content: "Azərbaycanın enerji keçidinə dəstək olmaq üçün günəş, külək və hidroelektrik enerji həlləri üzrə tədqiqatlar.",
+              },
+              {
+                title: "Qabaqcıl İstehsal və Materialşünaslıq",
+                content: "İstehsal texnologiyalarını və material innovasiyalarını gücləndirmək məqsədilə sənaye liderləri ilə əməkdaşlıq.",
+              },
+              {
+                title: "Biotibbi Mühəndislik",
+                content: "Tibbi cihazlar, bioinformatika və səhiyyə texnologiyaları sahəsində irəliləyişlər.",
+              },
+            ],
+          },
+          {
+            id: "ecosystem",
+            title: "Tədqiqat Ekosistemi və Qlobal Təsir",
+            text: "AzTU tədqiqat ekosistemini gücləndirmək və qlobal təsirini artırmaq məqsədilə aşağıdakı istiqamətləri təşviq edir:",
+            bullets: [
+              "Əməkdaşlıq əsaslı tədrisi və tədqiqatı təşviq etmək üçün akademik heyət və tələbələr üçün fənlərarası rəhbərlik.",
+              "Tapıntıların yayılması və qlobal elmi ictimaiyyətlə ideya mübadiləsi üçün Scopus indeksli konfranslarda iştirak.",
+              "Tədqiqatların qlobal biliyə əhəmiyyətli töhfə verməsini təmin etmək üçün yüksək təsirli indeksli jurnallarda nəşrlər.",
+              "Yeni nəsil layihələri dəstəkləmək və görkəmli töhfələri tanımaq üçün fənlərarası tədqiqat qrantları və mükafatları.",
+              "Təsirli tədqiqat nəticələri əldə etmək üçün milli və beynəlxalq qurumlarla əməkdaşlıq.",
+            ],
+          },
+          {
+            id: "industry",
+            title: "Texnologiya Transferi və Sənaye Əməkdaşlığı",
+            text: "AzTU tədqiqat nəticələrini praktiki tətbiqlərə çevirmək üçün sənaye tərəfdaşları ilə fəal əməkdaşlıq edir. Buraya akademik tədqiqat ilə bazara yönəlmiş innovasiyalar arasında körpü quran texnologiya transferi təşəbbüsləri daxildir və fənlərarası tədqiqatların sosial-iqtisadi inkişafa töhfə verməsini təmin edir.",
+            highlightsTitle: "Diqqətçəkən əməkdaşlıqlar və texnologiya transferi təşəbbüsləri:",
+            highlights: [
+              {
+                title: "Texnologiya Şirkətləri ilə Tərəfdaşlıqlar",
+                content: "Sənaye mühitlərində süni intellektin və avtomatlaşdırmanın tətbiqi üzrə aparıcı texnologiya şirkətləri ilə birgə tədqiqat layihələri.",
+              },
+              {
+                title: "İnnovasiya Mərkəzləri və Startaplar",
+                content: "İnnovativ məhsullar yaradan startapları və sahibkarları dəstəkləmək üçün inkubatorların yaradılması.",
+              },
+              {
+                title: "Patentlər və Əqli Mülkiyyət İnkişafı",
+                content: "Tədqiqatçıları əhəmiyyətli kəşflər üçün patent əldə etməyə təşviq etmək.",
+              },
+            ],
+          },
+          {
+            id: "metrics",
+            title: "Tanınma və Performans Göstəriciləri",
+            text: "Universitet fənlərarası tədqiqatlarının uğurunu müxtəlif performans göstəriciləri əsasında qiymətləndirir:",
+            bullets: [
+              "İllik olaraq maliyyələşdirilən və başa çatdırılan fənlərarası tədqiqat layihələrinin sayı.",
+              "Tədqiqat əsaslı tövsiyələr və innovasiyalar vasitəsilə cəmiyyətə və siyasətə töhfələr.",
+              "Beynəlxalq əməkdaşlıqlarda, tədqiqat konsorsiumlarında və qlobal universitet reytinqlərində iştirak.",
+              "Patentlər, kommersiyalaşdırma və texnologiyaların sənaye tərəfindən qəbulu ilə ölçülən tədqiqatın sənayeyə təsiri.",
+            ],
+          },
+        ],
+        closing:
+          "Fənlərarası tədqiqata güclü bağlılığı sayəsində Azərbaycan Texniki Universiteti qlobal akademik mövqeyini gücləndirməyə və mürəkkəb qlobal çağırışlara innovativ həllər təqdim etməyə davam edir. Universitet bilik inteqrasiyasını gücləndirməyə, sənaye əməkdaşlıqlarını möhkəmləndirməyə və geniş cəmiyyət təsirinə malik elmi tədqiqatları irəli aparmağa sadiqdir. Tədqiqat strategiyasını davamlı olaraq inkişaf etdirərək və tərəfdaşlar şəbəkəsini genişləndirərək AzTU fənlərarası innovasiya və texnoloji tərəqqinin ön sıralarında qalmağı hədəfləyir.",
+        documentsTitle: "Əlaqəli Sənədlər",
+        documents: [
+          { label: "Fənlərarası Tədqiqat Siyasəti", href: "#" },
+          { label: "Tədqiqat Dəstək Mexanizmi", href: "#" },
+          { label: "Tədqiqat Mükafatlandırma Siyasəti", href: "#" },
+        ],
+      },
       researchProjects: {
         eyebrow: "Tədqiqat",
         title: "Tədqiqat Layihələri",

@@ -1238,6 +1238,91 @@ const en = {
           },
         ],
       },
+      multidisciplinary: {
+        eyebrow: "Research",
+        title: "Interdisciplinary Research",
+        subtitle: "Interdisciplinary research and innovation at Azerbaijan Technical University.",
+        breadcrumb: "Interdisciplinary Research",
+        intro:
+          "Azerbaijan Technical University (AzTU) is one of the leading universities in Azerbaijan, committed to advancing interdisciplinary research and innovation. Through its diverse initiatives, specialized institutes, and strategic collaborations, AzTU fosters the integration of knowledge across multiple disciplines to address complex global challenges. By bridging different fields of study, the university facilitates scientific breakthroughs and practical solutions that contribute to both academia and industry.",
+        sections: [
+          {
+            id: "initiatives",
+            title: "Interdisciplinary Research Initiatives",
+            text: "AzTU actively supports interdisciplinary research through dedicated research centers, industry-funded projects, and technology transfer initiatives. The university has established various research institutes focusing on key areas such as engineering, artificial intelligence, energy systems, and sustainable development. These initiatives are designed to encourage collaboration between different academic fields, driving innovative solutions to real-world problems.",
+            highlightsTitle: "Key interdisciplinary research initiatives at AzTU include:",
+            highlights: [
+              {
+                title: "Smart Technologies and AI Research",
+                content: "Development of AI-driven solutions for automation, robotics, and cybersecurity.",
+              },
+              {
+                title: "Renewable Energy and Sustainability",
+                content: "Research on solar, wind, and hydroelectric energy solutions to support Azerbaijan's energy transition.",
+              },
+              {
+                title: "Advanced Manufacturing and Materials Science",
+                content: "Collaboration with industry leaders to enhance production techniques and material innovations.",
+              },
+              {
+                title: "Biomedical Engineering",
+                content: "Advancements in medical devices, bioinformatics, and healthcare technology.",
+              },
+            ],
+          },
+          {
+            id: "ecosystem",
+            title: "Research Ecosystem and Global Impact",
+            text: "To strengthen its research ecosystem and global impact, AzTU promotes:",
+            bullets: [
+              "Cross-disciplinary supervision for faculty and students to foster collaborative learning and research.",
+              "Participation in Scopus-indexed conferences to disseminate findings and exchange ideas with the global scientific community.",
+              "Publications in high-impact indexed journals to ensure that research contributes meaningfully to global knowledge.",
+              "Interdisciplinary research grants and awards to support pioneering projects and recognize outstanding contributions.",
+              "Collaboration with national and international institutions to leverage expertise and resources for impactful research outcomes.",
+            ],
+          },
+          {
+            id: "industry",
+            title: "Technology Transfer and Industry Collaboration",
+            text: "AzTU actively engages with industry partners to apply research findings in practical applications. This includes technology transfer initiatives that bridge the gap between academic research and market-driven innovation, ensuring that interdisciplinary research contributes to societal and economic development.",
+            highlightsTitle: "Notable collaborations and technology transfer initiatives include:",
+            highlights: [
+              {
+                title: "Partnerships with Tech Companies",
+                content: "Joint research projects with leading technology firms to implement AI and automation in industrial settings.",
+              },
+              {
+                title: "Innovation Hubs and Startups",
+                content: "Establishment of incubators to support startups and entrepreneurs developing innovative products.",
+              },
+              {
+                title: "Patents and Intellectual Property Development",
+                content: "Encouraging researchers to secure patents for groundbreaking discoveries.",
+              },
+            ],
+          },
+          {
+            id: "metrics",
+            title: "Recognition and Performance Metrics",
+            text: "The university evaluates the success of its interdisciplinary research through various performance indicators, including:",
+            bullets: [
+              "The number of interdisciplinary research projects funded and completed annually.",
+              "Contributions to societal and policy development through research-based recommendations and innovations.",
+              "Participation in international collaborations, research consortia, and global university rankings.",
+              "The impact of research on industry, measured by patents, commercialization, and industry adoption of technologies.",
+            ],
+          },
+        ],
+        closing:
+          "Through its strong commitment to interdisciplinary research, Azerbaijan Technical University continues to enhance its global academic standing and contribute to innovative solutions for complex global challenges. The university remains dedicated to fostering knowledge integration, strengthening industry collaborations, and advancing scientific research with a broad societal impact. By continuously evolving its research strategy and expanding its network of partners, AzTU aims to remain at the forefront of interdisciplinary innovation and technological progress.",
+        documentsTitle: "Related Documents",
+        documents: [
+          { label: "Interdisciplinary Research Policy", href: "#" },
+          { label: "Research Support Mechanism", href: "#" },
+          { label: "Research Awarding Policy", href: "#" },
+        ],
+      },
       researchProjects: {
         eyebrow: "Research",
         title: "Research Projects",
