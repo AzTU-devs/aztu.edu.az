@@ -263,7 +263,7 @@ export default function Footer() {
                     <div className="max-w-[1600px] mx-auto px-5 sm:px-8 md:px-[60px] lg:px-[80px] xl:px-[120px] flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
                         {[
                             { label: "LMS", href: "https://sso.aztu.edu.az", title: "AzTU LMS" },
-                            { label: "Elanlar", href: "/announcements", title: "Elanlar | AzTU" },
+                            { label: "Elanlar", href: "/announcement", title: "Elanlar | AzTU" },
                             { label: "Xəbərlər", href: "/news", title: "Xəbərlər | AzTU" },
                             { label: "Fakültələr", href: "/faculties", title: "Fakültələr | AzTU" },
                             { label: "Plan Hesabat", href: "https://plan-report.aztu.edu.az", title: "Plan Hesabat İnformasiya Sistemi | AzTU" },

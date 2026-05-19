@@ -194,7 +194,7 @@ const siteNavigationJsonLd = {
   "@id": `${SITE_URL}/#sitelinks`,
   name: "AzTU Sitelinks",
   itemListElement: [
-    { name: "Elanlar", url: `${SITE_URL}/announcements` },
+    { name: "Elanlar", url: `${SITE_URL}/announcement` },
     { name: "Xəbərlər", url: `${SITE_URL}/news` },
     { name: "Fakültələr", url: `${SITE_URL}/faculties` },
     { name: "Kafedralar", url: `${SITE_URL}/cafedras` },

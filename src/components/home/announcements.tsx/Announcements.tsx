@@ -93,7 +93,7 @@ export default function Announcements() {
                         animate={isInView ? { opacity: 1, x: 0 } : {}}
                         transition={{ duration: 0.7, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
                     >
-                        <Link href="/announcements">
+                        <Link href="/announcement">
                             <button className="group flex items-center gap-4 bg-white/5 backdrop-blur-xl py-4 px-8 rounded-2xl text-white font-black uppercase tracking-widest text-xs border border-white/10 hover:bg-[#ee7c7e] hover:border-[#ee7c7e] transition-all duration-500 shadow-xl cursor-pointer">
                                 {t.announcements.viewAll}
                                 <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">
@@ -137,7 +137,7 @@ export default function Announcements() {
                                     }}
                                     className="h-full"
                                 >
-                                    <Link href={`/announcements/${announcementSlug(announcement.id, announcement.title)}`}>
+                                    <Link href={`/announcement/${announcementSlug(announcement.id, announcement.title)}`}>
                                         <div className="group relative h-full flex flex-col bg-white/5 backdrop-blur-sm border border-white/5 rounded-[2.5rem] p-8 transition-all duration-500 hover:bg-white/[0.08] hover:border-[#ee7c7e]/30 hover:shadow-2xl hover:shadow-[#ee7c7e]/5 overflow-hidden">
                                             {/* Hover accent line */}
                                             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[3px] bg-[#ee7c7e] group-hover:w-1/2 transition-all duration-500 rounded-full" />

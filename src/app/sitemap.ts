@@ -39,7 +39,7 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
 
     // News / announcements / media listings
     { path: "/news", priority: 0.9, changeFrequency: "daily" },
-    { path: "/announcements", priority: 0.8, changeFrequency: "daily" },
+    { path: "/announcement", priority: 0.8, changeFrequency: "daily" },
     { path: "/media", priority: 0.6, changeFrequency: "weekly" },
 
     // Top-level standalone
@@ -143,7 +143,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         const id = a.announcement_id ?? a.id;
         if (!id) continue;
         entries.push({
-            url: `${SITE_URL}/announcements/${announcementSlug(id, a.title ?? "")}`,
+            url: `${SITE_URL}/announcement/${announcementSlug(id, a.title ?? "")}`,
             lastModified: a.published_date
                 ? new Date(a.published_date)
                 : a.created_at

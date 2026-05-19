@@ -26,7 +26,7 @@ export async function generateMetadata({
         return buildMetadata({
             titleAz: "Elan tapılmadı",
             descriptionAz: "Bu elan tapılmadı.",
-            pathAz: `/announcements/${id}`,
+            pathAz: `/announcement/${id}`,
             noindex: true,
         });
     }
@@ -51,7 +51,7 @@ export async function generateMetadata({
         titleEn,
         descriptionAz: descAz,
         descriptionEn: descEn,
-        pathAz: `/announcements/${id}`,
+        pathAz: `/announcement/${id}`,
         image: absUrl(detail.image),
         type: "article",
         section: "Announcements",
@@ -93,13 +93,13 @@ export default async function AnnouncementDetailLayout({
         ? {
               "@context": "https://schema.org",
               "@type": "Article",
-              "@id": `${SITE_URL}/announcements/${id}#announcement`,
+              "@id": `${SITE_URL}/announcement/${id}#announcement`,
               headline: detail.title,
               description: stripHtml(detail.html_content),
               ...(detail.image ? { image: [absUrl(detail.image)] } : { image: [absUrl(null)] }),
               datePublished,
               dateModified,
-              mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/announcements/${id}` },
+              mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/announcement/${id}` },
               inLanguage: "az-AZ",
               isAccessibleForFree: true,
               author: {
@@ -113,8 +113,8 @@ export default async function AnnouncementDetailLayout({
 
     const breadcrumb = breadcrumbJsonLd([
         { name: "Ana səhifə", path: "/" },
-        { name: "Elanlar", path: "/announcements" },
-        { name: detail?.title ?? "Elan", path: `/announcements/${id}` },
+        { name: "Elanlar", path: "/announcement" },
+        { name: detail?.title ?? "Elan", path: `/announcement/${id}` },
     ]);
 
     return (

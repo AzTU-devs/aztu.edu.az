@@ -112,7 +112,7 @@ export default async function AnnouncementDetailPage({
                                 {t.home}
                             </Link>
                             <ChevronRightIcon sx={{ fontSize: 14 }} />
-                            <Link href="/announcements" className="hover:text-white/80 transition-colors">
+                            <Link href="/announcement" className="hover:text-white/80 transition-colors">
                                 {t.announcements}
                             </Link>
                             <ChevronRightIcon sx={{ fontSize: 14 }} />
@@ -193,7 +193,7 @@ export default async function AnnouncementDetailPage({
                             <div className="h-px bg-gradient-to-r from-[#1a2355]/30 via-gray-300 to-transparent mt-12 mb-8" />
 
                             <Link
-                                href="/announcements"
+                                href="/announcement"
                                 className="inline-flex items-center gap-2 text-[#1a2355] dark:text-white font-semibold text-sm bg-white dark:bg-[#1e293b] rounded-xl px-4 py-2.5 shadow-md hover:shadow-lg transition-shadow"
                             >
                                 <ArrowBackIcon sx={{ fontSize: 18 }} />
@@ -250,7 +250,7 @@ export default async function AnnouncementDetailPage({
                                             key={itemId}
                                             className="group bg-gray-50 dark:bg-[#0f172a] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
                                         >
-                                            <Link href={`/announcements/${announcementSlug(itemId, item.title ?? "")}`}>
+                                            <Link href={`/announcement/${announcementSlug(itemId, item.title ?? "")}`}>
                                                 {itemImg ? (
                                                     <div className="h-48 relative overflow-hidden">
                                                         <Image
@@ -293,7 +293,7 @@ export default async function AnnouncementDetailPage({
 
                             <div className="flex justify-center mt-10">
                                 <Link
-                                    href="/announcements"
+                                    href="/announcement"
                                     className="flex items-center gap-2 border-2 border-[#1a2355] text-[#1a2355] dark:border-white dark:text-white font-bold px-8 py-3 rounded-xl hover:bg-[#1a2355] hover:text-white transition-colors duration-300"
                                 >
                                     {t.allAnnouncements}
@@ -316,7 +316,7 @@ export default async function AnnouncementDetailPage({
                         itemListElement: related.map((r, i) => ({
                             "@type": "ListItem",
                             position: i + 1,
-                            url: `${SITE_URL}/announcements/${announcementSlug(r.announcement_id ?? r.id, r.title ?? "")}`,
+                            url: `${SITE_URL}/announcement/${announcementSlug(r.announcement_id ?? r.id, r.title ?? "")}`,
                             name: r.title,
                         })),
                     }),
