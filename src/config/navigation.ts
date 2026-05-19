@@ -201,13 +201,17 @@ export function getNavSections(t: Locale, lang: Lang): NavSection[] {
                 {
                     title: lang === "az" ? "AzTU-nun Fəxriləri" : "AzTU's Honors",
                     subItems: [
-                        { 
-                            title: lang === "az" ? "Fəxri Doktorlar" : "Honorary Doctors", 
-                            slug: lang === "az" ? "aztu-nun-fexrileri/fexri-doktorlar" : "aztus-honors/honorary-doctors" 
+                        {
+                            title: lang === "az" ? "Fəxri Doktorlar" : "Honorary Doctors",
+                            slug: lang === "az" ? "aztu-nun-fexrileri/fexri-doktorlar" : "aztus-honors/honorary-doctors"
                         },
-                        { 
-                            title: lang === "az" ? "Qəhrəmanlarımız" : "Our Heroes", 
-                            slug: lang === "az" ? "aztu-nun-fexrileri/qehremanlarimiz" : "aztus-honors/our-heroes" 
+                        {
+                            title: lang === "az" ? "Fəxri Məzunlar" : "Honorary Graduates",
+                            slug: lang === "az" ? "aztu-nun-fexrileri/fexri-mezunlar" : "aztus-honors/honorary-graduates"
+                        },
+                        {
+                            title: lang === "az" ? "Qəhrəmanlarımız" : "Our Heroes",
+                            slug: lang === "az" ? "aztu-nun-fexrileri/qehremanlarimiz" : "aztus-honors/our-heroes"
                         },
                     ],
                 },
@@ -383,6 +387,7 @@ export const NAV_SECTIONS: NavSection[] = [
                 title: "AzTU's Honors",
                 subItems: [
                     { title: "Honorary Doctors", slug: "aztus-honors/honorary-doctors" },
+                    { title: "Honorary Graduates", slug: "aztus-honors/honorary-graduates" },
                     { title: "Our Heroes", slug: "aztus-honors/our-heroes" },
                 ],
             },

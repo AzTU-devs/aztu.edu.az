@@ -167,6 +167,8 @@ const SLUG_MAP: Record<string, string> = {
     "aztu-nun-fexrileri": "aztus-honors",
     "honorary-doctors": "fexri-doktorlar",
     "fexri-doktorlar": "honorary-doctors",
+    "honorary-graduates": "fexri-mezunlar",
+    "fexri-mezunlar": "honorary-graduates",
     "our-heroes": "qehremanlarimiz",
     "qehremanlarimiz": "our-heroes",
     "former-rectors": "sabiq-rektorlarimiz",
@@ -282,7 +284,7 @@ const EN_SLUGS = new Set([
     "75th-anniversary-film", "leadership-and-management", "rector", "rectors-office", "vice-rector", "vice-rectors", "scientific-board",
     "vision-mission-goal",
     "partner-universities-and-related-institutes", "tau", "iit", "ics", "baku-technical-colleges", "baku-state-colleges",
-    "structural-units", "aztus-honors", "honorary-doctors", "our-heroes",
+    "structural-units", "aztus-honors", "honorary-doctors", "honorary-graduates", "our-heroes",
     "former-rectors", "rankings", "campus-life", "aztu-polyclinic", "clubs", "sports",
     "unions-and-organizations", "alliances-and-organizations", "trade-union", "student-trade-union",
     "lifelong-learning", "student-youth-organization",
@@ -627,6 +629,8 @@ export function middleware(request: NextRequest) {
         if (segments_rest[1] === "aztus-honors" || segments_rest[1] === "aztu-nun-fexrileri") {
             if (segments_rest[2] === "honorary-doctors" || segments_rest[2] === "fexri-doktorlar") {
                 segments_rest = ["community", "honorary-doctors"];
+            } else if (segments_rest[2] === "honorary-graduates" || segments_rest[2] === "fexri-mezunlar") {
+                segments_rest = ["community", "honorary-graduates"];
             } else if (segments_rest[2] === "our-heroes" || segments_rest[2] === "qehremanlarimiz") {
                 segments_rest = ["community", "our-heroes"];
             } else if (segments_rest[2] === "former-rectors" || segments_rest[2] === "sabiq-rektorlarimiz") {
