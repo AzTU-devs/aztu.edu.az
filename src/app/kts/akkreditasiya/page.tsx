@@ -23,13 +23,13 @@ const ACCREDITATION_DATA = {
         docs: [
           {
             title: "AzTU Yekun Hesabat — İnstitusional Akkreditasiya",
-            url: "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/11-2024/AzTU_Yekun%20Hesabat_TKTA_sayt_compressed.pdf",
-            embedUrl: "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/11-2024/AzTU_Yekun%20Hesabat_TKTA_sayt_compressed.pdf",
+            url: "https://api.aztu.edu.az/media/prod/accreditation/AzTU_Yekun%20Hesabat_TKTA_sayt_compressed.pdf",
+            embedUrl: "https://api.aztu.edu.az/media/prod/accreditation/AzTU_Yekun%20Hesabat_TKTA_sayt_compressed.pdf",
           },
           {
             title: "İnstitusional Akkreditasiya Sertifikatı",
-            url: "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/11-2024/sekil%20(4).pdf",
-            embedUrl: "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/11-2024/sekil%20(4).pdf",
+            url: "https://api.aztu.edu.az/media/prod/accreditation/sekil%20(4).pdf",
+            embedUrl: "https://api.aztu.edu.az/media/prod/accreditation/sekil%20(4).pdf",
           },
         ],
       },
@@ -40,8 +40,8 @@ const ACCREDITATION_DATA = {
         docs: [
           {
             title: "Akkreditasiya Olunmuş Proqramlar Hesabatı — Enerji Klasteri",
-            url: "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/11-2024/Abschlussbericht%20Fachsiegel%20TU%20Baku%20et%20al-%20Cluster%20Energie%202015-06-26_compressed.pdf",
-            embedUrl: "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/11-2024/Abschlussbericht%20Fachsiegel%20TU%20Baku%20et%20al-%20Cluster%20Energie%202015-06-26_compressed.pdf",
+            url: "https://api.aztu.edu.az/media/prod/accreditation/Abschlussbericht%20Fachsiegel%20TU%20Baku%20et%20al-%20Cluster%20Energie%202015-06-26_compressed.pdf",
+            embedUrl: "https://api.aztu.edu.az/media/prod/accreditation/Abschlussbericht%20Fachsiegel%20TU%20Baku%20et%20al-%20Cluster%20Energie%202015-06-26_compressed.pdf",
           },
         ],
       },
@@ -60,13 +60,13 @@ const ACCREDITATION_DATA = {
         docs: [
           {
             title: "AzTU Final Report — Institutional Accreditation",
-            url: "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/11-2024/AzTU_Yekun%20Hesabat_TKTA_sayt_compressed.pdf",
-            embedUrl: "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/11-2024/AzTU_Yekun%20Hesabat_TKTA_sayt_compressed.pdf",
+            url: "https://api.aztu.edu.az/media/prod/accreditation/AzTU_Yekun%20Hesabat_TKTA_sayt_compressed.pdf",
+            embedUrl: "https://api.aztu.edu.az/media/prod/accreditation/AzTU_Yekun%20Hesabat_TKTA_sayt_compressed.pdf",
           },
           {
             title: "Institutional Accreditation Certificate",
-            url: "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/11-2024/sekil%20(4).pdf",
-            embedUrl: "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/11-2024/sekil%20(4).pdf",
+            url: "https://api.aztu.edu.az/media/prod/accreditation/sekil%20(4).pdf",
+            embedUrl: "https://api.aztu.edu.az/media/prod/accreditation/sekil%20(4).pdf",
           },
         ],
       },
@@ -77,8 +77,8 @@ const ACCREDITATION_DATA = {
         docs: [
           {
             title: "Accredited Programs Report — Energy Cluster",
-            url: "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/11-2024/Abschlussbericht%20Fachsiegel%20TU%20Baku%20et%20al-%20Cluster%20Energie%202015-06-26_compressed.pdf",
-            embedUrl: "https://www.aztu.edu.az/sub_site/web_admin/upload/files/aztu.edu.az/menus/11-2024/Abschlussbericht%20Fachsiegel%20TU%20Baku%20et%20al-%20Cluster%20Energie%202015-06-26_compressed.pdf",
+            url: "https://api.aztu.edu.az/media/prod/accreditation/Abschlussbericht%20Fachsiegel%20TU%20Baku%20et%20al-%20Cluster%20Energie%202015-06-26_compressed.pdf",
+            embedUrl: "https://api.aztu.edu.az/media/prod/accreditation/Abschlussbericht%20Fachsiegel%20TU%20Baku%20et%20al-%20Cluster%20Energie%202015-06-26_compressed.pdf",
           },
         ],
       },
