@@ -80,12 +80,12 @@ export default function Footer() {
 
     return (
         <footer className="relative mt-24 lg:mt-32">
-            {/* Top Curved Logo Accent */}
-            <div className="absolute top-[-40px] md:top-[-60px] left-1/2 -translate-x-1/2 z-30 w-[280px] md:w-[450px]">
+            {/* Top Curved Logo Accent — wings align flush with footer top edge */}
+            <div className="absolute top-[-52px] md:top-[-84px] left-1/2 -translate-x-1/2 z-30 w-[280px] md:w-[450px] pointer-events-none">
                 <CurvedLogoSvg className="w-full h-auto drop-shadow-2xl" />
             </div>
 
-            <div className="relative z-10 bg-[#0b1330] overflow-hidden border-t border-white/5 pt-24 md:pt-32">
+            <div className="relative z-10 bg-[#0b1330] overflow-hidden pt-32 md:pt-44">
                 
                 {/* STUNNING BACKGROUND ELEMENTS */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
