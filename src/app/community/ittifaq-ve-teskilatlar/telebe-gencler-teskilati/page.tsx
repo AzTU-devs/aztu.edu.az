@@ -393,7 +393,7 @@ export default function TelebeGenclerTeskilatiPage() {
   const [activeTab, setActiveTab] = useState<TabKey>("about");
 
   const communityHref = lang === "az" ? "/az/icma" : "/en/community";
-  const sectionHref = lang === "az" ? "/az/icma/ittifaq-ve-teskilatlar" : "/en/community/unions-and-organizations";
+  const sectionHref = lang === "az" ? "/az/icma/ittifaq-ve-teskilatlar" : "/en/community/alliances-and-organizations";
 
   return (
     <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">

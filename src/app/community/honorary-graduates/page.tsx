@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 import { useTranslation } from "@/hooks/useTranslation";
@@ -79,7 +80,7 @@ export default function HonoraryGraduatesPage() {
             <div className="relative px-4 md:px-10 lg:px-20 py-24 z-10">
                 <div className="max-w-[1400px] mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {p.graduates.map((g: { name: string; description: string }, i: number) => (
+                        {p.graduates.map((g: { name: string; description: string; image: string }, i: number) => (
                             <motion.div
                                 key={i}
                                 initial={{ opacity: 0, y: 20 }}
@@ -91,8 +92,18 @@ export default function HonoraryGraduatesPage() {
                                 <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#ee7c7e] via-[#1a2355] to-[#ee7c7e] opacity-30 group-hover:opacity-100 transition-opacity duration-500" />
 
                                 <div className="relative p-1.5 rounded-full border-2 border-dashed border-[#ee7c7e]/40 group-hover:border-[#ee7c7e] transition-all duration-500">
-                                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#1a2355]/10 to-[#ee7c7e]/10 dark:from-[#1a2355]/30 dark:to-[#ee7c7e]/20 overflow-hidden flex items-center justify-center text-[#1a2355]/40 dark:text-white/40 border border-[#1a2355]/20">
-                                        <PersonIcon sx={{ fontSize: 56 }} />
+                                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#1a2355]/10 to-[#ee7c7e]/10 dark:from-[#1a2355]/30 dark:to-[#ee7c7e]/20 overflow-hidden flex items-center justify-center text-[#1a2355]/40 dark:text-white/40 border border-[#1a2355]/20 relative">
+                                        {g.image ? (
+                                            <Image
+                                                src={g.image}
+                                                alt={g.name}
+                                                fill
+                                                sizes="96px"
+                                                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                            />
+                                        ) : (
+                                            <PersonIcon sx={{ fontSize: 56 }} />
+                                        )}
                                     </div>
                                     <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-[#ee7c7e] text-white rounded-full flex items-center justify-center shadow-lg border-4 border-white dark:border-slate-900">
                                         <SchoolIcon sx={{ fontSize: 16 }} />

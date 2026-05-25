@@ -183,9 +183,11 @@ const SLUG_MAP: Record<string, string> = {
     "idman": "sports",
     "unions-and-organizations": "ittifaq-ve-teskilatlar",
     "alliances-and-organizations": "ittifaq-ve-teskilatlar",
-    "ittifaq-ve-teskilatlar": "unions-and-organizations",
-    "trade-union": "hemkarlar-ittifaqi",
-    "hemkarlar-ittifaqi": "trade-union",
+    "ittifaq-ve-teskilatlar": "alliances-and-organizations",
+    "trade-union": "hemkarlar-ittifaqi-komitesi",
+    "trade-union-committee": "hemkarlar-ittifaqi-komitesi",
+    "hemkarlar-ittifaqi": "trade-union-committee",
+    "hemkarlar-ittifaqi-komitesi": "trade-union-committee",
     "student-trade-union": "telebe-hemkarlar-ittifaqi",
     "telebe-hemkarlar-ittifaqi": "student-trade-union",
     "lifelong-learning": "omurboyu-tehsil",
@@ -286,7 +288,7 @@ const EN_SLUGS = new Set([
     "partner-universities-and-related-institutes", "tau", "iit", "ics", "baku-technical-colleges", "baku-state-colleges",
     "structural-units", "aztus-honors", "honorary-doctors", "honorary-graduates", "our-heroes",
     "former-rectors", "rankings", "campus-life", "aztu-polyclinic", "clubs", "sports",
-    "unions-and-organizations", "alliances-and-organizations", "trade-union", "student-trade-union",
+    "unions-and-organizations", "alliances-and-organizations", "trade-union", "trade-union-committee", "student-trade-union",
     "lifelong-learning", "student-youth-organization",
     "international-partnership", "double-degree-programs", "international-projects", "partner-universities",
     "exchange-programs", "orhun-exchange-program", "bilateral-exchange", "erasmus-mobility",
@@ -678,8 +680,8 @@ export function middleware(request: NextRequest) {
             }
         } else if (segments_rest[1] === "unions-and-organizations" || segments_rest[1] === "alliances-and-organizations" || segments_rest[1] === "ittifaq-ve-teskilatlar") {
             segments_rest[1] = "ittifaq-ve-teskilatlar";
-            if (segments_rest[2] === "trade-union" || segments_rest[2] === "hemkarlar-ittifaqi") {
-                segments_rest = ["community", "ittifaq-ve-teskilatlar", "hemkarlar-ittifaqi"];
+            if (segments_rest[2] === "trade-union" || segments_rest[2] === "trade-union-committee" || segments_rest[2] === "hemkarlar-ittifaqi" || segments_rest[2] === "hemkarlar-ittifaqi-komitesi") {
+                segments_rest = ["community", "ittifaq-ve-teskilatlar", "hemkarlar-ittifaqi-komitesi"];
             } else if (segments_rest[2] === "student-trade-union" || segments_rest[2] === "telebe-hemkarlar-ittifaqi") {
                 segments_rest = ["community", "ittifaq-ve-teskilatlar", "telebe-hemkarlar-ittifaqi"];
             } else if (segments_rest[2] === "student-youth-organization" || segments_rest[2] === "telebe-gencler-teskilati") {
