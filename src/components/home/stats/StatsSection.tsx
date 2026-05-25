@@ -71,7 +71,7 @@ function StatCard({ stat, index, isInView }: { stat: Stat; index: number; isInVi
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1], delay: 0.1 + index * 0.05 }}
-            className="group relative flex flex-col items-center p-4 sm:p-6 lg:p-8 rounded-[2rem] bg-white/5 backdrop-blur-sm border border-white/5 hover:bg-white/10 hover:border-[#ee7c7e]/30 transition-all duration-500 shadow-xl"
+            className="group relative w-full flex flex-col items-center p-6 lg:p-8 rounded-[2rem] bg-white/5 backdrop-blur-sm border border-white/5 hover:bg-white/10 hover:border-[#ee7c7e]/30 transition-all duration-500 shadow-xl"
         >
             {/* Animated hover highlight */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -165,9 +165,11 @@ export default function StatsSection() {
                 </div>
 
                 {/* Stats Grid — all items in one row */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4 lg:gap-6">
+                <div className="flex flex-wrap justify-center gap-4 lg:gap-6">
                     {stats.map((stat, i) => (
-                        <StatCard key={i} stat={stat} index={i} isInView={isInView} />
+                        <div key={i} className="basis-[calc(50%-0.5rem)] sm:basis-[calc(33.333%-0.75rem)] md:basis-[calc(25%-0.75rem)] lg:basis-[calc(14.2857%-1.286rem)] min-w-[180px] flex">
+                            <StatCard stat={stat} index={i} isInView={isInView} />
+                        </div>
                     ))}
                 </div>
             </div>
