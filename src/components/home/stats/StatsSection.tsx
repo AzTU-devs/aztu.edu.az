@@ -71,7 +71,7 @@ function StatCard({ stat, index, isInView }: { stat: Stat; index: number; isInVi
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1], delay: 0.1 + index * 0.05 }}
-            className="group relative flex flex-col items-center p-8 rounded-[2rem] bg-white/5 backdrop-blur-sm border border-white/5 hover:bg-white/10 hover:border-[#ee7c7e]/30 transition-all duration-500 shadow-xl overflow-hidden"
+            className="group relative flex flex-col items-center p-4 sm:p-6 lg:p-8 rounded-[2rem] bg-white/5 backdrop-blur-sm border border-white/5 hover:bg-white/10 hover:border-[#ee7c7e]/30 transition-all duration-500 shadow-xl"
         >
             {/* Animated hover highlight */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -82,7 +82,7 @@ function StatCard({ stat, index, isInView }: { stat: Stat; index: number; isInVi
             </div>
 
             {/* Counter */}
-            <div className="relative z-10 flex items-baseline justify-center gap-1 mb-2">
+            <div className="relative z-10 flex items-baseline justify-center gap-1 mb-2 whitespace-nowrap">
                 <span className="text-4xl md:text-5xl font-black text-white leading-none tabular-nums tracking-tighter">
                     {count.toLocaleString()}
                 </span>
