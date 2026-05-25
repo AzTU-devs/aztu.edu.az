@@ -140,8 +140,10 @@ const SLUG_MAP: Record<string, string> = {
     "idareetme-sistemleri-insitutu": "ics",
     "baku-technical-colleges": "baki-texniki-kollecleri",
     "baki-texniki-kollecleri": "baku-technical-colleges",
-    "baku-state-colleges": "baki-rabite-ve-neqliyayt-dovlet-kollecleri",
+    "baku-state-colleges": "baki-dovlet-rabite-ve-neqliyyat-kolleci",
+    "baki-dovlet-rabite-ve-neqliyyat-kolleci": "baku-state-colleges",
     "baki-rabite-ve-neqliyayt-dovlet-kollecleri": "baku-state-colleges",
+    "baki-rabite-ve-neqliyyat-dovlet-kollecleri": "baku-state-colleges",
 
     // Management sub-slugs
     "structural-units": "struktur-bolmeler",
@@ -453,7 +455,7 @@ export function middleware(request: NextRequest) {
             const iitSlugs = new Set(["iit", "informasiya-texnalogiyalari-institutu", "informasiya-texnologiyalari-institutu", "institute-of-information-technologies", "institute-of-information-technology"]);
             const icsSlugs = new Set(["ics", "idareetme-sistemleri-insitutu", "idareetme-sistemleri-institutu", "management-systems-institute", "institute-of-control-systems"]);
             const techCollegeSlugs = new Set(["baku-technical-colleges", "baki-texniki-kollecleri", "baku-technical-college", "baki-texniki-kolleci"]);
-            const stateCollegeSlugs = new Set(["baku-state-colleges", "baki-rabite-ve-neqliyayt-dovlet-kollecleri", "baki-rabite-ve-neqliyyat-dovlet-kollecleri", "baku-state-college-of-communication-and-transport", "baki-rabite-ve-neqliyyat-dovlet-kolleci"]);
+            const stateCollegeSlugs = new Set(["baku-state-colleges", "baki-rabite-ve-neqliyayt-dovlet-kollecleri", "baki-rabite-ve-neqliyyat-dovlet-kollecleri", "baku-state-college-of-communication-and-transport", "baki-rabite-ve-neqliyyat-dovlet-kolleci", "baki-dovlet-rabite-ve-neqliyyat-kolleci"]);
             if (tauSlugs.has(segments_rest[2])) segments_rest = ["about", "tau"];
             else if (iitSlugs.has(segments_rest[2])) segments_rest = ["about", "iit"];
             else if (icsSlugs.has(segments_rest[2])) segments_rest = ["about", "ics"];

@@ -291,14 +291,16 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
               "iit": "informasiya-texnalogiyalari-institutu",
               "ics": "idareetme-sistemleri-insitutu",
               "baku-technical-colleges": "baki-texniki-kollecleri",
-              "baku-state-colleges": "baki-rabite-ve-neqliyayt-dovlet-kollecleri",
+              "baku-state-colleges": "baki-dovlet-rabite-ve-neqliyyat-kolleci",
           };
           const reversePartnerMap: Record<string, string> = {
               "turk-azerbaycan-universiteti-tau": "tau",
               "informasiya-texnalogiyalari-institutu": "iit",
               "idareetme-sistemleri-insitutu": "ics",
               "baki-texniki-kollecleri": "baku-technical-colleges",
+              "baki-dovlet-rabite-ve-neqliyyat-kolleci": "baku-state-colleges",
               "baki-rabite-ve-neqliyayt-dovlet-kollecleri": "baku-state-colleges",
+              "baki-rabite-ve-neqliyyat-dovlet-kollecleri": "baku-state-colleges",
           };
           if (newLang === "en") {
               segments[1] = "about";
