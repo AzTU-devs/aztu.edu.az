@@ -416,7 +416,7 @@ export function middleware(request: NextRequest) {
     } else if (segments_rest[0] === "about" || segments_rest[0] === "haqqimizda") {
         segments_rest[0] = "haqqimizda";
         if (segments_rest[1] === "vision-mission" || segments_rest[1] === "vizyon-ve-missiya") {
-            if (segments_rest[2] === "vision-mission-goal" || segments_rest[2] === "vizyon-missiya-meqsed") {
+            if (segments_rest[2] === "vision-mission-goal" || segments_rest[2] === "vizyon-missiya-meqsed" || segments_rest[2] === "vizion-mission-goal") {
                 segments_rest = ["about", "vision-mission-goal"]; // Use internal app path
             } else if (segments_rest[2] === "vision" || segments_rest[2] === "vizyon") {
                 segments_rest = ["about", "vision"];
@@ -557,19 +557,39 @@ export function middleware(request: NextRequest) {
         const lastSeg = segments_rest[segments_rest.length - 1];
         const secondSeg = segments_rest[1];
 
-        if (lastSeg === "2025-2026-tedris-ili-teqvimi" || lastSeg === "academic-calendar-2025") {
+        if (lastSeg === "2025-2026-tedris-ili-teqvimi" || lastSeg === "academic-calendar-2025" || lastSeg === "2025-2026-academic-year-calendar") {
             segments_rest = ["tehsil", "academic-calendar-2025"];
-        } else if (lastSeg === "qiymetlendirme-ve-imtahan-teskili-qaydalari" || lastSeg === "assessment-rules") {
+        } else if (lastSeg === "qiymetlendirme-ve-imtahan-teskili-qaydalari" || lastSeg === "assessment-rules" || lastSeg === "assessment-and-examination-organization-rules") {
             segments_rest = ["tehsil", "assessment-rules"];
-        } else if (lastSeg === "bakalavr-ve-magistratura-seviyyelerinde-kredit-sistemi" || lastSeg === "credit-system") {
+        } else if (lastSeg === "bakalavr-ve-magistratura-seviyyelerinde-kredit-sistemi" || lastSeg === "credit-system" || lastSeg === "credit-system-at-bachelors-and-masters-levels") {
             segments_rest = ["tehsil", "credit-system"];
         } else if (lastSeg === "lms-telimatlari" || lastSeg === "lms-guidelines") {
             segments_rest = ["tehsil", "lms-guidelines"];
-        } else if ((secondSeg === "bakalavr" || secondSeg === "magistratura") && segments_rest.length === 3) {
-            // Placeholder pages: /telebeler|students/(bakalavr|magistratura)/(ixtisaslar|tedris-proqrami|oyrenme-neticeleri)
-            const placeholderSlugMap: Record<string, string> = { specialties: "ixtisaslar" };
+        } else if ((secondSeg === "bakalavr" || secondSeg === "magistratura" || secondSeg === "bachelors-degree" || secondSeg === "masters-degree") && segments_rest.length === 3) {
+            // Placeholder pages: /telebeler|students/(bakalavr|magistratura|bachelors-degree|masters-degree)/(ixtisaslar|tedris-proqrami|oyrenme-neticeleri|specializations|curriculum|learning-outcomes|tuition-fee|international-students-section)
+            const levelMap: Record<string, string> = {
+                "bachelors-degree": "bakalavr",
+                "masters-degree": "magistratura",
+            };
+            const level = levelMap[secondSeg] ?? secondSeg;
+            const placeholderSlugMap: Record<string, string> = {
+                specialties: "ixtisaslar",
+                specializations: "ixtisaslar",
+                curriculum: "tedris-proqrami",
+                "learning-outcomes": "oyrenme-neticeleri",
+                "tuition-fee": "tedris-haqqi",
+            };
             const finalSlug = placeholderSlugMap[lastSeg] ?? lastSeg;
-            segments_rest = ["tehsil", secondSeg, finalSlug];
+            // Fallback to flat [slug] dynamic route when nested folder doesn't exist
+            const flatFallback: Record<string, Record<string, string>> = {
+                bakalavr: { "tedris-haqqi": "undergraduate-tuition" },
+                magistratura: { "international-students-section": "international-students" },
+            };
+            if (flatFallback[level]?.[finalSlug]) {
+                segments_rest = ["tehsil", flatFallback[level][finalSlug]];
+            } else {
+                segments_rest = ["tehsil", level, finalSlug];
+            }
         } else if (segments_rest.length === 3) {
             segments_rest = ["tehsil", lastSeg];
         }
@@ -606,6 +626,7 @@ export function middleware(request: NextRequest) {
                 "partner-universities": "terefdas-universitetler",
                 "erasmus-mobility": "erasmus-mubadile",
                 "erasmus-partner-universities": "erasmus-mubadile-uzre-terefdas-universitetler",
+                "erasmus-mobility-partners": "erasmus-mubadile-uzre-terefdas-universitetler",
             };
             if (segments_rest[2] && exchangeMap[segments_rest[2]]) {
                 segments_rest[2] = exchangeMap[segments_rest[2]];
@@ -615,10 +636,12 @@ export function middleware(request: NextRequest) {
             const foreignStudentsMap: Record<string, string> = {
                 "admission": "qebul",
                 "visa-and-migration": "viza-ve-miqrasiya",
+                "visa-migration": "viza-ve-miqrasiya",
                 "accommodation": "yerlesme",
                 "scholarship-opportunities": "teqaud-imkanlari",
                 "foundation-program": "hazirliq-proqrami",
                 "discover-programs": "proqramlari-kesf-edin",
+                "discover-the-programs": "proqramlari-kesf-edin",
             };
             if (segments_rest[2] && foreignStudentsMap[segments_rest[2]]) {
                 segments_rest[2] = foreignStudentsMap[segments_rest[2]];
@@ -650,6 +673,8 @@ export function middleware(request: NextRequest) {
                 segments_rest = ["community", "kampus-heyati", "klublar"];
             } else if (segments_rest[2] === "sports" || segments_rest[2] === "idman") {
                 segments_rest = ["community", "kampus-heyati", "idman"];
+            } else if (segments_rest[2] === "student-life" || segments_rest[2] === "telebe-heyati") {
+                segments_rest = ["community", "kampus-heyati", "telebe-heyati"];
             }
         } else if (segments_rest[1] === "unions-and-organizations" || segments_rest[1] === "alliances-and-organizations" || segments_rest[1] === "ittifaq-ve-teskilatlar") {
             segments_rest[1] = "ittifaq-ve-teskilatlar";
