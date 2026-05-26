@@ -48,6 +48,54 @@ export const getNewsList = async (
     return [];
 };
 
+export const getNewsByFaculty = async (
+    facultyCode: string,
+    params: { start?: number; end?: number; lang?: Lang } = {}
+): Promise<NewsListItem[]> => {
+    const { start = 0, end = 10, lang = "az" } = params;
+    const query = new URLSearchParams({
+        start: String(start),
+        end: String(end),
+        lang,
+    });
+    try {
+        const response = await apiClient.get(
+            `/api/news/public/faculty/${encodeURIComponent(facultyCode)}?${query.toString()}`,
+            { headers: { "Accept-Language": lang } }
+        );
+        if (response.data.status_code === 200) {
+            return response.data.news as NewsListItem[];
+        }
+        return [];
+    } catch {
+        return [];
+    }
+};
+
+export const getNewsByCafedra = async (
+    cafedraCode: string,
+    params: { start?: number; end?: number; lang?: Lang } = {}
+): Promise<NewsListItem[]> => {
+    const { start = 0, end = 10, lang = "az" } = params;
+    const query = new URLSearchParams({
+        start: String(start),
+        end: String(end),
+        lang,
+    });
+    try {
+        const response = await apiClient.get(
+            `/api/news/public/cafedra/${encodeURIComponent(cafedraCode)}?${query.toString()}`,
+            { headers: { "Accept-Language": lang } }
+        );
+        if (response.data.status_code === 200) {
+            return response.data.news as NewsListItem[];
+        }
+        return [];
+    } catch {
+        return [];
+    }
+};
+
 export const getNewsById = async (
     id: number,
     lang: Lang = "az"

@@ -17,6 +17,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { getFacultyBySlug } from "@/services/facultyService/facultyService";
 import type { FacultyDetail, ContentSection } from "@/types/faculty";
 import { useLanguage } from "@/context/LanguageContext";
+import AssignedNewsSection from "@/components/news/AssignedNewsSection";
 
 interface Props {
   params: Promise<{ facultyId: string }>;
@@ -296,6 +297,9 @@ export default function FacultyHaqqimizdaPage({ params }: Props) {
             {renderContentSection("tedqiqat", <ScienceIcon sx={{ color: "white" }} />, currentLang === "az" ? "Elmi tədqiqat işləri" : "Scientific Research", faculty?.research_works)}
             {renderContentSection("layiheler", <AssignmentIcon sx={{ color: "white" }} />, currentLang === "az" ? "Layihələr" : "Projects & Initiatives", faculty?.projects)}
             {renderContentSection("partnyorlar", <BusinessIcon sx={{ color: "white" }} />, currentLang === "az" ? "Partnyor şirkətlər" : "Industrial Partners", faculty?.partner_companies)}
+            {faculty?.faculty_code && (
+              <AssignedNewsSection facultyCode={faculty.faculty_code} />
+            )}
           </div>
         </div>
       )}
