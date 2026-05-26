@@ -7,7 +7,6 @@ import type { CafedraDetail, GenericSection } from "@/types/cafedra";
 import SectionBlock from "@/components/shared/SectionBlock";
 import { useLanguage } from "@/context/LanguageContext";
 import SanitizedHtml from "@/components/shared/SanitizedHtml";
-import AssignedNewsSection from "@/components/news/AssignedNewsSection";
 
 // Material Icons
 import InfoIcon from "@mui/icons-material/Info";
@@ -264,9 +263,6 @@ export default function CafedraGirisPage({ params }: Props) {
         {renderContentSection("tedqiqat", <ScienceIcon sx={{ color: "white" }} />, currentLang === "az" ? "Elmi tədqiqat işləri" : "Scientific Research", cafedra.research_works)}
         {renderContentSection("layiheler", <AssignmentIcon sx={{ color: "white" }} />, currentLang === "az" ? "Layihələr" : "Projects & Initiatives", cafedra.projects)}
         {renderContentSection("partnyorlar", <BusinessIcon sx={{ color: "white" }} />, currentLang === "az" ? "Partnyor şirkətlər" : "Industrial Partners", cafedra.partner_companies)}
-        {cafedra.cafedra_code && (
-          <AssignedNewsSection cafedraCode={cafedra.cafedra_code} />
-        )}
       </div>
     </div>
   );
