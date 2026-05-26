@@ -10,11 +10,10 @@ import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
 import SanitizedHtml from "@/components/shared/SanitizedHtml";
 import { announcementSlug } from "@/util/slugify";
+import apiClient from "@/util/apiClient";
 
 import PageHero from "@/components/shared/PageHero";
 import PageContainer from "@/components/shared/PageContainer";
-
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site";
 
 const MONTHS_AZ = [
     "Yanvar","Fevral","Mart","Aprel","May","İyun",
@@ -59,13 +58,27 @@ export default function AnnouncementsPage() {
     const t = useTranslation();
     const { lang } = useLanguage();
     const [announcements, setAnnouncements] = useState<ApiAnnouncement[]>([]);
+    const [errored, setErrored] = useState(false);
 
     useEffect(() => {
-        fetch(`${API_BASE}/api/announcement/public/all?start=0&end=100`)
-            .then((r) => r.json())
-            .then((data) => setAnnouncements(data.announcements ?? []))
-            .catch(() => {});
-    }, []);
+        let cancelled = false;
+        setErrored(false);
+        apiClient
+            .get(`/api/announcement/public/all?start=0&end=100`, {
+                headers: { "Accept-Language": lang },
+            })
+            .then((res) => {
+                if (cancelled) return;
+                const list = res?.data?.announcements;
+                setAnnouncements(Array.isArray(list) ? list : []);
+            })
+            .catch(() => {
+                if (cancelled) return;
+                setErrored(true);
+                setAnnouncements([]);
+            });
+        return () => { cancelled = true; };
+    }, [lang]);
 
     const featured = announcements[0];
     const rest = announcements.slice(1);
@@ -89,11 +102,17 @@ export default function AnnouncementsPage() {
             </PageHero>
 
             <PageContainer>
-                {/* ── Empty state ── */}
+                {/* ── Empty / error state ── */}
                 {announcements.length === 0 && (
-                    <div className="text-center py-24 text-gray-400 font-black text-xl uppercase tracking-widest relative z-10">
-                        {lang === 'az' ? "ELAN TAPILMADI" : "NO ANNOUNCEMENTS FOUND"}
-                    </div>
+                    errored ? (
+                        <div className="text-center py-24 text-[#ee7c7e] font-black text-xl uppercase tracking-widest relative z-10">
+                            {lang === 'az' ? "Bağlantı xətası. Yenidən cəhd edin." : "Connection error. Please retry."}
+                        </div>
+                    ) : (
+                        <div className="text-center py-24 text-gray-400 font-black text-xl uppercase tracking-widest relative z-10">
+                            {lang === 'az' ? "ELAN TAPILMADI" : "NO ANNOUNCEMENTS FOUND"}
+                        </div>
+                    )
                 )}
 
                 {featured && (

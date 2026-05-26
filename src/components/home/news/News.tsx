@@ -201,7 +201,7 @@ export default function News() {
                                                     title={`SDG: ${featured.sdg_numbers.join(", ")}`}
                                                 >
                                                     <PublicIcon sx={{ fontSize: 14 }} />
-                                                    SDG · {featured.sdg_numbers.length}
+                                                    SDG
                                                 </span>
                                             )}
                                         </div>
@@ -259,7 +259,7 @@ export default function News() {
                                                         title={`SDG: ${item.sdg_numbers.join(", ")}`}
                                                     >
                                                         <PublicIcon sx={{ fontSize: 12 }} />
-                                                        SDG · {item.sdg_numbers.length}
+                                                        SDG
                                                     </span>
                                                 )}
                                             </div>

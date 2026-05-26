@@ -8,8 +8,8 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import CampaignIcon from "@mui/icons-material/Campaign";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { announcementSlug } from "@/util/slugify";
-
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site";
+import apiClient from "@/util/apiClient";
+import { useLanguage } from "@/context/LanguageContext";
 
 function parseDate(iso: string, months: readonly string[]) {
     const d = new Date(iso);
@@ -31,21 +31,36 @@ interface ApiAnnouncement {
 
 export default function Announcements() {
     const t = useTranslation();
+    const { lang } = useLanguage();
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
     const [announcements, setAnnouncements] = useState<ApiAnnouncement[]>([]);
     const [loading, setLoading] = useState(true);
+    const [errored, setErrored] = useState(false);
 
     useEffect(() => {
+        let cancelled = false;
         setLoading(true);
-        fetch(`${API_BASE}/api/announcement/public/all?start=0&end=4`)
-            .then((r) => r.json())
-            .then((data) => {
-                setAnnouncements(data.announcements ?? []);
-                setLoading(false);
+        setErrored(false);
+        apiClient
+            .get(`/api/announcement/public/all?start=0&end=4`, {
+                headers: { "Accept-Language": lang },
             })
-            .catch(() => setLoading(false));
-    }, []);
+            .then((res) => {
+                if (cancelled) return;
+                const list = res?.data?.announcements;
+                setAnnouncements(Array.isArray(list) ? list : []);
+            })
+            .catch(() => {
+                if (cancelled) return;
+                setErrored(true);
+                setAnnouncements([]);
+            })
+            .finally(() => {
+                if (!cancelled) setLoading(false);
+            });
+        return () => { cancelled = true; };
+    }, [lang]);
 
     return (
         <section
@@ -119,6 +134,12 @@ export default function Announcements() {
                         </motion.div>
                     )}
                 </AnimatePresence>
+
+                {!loading && errored && (
+                    <div className="rounded-2xl border border-[#ee7c7e]/30 bg-[#ee7c7e]/5 text-white/80 text-sm px-6 py-4 mb-6">
+                        {t.announcements.sectionLabel} — connection error. Please retry.
+                    </div>
+                )}
 
                 {/* Announcement Grid */}
                 {!loading && (
