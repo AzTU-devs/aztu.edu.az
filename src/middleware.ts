@@ -28,6 +28,7 @@ const INTERNAL_FOLDERS = [
   "about",
   "research",
   "kts",
+  "falling-walls",
 ];
 
 // Global mapping for slug translation
