@@ -117,7 +117,7 @@ export default function Footer() {
     return (
         <footer className="relative mt-24 lg:mt-32">
             {/* Top Curved Logo Accent — wings align flush with footer top edge */}
-            <div className="absolute top-[-52px] md:top-[-84px] left-1/2 -translate-x-1/2 z-30 w-[280px] md:w-[450px] pointer-events-none">
+            <div className="absolute top-[-38px] md:top-[-61px] left-1/2 -translate-x-1/2 z-30 w-[280px] md:w-[450px] pointer-events-none">
                 <CurvedLogoSvg className="w-full h-auto drop-shadow-2xl" />
             </div>
 
