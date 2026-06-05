@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
+import { getHeaderMenu, type MenuHeader } from "@/services/menu/menuService";
 import FirstLady from "@/../public/first_lady.png";
 import SchoolIcon from '@mui/icons-material/School';
 import YouTubeIcon from '@mui/icons-material/YouTube';
@@ -23,8 +24,32 @@ import ImportContactsIcon from '@mui/icons-material/ImportContacts';
 import HaydarAliyevFoundation from "@/../public/heydar-aliyev-foundation.png";
 import EmailIcon from '@mui/icons-material/Email';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import GavelIcon from '@mui/icons-material/Gavel';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site";
+
+const APPEAL_URL = "https://online-apellyasiya.aztu.edu.az/";
+
+// Build footer navigation columns from the live header menu (main header sections),
+// so the footer mirrors the header. Falls back to static data when the menu is empty.
+function columnsFromHeader(headers: MenuHeader[]): FooterColumn[] {
+    return headers
+        .map((header) => {
+            const links: { label: string; url: string }[] = [];
+            for (const item of header.items ?? []) {
+                if (item.direct_url) {
+                    links.push({ label: item.title, url: item.direct_url });
+                } else {
+                    for (const sub of item.sub_items ?? []) {
+                        if (sub.direct_url) links.push({ label: sub.title, url: sub.direct_url });
+                    }
+                }
+            }
+            return { title: header.title, links: links.slice(0, 6) };
+        })
+        .filter((col) => col.links.length > 0)
+        .slice(0, 4);
+}
 
 const SOCIAL_ICONS: Record<string, React.ElementType> = {
     facebook: FacebookIcon,
@@ -61,6 +86,7 @@ export default function Footer() {
     const t = useTranslation();
     const { lang } = useLanguage();
     const [footerData, setFooterData] = useState<FooterData | null>(null);
+    const [headerColumns, setHeaderColumns] = useState<FooterColumn[]>([]);
 
     useEffect(() => {
         fetch(`${API_BASE}/api/menu/footer?lang=${lang}`)
@@ -71,9 +97,19 @@ export default function Footer() {
                 }
             })
             .catch(() => {});
+
+        getHeaderMenu(lang)
+            .then((menu) => setHeaderColumns(menu.length ? columnsFromHeader(menu) : []))
+            .catch(() => setHeaderColumns([]));
     }, [lang]);
 
-    const columns = footerData?.columns?.length ? footerData.columns : t.footer.columns;
+    // Footer nav columns mirror the main header sections; fall back to the
+    // backend footer columns, then to the static locale columns.
+    const columns = headerColumns.length
+        ? headerColumns
+        : footerData?.columns?.length
+            ? footerData.columns
+            : t.footer.columns;
     const contact = footerData?.contact;
     const socialLinks = footerData?.social_links?.length ? footerData.social_links : STATIC_SOCIAL;
     const universityName = footerData?.university_name ?? "Azerbaijan Technical University";
@@ -251,6 +287,19 @@ export default function Footer() {
                                     </span>
                                 </Link>
                             ))}
+
+                            {/* Appeal / Apellyasiya — external system */}
+                            <a
+                                href={APPEAL_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group flex flex-col items-center justify-center bg-white/10 w-28 h-28 rounded-[2rem] border border-white/10 hover:bg-[#ee7c7e] hover:border-[#ee7c7e] transition-all duration-500 shadow-xl"
+                            >
+                                <GavelIcon sx={{ fontSize: 32 }} className="text-white/60 group-hover:text-white transition-colors" />
+                                <span className="text-white/40 group-hover:text-white text-[10px] font-black uppercase tracking-widest text-center mt-3 px-2 line-clamp-1">
+                                    {t.footer.appeal}
+                                </span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -270,6 +319,7 @@ export default function Footer() {
                             { label: "Elmi Əsərlər", href: "https://proceedings.aztu.edu.az", title: "Elmi Əsərlər | AzTU" },
                             { label: "KOICA", href: "/projects", title: "KOICA layihəsi | AzTU" },
                             { label: "Tədqiqat", href: "/tedqiqat", title: "Tədqiqat | AzTU" },
+                            { label: t.footer.appeal, href: APPEAL_URL, title: "Onlayn Apellyasiya | AzTU" },
                             { label: "Əlaqə", href: "/elaqe", title: "Əlaqə | AzTU" },
                         ].map(({ label, href, title }) => {
                             const isExternal = href.startsWith("http");

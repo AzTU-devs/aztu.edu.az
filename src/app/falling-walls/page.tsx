@@ -1,5 +1,6 @@
 "use client";
 
+<<<<<<< HEAD
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useTranslation } from "@/hooks/useTranslation";
@@ -298,4 +299,162 @@ export default function FallingWallsPage() {
       </PageContainer>
     </main>
   );
+=======
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+
+import { useLanguage } from "@/context/LanguageContext";
+
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import HomeIcon from "@mui/icons-material/Home";
+import VideocamIcon from "@mui/icons-material/Videocam";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+
+import DaadLogo from "@/../public/logo/daad.png";
+
+const ZOOM_URL =
+    "https://uni-bonn.zoom.us/j/68833298488?pwd=9ccShWCFBhMqTb6o6BzspKPvpfEVDN.1";
+
+const CONTENT = {
+    az: {
+        home: "Ana səhifə",
+        eyebrow: "Beynəlxalq Müsabiqə",
+        title: "Falling Walls Lab",
+        lead: "Gənc tədqiqatçılar, sahibkarlar və yenilikçilər üçün öz ideyalarını dünya ilə bölüşmək imkanı.",
+        sectionTitle: "Falling Walls Lab nədir?",
+        paragraphs: [
+            "Falling Walls Lab elm, biznes və cəmiyyət arasında körpü quran beynəlxalq bir platformadır. İştirakçılar öz tədqiqat işlərini, biznes ideyalarını və ya sosial təşəbbüslərini cəmi 3 dəqiqə ərzində beynəlxalq münsiflər heyəti qarşısında təqdim edirlər.",
+            "Müsabiqə dünyanın 80-dən çox ölkəsində keçirilir və hər il minlərlə tələbə, doktorant və gənc mütəxəssisi bir araya gətirir. Məqsəd “Hansı divarları yıxacaq növbəti böyük addım nədir?” sualına ən təsirli və yaradıcı cavabı tapmaqdır.",
+            "Hər bir yerli mərhələnin qalibi Berlində keçirilən Falling Walls Lab Finalında iştirak etmək hüququ qazanır. Bu final hər il Noyabr ayında, Falling Walls Science Summit çərçivəsində baş tutur və qaliblər öz ideyalarını dünyanın aparıcı alimləri və investorları qarşısında təqdim edirlər.",
+        ],
+        sessionLabel: "Onlayn İnfo Sessiya",
+        sessionText:
+            "Online info session on 5 June, 5 pm:",
+        partnersTitle: "Dəstəkçilər",
+    },
+    en: {
+        home: "Home",
+        eyebrow: "International Competition",
+        title: "Falling Walls Lab",
+        lead: "An opportunity for young researchers, entrepreneurs and innovators to share their breakthrough ideas with the world.",
+        sectionTitle: "What is Falling Walls Lab?",
+        paragraphs: [
+            "Falling Walls Lab is an international platform that bridges science, business and society. Participants present their research work, business ideas or social initiatives to an interdisciplinary jury in just 3 minutes.",
+            "The competition takes place in more than 80 countries and every year brings together thousands of students, PhD candidates and young professionals. The goal is to find the most compelling and creative answer to the question: “Which are the next walls to fall?”",
+            "Each local winner earns the right to take part in the Falling Walls Lab Finale in Berlin. The Finale is held every November as part of the Falling Walls Science Summit, where winners present their ideas in front of the world’s leading scientists and investors.",
+        ],
+        sessionLabel: "Online Info Session",
+        sessionText: "Online info session on 5 June, 5 pm:",
+        partnersTitle: "Supported by",
+    },
+} as const;
+
+export default function FallingWallsPage() {
+    const { lang } = useLanguage();
+    const c = CONTENT[lang === "en" ? "en" : "az"];
+
+    return (
+        <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+            {/* HERO */}
+            <div className="relative overflow-hidden pt-44 lg:pt-48 pb-20 bg-gradient-to-br from-[#0b1e3a] via-[#1a2355] to-[#0b1330]">
+                <div className="absolute inset-0 opacity-[0.06] pointer-events-none"
+                     style={{ backgroundImage: "radial-gradient(white 0.5px, transparent 0.5px)", backgroundSize: "32px 32px" }} />
+                <div className="absolute top-0 right-0 w-[50%] h-[60%] bg-[#ee7c7e]/[0.08] blur-[120px] rounded-full pointer-events-none" />
+
+                <div className="relative z-10 max-w-[1200px] mx-auto px-4 md:px-10 lg:px-20">
+                    {/* Breadcrumbs */}
+                    <nav className="flex items-center gap-2 text-white/60 text-xs mb-12">
+                        <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
+                            <HomeIcon sx={{ fontSize: 14 }} />
+                            {c.home}
+                        </Link>
+                        <ChevronRightIcon sx={{ fontSize: 12 }} />
+                        <span className="text-[#ee7c7e] font-bold">{c.title}</span>
+                    </nav>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, ease: "easeOut" }}
+                    >
+                        <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
+                            {c.eyebrow}
+                        </span>
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-[1.05] tracking-tight">
+                            {c.title}
+                        </h1>
+                        <p className="text-lg md:text-2xl text-white/80 font-medium max-w-3xl leading-relaxed">
+                            {c.lead}
+                        </p>
+                    </motion.div>
+                </div>
+            </div>
+
+            {/* CONTENT */}
+            <div className="max-w-[900px] mx-auto px-4 md:px-10 lg:px-0 py-20">
+                <section>
+                    <h2 className="text-2xl md:text-3xl font-black text-[#1a2355] dark:text-white mb-8 flex items-center gap-3">
+                        <div className="w-2 h-8 bg-[#ee7c7e] rounded-full" />
+                        {c.sectionTitle}
+                    </h2>
+
+                    <div className="space-y-6">
+                        {c.paragraphs.map((para, i) => (
+                            <p key={i} className="text-base md:text-lg text-gray-600 dark:text-white/70 leading-relaxed">
+                                {para}
+                            </p>
+                        ))}
+                    </div>
+
+                    {/* Online info session callout — placed after the last paragraph */}
+                    <div className="mt-10 rounded-[1.75rem] border border-[#ee7c7e]/30 bg-[#ee7c7e]/[0.06] dark:bg-[#ee7c7e]/[0.08] p-7 shadow-sm">
+                        <div className="flex items-start gap-4">
+                            <div className="w-12 h-12 shrink-0 rounded-2xl bg-[#ee7c7e] text-white flex items-center justify-center shadow-lg">
+                                <VideocamIcon sx={{ fontSize: 26 }} />
+                            </div>
+                            <div>
+                                <span className="block text-[11px] font-black uppercase tracking-[0.25em] text-[#ee7c7e] mb-2">
+                                    {c.sessionLabel}
+                                </span>
+                                <p className="text-base md:text-lg font-bold text-[#1a2355] dark:text-white leading-relaxed">
+                                    {c.sessionText}{" "}
+                                    <a
+                                        href={ZOOM_URL}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-[#ee7c7e] underline decoration-2 underline-offset-4 break-all hover:text-[#d96365] transition-colors"
+                                    >
+                                        {ZOOM_URL}
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Supported by — DAAD */}
+                <section className="mt-16 pt-12 border-t border-gray-200 dark:border-slate-800">
+                    <h3 className="text-sm font-black uppercase tracking-[0.25em] text-[#1a2355]/60 dark:text-white/50 mb-6 flex items-center gap-3">
+                        <EmojiEventsIcon sx={{ fontSize: 18 }} className="text-[#ee7c7e]" />
+                        {c.partnersTitle}
+                    </h3>
+                    <a
+                        href="https://www.daad.de/en/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group inline-flex items-center justify-center bg-white dark:bg-white/5 border border-gray-100 dark:border-slate-700 rounded-[1.75rem] p-8 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/30 transition-all duration-300"
+                    >
+                        <Image
+                            src={DaadLogo}
+                            alt="DAAD — Deutscher Akademischer Austauschdienst"
+                            className="h-16 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity"
+                            priority
+                        />
+                    </a>
+                </section>
+            </div>
+        </main>
+    );
+>>>>>>> 656b429 (faliing-wall & footer)
 }

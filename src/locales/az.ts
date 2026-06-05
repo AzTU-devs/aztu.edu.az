@@ -2518,13 +2518,42 @@ const az = {
       { label: "Reytinqlər" },
       { label: "Qəbul" },
     ],
+    appeal: "Apellyasiya",
     columns: [
       {
         title: "Haqqımızda",
         links: [
           { label: "Universitetin tarixi", url: "/az/haqqimizda/history" },
           { label: "Rektorun müraciəti", url: "/az/haqqimizda/rehbetlik-ve-idareetme/rector" },
+          { label: "Reytinqlər", url: "/az/haqqimizda/reytinqler" },
           { label: "Fəxri məzunlarımız", url: "/az/haqqimizda/honorary-graduates" },
+        ],
+      },
+      {
+        title: "Təhsil",
+        links: [
+          { label: "Tədris təqvimi", url: "/az/telebeler/tedris-teqvimi-ve-qaydalar/2025-2026-tedris-ili-teqvimi" },
+          { label: "Qiymətləndirmə qaydaları", url: "/az/telebeler/tedris-teqvimi-ve-qaydalar/qiymetlendirme-ve-imtahan-teskili-qaydalari" },
+          { label: "Kredit sistemi", url: "/az/telebeler/tedris-teqvimi-ve-qaydalar/bakalavr-ve-magistratura-seviyyelerinde-kredit-sistemi" },
+          { label: "LMS təlimatları", url: "/az/telebeler/tedris-teqvimi-ve-qaydalar/lms-telimatlari" },
+        ],
+      },
+      {
+        title: "Tədqiqat",
+        links: [
+          { label: "Tədqiqat fəaliyyəti", url: "/az/tedqiqat/tedqiqat-fealiyyeti" },
+          { label: "Elmi jurnallar", url: "/az/tedqiqat/elmi-jurnallar" },
+          { label: "Konfranslar və tədbirlər", url: "/az/tedqiqat/konfranslar-ve-tedbirler" },
+          { label: "Nəşrlər və yayım", url: "/az/tedqiqat/nesrler-ve-yayim" },
+        ],
+      },
+      {
+        title: "Beynəlmilləşmə",
+        links: [
+          { label: "Beynəlxalq tərəfdaşlıq", url: "/az/beynelmilellesme/beynelxalq-terefdasliq" },
+          { label: "Mübadilə proqramları", url: "/az/beynelmilellesme/mubadile-proqramlari" },
+          { label: "Xarici tələbələr", url: "/az/beynelmilellesme/xarici-telebeler" },
+          { label: "Fakültələr", url: "/az/fakulteler" },
         ],
       },
     ],

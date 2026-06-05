@@ -2433,13 +2433,42 @@ const en = {
       { label: "Rankings" },
       { label: "Admission" },
     ],
+    appeal: "Appeal",
     columns: [
       {
         title: "About",
         links: [
-          { label: "University History", url: "/about/history" },
-          { label: "Rector's Message", url: "/about/rector" },
-          { label: "Honorary Graduates", url: "/about/honorary-graduates" },
+          { label: "University History", url: "/en/about/history" },
+          { label: "Rector's Message", url: "/en/about/leadership-and-management/rector" },
+          { label: "Rankings", url: "/en/about/rankings" },
+          { label: "Honorary Graduates", url: "/en/about/honorary-graduates" },
+        ],
+      },
+      {
+        title: "Education",
+        links: [
+          { label: "Academic Calendar", url: "/en/students/academic-calendar-and-rules/academic-calendar-2025" },
+          { label: "Assessment Rules", url: "/en/students/academic-calendar-and-rules/assessment-rules" },
+          { label: "Credit System", url: "/en/students/academic-calendar-and-rules/credit-system" },
+          { label: "LMS Guidelines", url: "/en/students/academic-calendar-and-rules/lms-guidelines" },
+        ],
+      },
+      {
+        title: "Research",
+        links: [
+          { label: "Research Activity", url: "/en/research/research-activity" },
+          { label: "Scientific Journals", url: "/en/research/scientific-journals" },
+          { label: "Conferences & Events", url: "/en/research/conferences-and-events" },
+          { label: "Publications", url: "/en/research/publications-and-broadcasting" },
+        ],
+      },
+      {
+        title: "International",
+        links: [
+          { label: "International Partnership", url: "/en/internationalization/international-partnership" },
+          { label: "Exchange Programs", url: "/en/internationalization/exchange-programs" },
+          { label: "Foreign Students", url: "/en/internationalization/foreign-students" },
+          { label: "Faculties", url: "/en/faculties" },
         ],
       },
     ],
