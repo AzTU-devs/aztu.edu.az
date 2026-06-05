@@ -230,11 +230,12 @@ export default function NewsPage() {
                     >
                         <Link href={`/news/${newsSlug(featured.news_id, featured.title)}`}>
                             <div className="group relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[4rem] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/30 dark:border-white/10 overflow-hidden flex flex-col lg:flex-row hover:border-[#ee7c7e]/30 transition-all duration-700">
-                                <div className="lg:w-3/5 w-full h-[500px] relative overflow-hidden">
+                                <div className="lg:w-3/5 w-full h-[320px] lg:h-auto lg:min-h-[500px] relative overflow-hidden">
                                     <Image
                                         src={`${featured.cover_image}`}
                                         alt={featured.title}
                                         fill
+                                        sizes="(max-width: 1024px) 100vw, 60vw"
                                         className="object-cover transition-transform duration-1000 group-hover:scale-105"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
