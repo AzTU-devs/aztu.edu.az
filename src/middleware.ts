@@ -133,8 +133,8 @@ const SLUG_MAP: Record<string, string> = {
     "elmi-sura": "scientific-board",
     "partner-universities-and-related-institutes": "terefdas-universitet-ve-elaqeli-institutlar",
     "terefdas-universitet-ve-elaqeli-institutlar": "partner-universities-and-related-institutes",
-    "tau": "turk-azerbaycan-universiteti-tau",
-    "turk-azerbaycan-universiteti-tau": "tau",
+    "turkiye-azerbaijan-university": "turkiye-azerbaycan-universiteti",
+    "turkiye-azerbaycan-universiteti": "turkiye-azerbaijan-university",
     "iit": "informasiya-texnalogiyalari-institutu",
     "informasiya-texnalogiyalari-institutu": "iit",
     "ics": "idareetme-sistemleri-insitutu",
@@ -288,7 +288,7 @@ const EN_SLUGS = new Set([
     "research-institutes", "research-laboratories", "vision-mission", "history-of-aztu",
     "75th-anniversary-film", "leadership-and-management", "rector", "rectors-office", "vice-rector", "vice-rectors", "scientific-board",
     "vision-mission-goal",
-    "partner-universities-and-related-institutes", "tau", "iit", "ics", "baku-technical-colleges", "baku-state-colleges",
+    "partner-universities-and-related-institutes", "turkiye-azerbaijan-university", "iit", "ics", "baku-technical-colleges", "baku-state-colleges",
     "structural-units", "aztus-honors", "honorary-doctors", "honorary-graduates", "our-heroes",
     "former-rectors", "rankings", "campus-life", "aztu-polyclinic", "clubs", "sports",
     "unions-and-organizations", "alliances-and-organizations", "trade-union", "trade-union-committee", "student-trade-union",
@@ -368,6 +368,25 @@ export function middleware(request: NextRequest) {
         const tail = segments_rest.slice(3);
         const newPath = [firstSegment, segments_rest[0], segments_rest[1], newSlug, ...tail].join("/");
         return NextResponse.redirect(new URL(`/${newPath}`, request.url), 308);
+    }
+
+    // Legacy redirects: TAU detail slug renamed
+    //   AZ: tau / turk-azerbaycan-universiteti-tau / turkiye-azerbaycan-universiteti-tau → turkiye-azerbaycan-universiteti
+    //   EN: tau / turkish-azerbaijani-university-tau                                     → turkiye-azerbaijan-university
+    if (
+        (segments_rest[0] === "haqqimizda" || segments_rest[0] === "about") &&
+        (segments_rest[1] === "terefdas-universitet-ve-elaqeli-institutlar" ||
+            segments_rest[1] === "partner-universities-and-related-institutes")
+    ) {
+        const legacyTauAz = new Set(["tau", "turk-azerbaycan-universiteti-tau", "turkiye-azerbaycan-universiteti-tau"]);
+        const legacyTauEn = new Set(["tau", "turkish-azerbaijani-university-tau"]);
+        const isLegacy = lang === "az" ? legacyTauAz.has(segments_rest[2]) : legacyTauEn.has(segments_rest[2]);
+        if (isLegacy) {
+            const newSlug = lang === "az" ? "turkiye-azerbaycan-universiteti" : "turkiye-azerbaijan-university";
+            const tail = segments_rest.slice(3);
+            const newPath = [firstSegment, segments_rest[0], segments_rest[1], newSlug, ...tail].join("/");
+            return NextResponse.redirect(new URL(`/${newPath}`, request.url), 308);
+        }
     }
 
     if (segments_rest.length > 0) {
@@ -452,7 +471,7 @@ export function middleware(request: NextRequest) {
             else if (segments_rest[2] === "scientific-board" || segments_rest[2] === "elmi-sura") segments_rest = ["about", "scientific-board"];
             else if (segments_rest[2] === "former-rectors" || segments_rest[2] === "sabiq-rektorlarimiz") segments_rest = ["about", "former-rectors"];
         } else if (segments_rest[1] === "partner-universities-and-related-institutes" || segments_rest[1] === "terefdas-universitet-ve-elaqeli-institutlar") {
-            const tauSlugs = new Set(["tau", "turk-azerbaycan-universiteti-tau", "turkish-azerbaijani-university-tau", "turkiye-azerbaycan-universiteti-tau"]);
+            const tauSlugs = new Set(["turkiye-azerbaycan-universiteti", "turkiye-azerbaijan-university", "tau", "turk-azerbaycan-universiteti-tau", "turkish-azerbaijani-university-tau", "turkiye-azerbaycan-universiteti-tau"]);
             const iitSlugs = new Set(["iit", "informasiya-texnalogiyalari-institutu", "informasiya-texnologiyalari-institutu", "institute-of-information-technologies", "institute-of-information-technology"]);
             const icsSlugs = new Set(["ics", "idareetme-sistemleri-insitutu", "idareetme-sistemleri-institutu", "management-systems-institute", "institute-of-control-systems"]);
             const techCollegeSlugs = new Set(["baku-technical-colleges", "baki-texniki-kollecleri", "baku-technical-college", "baki-texniki-kolleci"]);

@@ -287,14 +287,18 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       if ((segments[1] === "about" || segments[1] === "haqqimizda") &&
           (segments[2] === "partner-universities-and-related-institutes" || segments[2] === "terefdas-universitet-ve-elaqeli-institutlar")) {
           const partnerMap: Record<string, string> = {
-              "tau": "turk-azerbaycan-universiteti-tau",
+              "turkiye-azerbaijan-university": "turkiye-azerbaycan-universiteti",
+              "tau": "turkiye-azerbaycan-universiteti",
+              "turkish-azerbaijani-university-tau": "turkiye-azerbaycan-universiteti",
               "iit": "informasiya-texnalogiyalari-institutu",
               "ics": "idareetme-sistemleri-insitutu",
               "baku-technical-colleges": "baki-texniki-kollecleri",
               "baku-state-colleges": "baki-dovlet-rabite-ve-neqliyyat-kolleci",
           };
           const reversePartnerMap: Record<string, string> = {
-              "turk-azerbaycan-universiteti-tau": "tau",
+              "turkiye-azerbaycan-universiteti": "turkiye-azerbaijan-university",
+              "turk-azerbaycan-universiteti-tau": "turkiye-azerbaijan-university",
+              "turkiye-azerbaycan-universiteti-tau": "turkiye-azerbaijan-university",
               "informasiya-texnalogiyalari-institutu": "iit",
               "idareetme-sistemleri-insitutu": "ics",
               "baki-texniki-kollecleri": "baku-technical-colleges",
