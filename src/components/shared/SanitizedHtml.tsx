@@ -29,6 +29,42 @@ export default function SanitizedHtml({ html, className = "" }: SanitizedHtmlPro
         .sanitized-attachment-link a[download]:hover {
           color: #1d4ed8;
         }
+        /* Match the admin editor's line spacing: tighten the oversized
+           Tailwind "prose" paragraph margins so CMS text isn't spread out. */
+        .sanitized-attachment-link p {
+          margin-top: 0;
+          margin-bottom: 0.6em;
+        }
+        .sanitized-attachment-link > :first-child {
+          margin-top: 0;
+        }
+        .sanitized-attachment-link > :last-child {
+          margin-bottom: 0;
+        }
+        /* A blank line (empty <p> from pressing Enter) renders as one line
+           instead of a large gap. */
+        .sanitized-attachment-link p:empty {
+          margin: 0;
+          min-height: 1em;
+        }
+        .sanitized-attachment-link h1,
+        .sanitized-attachment-link h2,
+        .sanitized-attachment-link h3,
+        .sanitized-attachment-link h4,
+        .sanitized-attachment-link h5,
+        .sanitized-attachment-link h6 {
+          margin-top: 1em;
+          margin-bottom: 0.4em;
+        }
+        .sanitized-attachment-link ul,
+        .sanitized-attachment-link ol {
+          margin-top: 0.5em;
+          margin-bottom: 0.5em;
+        }
+        .sanitized-attachment-link li {
+          margin-top: 0.15em;
+          margin-bottom: 0.15em;
+        }
       `}</style>
       <div
         className={`${combinedClassName} sanitized-attachment-link`}
