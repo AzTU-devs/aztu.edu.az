@@ -65,6 +65,48 @@ export default function SanitizedHtml({ html, className = "" }: SanitizedHtmlPro
           margin-top: 0.15em;
           margin-bottom: 0.15em;
         }
+        /* Preserve the spacing the author typed in the CMS editor: multiple
+           spaces, leading spaces and indentation are kept exactly (text still
+           wraps normally). Matches the editor's white-space: pre-wrap. */
+        .sanitized-attachment-link p,
+        .sanitized-attachment-link li,
+        .sanitized-attachment-link td,
+        .sanitized-attachment-link th,
+        .sanitized-attachment-link h1,
+        .sanitized-attachment-link h2,
+        .sanitized-attachment-link h3,
+        .sanitized-attachment-link h4,
+        .sanitized-attachment-link h5,
+        .sanitized-attachment-link h6 {
+          white-space: pre-wrap;
+        }
+        /* Render tables as a full grid, the same way the admin editor shows
+           them (Tailwind "prose" only draws faint row borders, so pasted
+           tables didn't look like tables). */
+        .sanitized-attachment-link table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 1rem 0;
+          display: table;
+        }
+        .sanitized-attachment-link th,
+        .sanitized-attachment-link td {
+          border: 1px solid #d1d5db;
+          padding: 0.5rem;
+          text-align: left;
+          vertical-align: top;
+        }
+        .sanitized-attachment-link th {
+          background-color: #f9fafb;
+          font-weight: 600;
+        }
+        .dark .sanitized-attachment-link th {
+          background-color: #1f2937;
+        }
+        .dark .sanitized-attachment-link th,
+        .dark .sanitized-attachment-link td {
+          border-color: #374151;
+        }
       `}</style>
       <div
         className={`${combinedClassName} sanitized-attachment-link`}
