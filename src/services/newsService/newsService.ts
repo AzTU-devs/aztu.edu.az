@@ -48,6 +48,38 @@ export const getNewsList = async (
     return [];
 };
 
+/**
+ * Same request as getNewsList, but returns the total count alongside the page
+ * so callers can implement append-based pagination ("Load More").
+ */
+export const getNewsListPage = async (
+    params: {
+        categoryId?: string;
+        start?: number;
+        end?: number;
+        lang?: Lang;
+    } = {}
+): Promise<{ news: NewsListItem[]; total: number }> => {
+    const { categoryId, start = 0, end = 10, lang = "az" } = params;
+
+    const query = new URLSearchParams();
+    if (categoryId) query.set("category_id", categoryId);
+    query.set("start", String(start));
+    query.set("end", String(end));
+    query.set("lang", lang);
+
+    const response = await apiClient.get(`/api/news/public/all?${query.toString()}`, {
+        headers: { "Accept-Language": lang },
+    });
+
+    if (response.data.status_code === 200) {
+        const news = (response.data.news ?? []) as NewsListItem[];
+        const total = typeof response.data.total === "number" ? response.data.total : news.length;
+        return { news, total };
+    }
+    return { news: [], total: 0 };
+};
+
 export const getNewsByFaculty = async (
     facultyCode: string,
     params: { start?: number; end?: number; lang?: Lang } = {}

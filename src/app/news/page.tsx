@@ -53,7 +53,7 @@ export default function NewsPage() {
     const t = useTranslation();
     const { lang } = useLanguage();
     const dispatch = useDispatch<AppDispatch>();
-    const { list, listLoading } = useSelector((s: RootState) => s.news);
+    const { list, listTotal, listLoading } = useSelector((s: RootState) => s.news);
     const [categories, setCategories] = useState<NewsCategoryItem[]>([]);
     const [activeCategoryId, setActiveCategoryId] = useState<string>(ALL_CATEGORY_ID);
     const [activeSdgs, setActiveSdgs] = useState<number[]>([]);
@@ -323,8 +323,8 @@ export default function NewsPage() {
                     ))}
                 </div>
 
-                {/* Load More Button */}
-                {list.length > 0 && (
+                {/* Load More Button — only while more news remain to fetch */}
+                {list.length < listTotal && (
                     <div className="mt-24 flex justify-center">
                         <motion.button
                             onClick={handleLoadMore}

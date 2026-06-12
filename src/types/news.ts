@@ -56,6 +56,7 @@ export interface NewsDetailResponse {
 // --- Redux state shape ---
 export interface NewsState {
     list: NewsListItem[];
+    listTotal: number;
     listLoading: boolean;
     listError: string | null;
     detail: NewsDetail | null;
