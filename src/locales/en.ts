@@ -1507,6 +1507,24 @@ const en = {
         subtitle: "Research funded by AzTU's internal financing schemes.",
         breadcrumb: "Internal Grants",
       },
+      incentiveMechanism: {
+        eyebrow: "Research",
+        title: "Incentive Mechanism",
+        subtitle: "Performance-Based Differential Compensation and One-Time Payment System",
+        breadcrumb: "Incentive Mechanism",
+        aboutLabel: "About",
+        intro:
+          "Azerbaijan Technical University (AZTU) implements a performance-based differential compensation and one-time payment system to promote excellence in research, teaching, and innovation.",
+        paragraphs: [
+          "This system ensures the objective and transparent evaluation of individual achievements, aiming to enhance research productivity, strengthen innovation activities, and increase the University's global competitiveness.",
+          "Differential compensation is determined based on measurable performance indicators, including research output, teaching quality, international engagement, and contributions to institutional development. The evaluation process is conducted via the AMAS electronic platform, ensuring transparency and efficiency.",
+          "At the same time, one-time payments are awarded to staff for publications in internationally indexed scientific databases.",
+          "Through this integrated mechanism, AZTU fosters a high-performance culture, supports academic excellence, and contributes to the development of a competitive and internationally recognized academic environment.",
+        ],
+        portalTitle: "AMAS Platform",
+        portalButton: "Open Platform",
+        portalUrl: "https://amas.aztu.edu.az/en",
+      },
       seminarsAndTrainings: {
         eyebrow: "Research",
         title: "Seminars and Trainings",

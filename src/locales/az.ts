@@ -1595,6 +1595,24 @@ const az = {
         subtitle: "AzTU-nun daxili maliyyələşdirmə sxemləri ilə dəstəklənən elmi tədqiqatlar.",
         breadcrumb: "Daxili Qrantlar",
       },
+      incentiveMechanism: {
+        eyebrow: "Tədqiqat",
+        title: "Həvəsləndirmə Mexanizmi",
+        subtitle: "Performansa əsaslanan differensial əməkhaqqı və birdəfəlik ödənişlər sistemi",
+        breadcrumb: "Həvəsləndirmə Mexanizmi",
+        aboutLabel: "Haqqında",
+        intro:
+          "Azərbaycan Texniki Universitetində (AZTU) elmi, pedaqoji və innovativ fəaliyyətin inkişafını təşviq etmək məqsədilə performansa əsaslanan differensial əməkhaqqı və birdəfəlik ödənişlər sistemi tətbiq olunur.",
+        paragraphs: [
+          "Bu sistem əməkdaşların fərdi nailiyyətlərinin obyektiv və şəffaf şəkildə qiymətləndirilməsini təmin etməklə, onların elmi məhsuldarlığını artırmağa, innovasiya fəaliyyətlərini gücləndirməyə və universitetin beynəlxalq rəqabət qabiliyyətini yüksəltməyə xidmət edir.",
+          "Differensial əməkhaqqı mexanizmi əməkdaşların fəaliyyət göstəricilərinə əsaslanaraq müəyyən edilir və elmi nəticələr, tədris keyfiyyəti, beynəlxalq əməkdaşlıq və institusional inkişafda iştirak kimi meyarları əhatə edir. Qiymətləndirmə prosesi şəffaflıq və operativliyi təmin etmək məqsədilə AMAS elektron platforması vasitəsilə həyata keçirilir.",
+          "Eyni zamanda, beynəlxalq indeksli elmi bazalarda dərc olunan məqalələrə görə əməkdaşlara birdəfəlik ödənişlər tətbiq olunur.",
+          "Bu inteqrə olunmuş mexanizm vasitəsilə AZTU yüksək performans mədəniyyətini təşviq edir, akademik mükəmməlliyi dəstəkləyir və beynəlxalq səviyyədə rəqabətqabiliyyətli elmi mühitin formalaşdırılmasına töhfə verir.",
+        ],
+        portalTitle: "AMAS Platforması",
+        portalButton: "Keçid Et",
+        portalUrl: "https://amas.aztu.edu.az/az",
+      },
       seminarsAndTrainings: {
         eyebrow: "Tədqiqat",
         title: "Seminarlar və Təlimlər",

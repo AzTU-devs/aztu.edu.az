@@ -84,6 +84,8 @@ const SLUG_MAP: Record<string, string> = {
     "tedqiqat-fealiyyeti": "research-activity",
     "performance-and-evaluation": "performans-ve-qiymetlendirme",
     "performans-ve-qiymetlendirme": "performance-and-evaluation",
+    "incentive-mechanism": "heveslendirme-mexanizmi",
+    "heveslendirme-mexanizmi": "incentive-mechanism",
     "conferences-and-events": "konfranslar-ve-tedbirler",
     "konfranslar-ve-tedbirler": "conferences-and-events",
     "publications-and-broadcasting": "nesrler-ve-yayim",
@@ -282,7 +284,7 @@ const SLUG_MAP: Record<string, string> = {
 // Key EN slugs to help identify language direction in mapping
 const EN_SLUGS = new Set([
     "research", "about", "management", "internationalization", "community", "contact-us",
-    "research-activity", "performance-and-evaluation", "conferences-and-events", "publications-and-broadcasting",
+    "research-activity", "performance-and-evaluation", "incentive-mechanism", "conferences-and-events", "publications-and-broadcasting",
     "open-access-policy", "scientific-journals", "machine-science", "energy-sustainability-risks-and-decision-making",
     "internal-grant-programs", "seminars-and-trainings", "research-projects", "intellectual-property-and-patents",
     "research-institutes", "research-laboratories", "vision-mission", "history-of-aztu",
@@ -415,7 +417,10 @@ export function middleware(request: NextRequest) {
     if (segments_rest[0] === "research" || segments_rest[0] === "tedqiqat") {
         segments_rest[0] = "tedqiqat";
         if (segments_rest[1] === "research-activity" || segments_rest[1] === "tedqiqat-fealiyyeti") segments_rest[1] = "tedqiqat-fealiyyeti";
-        if (segments_rest[1] === "performance-and-evaluation" || segments_rest[1] === "performans-ve-qiymetlendirme") segments_rest[1] = "performans-ve-qiymetlendirme";
+        if (segments_rest[1] === "performance-and-evaluation" || segments_rest[1] === "performans-ve-qiymetlendirme") {
+            segments_rest[1] = "performans-ve-qiymetlendirme";
+            if (segments_rest[2] === "incentive-mechanism" || segments_rest[2] === "heveslendirme-mexanizmi") segments_rest[2] = "heveslendirme-mexanizmi";
+        }
         if (segments_rest[1] === "conferences-and-events" || segments_rest[1] === "konfranslar-ve-tedbirler") segments_rest[1] = "konfranslar-ve-tedbirler";
         if (segments_rest[1] === "publications-and-broadcasting" || segments_rest[1] === "nesrler-ve-yayim") segments_rest[1] = "nesrler-ve-yayim";
         
