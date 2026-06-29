@@ -22,60 +22,6 @@ type FeedbackItem = {
   updated_at: string | null;
 };
 
-function FeedbackCard({
-  item,
-  index,
-  lang,
-  youSaidLabel,
-  weDidLabel,
-}: {
-  item: FeedbackItem;
-  index: number;
-  lang: "az" | "en";
-  youSaidLabel: string;
-  weDidLabel: string;
-}) {
-  const youSaid = lang === "az" ? item.you_said_az : item.you_said_en;
-  const weDid = lang === "az" ? item.we_did_az : item.we_did_en;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.05 }}
-      className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-xl rounded-[2rem] border-2 border-[#1a2355]/30 dark:border-white/5 overflow-hidden shadow-lg hover:border-[#ee7c7e]/20 transition-all duration-300"
-    >
-      <div className="p-6 md:p-7 border-b border-[#1a2355]/10 dark:border-white/5">
-        <div className="flex items-center gap-3 mb-3">
-          <span className="w-9 h-9 shrink-0 rounded-xl flex items-center justify-center bg-[#1a2355]/10 dark:bg-white/5 text-[#1a2355] dark:text-white">
-            <RecordVoiceOverIcon sx={{ fontSize: 18 }} />
-          </span>
-          <span className="text-xs font-black uppercase tracking-widest text-[#1a2355]/60 dark:text-white/50">
-            {youSaidLabel}
-          </span>
-        </div>
-        <p className="text-base leading-relaxed font-medium text-[#1a2355] dark:text-white/90 whitespace-pre-line">
-          {youSaid}
-        </p>
-      </div>
-      <div className="p-6 md:p-7 bg-[#ee7c7e]/5 dark:bg-[#ee7c7e]/10">
-        <div className="flex items-center gap-3 mb-3">
-          <span className="w-9 h-9 shrink-0 rounded-xl flex items-center justify-center bg-[#ee7c7e]/15 text-[#ee7c7e]">
-            <CheckCircleIcon sx={{ fontSize: 18 }} />
-          </span>
-          <span className="text-xs font-black uppercase tracking-widest text-[#ee7c7e]">
-            {weDidLabel}
-          </span>
-        </div>
-        <p className="text-base leading-relaxed font-medium text-gray-700 dark:text-gray-200 whitespace-pre-line">
-          {weDid}
-        </p>
-      </div>
-    </motion.div>
-  );
-}
-
 export default function YouSaidWeDidPage() {
   const { lang } = useLanguage();
   const [items, setItems] = useState<FeedbackItem[]>([]);
@@ -153,7 +99,7 @@ export default function YouSaidWeDidPage() {
                 {[0, 1, 2].map((i) => (
                   <div
                     key={i}
-                    className="h-48 rounded-[2rem] bg-[#1a2355]/5 dark:bg-white/5 animate-pulse"
+                    className="h-20 rounded-2xl bg-[#1a2355]/5 dark:bg-white/5 animate-pulse"
                   />
                 ))}
               </div>
@@ -170,16 +116,58 @@ export default function YouSaidWeDidPage() {
                     {items.length} {copy.count}
                   </span>
                 </div>
-                {items.map((item, idx) => (
-                  <FeedbackCard
-                    key={item.id}
-                    item={item}
-                    index={idx}
-                    lang={lang}
-                    youSaidLabel={copy.youSaidLabel}
-                    weDidLabel={copy.weDidLabel}
-                  />
-                ))}
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="overflow-hidden rounded-[2rem] border-2 border-[#1a2355]/20 dark:border-white/5 shadow-2xl shadow-blue-900/5 bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-xl"
+                >
+                  <div className="overflow-x-auto">
+                    <table className="w-full border-collapse text-left">
+                      <thead>
+                        <tr className="bg-[#1a2355] text-white">
+                          <th className="w-16 px-4 py-5 text-center text-xs font-black uppercase tracking-widest">
+                            #
+                          </th>
+                          <th className="px-6 py-5 text-xs font-black uppercase tracking-widest">
+                            <span className="inline-flex items-center gap-2">
+                              <RecordVoiceOverIcon sx={{ fontSize: 18 }} className="text-[#ee7c7e]" />
+                              {copy.youSaidLabel}
+                            </span>
+                          </th>
+                          <th className="px-6 py-5 text-xs font-black uppercase tracking-widest">
+                            <span className="inline-flex items-center gap-2">
+                              <CheckCircleIcon sx={{ fontSize: 18 }} className="text-[#ee7c7e]" />
+                              {copy.weDidLabel}
+                            </span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {items.map((item, idx) => (
+                          <tr
+                            key={item.id}
+                            className="border-t border-[#1a2355]/10 dark:border-white/5 odd:bg-transparent even:bg-[#1a2355]/[0.025] dark:even:bg-white/[0.02] hover:bg-[#ee7c7e]/5 dark:hover:bg-[#ee7c7e]/10 transition-colors duration-200 align-top"
+                          >
+                            <td className="px-4 py-5 text-center">
+                              <span className="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-[#1a2355]/5 dark:bg-white/5 text-[#1a2355] dark:text-white font-black text-sm">
+                                {idx + 1}
+                              </span>
+                            </td>
+                            <td className="px-6 py-5 text-[#1a2355] dark:text-white/90 text-sm md:text-base leading-relaxed font-medium whitespace-pre-line min-w-[220px] border-r border-[#1a2355]/10 dark:border-white/5">
+                              {lang === "az" ? item.you_said_az : item.you_said_en}
+                            </td>
+                            <td className="px-6 py-5 text-gray-700 dark:text-gray-200 text-sm md:text-base leading-relaxed font-medium whitespace-pre-line min-w-[220px]">
+                              {lang === "az" ? item.we_did_az : item.we_did_en}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </motion.div>
               </>
             )}
           </div>
