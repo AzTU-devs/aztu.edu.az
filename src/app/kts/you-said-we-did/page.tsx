@@ -18,6 +18,7 @@ type FeedbackItem = {
   you_said_en: string;
   we_did_az: string;
   we_did_en: string;
+  status: "in_progress" | "done";
   created_at: string;
   updated_at: string | null;
 };
@@ -58,6 +59,9 @@ export default function YouSaidWeDidPage() {
       breadcrumb: "Siz dediniz, biz etdik",
       youSaidLabel: "Siz dediniz",
       weDidLabel: "Biz etdik",
+      statusLabel: "Status",
+      statusInProgress: "İcradadır",
+      statusDone: "Tamamlandı",
       count: "qeyd",
       empty: "Hələlik məlumat yoxdur.",
     },
@@ -69,6 +73,9 @@ export default function YouSaidWeDidPage() {
       breadcrumb: "You Said, We Did",
       youSaidLabel: "You said",
       weDidLabel: "We did",
+      statusLabel: "Status",
+      statusInProgress: "In progress",
+      statusDone: "Done",
       count: "entries",
       empty: "No entries yet.",
     },
@@ -143,6 +150,9 @@ export default function YouSaidWeDidPage() {
                               {copy.weDidLabel}
                             </span>
                           </th>
+                          <th className="px-6 py-5 text-xs font-black uppercase tracking-widest whitespace-nowrap">
+                            {copy.statusLabel}
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -161,6 +171,22 @@ export default function YouSaidWeDidPage() {
                             </td>
                             <td className="px-6 py-5 text-gray-700 dark:text-gray-200 text-sm md:text-base leading-relaxed font-medium whitespace-pre-line min-w-[220px]">
                               {lang === "az" ? item.we_did_az : item.we_did_en}
+                            </td>
+                            <td className="px-6 py-5 whitespace-nowrap">
+                              <span
+                                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold ${
+                                  item.status === "in_progress"
+                                    ? "bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300"
+                                    : "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300"
+                                }`}
+                              >
+                                <span
+                                  className={`h-1.5 w-1.5 rounded-full ${
+                                    item.status === "in_progress" ? "bg-amber-500" : "bg-emerald-500"
+                                  }`}
+                                />
+                                {item.status === "in_progress" ? copy.statusInProgress : copy.statusDone}
+                              </span>
                             </td>
                           </tr>
                         ))}

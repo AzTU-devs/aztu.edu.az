@@ -23,6 +23,7 @@ type FeedbackItem = {
     you_said_en: string;
     we_did_az: string;
     we_did_en: string;
+    status: "in_progress" | "done";
     created_at: string;
     updated_at: string | null;
 };
@@ -36,6 +37,8 @@ type Dict = {
     youSaidWeDidTitle: string;
     youSaidLabel: string;
     weDidLabel: string;
+    statusInProgress: string;
+    statusDone: string;
     youSaidWeDidEmpty: string;
     faqs: FAQItem[];
 };
@@ -50,6 +53,8 @@ const COPY: Record<"az" | "en", Dict> = {
         youSaidWeDidTitle: "Siz dediniz, biz etdik",
         youSaidLabel: "Siz dediniz",
         weDidLabel: "Biz etdik",
+        statusInProgress: "İcradadır",
+        statusDone: "Tamamlandı",
         youSaidWeDidEmpty: "Hələlik məlumat yoxdur.",
         faqs: [
             {
@@ -131,6 +136,8 @@ const COPY: Record<"az" | "en", Dict> = {
         youSaidWeDidTitle: "You Said, We Did",
         youSaidLabel: "You said",
         weDidLabel: "We did",
+        statusInProgress: "In progress",
+        statusDone: "Done",
         youSaidWeDidEmpty: "No entries yet.",
         faqs: [
             {
@@ -282,6 +289,8 @@ export default function FAQPage() {
                                             lang={lang}
                                             youSaidLabel={t.youSaidLabel}
                                             weDidLabel={t.weDidLabel}
+                                            statusInProgress={t.statusInProgress}
+                                            statusDone={t.statusDone}
                                             index={index}
                                         />
                                     ))}
@@ -323,16 +332,21 @@ function FeedbackCard({
     lang,
     youSaidLabel,
     weDidLabel,
+    statusInProgress,
+    statusDone,
     index,
 }: {
     item: FeedbackItem;
     lang: "az" | "en";
     youSaidLabel: string;
     weDidLabel: string;
+    statusInProgress: string;
+    statusDone: string;
     index: number;
 }) {
     const youSaid = lang === "az" ? item.you_said_az : item.you_said_en;
     const weDid = lang === "az" ? item.we_did_az : item.we_did_en;
+    const inProgress = item.status === "in_progress";
 
     return (
         <motion.div
@@ -361,6 +375,16 @@ function FeedbackCard({
                     </span>
                     <span className="text-xs font-black uppercase tracking-widest text-[#ee7c7e]">
                         {weDidLabel}
+                    </span>
+                    <span
+                        className={`ml-auto inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold ${
+                            inProgress
+                                ? "bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300"
+                                : "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300"
+                        }`}
+                    >
+                        <span className={`h-1.5 w-1.5 rounded-full ${inProgress ? "bg-amber-500" : "bg-emerald-500"}`} />
+                        {inProgress ? statusInProgress : statusDone}
                     </span>
                 </div>
                 <p className="text-base leading-relaxed font-medium text-gray-700 dark:text-gray-200">
