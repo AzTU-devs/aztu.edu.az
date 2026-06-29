@@ -21,6 +21,7 @@ const QUICK_LINKS = [
   { labelAz: "Akkreditasiya", labelEn: "Accreditation", slug: "akkreditasiya" },
   { labelAz: "Sorğular", labelEn: "Surveys", slug: "sorgular" },
   { labelAz: "Komitə", labelEn: "Committee", slug: "komite" },
+  { labelAz: "Siz dediniz, biz etdik", labelEn: "You Said, We Did", slug: "you-said-we-did" },
 ];
 
 const MECHANISMS = {

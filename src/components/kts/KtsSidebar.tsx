@@ -8,6 +8,7 @@ import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import PollIcon from "@mui/icons-material/Poll";
 import GroupsIcon from "@mui/icons-material/Groups";
+import RecordVoiceOverIcon from "@mui/icons-material/RecordVoiceOver";
 import GradingIcon from "@mui/icons-material/Grading";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
@@ -54,6 +55,13 @@ export default function KtsSidebar() {
       labelAz: "Komitə",
       labelEn: "Committee",
       slug: "komite",
+    },
+    {
+      href: `${basePath}/you-said-we-did`,
+      icon: <RecordVoiceOverIcon sx={{ fontSize: 18 }} />,
+      labelAz: "Siz dediniz, biz etdik",
+      labelEn: "You Said, We Did",
+      slug: "you-said-we-did",
     },
   ];
 
