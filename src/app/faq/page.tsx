@@ -1,16 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import PageHero from "@/components/shared/PageHero";
 import PageContainer from "@/components/shared/PageContainer";
 import { useLanguage } from "@/context/LanguageContext";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import RecordVoiceOverIcon from "@mui/icons-material/RecordVoiceOver";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+
+const YOU_SAID_WE_DID_API = "https://api-plan-report.aztu.edu.az/api/you-said-we-did";
 
 type FAQItem = {
     question: string;
     answer: string;
+};
+
+type FeedbackItem = {
+    id: number;
+    you_said_az: string;
+    you_said_en: string;
+    we_did_az: string;
+    we_did_en: string;
+    created_at: string;
+    updated_at: string | null;
 };
 
 type Dict = {
@@ -18,6 +32,11 @@ type Dict = {
     title: string;
     description: string;
     breadcrumb: string;
+    faqSectionTitle: string;
+    youSaidWeDidTitle: string;
+    youSaidLabel: string;
+    weDidLabel: string;
+    youSaidWeDidEmpty: string;
     faqs: FAQItem[];
 };
 
@@ -27,6 +46,11 @@ const COPY: Record<"az" | "en", Dict> = {
         title: "FAQ",
         description: "Azərbaycan Texniki Universiteti haqqında ən çox verilən suallar və onların cavabları.",
         breadcrumb: "FAQ",
+        faqSectionTitle: "Tez-tez verilən suallar",
+        youSaidWeDidTitle: "Siz dediniz, biz etdik",
+        youSaidLabel: "Siz dediniz",
+        weDidLabel: "Biz etdik",
+        youSaidWeDidEmpty: "Hələlik məlumat yoxdur.",
         faqs: [
             {
                 question: "AzTU-nu fərqləndirən nədir?",
@@ -103,6 +127,11 @@ const COPY: Record<"az" | "en", Dict> = {
         title: "FAQ",
         description: "Find answers to common questions about Azerbaijan Technical University.",
         breadcrumb: "FAQ",
+        faqSectionTitle: "Frequently Asked Questions",
+        youSaidWeDidTitle: "You Said, We Did",
+        youSaidLabel: "You said",
+        weDidLabel: "We did",
+        youSaidWeDidEmpty: "No entries yet.",
         faqs: [
             {
                 question: "What distinguishes AzTU?",
@@ -180,6 +209,30 @@ export default function FAQPage() {
     const { lang } = useLanguage();
     const t = COPY[lang];
     const [activeIndex, setActiveIndex] = useState<number | null>(0);
+    const [feedback, setFeedback] = useState<FeedbackItem[]>([]);
+    const [feedbackLoading, setFeedbackLoading] = useState(true);
+
+    useEffect(() => {
+        let cancelled = false;
+        setFeedbackLoading(true);
+
+        fetch(YOU_SAID_WE_DID_API)
+            .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
+            .then((data) => {
+                if (cancelled) return;
+                setFeedback(Array.isArray(data?.items) ? data.items : []);
+            })
+            .catch(() => {
+                if (!cancelled) setFeedback([]);
+            })
+            .finally(() => {
+                if (!cancelled) setFeedbackLoading(false);
+            });
+
+        return () => {
+            cancelled = true;
+        };
+    }, []);
 
     return (
         <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden">
@@ -195,19 +248,126 @@ export default function FAQPage() {
 
             <PageContainer>
                 <div className="max-w-7xl mx-auto relative z-10 py-10">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
-                        {t.faqs.map((faq, index) => (
-                            <FAQAccordion
-                                key={index}
-                                faq={faq}
-                                isOpen={activeIndex === index}
-                                onClick={() => setActiveIndex(activeIndex === index ? null : index)}
-                            />
-                        ))}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+                        {/* Left: You Said, We Did */}
+                        <section className="space-y-6">
+                            <div className="flex items-center gap-4">
+                                <div className="w-12 h-12 shrink-0 rounded-2xl flex items-center justify-center bg-[#1a2355] text-white">
+                                    <RecordVoiceOverIcon sx={{ fontSize: 24 }} />
+                                </div>
+                                <h2 className="text-2xl md:text-3xl font-black tracking-tight text-[#1a2355] dark:text-white">
+                                    {t.youSaidWeDidTitle}
+                                </h2>
+                            </div>
+
+                            {feedbackLoading ? (
+                                <div className="space-y-4">
+                                    {[0, 1, 2].map((i) => (
+                                        <div
+                                            key={i}
+                                            className="h-40 rounded-[2rem] bg-[#1a2355]/5 dark:bg-white/5 animate-pulse"
+                                        />
+                                    ))}
+                                </div>
+                            ) : feedback.length === 0 ? (
+                                <div className="rounded-[2rem] border-2 border-dashed border-[#1a2355]/15 dark:border-white/10 p-10 text-center text-[#1a2355]/50 dark:text-white/40 font-medium">
+                                    {t.youSaidWeDidEmpty}
+                                </div>
+                            ) : (
+                                <div className="space-y-6">
+                                    {feedback.map((item, index) => (
+                                        <FeedbackCard
+                                            key={item.id}
+                                            item={item}
+                                            lang={lang}
+                                            youSaidLabel={t.youSaidLabel}
+                                            weDidLabel={t.weDidLabel}
+                                            index={index}
+                                        />
+                                    ))}
+                                </div>
+                            )}
+                        </section>
+
+                        {/* Right: FAQ */}
+                        <section className="space-y-6">
+                            <div className="flex items-center gap-4">
+                                <div className="w-12 h-12 shrink-0 rounded-2xl flex items-center justify-center bg-[#ee7c7e] text-white">
+                                    <HelpOutlineIcon sx={{ fontSize: 24 }} />
+                                </div>
+                                <h2 className="text-2xl md:text-3xl font-black tracking-tight text-[#1a2355] dark:text-white">
+                                    {t.faqSectionTitle}
+                                </h2>
+                            </div>
+
+                            <div className="space-y-4">
+                                {t.faqs.map((faq, index) => (
+                                    <FAQAccordion
+                                        key={index}
+                                        faq={faq}
+                                        isOpen={activeIndex === index}
+                                        onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+                                    />
+                                ))}
+                            </div>
+                        </section>
                     </div>
                 </div>
             </PageContainer>
         </main>
+    );
+}
+
+function FeedbackCard({
+    item,
+    lang,
+    youSaidLabel,
+    weDidLabel,
+    index,
+}: {
+    item: FeedbackItem;
+    lang: "az" | "en";
+    youSaidLabel: string;
+    weDidLabel: string;
+    index: number;
+}) {
+    const youSaid = lang === "az" ? item.you_said_az : item.you_said_en;
+    const weDid = lang === "az" ? item.we_did_az : item.we_did_en;
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.05, ease: [0.23, 1, 0.32, 1] }}
+            className="overflow-hidden rounded-[2rem] border-2 border-[#1a2355]/15 dark:border-[#ee7c7e]/20 bg-white dark:bg-slate-900 shadow-lg shadow-[#1a2355]/5"
+        >
+            <div className="p-7 border-b border-[#1a2355]/10 dark:border-white/5">
+                <div className="flex items-center gap-3 mb-3">
+                    <span className="w-9 h-9 shrink-0 rounded-xl flex items-center justify-center bg-[#1a2355]/10 dark:bg-white/5 text-[#1a2355] dark:text-white">
+                        <RecordVoiceOverIcon sx={{ fontSize: 18 }} />
+                    </span>
+                    <span className="text-xs font-black uppercase tracking-widest text-[#1a2355]/60 dark:text-white/50">
+                        {youSaidLabel}
+                    </span>
+                </div>
+                <p className="text-base leading-relaxed font-medium text-[#1a2355] dark:text-white/90">
+                    {youSaid}
+                </p>
+            </div>
+            <div className="p-7 bg-[#ee7c7e]/5 dark:bg-[#ee7c7e]/10">
+                <div className="flex items-center gap-3 mb-3">
+                    <span className="w-9 h-9 shrink-0 rounded-xl flex items-center justify-center bg-[#ee7c7e]/15 text-[#ee7c7e]">
+                        <CheckCircleIcon sx={{ fontSize: 18 }} />
+                    </span>
+                    <span className="text-xs font-black uppercase tracking-widest text-[#ee7c7e]">
+                        {weDidLabel}
+                    </span>
+                </div>
+                <p className="text-base leading-relaxed font-medium text-gray-700 dark:text-gray-200">
+                    {weDid}
+                </p>
+            </div>
+        </motion.div>
     );
 }
 
