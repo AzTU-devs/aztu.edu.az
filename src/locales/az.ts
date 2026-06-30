@@ -623,7 +623,7 @@ const az = {
         breadcrumb: "Tarix",
         milestonesTitle: "Əsas Mərhələlər",
         milestones: [
-          { year: "1887", title: "Azərbaycanda texniki təhsilin əsası qoyuldu", description: "1950-ci il noyabrın 10-da Bakı Şəhər Dumasının qərarı ilə Bakıda 4 sinifli texniki məktəb yaradıldı. Bununla da Azərbaycanda texniki təhsilin əsası qoyuldu." },
+          { year: "1887", title: "Azərbaycanda texniki təhsilin əsası qoyuldu", description: "1887-ci il noyabrın 10-da Bakı Şəhər Dumasının qərarı ilə Bakıda 4 sinifli texniki məktəb yaradıldı. Bununla da Azərbaycanda texniki təhsilin əsası qoyuldu." },
           { year: "1905", title: "Orta texniki məktəb kimi yenidən təşkil olundu", description: "1905-ci ilin yanvarında təhsil müəssisəsi Mexanika-inşaat orta texniki məktəbi kimi yenidən təşkil edildi." },
           { year: "1910", title: "Yeni ixtisas istiqamətləri yaradıldı", description: "Mexanika şöbəsində neft mexanikası və elektromexanika ixtisasları üzrə kadr hazırlığına başlanıldı." },
           { year: "1918", title: "Politexnik məktəbi statusu aldı", description: "Azərbaycan Xalq Cümhuriyyətinin qərarına əsasən, məktəb Politexnik məktəbi adlandırıldı." },
