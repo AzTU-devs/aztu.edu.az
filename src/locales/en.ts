@@ -2240,15 +2240,64 @@ const en = {
         eyebrow: "International Students",
         title: "Discover Programs",
         breadcrumb: "Discover Programs",
-        description: "AzTU offers Bachelor's, Master's, and PhD programs across engineering, information technology, architecture, economics, and more. International students are eligible to apply to all programs.",
-        programs: [
-          { title: "Engineering Sciences", description: "Mechanical, electrical, chemical engineering and other engineering disciplines.", level: "Bachelor's / Master's / PhD" },
-          { title: "Information Technology", description: "Computer science, cybersecurity, artificial intelligence, and software engineering.", level: "Bachelor's / Master's / PhD" },
-          { title: "Architecture & Construction", description: "Architecture, civil engineering, urban planning.", level: "Bachelor's / Master's" },
-          { title: "Economics & Management", description: "Business administration, finance, project management.", level: "Bachelor's / Master's" },
-          { title: "Energy", description: "Energy engineering, renewable energy, oil and gas technologies.", level: "Bachelor's / Master's / PhD" },
-          { title: "Transport & Logistics", description: "Transport systems, automotive engineering, logistics.", level: "Bachelor's / Master's" },
-        ],
+        description: "A number of Bachelor's programmes at AzTU are taught in English and Russian. Below you can explore the full list of programmes taught in a foreign language.",
+        foreignPrograms: {
+          heading: "Programmes taught in a foreign language",
+          subheading: "Bachelor's programmes offered in English and Russian, grouped by faculty.",
+          labels: {
+            no: "No.",
+            cycle: "Study Cycle",
+            faculty: "Faculty",
+            program: "Programme",
+            studyPlan: "Study Plan",
+            english: "In English",
+            russian: "In Russian",
+            available: "Available",
+            notAvailable: "Not available",
+          },
+          legend: {
+            english: "Taught in English",
+            russian: "Taught in Russian",
+          },
+          faculties: [
+            {
+              name: "Information Technologies and Telecommunications",
+              cycle: "Bachelor",
+              programs: [
+                { name: "Computer Engineering", english: true, russian: true },
+                { name: "Computer Sciences", english: true, russian: true },
+                { name: "Information Technologies", english: true, russian: true },
+                { name: "Information Security", english: true, russian: true },
+                { name: "Radio and Telecommunications Engineering", english: true, russian: true },
+              ],
+            },
+            {
+              name: "Mechanical Engineering and Metallurgy",
+              cycle: "Bachelor",
+              programs: [
+                { name: "Mechanical Engineering", english: false, russian: true },
+                { name: "Process Automation Engineering", english: false, russian: true },
+              ],
+            },
+            {
+              name: "Industrial Economics and Management",
+              cycle: "Bachelor",
+              programs: [
+                { name: "Economics", english: true, russian: false },
+                { name: "Finance", english: true, russian: false },
+                { name: "Business Management", english: true, russian: false },
+                { name: "Management", english: true, russian: false },
+              ],
+            },
+            {
+              name: "Transport and logistics",
+              cycle: "Bachelor",
+              programs: [
+                { name: "Logistics and Transport Technologies Engineering", english: false, russian: true },
+              ],
+            },
+          ],
+        },
         ctaTitle: "Ready to Apply?",
         ctaDescription: "Learn about our admissions process and take the first step to becoming an AzTU student.",
         ctaButton: "Admission Information",

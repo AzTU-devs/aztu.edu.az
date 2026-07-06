@@ -2325,15 +2325,64 @@ const az = {
         eyebrow: "Xarici Tələbələr",
         title: "Proqramları Kəşf Edin",
         breadcrumb: "Proqramları Kəşf Edin",
-        description: "AzTU mühəndislik, informasiya texnologiyaları, memarlıq, iqtisadiyyat və digər sahələrdə bakalavr, magistratura və doktorantura proqramları təklif edir. Xarici tələbələr bütün proqramlara müraciət etmək hüququna malikdirlər.",
-        programs: [
-          { title: "Mühəndislik Elmləri", description: "Mexanika, elektrik, kimya mühəndisliyi və digər mühəndislik ixtisasları.", level: "Bakalavr / Magistr / Doktor" },
-          { title: "İnformasiya Texnologiyaları", description: "Kompüter elmləri, kibertəhlükəsizlik, süni intellekt və proqram mühəndisliyi.", level: "Bakalavr / Magistr / Doktor" },
-          { title: "Memarlıq və İnşaat", description: "Memarlıq, tikinti mühəndisliyi, şəhərsalma.", level: "Bakalavr / Magistr" },
-          { title: "İqtisadiyyat və İdarəetmə", description: "İşletme, maliyyə, layihə idarəetməsi.", level: "Bakalavr / Magistr" },
-          { title: "Energetika", description: "Energetika mühəndisliyi, bərpa olunan enerji, neft-qaz texnologiyaları.", level: "Bakalavr / Magistr / Doktor" },
-          { title: "Nəqliyyat və Logistika", description: "Nəqliyyat sistemləri, avtomobil mühəndisliyi, logistika.", level: "Bakalavr / Magistr" },
-        ],
+        description: "AzTU-da bir sıra bakalavr ixtisasları ingilis və rus dillərində tədris olunur. Aşağıda xarici dildə tədris aparılan ixtisasların tam siyahısı ilə tanış ola bilərsiniz.",
+        foreignPrograms: {
+          heading: "Xarici dildə tədris aparılan ixtisaslar",
+          subheading: "İngilis və rus dillərində təklif olunan bakalavr proqramları fakültələr üzrə qruplaşdırılmışdır.",
+          labels: {
+            no: "№",
+            cycle: "Təhsil pilləsi",
+            faculty: "Fakültə",
+            program: "İxtisas",
+            studyPlan: "Tədris planı",
+            english: "İngilis dilində",
+            russian: "Rus dilində",
+            available: "Mövcuddur",
+            notAvailable: "Mövcud deyil",
+          },
+          legend: {
+            english: "İngilis dilində tədris",
+            russian: "Rus dilində tədris",
+          },
+          faculties: [
+            {
+              name: "İnformasiya texnologiyaları və telekommunikasiya",
+              cycle: "Bakalavr",
+              programs: [
+                { name: "Kompüter mühəndisliyi", english: true, russian: true },
+                { name: "Kompüter elmləri", english: true, russian: true },
+                { name: "İnformasiya texnologiyaları", english: true, russian: true },
+                { name: "İnformasiya təhlükəsizliyi", english: true, russian: true },
+                { name: "Radiotexnika və telekommunikasiya mühəndisliyi", english: true, russian: true },
+              ],
+            },
+            {
+              name: "Maşınqayırma və metallurgiya",
+              cycle: "Bakalavr",
+              programs: [
+                { name: "Maşın mühəndisliyi", english: false, russian: true },
+                { name: "Proseslərin avtomatlaşdırılması mühəndisliyi", english: false, russian: true },
+              ],
+            },
+            {
+              name: "Sənaye iqtisadiyyatı və menecment",
+              cycle: "Bakalavr",
+              programs: [
+                { name: "İqtisadiyyat", english: true, russian: false },
+                { name: "Maliyyə", english: true, russian: false },
+                { name: "Biznesin idarə edilməsi", english: true, russian: false },
+                { name: "Menecment", english: true, russian: false },
+              ],
+            },
+            {
+              name: "Nəqliyyat və logistika",
+              cycle: "Bakalavr",
+              programs: [
+                { name: "Logistika və nəqliyyat texnologiyaları mühəndisliyi", english: false, russian: true },
+              ],
+            },
+          ],
+        },
         ctaTitle: "Müraciət Etməyə Hazırsınız?",
         ctaDescription: "Qəbul prosedurumuzu öyrənin və AzTU-da tələbə olmaq üçün ilk addımı atın.",
         ctaButton: "Qəbul Haqqında",

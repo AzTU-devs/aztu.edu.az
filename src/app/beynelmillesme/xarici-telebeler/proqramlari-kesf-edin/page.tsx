@@ -9,10 +9,32 @@ import HomeIcon from "@mui/icons-material/Home";
 import SchoolIcon from "@mui/icons-material/School";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import RemoveIcon from "@mui/icons-material/Remove";
+import TranslateIcon from "@mui/icons-material/Translate";
+
+type Program = { name: string; english: boolean; russian: boolean };
+type Faculty = { name: string; cycle: string; programs: Program[] };
 
 export default function DiscoverProgramsPage() {
     const t = useTranslation();
     const p = t.pages.internationalization.exploreProgram;
+    const fp = p.foreignPrograms;
+    const l = fp.labels;
+
+    // Availability indicator for a language column
+    const LangCell = ({ active, label }: { active: boolean; label: string }) => (
+        <div
+            className={`flex items-center justify-center gap-2 px-3 py-2 rounded-xl border text-xs font-black transition-colors ${
+                active
+                    ? "bg-[#ee7c7e]/10 border-[#ee7c7e]/30 text-[#ee7c7e]"
+                    : "bg-gray-50 dark:bg-slate-800/60 border-gray-100 dark:border-slate-700 text-gray-300 dark:text-slate-600"
+            }`}
+            title={active ? `${label} — ${l.available}` : `${label} — ${l.notAvailable}`}
+        >
+            {active ? <CheckCircleIcon sx={{ fontSize: 16 }} /> : <RemoveIcon sx={{ fontSize: 16 }} />}
+            <span className="hidden sm:inline">{label}</span>
+        </div>
+    );
 
     return (
         <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
@@ -60,35 +82,92 @@ export default function DiscoverProgramsPage() {
             <div className="max-w-[1600px] mx-auto px-4 md:px-10 lg:px-20 py-24 lg:py-32">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
                     <div className="lg:col-span-8 space-y-16">
-                        {/* Programs Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {p.programs.map((program: { title: string; description: string; level: string }, idx: number) => (
-                                <motion.div
-                                    key={program.title}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: idx * 0.1, duration: 0.6 }}
-                                    className="group bg-white dark:bg-slate-900 rounded-[2.5rem] border border-gray-100 dark:border-slate-800 p-8 shadow-xl shadow-blue-900/5 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 overflow-hidden relative"
-                                >
-                                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
-                                    <div className="relative z-10">
-                                        <div className="w-12 h-12 rounded-2xl bg-[#1a2355] text-white flex items-center justify-center mb-6 shadow-lg shadow-blue-900/20 group-hover:bg-[#ee7c7e] transition-colors duration-500">
-                                            <SchoolIcon sx={{ fontSize: 22 }} />
+                        {/* Foreign-language programmes */}
+                        <section className="space-y-10">
+                            <div>
+                                <h2 className="text-3xl lg:text-4xl font-black text-[#1a2355] dark:text-white tracking-tight flex items-center gap-4">
+                                    <div className="w-2 h-9 bg-[#ee7c7e] rounded-full" />
+                                    {fp.heading}
+                                </h2>
+                                <p className="text-gray-600 dark:text-gray-300 text-base font-medium leading-relaxed mt-4 max-w-3xl">
+                                    {fp.subheading}
+                                </p>
+                            </div>
+
+                            {/* Legend */}
+                            <div className="flex flex-wrap items-center gap-3">
+                                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#ee7c7e]/10 border border-[#ee7c7e]/30 text-[#ee7c7e] text-xs font-black">
+                                    <CheckCircleIcon sx={{ fontSize: 16 }} />
+                                    {fp.legend.english}
+                                </span>
+                                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#ee7c7e]/10 border border-[#ee7c7e]/30 text-[#ee7c7e] text-xs font-black">
+                                    <CheckCircleIcon sx={{ fontSize: 16 }} />
+                                    {fp.legend.russian}
+                                </span>
+                            </div>
+
+                            {/* Faculty groups */}
+                            <div className="space-y-8">
+                                {fp.faculties.map((faculty: Faculty, fIdx: number) => (
+                                    <motion.div
+                                        key={faculty.name}
+                                        initial={{ opacity: 0, y: 30 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: fIdx * 0.08, duration: 0.6 }}
+                                        className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-gray-100 dark:border-slate-800 shadow-xl shadow-blue-900/5 overflow-hidden"
+                                    >
+                                        {/* Faculty header */}
+                                        <div className="relative bg-gradient-to-br from-[#1a2355] to-[#13365E] px-8 py-6 flex items-center gap-4">
+                                            <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/15 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
+                                            <div className="relative z-10 w-11 h-11 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center shrink-0">
+                                                <SchoolIcon className="text-[#ee7c7e]" sx={{ fontSize: 22 }} />
+                                            </div>
+                                            <div className="relative z-10 min-w-0">
+                                                <h3 className="text-lg lg:text-xl font-black text-white tracking-tight leading-snug">
+                                                    {faculty.name}
+                                                </h3>
+                                                <span className="inline-block mt-1 text-[#ee7c7e] text-[11px] font-black uppercase tracking-[0.2em]">
+                                                    {faculty.cycle}
+                                                </span>
+                                            </div>
                                         </div>
-                                        <h3 className="text-xl font-black text-[#1a2355] dark:text-white mb-3 tracking-tight">
-                                            {program.title}
-                                        </h3>
-                                        <p className="text-gray-600 dark:text-gray-300 text-sm font-medium leading-relaxed mb-6">
-                                            {program.description}
-                                        </p>
-                                        <span className="inline-block px-4 py-2 rounded-xl bg-[#ee7c7e]/10 text-[#ee7c7e] text-xs font-black border border-[#ee7c7e]/20">
-                                            {program.level}
-                                        </span>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
+
+                                        {/* Column labels */}
+                                        <div className="hidden md:grid grid-cols-12 gap-4 px-8 pt-6 pb-3 text-[11px] font-black uppercase tracking-[0.15em] text-gray-400 dark:text-slate-500 border-b border-gray-100 dark:border-slate-800">
+                                            <div className="col-span-6">{l.program}</div>
+                                            <div className="col-span-3 text-center">{l.english}</div>
+                                            <div className="col-span-3 text-center">{l.russian}</div>
+                                        </div>
+
+                                        {/* Programme rows */}
+                                        <div className="divide-y divide-gray-100 dark:divide-slate-800">
+                                            {faculty.programs.map((program: Program, pIdx: number) => (
+                                                <div
+                                                    key={program.name}
+                                                    className="grid grid-cols-1 md:grid-cols-12 gap-4 px-8 py-5 items-center hover:bg-gray-50/60 dark:hover:bg-slate-800/40 transition-colors"
+                                                >
+                                                    <div className="md:col-span-6 flex items-start gap-3">
+                                                        <span className="shrink-0 w-6 h-6 rounded-lg bg-[#1a2355]/5 dark:bg-white/5 text-[#1a2355] dark:text-white/60 text-[11px] font-black flex items-center justify-center mt-0.5">
+                                                            {pIdx + 1}
+                                                        </span>
+                                                        <p className="text-[#1a2355] dark:text-white font-bold text-sm leading-snug">
+                                                            {program.name}
+                                                        </p>
+                                                    </div>
+                                                    <div className="md:col-span-3">
+                                                        <LangCell active={program.english} label={l.english} />
+                                                    </div>
+                                                    <div className="md:col-span-3">
+                                                        <LangCell active={program.russian} label={l.russian} />
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </section>
 
                         {/* CTA Section */}
                         <motion.section
@@ -122,10 +201,10 @@ export default function DiscoverProgramsPage() {
                             <div className="p-10 rounded-[3rem] bg-[#1a2355] text-white shadow-2xl relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
                                 <div className="relative z-10">
-                                    <SchoolIcon className="text-[#ee7c7e] mb-6" sx={{ fontSize: 40 }} />
+                                    <TranslateIcon className="text-[#ee7c7e] mb-6" sx={{ fontSize: 40 }} />
                                     <h3 className="text-2xl font-black mb-4 uppercase tracking-tighter">AzTU</h3>
                                     <p className="text-white/60 text-sm font-medium mb-6">
-                                        {p.description}
+                                        {fp.subheading}
                                     </p>
                                     <div className="w-12 h-1 bg-[#ee7c7e] rounded-full" />
                                 </div>
