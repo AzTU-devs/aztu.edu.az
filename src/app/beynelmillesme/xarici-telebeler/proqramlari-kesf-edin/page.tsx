@@ -11,8 +11,11 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RemoveIcon from "@mui/icons-material/Remove";
 import TranslateIcon from "@mui/icons-material/Translate";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 
-type Program = { name: string; english: boolean; russian: boolean };
+import { hasStudyPlan } from "@/data/studyPlans";
+
+type Program = { name: string; slug: string; english: boolean; russian: boolean };
 type Faculty = { name: string; cycle: string; programs: Program[] };
 
 export default function DiscoverProgramsPage() {
@@ -21,20 +24,39 @@ export default function DiscoverProgramsPage() {
     const fp = p.foreignPrograms;
     const l = fp.labels;
 
-    // Availability indicator for a language column
-    const LangCell = ({ active, label }: { active: boolean; label: string }) => (
-        <div
-            className={`flex items-center justify-center gap-2 px-3 py-2 rounded-xl border text-xs font-black transition-colors ${
-                active
-                    ? "bg-[#ee7c7e]/10 border-[#ee7c7e]/30 text-[#ee7c7e]"
-                    : "bg-gray-50 dark:bg-slate-800/60 border-gray-100 dark:border-slate-700 text-gray-300 dark:text-slate-600"
-            }`}
-            title={active ? `${label} — ${l.available}` : `${label} — ${l.notAvailable}`}
-        >
-            {active ? <CheckCircleIcon sx={{ fontSize: 16 }} /> : <RemoveIcon sx={{ fontSize: 16 }} />}
-            <span className="hidden sm:inline">{label}</span>
-        </div>
-    );
+    // Availability indicator for a language column — links to the study plan when one exists
+    const LangCell = ({ active, label, slug, lang }: { active: boolean; label: string; slug: string; lang: "en" | "ru" }) => {
+        const base = "flex items-center justify-center gap-2 px-3 py-2 rounded-xl border text-xs font-black transition-all";
+
+        if (active && hasStudyPlan(slug, lang)) {
+            return (
+                <Link
+                    href={`/beynelmillesme/xarici-telebeler/proqramlari-kesf-edin/${slug}-${lang}`}
+                    title={`${label} — ${l.viewPlan}`}
+                    className={`${base} group/cell bg-[#1a2355] border-[#1a2355] text-white hover:bg-[#ee7c7e] hover:border-[#ee7c7e] shadow-md shadow-blue-900/10`}
+                >
+                    <MenuBookIcon sx={{ fontSize: 16 }} />
+                    <span className="hidden sm:inline">{l.viewPlan}</span>
+                    <span className="sm:hidden">{label}</span>
+                    <ArrowForwardIcon sx={{ fontSize: 13 }} className="opacity-0 -ml-2 group-hover/cell:opacity-100 group-hover/cell:ml-0 transition-all duration-300" />
+                </Link>
+            );
+        }
+
+        return (
+            <div
+                className={`${base} ${
+                    active
+                        ? "bg-[#ee7c7e]/10 border-[#ee7c7e]/30 text-[#ee7c7e]"
+                        : "bg-gray-50 dark:bg-slate-800/60 border-gray-100 dark:border-slate-700 text-gray-300 dark:text-slate-600"
+                }`}
+                title={active ? `${label} — ${l.available}` : `${label} — ${l.notAvailable}`}
+            >
+                {active ? <CheckCircleIcon sx={{ fontSize: 16 }} /> : <RemoveIcon sx={{ fontSize: 16 }} />}
+                <span className="hidden sm:inline">{label}</span>
+            </div>
+        );
+    };
 
     return (
         <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
@@ -156,10 +178,10 @@ export default function DiscoverProgramsPage() {
                                                         </p>
                                                     </div>
                                                     <div className="md:col-span-3">
-                                                        <LangCell active={program.english} label={l.english} />
+                                                        <LangCell active={program.english} label={l.english} slug={program.slug} lang="en" />
                                                     </div>
                                                     <div className="md:col-span-3">
-                                                        <LangCell active={program.russian} label={l.russian} />
+                                                        <LangCell active={program.russian} label={l.russian} slug={program.slug} lang="ru" />
                                                     </div>
                                                 </div>
                                             ))}
