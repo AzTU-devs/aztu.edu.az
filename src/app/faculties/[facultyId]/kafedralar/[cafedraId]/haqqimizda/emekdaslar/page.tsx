@@ -6,16 +6,14 @@ import SectionBlock from "@/components/shared/SectionBlock";
 import PersonCard from "@/components/shared/PersonCard";
 import ComingSoon from "@/components/shared/ComingSoon";
 import { getCafedraByCode } from "@/services/cafedraService/cafedraService";
+import { getImageUrl } from "@/services/facultyService/facultyService";
 import type { CafedraDetail, Personnel } from "@/types/cafedra";
 import SearchIcon from "@mui/icons-material/Search";
 import { useLanguage } from "@/context/LanguageContext";
-import { API_BASE_URL } from "@/util/apiClient";
 
 interface Props {
   params: Promise<{ facultyId: string; cafedraId: string }>;
 }
-
-const API_BASE = "https://api.aztu.edu.az/";
 
 export default function CafedraEmekdaslarPage({ params }: Props) {
   const { cafedraId } = use(params);
@@ -57,11 +55,6 @@ export default function CafedraEmekdaslarPage({ params }: Props) {
     const q = search.toLowerCase();
     return fullName.includes(q) || duty.includes(q);
   });
-
-  const getImg = (path: string | null) => {
-    if (!path) return undefined;
-    return path.startsWith('http') ? path : `${API_BASE}${path}`;
-  };
 
   return (
     <div className="space-y-6">
@@ -112,7 +105,7 @@ export default function CafedraEmekdaslarPage({ params }: Props) {
                       fullName={fullName || "Naməlum əməkdaş"}
                       title={p.duty || p.scientific_title || undefined}
                       academicDegree={p.scientific_degree || undefined}
-                      photoUrl={p.profile_image ? `${API_BASE_URL}${p.profile_image}` : undefined}
+                      photoUrl={getImageUrl(p.profile_image)}
                       email={p.email || undefined}
                       phone={p.phone || undefined}
                       size="sm"

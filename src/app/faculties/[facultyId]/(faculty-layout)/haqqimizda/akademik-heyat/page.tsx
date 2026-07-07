@@ -4,10 +4,9 @@ import { use, useEffect, useMemo, useState } from "react";
 import ComingSoon from "@/components/shared/ComingSoon";
 import StaffCard from "@/components/faculty/StaffCard";
 import StaffPageHeader from "@/components/faculty/StaffPageHeader";
+import { SearchBox, ResultCount, EmptyState } from "@/components/faculty/ui";
 import { getFacultyBySlug, getImageUrl } from "@/services/facultyService/facultyService";
 import type { FacultyDetail, PersonnelItem } from "@/types/faculty";
-import SearchIcon from "@mui/icons-material/Search";
-import CloseIcon from "@mui/icons-material/Close";
 import SchoolIcon from "@mui/icons-material/School";
 import GroupsIcon from "@mui/icons-material/Groups";
 import { useLanguage } from "@/context/LanguageContext";
@@ -54,7 +53,7 @@ export default function AkademikHeyatPage({ params }: Props) {
     }, [workers, search, currentLang]);
 
     return (
-        <div className="space-y-10">
+        <div className="space-y-8">
             <StaffPageHeader
                 icon={SchoolIcon}
                 eyebrow={currentLang === "az" ? "Tədris və elm" : "Teaching & research"}
@@ -66,24 +65,15 @@ export default function AkademikHeyatPage({ params }: Props) {
                 }
                 stats={
                     workers.length > 0
-                        ? [
-                              {
-                                  label: currentLang === "az" ? "Heyət" : "Members",
-                                  value: workers.length,
-                                  icon: GroupsIcon,
-                              },
-                          ]
+                        ? [{ label: currentLang === "az" ? "Heyət" : "Members", value: workers.length, icon: GroupsIcon }]
                         : undefined
                 }
             />
 
             {loading ? (
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
-                    {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                        <div
-                            key={i}
-                            className="h-64 rounded-[1.75rem] bg-gray-100 dark:bg-white/5 animate-pulse"
-                        />
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+                    {Array.from({ length: 8 }).map((_, i) => (
+                        <div key={i} className="h-60 animate-pulse rounded-2xl bg-slate-100 dark:bg-white/5" />
                     ))}
                 </div>
             ) : workers.length === 0 ? (
@@ -96,62 +86,36 @@ export default function AkademikHeyatPage({ params }: Props) {
                 />
             ) : (
                 <>
-                    <div className="relative group">
-                        <SearchIcon
-                            sx={{ fontSize: 22 }}
-                            className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 dark:text-slate-500 pointer-events-none group-focus-within:text-[#ee7c7e] transition-colors"
-                        />
-                        <input
-                            type="search"
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                            placeholder={
-                                currentLang === "az"
-                                    ? "Ad, soyad və ya elmi ad üzrə axtar..."
-                                    : "Search staff by name or title..."
-                            }
-                            className="w-full py-5 pl-16 pr-16 rounded-[2rem] bg-white dark:bg-slate-900/70 border-2 border-[#1a2355]/15 dark:border-white/10 text-[#1a2355] dark:text-white placeholder:text-gray-400 dark:placeholder:text-slate-500 text-sm font-bold outline-none focus:border-[#ee7c7e] transition-colors shadow-md"
-                        />
-                        {search && (
-                            <button
-                                type="button"
-                                onClick={() => setSearch("")}
-                                className="absolute right-5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-xl bg-[#1a2355]/5 dark:bg-white/5 hover:bg-[#ee7c7e] hover:text-white text-[#1a2355] dark:text-white flex items-center justify-center transition-colors"
-                            >
-                                <CloseIcon sx={{ fontSize: 18 }} />
-                            </button>
-                        )}
-                    </div>
-
-                    <div className="flex items-center justify-between text-xs uppercase tracking-widest font-black text-[#1a2355]/60 dark:text-white/50">
-                        <span>
-                            {currentLang === "az" ? "Göstərilir" : "Showing"}{" "}
-                            <span className="text-[#ee7c7e] tabular-nums">{filtered.length}</span>{" "}
-                            {currentLang === "az" ? "/" : "of"}{" "}
-                            <span className="tabular-nums">{workers.length}</span>
-                        </span>
-                        {search && (
-                            <button
-                                type="button"
-                                onClick={() => setSearch("")}
-                                className="text-[#ee7c7e] hover:text-[#1a2355] dark:hover:text-white transition-colors"
-                            >
-                                {currentLang === "az" ? "Sıfırla" : "Clear"}
-                            </button>
-                        )}
-                    </div>
+                    <SearchBox
+                        value={search}
+                        onChange={setSearch}
+                        onClear={() => setSearch("")}
+                        placeholder={
+                            currentLang === "az"
+                                ? "Ad, soyad və ya elmi ad üzrə axtar..."
+                                : "Search staff by name or title..."
+                        }
+                    />
+                    <ResultCount
+                        filtered={filtered.length}
+                        total={workers.length}
+                        showLabel={currentLang === "az" ? "Göstərilir" : "Showing"}
+                        ofLabel={currentLang === "az" ? "/" : "of"}
+                        onClear={search ? () => setSearch("") : undefined}
+                        clearLabel={currentLang === "az" ? "Sıfırla" : "Clear"}
+                    />
 
                     {filtered.length === 0 ? (
-                        <div className="text-center py-24 bg-white/70 backdrop-blur-xl rounded-[2.5rem] border-2 border-dashed border-gray-200 dark:border-slate-700">
-                            <div className="w-16 h-16 rounded-2xl bg-[#1a2355]/5 mx-auto flex items-center justify-center mb-5">
-                                <SearchIcon sx={{ fontSize: 32 }} className="text-[#1a2355]/40" />
-                            </div>
-                            <p className="text-gray-400 dark:text-slate-500 text-sm font-black uppercase tracking-widest">
-                                {currentLang === "az" ? "Nəticə tapılmadı" : "No results found"}
-                            </p>
-                        </div>
+                        <EmptyState
+                            title={currentLang === "az" ? "Nəticə tapılmadı" : "No results found"}
+                            hint={
+                                currentLang === "az"
+                                    ? "Axtarış sözünü dəyişin və ya filtri sıfırlayın."
+                                    : "Try a different keyword or clear the search."
+                            }
+                        />
                     ) : (
-                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
+                        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                             {filtered.map((w, index) => {
                                 const fullName = [w.first_name, w.last_name, w.father_name]
                                     .filter(Boolean)

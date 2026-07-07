@@ -11,16 +11,14 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import SchoolIcon from "@mui/icons-material/School";
 import ScienceIcon from "@mui/icons-material/Science";
 import { getCafedraByCode } from "@/services/cafedraService/cafedraService";
+import { getImageUrl } from "@/services/facultyService/facultyService";
 import type { CafedraDetail } from "@/types/cafedra";
 import { useLanguage } from "@/context/LanguageContext";
-import { API_BASE_URL } from "@/util/apiClient";
 import SanitizedHtml from "@/components/shared/SanitizedHtml";
 
 interface Props {
   params: Promise<{ facultyId: string; cafedraId: string }>;
 }
-
-const API_BASE = "https://api.aztu.edu.az/";
 
 export default function KafedraMudiriPage({ params }: Props) {
   const { cafedraId } = use(params);
@@ -45,11 +43,6 @@ export default function KafedraMudiriPage({ params }: Props) {
   const headFullName = head
     ? [head.first_name, head.last_name, head.father_name].filter(Boolean).join(" ")
     : "";
-
-  const getImg = (path: string | null) => {
-    if (!path) return undefined;
-    return path.startsWith('http') ? path : `${API_BASE}${path}`;
-  };
 
   return (
     <div className="space-y-10">
@@ -84,7 +77,7 @@ export default function KafedraMudiriPage({ params }: Props) {
                   <div className="aspect-[3/4] rounded-[3rem] overflow-hidden border-8 border-white dark:border-white/5 shadow-[0_40px_80px_-20px_rgba(26,35,85,0.3)] relative z-10">
                     {head.profile_image ? (
                       <img
-                        src={`${API_BASE_URL}${head.profile_image}`}
+                        src={getImageUrl(head.profile_image)}
                         alt={headFullName}
                         className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                       />

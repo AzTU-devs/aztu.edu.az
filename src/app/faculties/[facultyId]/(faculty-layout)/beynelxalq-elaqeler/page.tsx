@@ -1,11 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import SectionBlock from "@/components/shared/SectionBlock";
+import { FacultyPanel } from "@/components/faculty/ui";
 import LanguageIcon from "@mui/icons-material/Language";
 import PublicIcon from "@mui/icons-material/Public";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
-import LaunchIcon from "@mui/icons-material/Launch";
 import { PartnerUniversity } from "@/types/faculty";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -27,15 +26,11 @@ const partnerUniversities: PartnerUniversity[] = [
   },
   {
     country: "Gürcüstan",
-    universities: [
-      { name: "Tbilisi Dövlət Texniki Universiteti", website: "https://gtu.ge" },
-    ],
+    universities: [{ name: "Tbilisi Dövlət Texniki Universiteti", website: "https://gtu.ge" }],
   },
   {
     country: "Almaniya",
-    universities: [
-      { name: "Drezden Texniki Universiteti", website: "https://tu-dresden.de" },
-    ],
+    universities: [{ name: "Drezden Texniki Universiteti", website: "https://tu-dresden.de" }],
   },
 ];
 
@@ -44,106 +39,81 @@ export default function BeynelxalqElaqelerPage() {
 
   const t = {
     title: currentLang === "az" ? "Beynəlxalq əlaqələr" : "International Relations",
-    description: currentLang === "az" 
-        ? "Fakültənin əməkdaşları bir çox xarici ölkə universitetləri ilə əlaqə saxlayır və elmi əməkdaşlıq edirlər." 
-        : "Faculty members maintain connections and scientific cooperation with many foreign universities.",
-    partnersTitle: currentLang === "az" ? "Tərəfdaş Universitetlər" : "Partner Universities",
+    description: currentLang === "az"
+      ? "Fakültənin əməkdaşları bir çox xarici ölkə universiteti ilə əlaqə saxlayır və elmi əməkdaşlıq edir."
+      : "Faculty members maintain connections and scientific cooperation with many foreign universities.",
     globalBannerTitle: currentLang === "az" ? "Qlobal Elmi Şəbəkə" : "Global Scientific Network",
-    globalBannerDesc: currentLang === "az" 
-        ? "Biz dünya səviyyəsində tanınmış elm mərkəzləri ilə bilik və təcrübə mübadiləsi aparırıq." 
-        : "We exchange knowledge and experience with world-renowned scientific centers."
+    globalBannerDesc: currentLang === "az"
+      ? "Dünya səviyyəsində tanınmış elm mərkəzləri ilə bilik və təcrübə mübadiləsi aparırıq."
+      : "We exchange knowledge and experience with world-renowned scientific centers.",
   };
 
   return (
-    <div className="space-y-12">
-      <SectionBlock title={t.title} accent>
-        <p className="text-gray-500 dark:text-white/40 text-sm font-black uppercase tracking-[0.2em] mb-12 max-w-2xl leading-relaxed">
-          {t.description}
-        </p>
+    <div className="space-y-8">
+      <FacultyPanel title={t.title} eyebrow={currentLang === "az" ? "Əməkdaşlıq" : "Cooperation"} icon={PublicIcon}>
+        <p className="mb-8 max-w-2xl text-sm leading-relaxed text-slate-600 dark:text-slate-300">{t.description}</p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {partnerUniversities.map((partner, pIdx) => (
-            <motion.div 
+            <motion.div
               key={partner.country}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: pIdx * 0.1 }}
-              className="space-y-6"
+              transition={{ delay: pIdx * 0.08 }}
+              className="space-y-3"
             >
-              {/* Country header */}
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e] shadow-inner">
-                  <PublicIcon sx={{ fontSize: 24 }} />
-                </div>
-                <h3 className="font-black text-[#1a2355] dark:text-white text-xl uppercase tracking-tighter">
-                  {partner.country}
-                </h3>
+              <div className="flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#ee7c7e]/10 text-[#e05b5d] dark:text-[#fb7185]">
+                  <PublicIcon sx={{ fontSize: 20 }} />
+                </span>
+                <h3 className="text-base font-bold tracking-tight text-slate-900 dark:text-white">{partner.country}</h3>
               </div>
 
-              {/* Universities list */}
-              <div className="space-y-3">
-                {partner.universities.map((uni, uIdx) => (
-                  <motion.div
+              <div className="space-y-2">
+                {partner.universities.map((uni) => (
+                  <div
                     key={uni.name}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: (pIdx * 0.1) + (uIdx * 0.05) }}
-                    className="group relative bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-2xl p-5 hover:border-[#ee7c7e]/30 hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300"
+                    className="group flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white p-4 transition-all hover:border-[#ee7c7e]/40 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
                   >
-                    <div className="flex items-center justify-between gap-4">
-                        <div className="flex items-center gap-3">
-                            <div className="w-1.5 h-1.5 rounded-full bg-[#ee7c7e] group-hover:scale-150 transition-transform" />
-                            <span className="text-sm font-bold text-[#1a2355] dark:text-white/90 group-hover:text-[#ee7c7e] transition-colors">{uni.name}</span>
-                        </div>
-                        {uni.website && (
-                            <a
-                                href={uni.website}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-8 h-8 rounded-lg bg-gray-50 dark:bg-white/5 flex items-center justify-center text-gray-400 hover:bg-[#ee7c7e] hover:text-white transition-all"
-                                title="Website"
-                            >
-                                <LanguageIcon sx={{ fontSize: 16 }} />
-                            </a>
-                        )}
+                    <div className="flex items-center gap-3">
+                      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#ee7c7e]" />
+                      <span className="text-sm font-medium text-slate-700 transition-colors group-hover:text-[#ee7c7e] dark:text-slate-200">
+                        {uni.name}
+                      </span>
                     </div>
-                  </motion.div>
+                    {uni.website && (
+                      <a
+                        href={uni.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-400 transition hover:bg-[#ee7c7e] hover:text-white dark:bg-white/5"
+                        title="Website"
+                      >
+                        <LanguageIcon sx={{ fontSize: 16 }} />
+                      </a>
+                    )}
+                  </div>
                 ))}
               </div>
             </motion.div>
           ))}
         </div>
-      </SectionBlock>
+      </FacultyPanel>
 
-      {/* Stunning Global Banner */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.98 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        className="relative overflow-hidden rounded-[3.5rem] bg-[#1a2355] p-12 md:p-16 text-white shadow-2xl group"
-      >
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#ee7c7e]/10 rounded-full blur-[100px] -mr-48 -mt-48 transition-transform duration-1000 group-hover:scale-110" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -ml-32 -mb-32" />
-        
-        <div className="relative z-10 flex flex-col md:flex-row items-center gap-12 text-center md:text-left">
-           <div className="w-24 h-24 rounded-3xl bg-white/10 flex items-center justify-center flex-shrink-0 shadow-2xl group-hover:rotate-12 transition-all duration-700">
-              <TravelExploreIcon sx={{ fontSize: 48, color: '#ee7c7e' }} />
-           </div>
-           <div className="flex-1">
-              <h4 className="text-3xl font-black uppercase tracking-tighter mb-4">{t.globalBannerTitle}</h4>
-              <p className="text-white/60 text-lg font-medium leading-relaxed max-w-2xl">
-                {t.globalBannerDesc}
-              </p>
-           </div>
-           <div className="flex-shrink-0">
-                <button className="px-8 py-4 rounded-2xl bg-[#ee7c7e] hover:bg-[#f09395] text-white font-black uppercase text-[10px] tracking-[0.2em] transition-all shadow-xl shadow-red-900/40 active:scale-95 flex items-center gap-2 group/btn">
-                    Global Portal
-                    <LaunchIcon sx={{ fontSize: 14 }} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-                </button>
-           </div>
+      {/* Global banner */}
+      <div className="relative overflow-hidden rounded-2xl bg-[#1a2355] p-8 text-white md:p-10">
+        <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#ee7c7e]/15 blur-3xl" />
+        <div className="relative z-10 flex flex-col items-center gap-6 text-center md:flex-row md:text-left">
+          <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/10">
+            <TravelExploreIcon sx={{ fontSize: 34, color: "#ee7c7e" }} />
+          </span>
+          <div>
+            <h4 className="mb-2 text-2xl font-bold tracking-tight">{t.globalBannerTitle}</h4>
+            <p className="max-w-2xl leading-relaxed text-white/60">{t.globalBannerDesc}</p>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
