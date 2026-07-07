@@ -3,10 +3,12 @@
 import { use, useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import SectionBlock from "@/components/shared/SectionBlock";
+import { FacultyPanel } from "@/components/faculty/ui";
 import SchoolIcon from "@mui/icons-material/School";
 import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { getCafedraByCode } from "@/services/cafedraService/cafedraService";
 import type { CafedraDetail, CafedraSpecialization } from "@/types/cafedra";
 import { useLanguage } from "@/context/LanguageContext";
@@ -15,25 +17,10 @@ interface Props {
   params: Promise<{ facultyId: string; cafedraId: string }>;
 }
 
-const degreeMeta: Record<string, { label: string; icon: any; color: string; bg: string }> = {
-  bachelor: { 
-    label: "Bakalavr", 
-    icon: SchoolIcon, 
-    color: "text-blue-600", 
-    bg: "bg-blue-50 dark:bg-blue-900/20" 
-  },
-  master: { 
-    label: "Magistr", 
-    icon: WorkspacePremiumIcon, 
-    color: "text-emerald-600", 
-    bg: "bg-emerald-50 dark:bg-emerald-900/20" 
-  },
-  phd: { 
-    label: "Doktorantura", 
-    icon: HistoryEduIcon, 
-    color: "text-purple-600", 
-    bg: "bg-purple-50 dark:bg-purple-900/20" 
-  },
+const degreeMeta: Record<string, { label: string; icon: any; tile: string }> = {
+  bachelor: { label: "Bakalavr", icon: SchoolIcon, tile: "bg-blue-500/10 text-blue-600 dark:text-blue-400" },
+  master: { label: "Magistr", icon: WorkspacePremiumIcon, tile: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" },
+  phd: { label: "Doktorantura", icon: HistoryEduIcon, tile: "bg-violet-500/10 text-violet-600 dark:text-violet-400" },
 };
 
 export default function CafedraIxtisaslarPage({ params }: Props) {
@@ -94,37 +81,38 @@ export default function CafedraIxtisaslarPage({ params }: Props) {
   );
 
   return (
-    <div className="space-y-10">
-      <SectionBlock title={currentLang === "az" ? "Kafedra ixtisasları" : "Departmental Programs"} accent>
-        <p className="text-sm text-gray-500 dark:text-slate-400 mb-10 max-w-2xl">
-          {currentLang === "az" 
-            ? "Kafedra tərəfindən tədris olunan bütün ixtisaslar və təhsil pillələri haqqında ətraflı məlumat." 
+    <div className="space-y-8">
+      <FacultyPanel
+        title={currentLang === "az" ? "Kafedra ixtisasları" : "Departmental Programs"}
+        eyebrow={currentLang === "az" ? "İxtisaslar" : "Programs"}
+        icon={MenuBookIcon}
+      >
+        <p className="mb-8 max-w-2xl text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+          {currentLang === "az"
+            ? "Kafedra tərəfindən tədris olunan bütün ixtisaslar və təhsil pillələri haqqında ətraflı məlumat."
             : "Detailed information about all specializations and levels of education offered by the department."}
         </p>
 
         {loading ? (
-          <div className="space-y-8">
-             {[1,2].map(i => <div key={i} className="h-48 rounded-[2rem] bg-gray-100 dark:bg-slate-800 animate-pulse" />)}
+          <div className="space-y-4">
+            {[1, 2].map((i) => (
+              <div key={i} className="h-40 animate-pulse rounded-2xl bg-slate-100 dark:bg-white/5" />
+            ))}
           </div>
         ) : (
-          <div className="space-y-12">
-            {Object.entries(grouped).map(([degree, specs], groupIdx) => {
-              const Icon = degreeMeta[degree]?.icon || SchoolIcon;
+          <div className="space-y-10">
+            {Object.entries(grouped).map(([degree, specs]) => {
               const meta = degreeMeta[degree] || degreeMeta.bachelor;
+              const Icon = meta.icon;
               return (
-                <motion.div 
-                  key={degree}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: groupIdx * 0.2 }}
-                >
-                  <div className="flex items-center gap-4 mb-6">
-                     <div className={`w-12 h-12 rounded-2xl ${meta.bg} ${meta.color} flex items-center justify-center shadow-sm`}>
-                        <Icon sx={{ fontSize: 24 }} />
-                     </div>
-                     <h3 className="text-xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight">
-                       {currentLang === "az" ? `${meta.label} pilləsi` : `${meta.label} Degree`}
-                     </h3>
+                <div key={degree}>
+                  <div className="mb-5 flex items-center gap-3">
+                    <span className={`flex h-11 w-11 items-center justify-center rounded-xl ${meta.tile}`}>
+                      <Icon sx={{ fontSize: 22 }} />
+                    </span>
+                    <h3 className="text-lg font-bold tracking-tight text-slate-900 dark:text-white md:text-xl">
+                      {currentLang === "az" ? `${meta.label} pilləsi` : `${meta.label} Degree`}
+                    </h3>
                   </div>
 
                   <div className="grid grid-cols-1 gap-4">
@@ -132,73 +120,83 @@ export default function CafedraIxtisaslarPage({ params }: Props) {
                       <motion.div
                         key={spec.id}
                         initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: (groupIdx * 0.2) + (idx * 0.1) }}
-                        className="group relative bg-white dark:bg-slate-800 border-2 border-gray-50 dark:border-slate-700 rounded-[1.5rem] p-6 hover:border-[#ee7c7e] hover:shadow-xl hover:shadow-[#1a2355]/5 transition-all duration-500"
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.05 }}
+                        className="group flex flex-col justify-between gap-5 rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-slate-900 dark:hover:border-white/20 md:flex-row md:items-center"
                       >
-                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                          <div className="flex-1 min-w-0">
-                            <div className="flex flex-wrap items-center gap-3 mb-2">
-                              <span className="text-lg font-black text-[#1a2355] dark:text-white group-hover:text-[#ee7c7e] transition-colors">
-                                {spec.name}
+                        <div className="min-w-0 flex-1">
+                          <div className="mb-2 flex flex-wrap items-center gap-3">
+                            <span className="text-lg font-bold tracking-tight text-slate-900 transition-colors group-hover:text-[#ee7c7e] dark:text-white">
+                              {spec.name}
+                            </span>
+                            {spec.code && (
+                              <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-500 dark:bg-white/10 dark:text-slate-400">
+                                {spec.code}
                               </span>
-                              {spec.code && (
-                                <span className="px-2 py-0.5 rounded-md bg-gray-100 dark:bg-slate-700 text-gray-400 font-mono text-[10px] font-bold">
-                                  {spec.code}
-                                </span>
-                              )}
-                            </div>
-                            {spec.description && (
-                              <p className="text-sm text-gray-500 dark:text-slate-400 leading-relaxed line-clamp-2">
-                                {spec.description}
-                              </p>
                             )}
                           </div>
-                          
-                          <div className="flex flex-row md:flex-col items-center md:items-end gap-4 md:gap-1 flex-shrink-0 border-t md:border-t-0 md:border-l border-gray-100 dark:border-slate-700 pt-4 md:pt-0 md:pl-8">
-                             <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">{currentLang === "az" ? "Müddət" : "Duration"}</span>
-                             <span className="text-lg font-black text-[#1a2355] dark:text-white">{spec.duration_years} {currentLang === "az" ? "İL" : "YEARS"}</span>
+                          {spec.description && (
+                            <p className="max-w-2xl text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                              {spec.description}
+                            </p>
+                          )}
+                        </div>
+
+                        <div className="flex shrink-0 flex-col items-end gap-0.5 border-t border-slate-100 pt-4 dark:border-white/10 md:border-l md:border-t-0 md:pl-6 md:pt-0">
+                          <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                            {currentLang === "az" ? "Müddət" : "Duration"}
+                          </span>
+                          <div className="flex items-baseline gap-1.5">
+                            <span className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+                              {spec.duration_years}
+                            </span>
+                            <span className="text-xs font-semibold uppercase text-[#ee7c7e]">
+                              {currentLang === "az" ? "İL" : "YEARS"}
+                            </span>
                           </div>
                         </div>
                       </motion.div>
                     ))}
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
         )}
-      </SectionBlock>
+      </FacultyPanel>
 
-      {/* Stunning Apply Banner */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.98 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        className="relative overflow-hidden rounded-[3rem] bg-[#1a2355] p-10 md:p-16 text-white shadow-2xl"
-      >
-        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl -mr-32 -mt-32" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#ee7c7e]/10 rounded-full blur-3xl -ml-32 -mb-32" />
-        
+      {/* Apply banner */}
+      <div className="relative overflow-hidden rounded-2xl bg-[#1a2355] p-8 text-white md:p-12">
+        <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#ee7c7e]/15 blur-3xl" />
         <div className="relative z-10 max-w-2xl">
-           <h2 className="text-3xl md:text-4xl font-black mb-6 leading-tight">
-             {currentLang === "az" ? "Akademik karyeranızı bizimlə qurun" : "Build your academic career with us"}
-           </h2>
-           <p className="text-white/70 text-lg mb-10 font-medium">
-             {currentLang === "az" 
-               ? "Kafedramızın təklif etdiyi yüksək keyfiyyətli təhsil proqramları ilə gələcəyinizə investisiya edin." 
-               : "Invest in your future with the high-quality educational programs offered by our department."}
-           </p>
-           <div className="flex flex-wrap gap-4">
-              <a href="https://portal.edu.az" target="_blank" className="px-8 py-4 rounded-2xl bg-[#ee7c7e] hover:bg-[#f09395] text-white font-black text-sm transition-all shadow-lg shadow-red-900/20 active:scale-95">
-                {currentLang === "az" ? "İndi müraciət et" : "Apply Now"}
-              </a>
-              <Link href={`/faculties/${facultyId}/kafedralar/${cafedraId}/haqqimizda/elaqe`} className="px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-black text-sm transition-all border border-white/10 active:scale-95">
-                {currentLang === "az" ? "Məlumat al" : "Get Information"}
-              </Link>
-           </div>
+          <h2 className="mb-4 text-2xl font-bold leading-tight tracking-tight md:text-3xl">
+            {currentLang === "az" ? "Akademik karyeranızı bizimlə qurun" : "Build your academic career with us"}
+          </h2>
+          <p className="mb-8 leading-relaxed text-white/70">
+            {currentLang === "az"
+              ? "Kafedramızın təklif etdiyi yüksək keyfiyyətli təhsil proqramları ilə gələcəyinizə investisiya edin."
+              : "Invest in your future with the high-quality educational programs offered by our department."}
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href="https://portal.edu.az"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl bg-[#ee7c7e] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white hover:text-[#1a2355]"
+            >
+              {currentLang === "az" ? "İndi müraciət et" : "Apply Now"}
+              <ArrowForwardIcon sx={{ fontSize: 18 }} />
+            </a>
+            <Link
+              href={`/faculties/${facultyId}/kafedralar/${cafedraId}/haqqimizda/elaqe`}
+              className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white/20"
+            >
+              {currentLang === "az" ? "Məlumat al" : "Get Information"}
+            </Link>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
