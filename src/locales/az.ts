@@ -913,7 +913,7 @@ const az = {
             slug: "subhan-namazov",
             name: "Prof. Sübhan Namazov",
             degree: "Texnika elmləri doktoru, professor",
-            title: "Tədris işləri üzrə prorektor",
+            title: "Tədris məsələləri üzrə prorektor",
             email: "subhan.namazov@aztu.edu.az",
             phone: "+994 12 539 08 57",
             photoUrl: `${VR_MEDIA}/subhan_namazov.jpeg`,
