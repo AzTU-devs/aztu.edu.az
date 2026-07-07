@@ -8,6 +8,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
 import { getFacultyBySlug } from "@/services/facultyService/facultyService";
 import type { FacultyDetail } from "@/types/faculty";
 import { useLanguage } from "@/context/LanguageContext";
@@ -26,20 +27,19 @@ export default function FacultyDetailLayout({ children, params }: Props) {
     useEffect(() => {
         getFacultyBySlug(facultySlug, currentLang)
             .then((result) => {
-                if (result) {
-                    setFaculty(result);
-                }
+                if (result) setFaculty(result);
             })
             .catch(() => {});
     }, [facultySlug, currentLang]);
 
     const institutesListPath = `/${currentLang}/${currentLang === "az" ? "akademik/fakulteler" : "academic/faculties"}`;
+    const contactPath = `/${currentLang}/${currentLang === "az" ? "akademik/fakulteler" : "academic/faculties"}/${facultySlug}/${currentLang === "az" ? "haqqimizda/elaqe" : "about/contact"}`;
 
     return (
-        <div className="min-h-screen transition-colors overflow-hidden bg-page">
-            {/* Stunning Banner - VIBRANT BLUE */}
-            <div className="relative overflow-hidden bg-[#0b1330] pt-32 pb-16 px-4 md:px-8 lg:px-12 w-full min-h-[450px] flex flex-col justify-end">
-                {/* Video Background — single smooth overlay so video is clearly visible */}
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">
+            {/* ── Hero banner ── */}
+            <div className="relative overflow-hidden bg-[#0b1330] pt-32 pb-14 px-4 md:px-8 lg:px-12">
+                {/* Video background */}
                 <div className="absolute inset-0 z-0">
                     <video
                         key="academic-video"
@@ -47,96 +47,85 @@ export default function FacultyDetailLayout({ children, params }: Props) {
                         loop
                         muted
                         playsInline
-                        className="absolute inset-0 w-full h-full object-cover"
+                        className="absolute inset-0 h-full w-full object-cover"
                     >
                         <source
                             src={`${process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site"}/media/prod/hero/hero_videos/academic.mp4`}
                             type="video/mp4"
                         />
                     </video>
-                    {/* Soft uniform tint + slightly stronger fade at bottom for text contrast */}
-                    <div className="absolute inset-0 bg-[#0b1330]/30" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0b1330]/15 to-[#0b1330]/65" />
+                    {/* Clean readable overlay */}
+                    <div className="absolute inset-0 bg-[#0b1330]/70" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b1330] via-[#0b1330]/40 to-transparent" />
                 </div>
 
-                {/* Subtle accent glow only, kept behind text */}
-                <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-[#ee7c7e]/10 blur-[140px] rounded-full pointer-events-none z-0" />
-                
-                <div className="relative z-20 w-full">
-                    <motion.nav 
-                        initial={{ opacity: 0, y: -10 }}
+                <div className="relative z-10 mx-auto w-full max-w-[1600px]">
+                    {/* Breadcrumb */}
+                    <motion.nav
+                        initial={{ opacity: 0, y: -8 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="flex items-center gap-2 text-white/50 text-[10px] font-black uppercase tracking-[0.4em] mb-8 flex-wrap"
+                        className="mb-6 flex flex-wrap items-center gap-2 text-[13px] font-medium text-white/60"
                     >
-                        <div className="flex items-center gap-2 px-5 py-2 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl">
-                            <Link href="/" className="hover:text-[#ee7c7e] transition-colors flex items-center gap-2 group">
-                                <HomeIcon sx={{ fontSize: 14 }} className="group-hover:scale-110 transition-transform" />
-                                {currentLang === "az" ? "Ana" : "Home"}
-                            </Link>
-                            <ChevronRightIcon sx={{ fontSize: 12 }} className="text-[#ee7c7e]" />
-                            <Link href={institutesListPath} className="hover:text-white transition-colors">
-                                {currentLang === "az" ? "Fakültələr" : "Faculties"}
-                            </Link>
-                            <ChevronRightIcon sx={{ fontSize: 12 }} className="text-[#ee7c7e]" />
-                            <span className="text-[#ee7c7e] font-black truncate max-w-[120px] md:max-w-[200px]">
-                                {faculty?.title ?? facultySlug}
-                            </span>
-                        </div>
+                        <Link href="/" className="flex items-center gap-1.5 transition-colors hover:text-white">
+                            <HomeIcon sx={{ fontSize: 16 }} />
+                            {currentLang === "az" ? "Ana səhifə" : "Home"}
+                        </Link>
+                        <ChevronRightIcon sx={{ fontSize: 14 }} className="text-white/30" />
+                        <Link href={institutesListPath} className="transition-colors hover:text-white">
+                            {currentLang === "az" ? "Fakültələr" : "Faculties"}
+                        </Link>
+                        <ChevronRightIcon sx={{ fontSize: 14 }} className="text-white/30" />
+                        <span className="max-w-[160px] truncate font-semibold text-[#ee7c7e] md:max-w-none">
+                            {faculty?.title ?? facultySlug}
+                        </span>
                     </motion.nav>
 
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+                        transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
                     >
-                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 leading-[0.9] max-w-5xl tracking-tighter drop-shadow-2xl">
+                        {faculty?.faculty_code && (
+                            <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-[#ee7c7e] px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-white shadow-lg shadow-[#ee7c7e]/25">
+                                <span className="h-1.5 w-1.5 rounded-full bg-white" />
+                                {faculty.faculty_code}
+                            </span>
+                        )}
+                        <h1 className="max-w-4xl text-3xl font-extrabold leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
                             {faculty?.title ?? facultySlug}
                         </h1>
-                        
-                        <div className="flex flex-wrap items-center gap-6">
-                            {faculty?.faculty_code && (
-                                <div className="inline-flex items-center px-6 py-2.5 rounded-2xl bg-[#ee7c7e] text-white font-black text-[10px] tracking-[0.3em] shadow-xl shadow-[#ee7c7e]/30">
-                                    {faculty.faculty_code}
-                                </div>
-                            )}
-                            <div className="h-px w-12 bg-white/20" />
-                            <span className="text-white/60 text-[10px] font-black uppercase tracking-[0.5em]">
-                                {currentLang === "az" ? "Fakültə Portalı" : "Faculty Portal"}
-                            </span>
-                        </div>
+                        <p className="mt-4 text-sm font-medium uppercase tracking-[0.3em] text-white/50">
+                            {currentLang === "az" ? "Fakültə Portalı" : "Faculty Portal"}
+                        </p>
                     </motion.div>
                 </div>
-                
-                {/* Bottom Accent Line */}
-                <div className="absolute bottom-0 left-0 right-0 h-[4px] bg-gradient-to-r from-transparent via-[#ee7c7e] to-transparent z-20 opacity-60 shadow-[0_0_20px_#ee7c7e]" />
+
+                {/* thin accent line */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#1a2355] via-[#ee7c7e] to-[#1a2355]" />
             </div>
 
-            {/* Mobile sidebar toggle - Sticky */}
-            <div className="lg:hidden sticky top-0 z-30 px-6 py-4 border-b border-gray-100 dark:border-white/10 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl flex items-center justify-between shadow-xl shadow-blue-900/5">
-                <span className="text-[10px] font-black text-[#1a2355] dark:text-white uppercase tracking-widest">
+            {/* ── Mobile sidebar toggle ── */}
+            <div className="sticky top-0 z-30 flex items-center justify-between border-b border-gray-200 bg-white/90 px-5 py-3.5 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/90 lg:hidden">
+                <span className="text-sm font-bold text-[#1a2355] dark:text-white">
                     {currentLang === "az" ? "Portal Naviqasiyası" : "Portal Navigation"}
                 </span>
                 <button
                     onClick={() => setSidebarOpen((o) => !o)}
-                    className="w-10 h-10 flex items-center justify-center rounded-2xl bg-gray-50 dark:bg-white/10 text-[#1a2355] dark:text-white transition-all active:scale-95 border border-gray-100 dark:border-white/10 shadow-sm"
+                    className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1a2355] text-white transition active:scale-95"
                     aria-label="Toggle sidebar"
                 >
-                    {sidebarOpen ? (
-                        <CloseIcon sx={{ fontSize: 20 }} />
-                    ) : (
-                        <MenuIcon sx={{ fontSize: 20 }} />
-                    )}
+                    {sidebarOpen ? <CloseIcon sx={{ fontSize: 20 }} /> : <MenuIcon sx={{ fontSize: 20 }} />}
                 </button>
             </div>
 
-            {/* Mobile sidebar overlay */}
+            {/* ── Mobile sidebar drawer ── */}
             <AnimatePresence>
                 {sidebarOpen && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="lg:hidden fixed inset-0 z-40 bg-blue-900/20 backdrop-blur-md"
+                        className="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-sm lg:hidden"
                         onClick={() => setSidebarOpen(false)}
                     >
                         <motion.div
@@ -144,65 +133,70 @@ export default function FacultyDetailLayout({ children, params }: Props) {
                             animate={{ x: 0 }}
                             exit={{ x: "-100%" }}
                             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-                            className="absolute left-0 top-0 bottom-0 w-[min(300px,85vw)] bg-white dark:bg-slate-900 overflow-y-auto shadow-2xl"
+                            className="absolute bottom-0 left-0 top-0 w-[min(320px,85vw)] overflow-y-auto bg-slate-50 p-5 dark:bg-slate-950"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <div className="p-8">
-                                <div className="mb-8 flex items-center justify-between border-b-2 border-gray-50 dark:border-white/10 pb-4">
-                                    <span className="text-xl font-black text-[#1a2355] dark:text-white uppercase tracking-tighter">Menyu</span>
-                                    <button onClick={() => setSidebarOpen(false)} className="w-10 h-10 rounded-2xl bg-gray-50 dark:bg-white/10 flex items-center justify-center text-gray-400 dark:text-white/60 hover:text-gray-600 dark:hover:text-white transition-colors">
-                                        <CloseIcon />
-                                    </button>
-                                </div>
-                                <FacultySidebar facultyId={facultySlug} />
+                            <div className="mb-4 flex items-center justify-between">
+                                <span className="text-lg font-bold text-[#1a2355] dark:text-white">
+                                    {currentLang === "az" ? "Menyu" : "Menu"}
+                                </span>
+                                <button
+                                    onClick={() => setSidebarOpen(false)}
+                                    className="flex h-9 w-9 items-center justify-center rounded-xl bg-gray-100 text-gray-500 transition hover:text-gray-800 dark:bg-white/10 dark:text-white/60"
+                                >
+                                    <CloseIcon sx={{ fontSize: 20 }} />
+                                </button>
                             </div>
+                            <FacultySidebar facultyId={facultySlug} />
                         </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
 
-            {/* Content Area with Pattern */}
-            <div className="relative">
-                <div className="absolute inset-0 pointer-events-none opacity-[0.05]" 
-                     style={{ backgroundImage: 'radial-gradient(#1a2355 1.5px, transparent 1.5px)', backgroundSize: '50px 50px' }} />
+            {/* ── Content area ── */}
+            <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-8 px-4 py-12 md:px-8 lg:flex-row lg:px-12">
+                {/* Desktop sidebar */}
+                <aside className="hidden flex-shrink-0 lg:block lg:w-72 xl:w-80">
+                    <div className="sticky top-24 space-y-5">
+                        <FacultySidebar facultyId={facultySlug} />
 
-                <div className="flex flex-col lg:flex-row px-4 md:px-8 lg:px-12 py-16 gap-12 w-full relative z-10">
-                    {/* Desktop Sidebar */}
-                    <aside className="hidden lg:block lg:w-80 flex-shrink-0">
-                        <div className="sticky top-28 space-y-8">
-                            <FacultySidebar facultyId={facultySlug} />
-                            
-                            {/* Sidebar decorative card */}
-                            <div className="rounded-[2.5rem] bg-[#1a2355] p-10 text-white overflow-hidden relative group shadow-2xl shadow-blue-900/20">
-                                <div className="absolute -right-4 -bottom-4 w-40 h-40 bg-white/5 rounded-full blur-3xl group-hover:bg-[#ee7c7e]/20 transition-all duration-700" />
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#ee7c7e] to-transparent opacity-40" />
-                                
-                                <h3 className="text-xl font-black uppercase tracking-tighter mb-4 relative z-10">{currentLang === "az" ? "Yardım?" : "Help?"}</h3>
-                                <p className="text-white/50 text-[11px] mb-8 relative z-10 leading-relaxed font-bold">
-                                    {currentLang === "az" ? "Fakültə ilə bağlı suallarınız üçün bizimlə əlaqə saxlayın." : "Contact us for your questions about the faculty."}
+                        {/* Help card */}
+                        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1a2355] to-[#2a3670] p-6 text-white shadow-sm">
+                            <div className="absolute -right-6 -top-6 h-28 w-28 rounded-full bg-[#ee7c7e]/20 blur-2xl" />
+                            <div className="relative z-10">
+                                <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15">
+                                    <SupportAgentOutlinedIcon sx={{ fontSize: 22 }} />
+                                </span>
+                                <h3 className="text-lg font-bold">
+                                    {currentLang === "az" ? "Köməyə ehtiyacınız var?" : "Need help?"}
+                                </h3>
+                                <p className="mt-2 text-[13px] leading-relaxed text-white/60">
+                                    {currentLang === "az"
+                                        ? "Fakültə ilə bağlı suallarınız üçün bizimlə əlaqə saxlayın."
+                                        : "Reach out to us for any questions about the faculty."}
                                 </p>
-                                <Link 
-                                    href={`/${currentLang}/${currentLang === "az" ? "akademik/fakulteler" : "academic/faculties"}/${facultySlug}/${currentLang === "az" ? "haqqimizda/elaqe" : "about/contact"}`}
-                                    className="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] bg-[#ee7c7e] text-white hover:bg-white hover:text-[#1a2355] px-8 py-4 rounded-2xl transition-all duration-500 relative z-10 shadow-xl shadow-black/20 active:scale-95"
+                                <Link
+                                    href={contactPath}
+                                    className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#ee7c7e] px-5 py-3 text-[13px] font-bold text-white transition hover:bg-white hover:text-[#1a2355] active:scale-95"
                                 >
                                     {currentLang === "az" ? "Əlaqə" : "Contact"}
                                     <ChevronRightIcon sx={{ fontSize: 16 }} />
                                 </Link>
                             </div>
                         </div>
-                    </aside>
+                    </div>
+                </aside>
 
-                    {/* Content */}
-                    <main className="flex-1 min-w-0">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                        >
-                            {children}
-                        </motion.div>
-                    </main>
-                </div>
+                {/* Main content */}
+                <main className="min-w-0 flex-1">
+                    <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        {children}
+                    </motion.div>
+                </main>
             </div>
         </div>
     );

@@ -5,8 +5,14 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import AccountTreeOutlinedIcon from "@mui/icons-material/AccountTreeOutlined";
+import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
+import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
+import NorthEastIcon from "@mui/icons-material/NorthEast";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
+import { getMajorsUrl } from "@/util/majorsLink";
 
 interface NavSubItem {
   label: string;
@@ -16,22 +22,21 @@ interface NavSubItem {
 interface NavItem {
   label: string;
   href: string;
+  icon: React.ElementType;
   subItems?: NavSubItem[];
+  external?: boolean;
 }
 
 function buildNavItems(facultyId: string, lang: string): NavItem[] {
   const academicPrefix = lang === "az" ? "akademik" : "academic";
   const facultyPrefix = lang === "az" ? "fakulteler" : "faculties";
   const base = `/${lang}/${academicPrefix}/${facultyPrefix}/${facultyId}`;
-  
-  // Folders are haqqimizda, kafedralar, ixtisaslar, beynelxalq-elaqeler
-  // For EN we use about, departments, specializations, international-relations
+
   const aboutSlug = lang === "az" ? "haqqimizda" : "about";
   const kafedraSlug = lang === "az" ? "kafedralar" : "departments";
   const ixtisasSlug = lang === "az" ? "ixtisaslar" : "specializations";
   const internationalSlug = lang === "az" ? "beynelxalq-elaqeler" : "international-relations";
 
-  // Sub-sub slugs for About section
   const deanSlug = lang === "az" ? "dekan" : "dean";
   const deputySlug = lang === "az" ? "dekan-muavinleri" : "deputy-deans";
   const councilSlug = lang === "az" ? "elmi-sura" : "scientific-council";
@@ -39,10 +44,14 @@ function buildNavItems(facultyId: string, lang: string): NavItem[] {
   const staffSlug = lang === "az" ? "emekdaslar" : "staff";
   const contactSlug = lang === "az" ? "elaqe" : "contact";
 
+  // İxtisaslar links out to the external majors portal (opens in a new tab).
+  const majorsUrl = getMajorsUrl(facultyId, lang);
+
   return [
     {
       label: lang === "az" ? "Haqqımızda" : "About Us",
       href: `${base}/${aboutSlug}`,
+      icon: InfoOutlinedIcon,
       subItems: [
         { label: lang === "az" ? "Dekan" : "Dean", href: `${base}/${aboutSlug}/${deanSlug}` },
         { label: lang === "az" ? "Dekan müavinləri" : "Deputy Deans", href: `${base}/${aboutSlug}/${deputySlug}` },
@@ -52,9 +61,14 @@ function buildNavItems(facultyId: string, lang: string): NavItem[] {
         { label: lang === "az" ? "Əlaqə" : "Contact", href: `${base}/${aboutSlug}/${contactSlug}` },
       ],
     },
-    { label: lang === "az" ? "Kafedralar" : "Departments", href: `${base}/${kafedraSlug}` },
-    { label: lang === "az" ? "İxtisaslar" : "Specializations", href: `${base}/${ixtisasSlug}` },
-    { label: lang === "az" ? "Beynəlxalq əlaqələr" : "International Relations", href: `${base}/${internationalSlug}` },
+    { label: lang === "az" ? "Kafedralar" : "Departments", href: `${base}/${kafedraSlug}`, icon: AccountTreeOutlinedIcon },
+    {
+      label: lang === "az" ? "İxtisaslar" : "Specializations",
+      href: majorsUrl ?? `${base}/${ixtisasSlug}`,
+      icon: SchoolOutlinedIcon,
+      external: !!majorsUrl,
+    },
+    { label: lang === "az" ? "Beynəlxalq əlaqələr" : "International Relations", href: `${base}/${internationalSlug}`, icon: PublicOutlinedIcon },
   ];
 }
 
@@ -70,9 +84,7 @@ export default function FacultySidebar({ facultyId }: Props) {
   const [expanded, setExpanded] = useState<string[]>([]);
 
   useEffect(() => {
-    // Always keep "Haqqımızda" (or "About Us") expanded
     const aboutLabel = lang === "az" ? "Haqqımızda" : "About Us";
-    
     const active = navItems
       .filter(
         (item) =>
@@ -80,108 +92,152 @@ export default function FacultySidebar({ facultyId }: Props) {
           (pathname === item.href || pathname.startsWith(item.href + "/") || item.label === aboutLabel)
       )
       .map((item) => item.label);
-    
     setExpanded(active);
   }, [pathname, lang]);
 
   const toggle = (label: string) => {
-    // Prevent collapsing if it's the "Haqqımızda" section and we want it always open, 
-    // or just let it toggle but it will be reset by useEffect if we want it strictly always open.
-    // For now, let's allow toggling but the useEffect ensures it's open on load.
     setExpanded((prev) =>
       prev.includes(label) ? prev.filter((s) => s !== label) : [...prev, label]
     );
   };
 
-  const isParentActive = (item: NavItem) => {
-    // Remove lang prefix for comparison if necessary, but pathname already includes it
-    return pathname === item.href || pathname.startsWith(item.href + "/");
-  };
+  const isParentActive = (item: NavItem) =>
+    !item.external && (pathname === item.href || pathname.startsWith(item.href + "/"));
 
   return (
-    <nav className="relative bg-white dark:bg-slate-800 rounded-[2.5rem] shadow-2xl shadow-[#1a2355]/15 dark:shadow-black/40 border-2 border-[#1a2355]/30 dark:border-white/10 overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#1a2355] via-[#ee7c7e] to-[#1a2355]" />
-      <div className="px-8 py-6 border-b-2 border-[#1a2355]/15 dark:border-white/10 bg-[#1a2355]/5 dark:bg-white/5">
-        <p className="text-[11px] font-black uppercase tracking-[0.3em] text-[#1a2355]/60 dark:text-white/60 flex items-center gap-3">
-          <div className="w-1.5 h-1.5 rounded-full bg-[#ee7c7e] animate-pulse" />
-          {lang === "az" ? "Fakültə Portalı" : "Faculty Portal"}
-        </p>
+    <nav className="bg-white dark:bg-slate-900 rounded-3xl border border-gray-200/80 dark:border-white/10 shadow-sm overflow-hidden">
+      {/* Header */}
+      <div className="flex items-center gap-3 px-6 py-5 border-b border-gray-100 dark:border-white/10 bg-gradient-to-r from-[#1a2355] to-[#2a3670]">
+        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/15 text-white">
+          <SchoolOutlinedIcon sx={{ fontSize: 20 }} />
+        </span>
+        <div className="leading-tight">
+          <p className="text-sm font-bold text-white">
+            {lang === "az" ? "Fakültə Portalı" : "Faculty Portal"}
+          </p>
+          <p className="text-[11px] text-white/60 font-medium">
+            {lang === "az" ? "Naviqasiya" : "Navigation"}
+          </p>
+        </div>
       </div>
-      <ul className="p-6 space-y-3">
-        {navItems.map((item) =>
-          item.subItems ? (
-            <li key={item.label}>
-              <div className="space-y-2">
-                <button
-                  onClick={() => toggle(item.label)}
-                  className={`w-full flex items-center justify-between px-6 py-4 rounded-2xl text-[13px] font-black transition-all ${
-                    isParentActive(item)
-                      ? "bg-[#1a2355] text-white shadow-xl shadow-blue-900/20"
-                      : "text-[#1a2355] dark:text-white/80 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-[#ee7c7e] dark:hover:text-[#ee7c7e]"
+
+      <ul className="p-3 space-y-1">
+        {navItems.map((item) => {
+          const Icon = item.icon;
+
+          // ── External link (İxtisaslar → majors portal) ──
+          if (item.external) {
+            return (
+              <li key={item.label}>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold text-slate-700 dark:text-white/80 hover:bg-[#ee7c7e]/10 hover:text-[#ee7c7e] transition-colors"
+                >
+                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100 dark:bg-white/5 text-slate-500 dark:text-white/60 group-hover:bg-[#ee7c7e] group-hover:text-white transition-colors">
+                    <Icon sx={{ fontSize: 18 }} />
+                  </span>
+                  <span className="flex-1">{item.label}</span>
+                  <span className="flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-gray-400 group-hover:text-[#ee7c7e] transition-colors">
+                    <NorthEastIcon sx={{ fontSize: 13 }} />
+                  </span>
+                </a>
+              </li>
+            );
+          }
+
+          // ── Collapsible section (Haqqımızda) ──
+          if (item.subItems) {
+            const open = expanded.includes(item.label);
+            const parentActive = isParentActive(item);
+            return (
+              <li key={item.label}>
+                <div
+                  className={`flex items-center rounded-2xl transition-colors ${
+                    parentActive ? "bg-[#1a2355] text-white" : "text-slate-700 dark:text-white/80 hover:bg-gray-50 dark:hover:bg-white/5"
                   }`}
                 >
-                  <Link
-                    href={item.href}
-                    className="flex-1 text-left uppercase tracking-wider"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    {item.label}
+                  <Link href={item.href} className="flex flex-1 items-center gap-3 px-4 py-3 text-sm font-semibold">
+                    <span
+                      className={`flex h-8 w-8 items-center justify-center rounded-lg transition-colors ${
+                        parentActive ? "bg-white/15 text-white" : "bg-gray-100 dark:bg-white/5 text-slate-500 dark:text-white/60"
+                      }`}
+                    >
+                      <Icon sx={{ fontSize: 18 }} />
+                    </span>
+                    <span>{item.label}</span>
                   </Link>
-                  <span
-                    className={`transition-transform duration-500 ${
-                      expanded.includes(item.label) ? "rotate-180" : ""
+                  <button
+                    onClick={() => toggle(item.label)}
+                    aria-label="Toggle"
+                    className={`px-3 py-3 transition-transform duration-300 ${open ? "rotate-180" : ""} ${
+                      parentActive ? "text-white/80" : "text-gray-400"
                     }`}
                   >
                     <ExpandMoreIcon sx={{ fontSize: 20 }} />
-                  </span>
-                </button>
-                <AnimatePresence>
-                  {expanded.includes(item.label) && (
-                    <motion.ul 
-                      initial={{ opacity: 0, y: -10, height: 0 }}
-                      animate={{ opacity: 1, y: 0, height: "auto" }}
-                      exit={{ opacity: 0, y: -10, height: 0 }}
-                      className="ml-4 space-y-1.5 border-l-2 border-[#1a2355]/30 dark:border-white/10 pl-4 overflow-hidden"
+                  </button>
+                </div>
+
+                <AnimatePresence initial={false}>
+                  {open && (
+                    <motion.ul
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="ml-6 mt-1 space-y-0.5 border-l border-gray-200 dark:border-white/10 pl-3 overflow-hidden"
                     >
-                      {item.subItems.map((sub) => (
-                        <li key={sub.href}>
-                          <Link
-                            href={sub.href}
-                            className={`block px-5 py-3 rounded-xl text-xs font-bold transition-all relative group ${
-                              pathname === sub.href
-                                ? "bg-[#ee7c7e]/10 text-[#ee7c7e]"
-                                : "text-gray-500 dark:text-white/50 hover:text-[#1a2355] dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5"
-                            }`}
-                          >
-                            <div className={`absolute left-0 top-1/2 -translate-y-1/2 w-1 h-0 bg-[#ee7c7e] transition-all duration-300 group-hover:h-1/2 ${pathname === sub.href ? 'h-1/2' : ''}`} />
-                            {sub.label}
-                          </Link>
-                        </li>
-                      ))}
+                      {item.subItems.map((sub) => {
+                        const active = pathname === sub.href;
+                        return (
+                          <li key={sub.href}>
+                            <Link
+                              href={sub.href}
+                              className={`block px-4 py-2.5 rounded-xl text-[13px] font-medium transition-colors ${
+                                active
+                                  ? "bg-[#ee7c7e]/10 text-[#ee7c7e] font-semibold"
+                                  : "text-slate-500 dark:text-white/50 hover:text-[#1a2355] dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5"
+                              }`}
+                            >
+                              {sub.label}
+                            </Link>
+                          </li>
+                        );
+                      })}
                     </motion.ul>
                   )}
                 </AnimatePresence>
-              </div>
-            </li>
-          ) : (
+              </li>
+            );
+          }
+
+          // ── Simple link ──
+          const active = isParentActive(item);
+          return (
             <li key={item.label}>
               <Link
                 href={item.href}
-                className={`flex items-center justify-between px-6 py-4 rounded-2xl text-[13px] font-black transition-all group ${
-                  isParentActive(item)
-                    ? "bg-[#1a2355] text-white shadow-xl shadow-blue-900/20"
-                    : "text-[#1a2355] dark:text-white/80 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-[#ee7c7e] dark:hover:text-[#ee7c7e]"
+                className={`group flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold transition-colors ${
+                  active ? "bg-[#1a2355] text-white" : "text-slate-700 dark:text-white/80 hover:bg-gray-50 dark:hover:bg-white/5"
                 }`}
               >
-                <span className="uppercase tracking-wider">{item.label}</span>
+                <span
+                  className={`flex h-8 w-8 items-center justify-center rounded-lg transition-colors ${
+                    active ? "bg-white/15 text-white" : "bg-gray-100 dark:bg-white/5 text-slate-500 dark:text-white/60 group-hover:text-[#1a2355] dark:group-hover:text-white"
+                  }`}
+                >
+                  <Icon sx={{ fontSize: 18 }} />
+                </span>
+                <span className="flex-1">{item.label}</span>
                 <ChevronRightIcon
-                  sx={{ fontSize: 20 }}
-                  className={`transition-all duration-500 ${isParentActive(item) ? "translate-x-1" : "opacity-20 group-hover:opacity-100 group-hover:translate-x-1"}`}
+                  sx={{ fontSize: 18 }}
+                  className={`transition-all ${active ? "translate-x-0.5 text-white" : "text-gray-300 group-hover:translate-x-0.5 group-hover:text-[#1a2355] dark:group-hover:text-white"}`}
                 />
               </Link>
             </li>
-          )
-        )}
+          );
+        })}
       </ul>
     </nav>
   );
