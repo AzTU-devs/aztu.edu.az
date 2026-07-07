@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { use, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import SectionBlock from "@/components/shared/SectionBlock";
+import { FacultyPanel } from "@/components/faculty/ui";
 import ComingSoon from "@/components/shared/ComingSoon";
+import NewspaperIcon from "@mui/icons-material/Newspaper";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useLanguage } from "@/context/LanguageContext";
@@ -50,79 +51,91 @@ export default function CafedraXeberlerPage({ params }: Props) {
 
   return (
     <div className="space-y-6">
-      <SectionBlock title={currentLang === "az" ? "Kafedra xəbərləri" : "Department News"} accent>
-        <p className="text-sm text-gray-500 dark:text-slate-400 mb-10 leading-relaxed max-w-2xl">
+      <FacultyPanel
+        title={currentLang === "az" ? "Kafedra xəbərləri" : "Department News"}
+        eyebrow={currentLang === "az" ? "Yeniliklər" : "Updates"}
+        icon={NewspaperIcon}
+      >
+        <p className="mb-8 max-w-2xl text-sm leading-relaxed text-slate-600 dark:text-slate-300">
           {currentLang === "az"
             ? "Kafedranın elmi, tədris və sosial fəaliyyəti ilə bağlı ən son yeniliklər və elanlar."
             : "The latest news and announcements regarding the department's scientific, academic, and social activities."}
         </p>
 
         {loading ? (
-          <div className="grid grid-cols-1 gap-8">
+          <div className="grid grid-cols-1 gap-6">
             {Array.from({ length: 2 }).map((_, i) => (
-              <div key={i} className="h-56 rounded-[2.5rem] bg-gray-100 dark:bg-slate-800 animate-pulse" />
+              <div key={i} className="h-56 animate-pulse rounded-2xl bg-slate-100 dark:bg-white/5" />
             ))}
           </div>
         ) : news.length === 0 ? (
           <ComingSoon label={currentLang === "az" ? "Xəbərlər tezliklə əlavə olunacaq" : "News will be added soon"} />
         ) : (
-          <div className="grid grid-cols-1 gap-8">
+          <div className="grid grid-cols-1 gap-6">
             {news.map((item, idx) => (
               <motion.div
                 key={item.news_id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                className="group relative bg-white dark:bg-slate-800 border-2 border-gray-50 dark:border-slate-700 rounded-[2.5rem] overflow-hidden hover:border-[#ee7c7e] hover:shadow-2xl hover:shadow-[#1a2355]/5 transition-all duration-500 flex flex-col md:flex-row"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: Math.min(idx * 0.05, 0.3), duration: 0.4 }}
+                className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-slate-900 dark:hover:border-white/20 md:flex-row"
               >
-                <div className="w-full md:w-64 lg:w-80 h-64 md:h-auto overflow-hidden flex-shrink-0">
-                  {item.cover_image && (
+                {/* Image */}
+                <div className="relative h-52 w-full shrink-0 overflow-hidden bg-slate-100 dark:bg-slate-800 md:h-auto md:w-64 lg:w-72">
+                  {item.cover_image ? (
+                    /* eslint-disable-next-line @next/next/no-img-element */
                     <img
                       src={resolveImageUrl(item.cover_image)}
                       alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
+                  ) : (
+                    <span className="flex h-full w-full items-center justify-center text-slate-300 dark:text-slate-600">
+                      <NewspaperIcon sx={{ fontSize: 44 }} />
+                    </span>
                   )}
                 </div>
 
-                <div className="p-8 flex-1 flex flex-col justify-center">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="px-3 py-1 rounded-full bg-[#ee7c7e]/10 text-[#ee7c7e] text-[9px] font-black uppercase tracking-widest">
+                {/* Content */}
+                <div className="flex flex-1 flex-col p-6 md:p-7">
+                  <div className="mb-3 flex items-center gap-3">
+                    <span className="inline-flex items-center rounded-full border border-[#ee7c7e]/30 bg-[#ee7c7e]/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#e05b5d] dark:text-[#fb7185]">
                       {currentLang === "az" ? "Xəbər" : "News"}
-                    </div>
+                    </span>
                     {item.created_at && (
-                      <div className="flex items-center gap-1.5 text-gray-400 text-[10px] font-bold uppercase tracking-wider">
+                      <span className="flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400">
                         <CalendarTodayIcon sx={{ fontSize: 14 }} />
                         {new Date(item.created_at).toLocaleDateString(currentLang === "az" ? "az-AZ" : "en-US", {
                           year: "numeric",
                           month: "long",
                           day: "numeric",
                         })}
-                      </div>
+                      </span>
                     )}
                   </div>
 
-                  <h3 className="text-xl lg:text-2xl font-black text-[#1a2355] dark:text-white mb-4 group-hover:text-[#ee7c7e] transition-colors duration-300 leading-tight">
+                  <h3 className="mb-3 text-lg font-bold leading-snug tracking-tight text-slate-900 transition-colors group-hover:text-[#ee7c7e] dark:text-white md:text-xl">
                     {item.title}
                   </h3>
 
-                  <p className="text-gray-500 dark:text-slate-400 text-sm leading-relaxed mb-8 line-clamp-3">
+                  <p className="mb-6 line-clamp-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                     {stripHtml(item.html_content)}
                   </p>
 
                   <Link
                     href={`/${currentLang}/news/${item.news_id}`}
-                    className="mt-auto flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#1a2355] dark:text-blue-400 group-hover:text-[#ee7c7e] transition-colors"
+                    className="mt-auto inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#1a2355] transition-colors group-hover:text-[#ee7c7e] dark:text-white"
                   >
                     {currentLang === "az" ? "Ətraflı oxu" : "Read more"}
-                    <ArrowForwardIcon sx={{ fontSize: 16 }} className="transition-transform group-hover:translate-x-2" />
+                    <ArrowForwardIcon sx={{ fontSize: 16 }} className="transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>
               </motion.div>
             ))}
           </div>
         )}
-      </SectionBlock>
+      </FacultyPanel>
     </div>
   );
 }

@@ -11,7 +11,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import { usePathname } from "next/navigation";
+import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
 
 interface Props {
     children: React.ReactNode;
@@ -21,7 +21,6 @@ interface Props {
 export default function CafedraDetailLayout({ children, params }: Props) {
     const { facultyId, cafedraId } = use(params);
     const { lang: currentLang } = useLanguage();
-    const pathname = usePathname();
     const [cafedra, setCafedra] = useState<CafedraDetail | null>(null);
     const [loading, setLoading] = useState(true);
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -37,184 +36,168 @@ export default function CafedraDetailLayout({ children, params }: Props) {
 
     const t = {
         home: currentLang === "az" ? "Ana səhifə" : "Home",
-        navigation: currentLang === "az" ? "Naviqasiya" : "Navigation",
+        navigation: currentLang === "az" ? "Portal Naviqasiyası" : "Portal Navigation",
         menu: currentLang === "az" ? "Menyu" : "Menu",
-        needHelp: currentLang === "az" ? "Yardım Lazımdır?" : "Need Help?",
-        contactText: currentLang === "az" ? "Kafedra ilə bağlı suallarınız üçün bizimlə əlaqə saxlayın." : "Contact us for your questions about the department.",
-        contactBtn: currentLang === "az" ? "Əlaqəyə keç" : "Contact Us",
-        portal: currentLang === "az" ? "Kafedra Portalı" : "Department Portal"
+        needHelp: currentLang === "az" ? "Köməyə ehtiyacınız var?" : "Need help?",
+        contactText: currentLang === "az" ? "Kafedra ilə bağlı suallarınız üçün bizimlə əlaqə saxlayın." : "Reach out to us for any questions about the department.",
+        contactBtn: currentLang === "az" ? "Əlaqə" : "Contact",
+        portal: currentLang === "az" ? "Kafedra Portalı" : "Department Portal",
     };
 
     const prettifiedFallback = cafedraId
         .replace(/[_-]+/g, " ")
         .replace(/\b\w/g, (c) => c.toLocaleUpperCase(currentLang === "az" ? "az" : "en"));
-
     const displayTitle = cafedra?.title || prettifiedFallback;
 
     const academicPrefix = currentLang === "az" ? "akademik" : "academic";
     const facultyPrefix = currentLang === "az" ? "fakulteler" : "faculties";
     const facultiesPath = `/${currentLang}/${academicPrefix}/${facultyPrefix}`;
     const facultyPath = `${facultiesPath}/${facultyId}/haqqimizda`;
+    const contactPath = `/${currentLang}/${academicPrefix}/${facultyPrefix}/${facultyId}/${currentLang === "az" ? "kafedralar" : "departments"}/${cafedraId}/${currentLang === "az" ? "haqqimizda/elaqe" : "about/contact"}`;
 
     return (
-        <div className="min-h-screen transition-colors overflow-hidden">
-            {/* Stunning Banner */}
-            <div className="relative overflow-hidden bg-[#0b1330] pt-40 pb-20 px-4 md:px-10 lg:px-12 w-full min-h-[500px] flex flex-col justify-end">
-                {/* Background Texture/Pattern */}
-                <div className="absolute inset-0 opacity-[0.05] pointer-events-none z-10" 
-                     style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-
-                {/* Background Image of AzTU */}
-                <div 
-                    className="absolute inset-0 z-0 opacity-20 grayscale hover:grayscale-0 transition-all duration-1000"
-                    style={{
-                        backgroundImage: 'url("/aztu.png")',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                    }}
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">
+            {/* ── Hero banner ── */}
+            <div className="relative overflow-hidden bg-[#0b1330] pt-32 pb-14 px-4 md:px-8 lg:px-12">
+                {/* Campus image background */}
+                <div
+                    className="absolute inset-0 z-0 bg-cover bg-center opacity-25"
+                    style={{ backgroundImage: 'url("/aztu.png")' }}
                 />
-                
-                {/* Multi-layer Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1330] via-[#0b1330]/60 to-transparent z-0" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0b1330]/80 via-transparent to-transparent z-0" />
+                <div className="absolute inset-0 z-0 bg-[#0b1330]/70" />
+                <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#0b1330] via-[#0b1330]/40 to-transparent" />
 
-                <div className="absolute inset-0 overflow-hidden opacity-20 z-10 pointer-events-none">
-                    <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/10 blur-[150px] rounded-full translate-x-1/2 -translate-y-1/2" />
-                    <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#ee7c7e]/10 blur-[120px] rounded-full -translate-x-1/4 translate-y-1/4" />
-                </div>
-                
-                <div className="relative z-20 w-full">
-                    <motion.nav 
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        className="flex items-center gap-2 text-white/40 text-[10px] font-black uppercase tracking-[0.4em] mb-10 flex-wrap"
+                <div className="relative z-10 mx-auto w-full max-w-[1600px]">
+                    {/* Breadcrumb */}
+                    <motion.nav
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mb-6 flex flex-wrap items-center gap-2 text-[13px] font-medium text-white/60"
                     >
-                        <Link href="/" className="hover:text-[#ee7c7e] transition-colors flex items-center gap-1 group">
-                            <HomeIcon sx={{ fontSize: 14 }} className="group-hover:scale-110 transition-transform" />
+                        <Link href="/" className="flex items-center gap-1.5 transition-colors hover:text-white">
+                            <HomeIcon sx={{ fontSize: 16 }} />
                             {t.home}
                         </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={facultiesPath} className="hover:text-white transition-colors">
+                        <ChevronRightIcon sx={{ fontSize: 14 }} className="text-white/30" />
+                        <Link href={facultiesPath} className="transition-colors hover:text-white">
                             {currentLang === "az" ? "Fakültələr" : "Faculties"}
                         </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={facultyPath} className="hover:text-white transition-colors">
-                            {facultyId.toUpperCase()}
+                        <ChevronRightIcon sx={{ fontSize: 14 }} className="text-white/30" />
+                        <Link href={facultyPath} className="uppercase transition-colors hover:text-white">
+                            {facultyId.replace(/[_-]+/g, " ").slice(0, 24)}
                         </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <span className="text-[#ee7c7e] font-black truncate max-w-[250px]">
-                            {loading ? "..." : displayTitle}
+                        <ChevronRightIcon sx={{ fontSize: 14 }} className="text-white/30" />
+                        <span className="max-w-[160px] truncate font-semibold text-[#ee7c7e] md:max-w-none">
+                            {loading ? "…" : displayTitle}
                         </span>
                     </motion.nav>
 
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+                        transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
                     >
-                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 leading-[1] max-w-4xl tracking-tighter">
-                            {loading ? "..." : displayTitle}
-                        </h1>
-                        
-                        <div className="flex flex-wrap items-center gap-4">
-                            {cafedra?.cafedra_code && (
-                                <div className="inline-flex items-center px-5 py-2 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white font-black text-xs tracking-[0.2em]">
-                                    {cafedra.cafedra_code}
-                                </div>
-                            )}
-                            <div className="h-px w-12 bg-[#ee7c7e]" />
-                            <span className="text-white/60 text-xs font-black uppercase tracking-[0.3em]">
-                                {t.portal}
+                        {cafedra?.cafedra_code && (
+                            <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-[#ee7c7e] px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-white shadow-lg shadow-[#ee7c7e]/25">
+                                <span className="h-1.5 w-1.5 rounded-full bg-white" />
+                                {cafedra.cafedra_code}
                             </span>
-                        </div>
+                        )}
+                        <h1 className="max-w-4xl text-3xl font-extrabold leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
+                            {loading ? "…" : displayTitle}
+                        </h1>
+                        <p className="mt-4 text-sm font-medium uppercase tracking-[0.3em] text-white/50">
+                            {t.portal}
+                        </p>
                     </motion.div>
                 </div>
-                
-                {/* Bottom Accent Line */}
-                <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#ee7c7e]/30 to-transparent z-20" />
+
+                {/* thin accent line */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#1a2355] via-[#ee7c7e] to-[#1a2355]" />
             </div>
 
-            {/* Mobile sidebar toggle */}
-            <div className="lg:hidden sticky top-0 z-30 px-4 md:px-10 py-4 border-b border-gray-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md flex items-center justify-between shadow-sm">
-                <span className="text-xs font-black text-[#1a2355] dark:text-white uppercase tracking-widest">
-                    {t.navigation}
-                </span>
+            {/* ── Mobile sidebar toggle ── */}
+            <div className="sticky top-0 z-30 flex items-center justify-between border-b border-gray-200 bg-white/90 px-5 py-3.5 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/90 lg:hidden">
+                <span className="text-sm font-bold text-[#1a2355] dark:text-white">{t.navigation}</span>
                 <button
                     onClick={() => setSidebarOpen((o) => !o)}
-                    className="w-10 h-10 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-slate-700 text-[#1a2355] dark:text-white transition-all active:scale-95"
+                    className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1a2355] text-white transition active:scale-95"
+                    aria-label="Toggle sidebar"
                 >
-                    {sidebarOpen ? <CloseIcon /> : <MenuIcon />}
+                    {sidebarOpen ? <CloseIcon sx={{ fontSize: 20 }} /> : <MenuIcon sx={{ fontSize: 20 }} />}
                 </button>
             </div>
 
+            {/* ── Mobile drawer ── */}
             <AnimatePresence>
                 {sidebarOpen && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="lg:hidden fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+                        className="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-sm lg:hidden"
                         onClick={() => setSidebarOpen(false)}
                     >
                         <motion.div
                             initial={{ x: "-100%" }}
                             animate={{ x: 0 }}
                             exit={{ x: "-100%" }}
-                            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                            className="absolute left-0 top-0 bottom-0 w-[300px] bg-white dark:bg-slate-800 overflow-y-auto shadow-2xl"
+                            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+                            className="absolute bottom-0 left-0 top-0 w-[min(320px,85vw)] overflow-y-auto bg-slate-50 p-5 dark:bg-slate-950"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <div className="p-8">
-                                <div className="mb-10 flex items-center justify-between">
-                                    <span className="text-xl font-black text-[#1a2355] dark:text-white uppercase tracking-tighter">{t.menu}</span>
-                                    <button onClick={() => setSidebarOpen(false)} className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors">
-                                        <CloseIcon />
-                                    </button>
-                                </div>
-                                <CafedraSidebar facultyId={facultyId} cafedraId={cafedraId} />
+                            <div className="mb-4 flex items-center justify-between">
+                                <span className="text-lg font-bold text-[#1a2355] dark:text-white">{t.menu}</span>
+                                <button
+                                    onClick={() => setSidebarOpen(false)}
+                                    className="flex h-9 w-9 items-center justify-center rounded-xl bg-gray-100 text-gray-500 transition hover:text-gray-800 dark:bg-white/10 dark:text-white/60"
+                                >
+                                    <CloseIcon sx={{ fontSize: 20 }} />
+                                </button>
                             </div>
+                            <CafedraSidebar facultyId={facultyId} cafedraId={cafedraId} />
                         </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
 
-            {/* Content Area with Pattern */}
-            <div className="relative">
-                <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]" 
-                     style={{ backgroundImage: 'radial-gradient(#1a2355 1.5px, transparent 1.5px)', backgroundSize: '40px 40px' }} />
+            {/* ── Content area ── */}
+            <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-8 px-4 py-12 md:px-8 lg:flex-row lg:px-12">
+                <aside className="hidden flex-shrink-0 lg:block lg:w-72 xl:w-80">
+                    <div className="sticky top-24 space-y-5">
+                        <CafedraSidebar facultyId={facultyId} cafedraId={cafedraId} />
 
-                <div className="flex flex-col lg:flex-row px-4 md:px-10 lg:px-20 py-16 gap-16 w-full max-w-[1600px] mx-auto relative z-10">
-                    <aside className="hidden lg:block lg:w-80 flex-shrink-0">
-                        <div className="sticky top-28 space-y-8">
-                            <CafedraSidebar facultyId={facultyId} cafedraId={cafedraId} />
-                            <div className="rounded-[2.5rem] bg-[#1a2355] p-10 text-white overflow-hidden relative group shadow-2xl">
-                                <div className="absolute -right-4 -bottom-4 w-32 h-32 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-all duration-500" />
-                                <h3 className="text-xl font-black uppercase tracking-tighter mb-4 relative z-10">{t.needHelp}</h3>
-                                <p className="text-white/60 text-sm mb-8 relative z-10 leading-relaxed font-medium">
-                                    {t.contactText}
-                                </p>
-                                <Link 
-                                    href={`mailto:info@aztu.edu.az`}
-                                    className="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] bg-[#ee7c7e] hover:bg-[#f09395] px-8 py-4 rounded-2xl transition-all relative z-10 shadow-xl shadow-black/20 active:scale-95"
+                        {/* Help card */}
+                        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1a2355] to-[#2a3670] p-6 text-white shadow-sm">
+                            <div className="absolute -right-6 -top-6 h-28 w-28 rounded-full bg-[#ee7c7e]/20 blur-2xl" />
+                            <div className="relative z-10">
+                                <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15">
+                                    <SupportAgentOutlinedIcon sx={{ fontSize: 22 }} />
+                                </span>
+                                <h3 className="text-lg font-bold">{t.needHelp}</h3>
+                                <p className="mt-2 text-[13px] leading-relaxed text-white/60">{t.contactText}</p>
+                                <Link
+                                    href={contactPath}
+                                    className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#ee7c7e] px-5 py-3 text-[13px] font-bold text-white transition hover:bg-white hover:text-[#1a2355] active:scale-95"
                                 >
                                     {t.contactBtn}
                                     <ChevronRightIcon sx={{ fontSize: 16 }} />
                                 </Link>
                             </div>
                         </div>
-                    </aside>
+                    </div>
+                </aside>
 
-                    <main className="flex-1 min-w-0">
-                        <motion.div
-                            key={currentLang + cafedraId}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                        >
-                            {children}
-                        </motion.div>
-                    </main>
-                </div>
+                <main className="min-w-0 flex-1">
+                    <motion.div
+                        key={currentLang + cafedraId}
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        {children}
+                    </motion.div>
+                </main>
             </div>
         </div>
     );

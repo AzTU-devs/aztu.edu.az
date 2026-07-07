@@ -49,3 +49,69 @@ export function getMajorsUrl(
     const safeLang = lang === "en" ? "en" : "az";
     return `${MAJORS_BASE}/${safeLang}/faculties/${encodeURIComponent(code)}`;
 }
+
+/**
+ * The main site and the majors portal are DIFFERENT backends with DIFFERENT codes,
+ * so a cafedra's majors URL cannot be derived from its main `cafedra_code` — it must
+ * be mapped explicitly. This table maps each main-site `cafedra_code` (the value used
+ * as the `[cafedraId]` route param) to the majors portal's `{ faculty, cafedra }` codes.
+ *
+ * Verified 2026-07 against both live APIs (api.aztu.edu.az & api-majors.aztu.edu.az).
+ * A cafedra's specializations then live at:
+ *   https://majors.aztu.edu.az/<lang>/faculties/<faculty>/<cafedra>
+ */
+const CAFEDRA_MAJORS_MAP: Record<string, { faculty: string; cafedra: string }> = {
+    // İnformasiya texnologiyaları və telekommunikasiya → ITT
+    computer_technologies: { faculty: "ITT", cafedra: "comp_tech" },
+    radio_engineering_telecommunications: { faculty: "ITT", cafedra: "RT" },
+    cybersecurity: { faculty: "ITT", cafedra: "KB" },
+    engineering_mathematics_artificial_intelligence: { faculty: "ITT", cafedra: "MRSİ" },
+    // Nəqliyyat və logistika → NL
+    transport_logistics_traffic_safety: { faculty: "NL", cafedra: "NLHT" },
+    transport_technics_and_management_technologies: { faculty: "NL", cafedra: "NTİT" },
+    // Energetika → ENERGETIKA
+    "electrical-engineering": { faculty: "ENERGETIKA", cafedra: "EEA" },
+    "energy-efficiency": { faculty: "ENERGETIKA", cafedra: "EEYET" },
+    "engineering-physics": { faculty: "ENERGETIKA", cafedra: "MFE" },
+    // Maşınqayırma və metallurgiya → MM
+    KIMYA_EKO: { faculty: "MM", cafedra: "KTTEE" },
+    machine_engineering_technology: { faculty: "MM", cafedra: "MT" },
+    metallurgy_materials_technology: { faculty: "MM", cafedra: "MMT" },
+    machine_design_mechatronics_industrial_technologies: { faculty: "MM", cafedra: "MDMST" },
+    mechanics: { faculty: "MM", cafedra: "MEXANIKA" },
+    // Xüsusi texnika və texnologiya → XTT
+    special_technologies_and_equipment: { faculty: "XTT", cafedra: "XTA" },
+    defense_systems_and_technological_integration: { faculty: "XTT", cafedra: "MSTİ" },
+    // Sənaye iqtisadiyyatı və menecment → SİM
+    industrial_engineering_and_sustainable_economy: { faculty: "SİM", cafedra: "SMDİ" },
+    foreign_languages: { faculty: "SİM", cafedra: "XD" },
+    humanities: { faculty: "SİM", cafedra: "HF" },
+    business_management: { faculty: "SİM", cafedra: "Bİ" },
+    "650955": { faculty: "SİM", cafedra: "RİMT" },
+};
+
+// Case-insensitive index so lookups survive casing differences in the route param.
+const CAFEDRA_MAJORS_LC: Record<string, { faculty: string; cafedra: string }> = Object.fromEntries(
+    Object.entries(CAFEDRA_MAJORS_MAP).map(([k, v]) => [k.toLowerCase(), v])
+);
+
+/**
+ * External URL for a specific cafedra's specializations on the majors portal.
+ * Falls back to the faculty-level majors page (department list) when the cafedra
+ * isn't mapped, so the button still lands somewhere useful. Returns null only when
+ * neither the cafedra nor the faculty can be resolved.
+ */
+export function getMajorsCafedraUrl(
+    cafedraCode: string | null | undefined,
+    facultyIdentifier: string | null | undefined,
+    lang: string = "az"
+): string | null {
+    const safeLang = lang === "en" ? "en" : "az";
+    const key = cafedraCode?.trim();
+    const entry = key ? (CAFEDRA_MAJORS_MAP[key] ?? CAFEDRA_MAJORS_LC[key.toLowerCase()]) : undefined;
+    if (entry) {
+        return `${MAJORS_BASE}/${safeLang}/faculties/${encodeURIComponent(entry.faculty)}/${encodeURIComponent(entry.cafedra)}`;
+    }
+    // Unknown cafedra → faculty-level department list on the majors portal.
+    return getMajorsUrl(facultyIdentifier, safeLang);
+}
