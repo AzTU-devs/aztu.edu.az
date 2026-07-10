@@ -13,6 +13,11 @@ interface SanitizedHtmlProps {
  */
 export default function SanitizedHtml({ html, className = "" }: SanitizedHtmlProps) {
   const sanitized = html ? sanitizeHtml(decodeHtmlEntities(html)) : "";
+  // Wrap tables so wide/many-column tables scroll horizontally inside the
+  // article column instead of overflowing the page.
+  const withScrollableTables = sanitized
+    .replace(/<table\b/gi, '<div class="sanitized-table-scroll"><table')
+    .replace(/<\/table>/gi, "</table></div>");
 
   const defaultProseClasses = "prose prose-slate dark:prose-invert max-w-none";
   const combinedClassName = className.includes("prose")
@@ -22,12 +27,20 @@ export default function SanitizedHtml({ html, className = "" }: SanitizedHtmlPro
   return (
     <>
       <style>{`
-        .sanitized-attachment-link a[download] {
+        /* Links and download attachments render in blue so they read as links,
+           not plain text. */
+        .sanitized-attachment-link a {
           color: #2563eb;
           text-decoration: underline;
         }
-        .sanitized-attachment-link a[download]:hover {
+        .sanitized-attachment-link a:hover {
           color: #1d4ed8;
+        }
+        .dark .sanitized-attachment-link a {
+          color: #60a5fa;
+        }
+        .dark .sanitized-attachment-link a:hover {
+          color: #93c5fd;
         }
         /* Match the admin editor's line spacing: tighten the oversized
            Tailwind "prose" paragraph margins so CMS text isn't spread out. */
@@ -83,10 +96,18 @@ export default function SanitizedHtml({ html, className = "" }: SanitizedHtmlPro
         /* Render tables as a full grid, the same way the admin editor shows
            them (Tailwind "prose" only draws faint row borders, so pasted
            tables didn't look like tables). */
+        /* Let wide tables scroll horizontally within the article instead of
+           pushing the page out. */
+        .sanitized-attachment-link .sanitized-table-scroll {
+          max-width: 100%;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          margin: 1rem 0;
+        }
         .sanitized-attachment-link table {
           width: 100%;
           border-collapse: collapse;
-          margin: 1rem 0;
+          margin: 0;
           display: table;
         }
         .sanitized-attachment-link th,
@@ -110,7 +131,7 @@ export default function SanitizedHtml({ html, className = "" }: SanitizedHtmlPro
       `}</style>
       <div
         className={`${combinedClassName} sanitized-attachment-link`}
-        dangerouslySetInnerHTML={{ __html: sanitized || " " }}
+        dangerouslySetInnerHTML={{ __html: withScrollableTables || " " }}
       />
     </>
   );
