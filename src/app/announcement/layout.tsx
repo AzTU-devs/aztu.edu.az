@@ -12,6 +12,7 @@ export const metadata: Metadata = buildMetadata({
     descriptionEn:
         "Official announcements from Azerbaijan Technical University — admissions, competitions, academic schedules, administrative notices and vacancies.",
     pathAz: "/announcement",
+    localeUrls: { az: "/az/announcement", en: "/en/announcement" },
     keywords: [
         "AzTU elanlar",
         "AzTU announcements",
@@ -34,14 +35,14 @@ export default async function AnnouncementsLayout({ children }: { children: Reac
         itemListElement: items.map((a, i) => ({
             "@type": "ListItem",
             position: i + 1,
-            url: `${SITE_URL}/announcement/${announcementSlug((a.announcement_id ?? a.id) as number, a.title)}`,
+            url: `${SITE_URL}/az/announcement/${announcementSlug((a.announcement_id ?? a.id) as number, a.title)}`,
             name: a.title,
         })),
     };
 
     const breadcrumb = breadcrumbJsonLd([
-        { name: "Ana səhifə", path: "/" },
-        { name: "Elanlar", path: "/announcement" },
+        { name: "Ana səhifə", path: "/az" },
+        { name: "Elanlar", path: "/az/announcement" },
     ]);
 
     return (

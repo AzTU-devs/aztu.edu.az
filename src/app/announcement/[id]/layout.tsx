@@ -54,6 +54,7 @@ export async function generateMetadata({
         descriptionAz: descAz,
         descriptionEn: descEn,
         pathAz: `/announcement/${slug}`,
+        localeUrls: { az: `/az/announcement/${slug}`, en: `/en/announcement/${slug}` },
         image: absUrl(detail.image),
         type: "article",
         section: "Announcements",
@@ -96,13 +97,13 @@ export default async function AnnouncementDetailLayout({
         ? {
               "@context": "https://schema.org",
               "@type": "Article",
-              "@id": `${SITE_URL}/announcement/${slug}#announcement`,
+              "@id": `${SITE_URL}/az/announcement/${slug}#announcement`,
               headline: detail.title,
               description: stripHtml(detail.html_content),
               ...(detail.image ? { image: [absUrl(detail.image)] } : { image: [absUrl(null)] }),
               datePublished,
               dateModified,
-              mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/announcement/${slug}` },
+              mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/az/announcement/${slug}` },
               inLanguage: "az-AZ",
               isAccessibleForFree: true,
               author: {
@@ -115,9 +116,9 @@ export default async function AnnouncementDetailLayout({
         : null;
 
     const breadcrumb = breadcrumbJsonLd([
-        { name: "Ana səhifə", path: "/" },
-        { name: "Elanlar", path: "/announcement" },
-        { name: detail?.title ?? "Elan", path: `/announcement/${slug}` },
+        { name: "Ana səhifə", path: "/az" },
+        { name: "Elanlar", path: "/az/announcement" },
+        { name: detail?.title ?? "Elan", path: `/az/announcement/${slug}` },
     ]);
 
     return (

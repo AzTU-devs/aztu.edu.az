@@ -12,6 +12,7 @@ export const metadata: Metadata = buildMetadata({
     descriptionEn:
         "Latest news from Azerbaijan Technical University — academic events, international cooperation, scientific achievements and university life updates.",
     pathAz: "/news",
+    localeUrls: { az: "/az/news", en: "/en/news" },
     keywords: [
         "AzTU xəbərlər",
         "AzTU news",
@@ -36,14 +37,14 @@ export default async function NewsLayout({ children }: { children: React.ReactNo
         itemListElement: items.map((n, i) => ({
             "@type": "ListItem",
             position: i + 1,
-            url: `${SITE_URL}/news/${newsSlug(n.news_id, n.title)}`,
+            url: `${SITE_URL}/az/news/${newsSlug(n.news_id, n.title)}`,
             name: n.title,
         })),
     };
 
     const breadcrumb = breadcrumbJsonLd([
-        { name: "Ana səhifə", path: "/" },
-        { name: "Xəbərlər", path: "/news" },
+        { name: "Ana səhifə", path: "/az" },
+        { name: "Xəbərlər", path: "/az/news" },
     ]);
 
     return (

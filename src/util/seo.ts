@@ -16,6 +16,14 @@ export interface SeoInput {
     pathAz: string;
     /** Optional alternate path. Currently unused (the site does not have separate localized URLs). Reserved for future `[lang]` migration. */
     pathEn?: string;
+    /**
+     * Real, locale-prefixed URLs that actually return 200 (e.g. `/az/news/…`,
+     * `/en/news/…`). The site is served under `/az` and `/en` prefixes (the
+     * middleware 307-redirects prefix-less paths), so when these are provided the
+     * canonical, hreflang and og:url point at the non-redirecting `/az` URL with a
+     * proper `/en` alternate — instead of a prefix-less URL that redirects.
+     */
+    localeUrls?: { az: string; en: string };
     keywords?: string[];
     image?: string;
     type?: "website" | "article" | "profile";
@@ -56,10 +64,28 @@ export function buildMetadata(input: SeoInput): Metadata {
         authors,
         section,
         noindex,
+        localeUrls,
     } = input;
 
     const path = pathAz.startsWith("/") ? pathAz : `/${pathAz}`;
-    const canonical = path === "/" ? "/" : path;
+    const prefixless = path === "/" ? "/" : path;
+    const withSlash = (p: string) => (p.startsWith("/") ? p : `/${p}`);
+
+    // When real /az + /en URLs are supplied, canonical/hreflang/og:url use the
+    // non-redirecting /az URL with a proper /en alternate. Otherwise fall back to
+    // the prefix-less path (legacy behaviour).
+    const canonical = localeUrls ? withSlash(localeUrls.az) : prefixless;
+    const languages = localeUrls
+        ? {
+              "az-AZ": withSlash(localeUrls.az),
+              "en-US": withSlash(localeUrls.en),
+              "x-default": withSlash(localeUrls.az),
+          }
+        : {
+              "az-AZ": prefixless,
+              "en-US": prefixless,
+              "x-default": prefixless,
+          };
     const ogImage = absUrl(image);
 
     return {
@@ -68,11 +94,7 @@ export function buildMetadata(input: SeoInput): Metadata {
         keywords,
         alternates: {
             canonical,
-            languages: {
-                "az-AZ": canonical,
-                "en-US": canonical,
-                "x-default": canonical,
-            },
+            languages,
         },
         openGraph: {
             type: type === "profile" ? "profile" : type,

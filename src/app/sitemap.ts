@@ -127,11 +127,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (const n of newsRes?.news ?? []) {
         if (!n?.news_id || !n?.title) continue;
         const slug = newsSlug(n.news_id, n.title);
+        // Use the real, non-redirecting /az URL (the site is served under /az + /en
+        // prefixes) and declare the /en alternate so Google indexes the actual page
+        // instead of a URL that 307-redirects.
         entries.push({
-            url: `${SITE_URL}/news/${slug}`,
+            url: `${SITE_URL}/az/news/${slug}`,
             lastModified: n.created_at ? new Date(n.created_at) : now,
             changeFrequency: "weekly",
             priority: 0.8,
+            alternates: { languages: { az: `${SITE_URL}/az/news/${slug}`, en: `${SITE_URL}/en/news/${slug}` } },
         });
     }
 
@@ -142,8 +146,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (const a of annRes?.announcements ?? []) {
         const id = a.announcement_id ?? a.id;
         if (!id) continue;
+        const slug = announcementSlug(id, a.title ?? "");
         entries.push({
-            url: `${SITE_URL}/announcement/${announcementSlug(id, a.title ?? "")}`,
+            url: `${SITE_URL}/az/announcement/${slug}`,
             lastModified: a.published_date
                 ? new Date(a.published_date)
                 : a.created_at
@@ -151,6 +156,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                 : now,
             changeFrequency: "weekly",
             priority: 0.7,
+            alternates: { languages: { az: `${SITE_URL}/az/announcement/${slug}`, en: `${SITE_URL}/en/announcement/${slug}` } },
         });
     }
 

@@ -359,7 +359,7 @@ export default async function NewsDetailPage({
                         itemListElement: related.map((r, i) => ({
                             "@type": "ListItem",
                             position: i + 1,
-                            url: `${SITE_URL}/news/${newsSlug(r.news_id, r.title)}`,
+                            url: `${SITE_URL}/az/news/${newsSlug(r.news_id, r.title)}`,
                             name: r.title,
                         })),
                     }),

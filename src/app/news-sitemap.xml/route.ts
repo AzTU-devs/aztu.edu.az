@@ -27,7 +27,8 @@ export async function GET() {
     });
 
     const urls = recent.map((n) => {
-        const loc = `${SITE_URL}/news/${newsSlug(n.news_id, n.title)}`;
+        // Real, non-redirecting /az URL (site is served under the /az prefix).
+        const loc = `${SITE_URL}/az/news/${newsSlug(n.news_id, n.title)}`;
         const date = new Date(n.created_at).toISOString();
         return `  <url>
     <loc>${loc}</loc>

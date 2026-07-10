@@ -55,6 +55,7 @@ export async function generateMetadata({
         descriptionAz: descAz,
         descriptionEn: descEn,
         pathAz: `/news/${slug}`,
+        localeUrls: { az: `/az/news/${slug}`, en: `/en/news/${slug}` },
         image: absUrl(detail.cover_image),
         type: "article",
         section: detail.category_id,
@@ -94,7 +95,7 @@ export default async function NewsDetailLayout({
         ? {
               "@context": "https://schema.org",
               "@type": "NewsArticle",
-              "@id": `${SITE_URL}/news/${slug}#article`,
+              "@id": `${SITE_URL}/az/news/${slug}#article`,
               headline: detail.az_title,
               alternativeHeadline: detail.en_title,
               description: stripHtml(detail.az_html_content),
@@ -102,7 +103,7 @@ export default async function NewsDetailLayout({
                   absUrl(detail.cover_image),
                   ...(detail.gallery_images?.map((g) => absUrl(g.image)) ?? []),
               ].filter(Boolean),
-              mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/news/${slug}` },
+              mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/az/news/${slug}` },
               articleSection: detail.category_id,
               inLanguage: "az-AZ",
               isAccessibleForFree: true,
@@ -118,9 +119,9 @@ export default async function NewsDetailLayout({
         : null;
 
     const breadcrumb = breadcrumbJsonLd([
-        { name: "Ana səhifə", path: "/" },
-        { name: "Xəbərlər", path: "/news" },
-        { name: detail?.az_title ?? "Xəbər", path: `/news/${slug}` },
+        { name: "Ana səhifə", path: "/az" },
+        { name: "Xəbərlər", path: "/az/news" },
+        { name: detail?.az_title ?? "Xəbər", path: `/az/news/${slug}` },
     ]);
 
     return (
