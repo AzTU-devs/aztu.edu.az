@@ -47,7 +47,7 @@ export default function LaboratoryDetailPage() {
                     const cafedras = await getCafedras({ lang: currentLang, start: 0, end: 500 });
                     if (active && Array.isArray(cafedras)) {
                         const match = cafedras.find((c) => c.cafedra_code === res.cafedra_code);
-                        setCafedraName(match?.cafedra_name ?? "");
+                        setCafedraName(match?.title ?? match?.cafedra_name ?? "");
                     }
                 }
             })

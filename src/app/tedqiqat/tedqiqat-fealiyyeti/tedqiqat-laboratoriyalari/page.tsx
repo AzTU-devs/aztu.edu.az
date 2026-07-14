@@ -63,7 +63,10 @@ export default function ResearchLaboratoriesPage() {
                 setLabs(Array.isArray(labsRes) ? labsRes : []);
                 if (Array.isArray(cafedrasRes)) {
                     const map: Record<string, string> = {};
-                    cafedrasRes.forEach((c) => { map[c.cafedra_code] = c.cafedra_name; });
+                    cafedrasRes.forEach((c) => {
+                        const name = c.title ?? c.cafedra_name;
+                        if (name) map[c.cafedra_code] = name;
+                    });
                     setCafedraNames(map);
                 }
             })

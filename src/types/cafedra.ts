@@ -2,7 +2,10 @@ export interface CafedraSummary {
   id: number;
   faculty_code: string;
   cafedra_code: string;
-  cafedra_name: string;
+  // The public/admin `.../all` endpoint returns the localized cafedra name under `title`;
+  // `cafedra_name` is kept for any legacy callers but is not sent by that endpoint.
+  title?: string;
+  cafedra_name?: string;
   deputy_director_count: number;
   created_at: string;
 }
