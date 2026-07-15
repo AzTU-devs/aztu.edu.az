@@ -316,6 +316,25 @@ const EN_SLUGS = new Set([
     "regulatory-documents", "policy-documents", "sustainability-documents",
     ]);
 
+// Cafedra sub-page slugs (EN → internal AZ folder names). Applied to the path
+// tail AFTER the cafedra code so EN department deep-links resolve to the real
+// App Router folders under /faculties/[facultyId]/kafedralar/[cafedraId]/…
+const CAFEDRA_PAGE_MAP: Record<string, string> = {
+  introduction: "giris",
+  about: "haqqimizda",
+  specialties: "ixtisaslar",
+  specializations: "ixtisaslar",
+  "scientific-activity": "elmi-fealiyyet",
+  "head-of-department": "kafedra-mudiri",
+  staff: "emekdaslar",
+  news: "xeberler",
+  contact: "elaqe",
+};
+
+function translateCafedraTail(tail: string[]): string[] {
+  return tail.map((seg) => CAFEDRA_PAGE_MAP[seg] ?? seg);
+}
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -507,7 +526,11 @@ export function middleware(request: NextRequest) {
                     if (aboutSub === "specialties" || aboutSub === "specializations") aboutSub = "ixtisaslar";
                     if (aboutSub === "departments") aboutSub = "kafedralar";
 
-                    if (segments_rest[4]) {
+                    if (aboutSub === "kafedralar" && segments_rest[4]) {
+                        // segments_rest[4] is the cafedra code (kept as-is); translate
+                        // the cafedra sub-page tail (scientific-activity → elmi-fealiyyet, …).
+                        segments_rest = ["faculties", facultySlug, "kafedralar", segments_rest[4], ...translateCafedraTail(segments_rest.slice(5))];
+                    } else if (segments_rest[4]) {
                         let subSlug = segments_rest[4];
                         if (subSlug === "dean") subSlug = "dekan";
                         if (subSlug === "deputy-deans") subSlug = "dekan-muavinleri";
@@ -536,7 +559,11 @@ export function middleware(request: NextRequest) {
                 if (aboutSub === "specialties" || aboutSub === "specializations") aboutSub = "ixtisaslar";
                 if (aboutSub === "departments") aboutSub = "kafedralar";
 
-                if (segments_rest[3]) {
+                if (aboutSub === "kafedralar" && segments_rest[3]) {
+                    // segments_rest[3] is the cafedra code (kept as-is); translate
+                    // the cafedra sub-page tail (scientific-activity → elmi-fealiyyet, …).
+                    segments_rest = ["faculties", facultySlug, "kafedralar", segments_rest[3], ...translateCafedraTail(segments_rest.slice(4))];
+                } else if (segments_rest[3]) {
                     let subSlug = segments_rest[3];
                     if (subSlug === "dean") subSlug = "dekan";
                     if (subSlug === "deputy-deans") subSlug = "dekan-muavinleri";
