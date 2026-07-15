@@ -7,6 +7,11 @@ export interface LaboratoryObjectiveItem {
     title: string | null;
 }
 
+export interface LaboratoryEquipmentItem {
+    id: number;
+    name: string | null;
+}
+
 export interface LaboratoryGalleryImageItem {
     id: number;
     image_url: string;
@@ -23,6 +28,7 @@ export interface ResearchLaboratory {
     email: string | null;
     phone_number: string | null;
     objectives: LaboratoryObjectiveItem[];
+    equipments: LaboratoryEquipmentItem[];
     gallery_images: LaboratoryGalleryImageItem[];
 }
 

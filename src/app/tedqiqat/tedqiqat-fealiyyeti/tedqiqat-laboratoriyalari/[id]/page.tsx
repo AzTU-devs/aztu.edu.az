@@ -10,6 +10,7 @@ import ScienceIcon from "@mui/icons-material/Science";
 import BusinessIcon from "@mui/icons-material/Business";
 import InfoIcon from "@mui/icons-material/Info";
 import SchoolIcon from "@mui/icons-material/School";
+import BuildIcon from "@mui/icons-material/Build";
 import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 import MeetingRoomIcon from "@mui/icons-material/MeetingRoom";
 import PersonIcon from "@mui/icons-material/Person";
@@ -63,6 +64,7 @@ export default function LaboratoryDetailPage() {
         department: currentLang === "az" ? "Kafedra" : "Department",
         description: currentLang === "az" ? "Təsvir" : "Description",
         objectives: currentLang === "az" ? "Məqsədlər" : "Objectives",
+        equipments: currentLang === "az" ? "Avadanlıqlar" : "Equipment",
         gallery: currentLang === "az" ? "Qalereya" : "Gallery",
         contact: currentLang === "az" ? "Əlaqə" : "Contact",
         room: currentLang === "az" ? "Otaq nömrəsi" : "Room number",
@@ -215,6 +217,36 @@ export default function LaboratoryDetailPage() {
                                         </li>
                                     ))}
                                 </ul>
+                            </motion.div>
+                        ) : null}
+
+                        {/* Equipment */}
+                        {lab.equipments.length > 0 ? (
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.15 }}
+                                className="bg-white dark:bg-slate-800 rounded-[2.5rem] p-8 md:p-10 shadow-sm border border-gray-100 dark:border-slate-700"
+                            >
+                                <div className="flex items-center gap-4 mb-6">
+                                    <div className="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400">
+                                        <BuildIcon />
+                                    </div>
+                                    <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight">
+                                        {t.equipments}
+                                    </h2>
+                                </div>
+                                <div className="flex flex-wrap gap-2.5">
+                                    {lab.equipments.map((eq) => (
+                                        <span
+                                            key={eq.id}
+                                            className="inline-flex items-center gap-2 rounded-full bg-gray-100 dark:bg-slate-700 px-4 py-2 text-sm font-semibold text-[#1a2355] dark:text-slate-200"
+                                        >
+                                            <BuildIcon sx={{ fontSize: 15 }} className="text-amber-500" />
+                                            {eq.name}
+                                        </span>
+                                    ))}
+                                </div>
                             </motion.div>
                         ) : null}
 
