@@ -141,7 +141,7 @@ const az = {
     title: "Mühəndisliyin gələcəyini qururuq",
     button: "Daha çox kəşf et",
     stats: [
-      { label: "QS Reytinqi", value: "851+" },
+      { label: "QS Reytinqi", value: "801+" },
       { label: "THE Reytinqi", value: "1501+" },
       { label: "GreenMetric", value: "835" },
       { label: "Akkreditasiya", value: "20+" },

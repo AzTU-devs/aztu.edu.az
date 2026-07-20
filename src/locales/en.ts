@@ -140,7 +140,7 @@ const en = {
     title: "Shaping the Future of Engineering",
     button: "Discover more",
     stats: [
-      { label: "QS Ranking", value: "851+" },
+      { label: "QS Ranking", value: "801+" },
       { label: "THE Ranking", value: "1501+" },
       { label: "GreenMetric", value: "835" },
       { label: "Accreditation", value: "20+" },
