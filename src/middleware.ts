@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { CAFEDRA_PAGE_MAP } from "@/util/cafedraSlugs";
 
 const SUPPORTED_LANGS = ["az", "en"];
 const DEFAULT_LANG = "az";
@@ -315,21 +316,6 @@ const EN_SLUGS = new Set([
     "international-students",
     "regulatory-documents", "policy-documents", "sustainability-documents",
     ]);
-
-// Cafedra sub-page slugs (EN → internal AZ folder names). Applied to the path
-// tail AFTER the cafedra code so EN department deep-links resolve to the real
-// App Router folders under /faculties/[facultyId]/kafedralar/[cafedraId]/…
-const CAFEDRA_PAGE_MAP: Record<string, string> = {
-  introduction: "giris",
-  about: "haqqimizda",
-  specialties: "ixtisaslar",
-  specializations: "ixtisaslar",
-  "scientific-activity": "elmi-fealiyyet",
-  "head-of-department": "kafedra-mudiri",
-  staff: "emekdaslar",
-  news: "xeberler",
-  contact: "elaqe",
-};
 
 function translateCafedraTail(tail: string[]): string[] {
   return tail.map((seg) => CAFEDRA_PAGE_MAP[seg] ?? seg);

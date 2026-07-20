@@ -34,6 +34,8 @@ export interface GenericSection {
   id: number;
   title: string;
   description: string;
+  /** Rich-text body. Emitted alongside `description` for research areas. */
+  html_content?: string | null;
 }
 
 export interface CafedraSpecialization {

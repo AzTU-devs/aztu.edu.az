@@ -7,6 +7,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { getCafedraByCode } from "@/services/cafedraService/cafedraService";
 import type { CafedraDetail } from "@/types/cafedra";
 import CafedraSidebar from "@/components/cafedra/CafedraSidebar";
+import { ScientificActivityProvider } from "@/context/ScientificActivityContext";
 import HomeIcon from "@mui/icons-material/Home";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -56,6 +57,7 @@ export default function CafedraDetailLayout({ children, params }: Props) {
     const contactPath = `/${currentLang}/${academicPrefix}/${facultyPrefix}/${facultyId}/${currentLang === "az" ? "kafedralar" : "departments"}/${cafedraId}/${currentLang === "az" ? "haqqimizda/elaqe" : "about/contact"}`;
 
     return (
+        <ScientificActivityProvider cafedraCode={cafedraId}>
         <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">
             {/* ── Hero banner ── */}
             <div className="relative overflow-hidden bg-[#0b1330] pt-32 pb-14 px-4 md:px-8 lg:px-12">
@@ -200,5 +202,6 @@ export default function CafedraDetailLayout({ children, params }: Props) {
                 </main>
             </div>
         </div>
+        </ScientificActivityProvider>
     );
 }

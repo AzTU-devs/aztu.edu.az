@@ -1,6 +1,7 @@
 import apiClient from "@/util/apiClient";
 import type { Lang } from "@/util/apiClient";
 import type { CafedraSummary, CafedraDetail } from "@/types/cafedra";
+import type { CafedraScientificActivity } from "@/types/scientificActivity";
 
 export interface LaboratoryObjectiveItem {
     id: number;
@@ -62,6 +63,24 @@ export const getCafedraByCode = async (cafedraCode: string, lang: Lang = "az") =
         });
         if (response.data.status_code === 200) {
             return response.data.cafedra as CafedraDetail;
+        }
+        return null;
+    } catch {
+        return null;
+    }
+};
+
+export const getCafedraScientificActivity = async (
+    cafedraCode: string,
+    lang: Lang = "az"
+): Promise<CafedraScientificActivity | null> => {
+    try {
+        const response = await apiClient.get(
+            `/api/cafedra/${cafedraCode}/scientific-activity?lang=${lang}`,
+            { headers: { "Accept-Language": lang } }
+        );
+        if (response.data.status_code === 200) {
+            return response.data.scientific_activity as CafedraScientificActivity;
         }
         return null;
     } catch {

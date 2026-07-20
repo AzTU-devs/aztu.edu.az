@@ -13,6 +13,11 @@ import NorthEastIcon from "@mui/icons-material/NorthEast";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { getMajorsCafedraUrl } from "@/util/majorsLink";
+import { SCIENTIFIC_NAV } from "@/util/cafedraSlugs";
+import { useScientificActivity } from "@/context/ScientificActivityContext";
+import type { ScientificSectionKey } from "@/types/scientificActivity";
+
+export { SCIENTIFIC_NAV };
 
 interface NavSubItem {
   label: string;
@@ -27,7 +32,12 @@ interface NavItem {
   external?: boolean;
 }
 
-function buildNavItems(facultyId: string, cafedraId: string, lang: string): NavItem[] {
+function buildNavItems(
+  facultyId: string,
+  cafedraId: string,
+  lang: string,
+  available: ScientificSectionKey[]
+): NavItem[] {
   const academicPrefix = lang === "az" ? "akademik" : "academic";
   const facultyPrefix = lang === "az" ? "fakulteler" : "faculties";
   const kafedraSlug = lang === "az" ? "kafedralar" : "departments";
@@ -44,6 +54,12 @@ function buildNavItems(facultyId: string, cafedraId: string, lang: string): NavI
 
   // İxtisaslar opens the cafedra's specializations on the external majors portal.
   const majorsUrl = getMajorsCafedraUrl(cafedraId, facultyId, lang);
+
+  const researchBase = `${base}/${lang === "az" ? "elmi-fealiyyet" : "scientific-activity"}`;
+  const researchSubItems = SCIENTIFIC_NAV.filter((s) => available.includes(s.key)).map((s) => ({
+    label: lang === "az" ? s.azLabel : s.enLabel,
+    href: `${researchBase}/${lang === "az" ? s.az : s.en}`,
+  }));
 
   return [
     { label: introLabel, href: `${base}/${lang === "az" ? "giris" : "introduction"}`, icon: ArticleOutlinedIcon },
@@ -64,7 +80,14 @@ function buildNavItems(facultyId: string, cafedraId: string, lang: string): NavI
       icon: SchoolOutlinedIcon,
       external: !!majorsUrl,
     },
-    { label: researchLabel, href: `${base}/${lang === "az" ? "elmi-fealiyyet" : "scientific-activity"}`, icon: ScienceOutlinedIcon },
+    {
+      label: researchLabel,
+      href: researchBase,
+      icon: ScienceOutlinedIcon,
+      // Only sections the server reports as having content become sub-items.
+      // `available` is never re-derived client-side; empty → plain link, no chevron.
+      subItems: researchSubItems.length ? researchSubItems : undefined,
+    },
   ];
 }
 
@@ -76,8 +99,10 @@ interface Props {
 export default function CafedraSidebar({ facultyId, cafedraId }: Props) {
   const pathname = usePathname();
   const { lang } = useLanguage();
-  const navItems = buildNavItems(facultyId, cafedraId, lang);
+  const { data } = useScientificActivity();
+  const navItems = buildNavItems(facultyId, cafedraId, lang, data?.available ?? []);
 
+  // Keyed by href, not label — two dropdowns can share a label, hrefs are unique.
   const [expanded, setExpanded] = useState<string[]>([]);
 
   useEffect(() => {
@@ -87,13 +112,13 @@ export default function CafedraSidebar({ facultyId, cafedraId }: Props) {
           item.subItems &&
           (pathname === item.href || pathname.startsWith(item.href + "/"))
       )
-      .map((item) => item.label);
+      .map((item) => item.href);
     setExpanded(active);
-  }, [pathname, lang]);
+  }, [pathname, lang, data]);
 
-  const toggle = (label: string) => {
+  const toggle = (href: string) => {
     setExpanded((prev) =>
-      prev.includes(label) ? prev.filter((s) => s !== label) : [...prev, label]
+      prev.includes(href) ? prev.filter((s) => s !== href) : [...prev, href]
     );
   };
 
@@ -141,12 +166,12 @@ export default function CafedraSidebar({ facultyId, cafedraId }: Props) {
             );
           }
 
-          // ── Collapsible section (Haqqımızda) ──
+          // ── Collapsible section (Haqqımızda, Elmi fəaliyyət) ──
           if (item.subItems) {
-            const open = expanded.includes(item.label);
+            const open = expanded.includes(item.href);
             const parentActive = isParentActive(item);
             return (
-              <li key={item.label}>
+              <li key={item.href}>
                 <div
                   className={`flex items-center rounded-2xl transition-colors ${
                     parentActive ? "bg-[#1a2355] text-white" : "text-slate-700 dark:text-white/80 hover:bg-gray-50 dark:hover:bg-white/5"
@@ -163,7 +188,7 @@ export default function CafedraSidebar({ facultyId, cafedraId }: Props) {
                     <span>{item.label}</span>
                   </Link>
                   <button
-                    onClick={() => toggle(item.label)}
+                    onClick={() => toggle(item.href)}
                     aria-label="Toggle"
                     className={`px-3 py-3 transition-transform duration-300 ${open ? "rotate-180" : ""} ${
                       parentActive ? "text-white/80" : "text-gray-400"
@@ -183,7 +208,7 @@ export default function CafedraSidebar({ facultyId, cafedraId }: Props) {
                       className="ml-6 mt-1 space-y-0.5 border-l border-gray-200 dark:border-white/10 pl-3 overflow-hidden"
                     >
                       {item.subItems.map((sub) => {
-                        const active = pathname === sub.href;
+                        const active = pathname === sub.href || pathname.startsWith(sub.href + "/");
                         return (
                           <li key={sub.href}>
                             <Link

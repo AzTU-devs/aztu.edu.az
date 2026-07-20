@@ -109,8 +109,15 @@ export default function CafedraGirisPage({ params }: Props) {
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#ee7c7e]" />
                   <div>
                     <p className="text-sm font-semibold text-slate-900 dark:text-white">{item.title}</p>
-                    {item.description && (
-                      <p className="mt-1 text-[13px] leading-relaxed text-slate-500 dark:text-slate-400">{item.description}</p>
+                    {item.html_content ? (
+                      <SanitizedHtml
+                        html={item.html_content}
+                        className="mt-1 text-[13px] leading-relaxed text-slate-500 dark:text-slate-400"
+                      />
+                    ) : (
+                      item.description && (
+                        <p className="mt-1 text-[13px] leading-relaxed text-slate-500 dark:text-slate-400">{item.description}</p>
+                      )
                     )}
                   </div>
                 </motion.div>

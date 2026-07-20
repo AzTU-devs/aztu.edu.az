@@ -6,6 +6,7 @@ import { setDefaultLang } from "@/util/apiClient";
 import type { Lang } from "@/util/apiClient";
 import { translateDepartmentSlug, getDepartments } from "@/services/departmentService/departmentService";
 import { translateInstituteSlug, getResearchInstitutes } from "@/services/researchInstituteService/researchInstituteService";
+import { translateCafedraTail } from "@/util/cafedraSlugs";
 
 type LanguageContextType = {
   lang: Lang;
@@ -129,6 +130,16 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
                       if (segments[5] && reverseSubSubMapping[segments[5]]) segments[5] = reverseSubSubMapping[segments[5]];
                   }
               }
+
+          }
+
+          // Cafedra sub-pages nest two levels deep (elmi-fealiyyet/elmi-neshrler/2026),
+          // so the whole tail after the cafedra code is translated segment by segment.
+          // segments[5] is the cafedra code and is never translated; bare numeric
+          // year segments have no mapping and pass through untouched.
+          if ((segments[4] === "kafedralar" || segments[4] === "departments") && segments.length > 6) {
+              const tail = translateCafedraTail(segments.slice(6), newLang);
+              segments.splice(6, tail.length, ...tail);
           }
       }
 
