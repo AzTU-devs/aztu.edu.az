@@ -7,6 +7,7 @@ import ReduxProvider from "@/redux/Provider";
 import HeaderChanger from "@/components/header/HeaderChanger";
 import Footer from "@/components/footer/Footer";
 import ChatbotWidgetLoader from "@/components/chatbot/ChatbotWidgetLoader";
+import VisitTracker from "@/components/analytics/VisitTracker";
 
 // Inter — stable rendering of Azerbaijani diacritics (ə, ş, ğ, ç, ö, ü, ı, İ)
 // on both Mac and Windows. "latin-ext" includes the full set used by Azerbaijani.
@@ -272,6 +273,7 @@ export default function RootLayout({
                 <Footer />
               </div>
               <ChatbotWidgetLoader />
+              <VisitTracker />
             </ThemeProvider>
           </LanguageProvider>
         </ReduxProvider>
