@@ -25,7 +25,7 @@ export default function VisaMigrationPage() {
                 {/* Background Refined Graphics */}
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-[#0a0c1a]" />
-                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#111827] to-[#0f172a] rounded-bl-[5rem] lg:rounded-bl-[20rem] transition-all duration-1000" />
+                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#111827] to-[#0f172a] rounded-bl-[2.5rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#0a0c1a] via-[#0a0c1a]/60 to-transparent hidden lg:block" />
                     <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#ee7c7e]/5 rounded-full blur-3xl" />
                 </div>
@@ -46,7 +46,7 @@ export default function VisaMigrationPage() {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8, ease: "easeOut" }}
                             >
-                                <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
+                                <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.14em] mb-6">
                                     {p.eyebrow}
                                 </span>
                                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
@@ -74,7 +74,7 @@ export default function VisaMigrationPage() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: idx * 0.1 }}
-                                    className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] border border-gray-100 dark:border-slate-800 shadow-xl shadow-blue-900/5"
+                                    className="bg-white dark:bg-slate-900 p-8 rounded-[14px] border border-gray-100 dark:border-slate-800 shadow-xl shadow-blue-900/5"
                                 >
                                     <div className="w-12 h-12 rounded-xl bg-[#1a2355]/5 dark:bg-[#ee7c7e]/10 flex items-center justify-center mb-6">
                                         <PublicIcon className="text-[#ee7c7e]" />
@@ -87,7 +87,7 @@ export default function VisaMigrationPage() {
                             ))}
                         </section>
 
-                        <section className="bg-blue-50 dark:bg-blue-900/10 rounded-[2.5rem] p-8 lg:p-12 border border-blue-100 dark:border-blue-900/20">
+                        <section className="bg-blue-50 dark:bg-blue-900/10 rounded-[14px] p-8 lg:p-12 border border-blue-100 dark:border-blue-900/20">
                             <p className="text-[#1a2355] dark:text-blue-300 font-bold leading-relaxed flex gap-4">
                                 <InfoIcon className="text-[#ee7c7e] shrink-0" />
                                 {p.supportNote}
@@ -100,7 +100,7 @@ export default function VisaMigrationPage() {
                                 <span className="w-2.5 h-10 bg-[#ee7c7e] rounded-full" />
                                 {p.registrationTitle}
                             </h2>
-                            <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-gray-100 dark:border-slate-800 p-8 lg:p-12 shadow-xl shadow-blue-900/5">
+                            <div className="bg-white dark:bg-slate-900 rounded-[14px] border border-gray-100 dark:border-slate-800 p-8 lg:p-12 shadow-xl shadow-blue-900/5">
                                 <p className="text-gray-600 dark:text-gray-300 font-medium mb-8 leading-relaxed">
                                     {p.registrationDescription}
                                 </p>
@@ -131,7 +131,7 @@ export default function VisaMigrationPage() {
                                 <span className="w-2.5 h-10 bg-[#ee7c7e] rounded-full" />
                                 {p.permitTitle}
                             </h2>
-                            <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-gray-100 dark:border-slate-800 p-8 lg:p-12 shadow-xl shadow-blue-900/5">
+                            <div className="bg-white dark:bg-slate-900 rounded-[14px] border border-gray-100 dark:border-slate-800 p-8 lg:p-12 shadow-xl shadow-blue-900/5">
                                 <p className="text-gray-600 dark:text-gray-300 font-medium mb-10 leading-relaxed">
                                     {p.permitDescription}
                                 </p>
@@ -167,15 +167,15 @@ export default function VisaMigrationPage() {
                     <div className="lg:col-span-4">
                         <div className="sticky top-28 space-y-8">
                             {/* CTA Card */}
-                            <div className="p-10 rounded-[3rem] bg-[#1a2355] text-white shadow-2xl relative overflow-hidden group">
+                            <div className="p-10 rounded-[14px] bg-[#1a2355] text-white shadow-2xl relative overflow-hidden group">
                                 <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#ee7c7e]/20 rounded-full translate-y-1/2 translate-x-1/2 blur-3xl" />
                                 <div className="relative z-10">
                                     <LocalHospitalIcon className="text-[#ee7c7e] mb-8" />
-                                    <h3 className="text-2xl font-black mb-4 uppercase tracking-tighter">Support Services</h3>
+                                    <h3 className="text-2xl font-black mb-4 tracking-tighter">Support Services</h3>
                                     <p className="text-white/60 font-medium mb-8 text-sm">
                                         Our International Admissions Office is here to help with all your migration needs.
                                     </p>
-                                    <Link href="https://portal.edu.az" target="_blank" className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] bg-white text-[#1a2355] px-8 py-4 rounded-2xl hover:bg-[#ee7c7e] hover:text-white transition-all w-full justify-center">
+                                    <Link href="https://portal.edu.az" target="_blank" className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.12em] bg-white text-[#1a2355] px-8 py-4 rounded-2xl hover:bg-[#ee7c7e] hover:text-white transition-all w-full justify-center">
                                         Application Portal <ChevronRightIcon sx={{ fontSize: 16 }} />
                                     </Link>
                                 </div>
@@ -187,7 +187,7 @@ export default function VisaMigrationPage() {
                                     <Link
                                         key={link.href}
                                         href={link.href}
-                                        className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[1.5rem] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
+                                        className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[10px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
                                     >
                                         <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
                                         <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-slate-700 flex items-center justify-center group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300">

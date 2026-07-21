@@ -30,7 +30,7 @@ export default function SatisfactionLevels() {
   const overallLabel = lang === "az" ? "Ümumi göstəricilər" : "Overall indicators";
 
   return (
-    <div className="w-full rounded-[2rem] overflow-hidden border-2 border-[#1a2355]/30 dark:border-white/5 bg-gradient-to-br from-white via-blue-50/40 to-white dark:from-[#0b1632] dark:via-[#0d1b3e] dark:to-[#0b1632] p-6 md:p-8 mb-8">
+    <div className="w-full rounded-[12px] overflow-hidden border-2 border-[#1a2355]/30 dark:border-white/5 bg-gradient-to-br from-white via-blue-50/40 to-white dark:from-[#0b1632] dark:via-[#0d1b3e] dark:to-[#0b1632] p-6 md:p-8 mb-8">
       <div className="flex items-start justify-between flex-wrap gap-3 mb-6">
         <div>
           <h3 className="text-lg font-black uppercase tracking-tight text-[#1a2355] dark:text-white">{title}</h3>

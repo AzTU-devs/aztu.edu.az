@@ -69,7 +69,7 @@ function Section({
                         >
                             <div className="w-2 h-2 rounded-full bg-[#ee7c7e] animate-pulse shadow-[0_0_8px_#ee7c7e]" />
                             <span
-                                className={`${dark ? "text-white" : "text-[#1a2355] dark:text-white"} text-[11px] font-black uppercase tracking-[0.4em]`}
+                                className={`${dark ? "text-white" : "text-[#1a2355] dark:text-white"} text-[11px] font-black uppercase tracking-[0.15em]`}
                             >
                                 {badge}
                             </span>
@@ -127,21 +127,21 @@ export default function CDIOPage() {
                 watermark="CDIO"
             >
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div className="p-10 md:p-16 rounded-[3rem] bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5 shadow-2xl">
+                    <div className="p-10 md:p-16 rounded-[14px] bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5 shadow-2xl">
                         <p className="text-gray-600 dark:text-gray-400 text-xl leading-relaxed">
                             {data.intro}
                         </p>
                     </div>
                     <div className="relative group">
                         <div className="absolute inset-0 bg-[#ee7c7e]/20 blur-[100px] rounded-full scale-75 group-hover:scale-100 transition-transform duration-700" />
-                        <div className="relative aspect-video rounded-[3rem] overflow-hidden border border-gray-100 dark:border-white/10 shadow-2xl">
+                        <div className="relative aspect-video rounded-[14px] overflow-hidden border border-gray-100 dark:border-white/10 shadow-2xl">
                             <div className="absolute inset-0 bg-gradient-to-br from-[#1a2355] to-[#0b1330] flex items-center justify-center">
                                 <SchoolIcon sx={{ fontSize: 120 }} className="text-white/10" />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-12">
                                     <div className="w-24 h-24 rounded-full bg-[#ee7c7e] flex items-center justify-center mb-6 shadow-[0_0_30px_#ee7c7e]">
                                         <ScienceIcon sx={{ fontSize: 40, color: "white" }} />
                                     </div>
-                                    <h3 className="text-white text-3xl font-black uppercase tracking-tighter">
+                                    <h3 className="text-white text-3xl font-black tracking-tighter">
                                         CDIO
                                     </h3>
                                     <p className="text-white/60 mt-4 font-medium uppercase text-xs tracking-widest">
@@ -165,7 +165,7 @@ export default function CDIOPage() {
                     {data.whatIsCdio.paragraphs.map((para, i) => (
                         <div
                             key={i}
-                            className="p-8 md:p-10 rounded-[2.5rem] border border-white/10 bg-white/5 backdrop-blur-xl shadow-xl"
+                            className="p-8 md:p-10 rounded-[14px] border border-white/10 bg-white/5 backdrop-blur-xl shadow-xl"
                         >
                             <p className="text-white/80 text-lg leading-relaxed">{para}</p>
                         </div>
@@ -186,7 +186,7 @@ export default function CDIOPage() {
                     {data.institutes.items.map((item, i) => (
                         <div
                             key={i}
-                            className="group p-8 rounded-[2.5rem] bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 shadow-xl hover:-translate-y-2 hover:border-[#ee7c7e] hover:shadow-[#ee7c7e]/20 transition-all duration-500 relative overflow-hidden"
+                            className="group p-8 rounded-[14px] bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 shadow-xl hover:-translate-y-2 hover:border-[#ee7c7e] hover:shadow-[#ee7c7e]/20 transition-all duration-500 relative overflow-hidden"
                         >
                             <div className="absolute top-0 right-0 w-24 h-24 bg-[#ee7c7e]/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:scale-150 transition-transform" />
                             <div className="w-12 h-12 rounded-2xl bg-[#1a2355] dark:bg-[#ee7c7e]/20 flex items-center justify-center mb-6 text-white">
@@ -214,7 +214,7 @@ export default function CDIOPage() {
                     {data.studentSociety.objectives.map((obj, i) => (
                         <div
                             key={i}
-                            className="flex items-start gap-5 p-8 rounded-[2.5rem] border border-white/10 bg-white/5 backdrop-blur-xl shadow-xl group hover:border-[#ee7c7e]/50 transition-all duration-500"
+                            className="flex items-start gap-5 p-8 rounded-[14px] border border-white/10 bg-white/5 backdrop-blur-xl shadow-xl group hover:border-[#ee7c7e]/50 transition-all duration-500"
                         >
                             <div className="w-10 h-10 rounded-xl bg-[#ee7c7e] flex items-center justify-center text-white shrink-0 mt-0.5 shadow-[0_0_20px_rgba(238,124,126,0.3)]">
                                 <CheckCircleOutlineIcon sx={{ fontSize: 20 }} />
@@ -253,7 +253,7 @@ export default function CDIOPage() {
                     ].map((card, i) => (
                         <div
                             key={i}
-                            className="p-10 rounded-[3rem] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 shadow-2xl relative overflow-hidden group hover:-translate-y-2 transition-all duration-500"
+                            className="p-10 rounded-[14px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 shadow-2xl relative overflow-hidden group hover:-translate-y-2 transition-all duration-500"
                         >
                             <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 dark:bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
                             {card.icon}

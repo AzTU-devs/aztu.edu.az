@@ -102,7 +102,7 @@ export default function ResearchInstituteDetailLayout({ children, params }: Prop
                     <motion.nav 
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="flex items-center gap-2 text-white/40 text-[10px] font-black uppercase tracking-[0.4em] mb-10 flex-wrap"
+                        className="flex items-center gap-2 text-white/40 text-[10px] font-black uppercase tracking-[0.15em] mb-10 flex-wrap"
                     >
                         <Link href="/" className="hover:text-[#ee7c7e] transition-colors flex items-center gap-1 group">
                             <HomeIcon sx={{ fontSize: 14 }} className="group-hover:scale-110 transition-transform" />
@@ -128,7 +128,7 @@ export default function ResearchInstituteDetailLayout({ children, params }: Prop
                                 <motion.div 
                                     initial={{ opacity: 0, scale: 0.8 }}
                                     animate={{ opacity: 1, scale: 1 }}
-                                    className="w-32 h-32 md:w-40 md:h-40 rounded-[3rem] bg-white p-8 flex items-center justify-center flex-shrink-0 shadow-2xl border-4 border-white/10 z-30"
+                                    className="w-32 h-32 md:w-40 md:h-40 rounded-[14px] bg-white p-8 flex items-center justify-center flex-shrink-0 shadow-2xl border-4 border-white/10 z-30"
                                 >
                                     <img 
                                         src={logoUrl} 
@@ -137,7 +137,7 @@ export default function ResearchInstituteDetailLayout({ children, params }: Prop
                                     />
                                 </motion.div>
                             ) : loading ? (
-                                <div className="w-32 h-32 md:w-40 md:h-40 rounded-[3rem] bg-white/10 animate-pulse border-4 border-white/5 z-30" />
+                                <div className="w-32 h-32 md:w-40 md:h-40 rounded-[14px] bg-white/10 animate-pulse border-4 border-white/5 z-30" />
                             ) : null}
                             <div className="flex-1">
                                 {loading ? (
@@ -149,12 +149,12 @@ export default function ResearchInstituteDetailLayout({ children, params }: Prop
                                 )}
                                 <div className="flex flex-wrap items-center gap-4">
                                     {!loading && institute?.institute_code && (
-                                        <div className="inline-flex items-center px-5 py-2 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white font-black text-xs tracking-[0.2em]">
+                                        <div className="inline-flex items-center px-5 py-2 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white font-black text-xs tracking-[0.12em]">
                                             {institute.institute_code}
                                         </div>
                                     )}
                                     <div className="h-px w-12 bg-[#ee7c7e]" />
-                                    <span className="text-white/60 text-xs font-black uppercase tracking-[0.3em]">
+                                    <span className="text-white/60 text-xs font-black uppercase tracking-[0.14em]">
                                         {t.portal}
                                     </span>
                                 </div>
@@ -219,15 +219,15 @@ export default function ResearchInstituteDetailLayout({ children, params }: Prop
                     <aside className="hidden lg:block lg:w-80 flex-shrink-0">
                         <div className="sticky top-28 space-y-8">
                             <ResearchInstituteSidebar instituteSlug={instituteSlug} />
-                            <div className="rounded-[2.5rem] bg-[#1a2355] p-10 text-white overflow-hidden relative group shadow-2xl">
+                            <div className="rounded-[14px] bg-[#1a2355] p-10 text-white overflow-hidden relative group shadow-2xl">
                                 <div className="absolute -right-4 -bottom-4 w-32 h-32 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-all duration-500" />
-                                <h3 className="text-xl font-black uppercase tracking-tighter mb-4 relative z-10">{t.needHelp}</h3>
+                                <h3 className="text-xl font-black tracking-tighter mb-4 relative z-10">{t.needHelp}</h3>
                                 <p className="text-white/60 text-sm mb-8 relative z-10 leading-relaxed font-medium">
                                     {t.contactText}
                                 </p>
                                 <Link 
                                     href={`mailto:info@aztu.edu.az`}
-                                    className="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] bg-[#ee7c7e] hover:bg-[#f09395] px-8 py-4 rounded-2xl transition-all relative z-10 shadow-xl shadow-black/20 active:scale-95"
+                                    className="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.12em] bg-[#ee7c7e] hover:bg-[#f09395] px-8 py-4 rounded-2xl transition-all relative z-10 shadow-xl shadow-black/20 active:scale-95"
                                 >
                                     {t.contactBtn}
                                     <ChevronRightIcon sx={{ fontSize: 16 }} />

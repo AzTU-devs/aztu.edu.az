@@ -179,7 +179,7 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
                         {/* LEFT PANEL (Institutional Info) */}
                         <div className="relative z-10 w-full lg:w-[35%] border-r border-white/5 flex flex-col p-8 md:p-12 overflow-y-auto no-scrollbar">
                             <div className="mb-12">
-                                <span className="text-[#ee7c7e] text-[10px] font-black uppercase tracking-[0.5em] mb-4 block">{qm.navigation}</span>
+                                <span className="text-[#ee7c7e] text-[10px] font-black uppercase tracking-[0.16em] mb-4 block">{qm.navigation}</span>
                                 <h2 className="text-white font-black text-4xl tracking-tighter leading-none mb-2" dangerouslySetInnerHTML={{ __html: qm.title }} />
                                 <div className="w-12 h-1 bg-[#ee7c7e] rounded-full mt-6" />
                             </div>
@@ -242,14 +242,14 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
                         {/* RIGHT PANEL (Categorized Items) */}
                         <div className="relative z-10 flex-1 flex flex-col p-8 md:p-12 bg-black/20 overflow-y-auto no-scrollbar">
                             {/* Section Tabs */}
-                            <div className="flex gap-2 p-1.5 rounded-[2rem] bg-white/5 border border-white/5 mb-12 self-start max-w-full overflow-x-auto no-scrollbar">
+                            <div className="flex gap-2 p-1.5 rounded-[12px] bg-white/5 border border-white/5 mb-12 self-start max-w-full overflow-x-auto no-scrollbar">
                                 {rightSections.map((section) => {
                                     const isActive = currentActive === section.key;
                                     return (
                                         <button
                                             key={section.key}
                                             onClick={() => setActiveSection(section.key)}
-                                            className={`px-8 py-3 rounded-[1.5rem] font-black text-[11px] uppercase tracking-[0.2em] transition-all duration-500 whitespace-nowrap cursor-pointer ${
+                                            className={`px-8 py-3 rounded-[10px] font-black text-[11px] uppercase tracking-[0.12em] transition-all duration-500 whitespace-nowrap cursor-pointer ${
                                                 isActive 
                                                 ? "bg-[#ee7c7e] text-white shadow-xl shadow-[#ee7c7e]/20" 
                                                 : "text-white/40 hover:text-white hover:bg-white/5"
@@ -282,7 +282,7 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
                                                 <Link
                                                     href={item.url}
                                                     onClick={onClose}
-                                                    className="group relative flex flex-col p-8 rounded-[2.5rem] bg-white/5 border border-white/5 hover:bg-white/10 transition-all duration-500 hover:shadow-2xl overflow-hidden min-h-[160px] justify-between"
+                                                    className="group relative flex flex-col p-8 rounded-[14px] bg-white/5 border border-white/5 hover:bg-white/10 transition-all duration-500 hover:shadow-2xl overflow-hidden min-h-[160px] justify-between"
                                                 >
                                                     <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:bg-[#ee7c7e]/10 transition-colors" />
                                                     
@@ -290,7 +290,7 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
                                                         <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-[#ee7c7e] group-hover:scale-110 transition-transform">
                                                             <ArrowOutwardIcon sx={{ fontSize: 24 }} />
                                                         </div>
-                                                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20 group-hover:text-[#ee7c7e] transition-colors">{qm.portal}</span>
+                                                        <span className="text-[10px] font-black uppercase tracking-[0.14em] text-white/20 group-hover:text-[#ee7c7e] transition-colors">{qm.portal}</span>
                                                     </div>
 
                                                     <h3 className="relative z-10 text-xl font-black text-white group-hover:text-[#ee7c7e] transition-colors leading-tight tracking-tight mt-6">
@@ -307,7 +307,7 @@ export default function QuickMenu({ isOpen, onClose }: Props) {
 
                             {/* Bottom Brand Slogan */}
                             <div className="mt-12 text-center opacity-10">
-                                <p className="text-[10px] font-black uppercase tracking-[0.8em] text-white">{qm.slogan}</p>
+                                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white">{qm.slogan}</p>
                             </div>
                         </div>
                     </motion.div>

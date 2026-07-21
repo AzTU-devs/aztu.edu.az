@@ -178,7 +178,7 @@ export default function ResearchInstituteAboutPage({ params }: Props) {
                                     <LanguageIcon sx={{ fontSize: 20 }} />
                                 </div>
                                 <div className="min-w-0 flex-1">
-                                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">
+                                    <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">
                                         {labels.website}
                                     </p>
                                     <p className="text-sm font-bold text-[#1a2355] dark:text-white truncate">
@@ -201,7 +201,7 @@ export default function ResearchInstituteAboutPage({ params }: Props) {
                                     <MailOutlineIcon sx={{ fontSize: 20 }} />
                                 </div>
                                 <div className="min-w-0 flex-1">
-                                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">
+                                    <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">
                                         {labels.email}
                                     </p>
                                     <p className="text-sm font-bold text-[#1a2355] dark:text-white truncate">

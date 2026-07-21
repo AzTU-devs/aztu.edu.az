@@ -57,9 +57,9 @@ export default function ImprovementPlanFlow() {
       : "A staged action plan for continuous quality improvement and reaching strategic goals.";
 
   return (
-    <div className="w-full rounded-[2rem] overflow-hidden border-2 border-[#1a2355]/30 dark:border-white/5 bg-gradient-to-br from-white via-blue-50/40 to-white dark:from-[#0b1632] dark:via-[#0d1b3e] dark:to-[#0b1632] p-6 md:p-8 mb-8">
+    <div className="w-full rounded-[12px] overflow-hidden border-2 border-[#1a2355]/30 dark:border-white/5 bg-gradient-to-br from-white via-blue-50/40 to-white dark:from-[#0b1632] dark:via-[#0d1b3e] dark:to-[#0b1632] p-6 md:p-8 mb-8">
       <div className="mb-6">
-        <p className="text-[11px] font-black uppercase tracking-[0.2em] text-[#ee7c7e]">{eyebrow}</p>
+        <p className="text-[11px] font-black uppercase tracking-[0.12em] text-[#ee7c7e]">{eyebrow}</p>
         <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{note}</p>
       </div>
 

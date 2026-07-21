@@ -141,8 +141,6 @@ export default function ContactPage() {
 
     return (
         <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden">
-            <div className="bg-mesh" />
-            <div className="bg-grid-premium" />
 
             <PageHero
                 title={t.title}
@@ -161,16 +159,16 @@ export default function ContactPage() {
                         transition={{ duration: 0.7 }}
                         className="lg:col-span-5"
                     >
-                        <div className="sticky top-28 relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#0b1330] via-[#1a2355] to-[#13365E] p-10 md:p-12 text-white shadow-2xl border-2 border-white/10">
+                        <div className="sticky top-28 relative overflow-hidden rounded-[14px] bg-gradient-to-br from-[#0b1330] via-[#1a2355] to-[#13365E] p-10 md:p-12 text-white shadow-2xl border-2 border-white/10">
                             <div className="absolute top-0 right-0 w-64 h-64 bg-[#ee7c7e]/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
                             <div className="absolute bottom-0 left-0 w-56 h-56 bg-blue-500/20 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
 
                             <div className="relative z-10">
                                 <div className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-white/10 border border-white/10 mb-6">
                                     <div className="w-2 h-2 rounded-full bg-[#ee7c7e] animate-pulse" />
-                                    <span className="text-[10px] font-black uppercase tracking-[0.3em]">{t.getInTouch}</span>
+                                    <span className="text-[10px] font-black uppercase tracking-[0.14em]">{t.getInTouch}</span>
                                 </div>
-                                <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-10 leading-tight">
+                                <h2 className="text-3xl md:text-4xl font-black tracking-tighter mb-10 leading-tight">
                                     {t.contactInfo}
                                 </h2>
 
@@ -180,7 +178,7 @@ export default function ContactPage() {
                                             <LocationOnIcon sx={{ fontSize: 22 }} />
                                         </div>
                                         <div>
-                                            <span className="block text-[10px] font-black uppercase tracking-[0.25em] text-white/50 mb-1">
+                                            <span className="block text-[10px] font-black uppercase tracking-[0.13em] text-white/50 mb-1">
                                                 {t.addressLabel}
                                             </span>
                                             <span className="text-base font-bold leading-relaxed text-white/90">
@@ -194,7 +192,7 @@ export default function ContactPage() {
                                             <LocalPhoneIcon sx={{ fontSize: 22 }} />
                                         </div>
                                         <div>
-                                            <span className="block text-[10px] font-black uppercase tracking-[0.25em] text-white/50 mb-1">
+                                            <span className="block text-[10px] font-black uppercase tracking-[0.13em] text-white/50 mb-1">
                                                 {t.phoneLabel}
                                             </span>
                                             <div className="flex flex-col gap-1">
@@ -216,7 +214,7 @@ export default function ContactPage() {
                                             <EmailIcon sx={{ fontSize: 22 }} />
                                         </div>
                                         <div>
-                                            <span className="block text-[10px] font-black uppercase tracking-[0.25em] text-white/50 mb-1">
+                                            <span className="block text-[10px] font-black uppercase tracking-[0.13em] text-white/50 mb-1">
                                                 {t.emailLabel}
                                             </span>
                                             <a
@@ -233,7 +231,7 @@ export default function ContactPage() {
                                             <AccessTimeIcon sx={{ fontSize: 22 }} />
                                         </div>
                                         <div>
-                                            <span className="block text-[10px] font-black uppercase tracking-[0.25em] text-white/50 mb-1">
+                                            <span className="block text-[10px] font-black uppercase tracking-[0.13em] text-white/50 mb-1">
                                                 {t.hoursLabel}
                                             </span>
                                             <span className="text-base font-bold text-white/90">{t.hoursValue}</span>
@@ -242,7 +240,7 @@ export default function ContactPage() {
                                 </ul>
 
                                 <div className="mt-10 pt-8 border-t border-white/10">
-                                    <span className="block text-[10px] font-black uppercase tracking-[0.3em] text-white/50 mb-4">
+                                    <span className="block text-[10px] font-black uppercase tracking-[0.14em] text-white/50 mb-4">
                                         {t.followUs}
                                     </span>
                                     <div className="flex gap-3">
@@ -273,13 +271,13 @@ export default function ContactPage() {
                         transition={{ duration: 0.7, delay: 0.1 }}
                         className="lg:col-span-7"
                     >
-                        <div className="relative overflow-hidden bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[3rem] border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 p-10 md:p-14 shadow-2xl shadow-blue-900/5">
+                        <div className="relative overflow-hidden bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[14px] border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 p-10 md:p-14 shadow-2xl shadow-blue-900/5">
                             <div className="absolute top-0 right-0 w-48 h-48 bg-[#ee7c7e]/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl pointer-events-none" />
 
                             <div className="relative z-10">
                                 <div className="flex items-center gap-4 mb-4">
                                     <span className="w-2.5 h-10 bg-[#ee7c7e] rounded-full animate-pulse shadow-[0_0_15px_rgba(238,124,126,0.5)]" />
-                                    <h2 className="text-3xl md:text-4xl font-black text-[#1a2355] dark:text-white uppercase tracking-tighter">
+                                    <h2 className="text-3xl md:text-4xl font-black text-[#1a2355] dark:text-white tracking-tighter">
                                         {t.formTitle}
                                     </h2>
                                 </div>
@@ -301,7 +299,7 @@ export default function ContactPage() {
                                         </p>
                                         <button
                                             onClick={() => setStatus("idle")}
-                                            className="mt-6 text-sm font-black uppercase tracking-[0.2em] text-green-700 dark:text-green-400 hover:text-[#ee7c7e] transition-colors"
+                                            className="mt-6 text-sm font-black uppercase tracking-[0.12em] text-green-700 dark:text-green-400 hover:text-[#ee7c7e] transition-colors"
                                         >
                                             ← {lang === "az" ? "Yenidən yaz" : "Send another"}
                                         </button>
@@ -376,7 +374,7 @@ export default function ContactPage() {
                                             disabled={status === "submitting"}
                                             whileHover={{ scale: status === "submitting" ? 1 : 1.02 }}
                                             whileTap={{ scale: 0.98 }}
-                                            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#1a2355] text-white font-black uppercase tracking-[0.2em] text-sm px-10 py-5 rounded-2xl shadow-xl shadow-[#1a2355]/20 hover:bg-[#ee7c7e] hover:shadow-[#ee7c7e]/30 disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-300"
+                                            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#1a2355] text-white font-black uppercase tracking-[0.12em] text-sm px-10 py-5 rounded-2xl shadow-xl shadow-[#1a2355]/20 hover:bg-[#ee7c7e] hover:shadow-[#ee7c7e]/30 disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-300"
                                         >
                                             {status === "submitting" ? t.submitting : t.submit}
                                             <SendIcon sx={{ fontSize: 18 }} />
@@ -398,11 +396,11 @@ export default function ContactPage() {
                 >
                     <div className="flex items-center gap-4 mb-10">
                         <span className="w-2.5 h-10 bg-[#ee7c7e] rounded-full animate-pulse shadow-[0_0_15px_rgba(238,124,126,0.5)]" />
-                        <h2 className="text-3xl md:text-4xl font-black text-[#1a2355] dark:text-white uppercase tracking-tighter">
+                        <h2 className="text-3xl md:text-4xl font-black text-[#1a2355] dark:text-white tracking-tighter">
                             {t.mapTitle}
                         </h2>
                     </div>
-                    <div className="relative rounded-[3rem] overflow-hidden border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 shadow-2xl shadow-blue-900/10 h-[450px] md:h-[520px]">
+                    <div className="relative rounded-[14px] overflow-hidden border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 shadow-2xl shadow-blue-900/10 h-[450px] md:h-[520px]">
                         <iframe
                             title="AzTU Map"
                             src="https://www.google.com/maps?q=Azerbaijan+Technical+University,+H.Javid+Avenue+25,+Baku&output=embed"
@@ -430,7 +428,7 @@ function FormField({
 }) {
     return (
         <label className="block">
-            <span className="block text-[10px] font-black uppercase tracking-[0.25em] text-[#1a2355]/60 dark:text-white/60 mb-3">
+            <span className="block text-[10px] font-black uppercase tracking-[0.13em] text-[#1a2355]/60 dark:text-white/60 mb-3">
                 {label}
             </span>
             <div

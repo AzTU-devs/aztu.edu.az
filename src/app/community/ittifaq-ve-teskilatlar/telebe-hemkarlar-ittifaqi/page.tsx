@@ -300,13 +300,13 @@ export default function TelebeHemkarlarIttifaqiPage() {
   const sectionHref = lang === "az" ? "/az/icma/ittifaq-ve-teskilatlar" : "/en/community/unions-and-organizations";
 
   return (
-    <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+    <main className="min-h-screen bg-white dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
 
       {/* HERO */}
       <div className="relative min-h-[55vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <div className="absolute inset-0 bg-[#0b1330]" />
-          <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[5rem] lg:rounded-bl-[20rem]" />
+          <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[2.5rem] lg:rounded-bl-[10rem]" />
           <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: "radial-gradient(white 0.5px, transparent 0.5px)", backgroundSize: "32px 32px" }} />
         </div>
 
@@ -326,7 +326,7 @@ export default function TelebeHemkarlarIttifaqiPage() {
 
           <div className="max-w-4xl">
             <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.14em] mb-6">
                 {p.eyebrow}
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-[1.1] tracking-tight">
@@ -388,7 +388,7 @@ export default function TelebeHemkarlarIttifaqiPage() {
                     </div>
                     <div className="lg:col-span-4 grid grid-cols-2 gap-4">
                       {p.about.stats.map((stat, i) => (
-                        <div key={i} className="bg-gray-50 dark:bg-white/5 rounded-[2rem] p-6 border border-gray-100 dark:border-white/10 flex flex-col items-center text-center gap-2 shadow-sm">
+                        <div key={i} className="bg-gray-50 dark:bg-white/5 rounded-[12px] p-6 border border-gray-100 dark:border-white/10 flex flex-col items-center text-center gap-2 shadow-sm">
                           <p className="text-3xl font-black text-[#1a2355] dark:text-white">{stat.value}</p>
                           <p className="text-xs font-black text-[#ee7c7e] uppercase tracking-widest">{stat.label}</p>
                         </div>
@@ -443,7 +443,7 @@ export default function TelebeHemkarlarIttifaqiPage() {
                   </div>
 
                   <div className="lg:col-span-4 space-y-6">
-                    <div className="relative w-full aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl">
+                    <div className="relative w-full aspect-[3/4] rounded-[14px] overflow-hidden shadow-2xl">
                       <Image
                         src={CHAIR_PHOTO}
                         alt={p.chair.name}
@@ -487,7 +487,7 @@ export default function TelebeHemkarlarIttifaqiPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.08 }}
-                        className="bg-white dark:bg-white/5 rounded-[2.5rem] p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-lg hover:border-[#ee7c7e]/20 transition-all duration-300"
+                        className="bg-white dark:bg-white/5 rounded-[14px] p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-lg hover:border-[#ee7c7e]/20 transition-all duration-300"
                       >
                         <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center mb-6">
                           {activityIcons[item.icon]}
@@ -515,7 +515,7 @@ export default function TelebeHemkarlarIttifaqiPage() {
                         initial={{ opacity: 0, scale: 0.96 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: i * 0.1 }}
-                        className="bg-white dark:bg-white/5 rounded-[2.5rem] p-10 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/30 transition-all duration-300 flex flex-col items-center text-center"
+                        className="bg-white dark:bg-white/5 rounded-[14px] p-10 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/30 transition-all duration-300 flex flex-col items-center text-center"
                       >
                         <div className="w-20 h-20 rounded-3xl bg-[#ee7c7e]/10 flex items-center justify-center mb-6">
                           {clubIcons[club.icon]}
@@ -545,13 +545,13 @@ export default function TelebeHemkarlarIttifaqiPage() {
                     <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">{p.membership.title}</h2>
                   </div>
 
-                  <div className="flex items-start gap-4 p-8 rounded-[2rem] bg-[#ee7c7e]/5 border border-[#ee7c7e]/20">
+                  <div className="flex items-start gap-4 p-8 rounded-[12px] bg-[#ee7c7e]/5 border border-[#ee7c7e]/20">
                     <AssignmentIndIcon className="text-[#ee7c7e] shrink-0 mt-0.5" sx={{ fontSize: 28 }} />
                     <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">{p.membership.intro}</p>
                   </div>
 
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div className="bg-white dark:bg-white/5 rounded-[2.5rem] p-10 border border-gray-100 dark:border-white/10 shadow-sm">
+                    <div className="bg-white dark:bg-white/5 rounded-[14px] p-10 border border-gray-100 dark:border-white/10 shadow-sm">
                       <h3 className="text-xl font-black text-[#1a2355] dark:text-white mb-8 flex items-center gap-3">
                         <GroupsIcon className="text-[#ee7c7e]" />
                         {p.membership.rightsTitle}
@@ -566,7 +566,7 @@ export default function TelebeHemkarlarIttifaqiPage() {
                       </ul>
                     </div>
 
-                    <div className="bg-[#1a2355] rounded-[2.5rem] p-10 text-white">
+                    <div className="bg-[#1a2355] rounded-[14px] p-10 text-white">
                       <h3 className="text-xl font-black mb-8 flex items-center gap-3">
                         <AssignmentIndIcon className="text-[#ee7c7e]" />
                         {p.membership.obligationsTitle}
@@ -592,19 +592,19 @@ export default function TelebeHemkarlarIttifaqiPage() {
                     <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">{p.contact.title}</h2>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                    <div className="flex flex-col items-center gap-4 bg-white dark:bg-white/5 rounded-[2rem] p-8 border border-gray-100 dark:border-white/10 shadow-sm">
+                    <div className="flex flex-col items-center gap-4 bg-white dark:bg-white/5 rounded-[12px] p-8 border border-gray-100 dark:border-white/10 shadow-sm">
                       <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center">
                         <PhoneIcon className="text-[#ee7c7e]" sx={{ fontSize: 28 }} />
                       </div>
                       <p className="font-bold text-gray-700 dark:text-gray-200 text-sm">{p.contact.phone}</p>
                     </div>
-                    <div className="flex flex-col items-center gap-4 bg-white dark:bg-white/5 rounded-[2rem] p-8 border border-gray-100 dark:border-white/10 shadow-sm">
+                    <div className="flex flex-col items-center gap-4 bg-white dark:bg-white/5 rounded-[12px] p-8 border border-gray-100 dark:border-white/10 shadow-sm">
                       <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center">
                         <EmailIcon className="text-[#ee7c7e]" sx={{ fontSize: 28 }} />
                       </div>
                       <p className="font-bold text-gray-700 dark:text-gray-200 text-sm break-all">{p.contact.email}</p>
                     </div>
-                    <div className="flex flex-col items-center gap-4 bg-white dark:bg-white/5 rounded-[2rem] p-8 border border-gray-100 dark:border-white/10 shadow-sm">
+                    <div className="flex flex-col items-center gap-4 bg-white dark:bg-white/5 rounded-[12px] p-8 border border-gray-100 dark:border-white/10 shadow-sm">
                       <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center">
                         <LocationOnIcon className="text-[#ee7c7e]" sx={{ fontSize: 28 }} />
                       </div>

@@ -60,7 +60,7 @@ function HomeStyleSection({
                     >
                         <div className={`inline-flex items-center gap-3 px-4 py-2 rounded-2xl ${dark ? 'bg-white/5 border-white/10' : 'bg-gray-50 dark:bg-white/5 border-gray-100 dark:border-white/10'} border mb-6 shadow-sm`}>
                             <div className="w-2 h-2 rounded-full bg-[#ee7c7e] animate-pulse shadow-[0_0_8px_#ee7c7e]" />
-                            <span className={`${dark ? 'text-white' : 'text-[#1a2355] dark:text-white'} text-[11px] font-black uppercase tracking-[0.4em]`}>
+                            <span className={`${dark ? 'text-white' : 'text-[#1a2355] dark:text-white'} text-[11px] font-black uppercase tracking-[0.15em]`}>
                                 {badge}
                             </span>
                         </div>
@@ -145,7 +145,7 @@ export default function ScientificJournalPage({ params }: Props) {
             >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
                     <div className="lg:col-span-7 space-y-12">
-                         <div className="p-10 md:p-16 rounded-[3rem] bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5 shadow-2xl">
+                         <div className="p-10 md:p-16 rounded-[14px] bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5 shadow-2xl">
                             <p className="text-gray-600 dark:text-gray-400 text-xl leading-relaxed text-justify">
                                 {journal.about}
                             </p>
@@ -154,8 +154,8 @@ export default function ScientificJournalPage({ params }: Props) {
                         {/* Detail Grid */}
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                             {Object.entries(journal.details).map(([key, value]: [string, any]) => (
-                                <div key={key} className="p-6 rounded-[2rem] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 shadow-lg group hover:border-[#ee7c7e]/30 transition-all">
-                                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#ee7c7e] mb-2">{detailLabels[key]}</p>
+                                <div key={key} className="p-6 rounded-[12px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 shadow-lg group hover:border-[#ee7c7e]/30 transition-all">
+                                    <p className="text-[10px] font-black uppercase tracking-[0.12em] text-[#ee7c7e] mb-2">{detailLabels[key]}</p>
                                     {key === 'link' ? (
                                         <a href={value.startsWith('http') ? value : `https://${value}`} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-[#1a2355] dark:text-white hover:text-[#ee7c7e] break-all transition-colors flex items-center gap-2">
                                             {value} <PublicIcon sx={{ fontSize: 14 }} />
@@ -170,7 +170,7 @@ export default function ScientificJournalPage({ params }: Props) {
                     
                     <div className="lg:col-span-5 relative group">
                          <div className="absolute inset-0 bg-[#ee7c7e]/20 blur-[100px] rounded-full scale-75 group-hover:scale-100 transition-transform duration-1000" />
-                         <div className="relative rounded-[3rem] overflow-hidden border border-gray-100 dark:border-white/10 shadow-2xl">
+                         <div className="relative rounded-[14px] overflow-hidden border border-gray-100 dark:border-white/10 shadow-2xl">
                             {journal.image ? (
                                 <Image 
                                     src={journal.image} 
@@ -200,18 +200,18 @@ export default function ScientificJournalPage({ params }: Props) {
                 >
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                         <div className="lg:col-span-5">
-                             <div className="p-12 rounded-[3rem] bg-white/5 border border-white/10 backdrop-blur-xl h-full flex flex-col justify-center shadow-2xl group hover:border-[#ee7c7e]/30 transition-all">
+                             <div className="p-12 rounded-[14px] bg-white/5 border border-white/10 backdrop-blur-xl h-full flex flex-col justify-center shadow-2xl group hover:border-[#ee7c7e]/30 transition-all">
                                 <div className="w-16 h-16 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e] mb-8">
                                     <PersonIcon sx={{ fontSize: 32 }} />
                                 </div>
-                                <h4 className="text-white text-[11px] font-black uppercase tracking-[0.4em] mb-4">{lang === 'az' ? 'Baş Redaktor' : 'Chief Editor'}</h4>
+                                <h4 className="text-white text-[11px] font-black uppercase tracking-[0.15em] mb-4">{lang === 'az' ? 'Baş Redaktor' : 'Chief Editor'}</h4>
                                 <p className="text-white text-3xl font-black leading-tight group-hover:text-[#ee7c7e] transition-colors">
                                     {journal.chiefEditor}
                                 </p>
                              </div>
                         </div>
                         <div className="lg:col-span-7">
-                             <div className="p-12 rounded-[3rem] bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl">
+                             <div className="p-12 rounded-[14px] bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl">
                                 <div className="flex items-center gap-6 mb-12">
                                      <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white">
                                         <GroupsIcon />
@@ -235,14 +235,14 @@ export default function ScientificJournalPage({ params }: Props) {
             {/* EXTERNAL LINK CTA */}
             <section className="px-4 md:px-10 lg:px-20 py-24 bg-gray-50 dark:bg-[#0b1330]/50">
                 <div className="max-w-[1600px] mx-auto">
-                    <div className="p-12 md:p-20 rounded-[4rem] bg-[#1a2355] text-white shadow-2xl relative overflow-hidden text-center flex flex-col items-center group">
+                    <div className="p-12 md:p-20 rounded-[16px] bg-[#1a2355] text-white shadow-2xl relative overflow-hidden text-center flex flex-col items-center group">
                          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl group-hover:scale-125 transition-transform duration-1000" />
                          <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#ee7c7e]/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
                          
-                         <div className="w-20 h-20 rounded-[2rem] bg-[#ee7c7e] flex items-center justify-center mb-10 shadow-[0_0_40px_rgba(238,124,126,0.4)]">
+                         <div className="w-20 h-20 rounded-[12px] bg-[#ee7c7e] flex items-center justify-center mb-10 shadow-[0_0_40px_rgba(238,124,126,0.4)]">
                             <DescriptionIcon sx={{ fontSize: 40 }} />
                          </div>
-                         <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8 leading-tight">
+                         <h3 className="text-3xl md:text-5xl font-black tracking-tighter mb-8 leading-tight">
                             {lang === 'az' ? 'Arxivə daxil olun və' : 'Access the Archives and'} <br/>
                             {lang === 'az' ? 'Məqalələri oxuyun' : 'Read the Articles'}
                          </h3>
@@ -250,7 +250,7 @@ export default function ScientificJournalPage({ params }: Props) {
                             href={journal.details.link.startsWith('http') ? journal.details.link : `https://${journal.details.link}`} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="px-12 py-6 bg-white text-[#1a2355] rounded-[2.5rem] font-black uppercase text-[12px] tracking-[0.2em] hover:bg-[#ee7c7e] hover:text-white transition-all duration-500 shadow-2xl hover:shadow-[#ee7c7e]/40 hover:-translate-y-1 flex items-center gap-3"
+                            className="px-12 py-6 bg-white text-[#1a2355] rounded-[14px] font-black uppercase text-[12px] tracking-[0.12em] hover:bg-[#ee7c7e] hover:text-white transition-all duration-500 shadow-2xl hover:shadow-[#ee7c7e]/40 hover:-translate-y-1 flex items-center gap-3"
                          >
                             {lang === 'az' ? 'Jurnalın Rəsmi Saytı' : 'Official Journal Website'}
                             <PublicIcon sx={{ fontSize: 18 }} />

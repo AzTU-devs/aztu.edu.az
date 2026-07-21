@@ -45,13 +45,6 @@ export default function FallingWallsPage() {
 
   return (
     <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden bg-page">
-      <div className="bg-mesh opacity-100" />
-      <div className="bg-grid-premium opacity-10" />
-      <div className="fixed top-1/4 -left-20 w-96 h-96 bg-blue-600/5 blur-[120px] rounded-full animate-pulse" />
-      <div
-        className="fixed bottom-1/4 -right-20 w-96 h-96 bg-[#ee7c7e]/5 blur-[120px] rounded-full animate-pulse"
-        style={{ animationDelay: "2s" }}
-      />
 
       <PageHero
         title={fw.title}
@@ -70,10 +63,10 @@ export default function FallingWallsPage() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white/80 backdrop-blur-3xl rounded-[3rem] border-2 border-[#1a2355]/20 p-10 md:p-14 shadow-2xl shadow-blue-900/5 relative overflow-hidden hover:border-[#ee7c7e]/20 transition-all duration-500"
+              className="bg-white/80 backdrop-blur-3xl rounded-[14px] border-2 border-[#1a2355]/20 p-10 md:p-14 shadow-2xl shadow-blue-900/5 relative overflow-hidden hover:border-[#ee7c7e]/20 transition-all duration-500"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#ee7c7e] to-transparent opacity-30" />
-              <h2 className="text-2xl font-black text-[#1a2355] uppercase tracking-tighter mb-8 flex items-center gap-4">
+              <h2 className="text-2xl font-black text-[#1a2355] tracking-tighter mb-8 flex items-center gap-4">
                 <InfoIcon className="text-[#ee7c7e]" sx={{ fontSize: 32 }} />
                 {fw.about.title}
               </h2>
@@ -92,7 +85,7 @@ export default function FallingWallsPage() {
                     <VideocamIcon sx={{ fontSize: 26 }} />
                   </div>
                   <div>
-                    <span className="block text-[11px] font-black uppercase tracking-[0.25em] text-[#ee7c7e] mb-2">
+                    <span className="block text-[11px] font-black uppercase tracking-[0.13em] text-[#ee7c7e] mb-2">
                       {lang === "az" ? "Onlayn İnfo Sessiya" : "Online Info Session"}
                     </span>
                     <p className="text-[#1a2355] font-bold text-base leading-relaxed">
@@ -128,10 +121,10 @@ export default function FallingWallsPage() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white/80 backdrop-blur-3xl rounded-[3rem] border-2 border-[#1a2355]/20 p-10 md:p-14 shadow-2xl shadow-blue-900/5 relative overflow-hidden hover:border-[#ee7c7e]/20 transition-all duration-500"
+              className="bg-white/80 backdrop-blur-3xl rounded-[14px] border-2 border-[#1a2355]/20 p-10 md:p-14 shadow-2xl shadow-blue-900/5 relative overflow-hidden hover:border-[#ee7c7e]/20 transition-all duration-500"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-20" />
-              <h2 className="text-2xl font-black text-[#1a2355] uppercase tracking-tighter mb-8 flex items-center gap-4">
+              <h2 className="text-2xl font-black text-[#1a2355] tracking-tighter mb-8 flex items-center gap-4">
                 <PeopleIcon className="text-[#ee7c7e]" sx={{ fontSize: 32 }} />
                 {fw.eligibility.title}
               </h2>
@@ -176,10 +169,10 @@ export default function FallingWallsPage() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white/80 backdrop-blur-3xl rounded-[3rem] border-2 border-[#1a2355]/20 p-10 md:p-14 shadow-2xl shadow-blue-900/5 relative overflow-hidden hover:border-[#ee7c7e]/20 transition-all duration-500"
+              className="bg-white/80 backdrop-blur-3xl rounded-[14px] border-2 border-[#1a2355]/20 p-10 md:p-14 shadow-2xl shadow-blue-900/5 relative overflow-hidden hover:border-[#ee7c7e]/20 transition-all duration-500"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#ee7c7e] to-transparent opacity-30" />
-              <h2 className="text-2xl font-black text-[#1a2355] uppercase tracking-tighter mb-8 flex items-center gap-4">
+              <h2 className="text-2xl font-black text-[#1a2355] tracking-tighter mb-8 flex items-center gap-4">
                 <AssignmentIcon className="text-[#ee7c7e]" sx={{ fontSize: 32 }} />
                 {fw.application.title}
               </h2>
@@ -209,10 +202,10 @@ export default function FallingWallsPage() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white/80 backdrop-blur-3xl rounded-[3rem] border-2 border-[#1a2355]/20 p-10 md:p-14 shadow-2xl shadow-blue-900/5 relative overflow-hidden hover:border-[#ee7c7e]/20 transition-all duration-500"
+              className="bg-white/80 backdrop-blur-3xl rounded-[14px] border-2 border-[#1a2355]/20 p-10 md:p-14 shadow-2xl shadow-blue-900/5 relative overflow-hidden hover:border-[#ee7c7e]/20 transition-all duration-500"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-20" />
-              <h2 className="text-2xl font-black text-[#1a2355] uppercase tracking-tighter mb-10 flex items-center gap-4">
+              <h2 className="text-2xl font-black text-[#1a2355] tracking-tighter mb-10 flex items-center gap-4">
                 <SlideshowIcon className="text-[#ee7c7e]" sx={{ fontSize: 32 }} />
                 {fw.presentation.title}
               </h2>
@@ -279,12 +272,12 @@ export default function FallingWallsPage() {
               className="sticky top-28 space-y-6"
             >
               {/* Key Facts Card */}
-              <div className="p-8 rounded-[2.5rem] bg-white border-2 border-[#1a2355]/20 shadow-2xl relative overflow-hidden">
+              <div className="p-8 rounded-[14px] bg-white border-2 border-[#1a2355]/20 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
                 <div className="relative z-10">
                   <div className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-gray-50 border border-gray-100 mb-6">
                     <div className="w-2 h-2 rounded-full bg-[#ee7c7e] animate-pulse" />
-                    <span className="text-[#1a2355]/60 text-[10px] font-black uppercase tracking-[0.3em]">
+                    <span className="text-[#1a2355]/60 text-[10px] font-black uppercase tracking-[0.14em]">
                       {fw.sidebar.keyFacts}
                     </span>
                   </div>
@@ -326,8 +319,8 @@ export default function FallingWallsPage() {
               </Link>
 
               {/* Supported by — DAAD */}
-              <div className="p-8 rounded-[2.5rem] bg-white border-2 border-[#1a2355]/20 shadow-2xl">
-                <span className="text-[10px] font-black text-[#1a2355]/40 uppercase tracking-[0.3em] block mb-5">
+              <div className="p-8 rounded-[14px] bg-white border-2 border-[#1a2355]/20 shadow-2xl">
+                <span className="text-[10px] font-black text-[#1a2355]/40 uppercase tracking-[0.14em] block mb-5">
                   {lang === "az" ? "Dəstəkçilər" : "Supported by"}
                 </span>
                 <a

@@ -46,7 +46,7 @@ export default function Timeline({ items, className = "" }: TimelineProps) {
                         {/* Glow */}
                         <div className="absolute left-[-10px] top-[-10px] w-24 h-24 bg-[#ee7c7e]/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                        <div className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl p-6 md:p-8 rounded-[2rem] border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/20 shadow-xl hover:shadow-2xl hover:border-[#ee7c7e]/40 transition-all duration-300">
+                        <div className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl p-6 md:p-8 rounded-[12px] border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/20 shadow-xl hover:shadow-2xl hover:border-[#ee7c7e]/40 transition-all duration-300">
                             <h3 className="text-xl md:text-2xl font-black text-[#1a2355] dark:text-white mb-2 group-hover:text-[#ee7c7e] transition-colors">
                                 {item.title || item.degree}
                             </h3>

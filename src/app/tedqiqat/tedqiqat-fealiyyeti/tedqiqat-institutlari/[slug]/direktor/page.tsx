@@ -36,7 +36,7 @@ function LeadershipBlock({ person, labels }: { person: ResearchInstituteDirector
           animate={{ opacity: 1, scale: 1 }}
           className="w-full md:w-64 lg:w-72 flex-shrink-0"
         >
-          <div className="aspect-[3/4] rounded-[2.5rem] overflow-hidden border-8 border-white dark:border-slate-800 shadow-2xl relative group">
+          <div className="aspect-[3/4] rounded-[14px] overflow-hidden border-8 border-white dark:border-slate-800 shadow-2xl relative group">
             {person.image_url ? (
               <img
                 src={getImageUrl(person.image_url)}
@@ -48,13 +48,13 @@ function LeadershipBlock({ person, labels }: { person: ResearchInstituteDirector
                 No Photo
               </div>
             )}
-            <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-[2.5rem]" />
+            <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-[14px]" />
           </div>
         </motion.div>
 
         <div className="flex-1 space-y-6">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-            <span className="text-[#ee7c7e] text-xs font-black uppercase tracking-[0.2em] mb-2 block">
+            <span className="text-[#ee7c7e] text-xs font-black uppercase tracking-[0.12em] mb-2 block">
               {labels.eyebrow}
             </span>
             <h2 className="text-4xl font-black text-[#1a2355] dark:text-white leading-tight">{fullName}</h2>
@@ -133,9 +133,9 @@ function LeadershipBlock({ person, labels }: { person: ResearchInstituteDirector
                 return (
                   <div
                     key={index}
-                    className="relative overflow-hidden rounded-[2rem] border border-gray-100 dark:border-slate-700 bg-white dark:bg-slate-800 p-8 shadow-sm group hover:shadow-xl hover:-translate-y-1 transition-all duration-500"
+                    className="relative overflow-hidden rounded-[12px] border border-gray-100 dark:border-slate-700 bg-white dark:bg-slate-800 p-8 shadow-sm group hover:shadow-xl hover:-translate-y-1 transition-all duration-500"
                   >
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 dark:bg-slate-700/30 rounded-bl-[4rem] -mr-8 -mt-8 transition-transform group-hover:scale-110" />
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 dark:bg-slate-700/30 rounded-bl-[2rem] -mr-8 -mt-8 transition-transform group-hover:scale-110" />
                     <div className="relative z-10 flex items-start gap-6">
                       <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#1a2355] to-[#2a3a8a] text-white flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-900/20">
                         <SchoolIcon sx={{ fontSize: 24 }} />

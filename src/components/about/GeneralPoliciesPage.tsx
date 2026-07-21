@@ -614,7 +614,7 @@ export default function GeneralPoliciesPage() {
                                         </h3>
 
                                         <div className="mt-6 flex items-center justify-between relative z-10 pt-5 border-t border-[#1a2355]/10 dark:border-white/5">
-                                            <span className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-[#1a2355]/60 dark:text-white/50 group-hover:text-[#ee7c7e] transition-colors">
+                                            <span className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.14em] text-[#1a2355]/60 dark:text-white/50 group-hover:text-[#ee7c7e] transition-colors">
                                                 <PictureAsPdfIcon sx={{ fontSize: 14 }} />
                                                 PDF · {c.viewLabel}
                                             </span>

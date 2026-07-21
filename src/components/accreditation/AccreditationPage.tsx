@@ -220,10 +220,10 @@ export default function AccreditationPage() {
   const aboutHref = lang === "az" ? "/haqqimizda" : "/about";
 
   const card =
-    "bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-3xl rounded-[2.5rem] border-2 border-[#1a2355]/30 dark:border-white/5 p-8 md:p-12 shadow-xl shadow-blue-900/5 relative overflow-hidden";
+    "bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-3xl rounded-[14px] border-2 border-[#1a2355]/30 dark:border-white/5 p-8 md:p-12 shadow-xl shadow-blue-900/5 relative overflow-hidden";
 
   return (
-    <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+    <main className="min-h-screen bg-white dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
       {/* HERO */}
       <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -250,7 +250,7 @@ export default function AccreditationPage() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="max-w-3xl"
             >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.14em] mb-6">
                 {c.eyebrow}
               </span>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-[1.1] tracking-tight">
@@ -276,7 +276,7 @@ export default function AccreditationPage() {
           className={card}
         >
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#ee7c7e] to-transparent opacity-40" />
-          <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight mb-5 flex items-center gap-3">
+          <h2 className="text-2xl font-black text-[#1a2355] dark:text-white tracking-tight mb-5 flex items-center gap-3">
             <span className="w-2 h-8 bg-[#ee7c7e] rounded-full" />
             {c.whatTitle}
           </h2>
@@ -294,7 +294,7 @@ export default function AccreditationPage() {
           className={card}
         >
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-40" />
-          <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight mb-6 flex items-center gap-3">
+          <h2 className="text-2xl font-black text-[#1a2355] dark:text-white tracking-tight mb-6 flex items-center gap-3">
             <span className="w-10 h-10 rounded-2xl bg-blue-500/10 flex items-center justify-center shrink-0">
               <VerifiedIcon sx={{ fontSize: 22 }} className="text-blue-500" />
             </span>
@@ -319,7 +319,7 @@ export default function AccreditationPage() {
           className={card}
         >
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-40" />
-          <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight mb-4 flex items-center gap-3">
+          <h2 className="text-2xl font-black text-[#1a2355] dark:text-white tracking-tight mb-4 flex items-center gap-3">
             <span className="w-10 h-10 rounded-2xl bg-purple-500/10 flex items-center justify-center shrink-0">
               <GavelIcon sx={{ fontSize: 22 }} className="text-purple-500" />
             </span>
@@ -343,7 +343,7 @@ export default function AccreditationPage() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
         >
-          <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight mb-6 flex items-center gap-3">
+          <h2 className="text-2xl font-black text-[#1a2355] dark:text-white tracking-tight mb-6 flex items-center gap-3">
             <span className="w-2 h-8 bg-[#ee7c7e] rounded-full animate-pulse shadow-[0_0_12px_rgba(238,124,126,0.4)]" />
             {c.typesTitle}
           </h2>
@@ -421,7 +421,7 @@ export default function AccreditationPage() {
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#ee7c7e] to-transparent opacity-40" />
           <div className="flex flex-col sm:flex-row sm:items-start gap-6 mb-6">
             <div className="flex-1">
-              <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight mb-4 flex items-center gap-3">
+              <h2 className="text-2xl font-black text-[#1a2355] dark:text-white tracking-tight mb-4 flex items-center gap-3">
                 <span className="w-10 h-10 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center shrink-0">
                   <PublicIcon sx={{ fontSize: 22 }} className="text-[#ee7c7e]" />
                 </span>
@@ -456,7 +456,7 @@ export default function AccreditationPage() {
           className={card}
         >
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-40" />
-          <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight mb-6 flex items-center gap-3">
+          <h2 className="text-2xl font-black text-[#1a2355] dark:text-white tracking-tight mb-6 flex items-center gap-3">
             <span className="w-2 h-8 bg-blue-500 rounded-full" />
             {c.processTitle}
           </h2>
@@ -481,7 +481,7 @@ export default function AccreditationPage() {
           className={card}
         >
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gray-400 to-transparent opacity-40" />
-          <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight mb-4 flex items-center gap-3">
+          <h2 className="text-2xl font-black text-[#1a2355] dark:text-white tracking-tight mb-4 flex items-center gap-3">
             <span className="w-2 h-8 bg-gray-400 rounded-full" />
             {c.reportsTitle}
           </h2>
@@ -495,7 +495,7 @@ export default function AccreditationPage() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.18 }}
         >
-          <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight mb-6 flex items-center gap-3">
+          <h2 className="text-2xl font-black text-[#1a2355] dark:text-white tracking-tight mb-6 flex items-center gap-3">
             <span className="w-2 h-8 bg-[#ee7c7e] rounded-full animate-pulse shadow-[0_0_12px_rgba(238,124,126,0.4)]" />
             {c.certsTitle}
           </h2>
@@ -507,7 +507,7 @@ export default function AccreditationPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-xl rounded-[2rem] border-2 border-[#1a2355]/30 dark:border-white/5 overflow-hidden shadow-lg hover:border-[#ee7c7e]/30 transition-all duration-300 group flex flex-col"
+                className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-xl rounded-[12px] border-2 border-[#1a2355]/30 dark:border-white/5 overflow-hidden shadow-lg hover:border-[#ee7c7e]/30 transition-all duration-300 group flex flex-col"
               >
                 <div className="relative w-full aspect-[4/3] bg-gray-50 dark:bg-[#050d20]">
                   <Image
@@ -544,7 +544,7 @@ export default function AccreditationPage() {
           className={card}
         >
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent opacity-40" />
-          <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight mb-4 flex items-center gap-3">
+          <h2 className="text-2xl font-black text-[#1a2355] dark:text-white tracking-tight mb-4 flex items-center gap-3">
             <span className="w-2 h-8 bg-green-500 rounded-full" />
             {c.isoTitle}
           </h2>

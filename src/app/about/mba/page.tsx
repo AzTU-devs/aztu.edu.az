@@ -28,7 +28,7 @@ export default function MBAPage() {
             : "/en/akademik/education-and-programs/mba";
 
     return (
-        <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-white dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
             {/* HERO */}
             <div className="relative min-h-[60vh] lg:min-h-[70vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -59,7 +59,7 @@ export default function MBAPage() {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8 }}
                         >
-                            <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
+                            <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.14em] mb-6">
                                 {p.eyebrow}
                             </span>
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-8 leading-[1.1] tracking-tight">
@@ -105,7 +105,7 @@ export default function MBAPage() {
                             {p.stats.map((stat: { value: string; label: string }, i: number) => (
                                 <div
                                     key={i}
-                                    className="p-8 rounded-[2rem] bg-[#1a2355] text-white text-center relative overflow-hidden group hover:bg-[#ee7c7e] transition-all duration-500 shadow-xl"
+                                    className="p-8 rounded-[12px] bg-[#1a2355] text-white text-center relative overflow-hidden group hover:bg-[#ee7c7e] transition-all duration-500 shadow-xl"
                                 >
                                     <div className="absolute -top-6 -right-6 w-24 h-24 bg-white/5 rounded-full blur-2xl group-hover:scale-150 transition-transform" />
                                     <div className="text-4xl font-black mb-2 relative z-10">{stat.value}</div>
@@ -173,7 +173,7 @@ export default function MBAPage() {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             {[p.doctoralDuration.phd, p.doctoralDuration.ds].map((prog, i) => (
-                                <div key={i} className="p-8 rounded-[2rem] bg-[#1a2355] text-white relative overflow-hidden">
+                                <div key={i} className="p-8 rounded-[12px] bg-[#1a2355] text-white relative overflow-hidden">
                                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
                                     <h4 className="text-lg font-black uppercase tracking-tight mb-6 relative z-10">{prog.title}</h4>
                                     <div className="space-y-3 relative z-10">
@@ -223,7 +223,7 @@ export default function MBAPage() {
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className="group flex items-center justify-between bg-white dark:bg-white/5 p-6 rounded-[1.5rem] border border-gray-100 dark:border-white/10 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
+                                    className="group flex items-center justify-between bg-white dark:bg-white/5 p-6 rounded-[10px] border border-gray-100 dark:border-white/10 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
                                 >
                                     <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">
                                         {link.title}

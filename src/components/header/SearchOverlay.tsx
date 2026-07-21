@@ -153,7 +153,7 @@ export default function SearchOverlay({ isOpen, onClose }: Props) {
                         transition={{ duration: 0.3, ease: "easeOut", delay: 0.07 }}
                         className="flex-1 flex flex-col items-center px-5 sm:px-10 pt-16 pb-10 overflow-y-auto"
                     >
-                        <p className="text-[#5A9BD3] text-[11px] font-bold uppercase tracking-[0.22em] mb-6 select-none">
+                        <p className="text-[#5A9BD3] text-[11px] font-bold uppercase tracking-[0.12em] mb-6 select-none">
                             {t.search.header}
                         </p>
 

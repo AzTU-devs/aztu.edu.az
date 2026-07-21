@@ -143,7 +143,7 @@ export default function LaboratoryDetailPage() {
                     <motion.nav
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="flex items-center gap-1.5 text-white/50 text-sm mb-6 flex-wrap font-black uppercase tracking-[0.3em]"
+                        className="flex items-center gap-1.5 text-white/50 text-sm mb-6 flex-wrap font-black uppercase tracking-[0.14em]"
                     >
                         {breadcrumbs.map((crumb, i) => (
                             <div key={i} className="flex items-center gap-1.5">
@@ -179,13 +179,13 @@ export default function LaboratoryDetailPage() {
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="bg-white dark:bg-slate-800 rounded-[2.5rem] p-8 md:p-10 shadow-sm border border-gray-100 dark:border-slate-700"
+                                className="bg-white dark:bg-slate-800 rounded-[14px] p-8 md:p-10 shadow-sm border border-gray-100 dark:border-slate-700"
                             >
                                 <div className="flex items-center gap-4 mb-6">
                                     <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
                                         <InfoIcon />
                                     </div>
-                                    <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight">
+                                    <h2 className="text-2xl font-black text-[#1a2355] dark:text-white tracking-tight">
                                         {t.description}
                                     </h2>
                                 </div>
@@ -199,13 +199,13 @@ export default function LaboratoryDetailPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
-                                className="bg-white dark:bg-slate-800 rounded-[2.5rem] p-8 md:p-10 shadow-sm border border-gray-100 dark:border-slate-700"
+                                className="bg-white dark:bg-slate-800 rounded-[14px] p-8 md:p-10 shadow-sm border border-gray-100 dark:border-slate-700"
                             >
                                 <div className="flex items-center gap-4 mb-6">
                                     <div className="w-12 h-12 rounded-xl bg-green-50 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
                                         <SchoolIcon />
                                     </div>
-                                    <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight">
+                                    <h2 className="text-2xl font-black text-[#1a2355] dark:text-white tracking-tight">
                                         {t.objectives}
                                     </h2>
                                 </div>
@@ -226,13 +226,13 @@ export default function LaboratoryDetailPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.15 }}
-                                className="bg-white dark:bg-slate-800 rounded-[2.5rem] p-8 md:p-10 shadow-sm border border-gray-100 dark:border-slate-700"
+                                className="bg-white dark:bg-slate-800 rounded-[14px] p-8 md:p-10 shadow-sm border border-gray-100 dark:border-slate-700"
                             >
                                 <div className="flex items-center gap-4 mb-6">
                                     <div className="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400">
                                         <BuildIcon />
                                     </div>
-                                    <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight">
+                                    <h2 className="text-2xl font-black text-[#1a2355] dark:text-white tracking-tight">
                                         {t.equipments}
                                     </h2>
                                 </div>
@@ -256,13 +256,13 @@ export default function LaboratoryDetailPage() {
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: 0.2 }}
-                                className="bg-white dark:bg-slate-800 rounded-[2.5rem] p-6 md:p-8 shadow-sm border border-gray-100 dark:border-slate-700"
+                                className="bg-white dark:bg-slate-800 rounded-[14px] p-6 md:p-8 shadow-sm border border-gray-100 dark:border-slate-700"
                             >
                                 <div className="flex items-center gap-4 mb-6">
                                     <div className="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
                                         <ScienceIcon />
                                     </div>
-                                    <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight">
+                                    <h2 className="text-2xl font-black text-[#1a2355] dark:text-white tracking-tight">
                                         {t.gallery}
                                     </h2>
                                 </div>
@@ -278,7 +278,7 @@ export default function LaboratoryDetailPage() {
                             <motion.div
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                className="bg-[#1a2355] rounded-[2.5rem] p-8 text-white shadow-xl shadow-blue-900/20"
+                                className="bg-[#1a2355] rounded-[14px] p-8 text-white shadow-xl shadow-blue-900/20"
                             >
                                 <div className="flex items-center gap-4 mb-6">
                                     <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
@@ -299,7 +299,7 @@ export default function LaboratoryDetailPage() {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="bg-white dark:bg-slate-800 rounded-[2.5rem] p-8 shadow-sm border border-gray-100 dark:border-slate-700"
+                            className="bg-white dark:bg-slate-800 rounded-[14px] p-8 shadow-sm border border-gray-100 dark:border-slate-700"
                         >
                             <div className="flex items-center gap-4 mb-6">
                                 <div className="w-10 h-10 rounded-xl bg-red-50 dark:bg-red-900/30 flex items-center justify-center text-red-600 dark:text-red-400">

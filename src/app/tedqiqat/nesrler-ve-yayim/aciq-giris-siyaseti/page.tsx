@@ -18,13 +18,13 @@ export default function OpenAccessPolicyPage() {
     const p = t.pages.research.publications.openAccessPolicy;
 
     return (
-        <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-white dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
             {/* HERO SECTION */}
             <div className="relative min-h-[50vh] flex flex-col pt-44 lg:pt-48">
                 {/* Background Graphics */}
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                     <div className="absolute inset-0 bg-[#0b1330]" />
-                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[5rem] lg:rounded-bl-[20rem] transition-all duration-1000" />
+                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[2.5rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#0b1330] via-[#0b1330]/80 to-transparent hidden lg:block" />
                     <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#ee7c7e]/5 rounded-full blur-3xl animate-pulse" />
                 </div>
@@ -50,7 +50,7 @@ export default function OpenAccessPolicyPage() {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
                         >
-                            <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
+                            <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.14em] mb-6">
                                 {p.eyebrow}
                             </span>
                             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
@@ -86,7 +86,7 @@ export default function OpenAccessPolicyPage() {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="sticky top-32 p-8 rounded-[2.5rem] bg-white dark:bg-slate-800/50 border border-gray-100 dark:border-slate-700 shadow-xl"
+                            className="sticky top-32 p-8 rounded-[14px] bg-white dark:bg-slate-800/50 border border-gray-100 dark:border-slate-700 shadow-xl"
                         >
                             <div className="flex items-center gap-3 mb-8">
                                 <div className="w-10 h-10 rounded-xl bg-[#1a2355]/5 flex items-center justify-center text-[#1a2355] dark:text-white">
@@ -122,7 +122,7 @@ export default function OpenAccessPolicyPage() {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="bg-white dark:bg-slate-800/50 rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-xl border border-gray-100 dark:border-slate-700"
+                            className="bg-white dark:bg-slate-800/50 rounded-[14px] p-8 md:p-12 lg:p-16 shadow-xl border border-gray-100 dark:border-slate-700"
                         >
                             <div className="prose prose-slate prose-lg dark:prose-invert max-w-none">
                                 {p.content.map((section: any) => (
@@ -170,7 +170,7 @@ export default function OpenAccessPolicyPage() {
                                     <Link 
                                         key={link.href} 
                                         href={link.href}
-                                        className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[1.5rem] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
+                                        className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[10px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
                                     >
                                         <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
                                         <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-slate-700 flex items-center justify-center group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300">

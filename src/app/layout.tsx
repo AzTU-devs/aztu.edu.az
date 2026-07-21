@@ -258,10 +258,6 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
 
-        {/* Global Background Elements */}
-        <div className="bg-mesh" />
-        <div className="bg-grid-premium" />
-
         <ReduxProvider>
           <LanguageProvider>
             <ThemeProvider>

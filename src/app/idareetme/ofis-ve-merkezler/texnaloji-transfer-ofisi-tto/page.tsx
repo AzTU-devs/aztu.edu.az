@@ -293,7 +293,7 @@ export default function TTOPage() {
   const p = DATA[lang];
 
   return (
-    <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+    <main className="min-h-screen bg-white dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
       {/* ── HERO ─────────────────────────────────────────────────────────────── */}
       <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -330,7 +330,7 @@ export default function TTOPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.14em] mb-6">
                 {p.eyebrow}
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
@@ -383,7 +383,7 @@ export default function TTOPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.07 }}
-                  className="bg-white dark:bg-white/5 rounded-[2rem] p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/30 transition-all duration-300 group"
+                  className="bg-white dark:bg-white/5 rounded-[12px] p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/30 transition-all duration-300 group"
                 >
                   <div className="w-12 h-12 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e] font-black text-lg mb-6 group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-300">
                     {String(i + 1).padStart(2, "0")}
@@ -399,7 +399,7 @@ export default function TTOPage() {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-[#1a2355] rounded-[3rem] p-10 md:p-14 text-white relative overflow-hidden"
+            className="bg-[#1a2355] rounded-[14px] p-10 md:p-14 text-white relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
               <ScienceIcon sx={{ fontSize: 200 }} />
@@ -445,7 +445,7 @@ export default function TTOPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className="bg-white dark:bg-white/5 rounded-[2rem] p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/20 transition-all duration-300"
+                  className="bg-white dark:bg-white/5 rounded-[12px] p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/20 transition-all duration-300"
                 >
                   <h3 className="text-[#ee7c7e] font-black text-sm uppercase tracking-widest mb-4">{item.category}</h3>
                   <p className="text-gray-600 dark:text-gray-300 font-medium leading-relaxed">{item.partners}</p>
@@ -497,7 +497,7 @@ export default function TTOPage() {
               <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">{p.innovationTitle}</h2>
             </div>
             <p className="text-gray-500 dark:text-gray-400 mb-10 ml-6 font-medium">{p.innovationSubtitle}</p>
-            <div className="overflow-hidden rounded-[2rem] border border-gray-100 dark:border-white/10 shadow-xl">
+            <div className="overflow-hidden rounded-[12px] border border-gray-100 dark:border-white/10 shadow-xl">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-[#1a2355] text-white">
@@ -630,7 +630,7 @@ export default function TTOPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="bg-white dark:bg-white/5 rounded-[2rem] p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/20 transition-all duration-300"
+                  className="bg-white dark:bg-white/5 rounded-[12px] p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/20 transition-all duration-300"
                 >
                   <PersonCard
                     fullName={member.name}

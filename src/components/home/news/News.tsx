@@ -74,54 +74,36 @@ export default function News() {
     return (
         <section
             ref={sectionRef}
-            className="relative px-4 md:px-10 lg:px-20 py-24 bg-white dark:bg-[#0b1330] overflow-hidden transition-colors duration-500"
+            className="relative bg-white section-padding"
         >
-            {/* STUNNING BACKGROUND ELEMENTS */}
-            <div className="absolute inset-0 pointer-events-none">
-                {/* Dotted Grid */}
-                <div className="absolute inset-0 opacity-[0.12] dark:opacity-[0.04]" 
-                     style={{ backgroundImage: 'radial-gradient(#ee7c7e 0.5px, transparent 0.5px)', backgroundSize: '32px 32px' }} />
-                
-                {/* Glow Orbs */}
-                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#1a2355]/[0.03] dark:bg-[#1a2355]/[0.1] blur-[120px] rounded-full" />
-                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#ee7c7e]/[0.03] dark:bg-[#ee7c7e]/[0.08] blur-[100px] rounded-full animate-pulse" />
-                
-                {/* Watermark */}
-                <div className="absolute left-10 bottom-10 select-none opacity-[0.02] dark:opacity-[0.05]">
-                    <h1 className="text-[180px] font-black tracking-tighter leading-none text-[#1a2355] dark:text-white uppercase">Journal</h1>
-                </div>
-            </div>
-
-            <div className="relative z-10 max-w-[1600px] mx-auto">
+            <div className="shell !px-0">
                 {/* Section Header */}
-                <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between mb-16 gap-8">
+                <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between mb-12 gap-8">
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
                     >
-                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 mb-6 shadow-sm">
-                            <div className="w-2 h-2 rounded-full bg-[#ee7c7e] animate-pulse shadow-[0_0_8px_#ee7c7e]" />
-                            <span className="text-[#1a2355] dark:text-white text-[11px] font-black uppercase tracking-[0.4em]">
-                                {t.news.sectionLabel}
-                            </span>
+                        <div className="flex items-center gap-3 mb-5">
+                            <span className="w-6 h-px bg-[#ee7c7e]" />
+                            <span className="eyebrow">{t.news.sectionLabel}</span>
                         </div>
-                        <h2 className="text-4xl md:text-7xl font-black text-[#1a2355] dark:text-white leading-tight tracking-tighter">
-                            {t.news.sectionTitle} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ee7c7e] to-[#f09395]">{t.news.sectionTitleAccent}</span>
+                        <h2 className="section-title">
+                            {t.news.sectionTitle} <span className="text-[#ee7c7e]">{t.news.sectionTitleAccent}</span>
                         </h2>
                     </motion.div>
 
                     <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.7, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
                     >
                         <Link href="/news">
-                            <button className="group flex items-center gap-5 bg-[#1a2355] dark:bg-white/5 backdrop-blur-2xl py-5 px-10 rounded-2xl text-white dark:text-white font-black uppercase tracking-widest text-[11px] hover:bg-[#ee7c7e] dark:hover:bg-[#ee7c7e] transition-all duration-700 shadow-2xl shadow-[#1a2355]/30 dark:shadow-none cursor-pointer active:scale-95">
+                            <button className="group inline-flex items-center gap-3 rounded-full bg-[#1a2355] py-3 pl-6 pr-3 text-[13px] font-semibold text-white transition-all duration-300 hover:bg-[#ee7c7e] cursor-pointer">
                                 {t.news.viewAll}
-                                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:translate-x-1.5 transition-transform group-hover:bg-white/20">
-                                    <ChevronRightIcon sx={{ fontSize: 24 }} />
-                                </div>
+                                <span className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-0.5">
+                                    <ChevronRightIcon sx={{ fontSize: 18 }} />
+                                </span>
                             </button>
                         </Link>
                     </motion.div>
@@ -136,10 +118,10 @@ export default function News() {
                             exit={{ opacity: 0 }}
                             className="flex flex-col lg:flex-row gap-10 animate-pulse"
                         >
-                            <div className="lg:w-[55%] bg-gray-100 dark:bg-white/5 rounded-[4rem] h-[40rem]" />
+                            <div className="lg:w-[55%] bg-[#1a2355]/[0.04] rounded-[16px] h-[40rem]" />
                             <div className="lg:w-[45%] grid grid-cols-1 sm:grid-cols-2 gap-8">
                                 {[1, 2, 3, 4].map((i) => (
-                                    <div key={i} className="bg-gray-100 dark:bg-white/5 rounded-[3rem] h-72" />
+                                    <div key={i} className="bg-[#1a2355]/[0.04] rounded-[12px] h-72" />
                                 ))}
                             </div>
                         </motion.div>
@@ -158,7 +140,7 @@ export default function News() {
                             className="lg:w-[55%]"
                         >
                             <Link href={`/news/${newsSlug(featured.news_id, featured.title)}`}>
-                                <div className="group relative h-full bg-white dark:bg-white/5 rounded-[4rem] overflow-hidden border-2 border-[#1a2355]/5 dark:border-white/5 shadow-[0_40px_80px_-20px_rgba(26,35,85,0.2)] transition-all duration-700 hover:shadow-[#ee7c7e]/20 hover:border-[#ee7c7e]/30 hover:-translate-y-2">
+                                <div className="surface-card group relative h-full !rounded-[16px] overflow-hidden hover:-translate-y-1">
                                     {/* Image Section */}
                                     <div className="relative h-[25rem] md:h-[32rem] overflow-hidden">
                                         <Image
@@ -176,7 +158,7 @@ export default function News() {
                                             <motion.div 
                                                 animate={{ scale: [1, 1.1, 1] }}
                                                 transition={{ duration: 2, repeat: Infinity }}
-                                                className="px-6 py-2 rounded-full bg-[#ee7c7e] text-white text-[11px] font-black uppercase tracking-[0.3em] shadow-[0_0_20px_rgba(238,124,126,0.6)] border border-white/20"
+                                                className="px-6 py-2 rounded-full bg-[#ee7c7e] text-white text-[11px] font-black uppercase tracking-[0.14em] shadow-[0_0_20px_rgba(238,124,126,0.6)] border border-white/20"
                                             >
                                                 Latest
                                             </motion.div>
@@ -184,7 +166,7 @@ export default function News() {
 
                                         {/* Labels */}
                                         <div className="absolute top-8 left-8 flex items-center gap-3">
-                                            <span className={`px-5 py-2 ${categoryColor(featured.category_id)} text-white text-[11px] font-black uppercase tracking-[0.2em] rounded-full shadow-2xl border border-white/10 flex items-center gap-2.5`}>
+                                            <span className={`px-5 py-2 ${categoryColor(featured.category_id)} text-white text-[11px] font-black uppercase tracking-[0.12em] rounded-full shadow-2xl border border-white/10 flex items-center gap-2.5`}>
                                                 <LocalOfferIcon sx={{ fontSize: 14 }} />
                                                 {categoryLabel(featured.category_id)}
                                             </span>
@@ -197,7 +179,7 @@ export default function News() {
                                             </span>
                                             {featured.sdg_numbers && featured.sdg_numbers.length > 0 && (
                                                 <span
-                                                    className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-emerald-500/90 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-2xl border border-white/20"
+                                                    className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-emerald-500/90 text-white text-[11px] font-black uppercase tracking-[0.12em] shadow-2xl border border-white/20"
                                                     title={`SDG: ${featured.sdg_numbers.join(", ")}`}
                                                 >
                                                     <PublicIcon sx={{ fontSize: 14 }} />
@@ -218,7 +200,7 @@ export default function News() {
                                         <p className="text-gray-500 dark:text-white/60 text-xl leading-relaxed line-clamp-3 mb-10 text-justify font-medium">
                                             {stripHtml(featured.html_content, 240)}
                                         </p>
-                                        <div className="flex items-center gap-4 text-[#1a2355] dark:text-[#ee7c7e] font-black uppercase tracking-[0.3em] text-[11px]">
+                                        <div className="flex items-center gap-4 text-[#1a2355] dark:text-[#ee7c7e] font-black uppercase tracking-[0.14em] text-[11px]">
                                             <span>{t.news.readMore}</span>
                                             <div className="w-12 h-12 rounded-2xl bg-[#1a2355]/5 dark:bg-[#ee7c7e]/10 flex items-center justify-center group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-500 group-hover:shadow-lg group-hover:shadow-[#ee7c7e]/30">
                                                 <ChevronRightIcon sx={{ fontSize: 24 }} className="group-hover:translate-x-1 transition-transform" />
@@ -240,7 +222,7 @@ export default function News() {
                                     className="h-full"
                                 >
                                     <Link href={`/news/${newsSlug(item.news_id, item.title)}`}>
-                                        <div className="group h-full flex flex-col bg-white dark:bg-white/5 rounded-[3rem] border-2 border-[#1a2355]/5 dark:border-white/5 overflow-hidden transition-all duration-700 hover:shadow-[0_30px_60px_-15px_rgba(26,35,85,0.15)] hover:shadow-[#ee7c7e]/10 hover:border-[#ee7c7e]/20 hover:-translate-y-2">
+                                        <div className="group h-full flex flex-col bg-white dark:bg-white/5 rounded-[14px] border-2 border-[#1a2355]/5 dark:border-white/5 overflow-hidden transition-all duration-700 hover:shadow-[0_30px_60px_-15px_rgba(26,35,85,0.15)] hover:shadow-[#ee7c7e]/10 hover:border-[#ee7c7e]/20 hover:-translate-y-2">
                                             <div className="relative h-56 overflow-hidden">
                                                 <Image
                                                     src={`${item.cover_image}`}
@@ -250,7 +232,7 @@ export default function News() {
                                                     className="object-cover transition-transform duration-1000 group-hover:scale-110"
                                                 />
                                                 <div className="absolute inset-0 bg-gradient-to-t from-[#1a2355]/60 to-transparent" />
-                                                <span className={`absolute top-5 left-5 ${categoryColor(item.category_id)} text-white text-[10px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full shadow-2xl border border-white/10`}>
+                                                <span className={`absolute top-5 left-5 ${categoryColor(item.category_id)} text-white text-[10px] font-black uppercase tracking-[0.12em] px-4 py-1.5 rounded-full shadow-2xl border border-white/10`}>
                                                     {categoryLabel(item.category_id)}
                                                 </span>
                                                 {item.sdg_numbers && item.sdg_numbers.length > 0 && (
@@ -265,14 +247,14 @@ export default function News() {
                                             </div>
 
                                             <div className="p-8 flex flex-col flex-1 relative z-10">
-                                                <div className="flex items-center gap-2.5 text-[#ee7c7e] text-[11px] font-black uppercase tracking-[0.2em] mb-4">
+                                                <div className="flex items-center gap-2.5 text-[#ee7c7e] text-[11px] font-black uppercase tracking-[0.12em] mb-4">
                                                     <CalendarMonthIcon sx={{ fontSize: 14 }} />
                                                     <span>{formatDate(item.created_at, lang)}</span>
                                                 </div>
                                                 <h3 className="text-[#1a2355] dark:text-white font-black text-lg xl:text-xl leading-[1.3] flex-1 group-hover:text-[#ee7c7e] transition-colors duration-500 line-clamp-3 tracking-tight">
                                                     {decodeHtmlEntities(item.title)}
                                                 </h3>
-                                                <div className="mt-8 flex items-center gap-2.5 text-[#1a2355] dark:text-white/40 text-[11px] font-black uppercase tracking-[0.2em]">
+                                                <div className="mt-8 flex items-center gap-2.5 text-[#1a2355] dark:text-white/40 text-[11px] font-black uppercase tracking-[0.12em]">
                                                     {t.news.readMore}
                                                     <ChevronRightIcon sx={{ fontSize: 18 }} className="group-hover:translate-x-1.5 transition-transform group-hover:text-[#ee7c7e]" />
                                                 </div>

@@ -125,12 +125,7 @@ export default function Footer() {
                 
                 {/* STUNNING BACKGROUND ELEMENTS */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                    <div className="absolute inset-0 opacity-[0.05]" 
-                         style={{ backgroundImage: 'radial-gradient(white 0.5px, transparent 0.5px)', backgroundSize: '32px 32px' }} />
-                    <div className="absolute top-0 right-0 w-[60%] h-[60%] bg-[#ee7c7e]/[0.03] blur-[120px] rounded-full" />
-                    <div className="absolute right-10 bottom-24 select-none opacity-[0.02]">
-                        <h1 className="text-[250px] font-black tracking-tighter leading-none text-white uppercase">AZTU</h1>
-                    </div>
+                    <div className="absolute top-0 right-0 w-[60%] h-[60%] bg-[#ee7c7e]/[0.04] blur-[140px] rounded-full" />
                 </div>
 
                 <div className="relative z-20 max-w-[1600px] mx-auto px-5 sm:px-8 md:px-[60px] lg:px-[80px] xl:px-[120px]">
@@ -138,10 +133,10 @@ export default function Footer() {
                     {/* TOP SECTION: Branding & Social */}
                     <div className="flex flex-col lg:flex-row items-center justify-between gap-12 mb-20 pb-12 border-b border-white/5">
                         <div className="text-center lg:text-left">
-                            <h2 className="text-2xl md:text-4xl font-black text-white tracking-tighter uppercase mb-2 drop-shadow-lg">
+                            <h2 className="text-xl md:text-3xl font-semibold text-white tracking-[-0.02em] mb-2">
                                 {universityName}
                             </h2>
-                            <p className="text-[#ee7c7e] text-[11px] font-black uppercase tracking-[0.5em] opacity-90">
+                            <p className="text-[#ee7c7e] text-[11px] font-semibold uppercase tracking-[0.18em]">
                                 Innovation & Technology Hub
                             </p>
                         </div>
@@ -171,7 +166,7 @@ export default function Footer() {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 flex-1">
                             {columns.map((col, idx) => (
                                 <div key={idx} className="flex flex-col">
-                                    <h3 className="text-white text-[13px] font-black uppercase tracking-[0.2em] mb-8 relative inline-block">
+                                    <h3 className="text-white text-[12px] font-semibold uppercase tracking-[0.14em] mb-7 relative inline-block">
                                         {col.title}
                                         <div className="absolute -bottom-2 left-0 w-8 h-[2px] bg-[#ee7c7e] rounded-full" />
                                     </h3>
@@ -180,7 +175,7 @@ export default function Footer() {
                                             <li key={i}>
                                                 <Link
                                                     href={link.url}
-                                                    className="group flex items-center text-[14.5px] font-bold text-white/60 hover:text-white transition-all duration-300"
+                                                    className="group flex items-center text-[14px] font-normal text-white/60 hover:text-white transition-all duration-300"
                                                 >
                                                     <span className="w-1 h-1 rounded-full bg-[#ee7c7e] scale-0 group-hover:scale-100 transition-transform duration-300 mr-3 shadow-[0_0_8px_#ee7c7e]" />
                                                     <span className="group-hover:translate-x-1 transition-transform duration-300">{link.label}</span>
@@ -193,10 +188,9 @@ export default function Footer() {
                         </div>
 
                         {/* Contact Column - Anchored to the right */}
-                        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden group self-start w-full xl:w-[450px] shrink-0">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:bg-[#ee7c7e]/20 transition-colors duration-500" />
-                            
-                            <h3 className="text-white text-[13px] font-black uppercase tracking-[0.2em] mb-8 relative z-10">
+                        <div className="bg-white/[0.04] border border-white/10 rounded-[12px] p-9 relative overflow-hidden group self-start w-full xl:w-[420px] shrink-0">
+
+                            <h3 className="text-white text-[12px] font-semibold uppercase tracking-[0.14em] mb-7 relative z-10">
                                 {t.footer.contactTitle}
                             </h3>
 
@@ -210,7 +204,7 @@ export default function Footer() {
                                         <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-[#ee7c7e] group-hover/phone:bg-[#ee7c7e] group-hover/phone:text-white transition-all duration-300 shadow-inner">
                                             {i === 0 ? <HeadsetMicIcon sx={{ fontSize: 24 }} /> : <LocalPhoneIcon sx={{ fontSize: 24 }} />}
                                         </div>
-                                        <span className="text-base sm:text-lg md:text-xl font-black text-white/80 group-hover/phone:text-white transition-colors tracking-tight break-all">
+                                        <span className="text-base sm:text-lg font-medium text-white/85 group-hover/phone:text-white transition-colors tracking-[-0.01em] break-all">
                                             {phone}
                                         </span>
                                     </a>
@@ -222,8 +216,8 @@ export default function Footer() {
                                             <EmailIcon sx={{ fontSize: 20 }} />
                                         </div>
                                         <div className="flex flex-col">
-                                            <span className="text-[10px] font-black uppercase text-white/40 tracking-widest mb-1">E-Mail</span>
-                                            <a href={`mailto:${contact?.email ?? "aztu@aztu.edu.az"}`} className="text-sm font-bold text-white/80 hover:text-[#ee7c7e] transition-colors break-all">
+                                            <span className="text-[10px] font-semibold uppercase text-white/40 tracking-[0.14em] mb-1">E-Mail</span>
+                                            <a href={`mailto:${contact?.email ?? "aztu@aztu.edu.az"}`} className="text-sm font-normal text-white/80 hover:text-[#ee7c7e] transition-colors break-all">
                                                 {contact?.email ?? "aztu@aztu.edu.az"}
                                             </a>
                                         </div>
@@ -234,8 +228,8 @@ export default function Footer() {
                                             <LocationOnIcon sx={{ fontSize: 20 }} />
                                         </div>
                                         <div className="flex flex-col">
-                                            <span className="text-[10px] font-black uppercase text-white/40 tracking-widest mb-1">Address</span>
-                                            <span className="text-sm font-bold text-white/80 leading-relaxed">
+                                            <span className="text-[10px] font-semibold uppercase text-white/40 tracking-[0.14em] mb-1">Address</span>
+                                            <span className="text-sm font-normal text-white/80 leading-relaxed">
                                                 {contact?.address ?? t.footer.defaultAddress}
                                             </span>
                                         </div>
@@ -261,7 +255,7 @@ export default function Footer() {
                                     href={href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="group relative flex items-center justify-center bg-white/10 backdrop-blur-md border border-white/10 rounded-[2rem] p-6 w-44 h-24 hover:bg-white/20 hover:border-white/30 transition-all duration-500 overflow-hidden shadow-2xl"
+                                    className="group relative flex items-center justify-center bg-white/[0.06] border border-white/10 rounded-[10px] p-6 w-40 h-22 hover:bg-white/12 hover:border-white/25 transition-all duration-500 overflow-hidden"
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                                     <Image src={src} alt={label} className="relative z-10 w-full h-auto grayscale-[0.4] opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-95 group-hover:scale-105" />
@@ -279,10 +273,10 @@ export default function Footer() {
                                 <Link
                                     key={label}
                                     href={href}
-                                    className="group flex flex-col items-center justify-center bg-white/10 w-28 h-28 rounded-[2rem] border border-white/10 hover:bg-[#ee7c7e] hover:border-[#ee7c7e] transition-all duration-500 shadow-xl"
+                                    className="group flex flex-col items-center justify-center bg-white/[0.06] w-26 h-26 rounded-[10px] border border-white/10 hover:bg-[#ee7c7e] hover:border-[#ee7c7e] transition-all duration-500"
                                 >
                                     <Icon sx={{ fontSize: 32 }} className="text-white/60 group-hover:text-white transition-colors" />
-                                    <span className="text-white/40 group-hover:text-white text-[10px] font-black uppercase tracking-widest text-center mt-3 px-2 line-clamp-1">
+                                    <span className="text-white/45 group-hover:text-white text-[10px] font-semibold uppercase tracking-[0.12em] text-center mt-3 px-2 line-clamp-1">
                                         {label}
                                     </span>
                                 </Link>
@@ -293,10 +287,10 @@ export default function Footer() {
                                 href={APPEAL_URL}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group flex flex-col items-center justify-center bg-white/10 w-28 h-28 rounded-[2rem] border border-white/10 hover:bg-[#ee7c7e] hover:border-[#ee7c7e] transition-all duration-500 shadow-xl"
+                                className="group flex flex-col items-center justify-center bg-white/[0.06] w-26 h-26 rounded-[10px] border border-white/10 hover:bg-[#ee7c7e] hover:border-[#ee7c7e] transition-all duration-500"
                             >
                                 <GavelIcon sx={{ fontSize: 32 }} className="text-white/60 group-hover:text-white transition-colors" />
-                                <span className="text-white/40 group-hover:text-white text-[10px] font-black uppercase tracking-widest text-center mt-3 px-2 line-clamp-1">
+                                <span className="text-white/45 group-hover:text-white text-[10px] font-semibold uppercase tracking-[0.12em] text-center mt-3 px-2 line-clamp-1">
                                     {t.footer.appeal}
                                 </span>
                             </a>
@@ -329,7 +323,7 @@ export default function Footer() {
                                     href={href}
                                     title={title}
                                     rel="noopener"
-                                    className="text-[11px] font-black text-white/60 hover:text-[#ee7c7e] uppercase tracking-widest transition-colors"
+                                    className="text-[11px] font-medium text-white/60 hover:text-[#ee7c7e] uppercase tracking-[0.12em] transition-colors"
                                 >
                                     {label}
                                 </a>
@@ -338,7 +332,7 @@ export default function Footer() {
                                     key={label}
                                     href={href}
                                     title={title}
-                                    className="text-[11px] font-black text-white/60 hover:text-[#ee7c7e] uppercase tracking-widest transition-colors"
+                                    className="text-[11px] font-medium text-white/60 hover:text-[#ee7c7e] uppercase tracking-[0.12em] transition-colors"
                                 >
                                     {label}
                                 </Link>
@@ -354,13 +348,13 @@ export default function Footer() {
                             <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/5 shadow-inner">
                                 <CopyrightIcon sx={{ color: "#ee7c7e", fontSize: 18 }} />
                             </div>
-                            <p className="text-white/40 text-[11px] font-bold tracking-[0.2em] uppercase">
+                            <p className="text-white/45 text-[11px] font-medium tracking-[0.12em] uppercase">
                                 {t.footer.copyright(new Date().getFullYear())}
                             </p>
                         </div>
                         <div className="flex items-center gap-10">
-                            <Link href="/privacy-policy" className="text-[10px] font-black text-white/20 hover:text-[#ee7c7e] uppercase tracking-widest transition-colors">Privacy Policy</Link>
-                            <Link href="/terms-and-conditions" className="text-[10px] font-black text-white/20 hover:text-[#ee7c7e] uppercase tracking-widest transition-colors">Terms of Service</Link>
+                            <Link href="/privacy-policy" className="text-[10px] font-medium text-white/35 hover:text-[#ee7c7e] uppercase tracking-[0.12em] transition-colors">Privacy Policy</Link>
+                            <Link href="/terms-and-conditions" className="text-[10px] font-medium text-white/35 hover:text-[#ee7c7e] uppercase tracking-[0.12em] transition-colors">Terms of Service</Link>
                         </div>
                     </div>
                 </div>

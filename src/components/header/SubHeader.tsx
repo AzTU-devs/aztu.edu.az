@@ -291,7 +291,7 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
                                                                     {item.title}
                                                                 </Link>
                                                             ) : (
-                                                                <span className="block px-7 pt-4 pb-1 text-[10px] font-black uppercase tracking-[0.2em] text-[#1a2355]/40 dark:text-white/40">
+                                                                <span className="block px-7 pt-4 pb-1 text-[10px] font-black uppercase tracking-[0.12em] text-[#1a2355]/40 dark:text-white/40">
                                                                     {item.title}
                                                                 </span>
                                                             )}

@@ -36,7 +36,7 @@ export default function PersonCard({
   const iconSize = size === "lg" ? 56 : size === "sm" ? 28 : 44;
 
   const cardContent = (
-    <div className={`group relative bg-white dark:bg-slate-800 backdrop-blur-xl rounded-[1.5rem] border-2 border-[#1a2355]/30 dark:border-white/10 p-4 flex flex-col items-center text-center gap-3 transition-all duration-500 hover:-translate-y-1 hover:border-[#ee7c7e] dark:hover:border-[#ee7c7e] hover:shadow-xl hover:shadow-[#1a2355]/20 dark:hover:shadow-black/40 overflow-hidden${href ? " cursor-pointer" : ""}`}>
+    <div className={`group relative bg-white dark:bg-slate-800 backdrop-blur-xl rounded-[10px] border-2 border-[#1a2355]/30 dark:border-white/10 p-4 flex flex-col items-center text-center gap-3 transition-all duration-500 hover:-translate-y-1 hover:border-[#ee7c7e] dark:hover:border-[#ee7c7e] hover:shadow-xl hover:shadow-[#1a2355]/20 dark:hover:shadow-black/40 overflow-hidden${href ? " cursor-pointer" : ""}`}>
       {/* Background Decorative Element */}
       <div className="absolute -top-10 -right-10 w-24 h-24 bg-[#ee7c7e]/5 blur-2xl rounded-full group-hover:scale-150 transition-transform duration-700" />
       

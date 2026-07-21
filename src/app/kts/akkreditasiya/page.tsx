@@ -92,10 +92,6 @@ export default function AkkreditasiyaPage() {
 
   return (
     <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden bg-page dark:bg-[#080f25]">
-      <div className="bg-mesh opacity-100" />
-      <div className="bg-grid-premium opacity-10" />
-      <div className="fixed top-1/4 -left-20 w-96 h-96 bg-blue-600/5 blur-[120px] rounded-full animate-pulse pointer-events-none" />
-      <div className="fixed bottom-1/4 -right-20 w-96 h-96 bg-[#ee7c7e]/5 blur-[120px] rounded-full pointer-events-none" style={{ animationDelay: "2s" }} />
 
       <PageHero
         title={copy.title}
@@ -124,13 +120,13 @@ export default function AkkreditasiyaPage() {
                   <div className="w-10 h-10 rounded-2xl bg-[#ee7c7e] flex items-center justify-center shrink-0 shadow-lg shadow-[#ee7c7e]/20">
                     <VerifiedIcon sx={{ color: "white", fontSize: 20 }} />
                   </div>
-                  <h2 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight">
+                  <h2 className="text-2xl font-black text-[#1a2355] dark:text-white tracking-tight">
                     {section.title}
                   </h2>
                 </div>
 
                 {/* Description card */}
-                <div className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-xl rounded-[2rem] border-2 border-[#1a2355]/30 dark:border-white/5 p-8 shadow-lg relative overflow-hidden">
+                <div className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-xl rounded-[12px] border-2 border-[#1a2355]/30 dark:border-white/5 p-8 shadow-lg relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#ee7c7e] to-transparent opacity-20" />
                   <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed font-medium">
                     {section.body}
@@ -146,7 +142,7 @@ export default function AkkreditasiyaPage() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: dIdx * 0.1 }}
-                      className="bg-white/70 dark:bg-[#0d1b3e]/70 backdrop-blur-xl rounded-[2rem] border-2 border-[#1a2355]/30 dark:border-white/5 overflow-hidden shadow-lg hover:border-[#ee7c7e]/30 transition-all duration-300"
+                      className="bg-white/70 dark:bg-[#0d1b3e]/70 backdrop-blur-xl rounded-[12px] border-2 border-[#1a2355]/30 dark:border-white/5 overflow-hidden shadow-lg hover:border-[#ee7c7e]/30 transition-all duration-300"
                     >
                       <div className="flex items-center gap-4 px-8 py-5 border-b border-[#1a2355]/30 dark:border-white/5">
                         <div className="w-10 h-10 rounded-xl bg-[#ee7c7e]/10 flex items-center justify-center shrink-0">

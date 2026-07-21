@@ -67,7 +67,7 @@ export default function DepartmentSidebar({ departmentSlug }: Props) {
     return (
         <nav
             aria-label={lang === "az" ? "Şöbə naviqasiyası" : "Department navigation"}
-            className="relative bg-white dark:bg-slate-900/70 backdrop-blur-xl rounded-[1.75rem] border-2 border-[#1a2355]/10 dark:border-white/10 shadow-xl shadow-[#1a2355]/5 overflow-hidden"
+            className="relative bg-white dark:bg-slate-900/70 backdrop-blur-xl rounded-[12px] border-2 border-[#1a2355]/10 dark:border-white/10 shadow-xl shadow-[#1a2355]/5 overflow-hidden"
         >
             {/* Decorative blur */}
             <div className="absolute -top-12 -right-12 w-40 h-40 bg-[#ee7c7e]/10 blur-3xl rounded-full pointer-events-none" />
@@ -78,7 +78,7 @@ export default function DepartmentSidebar({ departmentSlug }: Props) {
                     <GridViewIcon sx={{ fontSize: 18 }} />
                 </div>
                 <div className="min-w-0">
-                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#ee7c7e]">
+                    <p className="text-[10px] font-black uppercase tracking-[0.14em] text-[#ee7c7e]">
                         {lang === "az" ? "Naviqasiya" : "Navigation"}
                     </p>
                     <p className="text-sm font-black text-[#1a2355] dark:text-white truncate">

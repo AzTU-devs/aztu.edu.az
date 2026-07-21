@@ -65,55 +65,37 @@ export default function Announcements() {
     return (
         <section
             ref={sectionRef}
-            className="relative px-4 md:px-10 lg:px-20 py-24 bg-[#0b1330] overflow-hidden"
+            className="relative bg-white section-padding"
         >
-            {/* STUNNING BACKGROUND ELEMENTS */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                {/* Dotted Grid Pattern */}
-                <div className="absolute inset-0 opacity-[0.04]" 
-                     style={{ backgroundImage: 'radial-gradient(white 0.5px, transparent 0.5px)', backgroundSize: '32px 32px' }} />
-                
-                {/* Glow Orbs */}
-                <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#ee7c7e]/[0.08] blur-[120px] rounded-full animate-pulse" />
-                <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-500/[0.05] blur-[100px] rounded-full" />
-                
-                {/* Typographic Watermark */}
-                <div className="absolute right-10 top-1/2 -translate-y-1/2 select-none opacity-[0.02]">
-                    <h1 className="text-[250px] font-black tracking-tighter leading-none text-white vertical-text uppercase" style={{ writingMode: 'vertical-rl' }}>Notice</h1>
-                </div>
-            </div>
-
-            <div className="relative z-10 max-w-[1600px] mx-auto">
+            <div className="shell !px-0">
                 {/* Section Header */}
-                <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-16 gap-8">
+                <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 gap-8">
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
                     >
-                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-white/5 border border-white/10 mb-6 shadow-sm">
-                            <div className="w-2 h-2 rounded-full bg-[#ee7c7e] animate-pulse shadow-[0_0_8px_#ee7c7e]" />
-                            <span className="text-white text-[11px] font-black uppercase tracking-[0.4em]">
-                                {t.announcements.sectionLabel}
-                            </span>
+                        <div className="flex items-center gap-3 mb-5">
+                            <span className="w-6 h-px bg-[#ee7c7e]" />
+                            <span className="eyebrow">{t.announcements.sectionLabel}</span>
                         </div>
-                        <h2 className="text-4xl md:text-6xl font-black text-white leading-tight tracking-tighter flex items-center gap-4">
-                            <CampaignIcon sx={{ fontSize: { xs: 32, md: 48 }, color: '#ee7c7e' }} />
+                        <h2 className="section-title flex items-center gap-4">
+                            <CampaignIcon sx={{ fontSize: { xs: 28, md: 36 }, color: '#ee7c7e' }} />
                             {t.announcements.sectionTitle}
                         </h2>
                     </motion.div>
 
                     <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.7, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
                     >
                         <Link href="/announcement">
-                            <button className="group flex items-center gap-4 bg-white/5 backdrop-blur-xl py-4 px-8 rounded-2xl text-white font-black uppercase tracking-widest text-xs border border-white/10 hover:bg-[#ee7c7e] hover:border-[#ee7c7e] transition-all duration-500 shadow-xl cursor-pointer">
+                            <button className="group inline-flex items-center gap-3 rounded-full border border-[#1a2355]/12 bg-white py-3 pl-6 pr-3 text-[13px] font-semibold text-[#10163a] transition-all duration-300 hover:border-[#1a2355] hover:bg-[#1a2355] hover:text-white cursor-pointer">
                                 {t.announcements.viewAll}
-                                <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">
-                                    <ChevronRightIcon sx={{ fontSize: 20 }} />
-                                </div>
+                                <span className="w-8 h-8 rounded-full bg-[#1a2355]/5 flex items-center justify-center transition-all duration-300 group-hover:bg-white/15">
+                                    <ChevronRightIcon sx={{ fontSize: 18 }} />
+                                </span>
                             </button>
                         </Link>
                     </motion.div>
@@ -129,14 +111,14 @@ export default function Announcements() {
                             className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 animate-pulse"
                         >
                             {[1, 2, 3, 4].map((i) => (
-                                <div key={i} className="bg-white/5 rounded-[2.5rem] h-48 border border-white/5" />
+                                <div key={i} className="bg-[#1a2355]/[0.04] rounded-[12px] h-48 border border-[#1a2355]/[0.06]" />
                             ))}
                         </motion.div>
                     )}
                 </AnimatePresence>
 
                 {!loading && errored && (
-                    <div className="rounded-2xl border border-[#ee7c7e]/30 bg-[#ee7c7e]/5 text-white/80 text-sm px-6 py-4 mb-6">
+                    <div className="rounded-[14px] border border-[#ee7c7e]/30 bg-[#ee7c7e]/5 text-[#545e80] text-sm px-6 py-4 mb-6">
                         {t.announcements.sectionLabel} — connection error. Please retry.
                     </div>
                 )}
@@ -159,32 +141,29 @@ export default function Announcements() {
                                     className="h-full"
                                 >
                                     <Link href={`/announcement/${announcementSlug(announcement.id, announcement.title)}`}>
-                                        <div className="group relative h-full flex flex-col bg-white/5 backdrop-blur-sm border border-white/5 rounded-[2.5rem] p-8 transition-all duration-500 hover:bg-white/[0.08] hover:border-[#ee7c7e]/30 hover:shadow-2xl hover:shadow-[#ee7c7e]/5 overflow-hidden">
-                                            {/* Hover accent line */}
-                                            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[3px] bg-[#ee7c7e] group-hover:w-1/2 transition-all duration-500 rounded-full" />
-                                            
+                                        <div className="surface-card group relative h-full flex flex-col p-7 overflow-hidden hover:-translate-y-1">
                                             {/* Date Badge */}
-                                            <div className="relative mb-8 flex items-center gap-4">
-                                                <div className="w-16 h-16 rounded-2xl bg-[#ee7c7e]/10 border border-[#ee7c7e]/20 flex flex-col items-center justify-center text-white transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:shadow-[0_0_20px_#ee7c7e44]">
-                                                    <span className="text-xl font-black leading-none">{date}</span>
-                                                    <span className="text-[10px] font-black uppercase tracking-tighter opacity-70 group-hover:opacity-100">{month}</span>
+                                            <div className="mb-7 flex items-center gap-4">
+                                                <div className="w-14 h-14 rounded-[14px] bg-[#1a2355]/[0.04] border border-[#1a2355]/[0.07] flex flex-col items-center justify-center text-[#10163a] transition-colors duration-500 group-hover:bg-[#ee7c7e] group-hover:border-[#ee7c7e] group-hover:text-white">
+                                                    <span className="text-lg font-semibold leading-none tabular-nums">{date}</span>
+                                                    <span className="text-[10px] font-medium uppercase tracking-wide opacity-60 group-hover:opacity-100">{month}</span>
                                                 </div>
-                                                <div className="h-px flex-1 bg-white/10 group-hover:bg-[#ee7c7e]/20 transition-colors" />
-                                                <CalendarMonthIcon sx={{ fontSize: 18, color: 'rgba(255,255,255,0.2)' }} className="group-hover:text-[#ee7c7e]/40 transition-colors" />
+                                                <div className="h-px flex-1 bg-[#1a2355]/[0.09]" />
+                                                <CalendarMonthIcon sx={{ fontSize: 16 }} className="text-[#8a93ad]" />
                                             </div>
 
                                             {/* Content */}
                                             <div className="flex-1">
-                                                <h3 className="text-white font-black text-lg leading-snug line-clamp-3 group-hover:text-white transition-colors duration-300 tracking-tight">
+                                                <h3 className="text-[#10163a] font-semibold text-[17px] leading-snug line-clamp-3 tracking-[-0.01em] transition-colors duration-300 group-hover:text-[#ee7c7e]">
                                                     {announcement.title}
                                                 </h3>
                                             </div>
 
                                             {/* Footer Interaction */}
-                                            <div className="mt-8 flex items-center justify-between">
-                                                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/30 group-hover:text-[#ee7c7e] transition-colors">Details</span>
-                                                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-300">
-                                                    <ChevronRightIcon sx={{ fontSize: 20 }} className="group-hover:translate-x-0.5 transition-transform" />
+                                            <div className="mt-7 flex items-center justify-between">
+                                                <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#8a93ad] transition-colors group-hover:text-[#ee7c7e]">Details</span>
+                                                <div className="w-9 h-9 rounded-full bg-[#1a2355]/[0.04] flex items-center justify-center text-[#1a2355] transition-all duration-300 group-hover:bg-[#ee7c7e] group-hover:text-white">
+                                                    <ChevronRightIcon sx={{ fontSize: 18 }} />
                                                 </div>
                                             </div>
                                         </div>

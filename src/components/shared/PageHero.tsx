@@ -53,13 +53,12 @@ export default function PageHero({
     || (isStudentPage ? studentVideoSrc : undefined);
 
   return (
-    <div className={`relative overflow-hidden bg-[#0a0c1a] pt-32 pb-20 px-4 md:px-10 lg:px-20 w-full min-h-[400px] lg:min-h-[500px] flex flex-col justify-end ${className}`}>
-      {/* STUNNING BACKGROUND GRAPHICS - REFINED TINT */}
+    <div className={`relative overflow-hidden bg-[#0a0c1a] pt-32 pb-16 w-full min-h-[340px] lg:min-h-[420px] flex flex-col justify-end ${className}`}>
+      {/* Hero canvas — a single calm gradient, or the section video. */}
       <div className="absolute inset-0 z-0 bg-[#0a0c1a]">
-        {/* Neutral-leaning Gradient Base */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0a0c1a] via-[#111827] to-[#0f172a]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a0c1a] via-[#131a35] to-[#0f172a]" />
 
-        {finalVideoSrc ? (
+        {finalVideoSrc && (
           <>
             <video
               key={finalVideoSrc}
@@ -71,115 +70,66 @@ export default function PageHero({
             >
               <source src={finalVideoSrc} type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-[#0a0c1a]/30" />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0c1a]/15 to-[#0a0c1a]/70" />
-          </>
-        ) : (
-          <>
-            {/* Animated Light Beams */}
-            <motion.div
-                animate={{ x: [-500, 500], opacity: [0, 0.3, 0] }}
-                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                className="absolute top-0 left-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-[#ee7c7e]/30 to-transparent skew-x-[-45deg] blur-md"
-            />
-            <motion.div
-                animate={{ x: [500, -500], opacity: [0, 0.2, 0] }}
-                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                className="absolute top-0 right-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-blue-400/20 to-transparent skew-x-[45deg] blur-md"
-            />
+            <div className="absolute inset-0 bg-[#0a0c1a]/40" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0c1a]/20 via-transparent to-[#0a0c1a]/80" />
           </>
         )}
-
-        {/* Subtle Glow Orbs */}
-        <div className="absolute top-[-20%] right-[-10%] w-[1000px] h-[1000px] bg-blue-900/20 blur-[200px] rounded-full animate-pulse" />
-        <div className="absolute bottom-[-10%] left-[-5%] w-[700px] h-[700px] bg-[#ee7c7e]/10 blur-[180px] rounded-full" style={{ animationDelay: '2s' }} />
-        
-        {/* Parallax Dust/Particles Overlay */}
-        <div className="absolute inset-0 opacity-[0.1] pointer-events-none" 
-             style={{ 
-               backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0)', 
-               backgroundSize: '50px 50px' 
-             }} 
-        />
       </div>
 
       {/* Main Content Wrap */}
-      <div className="relative z-20 w-full max-w-[1600px] mx-auto">
-        {/* Breadcrumbs with glass style */}
-        <motion.nav 
-            initial={{ opacity: 0, y: -10 }}
+      <div className="relative z-20 shell">
+        {/* Breadcrumbs */}
+        <motion.nav
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex flex-wrap items-center gap-3 mb-8"
+            className="flex flex-wrap items-center gap-2 mb-7 text-[12px] font-medium text-white/55"
         >
-          <div className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white/5 backdrop-blur-2xl border-2 border-white/10 text-white/70 text-[10px] font-black uppercase tracking-[0.3em] shadow-2xl">
-            <Link href="/" className="hover:text-[#ee7c7e] transition-colors flex items-center gap-2">
+            <Link href="/" className="hover:text-white transition-colors flex items-center gap-1.5">
                 <HomeIcon sx={{ fontSize: 14 }} />
                 Home
             </Link>
             {breadcrumbs.map((crumb, idx) => (
                 <div key={idx} className="flex items-center gap-2">
-                <ChevronRightIcon sx={{ fontSize: 12 }} className="text-[#ee7c7e]" />
+                <ChevronRightIcon sx={{ fontSize: 14 }} className="text-white/25" />
                 {crumb.href ? (
-                    <Link href={crumb.href} className="hover:text-[#ee7c7e] transition-colors">
+                    <Link href={crumb.href} className="hover:text-white transition-colors">
                     {crumb.label}
                     </Link>
                 ) : (
-                    <span className="text-white font-black">{crumb.label}</span>
+                    <span className="text-white">{crumb.label}</span>
                 )}
                 </div>
             ))}
-          </div>
         </motion.nav>
 
         {eyebrow && (
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-4 mb-6"
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-3 mb-5"
           >
-            <div className="w-12 h-1 bg-gradient-to-r from-[#ee7c7e] to-transparent rounded-full shadow-[0_0_15px_rgba(238,124,126,0.5)]" />
-            <span className="text-[#ee7c7e] text-[10px] font-black uppercase tracking-[0.6em] drop-shadow-sm">
+            <span className="w-6 h-px bg-[#ee7c7e]" />
+            <span className="text-[#ee7c7e] text-[11px] font-semibold uppercase tracking-[0.18em]">
                 {eyebrow}
             </span>
           </motion.div>
         )}
 
+        {/* The hero title is the LCP element on every page — render it
+            statically rather than fading it in from opacity 0. */}
         <div className="max-w-4xl">
-            <motion.h1 
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
-                className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1] tracking-tighter drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
-            >
-                {title.split(' ').map((word, i) => (
-                    <span key={i} className="inline-block mr-4 md:mr-6 last:mr-0 last:text-transparent last:bg-clip-text last:bg-gradient-to-br last:from-white last:to-[#ee7c7e]">
-                        {word}
-                    </span>
-                ))}
-            </motion.h1>
+            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-semibold text-white mb-6 leading-[1.05] tracking-[-0.035em]">
+                {title}
+            </h1>
 
             {description && (
-            <motion.p 
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-                className="text-white/70 text-lg md:text-xl max-w-2xl leading-relaxed font-bold border-l-4 border-[#ee7c7e] pl-8 drop-shadow-md"
-            >
+            <p className="text-white/65 text-base md:text-lg max-w-2xl leading-relaxed font-normal">
                 {description}
-            </motion.p>
+            </p>
             )}
         </div>
 
         {children}
-      </div>
-      
-      {/* Stunner: Glass light sweep divider */}
-      <div className="absolute bottom-0 left-0 right-0 h-[4px] overflow-hidden">
-          <motion.div 
-            animate={{ x: ['-100%', '100%'] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="w-1/2 h-full bg-gradient-to-r from-transparent via-[#ee7c7e] to-transparent opacity-80 shadow-[0_0_20px_#ee7c7e]"
-          />
       </div>
     </div>
   );

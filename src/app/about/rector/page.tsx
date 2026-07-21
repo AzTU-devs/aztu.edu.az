@@ -53,7 +53,7 @@ function ContinuousGallery({ items }: { items: { image: string }[] }) {
                 {doubledItems.map((item, idx) => (
                     <div 
                         key={idx}
-                        className="relative w-80 md:w-96 aspect-[4/3] rounded-[2rem] overflow-hidden border-2 border-[#1a2355]/30 dark:border-white/10 shadow-lg group hover:scale-[1.02] transition-transform duration-500"
+                        className="relative w-80 md:w-96 aspect-[4/3] rounded-[12px] overflow-hidden border-2 border-[#1a2355]/30 dark:border-white/10 shadow-lg group hover:scale-[1.02] transition-transform duration-500"
                     >
                         <Image
                             src={item.image}
@@ -81,8 +81,6 @@ export default function RectorPage() {
     return (
         <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden">
             {/* STUNNING BACKGROUND ELEMENTS */}
-            <div className="bg-mesh" />
-            <div className="bg-grid-premium" />
 
             <PageHero
                 title={fullName}
@@ -131,7 +129,7 @@ export default function RectorPage() {
                         >
                             <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 lg:-top-6 lg:-left-6 w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 border-t-4 border-l-4 border-[#ee7c7e] rounded-tl-3xl z-20" />
                             <div className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 lg:-bottom-6 lg:-right-6 w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 border-b-4 border-r-4 border-[#ee7c7e] rounded-br-3xl z-20" />
-                            <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden shadow-2xl z-10 border border-white/10">
+                            <div className="relative w-full h-full rounded-[14px] overflow-hidden shadow-2xl z-10 border border-white/10">
                                 <Image
                                     src={VilayetVeliyev}
                                     alt={fullName}
@@ -192,7 +190,7 @@ export default function RectorPage() {
                                 );
                             })}
                         </div>
-                        <div className="lg:col-span-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl p-10 rounded-[3rem] border-2 border-[#1a2355]/30 dark:border-white/10 shadow-xl relative overflow-hidden">
+                        <div className="lg:col-span-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl p-10 rounded-[14px] border-2 border-[#1a2355]/30 dark:border-white/10 shadow-xl relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
                             <FormatQuoteIcon className="absolute -top-6 -left-6 text-[#ee7c7e]/20" sx={{ fontSize: 100 }} />
                             <h3 className="text-xl font-black text-[#1a2355] dark:text-white mb-6 relative z-10">
@@ -208,7 +206,7 @@ export default function RectorPage() {
                 </section>
 
                 {/* DEPARTMENTS UNDER RECTOR */}
-                <section className="bg-[#1a2355] rounded-[4rem] p-10 md:p-20 text-white relative overflow-hidden shadow-2xl border-4 border-white/5">
+                <section className="bg-[#1a2355] rounded-[16px] p-10 md:p-20 text-white relative overflow-hidden shadow-2xl border-4 border-white/5">
                     <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-[100px]" />
                     
                     <div className="relative z-10">
@@ -216,12 +214,12 @@ export default function RectorPage() {
                             <div className="max-w-2xl">
                                 <div className="inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-white/10 border border-white/20 mb-6">
                                     <div className="w-1.5 h-1.5 rounded-full bg-[#ee7c7e] animate-pulse" />
-                                    <span className="text-white text-[10px] font-black uppercase tracking-[0.3em]">{p.departmentsTag}</span>
+                                    <span className="text-white text-[10px] font-black uppercase tracking-[0.14em]">{p.departmentsTag}</span>
                                 </div>
                                 <h2 className="text-4xl lg:text-5xl font-black mb-6 tracking-tighter">{p.departmentsTitle}</h2>
                                 <p className="text-white/60 text-lg">{p.departmentsSubtitle}</p>
                             </div>
-                            <div className="flex items-center gap-4 px-8 py-5 rounded-[2rem] bg-white/10 border border-white/20 backdrop-blur-xl">
+                            <div className="flex items-center gap-4 px-8 py-5 rounded-[12px] bg-white/10 border border-white/20 backdrop-blur-xl">
                                 <span className="text-4xl font-black text-[#ee7c7e]">{p.departments.length}</span>
                                 <div className="h-10 w-px bg-white/20 mx-2" />
                                 <span className="text-[10px] font-black uppercase tracking-widest text-white/60">{p.totalUnitsLabel}</span>
@@ -236,7 +234,7 @@ export default function RectorPage() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: i * 0.03 }}
-                                    className="group flex items-center gap-5 p-6 rounded-[2rem] bg-white/5 border border-white/10 hover:bg-[#ee7c7e] hover:border-[#ee7c7e] transition-all duration-500 hover:-translate-y-1"
+                                    className="group flex items-center gap-5 p-6 rounded-[12px] bg-white/5 border border-white/10 hover:bg-[#ee7c7e] hover:border-[#ee7c7e] transition-all duration-500 hover:-translate-y-1"
                                 >
                                     <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-white group-hover:text-[#ee7c7e] transition-all duration-500">
                                         <span className="text-xs font-black">{i + 1}</span>
@@ -254,7 +252,7 @@ export default function RectorPage() {
                         <div className="flex items-center gap-6">
                             <div className="w-2.5 h-12 bg-[#ee7c7e] rounded-full animate-pulse shadow-[0_0_15px_rgba(238,124,126,0.5)]" />
                             <div>
-                                <h2 className="text-4xl lg:text-5xl font-black text-[#1a2355] dark:text-white tracking-tighter uppercase">{p.galleryTitle}</h2>
+                                <h2 className="text-4xl lg:text-5xl font-black text-[#1a2355] dark:text-white tracking-tighter">{p.galleryTitle}</h2>
                                 <p className="text-gray-500 dark:text-slate-400 font-medium">{p.gallerySubtitle}</p>
                             </div>
                         </div>
@@ -274,7 +272,7 @@ export default function RectorPage() {
                             <Link 
                                 key={link.href} 
                                 href={link.href}
-                                className="group relative flex items-center justify-between bg-white/80 dark:bg-slate-900/50 backdrop-blur-xl p-8 rounded-[2rem] border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 hover:border-[#ee7c7e]/40 dark:hover:border-[#ee7c7e]/50 transition-all duration-500 shadow-lg hover:shadow-2xl overflow-hidden"
+                                className="group relative flex items-center justify-between bg-white/80 dark:bg-slate-900/50 backdrop-blur-xl p-8 rounded-[12px] border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 hover:border-[#ee7c7e]/40 dark:hover:border-[#ee7c7e]/50 transition-all duration-500 shadow-lg hover:shadow-2xl overflow-hidden"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/5 via-transparent to-[#1a2355]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 <span className="relative text-[#1a2355] dark:text-white font-black text-base group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>

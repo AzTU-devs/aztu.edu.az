@@ -21,12 +21,12 @@ export default function FoundationProgramPage() {
     const p = t.pages.internationalization.foundationProgram;
 
     return (
-        <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-white dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
             {/* HERO SECTION */}
             <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48">
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                     <div className="absolute inset-0 bg-[#0b1330]" />
-                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[5rem] lg:rounded-bl-[20rem] transition-all duration-1000" />
+                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[2.5rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#0b1330] via-[#0b1330]/80 to-transparent hidden lg:block" />
                     <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#ee7c7e]/5 rounded-full blur-3xl" />
                 </div>
@@ -49,7 +49,7 @@ export default function FoundationProgramPage() {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8, ease: "easeOut" }}
                             >
-                                <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
+                                <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.14em] mb-6">
                                     {p.eyebrow}
                                 </span>
                                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
@@ -76,14 +76,14 @@ export default function FoundationProgramPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.1, duration: 0.6 }}
-                                className="group bg-white dark:bg-slate-900 rounded-[2rem] p-8 border border-gray-100 dark:border-slate-800 shadow-2xl shadow-blue-900/5 hover:shadow-blue-900/10 hover:-translate-y-1 transition-all duration-500"
+                                className="group bg-white dark:bg-slate-900 rounded-[12px] p-8 border border-gray-100 dark:border-slate-800 shadow-2xl shadow-blue-900/5 hover:shadow-blue-900/10 hover:-translate-y-1 transition-all duration-500"
                             >
                                 <div className="flex items-center gap-5">
                                     <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 dark:bg-[#ee7c7e]/15 flex items-center justify-center text-[#ee7c7e] group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-500 shrink-0">
                                         <Icon sx={{ fontSize: 26 }} />
                                     </div>
                                     <div className="flex-1 min-w-0">
-                                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.25em] mb-1">
+                                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.13em] mb-1">
                                             {fact.label}
                                         </p>
                                         <p className="text-xl lg:text-2xl font-black text-[#1a2355] dark:text-white leading-tight">
@@ -107,7 +107,7 @@ export default function FoundationProgramPage() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="relative bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 lg:p-12 border border-gray-100 dark:border-slate-800 shadow-xl shadow-blue-900/5 overflow-hidden"
+                            className="relative bg-white dark:bg-slate-900 rounded-[14px] p-8 lg:p-12 border border-gray-100 dark:border-slate-800 shadow-xl shadow-blue-900/5 overflow-hidden"
                         >
                             <div className="absolute -top-12 -right-12 w-48 h-48 bg-[#ee7c7e]/5 rounded-full blur-3xl" />
                             <div className="relative z-10 flex flex-col md:flex-row gap-8">
@@ -145,7 +145,7 @@ export default function FoundationProgramPage() {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: idx * 0.15, duration: 0.6 }}
-                                        className={`relative rounded-[2.5rem] p-8 lg:p-10 overflow-hidden group transition-all duration-500 hover:-translate-y-1 ${
+                                        className={`relative rounded-[14px] p-8 lg:p-10 overflow-hidden group transition-all duration-500 hover:-translate-y-1 ${
                                             idx === 0
                                                 ? "bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-xl shadow-blue-900/5 hover:shadow-2xl"
                                                 : "bg-[#1a2355] text-white shadow-2xl shadow-blue-900/20"
@@ -215,7 +215,7 @@ export default function FoundationProgramPage() {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="relative rounded-[3rem] overflow-hidden"
+                            className="relative rounded-[14px] overflow-hidden"
                         >
                             <div className="absolute inset-0 bg-gradient-to-br from-[#1a2355] via-[#1a2355] to-[#13365E]" />
                             <div className="absolute top-0 left-0 w-64 h-64 bg-[#ee7c7e]/15 rounded-full -translate-y-1/2 -translate-x-1/2 blur-3xl" />
@@ -226,7 +226,7 @@ export default function FoundationProgramPage() {
                                     <div className="w-12 h-12 rounded-2xl bg-[#ee7c7e] text-white flex items-center justify-center shadow-lg shadow-[#ee7c7e]/30">
                                         <VerifiedIcon />
                                     </div>
-                                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#ee7c7e]">
+                                    <span className="text-[10px] font-black uppercase tracking-[0.14em] text-[#ee7c7e]">
                                         Certificate
                                     </span>
                                 </div>
@@ -238,7 +238,7 @@ export default function FoundationProgramPage() {
                                 </p>
 
                                 <div className="pt-8 border-t border-white/10">
-                                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/50 mb-5">
+                                    <p className="text-[10px] font-black uppercase tracking-[0.14em] text-white/50 mb-5">
                                         {p.nextLevelsLabel}
                                     </p>
                                     <div className="flex flex-wrap items-center gap-3">
@@ -262,13 +262,13 @@ export default function FoundationProgramPage() {
                     <div className="lg:col-span-4 space-y-8">
                         <div className="sticky top-28 space-y-8">
                             {/* CTA Card */}
-                            <div className="p-10 rounded-[3rem] bg-white dark:bg-slate-900 border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/20 shadow-2xl relative overflow-hidden group">
+                            <div className="p-10 rounded-[14px] bg-white dark:bg-slate-900 border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/20 shadow-2xl relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
                                 <div className="relative z-10">
                                     <div className="w-14 h-14 rounded-2xl bg-[#1a2355] text-white flex items-center justify-center mb-8 shadow-xl shadow-blue-900/20">
                                         <MenuBookIcon />
                                     </div>
-                                    <h3 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tighter mb-4">AzTU Foundation</h3>
+                                    <h3 className="text-2xl font-black text-[#1a2355] dark:text-white tracking-tighter mb-4">AzTU Foundation</h3>
                                     <p className="text-gray-500 dark:text-gray-400 font-medium leading-relaxed mb-10">
                                         Building the academic foundation international students need to succeed.
                                     </p>
@@ -286,7 +286,7 @@ export default function FoundationProgramPage() {
                                         <Link
                                             key={link.href}
                                             href={link.href}
-                                            className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[1.5rem] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
+                                            className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[10px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
                                         >
                                             <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
                                             <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-slate-700 flex items-center justify-center group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300">

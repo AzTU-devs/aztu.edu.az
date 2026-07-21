@@ -38,7 +38,7 @@ export default function Slider() {
                         style={{ backgroundImage: `url(${slide.image.src})` }}
                     >
                         {slide.title && (
-                            <h2 className="text-white text-3xl md:text-4xl font-bold bg-black/40 p-4 rounded-[20px]">
+                            <h2 className="text-white text-3xl md:text-4xl font-bold bg-black/40 p-4 rounded-[12px]">
                                 {slide.title}
                             </h2>
                         )}

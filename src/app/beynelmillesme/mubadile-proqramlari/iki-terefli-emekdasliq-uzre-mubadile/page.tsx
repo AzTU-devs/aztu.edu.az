@@ -15,12 +15,12 @@ export default function BilateralCooperationExchangePage() {
     const p = t.pages.internationalization.bilateralCooperationExchange;
 
     return (
-        <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-white dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
             {/* HERO */}
             <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48">
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                     <div className="absolute inset-0 bg-[#0b1330]" />
-                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[5rem] lg:rounded-bl-[20rem] transition-all duration-1000" />
+                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[2.5rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#0b1330] via-[#0b1330]/80 to-transparent hidden lg:block" />
                     <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#ee7c7e]/5 rounded-full blur-3xl" />
                 </div>
@@ -41,7 +41,7 @@ export default function BilateralCooperationExchangePage() {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8, ease: "easeOut" }}
                             >
-                                <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
+                                <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.14em] mb-6">
                                     {p.eyebrow}
                                 </span>
                                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
@@ -74,7 +74,7 @@ export default function BilateralCooperationExchangePage() {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: idx * 0.1, duration: 0.6 }}
-                                        className={`relative rounded-[2.5rem] p-8 lg:p-10 overflow-hidden group transition-all duration-500 hover:-translate-y-1 ${
+                                        className={`relative rounded-[14px] p-8 lg:p-10 overflow-hidden group transition-all duration-500 hover:-translate-y-1 ${
                                             idx % 2 === 0
                                                 ? "bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-xl shadow-blue-900/5"
                                                 : "bg-[#1a2355] text-white shadow-2xl shadow-blue-900/20"
@@ -128,11 +128,11 @@ export default function BilateralCooperationExchangePage() {
                     {/* Sidebar */}
                     <div className="lg:col-span-4">
                         <div className="sticky top-28 space-y-8">
-                            <div className="p-10 rounded-[3rem] bg-[#1a2355] text-white shadow-2xl relative overflow-hidden">
+                            <div className="p-10 rounded-[14px] bg-[#1a2355] text-white shadow-2xl relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
                                 <div className="relative z-10">
                                     <SwapHorizIcon className="text-[#ee7c7e] mb-6" sx={{ fontSize: 40 }} />
-                                    <h3 className="text-2xl font-black mb-4 uppercase tracking-tighter">{p.sidebarTitle}</h3>
+                                    <h3 className="text-2xl font-black mb-4 tracking-tighter">{p.sidebarTitle}</h3>
                                     <p className="text-white/60 text-sm font-medium mb-8">
                                         {p.sidebarDescription}
                                     </p>
@@ -150,7 +150,7 @@ export default function BilateralCooperationExchangePage() {
                                         <Link
                                             key={link.href}
                                             href={link.href}
-                                            className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-5 rounded-[1.5rem] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
+                                            className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-5 rounded-[10px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
                                         >
                                             <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">
                                                 {link.title}

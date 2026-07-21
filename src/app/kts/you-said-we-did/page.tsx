@@ -83,10 +83,6 @@ export default function YouSaidWeDidPage() {
 
   return (
     <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden bg-page dark:bg-[#080f25]">
-      <div className="bg-mesh opacity-100" />
-      <div className="bg-grid-premium opacity-10" />
-      <div className="fixed top-1/4 -left-20 w-96 h-96 bg-blue-600/5 blur-[120px] rounded-full animate-pulse pointer-events-none" />
-      <div className="fixed bottom-1/4 -right-20 w-96 h-96 bg-[#ee7c7e]/5 blur-[120px] rounded-full pointer-events-none" style={{ animationDelay: "2s" }} />
 
       <PageHero
         title={copy.title}
@@ -111,7 +107,7 @@ export default function YouSaidWeDidPage() {
                 ))}
               </div>
             ) : items.length === 0 ? (
-              <div className="flex flex-col items-center justify-center gap-4 rounded-[2rem] border-2 border-dashed border-[#1a2355]/15 dark:border-white/10 p-16 text-center">
+              <div className="flex flex-col items-center justify-center gap-4 rounded-[12px] border-2 border-dashed border-[#1a2355]/15 dark:border-white/10 p-16 text-center">
                 <ForumOutlinedIcon sx={{ fontSize: 40 }} className="text-[#1a2355]/30 dark:text-white/20" />
                 <p className="text-[#1a2355]/50 dark:text-white/40 font-medium">{copy.empty}</p>
               </div>
@@ -129,7 +125,7 @@ export default function YouSaidWeDidPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="overflow-hidden rounded-[2rem] border-2 border-[#1a2355]/20 dark:border-white/5 shadow-2xl shadow-blue-900/5 bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-xl"
+                  className="overflow-hidden rounded-[12px] border-2 border-[#1a2355]/20 dark:border-white/5 shadow-2xl shadow-blue-900/5 bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-xl"
                 >
                   <div className="overflow-x-auto">
                     <table className="w-full border-collapse text-left">

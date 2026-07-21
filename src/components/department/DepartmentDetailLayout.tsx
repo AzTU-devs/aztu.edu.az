@@ -174,7 +174,7 @@ export default function DepartmentDetailLayout({ children, params }: Props) {
                 <aside className="hidden lg:block lg:w-72 flex-shrink-0">
                     <div className="sticky top-28 space-y-6">
                         <DepartmentSidebar departmentSlug={departmentSlug} />
-                        <div className="rounded-[2rem] bg-gradient-to-br from-[#1a2355] to-[#2a3a8a] p-8 text-white overflow-hidden relative group">
+                        <div className="rounded-[12px] bg-gradient-to-br from-[#1a2355] to-[#2a3a8a] p-8 text-white overflow-hidden relative group">
                             <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-all duration-500" />
                             <h3 className="text-lg font-bold mb-2 relative z-10">{t.needHelp}</h3>
                             <p className="text-white/70 text-sm mb-6 relative z-10 leading-relaxed">

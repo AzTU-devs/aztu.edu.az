@@ -20,7 +20,7 @@ export default function VisionMissionGoalPage() {
     const p = t.pages.about.visionMissionGoal;
 
     return (
-        <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-white dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
             {/* HERO SECTION */}
             <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48">
                 {/* Background Graphics */}
@@ -49,7 +49,7 @@ export default function VisionMissionGoalPage() {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
                         >
-                            <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
+                            <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.14em] mb-6">
                                 {p.eyebrow}
                             </span>
                             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
@@ -71,7 +71,7 @@ export default function VisionMissionGoalPage() {
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="bg-white dark:bg-slate-800/50 rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-xl border border-gray-100 dark:border-slate-700 relative overflow-hidden group"
+                        className="bg-white dark:bg-slate-800/50 rounded-[14px] p-8 md:p-12 lg:p-16 shadow-xl border border-gray-100 dark:border-slate-700 relative overflow-hidden group"
                     >
                         <div className="absolute top-0 right-0 p-12 opacity-5 group-hover:opacity-10 transition-opacity">
                             <StarIcon sx={{ fontSize: 120 }} />
@@ -81,7 +81,7 @@ export default function VisionMissionGoalPage() {
                                 <div className="w-12 h-12 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e]">
                                     <TrackChangesIcon />
                                 </div>
-                                <h2 className="text-3xl lg:text-4xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight">
+                                <h2 className="text-3xl lg:text-4xl font-black text-[#1a2355] dark:text-white tracking-tight">
                                     {p.missionTitle}
                                 </h2>
                             </div>
@@ -100,7 +100,7 @@ export default function VisionMissionGoalPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="bg-[#1a2355] dark:bg-slate-900 rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-xl relative overflow-hidden group"
+                        className="bg-[#1a2355] dark:bg-slate-900 rounded-[14px] p-8 md:p-12 lg:p-16 shadow-xl relative overflow-hidden group"
                     >
                         <div className="absolute top-0 right-0 p-12 opacity-5 group-hover:opacity-10 transition-opacity text-white">
                             <VisibilityIcon sx={{ fontSize: 120 }} />
@@ -110,7 +110,7 @@ export default function VisionMissionGoalPage() {
                                 <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-[#ee7c7e]">
                                     <VisibilityIcon />
                                 </div>
-                                <h2 className="text-3xl lg:text-4xl font-black text-white uppercase tracking-tight">
+                                <h2 className="text-3xl lg:text-4xl font-black text-white tracking-tight">
                                     {p.visionTitle}
                                 </h2>
                             </div>
@@ -129,7 +129,7 @@ export default function VisionMissionGoalPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="bg-white dark:bg-slate-800/50 rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-xl border border-gray-100 dark:border-slate-700 relative overflow-hidden group"
+                        className="bg-white dark:bg-slate-800/50 rounded-[14px] p-8 md:p-12 lg:p-16 shadow-xl border border-gray-100 dark:border-slate-700 relative overflow-hidden group"
                     >
                         <div className="absolute top-0 right-0 p-12 opacity-5 group-hover:opacity-10 transition-opacity">
                             <TrackChangesIcon sx={{ fontSize: 120 }} />
@@ -139,7 +139,7 @@ export default function VisionMissionGoalPage() {
                                 <div className="w-12 h-12 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e]">
                                     <StarIcon />
                                 </div>
-                                <h2 className="text-3xl lg:text-4xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight">
+                                <h2 className="text-3xl lg:text-4xl font-black text-[#1a2355] dark:text-white tracking-tight">
                                     {p.goalTitle}
                                 </h2>
                             </div>
@@ -164,7 +164,7 @@ export default function VisionMissionGoalPage() {
                             <Link 
                                 key={link.href} 
                                 href={link.href}
-                                className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[1.5rem] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
+                                className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[10px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
                             >
                                 <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
                                 <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-slate-700 flex items-center justify-center group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300">

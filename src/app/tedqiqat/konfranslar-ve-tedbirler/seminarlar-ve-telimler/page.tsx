@@ -35,7 +35,7 @@ export default function SeminarsAndTrainingsPage() {
     const y = useTransform(scrollY, [0, 500], [0, 200]);
 
     return (
-        <main className="min-h-screen bg-[#fafafa] dark:bg-[#0b1330] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-white dark:bg-[#0b1330] selection:bg-[#ee7c7e]/30">
 
             {/* HERO BANNER */}
             <section ref={bannerRef} className="relative h-[80vh] min-h-[600px] w-full flex items-center overflow-hidden bg-black">
@@ -65,7 +65,7 @@ export default function SeminarsAndTrainingsPage() {
                         <motion.nav
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="flex items-center gap-4 text-white/40 text-[10px] font-black uppercase tracking-[0.4em] mb-12"
+                            className="flex items-center gap-4 text-white/40 text-[10px] font-black uppercase tracking-[0.15em] mb-12"
                         >
                             <Link href="/" className="hover:text-[#ee7c7e] transition-colors flex items-center gap-2 group">
                                 <HomeIcon sx={{ fontSize: 14 }} className="group-hover:scale-110 transition-transform" />
@@ -84,7 +84,7 @@ export default function SeminarsAndTrainingsPage() {
                         >
                             <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 mb-8 shadow-2xl">
                                 <div className="w-2.5 h-2.5 rounded-full bg-[#ee7c7e] shadow-[0_0_12px_#ee7c7e] animate-pulse" />
-                                <span className="text-white text-[12px] font-black uppercase tracking-[0.5em]">
+                                <span className="text-white text-[12px] font-black uppercase tracking-[0.16em]">
                                     {p.eyebrow}
                                 </span>
                             </div>
@@ -132,7 +132,7 @@ export default function SeminarsAndTrainingsPage() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="relative mb-24 p-10 md:p-16 rounded-[3rem] bg-[#1a2355] dark:bg-white/[0.02] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.2)] overflow-hidden text-center"
+                        className="relative mb-24 p-10 md:p-16 rounded-[14px] bg-[#1a2355] dark:bg-white/[0.02] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.2)] overflow-hidden text-center"
                     >
                         <div className="relative z-10 max-w-4xl mx-auto">
                             <p className="text-white text-xl md:text-3xl font-black leading-snug tracking-tight">
@@ -145,13 +145,13 @@ export default function SeminarsAndTrainingsPage() {
                     <div className="mb-32">
                         <div className="flex items-center gap-4 mb-8">
                             <div className="w-12 h-px bg-[#ee7c7e]" />
-                            <span className="text-[#ee7c7e] text-xs font-black uppercase tracking-[0.4em]">{p.eyebrow}</span>
+                            <span className="text-[#ee7c7e] text-xs font-black uppercase tracking-[0.15em]">{p.eyebrow}</span>
                         </div>
                         <h3 className="text-3xl md:text-5xl font-black text-[#1a2355] dark:text-white tracking-tighter mb-10">
                             {p.upcomingTitle}
                         </h3>
 
-                        <div className="rounded-[2.5rem] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 p-12 md:p-16 flex flex-col items-center text-center shadow-xl">
+                        <div className="rounded-[14px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 p-12 md:p-16 flex flex-col items-center text-center shadow-xl">
                             <div className="w-16 h-16 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e] mb-6">
                                 <EventIcon sx={{ fontSize: 32 }} />
                             </div>
@@ -165,7 +165,7 @@ export default function SeminarsAndTrainingsPage() {
                     <div>
                         <div className="flex flex-col md:flex-row items-end justify-between gap-8 mb-16">
                             <div className="max-w-xl">
-                                <span className="text-[#ee7c7e] text-xs font-black uppercase tracking-[0.4em] mb-4 block">{t.common.moreInSection}</span>
+                                <span className="text-[#ee7c7e] text-xs font-black uppercase tracking-[0.15em] mb-4 block">{t.common.moreInSection}</span>
                             </div>
                         </div>
 
@@ -178,7 +178,7 @@ export default function SeminarsAndTrainingsPage() {
                                 <Link
                                     key={i}
                                     href={link.href}
-                                    className="group relative h-64 rounded-[2.5rem] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 p-10 flex flex-col justify-between hover:scale-[1.02] hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                                    className="group relative h-64 rounded-[14px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 p-10 flex flex-col justify-between hover:scale-[1.02] hover:shadow-2xl transition-all duration-500 overflow-hidden"
                                 >
                                     <div
                                         className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"

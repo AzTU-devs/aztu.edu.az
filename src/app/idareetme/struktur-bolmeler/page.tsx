@@ -88,7 +88,7 @@ export default function DepartmentsPage() {
                             initial={{ opacity: 0, y: 14 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
-                            className="lg:col-span-5 relative bg-white dark:bg-slate-900/70 backdrop-blur-xl rounded-[2rem] border-2 border-[#1a2355]/15 dark:border-white/10 p-5 shadow-xl overflow-hidden"
+                            className="lg:col-span-5 relative bg-white dark:bg-slate-900/70 backdrop-blur-xl rounded-[12px] border-2 border-[#1a2355]/15 dark:border-white/10 p-5 shadow-xl overflow-hidden"
                         >
                             <div className="absolute -top-16 -right-16 w-48 h-48 bg-[#ee7c7e]/10 blur-3xl rounded-full" />
                             <div className="relative z-10 flex items-center gap-4">
@@ -125,7 +125,7 @@ export default function DepartmentsPage() {
                                     value={query}
                                     onChange={(e) => setQuery(e.target.value)}
                                     placeholder={t.searchPlaceholder}
-                                    className="w-full h-full min-h-[80px] pl-16 pr-16 rounded-[2rem] bg-white dark:bg-slate-900/70 border-2 border-[#1a2355]/15 dark:border-white/10 text-[#1a2355] dark:text-white placeholder:text-gray-400 dark:placeholder:text-slate-500 text-sm font-bold outline-none focus:border-[#ee7c7e] transition-colors shadow-xl"
+                                    className="w-full h-full min-h-[80px] pl-16 pr-16 rounded-[12px] bg-white dark:bg-slate-900/70 border-2 border-[#1a2355]/15 dark:border-white/10 text-[#1a2355] dark:text-white placeholder:text-gray-400 dark:placeholder:text-slate-500 text-sm font-bold outline-none focus:border-[#ee7c7e] transition-colors shadow-xl"
                                 />
                                 {query && (
                                     <button
@@ -165,22 +165,22 @@ export default function DepartmentsPage() {
                         {Array.from({ length: 8 }).map((_, i) => (
                             <div
                                 key={i}
-                                className="animate-pulse bg-white/60 backdrop-blur-xl rounded-[2rem] border-2 border-[#1a2355]/10 p-6 h-56"
+                                className="animate-pulse bg-white/60 backdrop-blur-xl rounded-[12px] border-2 border-[#1a2355]/10 p-6 h-56"
                             />
                         ))}
                     </div>
                 ) : departments === "ERROR" ? (
-                    <div className="text-center py-20 px-6 bg-red-50 dark:bg-red-950/20 rounded-[2rem] border border-red-100 dark:border-red-900/30">
+                    <div className="text-center py-20 px-6 bg-red-50 dark:bg-red-950/20 rounded-[12px] border border-red-100 dark:border-red-900/30">
                         <h3 className="text-red-500 dark:text-red-400 font-bold text-xl mb-2">{t.error}</h3>
                         <p className="text-red-400 dark:text-red-500/70">{t.errorSub}</p>
                     </div>
                 ) : list.length === 0 ? (
-                    <div className="text-center py-24 bg-white/70 backdrop-blur-xl rounded-[2.5rem] border-2 border-dashed border-gray-200 dark:border-slate-700">
+                    <div className="text-center py-24 bg-white/70 backdrop-blur-xl rounded-[14px] border-2 border-dashed border-gray-200 dark:border-slate-700">
                         <BusinessIcon sx={{ fontSize: 64, color: "#1a2355", opacity: 0.15 }} />
                         <p className="text-gray-400 font-black uppercase tracking-widest text-sm mt-4">{t.noContent}</p>
                     </div>
                 ) : filtered.length === 0 ? (
-                    <div className="text-center py-20 bg-white/70 backdrop-blur-xl rounded-[2.5rem] border-2 border-dashed border-gray-200 dark:border-slate-700">
+                    <div className="text-center py-20 bg-white/70 backdrop-blur-xl rounded-[14px] border-2 border-dashed border-gray-200 dark:border-slate-700">
                         <div className="w-16 h-16 rounded-2xl bg-[#1a2355]/5 mx-auto flex items-center justify-center mb-5">
                             <SearchIcon sx={{ fontSize: 32 }} className="text-[#1a2355]/40" />
                         </div>
@@ -215,7 +215,7 @@ export default function DepartmentsPage() {
                                 >
                                     <Link
                                         href={path}
-                                        className={`group relative block h-full bg-white dark:bg-slate-900/70 backdrop-blur-xl rounded-[2rem] border-2 border-[#1a2355]/10 dark:border-white/10 p-6 transition-all duration-500 overflow-hidden hover:-translate-y-1 hover:border-transparent hover:shadow-2xl ${palette.glow}`}
+                                        className={`group relative block h-full bg-white dark:bg-slate-900/70 backdrop-blur-xl rounded-[12px] border-2 border-[#1a2355]/10 dark:border-white/10 p-6 transition-all duration-500 overflow-hidden hover:-translate-y-1 hover:border-transparent hover:shadow-2xl ${palette.glow}`}
                                     >
                                         <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${palette.gradient} opacity-80 group-hover:opacity-100 transition-opacity`} />
                                         <div className={`absolute inset-0 bg-gradient-to-br ${palette.soft} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
@@ -227,7 +227,7 @@ export default function DepartmentsPage() {
                                                     <BusinessIcon sx={{ fontSize: 24 }} />
                                                 </div>
                                                 {dept.department_code && (
-                                                    <span className="text-[10px] font-black text-gray-400 dark:text-slate-400 uppercase tracking-[0.2em] border-2 border-gray-100 dark:border-white/10 px-2.5 py-1 rounded-lg group-hover:border-[#ee7c7e]/50 group-hover:text-[#ee7c7e] transition-colors">
+                                                    <span className="text-[10px] font-black text-gray-400 dark:text-slate-400 uppercase tracking-[0.12em] border-2 border-gray-100 dark:border-white/10 px-2.5 py-1 rounded-lg group-hover:border-[#ee7c7e]/50 group-hover:text-[#ee7c7e] transition-colors">
                                                         {dept.department_code}
                                                     </span>
                                                 )}
@@ -238,7 +238,7 @@ export default function DepartmentsPage() {
                                             </h2>
 
                                             <div className="mt-auto pt-4 border-t border-gray-100 dark:border-white/5 flex items-center justify-between">
-                                                <span className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.25em] text-[#1a2355]/50 dark:text-white/40 group-hover:text-[#1a2355] dark:group-hover:text-white transition-colors">
+                                                <span className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.13em] text-[#1a2355]/50 dark:text-white/40 group-hover:text-[#1a2355] dark:group-hover:text-white transition-colors">
                                                     <span className={`w-1.5 h-1.5 rounded-full ${palette.accent}`} />
                                                     {t.viewMore}
                                                 </span>

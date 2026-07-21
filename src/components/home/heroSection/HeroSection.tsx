@@ -157,15 +157,6 @@ export default function HeroSection() {
                 <div className="absolute inset-y-0 left-0 w-full lg:w-[70%] bg-gradient-to-r from-[#0b1330] via-[#0b1330]/60 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 h-96 bg-gradient-to-t from-[#0b1330] to-transparent" />
                 
-                {/* Moving Light Streak */}
-                <motion.div 
-                    animate={{ 
-                        x: ['-100%', '200%'],
-                        opacity: [0, 0.4, 0]
-                    }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-25deg] pointer-events-none"
-                />
             </div>
 
             {/* Content Container */}
@@ -182,9 +173,9 @@ export default function HeroSection() {
                                 exit={{ opacity: 0, x: 40 }}
                                 transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
                             >
-                                <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-lg md:rounded-xl bg-white/10 backdrop-blur-2xl border border-white/20 mb-4 md:mb-6 shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
-                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#ee7c7e] shadow-[0_0_10px_#ee7c7e] animate-pulse" />
-                                    <span className="text-white text-[9px] md:text-[11px] font-black uppercase tracking-[0.3em] md:tracking-[0.5em]">
+                                <div className="inline-flex items-center gap-2.5 px-3 py-1.5 md:px-4 md:py-2 rounded-md bg-white/10 backdrop-blur-xl border border-white/15 mb-4 md:mb-6">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-[#ee7c7e]" />
+                                    <span className="text-white text-[9px] md:text-[11px] font-black uppercase tracking-[0.14em] md:tracking-[0.16em]">
                                         {lang === 'az' ? 'Azərbaycan Texniki Universiteti' : 'Azerbaijan Technical University'}
                                     </span>
                                 </div>
@@ -193,9 +184,9 @@ export default function HeroSection() {
                                     {currentTitle.split(' ').map((word, i) => (
                                         <motion.span
                                             key={i}
-                                            className="inline-block mr-2 md:mr-3 last:mr-0 drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] last:text-transparent last:bg-clip-text last:bg-gradient-to-br last:from-white last:to-[#ee7c7e]"
-                                            initial={activeIndex === 0 ? false : { opacity: 0, y: 30, rotateX: -30 }}
-                                            animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                                            className="inline-block mr-2 md:mr-3 last:mr-0"
+                                            initial={activeIndex === 0 ? false : { opacity: 0, y: 16 }}
+                                            animate={{ opacity: 1, y: 0 }}
                                             transition={{ delay: 0.05 + (i * 0.05), duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
                                         >
                                             {word}
@@ -224,7 +215,7 @@ export default function HeroSection() {
                                         onClick={handleScroll}
                                         className="group flex items-center gap-2 md:gap-3 bg-white text-[#1a2355] font-black px-4 py-2 md:px-6 md:py-3 rounded-full md:rounded-2xl hover:bg-[#ee7c7e] hover:text-white transition-all duration-500 shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:shadow-[#ee7c7e]/40 cursor-pointer active:scale-95"
                                     >
-                                        <span className="relative z-10 uppercase tracking-[0.2em] text-[10px] md:text-[11px]">{t.hero.button}</span>
+                                        <span className="relative z-10 uppercase tracking-[0.12em] text-[10px] md:text-[11px]">{t.hero.button}</span>
                                         <div className="relative z-10 w-6 h-6 md:w-8 md:h-8 rounded-lg md:rounded-xl bg-[#1a2355]/10 group-hover:bg-white/20 flex items-center justify-center transition-colors">
                                             <ArrowDownwardIcon className="group-hover:translate-y-0.5 transition-transform" sx={{ fontSize: { xs: 14, md: 18 } }} />
                                         </div>
@@ -235,7 +226,7 @@ export default function HeroSection() {
                                             <div className="w-6 h-6 md:w-8 md:h-8 rounded-lg md:rounded-xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform group-hover:bg-[#ee7c7e] group-hover:shadow-[0_0_14px_#ee7c7e]">
                                                 <PlayArrowIcon sx={{ fontSize: { xs: 14, md: 18 } }} />
                                             </div>
-                                            <span className="uppercase tracking-[0.2em] text-[10px] md:text-[11px]">{lang === 'az' ? 'Virtual Tur' : 'Virtual Tour'}</span>
+                                            <span className="uppercase tracking-[0.12em] text-[10px] md:text-[11px]">{lang === 'az' ? 'Virtual Tur' : 'Virtual Tour'}</span>
                                         </button>
                                     </Link>
                                 </motion.div>
@@ -263,7 +254,7 @@ export default function HeroSection() {
                                     )}
                                 </div>
                                 <div className="min-w-0">
-                                    <p className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] text-white/40 mb-0.5 group-hover:text-[#ee7c7e] transition-colors truncate">{stat.label}</p>
+                                    <p className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.12em] text-white/40 mb-0.5 group-hover:text-[#ee7c7e] transition-colors truncate">{stat.label}</p>
                                     <p className="text-sm md:text-lg lg:text-xl font-black text-white tracking-tighter truncate">{stat.value}</p>
                                 </div>
                             </motion.div>
@@ -379,7 +370,7 @@ export default function HeroSection() {
                 className="absolute bottom-2 md:bottom-6 left-1/2 -translate-x-1/2 z-30 block"
             >
                 <div className="flex flex-col items-center gap-2">
-                    <p className="text-[8px] font-black uppercase tracking-[0.4em] text-white/30 rotate-90 mb-6 origin-left">Scroll</p>
+                    <p className="text-[8px] font-black uppercase tracking-[0.15em] text-white/30 rotate-90 mb-6 origin-left">Scroll</p>
                     <div className="w-px h-8 rounded-full bg-gradient-to-b from-[#ee7c7e] to-transparent" />
                 </div>
             </motion.div>

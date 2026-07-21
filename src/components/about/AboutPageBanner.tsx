@@ -82,7 +82,7 @@ export default function AboutPageBanner({ eyebrow, title, subtitle, breadcrumbs,
                 <motion.nav 
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className="flex items-center gap-2 text-white/40 text-[10px] font-black uppercase tracking-[0.4em] mb-10 flex-wrap"
+                    className="flex items-center gap-2 text-white/40 text-[10px] font-black uppercase tracking-[0.15em] mb-10 flex-wrap"
                 >
                     <Link href="/" className="hover:text-[#ee7c7e] transition-colors flex items-center gap-2 group">
                         <HomeIcon sx={{ fontSize: 14 }} className="group-hover:scale-110 transition-transform" />
@@ -110,7 +110,7 @@ export default function AboutPageBanner({ eyebrow, title, subtitle, breadcrumbs,
                         className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-white/5 border border-white/10 mb-6 backdrop-blur-md"
                     >
                         <div className="w-2 h-2 rounded-full bg-[#ee7c7e] animate-pulse" />
-                        <span className="text-white text-[11px] font-black uppercase tracking-[0.4em]">
+                        <span className="text-white text-[11px] font-black uppercase tracking-[0.15em]">
                             {eyebrow}
                         </span>
                     </motion.div>

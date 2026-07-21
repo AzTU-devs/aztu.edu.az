@@ -202,7 +202,7 @@ export default function ResponsiveHeader() {
 
                         {/* Quick Access Portals */}
                         <div className="relative z-10 px-6 py-8 bg-gradient-to-b from-[#0b1330] via-[#0b1330] to-transparent">
-                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20 mb-6 ml-1">University Portals</p>
+                            <p className="text-[10px] font-black uppercase tracking-[0.15em] text-white/20 mb-6 ml-1">University Portals</p>
                             <div className="grid grid-cols-3 gap-3">
                                 {[
                                     { icon: <PersonIcon sx={{ fontSize: 24 }} />, label: t.common.lms, color: "hover:bg-blue-500/20 hover:border-blue-500/30", href: "https://sso.aztu.edu.az" },
@@ -214,7 +214,7 @@ export default function ResponsiveHeader() {
                                         href={href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className={`flex flex-col items-center justify-center gap-3 rounded-[1.5rem] p-4 text-white/60 bg-white/5 border border-white/5 transition-all duration-300 group ${color} hover:text-white active:scale-95`}
+                                        className={`flex flex-col items-center justify-center gap-3 rounded-[10px] p-4 text-white/60 bg-white/5 border border-white/5 transition-all duration-300 group ${color} hover:text-white active:scale-95`}
                                     >
                                         <div className="group-hover:scale-110 group-hover:text-inherit transition-transform duration-300">
                                             {icon}
@@ -252,7 +252,7 @@ export default function ResponsiveHeader() {
                                 .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.05); border-radius: 10px; }
                             `}</style>
                             
-                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20 mb-6 mt-4 ml-1">Main Navigation</p>
+                            <p className="text-[10px] font-black uppercase tracking-[0.15em] text-white/20 mb-6 mt-4 ml-1">Main Navigation</p>
                             <div className="space-y-3">
                                 {menuHeaders.map((header) => {
                                     const isExpanded = expandedHeaderId === header.id;
@@ -263,7 +263,7 @@ export default function ResponsiveHeader() {
                                             <Link
                                                 href={header.direct_url}
                                                 onClick={() => setIsOpen(false)}
-                                                className="w-full flex items-center px-6 py-5 rounded-[1.5rem] text-[14px] font-black text-white/70 hover:text-white bg-white/5 hover:bg-white/10 border border-white/5 transition-colors uppercase tracking-[0.2em] shadow-xl group"
+                                                className="w-full flex items-center px-6 py-5 rounded-[10px] text-[14px] font-black text-white/70 hover:text-white bg-white/5 hover:bg-white/10 border border-white/5 transition-colors uppercase tracking-[0.12em] shadow-xl group"
                                             >
                                                 <span className="flex-1">{header.title}</span>
                                                 <ChevronRightIcon sx={{ fontSize: 18 }} className="opacity-20 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
@@ -276,7 +276,7 @@ export default function ResponsiveHeader() {
                                         <div key={header.id} className="space-y-2">
                                             <button
                                                 onClick={() => toggleHeader(header.id)}
-                                                className={`w-full flex items-center justify-between px-6 py-5 rounded-[1.5rem] text-left text-[14px] font-black uppercase tracking-[0.2em] transition-colors duration-200 shadow-xl border ${
+                                                className={`w-full flex items-center justify-between px-6 py-5 rounded-[10px] text-left text-[14px] font-black uppercase tracking-[0.12em] transition-colors duration-200 shadow-xl border ${
                                                     isExpanded
                                                     ? "bg-[#ee7c7e] text-white border-[#ee7c7e] shadow-[#ee7c7e]/20"
                                                     : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white border-white/5"
@@ -293,7 +293,7 @@ export default function ResponsiveHeader() {
 
                                             {isExpanded && (
                                                 <div
-                                                    className="overflow-hidden rounded-[1.5rem] bg-white/[0.03] border border-white/5 px-2 py-2 mb-4"
+                                                    className="overflow-hidden rounded-[10px] bg-white/[0.03] border border-white/5 px-2 py-2 mb-4"
                                                 >
                                                         {header.items.map((item) => (
                                                             <div key={item.id} className="py-1">
@@ -306,7 +306,7 @@ export default function ResponsiveHeader() {
                                                                     {item.title}
                                                                   </Link>
                                                                 ) : (
-                                                                  <span className="block px-6 pt-4 pb-2 text-[10px] font-black uppercase tracking-[0.3em] text-white/20">
+                                                                  <span className="block px-6 pt-4 pb-2 text-[10px] font-black uppercase tracking-[0.14em] text-white/20">
                                                                     {item.title}
                                                                   </span>
                                                                 )}
@@ -334,7 +334,7 @@ export default function ResponsiveHeader() {
 
                         {/* Drawer Footer */}
                         <div className="relative z-10 p-10 text-center border-t border-white/5 bg-gradient-to-t from-black/20 to-transparent">
-                            <p className="text-white/10 text-[10px] font-black uppercase tracking-[0.6em]">Innovating Education</p>
+                            <p className="text-white/10 text-[10px] font-black uppercase tracking-[0.18em]">Innovating Education</p>
                         </div>
                     </motion.aside>
                 )}

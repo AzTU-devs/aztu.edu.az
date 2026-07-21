@@ -115,7 +115,7 @@ export default function SustainabilityDocumentsPage() {
                     <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
                         <EnergySavingsLeafIcon />
                     </div>
-                    <p className="text-sm font-black uppercase tracking-[0.25em] text-[#1a2355]/60 dark:text-white/50">
+                    <p className="text-sm font-black uppercase tracking-[0.13em] text-[#1a2355]/60 dark:text-white/50">
                         {DOCUMENTS.length} {c.documentsCount}
                     </p>
                 </div>
@@ -132,7 +132,7 @@ export default function SustainabilityDocumentsPage() {
                                 initial={{ opacity: 0, y: 16 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.4, delay: i * 0.06 }}
-                                className="group relative text-left bg-white dark:bg-slate-900 rounded-[2rem] border-2 border-[#1a2355]/10 dark:border-white/10 p-7 hover:border-[#ee7c7e] hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 overflow-hidden"
+                                className="group relative text-left bg-white dark:bg-slate-900 rounded-[12px] border-2 border-[#1a2355]/10 dark:border-white/10 p-7 hover:border-[#ee7c7e] hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 overflow-hidden"
                             >
                                 <div className="absolute -top-12 -right-12 w-40 h-40 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
                                 <div className="relative z-10 flex items-start gap-5">
@@ -180,7 +180,7 @@ export default function SustainabilityDocumentsPage() {
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.95, opacity: 0 }}
                             transition={{ type: "spring", damping: 26, stiffness: 240 }}
-                            className="relative w-full max-w-6xl h-[88vh] bg-white dark:bg-slate-900 rounded-[1.5rem] overflow-hidden shadow-2xl flex flex-col"
+                            className="relative w-full max-w-6xl h-[88vh] bg-white dark:bg-slate-900 rounded-[10px] overflow-hidden shadow-2xl flex flex-col"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="flex items-center justify-between gap-4 px-6 py-4 border-b border-gray-100 dark:border-slate-800 bg-white dark:bg-slate-900">

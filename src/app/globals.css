@@ -3,28 +3,58 @@
 /* Enable class-based dark mode for Tailwind v4 */
 @variant dark (&:where(.dark, .dark *));
 
+/* ============================================================
+   DESIGN TOKENS
+   One canvas for the whole site: pure white. Depth is created by
+   hairline borders and soft layered shadows — never by tinting
+   the page background.
+   ============================================================ */
 :root {
-  --background: #f0f4f8;
-  --foreground: #1a2355;
-  --primary: #1a2355;
-  --accent: #ee7c7e;
-  --secondary: #13365E;
-}
+  /* Canvas */
+  --background: #ffffff;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --surface-sunken: #fafbfd;
 
-:root {
-  --background: #eef1f8;
-  --foreground: #1a2355;
+  /* Ink */
+  --foreground: #10163a;
+  --ink: #10163a;
+  --ink-muted: #545e80;
+  --ink-subtle: #8a93ad;
+
+  /* Brand */
   --primary: #1a2355;
+  --secondary: #13365e;
   --accent: #ee7c7e;
-  --secondary: #f8fafc;
+
+  /* Hairlines */
+  --line: rgba(26, 35, 85, 0.09);
+  --line-strong: rgba(26, 35, 85, 0.16);
+
+  /* Radii — calm, consistent */
+  --r-sm: 6px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+
+  /* Elevation — layered, low-alpha navy */
+  --shadow-sm: 0 1px 2px rgba(16, 22, 58, 0.04), 0 1px 3px rgba(16, 22, 58, 0.05);
+  --shadow-md: 0 2px 4px rgba(16, 22, 58, 0.04), 0 8px 20px -6px rgba(16, 22, 58, 0.08);
+  --shadow-lg: 0 4px 8px rgba(16, 22, 58, 0.04), 0 20px 40px -12px rgba(16, 22, 58, 0.12);
+  --shadow-xl: 0 8px 16px rgba(16, 22, 58, 0.05), 0 32px 64px -16px rgba(16, 22, 58, 0.16);
+
+  /* Layout rhythm */
+  --gutter: clamp(1rem, 5vw, 5rem);
+  --shell: 1440px;
 }
 
 .dark {
   --background: #ffffff;
-  --foreground: #1a2355;
-  --primary: #ee7c7e;
-  --accent: #1a2355;
-  --secondary: #f8fafc;
+  --surface: #ffffff;
+  --foreground: #10163a;
+  --primary: #1a2355;
+  --accent: #ee7c7e;
+  --secondary: #13365e;
 }
 
 @theme inline {
@@ -33,13 +63,51 @@
   --color-primary: var(--primary);
   --color-accent: var(--accent);
   --color-secondary: var(--secondary);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-line: var(--line);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+/* Tighten Tailwind's radius scale globally. The markup leans heavily on
+   rounded-xl / -2xl / -3xl (800+ usages); shrinking the scale here calms
+   every one of them without touching a single component. */
+@theme {
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+  --radius-2xl: 12px;
+  --radius-3xl: 14px;
+  --radius-4xl: 16px;
+
+  /* The markup sets ~1,000 elements to weight 900, which flattens the type
+     hierarchy and reads as shouty rather than considered. Remapping the
+     scale restores contrast between headings, labels and body copy. */
+  --font-weight-bold: 600;
+  --font-weight-extrabold: 650;
+  --font-weight-black: 700;
+
+  /* Wide tracking is for small caps labels only — 0.3em+ is a billboard,
+     not an interface. */
+  --tracking-tighter: -0.03em;
+  --tracking-tight: -0.015em;
+  --tracking-wider: 0.04em;
+  --tracking-widest: 0.08em;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   overflow-x: hidden;
-  background-color: var(--background);
+  background-color: var(--surface);
   color: var(--foreground);
   /* Inter (loaded via next/font as --font-geist-sans) is the primary face;
      falls back to Noto Sans then platform UI fonts. All have full Azerbaijani
@@ -48,97 +116,159 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   min-height: 100vh;
 }
 
-/* Stunning Mesh Background - Vibrant on White with more fill */
-.bg-mesh {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-color: var(--background);
-  background-image:
-    radial-gradient(at 0% 0%, rgba(26, 35, 85, 0.25) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(238, 124, 126, 0.22) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(26, 35, 85, 0.20) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(238, 124, 126, 0.18) 0px, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(26, 35, 85, 0.12) 0px, transparent 50%);
-  filter: blur(60px);
-  opacity: 1;
+::selection {
+  background: rgba(238, 124, 126, 0.25);
+  color: var(--ink);
 }
 
-.dark .bg-mesh {
-  background-image: 
-    radial-gradient(at 0% 0%, rgba(26, 35, 85, 0.15) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(238, 124, 126, 0.22) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(238, 124, 126, 0.18) 0px, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(26, 35, 85, 0.08) 0px, transparent 50%);
-}
-
-.bg-grid-premium {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  opacity: 0.12;
-  background-image: 
-    radial-gradient(var(--foreground) 1px, transparent 1px),
-    linear-gradient(to right, rgba(26, 35, 85, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(26, 35, 85, 0.02) 1px, transparent 1px);
-  background-size: 40px 40px, 40px 40px, 40px 40px;
-}
-
-.dark .bg-grid-premium {
-  opacity: 0.05;
-}
-
-p {
-  text-justify: inter-word;
-  text-align: justify;
-}
-
+/* Ragged-right body copy. Justified text without hyphenation opens rivers
+   of whitespace — the single most common "cheap" typographic tell. */
+p,
 .prose p {
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: start;
+  text-justify: auto;
+  hyphens: auto;
 }
 
-/* Glassmorphism Containers - Primarily White/Light */
-.glass-container {
-  background: rgba(255, 255, 255, 0.85);
+/* Headings read tighter and calmer than the browser default. */
+h1, h2, h3, h4 {
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* Consistent focus ring for keyboard users across the whole site. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   PAGE CANVAS
+   `.bg-page` is applied by ~45 route files. Keeping the class name
+   and pointing it at the single white canvas turns every one of
+   those pages white from one place.
+   ============================================================ */
+.bg-page,
+.dark .bg-page {
+  position: relative;
+  background-color: var(--surface);
+  background-image: none;
+}
+
+/* ============================================================
+   SURFACE PRIMITIVES
+   ============================================================ */
+.surface-card {
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.surface-card:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-lg);
+}
+
+.glass-container,
+.dark .glass-container {
+  background: var(--surface-raised);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 2px solid rgba(26, 35, 85, 0.05);
-  box-shadow: 0 10px 40px -10px rgba(26, 35, 85, 0.1);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
 }
 
-.dark .glass-container {
-  background: rgba(255, 255, 255, 0.9);
-  border: 2px solid rgba(238, 124, 126, 0.1);
-  box-shadow: 0 10px 50px -10px rgba(0, 0, 0, 0.05);
-}
-
-/* Premium Border Styles - Vibrant Colored Borders on White */
-.border-premium {
-  border: 2px solid rgba(26, 35, 85, 0.3);
+.border-premium,
+.dark .border-premium {
+  border: 1px solid var(--line);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.dark .border-premium {
-  border: 2px solid rgba(238, 124, 126, 0.2);
-}
-
 .border-premium:hover {
-  border-color: #ee7c7e;
-  box-shadow: 0 0 20px rgba(238, 124, 126, 0.15);
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-md);
 }
 
+/* Hairline rule used to separate stacked sections on the white canvas. */
+.hairline {
+  border-top: 1px solid var(--line);
+}
+
+/* ============================================================
+   TYPE UTILITIES
+   ============================================================ */
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 3.2vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.section-lead {
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  line-height: 1.65;
+  color: var(--ink-muted);
+  max-width: 60ch;
+}
+
+.heading-primary {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  margin-bottom: 1.5rem;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* ============================================================
+   LAYOUT UTILITIES
+   ============================================================ */
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section-padding {
+  padding-block: clamp(3.5rem, 7vw, 7rem);
+  padding-inline: var(--gutter);
+}
+
+/* ============================================================
+   MOTION
+   ============================================================ */
 @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
@@ -155,17 +285,19 @@ p {
 }
 
 .animate-marquee {
-  animation: marquee 30s linear infinite;
+  animation: marquee 40s linear infinite;
 }
 
 .animate-marquee:hover {
   animation-play-state: paused;
 }
 
-/* Gallery slider thumbnail active state */
+/* ============================================================
+   SWIPER
+   ============================================================ */
 .gallery-thumbs .swiper-slide-thumb-active > div {
   opacity: 1;
-  outline: 2px solid #ee7c7e;
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -174,49 +306,29 @@ p {
   transition: opacity 0.2s ease;
 }
 
-/* Hide default Swiper navigation arrows */
 .swiper-button-next,
 .swiper-button-prev {
   display: none;
 }
 
-/* Utility classes for stunning layout */
-.section-padding {
-  @apply py-12 md:py-20 px-4 md:px-8 lg:px-16;
-}
-
-.heading-primary {
-  @apply text-3xl md:text-5xl font-black tracking-tighter leading-[1.1] mb-6;
-}
-
-.text-balance {
-  text-wrap: balance;
-}
-
 /* ============================================================
-   PAGE BACKGROUND — dotted AzTU-blue pattern for non-home pages
+   SCROLLBAR
    ============================================================ */
-.bg-page {
-  position: relative;
-  background-color: #eef1f8;
-  background-image:
-    radial-gradient(circle at 1px 1px, rgba(26, 35, 85, 0.18) 1px, transparent 0),
-    radial-gradient(at 12% 0%, rgba(26, 35, 85, 0.10) 0px, transparent 45%),
-    radial-gradient(at 88% 0%, rgba(238, 124, 126, 0.10) 0px, transparent 45%),
-    radial-gradient(at 88% 100%, rgba(26, 35, 85, 0.08) 0px, transparent 45%),
-    radial-gradient(at 12% 100%, rgba(238, 124, 126, 0.08) 0px, transparent 45%);
-  background-size: 22px 22px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
-  background-attachment: fixed, fixed, fixed, fixed, fixed;
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
 
-.dark .bg-page {
-  background-color: #0a0c1a;
-  background-image:
-    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0),
-    radial-gradient(at 12% 0%, rgba(26, 35, 85, 0.35) 0px, transparent 45%),
-    radial-gradient(at 88% 0%, rgba(238, 124, 126, 0.18) 0px, transparent 45%),
-    radial-gradient(at 88% 100%, rgba(26, 35, 85, 0.30) 0px, transparent 45%),
-    radial-gradient(at 12% 100%, rgba(238, 124, 126, 0.15) 0px, transparent 45%);
-  background-size: 22px 22px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
-  background-attachment: fixed, fixed, fixed, fixed, fixed;
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(26, 35, 85, 0.18);
+  border-radius: 999px;
+  border: 3px solid var(--surface);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(26, 35, 85, 0.32);
 }
