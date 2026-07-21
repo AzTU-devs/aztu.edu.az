@@ -1,4 +1,4 @@
-import { API_BASE_URL } from "@/util/apiClient";
+import apiClient, { API_BASE_URL } from "@/util/apiClient";
 import type { Lang } from "@/util/apiClient";
 import type {
     ResearchInstituteDetail,
@@ -897,10 +897,7 @@ function findRecordByCode(code: string): StaticInstituteRecord | undefined {
     return STATIC_INSTITUTES.find((rec) => rec.az.institute_code === code);
 }
 
-export const getResearchInstitutes = async (
-    params: { start?: number; end?: number; lang?: Lang } = {},
-): Promise<ResearchInstituteSummary[]> => {
-    const { lang = "az" } = params;
+function staticSummaries(lang: Lang): ResearchInstituteSummary[] {
     return STATIC_INSTITUTES.map((rec) => {
         const data = rec[lang];
         return {
@@ -908,30 +905,256 @@ export const getResearchInstitutes = async (
             institute_code: data.institute_code,
             name: data.name,
             image_url: data.image_url,
+            about: data.about,
         };
     });
+}
+
+// ── API layer ────────────────────────────────────────────────────────────────
+//
+// Institutes are managed in the dashboard, so the API is the source of truth.
+// The curated STATIC_INSTITUTES below it are kept as a fallback: if the API is
+// unreachable or has no records yet, the site keeps rendering the institutes it
+// shipped with rather than showing an empty page.
+
+interface ApiInstituteSummary {
+    id: number;
+    institute_code: string;
+    name: string | null;
+    image: string | null;
+    website_url: string | null;
+    email: string | null;
+    about_html: string | null;
+}
+
+interface ApiPerson {
+    id: number;
+    first_name: string | null;
+    last_name: string | null;
+    father_name: string | null;
+    email: string | null;
+    image: string | null;
+    scientific_name: string | null;
+    scientific_degree: string | null;
+}
+
+interface ApiDirector extends ApiPerson {
+    room_number: string | null;
+    bio: string | null;
+    researcher_areas: string | null;
+    educations: {
+        university_name: string | null;
+        degree: string | null;
+        start_year: string | null;
+        end_year: string | null;
+    }[] | null;
+}
+
+interface ApiStaff extends ApiPerson {
+    phone_number: string | null;
+}
+
+interface ApiInstituteDetail extends ApiInstituteSummary {
+    about_html: string | null;
+    vision_html: string | null;
+    mission_html: string | null;
+    goals_html: string | null;
+    direction_html: string | null;
+    additional_info_html: string | null;
+    director: ApiDirector | null;
+    staff: ApiStaff[] | null;
+    created_at: string | null;
+    updated_at: string | null;
+}
+
+/** The API stores names in parts; every consumer on the site wants one string. */
+const fullName = (person: ApiPerson): string =>
+    [person.last_name, person.first_name, person.father_name].filter(Boolean).join(" ").trim();
+
+/** Scientific name and degree together form the job title shown on people cards. */
+const personTitle = (person: ApiPerson): string =>
+    [person.scientific_name, person.scientific_degree].filter(Boolean).join(", ");
+
+const toDirector = (director: ApiDirector | null): ResearchInstituteDetail["director"] => {
+    if (!director) return null;
+    return {
+        id: director.id,
+        full_name: fullName(director),
+        email: director.email ?? "",
+        office: director.room_number ?? "",
+        image_url: director.image,
+        title: personTitle(director),
+        biography: director.bio ?? "",
+        educations: (director.educations ?? []).map((edu, index) => ({
+            id: index + 1,
+            university: edu.university_name ?? "",
+            degree: edu.degree ?? "",
+            start_year: edu.start_year ?? "",
+            end_year: edu.end_year,
+        })),
+        // Stored as one free-text block; split so each area renders as its own item.
+        research_areas: (director.researcher_areas ?? "")
+            .split(/[\n;]+/)
+            .map((area) => area.trim())
+            .filter(Boolean)
+            .map((content, index) => ({ id: index + 1, content })),
+    };
 };
 
+const toStaff = (staff: ApiStaff[] | null): ResearchInstituteDetail["staff"] =>
+    (staff ?? []).map((member) => ({
+        id: member.id,
+        full_name: fullName(member),
+        email: member.email ?? "",
+        phone: member.phone_number ?? "",
+        image_url: member.image,
+        title: personTitle(member),
+    }));
+
+const toSummary = (item: ApiInstituteSummary): ResearchInstituteSummary => ({
+    id: item.id,
+    institute_code: item.institute_code,
+    name: item.name ?? "",
+    image_url: item.image,
+    about: item.about_html ?? "",
+    website_url: item.website_url,
+    email: item.email,
+});
+
+const toDetail = (item: ApiInstituteDetail): ResearchInstituteDetail => ({
+    id: item.id,
+    institute_code: item.institute_code,
+    image_url: item.image,
+    name: item.name ?? "",
+    about: item.about_html ?? "",
+    vision: item.vision_html ?? "",
+    mission: item.mission_html ?? "",
+    goals: item.goals_html ?? "",
+    additional_info: item.additional_info_html ?? "",
+    website_url: item.website_url,
+    email: item.email,
+    director: toDirector(item.director),
+    objectives: [],
+    research_directions: [],
+    staff: toStaff(item.staff),
+    created_at: item.created_at ?? "",
+    updated_at: item.updated_at ?? "",
+});
+
+/**
+ * institute_code → name, per language. The language switcher rewrites URL
+ * segments synchronously, so the AZ↔EN name pairs have to be in memory by the
+ * time it runs; `getResearchInstitutes` warms both languages on page load.
+ */
+const nameCache: Record<Lang, Map<string, string>> = {
+    az: new Map(),
+    en: new Map(),
+};
+
+async function fetchInstitutesFromApi(lang: Lang): Promise<ApiInstituteSummary[]> {
+    try {
+        const response = await apiClient.get(
+            `/api/research-institute/public/all?start=0&end=100&lang=${lang}`,
+            { headers: { "Accept-Language": lang } },
+        );
+        if (response.data?.status_code === 200) {
+            const institutes = (response.data.institutes ?? []) as ApiInstituteSummary[];
+            institutes.forEach((item) => {
+                if (item.name) nameCache[lang].set(item.institute_code, item.name);
+            });
+            return institutes;
+        }
+        return [];
+    } catch {
+        return [];
+    }
+}
+
+/** Finds the code whose cached name slugifies to `slug`, in either language. */
+function findCachedCodeBySlug(slug: string): string | null {
+    for (const lang of ["az", "en"] as Lang[]) {
+        for (const [code, name] of nameCache[lang]) {
+            if (slugify(name) === slug) return code;
+        }
+    }
+    return null;
+}
+
+async function fetchInstituteDetailFromApi(
+    instituteCode: string,
+    lang: Lang,
+): Promise<ApiInstituteDetail | null> {
+    try {
+        const response = await apiClient.get(`/api/research-institute/${instituteCode}`, {
+            headers: { "Accept-Language": lang },
+        });
+        if (response.data?.status_code === 200) {
+            return response.data.institute as ApiInstituteDetail;
+        }
+        return null;
+    } catch {
+        return null;
+    }
+}
+
+export const getResearchInstitutes = async (
+    params: { start?: number; end?: number; lang?: Lang } = {},
+): Promise<ResearchInstituteSummary[]> => {
+    const { lang = "az" } = params;
+    const otherLang: Lang = lang === "az" ? "en" : "az";
+
+    // The opposite language is warmed in the background purely to populate
+    // `nameCache` for the language switcher; its result is not rendered here.
+    void fetchInstitutesFromApi(otherLang);
+
+    const fromApi = await fetchInstitutesFromApi(lang);
+    if (fromApi.length > 0) return fromApi.map(toSummary);
+    return staticSummaries(lang);
+};
+
+/**
+ * Stays synchronous: the language switcher rewrites the whole path in one pass
+ * and cannot await. Falls back to the slug itself when the pair is not cached.
+ */
 export const translateInstituteSlug = (slug: string, toLang: Lang): string => {
     const record = findRecordBySlug(slug);
-    if (!record) return slug;
-    return slugify(record[toLang].name);
+    if (record) return slugify(record[toLang].name);
+
+    const code = findCachedCodeBySlug(slug);
+    if (!code) return slug;
+
+    const translated = nameCache[toLang].get(code);
+    return translated ? slugify(translated) : slug;
 };
 
 export const getResearchInstituteBySlug = async (
     slug: string,
     lang: Lang = "az",
 ): Promise<ResearchInstituteDetail | null> => {
+    let code = findCachedCodeBySlug(slug);
+
+    // A deep link can land here before any list request has warmed the cache.
+    if (!code) {
+        await Promise.all([fetchInstitutesFromApi("az"), fetchInstitutesFromApi("en")]);
+        code = findCachedCodeBySlug(slug);
+    }
+
+    if (code) {
+        const detail = await fetchInstituteDetailFromApi(code, lang);
+        if (detail) return toDetail(detail);
+    }
+
     const record = findRecordBySlug(slug);
-    if (!record) return null;
-    return record[lang];
+    return record ? record[lang] : null;
 };
 
 export const getResearchInstituteByCode = async (
     instituteCode: string,
     lang: Lang = "az",
 ): Promise<ResearchInstituteDetail | null> => {
+    const detail = await fetchInstituteDetailFromApi(instituteCode, lang);
+    if (detail) return toDetail(detail);
+
     const record = findRecordByCode(instituteCode);
-    if (!record) return null;
-    return record[lang];
+    return record ? record[lang] : null;
 };

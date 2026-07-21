@@ -6,10 +6,21 @@ import { motion } from "framer-motion";
 import ScienceIcon from "@mui/icons-material/Science";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import HomeIcon from "@mui/icons-material/Home";
-import { getResearchInstitutes } from "@/services/researchInstituteService/researchInstituteService";
+import { getResearchInstitutes, getImageUrl } from "@/services/researchInstituteService/researchInstituteService";
 import type { ResearchInstituteSummary } from "@/types/researchInstitute";
 import { slugify } from "@/util/slugify";
 import { useLanguage } from "@/context/LanguageContext";
+
+/** Strips the stored HTML down to a short plain-text teaser for the card. */
+const excerpt = (html?: string, max = 150): string => {
+    if (!html) return "";
+    const text = html
+        .replace(/<[^>]*>/g, " ")
+        .replace(/&nbsp;/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    return text.length > max ? `${text.slice(0, max).trimEnd()}…` : text;
+};
 
 const cardVariants = {
     hidden: { opacity: 0, y: 24 },
@@ -135,9 +146,11 @@ export default function ResearchInstitutesPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                         {institutes.map((institute, i) => {
                             const slug = slugify(institute.name);
-                            const path = currentLang === "az" 
+                            const path = currentLang === "az"
                                 ? `/az/tedqiqat/tedqiqat-fealiyyeti/tedqiqat-institutlari/${slug}`
                                 : `/en/research/research-activity/research-institutes/${slug}`;
+                            const logoUrl = getImageUrl(institute.image_url);
+                            const teaser = excerpt(institute.about);
 
                             return (
                                 <motion.div
@@ -156,20 +169,33 @@ export default function ResearchInstitutesPage() {
                                         <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 dark:bg-slate-700/30 rounded-bl-[4rem] -mr-8 -mt-8 transition-transform group-hover:scale-110" />
                                         
                                         <div className="relative z-10 flex flex-col h-full">
-                                            {/* Card Header */}
-                                            <div className="flex items-center justify-between mb-8">
-                                                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#1a2355] to-[#2a3a8a] group-hover:from-[#ee7c7e] group-hover:to-[#f09395] flex items-center justify-center text-white shadow-lg shadow-blue-900/10 transition-all duration-500">
-                                                    <ScienceIcon sx={{ fontSize: 28 }} />
-                                                </div>
-                                                <span className="text-[10px] font-black text-[#1a2355] dark:text-blue-300 bg-[#1a2355]/5 dark:bg-[#1a2355]/20 px-4 py-1.5 rounded-full uppercase tracking-widest">
-                                                    {institute.institute_code}
-                                                </span>
+                                            {/* Card Header — the institute logo, falling back to a mark */}
+                                            <div className="mb-7">
+                                                {logoUrl ? (
+                                                    <div className="w-16 h-16 rounded-2xl bg-white dark:bg-slate-700/40 border border-gray-100 dark:border-slate-600 p-2.5 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-500">
+                                                        <img
+                                                            src={logoUrl}
+                                                            alt=""
+                                                            className="w-full h-full object-contain"
+                                                        />
+                                                    </div>
+                                                ) : (
+                                                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#1a2355] to-[#2a3a8a] group-hover:from-[#ee7c7e] group-hover:to-[#f09395] flex items-center justify-center text-white shadow-lg shadow-blue-900/10 transition-all duration-500">
+                                                        <ScienceIcon sx={{ fontSize: 28 }} />
+                                                    </div>
+                                                )}
                                             </div>
 
                                             {/* Institute Title */}
-                                            <h2 className="text-[#1a2355] dark:text-white font-black text-xl leading-tight group-hover:text-[#ee7c7e] transition-colors duration-300 mb-6">
+                                            <h2 className="text-[#1a2355] dark:text-white font-black text-xl leading-tight group-hover:text-[#ee7c7e] transition-colors duration-300 mb-3">
                                                 {institute.name}
                                             </h2>
+
+                                            {teaser && (
+                                                <p className="text-sm text-gray-500 dark:text-slate-400 leading-relaxed line-clamp-4">
+                                                    {teaser}
+                                                </p>
+                                            )}
 
                                             {/* Read More Link */}
                                             <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#1a2355] dark:text-blue-400 mt-auto pt-8 group-hover:text-[#ee7c7e] transition-colors">

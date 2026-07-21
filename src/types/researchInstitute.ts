@@ -50,6 +50,15 @@ export interface ResearchInstituteDetail {
   about: string;
   vision: string;
   mission: string;
+  /**
+   * Rich-text blocks authored in the dashboard. Optional because the curated
+   * static records that predate the CMS never carried them — the detail page
+   * falls back to `objectives` / `research_directions` when they are absent.
+   */
+  goals?: string;
+  additional_info?: string;
+  website_url?: string | null;
+  email?: string | null;
   director: ResearchInstituteDirector | null;
   deputy_director?: ResearchInstituteDirector | null;
   objectives: ResearchInstituteObjective[];
@@ -64,4 +73,7 @@ export interface ResearchInstituteSummary {
   institute_code: string;
   name: string;
   image_url: string | null;
+  about?: string;
+  website_url?: string | null;
+  email?: string | null;
 }
