@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -14,18 +14,12 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
-
-interface Project {
-    name: string;
-    type: string;
-    duration: string;
-    leader: string;
-    team: string[];
-    amount: string;
-    about: string;
-    link: string;
-    image?: string;
-}
+import SanitizedHtml from "@/components/shared/SanitizedHtml";
+import {
+    getResearchProjects,
+    getImageUrl,
+} from "@/services/researchProjectService/researchProjectService";
+import type { ResearchProject as Project } from "@/types/researchProject";
 
 function GridBackground() {
     return (
@@ -51,7 +45,8 @@ interface ProjectCardProps {
 function ProjectCard({ project, index }: ProjectCardProps) {
     const t = useTranslation();
     const details = t.pages.research.researchProjects.projectDetails;
-    
+    const coverUrl = getImageUrl(project.image_url);
+
     return (
         <motion.section
             initial={{ opacity: 0, y: 40 }}
@@ -63,14 +58,15 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             <div className="absolute -inset-24 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-3xl pointer-events-none" />
             
             {/* Image Section - Only show if image exists */}
-            {project.image && (
+            {coverUrl && (
                 <div className="xl:w-1/3 flex-shrink-0">
                     <div className="relative aspect-video xl:aspect-[3/4] rounded-[2rem] overflow-hidden bg-gray-100 dark:bg-white/5 border border-gray-100 dark:border-white/10 shadow-xl group-hover:scale-[1.02] transition-transform duration-500">
-                        <Image 
-                            src={project.image} 
-                            alt={project.name} 
-                            fill 
-                            className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                        <Image
+                            src={coverUrl}
+                            alt={project.name}
+                            fill
+                            unoptimized
+                            className="object-cover transition-transform duration-700 group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>
@@ -135,16 +131,21 @@ function ProjectCard({ project, index }: ProjectCardProps) {
                         )}
                     </div>
 
-                    <div className="text-gray-600 dark:text-white/60 text-base leading-relaxed whitespace-pre-wrap font-medium mb-10 line-clamp-6 group-hover:line-clamp-none transition-all duration-500">
-                        {project.about}
+                    {/* Authored in the dashboard editor, so it arrives as HTML. */}
+                    <div className="mb-10 line-clamp-6 group-hover:line-clamp-none transition-all duration-500">
+                        <SanitizedHtml
+                            html={project.about}
+                            className="prose prose-slate dark:prose-invert max-w-none text-gray-600 dark:text-white/60 text-base leading-relaxed font-medium"
+                        />
                     </div>
                 </div>
 
-                {project.link && (
+                {project.project_url && (
                     <div className="flex items-center justify-between pt-8 border-t border-gray-100 dark:border-white/10">
-                        <Link 
-                            href={project.link} 
+                        <Link
+                            href={project.project_url}
                             target="_blank"
+                            rel="noopener noreferrer"
                             className="group/btn relative inline-flex items-center gap-4 bg-[#1a2355] dark:bg-[#ee7c7e] text-white font-black px-10 py-5 rounded-2xl hover:scale-[1.02] transition-all duration-300 shadow-xl overflow-hidden"
                         >
                             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
@@ -167,6 +168,16 @@ export default function ResearchProjectsPage() {
     const bannerRef = useRef(null);
     const { scrollY } = useScroll();
     const y = useTransform(scrollY, [0, 500], [0, 200]);
+
+    const [projects, setProjects] = useState<Project[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setLoading(true);
+        getResearchProjects({ lang })
+            .then(setProjects)
+            .finally(() => setLoading(false));
+    }, [lang]);
 
     return (
         <main className="min-h-screen bg-[#fafafa] dark:bg-[#0b1330] selection:bg-[#ee7c7e]/30">
@@ -279,9 +290,25 @@ export default function ResearchProjectsPage() {
 
                     {/* Projects Detailed Grid */}
                     <div className="space-y-16">
-                        {p.projects.map((project: Project, i: number) => (
-                            <ProjectCard key={i} project={project} index={i} />
-                        ))}
+                        {loading ? (
+                            Array.from({ length: 3 }).map((_, i) => (
+                                <div
+                                    key={i}
+                                    className="animate-pulse h-72 rounded-[3rem] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10"
+                                />
+                            ))
+                        ) : projects.length === 0 ? (
+                            <div className="text-center py-32 rounded-[3rem] bg-white dark:bg-white/5 border-2 border-dashed border-gray-100 dark:border-white/10">
+                                <AssignmentIcon sx={{ fontSize: 64 }} className="text-[#1a2355] opacity-10 dark:text-white" />
+                                <p className="text-gray-400 font-black uppercase tracking-widest text-sm mt-4">
+                                    {lang === "az" ? "Məlumat tapılmadı" : "No data found"}
+                                </p>
+                            </div>
+                        ) : (
+                            projects.map((project, i) => (
+                                <ProjectCard key={project.project_code} project={project} index={i} />
+                            ))
+                        )}
                     </div>
 
                     {/* FUTURISTIC RELATED NAVIGATION */}
