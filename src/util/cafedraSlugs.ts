@@ -15,6 +15,7 @@ export const SCIENTIFIC_NAV: {
   { key: "projects_grants", az: "elmi-layiheler-ve-qrantlar", en: "scientific-projects-and-grants", azLabel: "Elmi layihələr və qrantlar", enLabel: "Scientific Projects and Grants" },
   { key: "laboratories", az: "laboratoriyalar", en: "laboratories", azLabel: "Laboratoriyalar", enLabel: "Laboratories" },
   { key: "publications", az: "elmi-neshrler", en: "scientific-publications", azLabel: "Elmi nəşrlər", enLabel: "Scientific Publications" },
+  { key: "patents", az: "patentler", en: "patents", azLabel: "Patentlər", enLabel: "Patents" },
   { key: "industry_cooperation", az: "senaye-ile-emekdasliq", en: "industry-cooperation", azLabel: "Sənaye ilə əməkdaşlıq", enLabel: "Cooperation with Industries" },
   { key: "international_cooperation", az: "beynelxalq-elmi-emekdasliq", en: "international-scientific-cooperation", azLabel: "Beynəlxalq elmi əməkdaşlıq", enLabel: "International Scientific Cooperation" },
 ];
@@ -42,6 +43,7 @@ export const CAFEDRA_PAGE_MAP: Record<string, string> = {
   "scientific-projects-and-grants": "elmi-layiheler-ve-qrantlar",
   laboratories: "laboratoriyalar",
   "scientific-publications": "elmi-neshrler",
+  "patents": "patentler",
   "industry-cooperation": "senaye-ile-emekdasliq",
   "international-scientific-cooperation": "beynelxalq-elmi-emekdasliq",
   other: "diger",
@@ -61,6 +63,7 @@ export const CAFEDRA_PAGE_MAP_REVERSE: Record<string, string> = {
   "elmi-layiheler-ve-qrantlar": "scientific-projects-and-grants",
   laboratoriyalar: "laboratories",
   "elmi-neshrler": "scientific-publications",
+  "patentler": "patents",
   "senaye-ile-emekdasliq": "industry-cooperation",
   "beynelxalq-elmi-emekdasliq": "international-scientific-cooperation",
   diger: "other",

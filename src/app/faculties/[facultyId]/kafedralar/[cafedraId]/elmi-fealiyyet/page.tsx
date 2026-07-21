@@ -11,6 +11,7 @@ import BiotechIcon from "@mui/icons-material/Biotech";
 import PublicIcon from "@mui/icons-material/Public";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
+import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useLanguage } from "@/context/LanguageContext";
 import { useScientificActivity } from "@/context/ScientificActivityContext";
@@ -22,6 +23,7 @@ const SECTION_ICONS: Record<ScientificSectionKey, React.ElementType> = {
   projects_grants: LightbulbIcon,
   laboratories: BiotechIcon,
   publications: MenuBookIcon,
+  patents: WorkspacePremiumIcon,
   industry_cooperation: BusinessIcon,
   international_cooperation: PublicIcon,
 };

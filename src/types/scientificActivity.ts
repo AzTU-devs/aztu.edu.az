@@ -1,6 +1,6 @@
 export type ScientificSectionKey =
   | "research_areas" | "projects_grants" | "laboratories"
-  | "publications" | "industry_cooperation" | "international_cooperation";
+  | "publications" | "patents" | "industry_cooperation" | "international_cooperation";
 
 export type PublicationIndex = "Scopus" | "Web of Science" | "Scopus / Web of Science";
 export type PublicationQuartile = "Q1" | "Q2" | "Q3" | "Q4";
@@ -18,6 +18,11 @@ export interface PublicationItem {
   country: string | null; index: PublicationIndex; quartile: PublicationQuartile | null;
   date: string | null; url: string | null;
 }
+export interface PatentItem {
+  id: number; no: number; year: number | null;
+  patent_number: string | null;
+  title: string | null; authors: string | null; url: string | null;
+}
 export interface IndustryPartnerItem {
   id: number; title: string | null; description: string | null;
   logo_url: string | null; website_url: string | null;
@@ -31,6 +36,11 @@ export interface PublicationsSection extends ScientificSection<PublicationItem> 
   years: PublicationYearBucket[];
 }
 
+/** Same year-bucketed shape as publications. */
+export interface PatentsSection extends ScientificSection<PatentItem> {
+  years: PublicationYearBucket[];
+}
+
 export interface CafedraScientificActivity {
   cafedra_code: string;
   lang_code: "az" | "en";
@@ -40,6 +50,7 @@ export interface CafedraScientificActivity {
     projects_grants: ScientificSection<ProjectGrantItem>;
     laboratories: ScientificSection<LaboratoryRefItem>;
     publications: PublicationsSection;
+    patents: PatentsSection;
     industry_cooperation: ScientificSection<IndustryPartnerItem>;
     international_cooperation: ScientificSection<never>;
   };
