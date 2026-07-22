@@ -91,6 +91,8 @@ export default function TermsConditionsPage() {
 
     return (
         <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden">
+            <div className="bg-mesh" />
+            <div className="bg-grid-premium" />
 
             <PageHero
                 title={t.title}
@@ -115,7 +117,7 @@ export default function TermsConditionsPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                                className="relative p-8 md:p-10 rounded-[18px] bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-2 border-[#1a2355]/30 dark:border-white/5 shadow-2xl shadow-blue-900/5 group"
+                                className="relative p-8 md:p-10 rounded-[1.75rem] bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-2 border-[#1a2355]/30 dark:border-white/5 shadow-2xl shadow-blue-900/5 group"
                             >
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:bg-[#ee7c7e]/10 transition-colors" />
                                 

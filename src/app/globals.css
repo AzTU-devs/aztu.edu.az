@@ -1,136 +1,56 @@
 @import "tailwindcss";
 
-/* Enable class-based dark mode for Tailwind v4 (ThemeContext toggles .dark on <html>) */
+/* Enable class-based dark mode for Tailwind v4 */
 @variant dark (&:where(.dark, .dark *));
 
-/* ============================================================
-   DESIGN TOKENS
-
-   Two tiers, one canvas. The page sits on a lightly tinted canvas
-   and content cards sit on a brighter surface above it — that
-   contrast is what creates depth. Pure white everywhere reads flat.
-   ============================================================ */
 :root {
-  color-scheme: light;
-
-  /* Canvas + surfaces */
-  --canvas: #f2f5fb;
-  --canvas-accent: rgba(26, 35, 85, 0.05);
-  --surface: #ffffff;
-  --surface-raised: #ffffff;
-  --surface-sunken: #e9edf7;
-  --surface-inset: rgba(26, 35, 85, 0.04);
-
-  /* Ink */
-  --foreground: #0f1533;
-  --ink: #0f1533;
-  --ink-muted: #4d5878;
-  --ink-subtle: #8791ad;
-
-  /* Brand */
+  --background: #f0f4f8;
+  --foreground: #1a2355;
   --primary: #1a2355;
-  --secondary: #13365e;
   --accent: #ee7c7e;
-  --accent-soft: rgba(238, 124, 126, 0.12);
+  --secondary: #13365E;
+}
 
-  /* Hairlines */
-  --line: rgba(15, 21, 51, 0.08);
-  --line-strong: rgba(15, 21, 51, 0.14);
-
-  /* Radii — generous and consistent */
-  --r-sm: 8px;
-  --r-md: 12px;
-  --r-lg: 18px;
-  --r-xl: 24px;
-
-  /* Elevation */
-  --shadow-sm: 0 1px 2px rgba(15, 21, 51, 0.04), 0 2px 6px rgba(15, 21, 51, 0.05);
-  --shadow-md: 0 2px 6px rgba(15, 21, 51, 0.05), 0 10px 24px -8px rgba(15, 21, 51, 0.10);
-  --shadow-lg: 0 4px 10px rgba(15, 21, 51, 0.05), 0 24px 48px -14px rgba(15, 21, 51, 0.16);
-  --shadow-xl: 0 8px 18px rgba(15, 21, 51, 0.06), 0 40px 72px -20px rgba(15, 21, 51, 0.22);
-
-  /* Layout rhythm */
-  --gutter: clamp(1.25rem, 5vw, 5rem);
-  --shell: 1440px;
+:root {
+  --background: #eef1f8;
+  --foreground: #1a2355;
+  --primary: #1a2355;
+  --accent: #ee7c7e;
+  --secondary: #f8fafc;
 }
 
 .dark {
-  color-scheme: dark;
-
-  --canvas: #070b1a;
-  --canvas-accent: rgba(238, 124, 126, 0.07);
-  --surface: #101733;
-  --surface-raised: #161f42;
-  --surface-sunken: #0b1128;
-  --surface-inset: rgba(255, 255, 255, 0.05);
-
-  --foreground: #e9edfb;
-  --ink: #e9edfb;
-  --ink-muted: #a4adca;
-  --ink-subtle: #737e9f;
-
+  --background: #ffffff;
+  --foreground: #1a2355;
   --primary: #ee7c7e;
-  --secondary: #7ea6d8;
-  --accent: #ee7c7e;
-  --accent-soft: rgba(238, 124, 126, 0.16);
-
-  --line: rgba(255, 255, 255, 0.09);
-  --line-strong: rgba(255, 255, 255, 0.17);
-
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.30), 0 2px 6px rgba(0, 0, 0, 0.24);
-  --shadow-md: 0 2px 6px rgba(0, 0, 0, 0.34), 0 10px 24px -8px rgba(0, 0, 0, 0.44);
-  --shadow-lg: 0 4px 10px rgba(0, 0, 0, 0.36), 0 24px 48px -14px rgba(0, 0, 0, 0.54);
-  --shadow-xl: 0 8px 18px rgba(0, 0, 0, 0.40), 0 40px 72px -20px rgba(0, 0, 0, 0.62);
+  --accent: #1a2355;
+  --secondary: #f8fafc;
 }
 
 @theme inline {
-  --color-background: var(--canvas);
-  --color-canvas: var(--canvas);
-  --color-surface: var(--surface);
+  --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-accent: var(--accent);
   --color-secondary: var(--secondary);
-  --color-ink: var(--ink);
-  --color-ink-muted: var(--ink-muted);
-  --color-ink-subtle: var(--ink-subtle);
-  --color-line: var(--line);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-/* Scales tuned for the existing markup, which leans on rounded-xl/2xl/3xl,
-   weight 900 and very wide tracking. Retuning here reaches every usage. */
+/* Corner radii, one step tighter. The markup uses rounded-xl/2xl/3xl in ~760
+   places, so nudging the scale here keeps them in step with the arbitrary
+   values without touching a single component. */
 @theme {
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 14px;
-  --radius-2xl: 18px;
-  --radius-3xl: 22px;
-  --radius-4xl: 28px;
-
-  --font-weight-bold: 600;
-  --font-weight-extrabold: 650;
-  --font-weight-black: 700;
-
-  --tracking-tighter: -0.03em;
-  --tracking-tight: -0.015em;
-  --tracking-wider: 0.04em;
-  --tracking-widest: 0.08em;
-}
-
-/* ============================================================
-   BASE
-   ============================================================ */
-html {
-  scroll-behavior: smooth;
-  background-color: var(--canvas);
+  --radius-lg: 0.4375rem;  /* 8px  -> 7px  */
+  --radius-xl: 0.625rem;   /* 12px -> 10px */
+  --radius-2xl: 0.875rem;  /* 16px -> 14px */
+  --radius-3xl: 1.25rem;   /* 24px -> 20px */
+  --radius-4xl: 1.5rem;    /* 32px -> 24px */
 }
 
 body {
   overflow-x: hidden;
-  background-color: var(--canvas);
+  background-color: var(--background);
   color: var(--foreground);
   /* Inter (loaded via next/font as --font-geist-sans) is the primary face;
      falls back to Noto Sans then platform UI fonts. All have full Azerbaijani
@@ -139,251 +59,97 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 100vh;
-  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-::selection {
-  background: var(--accent-soft);
-  color: var(--ink);
-}
-
-/* Ragged-right body copy. Justified text without hyphenation opens rivers
-   of whitespace — the most common "cheap" typographic tell. */
-p,
-.prose p {
-  text-align: start;
-  text-justify: auto;
-  hyphens: auto;
-}
-
-h1, h2, h3, h4 {
-  letter-spacing: -0.02em;
-  text-wrap: balance;
-}
-
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 6px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* ============================================================
-   PAGE CANVAS
-   `.bg-page` is the single canvas class used by every route. One
-   definition drives both themes; the wash keeps it from reading flat.
-   ============================================================ */
-.bg-page,
-.dark .bg-page {
-  position: relative;
-  background-color: var(--canvas);
+/* Stunning Mesh Background - Vibrant on White with more fill */
+.bg-mesh {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: var(--background);
   background-image:
-    radial-gradient(120% 70% at 50% -10%, var(--canvas-accent) 0%, transparent 60%);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+    radial-gradient(at 0% 0%, rgba(26, 35, 85, 0.25) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(238, 124, 126, 0.22) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(26, 35, 85, 0.20) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(238, 124, 126, 0.18) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(26, 35, 85, 0.12) 0px, transparent 50%);
+  filter: blur(60px);
+  opacity: 1;
 }
 
-/* ============================================================
-   SURFACE PRIMITIVES
-   ============================================================ */
-.surface-card {
-  background: var(--surface-raised);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  box-shadow: var(--shadow-sm);
-  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease, background-color 0.35s ease;
+.dark .bg-mesh {
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(26, 35, 85, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(238, 124, 126, 0.22) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(238, 124, 126, 0.18) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(26, 35, 85, 0.08) 0px, transparent 50%);
 }
 
-.surface-card:hover {
-  border-color: var(--line-strong);
-  box-shadow: var(--shadow-lg);
+.bg-grid-premium {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.12;
+  background-image: 
+    radial-gradient(var(--foreground) 1px, transparent 1px),
+    linear-gradient(to right, rgba(26, 35, 85, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(26, 35, 85, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px, 40px 40px;
 }
 
-.glass-container,
-.dark .glass-container {
-  background: color-mix(in srgb, var(--surface-raised) 88%, transparent);
+.dark .bg-grid-premium {
+  opacity: 0.05;
+}
+
+p {
+  text-justify: inter-word;
+  text-align: justify;
+}
+
+.prose p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* Glassmorphism Containers - Primarily White/Light */
+.glass-container {
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  box-shadow: var(--shadow-md);
+  border: 2px solid rgba(26, 35, 85, 0.05);
+  box-shadow: 0 10px 40px -10px rgba(26, 35, 85, 0.1);
 }
 
-.border-premium,
-.dark .border-premium {
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
+.dark .glass-container {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(238, 124, 126, 0.1);
+  box-shadow: 0 10px 50px -10px rgba(0, 0, 0, 0.05);
+}
+
+/* Premium Border Styles - Vibrant Colored Borders on White */
+.border-premium {
+  border: 2px solid rgba(26, 35, 85, 0.3);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.dark .border-premium {
+  border: 2px solid rgba(238, 124, 126, 0.2);
+}
+
 .border-premium:hover {
-  border-color: var(--line-strong);
-  box-shadow: var(--shadow-md);
+  border-color: #ee7c7e;
+  box-shadow: 0 0 20px rgba(238, 124, 126, 0.15);
 }
 
-.hairline {
-  border-top: 1px solid var(--line);
-}
-
-/* ============================================================
-   TYPE UTILITIES
-   ============================================================ */
-.eyebrow {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.section-title {
-  font-size: clamp(1.75rem, 3.2vw, 3rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  color: var(--ink);
-}
-
-.section-lead {
-  font-size: clamp(1rem, 1.2vw, 1.125rem);
-  line-height: 1.65;
-  color: var(--ink-muted);
-  max-width: 60ch;
-}
-
-.heading-primary {
-  font-size: clamp(2rem, 4.5vw, 3.5rem);
-  font-weight: 700;
-  letter-spacing: -0.035em;
-  line-height: 1.08;
-  margin-bottom: 1.5rem;
-}
-
-.text-balance {
-  text-wrap: balance;
-}
-
-/* ============================================================
-   LAYOUT UTILITIES
-   ============================================================ */
-.shell {
-  width: 100%;
-  max-width: var(--shell);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-}
-
-.section-padding {
-  padding-block: clamp(3.5rem, 7vw, 7rem);
-  padding-inline: var(--gutter);
-}
-
-/* ============================================================
-   DARK-MODE BACKSTOP
-
-   ~90% of components already carry `dark:` variants. These rules
-   catch the remainder — hardcoded light literals with no dark
-   sibling — so no element is left light-on-light in dark mode.
-   Anything that must stay literally white uses bg-[#fff] instead,
-   which these selectors deliberately do not match.
-   ============================================================ */
-/* --- Card surfaces -------------------------------------------------- */
-/* Opaque and near-opaque white panels become the dark surface tier.
-   Low-alpha whites (bg-white/5 … /20) are deliberate translucent overlays
-   ON dark surfaces (hero, footer, stats) and must be left alone. */
-.dark [class~="bg-white"]:not([class*="dark:bg-"]),
-.dark [class~="bg-white/40"]:not([class*="dark:bg-"]),
-.dark [class~="bg-white/50"]:not([class*="dark:bg-"]),
-.dark [class~="bg-white/60"]:not([class*="dark:bg-"]),
-.dark [class~="bg-white/70"]:not([class*="dark:bg-"]),
-.dark [class~="bg-white/80"]:not([class*="dark:bg-"]),
-.dark [class~="bg-white/90"]:not([class*="dark:bg-"]),
-.dark [class~="bg-white/95"]:not([class*="dark:bg-"]) {
-  background-color: var(--surface);
-}
-
-.dark [class~="bg-gray-50"]:not([class*="dark:bg-"]),
-.dark [class~="bg-slate-50"]:not([class*="dark:bg-"]),
-.dark [class~="bg-gray-100"]:not([class*="dark:bg-"]),
-.dark [class~="bg-slate-100"]:not([class*="dark:bg-"]),
-.dark [class~="bg-[#f8fafc]"]:not([class*="dark:bg-"]),
-.dark [class~="bg-[#f5f7ff]"]:not([class*="dark:bg-"]),
-.dark [class~="bg-[#eef1f8]"]:not([class*="dark:bg-"]) {
-  background-color: var(--surface-sunken);
-}
-
-/* Brand navy used as a faint tint (bg-[#1a2355]/5) is a light-mode inset;
-   on dark it has to invert to a light-on-dark inset instead. */
-.dark [class*="bg-[#1a2355]/"]:not([class*="dark:bg-"]),
-.dark [class*="bg-[#13365E]/"]:not([class*="dark:bg-"]) {
-  background-color: var(--surface-inset);
-}
-
-/* --- Ink ------------------------------------------------------------ */
-.dark [class~="text-[#1a2355]"]:not([class*="dark:text-"]),
-.dark [class~="text-[#10163a]"]:not([class*="dark:text-"]),
-.dark [class~="text-[#0b1330]"]:not([class*="dark:text-"]),
-.dark [class~="text-[#13365E]"]:not([class*="dark:text-"]),
-.dark [class~="text-black"]:not([class*="dark:text-"]) {
-  color: var(--ink);
-}
-
-/* Opacity variants carry the secondary/tertiary tiers — map them to muted
-   ink rather than full ink so the type hierarchy survives the theme flip. */
-.dark [class*="text-[#1a2355]/"]:not([class*="dark:text-"]),
-.dark [class*="text-[#13365E]/"]:not([class*="dark:text-"]),
-.dark [class*="text-[#0b1330]/"]:not([class*="dark:text-"]) {
-  color: var(--ink-muted);
-}
-
-.dark [class~="text-gray-400"]:not([class*="dark:text-"]),
-.dark [class~="text-gray-500"]:not([class*="dark:text-"]),
-.dark [class~="text-gray-600"]:not([class*="dark:text-"]),
-.dark [class~="text-gray-700"]:not([class*="dark:text-"]),
-.dark [class~="text-gray-800"]:not([class*="dark:text-"]),
-.dark [class~="text-gray-900"]:not([class*="dark:text-"]),
-.dark [class~="text-slate-400"]:not([class*="dark:text-"]),
-.dark [class~="text-slate-500"]:not([class*="dark:text-"]),
-.dark [class~="text-slate-600"]:not([class*="dark:text-"]),
-.dark [class~="text-slate-700"]:not([class*="dark:text-"]),
-.dark [class~="text-slate-800"]:not([class*="dark:text-"]),
-.dark [class~="text-slate-900"]:not([class*="dark:text-"]) {
-  color: var(--ink-muted);
-}
-
-/* --- Hairlines ------------------------------------------------------ */
-.dark [class*="border-[#1a2355]"]:not([class*="dark:border-"]),
-.dark [class*="border-[#13365E]"]:not([class*="dark:border-"]),
-.dark [class~="border-gray-100"]:not([class*="dark:border-"]),
-.dark [class~="border-gray-200"]:not([class*="dark:border-"]),
-.dark [class~="border-gray-300"]:not([class*="dark:border-"]),
-.dark [class~="border-slate-100"]:not([class*="dark:border-"]),
-.dark [class~="border-slate-200"]:not([class*="dark:border-"]),
-.dark [class~="border-slate-300"]:not([class*="dark:border-"]),
-.dark [class~="border-white"]:not([class*="dark:border-"]) {
-  border-color: var(--line);
-}
-
-/* Light-mode drop shadows are invisible on dark and only muddy the edges. */
-.dark [class*="shadow-[0_"]:not([class*="dark:shadow-"]) {
-  box-shadow: var(--shadow-md);
-}
-
-/* ============================================================
-   MOTION
-   ============================================================ */
 @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
@@ -400,19 +166,17 @@ h1, h2, h3, h4 {
 }
 
 .animate-marquee {
-  animation: marquee 40s linear infinite;
+  animation: marquee 30s linear infinite;
 }
 
 .animate-marquee:hover {
   animation-play-state: paused;
 }
 
-/* ============================================================
-   SWIPER
-   ============================================================ */
+/* Gallery slider thumbnail active state */
 .gallery-thumbs .swiper-slide-thumb-active > div {
   opacity: 1;
-  outline: 2px solid var(--accent);
+  outline: 2px solid #ee7c7e;
   outline-offset: 2px;
 }
 
@@ -421,29 +185,49 @@ h1, h2, h3, h4 {
   transition: opacity 0.2s ease;
 }
 
+/* Hide default Swiper navigation arrows */
 .swiper-button-next,
 .swiper-button-prev {
   display: none;
 }
 
+/* Utility classes for stunning layout */
+.section-padding {
+  @apply py-12 md:py-20 px-4 md:px-8 lg:px-16;
+}
+
+.heading-primary {
+  @apply text-3xl md:text-5xl font-black tracking-tighter leading-[1.1] mb-6;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
 /* ============================================================
-   SCROLLBAR
+   PAGE BACKGROUND — dotted AzTU-blue pattern for non-home pages
    ============================================================ */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+.bg-page {
+  position: relative;
+  background-color: #eef1f8;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(26, 35, 85, 0.18) 1px, transparent 0),
+    radial-gradient(at 12% 0%, rgba(26, 35, 85, 0.10) 0px, transparent 45%),
+    radial-gradient(at 88% 0%, rgba(238, 124, 126, 0.10) 0px, transparent 45%),
+    radial-gradient(at 88% 100%, rgba(26, 35, 85, 0.08) 0px, transparent 45%),
+    radial-gradient(at 12% 100%, rgba(238, 124, 126, 0.08) 0px, transparent 45%);
+  background-size: 22px 22px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-attachment: fixed, fixed, fixed, fixed, fixed;
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--line-strong);
-  border-radius: 999px;
-  border: 3px solid var(--canvas);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--ink-subtle);
+.dark .bg-page {
+  background-color: #0a0c1a;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0),
+    radial-gradient(at 12% 0%, rgba(26, 35, 85, 0.35) 0px, transparent 45%),
+    radial-gradient(at 88% 0%, rgba(238, 124, 126, 0.18) 0px, transparent 45%),
+    radial-gradient(at 88% 100%, rgba(26, 35, 85, 0.30) 0px, transparent 45%),
+    radial-gradient(at 12% 100%, rgba(238, 124, 126, 0.15) 0px, transparent 45%);
+  background-size: 22px 22px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-attachment: fixed, fixed, fixed, fixed, fixed;
 }

@@ -28,7 +28,7 @@ export default function CafedraEmployeeDetailPage({ params }: Props) {
 
   if (!employee) {
     return (
-      <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm dark:border-white/10 dark:bg-[#101733]">
+      <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm dark:border-white/10 dark:bg-slate-900">
         <h1 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">Əməkdaş tapılmadı</h1>
         <p className="mb-5 text-sm text-slate-500 dark:text-slate-400">Bu əməkdaş haqqında məlumat mövcud deyil.</p>
         {backLink}
@@ -40,9 +40,9 @@ export default function CafedraEmployeeDetailPage({ params }: Props) {
     <div className="space-y-5">
       {backLink}
 
-      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-[#101733] md:p-8">
+      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-slate-900 md:p-8">
         <div className="flex flex-col items-start gap-6 sm:flex-row sm:gap-8">
-          <div className="h-32 w-32 shrink-0 overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 dark:border-white/10 dark:bg-[#161f42]">
+          <div className="h-32 w-32 shrink-0 overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 dark:border-white/10 dark:bg-slate-800">
             {employee.photo_url ? (
               /* eslint-disable-next-line @next/next/no-img-element */
               <img src={employee.photo_url} alt={employee.full_name} className="h-full w-full object-cover" />

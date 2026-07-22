@@ -58,6 +58,8 @@ export default function ViceRectorDetailPage() {
 
     return (
         <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden">
+            <div className="bg-mesh" />
+            <div className="bg-grid-premium" />
 
             <PageHero
                 title={vr.name}
@@ -71,7 +73,7 @@ export default function ViceRectorDetailPage() {
             >
                 <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     <div className="lg:col-span-7 order-2 lg:order-1">
-                        <p className="inline-block text-[10px] uppercase tracking-[0.15em] text-[#ee7c7e] font-black bg-[#ee7c7e]/10 border border-[#ee7c7e]/30 px-4 py-2 rounded-full mb-6">
+                        <p className="inline-block text-[10px] uppercase tracking-[0.4em] text-[#ee7c7e] font-black bg-[#ee7c7e]/10 border border-[#ee7c7e]/30 px-4 py-2 rounded-full mb-6">
                             {vr.degree}
                         </p>
                         <p className="text-lg lg:text-xl text-white/80 font-bold mb-10 max-w-2xl leading-relaxed">
@@ -108,7 +110,7 @@ export default function ViceRectorDetailPage() {
                         >
                             <div className="absolute -top-6 -left-6 w-24 h-24 border-t-4 border-l-4 border-[#ee7c7e] rounded-tl-3xl z-20" />
                             <div className="absolute -bottom-6 -right-6 w-24 h-24 border-b-4 border-r-4 border-[#ee7c7e] rounded-br-3xl z-20" />
-                            <div className="relative w-full h-full rounded-[18px] overflow-hidden shadow-2xl z-10 border border-white/10 bg-gradient-to-br from-[#1a2355] to-[#0f172a] flex items-center justify-center">
+                            <div className="relative w-full h-full rounded-[1.75rem] overflow-hidden shadow-2xl z-10 border border-white/10 bg-gradient-to-br from-[#1a2355] to-[#0f172a] flex items-center justify-center">
                                 {vr.photoUrl ? (
                                     // eslint-disable-next-line @next/next/no-img-element
                                     <img
@@ -148,7 +150,7 @@ export default function ViceRectorDetailPage() {
                         </div>
 
                         <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-28">
-                            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl p-8 rounded-[18px] border-2 border-[#1a2355]/30 dark:border-white/10 shadow-xl relative overflow-hidden">
+                            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl p-8 rounded-[1.75rem] border-2 border-[#1a2355]/30 dark:border-white/10 shadow-xl relative overflow-hidden">
                                 <FormatQuoteIcon className="absolute -top-6 -left-6 text-[#ee7c7e]/20" sx={{ fontSize: 100 }} />
                                 <h3 className="text-base font-black text-[#1a2355] dark:text-white mb-6 relative z-10 flex items-center gap-3">
                                     <WorkspacePremiumIcon className="text-[#ee7c7e]" sx={{ fontSize: 22 }} />
@@ -159,7 +161,7 @@ export default function ViceRectorDetailPage() {
                                 </p>
                             </div>
 
-                            <div className="bg-[#1a2355] p-8 rounded-[18px] text-white shadow-xl relative overflow-hidden">
+                            <div className="bg-[#1a2355] p-8 rounded-[1.75rem] text-white shadow-xl relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
                                 <h3 className="text-base font-black text-white mb-6 relative z-10 flex items-center gap-3">
                                     <SchoolIcon className="text-[#ee7c7e]" sx={{ fontSize: 22 }} />

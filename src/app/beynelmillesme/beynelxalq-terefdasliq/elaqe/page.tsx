@@ -19,13 +19,13 @@ export default function PartnershipContactPage() {
     const p = t.pages.internationalization.partnershipContact;
 
     return (
-        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
             {/* HERO SECTION */}
             <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48">
                 {/* Background Graphics */}
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                     <div className="absolute inset-0 bg-[#0b1330]" />
-                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[1.75rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
+                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[4rem] lg:rounded-bl-[16rem] transition-all duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#0b1330] via-[#0b1330]/80 to-transparent hidden lg:block" />
                     <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#ee7c7e]/5 rounded-full blur-3xl" />
                 </div>
@@ -48,7 +48,7 @@ export default function PartnershipContactPage() {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8, ease: "easeOut" }}
                             >
-                                <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.14em] mb-6">
+                                <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
                                     {p.eyebrow}
                                 </span>
                                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
@@ -77,7 +77,7 @@ export default function PartnershipContactPage() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: idx * 0.1 }}
-                                    className="bg-white dark:bg-[#101733] rounded-[18px] border border-gray-100 dark:border-slate-800 p-8 lg:p-12 shadow-xl shadow-blue-900/5 hover:shadow-2xl transition-all duration-500 group"
+                                    className="bg-white dark:bg-slate-900 rounded-[1.75rem] border border-gray-100 dark:border-slate-800 p-8 lg:p-12 shadow-xl shadow-blue-900/5 hover:shadow-2xl transition-all duration-500 group"
                                 >
                                     <div className="flex flex-col md:flex-row md:items-start gap-8">
                                         <div className="w-16 h-16 rounded-2xl bg-[#1a2355]/5 dark:bg-[#ee7c7e]/10 flex items-center justify-center text-[#1a2355] dark:text-[#ee7c7e] shrink-0 group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-300">
@@ -92,7 +92,7 @@ export default function PartnershipContactPage() {
                                                     href={`mailto:${section.email}`}
                                                     className="flex items-center gap-4 group/link"
                                                 >
-                                                    <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-[#161f42] flex items-center justify-center text-gray-400 group-hover/link:bg-[#1a2355] group-hover/link:text-white transition-all">
+                                                    <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-slate-800 flex items-center justify-center text-gray-400 group-hover/link:bg-[#1a2355] group-hover/link:text-white transition-all">
                                                         <EmailIcon sx={{ fontSize: 18 }} />
                                                     </div>
                                                     <div>
@@ -109,7 +109,7 @@ export default function PartnershipContactPage() {
                                                         href={`tel:${section.phone.replace(/\s|\(|\)/g, "")}`}
                                                         className="flex items-center gap-4 group/link"
                                                     >
-                                                        <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-[#161f42] flex items-center justify-center text-gray-400 group-hover/link:bg-[#1a2355] group-hover/link:text-white transition-all">
+                                                        <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-slate-800 flex items-center justify-center text-gray-400 group-hover/link:bg-[#1a2355] group-hover/link:text-white transition-all">
                                                             <PhoneIcon sx={{ fontSize: 18 }} />
                                                         </div>
                                                         <div>
@@ -134,13 +134,13 @@ export default function PartnershipContactPage() {
                     <div className="lg:col-span-4 space-y-8">
                         <div className="sticky top-28 space-y-8">
                             {/* CTA Card */}
-                            <div className="p-10 rounded-[18px] bg-white dark:bg-[#101733] border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/20 shadow-2xl relative overflow-hidden group">
+                            <div className="p-10 rounded-[2rem] bg-white dark:bg-slate-900 border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/20 shadow-2xl relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
                                 <div className="relative z-10">
                                     <div className="w-14 h-14 rounded-2xl bg-[#1a2355] text-white flex items-center justify-center mb-8 shadow-xl shadow-blue-900/20">
                                         <PublicIcon />
                                     </div>
-                                    <h3 className="text-2xl font-black text-[#1a2355] dark:text-white tracking-tighter mb-4">AzTU Global Network</h3>
+                                    <h3 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tighter mb-4">AzTU Global Network</h3>
                                     <p className="text-gray-500 dark:text-gray-400 font-medium leading-relaxed mb-10">
                                         Connecting minds across borders to build a sustainable future.
                                     </p>
@@ -158,7 +158,7 @@ export default function PartnershipContactPage() {
                                         <Link
                                             key={link.href}
                                             href={link.href}
-                                            className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[18px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
+                                            className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[1.25rem] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
                                         >
                                             <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
                                             <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-slate-700 flex items-center justify-center group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300">

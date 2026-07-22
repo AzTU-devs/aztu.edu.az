@@ -79,10 +79,10 @@ export default function CafedraXeberlerPage({ params }: Props) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: Math.min(idx * 0.05, 0.3), duration: 0.4 }}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-[#101733] dark:hover:border-white/20 md:flex-row"
+                className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-slate-900 dark:hover:border-white/20 md:flex-row"
               >
                 {/* Image */}
-                <div className="relative h-52 w-full shrink-0 overflow-hidden bg-slate-100 dark:bg-[#161f42] md:h-auto md:w-64 lg:w-72">
+                <div className="relative h-52 w-full shrink-0 overflow-hidden bg-slate-100 dark:bg-slate-800 md:h-auto md:w-64 lg:w-72">
                   {item.cover_image ? (
                     /* eslint-disable-next-line @next/next/no-img-element */
                     <img

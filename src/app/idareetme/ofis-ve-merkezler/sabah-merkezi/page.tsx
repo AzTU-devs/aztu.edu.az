@@ -270,7 +270,7 @@ export default function SabahMerkeziPage() {
   const p = DATA[lang];
 
   return (
-    <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
+    <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
       {/* ── HERO ───────────────────────────────────────────────────────────── */}
       <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -315,7 +315,7 @@ export default function SabahMerkeziPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.14em] mb-6">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
                 {p.eyebrow}
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
@@ -330,7 +330,7 @@ export default function SabahMerkeziPage() {
       </div>
 
       {/* ── CONTENT ────────────────────────────────────────────────────────── */}
-      <div className="px-4 md:px-10 lg:px-20 py-24 bg-white dark:bg-[#101733] relative overflow-hidden">
+      <div className="px-4 md:px-10 lg:px-20 py-24 bg-white dark:bg-[#0b1330] relative overflow-hidden">
         <div className="relative z-10 max-w-[1600px] mx-auto space-y-32">
 
           {/* ── 1. About ─────────────────────────────────────────────────── */}
@@ -372,7 +372,7 @@ export default function SabahMerkeziPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.07 }}
-                  className="bg-white dark:bg-white/5 rounded-[22px] p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/30 transition-all duration-300 group"
+                  className="bg-white dark:bg-white/5 rounded-[1.5rem] p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/30 transition-all duration-300 group"
                 >
                   <div className="w-12 h-12 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e] font-black text-lg mb-6 group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-300">
                     {String(i + 1).padStart(2, "0")}
@@ -390,7 +390,7 @@ export default function SabahMerkeziPage() {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-[#1a2355] rounded-[18px] p-10 md:p-14 text-white relative overflow-hidden"
+            className="bg-[#1a2355] rounded-[2rem] p-10 md:p-14 text-white relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
               <BusinessCenterIcon sx={{ fontSize: 200 }} />

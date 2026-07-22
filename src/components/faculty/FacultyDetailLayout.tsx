@@ -36,7 +36,7 @@ export default function FacultyDetailLayout({ children, params }: Props) {
     const contactPath = `/${currentLang}/${currentLang === "az" ? "akademik/fakulteler" : "academic/faculties"}/${facultySlug}/${currentLang === "az" ? "haqqimizda/elaqe" : "about/contact"}`;
 
     return (
-        <div className="min-h-screen bg-page transition-colors">
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">
             {/* ── Hero banner ── */}
             <div className="relative overflow-hidden bg-[#0b1330] pt-32 pb-14 px-4 md:px-8 lg:px-12">
                 {/* Video background */}
@@ -94,7 +94,7 @@ export default function FacultyDetailLayout({ children, params }: Props) {
                         <h1 className="max-w-4xl text-3xl font-extrabold leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
                             {faculty?.title ?? facultySlug}
                         </h1>
-                        <p className="mt-4 text-sm font-medium uppercase tracking-[0.14em] text-white/50">
+                        <p className="mt-4 text-sm font-medium uppercase tracking-[0.3em] text-white/50">
                             {currentLang === "az" ? "Fakültə Portalı" : "Faculty Portal"}
                         </p>
                     </motion.div>
@@ -133,7 +133,7 @@ export default function FacultyDetailLayout({ children, params }: Props) {
                             animate={{ x: 0 }}
                             exit={{ x: "-100%" }}
                             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-                            className="absolute bottom-0 left-0 top-0 w-[min(320px,85vw)] overflow-y-auto bg-slate-50 p-5 dark:bg-[#070b1a]"
+                            className="absolute bottom-0 left-0 top-0 w-[min(320px,85vw)] overflow-y-auto bg-slate-50 p-5 dark:bg-slate-950"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="mb-4 flex items-center justify-between">

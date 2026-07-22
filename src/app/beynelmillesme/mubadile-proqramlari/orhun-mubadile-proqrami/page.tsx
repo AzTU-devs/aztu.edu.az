@@ -19,13 +19,13 @@ export default function OrhunExchangePage() {
     const p = t.pages.internationalization.orhunExchange;
 
     return (
-        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
             {/* HERO SECTION */}
             <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48">
                 {/* Background Graphics */}
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                     <div className="absolute inset-0 bg-[#0b1330]" />
-                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[1.75rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
+                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[4rem] lg:rounded-bl-[16rem] transition-all duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#0b1330] via-[#0b1330]/80 to-transparent hidden lg:block" />
                     <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#ee7c7e]/5 rounded-full blur-3xl animate-pulse" />
                 </div>
@@ -51,7 +51,7 @@ export default function OrhunExchangePage() {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
                         >
-                            <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.14em] mb-6">
+                            <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
                                 {p.eyebrow}
                             </span>
                             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
@@ -73,7 +73,7 @@ export default function OrhunExchangePage() {
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="lg:col-span-2 bg-white dark:bg-slate-800/50 rounded-[18px] p-8 md:p-12 shadow-xl border border-gray-100 dark:border-slate-700 relative overflow-hidden group"
+                        className="lg:col-span-2 bg-white dark:bg-slate-800/50 rounded-[1.75rem] p-8 md:p-12 shadow-xl border border-gray-100 dark:border-slate-700 relative overflow-hidden group"
                     >
                         <div className="absolute top-0 right-0 p-12 opacity-5 group-hover:opacity-10 transition-opacity">
                             <PublicIcon sx={{ fontSize: 120 }} />
@@ -83,7 +83,7 @@ export default function OrhunExchangePage() {
                                 <div className="w-12 h-12 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e]">
                                     <LanguageIcon />
                                 </div>
-                                <h2 className="text-2xl lg:text-3xl font-black text-[#1a2355] dark:text-white tracking-tight">
+                                <h2 className="text-2xl lg:text-3xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight">
                                     {t.nav.sections.about}
                                 </h2>
                             </div>
@@ -105,10 +105,10 @@ export default function OrhunExchangePage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
-                            className="bg-[#1a2355] dark:bg-[#101733] rounded-[18px] p-8 shadow-xl relative overflow-hidden group"
+                            className="bg-[#1a2355] dark:bg-slate-900 rounded-[1.75rem] p-8 shadow-xl relative overflow-hidden group"
                         >
                             <div className="relative z-10">
-                                <h3 className="text-xl font-black text-white mb-6 tracking-wider flex items-center gap-3">
+                                <h3 className="text-xl font-black text-white mb-6 uppercase tracking-wider flex items-center gap-3">
                                     <div className="w-1.5 h-6 bg-[#ee7c7e] rounded-full" />
                                     {p.countriesTitle}
                                 </h3>
@@ -134,9 +134,9 @@ export default function OrhunExchangePage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.2 }}
-                            className="bg-white dark:bg-slate-800/50 rounded-[18px] p-8 shadow-xl border border-gray-100 dark:border-slate-700"
+                            className="bg-white dark:bg-slate-800/50 rounded-[1.75rem] p-8 shadow-xl border border-gray-100 dark:border-slate-700"
                         >
-                            <h3 className="text-xl font-black text-[#1a2355] dark:text-white mb-6 tracking-wider flex items-center gap-3">
+                            <h3 className="text-xl font-black text-[#1a2355] dark:text-white mb-6 uppercase tracking-wider flex items-center gap-3">
                                 <div className="w-1.5 h-6 bg-[#ee7c7e] rounded-full" />
                                 {p.linksTitle}
                             </h3>
@@ -145,7 +145,7 @@ export default function OrhunExchangePage() {
                                     href="https://turkunib.org" 
                                     target="_blank" 
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-[#161f42] hover:bg-[#1a2355] hover:text-white transition-all duration-300 group/link"
+                                    className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 hover:bg-[#1a2355] hover:text-white transition-all duration-300 group/link"
                                 >
                                     <div className="flex items-center gap-3">
                                         <SchoolIcon className="text-[#ee7c7e]" />
@@ -157,7 +157,7 @@ export default function OrhunExchangePage() {
                                     href="https://orhunprogrami.org" 
                                     target="_blank" 
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-[#161f42] hover:bg-[#1a2355] hover:text-white transition-all duration-300 group/link"
+                                    className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 hover:bg-[#1a2355] hover:text-white transition-all duration-300 group/link"
                                 >
                                     <div className="flex items-center gap-3">
                                         <PublicIcon className="text-[#ee7c7e]" />
@@ -181,7 +181,7 @@ export default function OrhunExchangePage() {
                             <Link 
                                 key={link.href} 
                                 href={link.href}
-                                className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[18px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
+                                className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[1.25rem] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
                             >
                                 <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
                                 <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-slate-700 flex items-center justify-center group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300">

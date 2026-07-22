@@ -86,6 +86,8 @@ export default function AnnouncementsPage() {
     return (
         <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden">
             {/* STUNNING BACKGROUND ELEMENTS - MATCHING HOME PAGE */}
+            <div className="bg-mesh" />
+            <div className="bg-grid-premium" />
 
             <PageHero
                 title={lang === 'az' ? "Elanlar" : "Announcements"}
@@ -119,7 +121,7 @@ export default function AnnouncementsPage() {
                             <motion.div
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="group relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[22px] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/30 dark:border-white/10 overflow-hidden flex flex-col lg:flex-row hover:border-[#ee7c7e]/30 transition-all duration-700"
+                                className="group relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/30 dark:border-white/10 overflow-hidden flex flex-col lg:flex-row hover:border-[#ee7c7e]/30 transition-all duration-700"
                             >
                                 {/* Left: Date column */}
                                 {(() => {
@@ -139,7 +141,7 @@ export default function AnnouncementsPage() {
                                 <div className="flex flex-col justify-center p-12 md:p-20 gap-8 flex-1 relative z-10">
                                     <div className="inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-[#ee7c7e]/10 border border-[#ee7c7e]/20 w-fit">
                                         <div className="w-2 h-2 rounded-full bg-[#ee7c7e] animate-pulse" />
-                                        <span className="text-[#ee7c7e] text-[10px] font-black uppercase tracking-[0.14em]">{lang === 'az' ? 'YENİ ELAN' : 'NEW ANNOUNCEMENT'}</span>
+                                        <span className="text-[#ee7c7e] text-[10px] font-black uppercase tracking-[0.3em]">{lang === 'az' ? 'YENİ ELAN' : 'NEW ANNOUNCEMENT'}</span>
                                     </div>
                                     <h2 className="text-[#1a2355] dark:text-white font-black text-3xl md:text-5xl leading-tight group-hover:text-[#ee7c7e] transition-colors duration-500 tracking-tighter">
                                         {featured.title}
@@ -151,7 +153,7 @@ export default function AnnouncementsPage() {
                                         </div>
                                     )}
 
-                                    <div className="flex items-center gap-4 text-[#1a2355] dark:text-white font-black text-xs uppercase tracking-[0.14em] group-hover:text-[#ee7c7e] transition-all mt-6">
+                                    <div className="flex items-center gap-4 text-[#1a2355] dark:text-white font-black text-xs uppercase tracking-[0.3em] group-hover:text-[#ee7c7e] transition-all mt-6">
                                         {lang === 'az' ? 'ƏTRAFLI OXU' : 'READ MORE'}
                                         <div className="w-12 h-12 rounded-2xl bg-[#1a2355]/5 dark:bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white group-hover:translate-x-2 border border-[#1a2355]/30">
                                             <ChevronRightIcon sx={{ fontSize: 24 }} />
@@ -177,7 +179,7 @@ export default function AnnouncementsPage() {
                                     className="h-full"
                                 >
                                     <Link href={`/announcement/${announcementSlug(item.id, item.title)}`} className="group block h-full">
-                                        <div className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[22px] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/30 dark:border-white/10 overflow-hidden flex flex-col h-full hover:border-[#ee7c7e]/30 transition-all duration-700 hover:-translate-y-2">
+                                        <div className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[2.25rem] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/30 dark:border-white/10 overflow-hidden flex flex-col h-full hover:border-[#ee7c7e]/30 transition-all duration-700 hover:-translate-y-2">
                                             <div className="p-12 flex flex-col h-full gap-8 relative z-10">
                                                 <div className="flex items-center justify-between">
                                                     <div className="flex items-center gap-3 text-gray-400 dark:text-white/20 text-[10px] font-black uppercase tracking-widest">
@@ -192,7 +194,7 @@ export default function AnnouncementsPage() {
                                                 </h3>
 
                                                 <div className="flex items-center justify-between mt-auto pt-8 border-t border-[#1a2355]/30 dark:border-white/5">
-                                                    <span className="text-[10px] font-black uppercase tracking-[0.14em] text-[#1a2355] dark:text-white/60 group-hover:text-[#ee7c7e] transition-colors">
+                                                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a2355] dark:text-white/60 group-hover:text-[#ee7c7e] transition-colors">
                                                         {lang === 'az' ? 'ƏTRAFLI' : 'DETAILS'}
                                                     </span>
                                                     <div className="w-10 h-10 rounded-xl bg-[#1a2355]/5 dark:bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-[#ee7c7e] group-hover:text-white group-hover:translate-x-2 border border-[#1a2355]/30">

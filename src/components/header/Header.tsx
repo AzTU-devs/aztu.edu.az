@@ -69,8 +69,8 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         isOpen
-          ? "bg-white/95 dark:bg-[#101733]/95 backdrop-blur-xl border-b border-[#1a2355]/[0.09] dark:border-white/10"
-          : "bg-gradient-to-b from-[#0a0c1a]/80 via-[#0a0c1a]/40 to-transparent"
+          ? "bg-white dark:bg-[#0b1330] border-b border-[#1a2355]/20 dark:border-[#ee7c7e]/25 shadow-lg"
+          : "bg-gradient-to-b from-[#0b1e3a]/90 via-[#0b1e3a]/60 to-transparent"
       }`}
       onMouseLeave={() => setActiveHeader(null)}
     >
@@ -97,10 +97,10 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
           <div className="flex items-center gap-3">
             <Link
               href={`/${lang}/${lang === "az" ? "kts" : "qa"}`}
-              className={`flex items-center gap-1.5 rounded-md px-3 py-2 text-[13px] font-medium transition-all duration-300 cursor-pointer ${
+              className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-bold transition-all duration-300 cursor-pointer ${
                 isOpen
-                  ? "bg-[#1a2355]/[0.06] dark:bg-white/10 text-[#10163a] dark:text-white hover:bg-[#1a2355]/10"
-                  : "text-white/85 hover:text-white hover:bg-white/12"
+                  ? "bg-[#1a2355] dark:bg-[#1e3a5f] text-white hover:bg-[#1a2355]/80"
+                  : "bg-white/10 text-white hover:bg-white/25"
               }`}
             >
               <GradingIcon sx={{ fontSize: 20 }} />
@@ -116,10 +116,10 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`flex items-center gap-1.5 rounded-md px-3 py-2 text-[13px] font-medium transition-all duration-300 cursor-pointer ${
+                className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-bold transition-all duration-300 cursor-pointer ${
                   isOpen
-                    ? "bg-[#1a2355]/[0.06] dark:bg-white/10 text-[#10163a] dark:text-white hover:bg-[#1a2355]/10"
-                    : "text-white/85 hover:text-white hover:bg-white/12"
+                    ? "bg-[#1a2355] dark:bg-[#1e3a5f] text-white hover:bg-[#1a2355]/80"
+                    : "bg-white/10 text-white hover:bg-white/25"
                 }`}
               >
                 {icon}
@@ -134,13 +134,13 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
                 onClick={handleShare}
                 aria-label="Share this page"
                 title="Share this page"
-                className={`rounded-md w-9 h-9 flex items-center justify-center transition-all duration-300 cursor-pointer ${
+                className={`rounded-lg w-10 h-10 flex items-center justify-center transition-all duration-300 cursor-pointer ${
                   isOpen
-                    ? "bg-[#1a2355]/[0.06] dark:bg-white/10 hover:bg-[#1a2355]/12"
-                    : "bg-white/10 hover:bg-white/20"
+                    ? "bg-[#1a2355] dark:bg-[#1e3a5f] hover:bg-[#1a2355]/80"
+                    : "bg-white/10 hover:bg-white/25"
                 }`}
               >
-                <ShareIcon sx={{ fontSize: 19 }} className={isOpen ? "text-[#10163a] dark:text-white" : "text-white"} />
+                <ShareIcon sx={{ color: "white", fontSize: 22 }} />
               </button>
               {shareCopied && (
                 <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-[#1a2355] dark:bg-[#ee7c7e] text-white text-xs font-semibold px-2.5 py-1 shadow-lg z-50">
@@ -153,16 +153,16 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
             <button
               onClick={toggleTheme}
               aria-label="Toggle dark mode"
-              className={`rounded-md w-9 h-9 flex items-center justify-center transition-all duration-300 cursor-pointer ${
+              className={`rounded-lg w-10 h-10 flex items-center justify-center transition-all duration-300 cursor-pointer ${
                 isOpen
-                  ? "bg-[#1a2355]/[0.06] dark:bg-white/10 hover:bg-[#1a2355]/12"
-                  : "bg-white/10 hover:bg-white/20"
+                  ? "bg-[#1a2355] dark:bg-[#1e3a5f] hover:bg-[#1a2355]/80"
+                  : "bg-white/10 hover:bg-white/25"
               }`}
             >
               {theme === "dark" ? (
-                <LightModeIcon sx={{ fontSize: 19 }} className={isOpen ? "text-[#10163a] dark:text-white" : "text-white"} />
+                <LightModeIcon sx={{ color: "white", fontSize: 20 }} />
               ) : (
-                <DarkModeIcon sx={{ fontSize: 19 }} className={isOpen ? "text-[#10163a] dark:text-white" : "text-white"} />
+                <DarkModeIcon sx={{ color: "white", fontSize: 20 }} />
               )}
             </button>
           </div>
@@ -179,10 +179,10 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
                       <Link
                         href={header.direct_url}
                         onClick={() => setActiveHeader(null)}
-                        className={`relative text-[13px] xl:text-[14px] font-medium px-3 py-2 rounded-md transition-all duration-200 block ${
+                        className={`relative text-[13px] xl:text-[14px] font-bold px-3 py-2 rounded-lg transition-all duration-200 block ${
                           isOpen
                             ? "text-[#1a2355] dark:text-white/70 hover:text-[#ee7c7e] dark:hover:text-white"
-                            : "text-white/90 hover:text-white hover:bg-white/10"
+                            : "text-white hover:bg-white/15"
                         }`}
                       >
                         {header.title}
@@ -195,12 +195,12 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
                   <li
                     key={header.id}
                     onMouseEnter={() => setActiveHeader(header)}
-                    className={`relative text-[13px] xl:text-[14px] font-medium px-3 py-2 rounded-md transition-all duration-200 cursor-pointer select-none ${
+                    className={`relative text-[13px] xl:text-[14px] font-bold px-3 py-2 rounded-lg transition-all duration-200 cursor-pointer select-none ${
                       isOpen
                         ? isActive
                           ? "text-[#ee7c7e] dark:text-white"
                           : "text-[#1a2355] dark:text-white/70 hover:text-[#ee7c7e] dark:hover:text-white"
-                        : "text-white/90 hover:text-white hover:bg-white/10"
+                        : "text-white hover:bg-white/15"
                     }`}
                   >
                     {header.title}
@@ -215,21 +215,21 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
 
             <button
               onClick={onOpenSearch}
-              className={`w-9 h-9 flex items-center justify-center rounded-md ml-2 transition-all duration-300 cursor-pointer ${
+              className={`w-10 h-10 flex items-center justify-center rounded-lg ml-2 transition-all duration-300 cursor-pointer ${
                 isOpen
-                  ? "bg-[#1a2355]/[0.06] dark:bg-white/10"
-                  : "bg-white/10 hover:bg-white/20"
+                  ? "bg-[#1a2355] dark:bg-[#1e3a5f]"
+                  : "bg-white/10 hover:bg-white/25"
               }`}
             >
-              <SearchIcon sx={{ fontSize: 20 }} className={isOpen ? "text-[#10163a] dark:text-white" : "text-white"} />
+              <SearchIcon sx={{ color: "white", fontSize: 24 }} />
             </button>
 
             <button
               onClick={onOpenQuickMenu}
-              className="flex items-center gap-2 px-4 h-10 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-300 cursor-pointer ml-1"
+              className="flex items-center gap-2 px-4 h-10 rounded-lg bg-white/10 hover:bg-white/25 transition-all duration-300 cursor-pointer ml-1"
             >
               <ListIcon sx={{ color: "white", fontSize: 24 }} />
-              <span className="text-white font-medium text-[13px]">{t.common.quickMenu.button}</span>
+              <span className="text-white font-bold text-sm">{t.common.quickMenu.button}</span>
             </button>
           </div>
         </div>

@@ -90,7 +90,7 @@ export default function ElmiFealiyyetPage({ params }: Props) {
                 >
                   <Link
                     href={`${researchBase}/${currentLang === "az" ? section.az : section.en}`}
-                    className="group flex h-full items-start gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-[#101733] dark:hover:border-white/20"
+                    className="group flex h-full items-start gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-slate-900 dark:hover:border-white/20"
                   >
                     <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${palette.tint}`}>
                       <Icon sx={{ fontSize: 22 }} />

@@ -53,14 +53,14 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: index * 0.1, ease: [0.23, 1, 0.32, 1] }}
-            className="group relative flex flex-col xl:flex-row gap-10 p-8 md:p-12 rounded-[18px] bg-white dark:bg-white/5 backdrop-blur-xl border border-gray-100 dark:border-white/10 hover:border-[#ee7c7e]/30 transition-all duration-500 shadow-2xl overflow-hidden"
+            className="group relative flex flex-col xl:flex-row gap-10 p-8 md:p-12 rounded-[2rem] bg-white dark:bg-white/5 backdrop-blur-xl border border-gray-100 dark:border-white/10 hover:border-[#ee7c7e]/30 transition-all duration-500 shadow-2xl overflow-hidden"
         >
             <div className="absolute -inset-24 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-3xl pointer-events-none" />
             
             {/* Image Section - Only show if image exists */}
             {coverUrl && (
                 <div className="xl:w-1/3 flex-shrink-0">
-                    <div className="relative aspect-video xl:aspect-[3/4] rounded-[22px] overflow-hidden bg-gray-100 dark:bg-white/5 border border-gray-100 dark:border-white/10 shadow-xl group-hover:scale-[1.02] transition-transform duration-500">
+                    <div className="relative aspect-video xl:aspect-[3/4] rounded-[1.5rem] overflow-hidden bg-gray-100 dark:bg-white/5 border border-gray-100 dark:border-white/10 shadow-xl group-hover:scale-[1.02] transition-transform duration-500">
                         <Image
                             src={coverUrl}
                             alt={project.name}
@@ -113,7 +113,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
                         
                         {project.team && project.team.length > 0 && (
                             <div className="p-6 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
-                                <p className="text-[10px] font-black uppercase tracking-[0.12em] text-[#ee7c7e] mb-3">{details.team}</p>
+                                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#ee7c7e] mb-3">{details.team}</p>
                                 <div className="flex flex-col gap-2">
                                     {project.team.slice(0, 3).map((member, i) => (
                                         <div key={i} className="flex items-center gap-2">
@@ -149,7 +149,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
                             className="group/btn relative inline-flex items-center gap-4 bg-[#1a2355] dark:bg-[#ee7c7e] text-white font-black px-10 py-5 rounded-2xl hover:scale-[1.02] transition-all duration-300 shadow-xl overflow-hidden"
                         >
                             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
-                            <span className="relative z-10 uppercase tracking-[0.12em] text-xs">{details.link}</span>
+                            <span className="relative z-10 uppercase tracking-[0.2em] text-xs">{details.link}</span>
                             <LaunchIcon className="relative z-10 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" sx={{ fontSize: 18 }} />
                         </Link>
                     </div>
@@ -180,7 +180,7 @@ export default function ResearchProjectsPage() {
     }, [lang]);
 
     return (
-        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-[#fafafa] dark:bg-[#0b1330] selection:bg-[#ee7c7e]/30">
             
             {/* FUTURISTIC HERO BANNER */}
             <section ref={bannerRef} className="relative h-[80vh] min-h-[600px] w-full flex items-center overflow-hidden bg-black">
@@ -210,7 +210,7 @@ export default function ResearchProjectsPage() {
                         <motion.nav 
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="flex items-center gap-4 text-white/40 text-[10px] font-black uppercase tracking-[0.15em] mb-12"
+                            className="flex items-center gap-4 text-white/40 text-[10px] font-black uppercase tracking-[0.4em] mb-12"
                         >
                             <Link href="/" className="hover:text-[#ee7c7e] transition-colors flex items-center gap-2 group">
                                 <HomeIcon sx={{ fontSize: 14 }} className="group-hover:scale-110 transition-transform" />
@@ -229,7 +229,7 @@ export default function ResearchProjectsPage() {
                         >
                             <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 mb-8 shadow-2xl">
                                 <div className="w-2.5 h-2.5 rounded-full bg-[#ee7c7e] shadow-[0_0_12px_#ee7c7e] animate-pulse" />
-                                <span className="text-white text-[12px] font-black uppercase tracking-[0.16em]">
+                                <span className="text-white text-[12px] font-black uppercase tracking-[0.5em]">
                                     {p.eyebrow}
                                 </span>
                             </div>
@@ -277,11 +277,11 @@ export default function ResearchProjectsPage() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="relative mb-32 p-10 md:p-16 rounded-[18px] bg-[#1a2355] dark:bg-white/[0.02] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.2)] overflow-hidden text-center group"
+                        className="relative mb-32 p-10 md:p-16 rounded-[2rem] bg-[#1a2355] dark:bg-white/[0.02] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.2)] overflow-hidden text-center group"
                     >
                         <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                         <div className="relative z-10 max-w-4xl mx-auto">
-                            {/* <h2 className="text-white/40 text-xs font-black uppercase tracking-[0.16em] mb-8">{t.common?.introduction || "Introduction"}</h2> */}
+                            {/* <h2 className="text-white/40 text-xs font-black uppercase tracking-[0.5em] mb-8">{t.common?.introduction || "Introduction"}</h2> */}
                             <p className="text-white text-xl md:text-3xl font-black leading-snug tracking-tight">
                                 {p.description}
                             </p>
@@ -294,11 +294,11 @@ export default function ResearchProjectsPage() {
                             Array.from({ length: 3 }).map((_, i) => (
                                 <div
                                     key={i}
-                                    className="animate-pulse h-72 rounded-[18px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10"
+                                    className="animate-pulse h-72 rounded-[2rem] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10"
                                 />
                             ))
                         ) : projects.length === 0 ? (
-                            <div className="text-center py-32 rounded-[18px] bg-white dark:bg-white/5 border-2 border-dashed border-gray-100 dark:border-white/10">
+                            <div className="text-center py-32 rounded-[2rem] bg-white dark:bg-white/5 border-2 border-dashed border-gray-100 dark:border-white/10">
                                 <AssignmentIcon sx={{ fontSize: 64 }} className="text-[#1a2355] opacity-10 dark:text-white" />
                                 <p className="text-gray-400 font-black uppercase tracking-widest text-sm mt-4">
                                     {lang === "az" ? "Məlumat tapılmadı" : "No data found"}
@@ -315,7 +315,7 @@ export default function ResearchProjectsPage() {
                     <div className="mt-40">
                         <div className="flex flex-col md:flex-row items-end justify-between gap-8 mb-16">
                             <div className="max-w-xl">
-                                <span className="text-[#ee7c7e] text-xs font-black uppercase tracking-[0.15em] mb-4 block">{t.common.moreInSection}</span>
+                                <span className="text-[#ee7c7e] text-xs font-black uppercase tracking-[0.4em] mb-4 block">{t.common.moreInSection}</span>
                                 <h3 className="text-3xl md:text-5xl font-black text-[#1a2355] dark:text-white tracking-tighter">Digər Maraqlı Bölmələr</h3>
                             </div>
                         </div>
@@ -329,7 +329,7 @@ export default function ResearchProjectsPage() {
                                 <Link
                                     key={i}
                                     href={link.href}
-                                    className="group relative h-64 rounded-[18px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 p-10 flex flex-col justify-between hover:scale-[1.02] hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                                    className="group relative h-64 rounded-[1.75rem] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 p-10 flex flex-col justify-between hover:scale-[1.02] hover:shadow-2xl transition-all duration-500 overflow-hidden"
                                 >
                                     <div 
                                         className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" 

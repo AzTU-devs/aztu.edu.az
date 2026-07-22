@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward"
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium'
@@ -140,7 +140,7 @@ export default function HeroSection() {
                         opacity: i === activeIndex ? 1 : 0,
                         zIndex: i === activeIndex ? 1 : 0,
                         willChange: "opacity",
-                        filter: "brightness(0.82) contrast(1.06) saturate(1.05)"
+                        filter: "brightness(0.6) contrast(1.1)"
                     }}
                     muted
                     playsInline
@@ -153,12 +153,19 @@ export default function HeroSection() {
 
             {/* Premium Overlays */}
             <div className="absolute inset-0 z-10">
-                {/* One directional scrim for legibility plus a base fade for the
-                    section seam — enough contrast for text, not a blackout. */}
-                <div className="absolute inset-y-0 left-0 w-full lg:w-[62%] bg-gradient-to-r from-[#060a18]/92 via-[#060a18]/55 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#060a18] via-[#060a18]/45 to-transparent" />
-                <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#060a18]/70 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#0b1330] via-transparent to-black/20 opacity-95" />
+                <div className="absolute inset-y-0 left-0 w-full lg:w-[70%] bg-gradient-to-r from-[#0b1330] via-[#0b1330]/60 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 h-96 bg-gradient-to-t from-[#0b1330] to-transparent" />
                 
+                {/* Moving Light Streak */}
+                <motion.div 
+                    animate={{ 
+                        x: ['-100%', '200%'],
+                        opacity: [0, 0.4, 0]
+                    }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                    className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-25deg] pointer-events-none"
+                />
             </div>
 
             {/* Content Container */}
@@ -167,30 +174,28 @@ export default function HeroSection() {
 
                     {/* LEFT: Main Text */}
                     <div className="lg:col-span-7 xl:col-span-8">
-                        {/* Keyed re-mount, not AnimatePresence: with mode="wait" the
-                            incoming headline only mounts once the outgoing one has
-                            finished exiting, so the hero H1 — the LCP element —
-                            disappears on every slide change. */}
-                        <motion.div
-                            key={activeIndex}
-                            initial={activeIndex === 0 ? false : { opacity: 0, x: -40 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-                        >
-                                <div className="inline-flex items-center gap-2.5 px-3 py-1.5 md:px-4 md:py-2 rounded-md bg-white/10 backdrop-blur-xl border border-white/15 mb-4 md:mb-6">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-[#ee7c7e]" />
-                                    <span className="text-white/90 text-[10px] md:text-[11px] font-semibold uppercase tracking-[0.16em]">
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={activeIndex}
+                                initial={activeIndex === 0 ? false : { opacity: 0, x: -60 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: 40 }}
+                                transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+                            >
+                                <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-lg md:rounded-xl bg-white/10 backdrop-blur-2xl border border-white/20 mb-4 md:mb-6 shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
+                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#ee7c7e] shadow-[0_0_10px_#ee7c7e] animate-pulse" />
+                                    <span className="text-white text-[9px] md:text-[11px] font-black uppercase tracking-[0.3em] md:tracking-[0.5em]">
                                         {lang === 'az' ? 'Azərbaycan Texniki Universiteti' : 'Azerbaijan Technical University'}
                                     </span>
                                 </div>
 
-                                <h1 className="text-[2.1rem] leading-[1.05] md:text-6xl xl:text-[4.5rem] xl:leading-[0.98] font-semibold text-white mb-5 md:mb-7 tracking-[-0.035em] max-w-[18ch]">
+                                <h1 className="text-2xl md:text-4xl xl:text-5xl font-black text-white mb-4 md:mb-5 leading-[1] tracking-tighter">
                                     {currentTitle.split(' ').map((word, i) => (
                                         <motion.span
                                             key={i}
-                                            className="inline-block mr-3 md:mr-4 last:mr-0"
-                                            initial={activeIndex === 0 ? false : { opacity: 0, y: 16 }}
-                                            animate={{ opacity: 1, y: 0 }}
+                                            className="inline-block mr-2 md:mr-3 last:mr-0 drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] last:text-transparent last:bg-clip-text last:bg-gradient-to-br last:from-white last:to-[#ee7c7e]"
+                                            initial={activeIndex === 0 ? false : { opacity: 0, y: 30, rotateX: -30 }}
+                                            animate={{ opacity: 1, y: 0, rotateX: 0 }}
                                             transition={{ delay: 0.05 + (i * 0.05), duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
                                         >
                                             {word}
@@ -199,10 +204,10 @@ export default function HeroSection() {
                                 </h1>
 
                                 <motion.p
-                                    initial={activeIndex === 0 ? false : { opacity: 0, y: 20 }}
+                                    initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.15, duration: 0.6 }}
-                                    className="text-white/70 text-sm md:text-base xl:text-lg font-normal mb-8 md:mb-10 max-w-[46ch] leading-relaxed"
+                                    transition={{ delay: 0.7, duration: 0.7 }}
+                                    className="text-white/60 text-xs md:text-sm xl:text-base font-medium mb-5 md:mb-7 max-w-xl leading-relaxed border-l-2 border-[#ee7c7e] pl-4 md:pl-5"
                                 >
                                     {lang === 'az'
                                         ? "Gələcəyin texnologiyalarını bu gün bizimlə öyrənin. İnnovativ təhsil, real təcrübə."
@@ -210,31 +215,32 @@ export default function HeroSection() {
                                 </motion.p>
 
                                 <motion.div
-                                    initial={activeIndex === 0 ? false : { opacity: 0, y: 12 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.25, duration: 0.5 }}
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ delay: 1.0, duration: 0.5 }}
                                     className="flex flex-wrap gap-3 md:gap-4 items-center"
                                 >
                                     <button
                                         onClick={handleScroll}
-                                        className="group flex items-center gap-3 bg-[#fff] text-[#0f1533] font-semibold pl-6 pr-2 py-2 rounded-full hover:bg-[#ee7c7e] hover:text-white transition-all duration-400 cursor-pointer active:scale-[0.98]"
+                                        className="group flex items-center gap-2 md:gap-3 bg-white text-[#1a2355] font-black px-4 py-2 md:px-6 md:py-3 rounded-full md:rounded-2xl hover:bg-[#ee7c7e] hover:text-white transition-all duration-500 shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:shadow-[#ee7c7e]/40 cursor-pointer active:scale-95"
                                     >
-                                        <span className="relative z-10 text-[13px] md:text-sm">{t.hero.button}</span>
-                                        <div className="relative z-10 w-9 h-9 rounded-full bg-[#0f1533]/10 group-hover:bg-white/25 flex items-center justify-center transition-colors">
+                                        <span className="relative z-10 uppercase tracking-[0.2em] text-[10px] md:text-[11px]">{t.hero.button}</span>
+                                        <div className="relative z-10 w-6 h-6 md:w-8 md:h-8 rounded-lg md:rounded-xl bg-[#1a2355]/10 group-hover:bg-white/20 flex items-center justify-center transition-colors">
                                             <ArrowDownwardIcon className="group-hover:translate-y-0.5 transition-transform" sx={{ fontSize: { xs: 14, md: 18 } }} />
                                         </div>
                                     </button>
 
                                     <Link href="/virtual-tour">
-                                        <button className="group flex items-center gap-3 bg-white/10 backdrop-blur-xl border border-white/20 text-white font-semibold pl-2 pr-6 py-2 rounded-full hover:bg-white/[0.18] transition-all duration-400 cursor-pointer active:scale-[0.98]">
-                                            <div className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center transition-colors group-hover:bg-[#ee7c7e]">
-                                                <PlayArrowIcon sx={{ fontSize: 18 }} />
+                                        <button className="group flex items-center gap-2 md:gap-3 bg-white/5 backdrop-blur-2xl border border-white/20 text-white font-black px-4 py-2 md:px-6 md:py-3 rounded-full md:rounded-2xl hover:bg-white/10 transition-all duration-500 cursor-pointer active:scale-95">
+                                            <div className="w-6 h-6 md:w-8 md:h-8 rounded-lg md:rounded-xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform group-hover:bg-[#ee7c7e] group-hover:shadow-[0_0_14px_#ee7c7e]">
+                                                <PlayArrowIcon sx={{ fontSize: { xs: 14, md: 18 } }} />
                                             </div>
-                                            <span className="text-[13px] md:text-sm">{lang === 'az' ? 'Virtual Tur' : 'Virtual Tour'}</span>
+                                            <span className="uppercase tracking-[0.2em] text-[10px] md:text-[11px]">{lang === 'az' ? 'Virtual Tur' : 'Virtual Tour'}</span>
                                         </button>
                                     </Link>
                                 </motion.div>
-                        </motion.div>
+                            </motion.div>
+                        </AnimatePresence>
                     </div>
 
                     {/* RIGHT: Stats */}
@@ -249,7 +255,7 @@ export default function HeroSection() {
                                 className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-xl md:rounded-2xl p-2.5 md:p-3.5 flex items-center gap-3 group hover:bg-white/10 transition-all duration-400 shadow-[0_15px_30px_rgba(0,0,0,0.25)] relative overflow-hidden"
                             >
                                 <div className="absolute top-0 right-0 w-14 h-14 md:w-20 md:h-20 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-xl group-hover:bg-[#ee7c7e]/10 transition-colors" />
-                                <div className={`rounded-lg md:rounded-xl flex items-center justify-center transition-all duration-400 shadow-md shrink-0 overflow-hidden ${stat.logo ? 'w-16 h-8 md:w-20 md:h-9 bg-[#fff] px-1.5 py-1' : 'w-8 h-8 md:w-10 md:h-10 bg-white/10 group-hover:bg-[#ee7c7e]'}`}>
+                                <div className={`rounded-lg md:rounded-xl flex items-center justify-center transition-all duration-400 shadow-md shrink-0 overflow-hidden ${stat.logo ? 'w-16 h-8 md:w-20 md:h-9 bg-white px-1.5 py-1' : 'w-8 h-8 md:w-10 md:h-10 bg-white/10 group-hover:bg-[#ee7c7e]'}`}>
                                     {stat.logo ? (
                                         <Image src={stat.logo} alt={stat.label} width={80} height={36} className="object-contain w-full h-full" />
                                     ) : (
@@ -257,7 +263,7 @@ export default function HeroSection() {
                                     )}
                                 </div>
                                 <div className="min-w-0">
-                                    <p className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.12em] text-white/40 mb-0.5 group-hover:text-[#ee7c7e] transition-colors truncate">{stat.label}</p>
+                                    <p className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] text-white/40 mb-0.5 group-hover:text-[#ee7c7e] transition-colors truncate">{stat.label}</p>
                                     <p className="text-sm md:text-lg lg:text-xl font-black text-white tracking-tighter truncate">{stat.value}</p>
                                 </div>
                             </motion.div>
@@ -373,7 +379,7 @@ export default function HeroSection() {
                 className="absolute bottom-2 md:bottom-6 left-1/2 -translate-x-1/2 z-30 block"
             >
                 <div className="flex flex-col items-center gap-2">
-                    <p className="text-[8px] font-black uppercase tracking-[0.15em] text-white/30 rotate-90 mb-6 origin-left">Scroll</p>
+                    <p className="text-[8px] font-black uppercase tracking-[0.4em] text-white/30 rotate-90 mb-6 origin-left">Scroll</p>
                     <div className="w-px h-8 rounded-full bg-gradient-to-b from-[#ee7c7e] to-transparent" />
                 </div>
             </motion.div>

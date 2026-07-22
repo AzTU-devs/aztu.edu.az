@@ -38,12 +38,12 @@ export default function ExchangePartnerUniversitiesPage() {
     }, [p.countries, query]);
 
     return (
-        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
             {/* HERO */}
             <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48">
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                     <div className="absolute inset-0 bg-[#0b1330]" />
-                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[1.75rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
+                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[4rem] lg:rounded-bl-[16rem] transition-all duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#0b1330] via-[#0b1330]/80 to-transparent hidden lg:block" />
                     <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#ee7c7e]/5 rounded-full blur-3xl" />
                 </div>
@@ -65,7 +65,7 @@ export default function ExchangePartnerUniversitiesPage() {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8, ease: "easeOut" }}
                             >
-                                <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.14em] mb-6">
+                                <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
                                     {p.eyebrow}
                                 </span>
                                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
@@ -96,7 +96,7 @@ export default function ExchangePartnerUniversitiesPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.1, duration: 0.6 }}
-                                className="group bg-white dark:bg-[#101733] rounded-[22px] p-8 border border-gray-100 dark:border-slate-800 shadow-2xl shadow-blue-900/5 hover:shadow-blue-900/10 hover:-translate-y-1 transition-all duration-500"
+                                className="group bg-white dark:bg-slate-900 rounded-[1.5rem] p-8 border border-gray-100 dark:border-slate-800 shadow-2xl shadow-blue-900/5 hover:shadow-blue-900/10 hover:-translate-y-1 transition-all duration-500"
                             >
                                 <div className="flex items-center gap-5">
                                     <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 dark:bg-[#ee7c7e]/15 flex items-center justify-center text-[#ee7c7e] group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-500 shrink-0">
@@ -106,7 +106,7 @@ export default function ExchangePartnerUniversitiesPage() {
                                         <p className="text-3xl lg:text-4xl font-black text-[#1a2355] dark:text-white leading-tight mb-1">
                                             {stat.value}
                                         </p>
-                                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.13em]">
+                                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.25em]">
                                             {stat.label}
                                         </p>
                                     </div>
@@ -131,14 +131,14 @@ export default function ExchangePartnerUniversitiesPage() {
                                 placeholder={p.searchPlaceholder}
                                 value={query}
                                 onChange={(e) => setQuery(e.target.value)}
-                                className="w-full pl-16 pr-8 py-6 bg-white dark:bg-[#101733] rounded-[22px] border-2 border-gray-100 dark:border-slate-800 focus:border-[#ee7c7e] dark:focus:border-[#ee7c7e] outline-none shadow-xl shadow-blue-900/5 transition-all text-gray-700 dark:text-gray-200 font-bold"
+                                className="w-full pl-16 pr-8 py-6 bg-white dark:bg-slate-900 rounded-[1.5rem] border-2 border-gray-100 dark:border-slate-800 focus:border-[#ee7c7e] dark:focus:border-[#ee7c7e] outline-none shadow-xl shadow-blue-900/5 transition-all text-gray-700 dark:text-gray-200 font-bold"
                             />
                         </div>
 
                         {/* Country Sections */}
                         {filteredCountries.length === 0 ? (
-                            <div className="bg-white dark:bg-[#101733] rounded-[18px] border border-gray-100 dark:border-slate-800 p-20 text-center">
-                                <div className="w-20 h-20 bg-gray-50 dark:bg-[#161f42] rounded-full flex items-center justify-center mx-auto mb-6 text-gray-300">
+                            <div className="bg-white dark:bg-slate-900 rounded-[1.75rem] border border-gray-100 dark:border-slate-800 p-20 text-center">
+                                <div className="w-20 h-20 bg-gray-50 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6 text-gray-300">
                                     <SearchIcon sx={{ fontSize: 40 }} />
                                 </div>
                                 <p className="text-gray-500 font-bold">{p.emptyState}</p>
@@ -152,7 +152,7 @@ export default function ExchangePartnerUniversitiesPage() {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: cIdx * 0.05, duration: 0.5 }}
-                                        className="bg-white dark:bg-[#101733] rounded-[18px] border border-gray-100 dark:border-slate-800 shadow-xl shadow-blue-900/5 overflow-hidden"
+                                        className="bg-white dark:bg-slate-900 rounded-[1.75rem] border border-gray-100 dark:border-slate-800 shadow-xl shadow-blue-900/5 overflow-hidden"
                                     >
                                         {/* Country Header */}
                                         <div className="flex items-center gap-5 p-8 lg:p-10 border-b border-gray-100 dark:border-slate-800 bg-gradient-to-r from-[#1a2355]/5 dark:from-[#ee7c7e]/5 to-transparent">
@@ -163,7 +163,7 @@ export default function ExchangePartnerUniversitiesPage() {
                                                 <h2 className="text-2xl lg:text-3xl font-black text-[#1a2355] dark:text-white tracking-tight">
                                                     {country.name}
                                                 </h2>
-                                                <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.13em] mt-1">
+                                                <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.25em] mt-1">
                                                     {country.universities.length} {p.statsLabels.universities}
                                                 </p>
                                             </div>
@@ -180,7 +180,7 @@ export default function ExchangePartnerUniversitiesPage() {
                                                     transition={{ delay: uIdx * 0.02 }}
                                                     className="group flex items-center gap-3 p-4 rounded-2xl bg-gray-50/60 dark:bg-slate-800/40 hover:bg-[#ee7c7e]/5 dark:hover:bg-[#ee7c7e]/10 border border-transparent hover:border-[#ee7c7e]/30 transition-all duration-300"
                                                 >
-                                                    <div className="w-9 h-9 rounded-xl bg-white dark:bg-[#101733] border border-gray-100 dark:border-slate-700 flex items-center justify-center text-gray-400 group-hover:text-[#ee7c7e] transition-colors shrink-0">
+                                                    <div className="w-9 h-9 rounded-xl bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-700 flex items-center justify-center text-gray-400 group-hover:text-[#ee7c7e] transition-colors shrink-0">
                                                         <SchoolIcon sx={{ fontSize: 18 }} />
                                                     </div>
                                                     <span className="text-sm font-bold text-[#1a2355] dark:text-white leading-tight">
@@ -198,11 +198,11 @@ export default function ExchangePartnerUniversitiesPage() {
                     {/* Sidebar */}
                     <div className="lg:col-span-3">
                         <div className="sticky top-28 space-y-8">
-                            <div className="p-10 rounded-[18px] bg-[#1a2355] text-white shadow-2xl relative overflow-hidden group">
+                            <div className="p-10 rounded-[2rem] bg-[#1a2355] text-white shadow-2xl relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
                                 <div className="relative z-10">
                                     <SwapHorizIcon className="text-[#ee7c7e] mb-6" sx={{ fontSize: 40 }} />
-                                    <h3 className="text-2xl font-black mb-4 tracking-tighter">AzTU Mobility</h3>
+                                    <h3 className="text-2xl font-black mb-4 uppercase tracking-tighter">AzTU Mobility</h3>
                                     <p className="text-white/60 text-sm font-medium mb-6">
                                         Study one or two semesters at a partner university and bring your credits home.
                                     </p>
@@ -220,7 +220,7 @@ export default function ExchangePartnerUniversitiesPage() {
                                         <Link
                                             key={link.href}
                                             href={link.href}
-                                            className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-5 rounded-[18px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
+                                            className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-5 rounded-[1.25rem] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
                                         >
                                             <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">
                                                 {link.title}

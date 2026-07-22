@@ -39,10 +39,10 @@ export default function StaffCard({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.4, delay: Math.min(index * 0.03, 0.3) }}
-            className={`group flex h-full flex-col items-center gap-3 rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-[#101733] dark:hover:border-white/20 ${href ? "cursor-pointer" : ""}`}
+            className={`group flex h-full flex-col items-center gap-3 rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-slate-900 dark:hover:border-white/20 ${href ? "cursor-pointer" : ""}`}
         >
             {/* Avatar */}
-            <div className={`relative h-20 w-20 overflow-hidden rounded-full bg-slate-100 ring-4 ring-offset-2 ring-offset-white dark:ring-offset-slate-900 dark:bg-[#161f42] ${palette.ring}`}>
+            <div className={`relative h-20 w-20 overflow-hidden rounded-full bg-slate-100 ring-4 ring-offset-2 ring-offset-white dark:ring-offset-slate-900 dark:bg-slate-800 ${palette.ring}`}>
                 {photoUrl ? (
                     /* eslint-disable-next-line @next/next/no-img-element */
                     <img

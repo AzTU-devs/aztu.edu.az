@@ -126,7 +126,7 @@ export default function CafedraSidebar({ facultyId, cafedraId }: Props) {
     !item.external && (pathname === item.href || pathname.startsWith(item.href + "/"));
 
   return (
-    <nav className="bg-white dark:bg-[#101733] rounded-3xl border border-gray-200/80 dark:border-white/10 shadow-sm overflow-hidden">
+    <nav className="bg-white dark:bg-slate-900 rounded-3xl border border-gray-200/80 dark:border-white/10 shadow-sm overflow-hidden">
       {/* Header */}
       <div className="flex items-center gap-3 px-6 py-5 border-b border-gray-100 dark:border-white/10 bg-gradient-to-r from-[#1a2355] to-[#2a3670]">
         <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/15 text-white">

@@ -17,13 +17,13 @@ export default function AccommodationPage() {
     const p = t.pages.internationalization.accommodation;
 
     return (
-        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30 transition-colors duration-500">
+        <main className="min-h-screen bg-page dark:bg-[#0a0c1a] selection:bg-[#ee7c7e]/30 transition-colors duration-500">
             {/* HERO SECTION */}
             <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
                 {/* Background Refined Graphics */}
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-[#0a0c1a]" />
-                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#111827] to-[#0f172a] rounded-bl-[1.75rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
+                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#111827] to-[#0f172a] rounded-bl-[4rem] lg:rounded-bl-[16rem] transition-all duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#0a0c1a] via-[#0a0c1a]/60 to-transparent hidden lg:block" />
                     <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#ee7c7e]/5 rounded-full blur-3xl" />
                 </div>
@@ -44,7 +44,7 @@ export default function AccommodationPage() {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8, ease: "easeOut" }}
                             >
-                                <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.14em] mb-6">
+                                <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
                                     {p.eyebrow}
                                 </span>
                                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
@@ -71,7 +71,7 @@ export default function AccommodationPage() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: idx * 0.1 }}
-                                    className="bg-white dark:bg-[#101733] p-8 lg:p-10 rounded-[18px] border border-gray-100 dark:border-slate-800 shadow-xl shadow-blue-900/5 flex gap-6 items-start"
+                                    className="bg-white dark:bg-slate-900 p-8 lg:p-10 rounded-[1.75rem] border border-gray-100 dark:border-slate-800 shadow-xl shadow-blue-900/5 flex gap-6 items-start"
                                 >
                                     <div className="w-12 h-12 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center shrink-0">
                                         {idx === 0 ? <ApartmentIcon className="text-[#ee7c7e]" /> : 
@@ -85,7 +85,7 @@ export default function AccommodationPage() {
                             ))}
                         </div>
 
-                        <section className="bg-[#1a2355] rounded-[18px] p-10 lg:p-16 text-white relative overflow-hidden">
+                        <section className="bg-[#1a2355] rounded-[2rem] p-10 lg:p-16 text-white relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-64 h-64 bg-[#ee7c7e]/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
                             <div className="relative z-10 max-w-2xl">
                                 <h2 className="text-3xl font-black mb-6 tracking-tight">{p.supportTitle}</h2>
@@ -112,7 +112,7 @@ export default function AccommodationPage() {
                                     <Link
                                         key={link.href}
                                         href={link.href}
-                                        className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[18px] border border-gray-100 dark:border-slate-700 hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
+                                        className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[1.25rem] border border-gray-100 dark:border-slate-700 hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
                                     >
                                         <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
                                         <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-slate-700 flex items-center justify-center group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-300">

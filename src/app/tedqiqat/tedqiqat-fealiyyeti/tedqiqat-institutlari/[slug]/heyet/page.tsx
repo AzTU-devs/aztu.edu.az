@@ -89,7 +89,7 @@ export default function ResearchInstituteStaffPage({ params }: Props) {
             </div>
 
             {filtered.length === 0 && (
-              <div className="text-center py-20 bg-gray-50 dark:bg-slate-800/20 rounded-[18px] border-2 border-dashed border-gray-100 dark:border-slate-700">
+              <div className="text-center py-20 bg-gray-50 dark:bg-slate-800/20 rounded-[2rem] border-2 border-dashed border-gray-100 dark:border-slate-700">
                 <SearchIcon sx={{ fontSize: 48, color: "#1a2355" }} className="opacity-10 mb-4" />
                 <p className="text-gray-400 dark:text-slate-500 text-sm font-black uppercase tracking-widest">
                   {currentLang === "az" ? "Nəticə tapılmadı" : "No results found"}

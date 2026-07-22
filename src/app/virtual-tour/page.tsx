@@ -27,12 +27,12 @@ export default function VirtualTourPage() {
                         <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#ee7c7e] group-hover:border-[#ee7c7e] transition-all duration-300">
                             <ArrowBackIcon sx={{ fontSize: 20 }} />
                         </div>
-                        <span className="text-xs font-black uppercase tracking-[0.12em]">{t.common.backToHome}</span>
+                        <span className="text-xs font-black uppercase tracking-[0.2em]">{t.common.backToHome}</span>
                     </button>
                 </Link>
                 
                 <div className="hidden md:block">
-                    <h1 className="text-white font-black uppercase tracking-[0.15em] text-[10px] opacity-30">Azerbaijan Technical University</h1>
+                    <h1 className="text-white font-black uppercase tracking-[0.4em] text-[10px] opacity-30">Azerbaijan Technical University</h1>
                 </div>
             </div>
 
@@ -42,7 +42,7 @@ export default function VirtualTourPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-                    className="flex-1 rounded-[22px] md:rounded-[22px] overflow-hidden border border-white/5 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative bg-black"
+                    className="flex-1 rounded-[1.5rem] md:rounded-[2.25rem] overflow-hidden border border-white/5 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative bg-black"
                 >
                     {/* The Virtual Tour Iframe */}
                     <iframe 
@@ -56,7 +56,7 @@ export default function VirtualTourPage() {
                     <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 pointer-events-none">
                         <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-[#0b1330]/60 backdrop-blur-xl border border-white/10 shadow-2xl">
                             <div className="w-2.5 h-2.5 rounded-full bg-[#ee7c7e] animate-pulse shadow-[0_0_12px_#ee7c7e]" />
-                            <span className="text-white text-[11px] font-black uppercase tracking-[0.15em]">
+                            <span className="text-white text-[11px] font-black uppercase tracking-[0.4em]">
                                 {lang === 'az' ? 'Virtual Tur' : 'Virtual Tour'}
                             </span>
                         </div>

@@ -74,7 +74,7 @@ export default function BeynelxalqElaqelerPage() {
                 {partner.universities.map((uni) => (
                   <div
                     key={uni.name}
-                    className="group flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white p-4 transition-all hover:border-[#ee7c7e]/40 hover:shadow-sm dark:border-white/10 dark:bg-[#101733]"
+                    className="group flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white p-4 transition-all hover:border-[#ee7c7e]/40 hover:shadow-sm dark:border-white/10 dark:bg-slate-900"
                   >
                     <div className="flex items-center gap-3">
                       <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#ee7c7e]" />

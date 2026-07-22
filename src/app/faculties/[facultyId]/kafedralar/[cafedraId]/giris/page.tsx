@@ -33,7 +33,7 @@ function StatCard({ label, value, icon: Icon, index }: { label: string; value: n
       initial={{ opacity: 0, y: 12 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: index * 0.04, duration: 0.4 }}
-      className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md dark:border-white/10 dark:bg-[#101733]"
+      className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md dark:border-white/10 dark:bg-slate-900"
     >
       <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${palette.tint}`}>
         <Icon sx={{ fontSize: 24 }} />

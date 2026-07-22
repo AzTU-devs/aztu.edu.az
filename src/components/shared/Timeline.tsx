@@ -33,7 +33,7 @@ export default function Timeline({ items, className = "" }: TimelineProps) {
                         className="relative pl-24 md:pl-28 group"
                     >
                         {/* Dot with year inside */}
-                        <div className="absolute left-0 top-1.5 w-20 h-20 md:w-24 md:h-24 rounded-full bg-white dark:bg-[#070b1a] border-4 border-[#ee7c7e] z-10 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 text-center px-1">
+                        <div className="absolute left-0 top-1.5 w-20 h-20 md:w-24 md:h-24 rounded-full bg-white dark:bg-[#050816] border-4 border-[#ee7c7e] z-10 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 text-center px-1">
                             {(item.year || item.period) ? (
                                 <span className="text-[#ee7c7e] font-black text-xs md:text-sm leading-tight">
                                     {item.year || item.period}
@@ -46,7 +46,7 @@ export default function Timeline({ items, className = "" }: TimelineProps) {
                         {/* Glow */}
                         <div className="absolute left-[-10px] top-[-10px] w-24 h-24 bg-[#ee7c7e]/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                        <div className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl p-6 md:p-8 rounded-[22px] border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/20 shadow-xl hover:shadow-2xl hover:border-[#ee7c7e]/40 transition-all duration-300">
+                        <div className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl p-6 md:p-8 rounded-[1.5rem] border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/20 shadow-xl hover:shadow-2xl hover:border-[#ee7c7e]/40 transition-all duration-300">
                             <h3 className="text-xl md:text-2xl font-black text-[#1a2355] dark:text-white mb-2 group-hover:text-[#ee7c7e] transition-colors">
                                 {item.title || item.degree}
                             </h3>

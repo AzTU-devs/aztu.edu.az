@@ -79,7 +79,7 @@ export default function MultidisciplinaryResearchPage() {
   const researchHref = lang === "az" ? "/tedqiqat" : "/research";
 
   return (
-    <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
+    <main className="min-h-screen bg-page dark:bg-[#0b1330] selection:bg-[#ee7c7e]/30">
       <PageHero
         title={p.title}
         description={p.subtitle}
@@ -97,7 +97,7 @@ export default function MultidisciplinaryResearchPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
-          className="relative overflow-hidden rounded-[22px] bg-white dark:bg-slate-900/70 backdrop-blur-xl border-2 border-[#1a2355]/15 dark:border-white/10 p-6 md:p-10 shadow-xl"
+          className="relative overflow-hidden rounded-[1.5rem] bg-white dark:bg-slate-900/70 backdrop-blur-xl border-2 border-[#1a2355]/15 dark:border-white/10 p-6 md:p-10 shadow-xl"
         >
           <div className="absolute -top-24 -right-24 w-72 h-72 bg-[#ee7c7e]/15 blur-3xl rounded-full pointer-events-none" />
           <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-blue-500/10 blur-3xl rounded-full pointer-events-none" />
@@ -107,7 +107,7 @@ export default function MultidisciplinaryResearchPage() {
               <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#1a2355] to-[#3b82f6] text-white flex items-center justify-center shadow-md shadow-blue-500/30">
                 <HubIcon sx={{ fontSize: 22 }} />
               </div>
-              <span className="text-[10px] font-black uppercase tracking-[0.14em] text-[#ee7c7e]">
+              <span className="text-[10px] font-black uppercase tracking-[0.35em] text-[#ee7c7e]">
                 {lang === "az" ? "Fənlərarası baxış" : "Interdisciplinary outlook"}
               </span>
             </div>
@@ -130,7 +130,7 @@ export default function MultidisciplinaryResearchPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5 }}
-              className={`group relative bg-white dark:bg-slate-900/70 backdrop-blur-xl rounded-[22px] border-2 border-[#1a2355]/10 dark:border-white/10 p-6 md:p-8 overflow-hidden ${theme.glow}`}
+              className={`group relative bg-white dark:bg-slate-900/70 backdrop-blur-xl rounded-[1.375rem] border-2 border-[#1a2355]/10 dark:border-white/10 p-6 md:p-8 overflow-hidden ${theme.glow}`}
             >
               <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${theme.gradient} opacity-80`} />
               <div className={`absolute -top-12 -right-12 w-48 h-48 bg-gradient-to-br ${theme.soft} blur-3xl rounded-full pointer-events-none`} />
@@ -157,7 +157,7 @@ export default function MultidisciplinaryResearchPage() {
                 {section.highlights && section.highlights.length > 0 && (
                   <>
                     {section.highlightsTitle && (
-                      <p className="mt-6 mb-4 text-xs font-black uppercase tracking-[0.13em] text-[#1a2355]/70 dark:text-white/60">
+                      <p className="mt-6 mb-4 text-xs font-black uppercase tracking-[0.25em] text-[#1a2355]/70 dark:text-white/60">
                         {section.highlightsTitle}
                       </p>
                     )}
@@ -202,7 +202,7 @@ export default function MultidisciplinaryResearchPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
-          className="relative overflow-hidden rounded-[22px] bg-gradient-to-br from-[#1a2355] to-[#0f172a] text-white p-6 md:p-10 shadow-xl"
+          className="relative overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-[#1a2355] to-[#0f172a] text-white p-6 md:p-10 shadow-xl"
         >
           <div className="absolute -top-24 -right-24 w-72 h-72 bg-[#ee7c7e]/25 blur-3xl rounded-full pointer-events-none" />
           <p className="relative text-sm md:text-base leading-relaxed text-white/90">

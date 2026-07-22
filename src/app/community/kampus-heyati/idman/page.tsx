@@ -157,12 +157,12 @@ export default function SportPage() {
   const campusLifeHref = lang === "az" ? "/az/icma/kampus-heyati" : "/en/community/campus-life";
 
   return (
-    <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
+    <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
       {/* HERO */}
       <div className="relative min-h-[45vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <div className="absolute inset-0 bg-[#0b1330]" />
-          <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[1.75rem] lg:rounded-bl-[10rem]" />
+          <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[4rem] lg:rounded-bl-[16rem]" />
           <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: "radial-gradient(white 0.5px, transparent 0.5px)", backgroundSize: "32px 32px" }} />
         </div>
 
@@ -182,7 +182,7 @@ export default function SportPage() {
 
           <div className="max-w-4xl">
             <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.14em] mb-6">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
                 AzTU
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-[1.1] tracking-tight">
@@ -197,7 +197,7 @@ export default function SportPage() {
       </div>
 
       {/* TABS */}
-      <div className="sticky top-0 z-30 bg-white/95 dark:bg-[#101733]/95 backdrop-blur-xl border-b border-gray-100 dark:border-white/10 shadow-sm">
+      <div className="sticky top-0 z-30 bg-white/95 dark:bg-[#0b1330]/95 backdrop-blur-xl border-b border-gray-100 dark:border-white/10 shadow-sm">
         <div className="max-w-[1600px] mx-auto px-4 md:px-10 lg:px-20">
           <div className="flex gap-1 overflow-x-auto scrollbar-hide py-3">
             {p.tabs.map((tab) => (
@@ -219,7 +219,7 @@ export default function SportPage() {
       </div>
 
       {/* CONTENT */}
-      <div className="px-4 md:px-10 lg:px-20 py-20 bg-white dark:bg-[#101733]">
+      <div className="px-4 md:px-10 lg:px-20 py-20 bg-white dark:bg-[#0b1330]">
         <div className="max-w-[1600px] mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
@@ -243,7 +243,7 @@ export default function SportPage() {
                     ))}
                   </div>
                   <div className="lg:col-span-4">
-                    <div className="bg-gray-50 dark:bg-white/5 rounded-[18px] p-8 border border-gray-100 dark:border-white/10 shadow-sm">
+                    <div className="bg-gray-50 dark:bg-white/5 rounded-[1.75rem] p-8 border border-gray-100 dark:border-white/10 shadow-sm">
                       <p className="text-xs font-black text-[#ee7c7e] uppercase tracking-widest mb-4">{p.about.chair.label}</p>
                       <h3 className="text-xl font-black text-[#1a2355] dark:text-white mb-2">{p.about.chair.name}</h3>
                       <p className="text-sm text-gray-500 dark:text-gray-400 font-medium leading-relaxed">
@@ -296,7 +296,7 @@ export default function SportPage() {
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {p.competitions.calendar.map((item, i) => (
-                      <div key={i} className="bg-white dark:bg-white/5 rounded-[18px] p-10 border border-gray-100 dark:border-white/10 shadow-sm">
+                      <div key={i} className="bg-white dark:bg-white/5 rounded-[1.75rem] p-10 border border-gray-100 dark:border-white/10 shadow-sm">
                         <span className="inline-block px-4 py-1 rounded-full bg-[#ee7c7e]/10 text-[#ee7c7e] text-xs font-black uppercase tracking-widest mb-6">
                           {item.month}
                         </span>
@@ -306,7 +306,7 @@ export default function SportPage() {
                       </div>
                     ))}
                   </div>
-                  <div className="p-10 rounded-[18px] bg-[#1a2355] text-white">
+                  <div className="p-10 rounded-[1.75rem] bg-[#1a2355] text-white">
                     <p className="text-lg font-medium leading-relaxed opacity-90">
                       {p.competitions.societies}
                     </p>
@@ -321,7 +321,7 @@ export default function SportPage() {
                     <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">{p.contact.title || "Əlaqə"}</h2>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-white dark:bg-white/5 rounded-[22px] p-8 border border-gray-100 dark:border-white/10 shadow-sm flex items-start gap-6">
+                    <div className="bg-white dark:bg-white/5 rounded-[1.5rem] p-8 border border-gray-100 dark:border-white/10 shadow-sm flex items-start gap-6">
                       <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center shrink-0">
                         <LocationOnIcon className="text-[#ee7c7e]" />
                       </div>
@@ -330,7 +330,7 @@ export default function SportPage() {
                         <p className="text-sm font-bold text-gray-700 dark:text-gray-200 leading-relaxed">{p.contact.address}</p>
                       </div>
                     </div>
-                    <div className="bg-white dark:bg-white/5 rounded-[22px] p-8 border border-gray-100 dark:border-white/10 shadow-sm flex items-start gap-6">
+                    <div className="bg-white dark:bg-white/5 rounded-[1.5rem] p-8 border border-gray-100 dark:border-white/10 shadow-sm flex items-start gap-6">
                       <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center shrink-0">
                         <PhoneIcon className="text-[#ee7c7e]" />
                       </div>
@@ -340,7 +340,7 @@ export default function SportPage() {
                         <p className="text-sm font-bold text-gray-700 dark:text-gray-200">{p.contact.hotline}</p>
                       </div>
                     </div>
-                    <div className="bg-white dark:bg-white/5 rounded-[22px] p-8 border border-gray-100 dark:border-white/10 shadow-sm flex items-start gap-6 md:col-span-2">
+                    <div className="bg-white dark:bg-white/5 rounded-[1.5rem] p-8 border border-gray-100 dark:border-white/10 shadow-sm flex items-start gap-6 md:col-span-2">
                       <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center shrink-0">
                         <EmailIcon className="text-[#ee7c7e]" />
                       </div>

@@ -117,7 +117,7 @@ export default function NabranPage() {
   const managementHref = lang === "az" ? "/az/idareetme" : "/en/management";
 
   return (
-    <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
+    <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
 
       {/* HERO */}
       <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
@@ -143,7 +143,7 @@ export default function NabranPage() {
 
           <div className="max-w-4xl">
             <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.14em] mb-6">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
                 {p.eyebrow}
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
@@ -157,7 +157,7 @@ export default function NabranPage() {
         </div>
       </div>
 
-      <div className="px-4 md:px-10 lg:px-20 py-24 bg-white dark:bg-[#101733] relative overflow-hidden">
+      <div className="px-4 md:px-10 lg:px-20 py-24 bg-white dark:bg-[#0b1330] relative overflow-hidden">
         <div className="relative z-10 max-w-[1600px] mx-auto space-y-32">
 
           {/* STATS */}
@@ -176,7 +176,7 @@ export default function NabranPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className="bg-white dark:bg-[#161f42] rounded-[22px] p-6 border border-gray-100 dark:border-white/10 shadow-xl flex flex-col items-center text-center gap-3"
+                  className="bg-white dark:bg-[#0d1b3e] rounded-[1.5rem] p-6 border border-gray-100 dark:border-white/10 shadow-xl flex flex-col items-center text-center gap-3"
                 >
                   <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center">
                     {statIcons[stat.icon]}
@@ -258,7 +258,7 @@ export default function NabranPage() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.07 }}
-                  className={`relative overflow-hidden rounded-[22px] shadow-lg group ${
+                  className={`relative overflow-hidden rounded-[1.5rem] shadow-lg group ${
                     i === 0 ? "sm:col-span-2 lg:col-span-2 aspect-[16/9]" : "aspect-square"
                   }`}
                 >

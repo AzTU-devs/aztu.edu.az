@@ -78,7 +78,7 @@ export default function PatentlerPage({ params }: Props) {
                     >
                       <Link
                         href={`${sectionBase}/${slug}`}
-                        className="group flex h-full flex-col items-start rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-[#101733] dark:hover:border-white/20"
+                        className="group flex h-full flex-col items-start rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-slate-900 dark:hover:border-white/20"
                       >
                         <span className={`text-3xl font-extrabold tracking-tight tabular-nums md:text-4xl ${palette.text}`}>
                           {label}

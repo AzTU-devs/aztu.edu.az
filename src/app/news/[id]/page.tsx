@@ -116,7 +116,7 @@ export default async function NewsDetailPage({
         <>
             <NewsScrollProgress />
 
-            <main className="min-h-screen bg-page">
+            <main className="min-h-screen bg-page dark:bg-[#0f172a]">
                 {/* Hero */}
                 <section className="relative bg-gradient-to-br from-[#060d1f] via-[#1a2355] to-[#0f2a4a] overflow-hidden">
                     <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-3xl pointer-events-none" />
@@ -214,7 +214,7 @@ export default async function NewsDetailPage({
 
                             <Link
                                 href="/news"
-                                className="inline-flex items-center gap-2 text-[#1a2355] dark:text-white font-semibold text-sm bg-white dark:bg-[#161f42] rounded-xl px-4 py-2.5 shadow-md hover:shadow-lg transition-shadow"
+                                className="inline-flex items-center gap-2 text-[#1a2355] dark:text-white font-semibold text-sm bg-white dark:bg-[#1e293b] rounded-xl px-4 py-2.5 shadow-md hover:shadow-lg transition-shadow"
                             >
                                 <ArrowBackIcon sx={{ fontSize: 18 }} />
                                 {t.backToNews}
@@ -223,7 +223,7 @@ export default async function NewsDetailPage({
 
                         <aside className="lg:w-72 xl:w-80 flex-shrink-0">
                             <div className="sticky top-24 space-y-4">
-                                <div className="bg-white dark:bg-[#161f42] rounded-2xl shadow-md overflow-hidden">
+                                <div className="bg-white dark:bg-[#1e293b] rounded-2xl shadow-md overflow-hidden">
                                     <div className="bg-gradient-to-r from-[#1a2355] to-[#13365E] px-5 py-4">
                                         <h2 className="text-white font-bold text-sm uppercase tracking-widest">
                                             {t.aboutNews}
@@ -266,7 +266,7 @@ export default async function NewsDetailPage({
                                     </div>
                                 </div>
 
-                                <div className="bg-white dark:bg-[#161f42] rounded-2xl shadow-md p-5 space-y-3">
+                                <div className="bg-white dark:bg-[#1e293b] rounded-2xl shadow-md p-5 space-y-3">
                                     <h2 className="text-[#1a2355] dark:text-white font-bold text-sm uppercase tracking-widest">
                                         {t.share}
                                     </h2>
@@ -280,7 +280,7 @@ export default async function NewsDetailPage({
                 {galleryAbs.length > 0 && <NewsGallery images={galleryAbs} title={title} />}
 
                 {related.length > 0 && (
-                    <section className="bg-white dark:bg-[#161f42] py-16 px-4 md:px-10 lg:px-20">
+                    <section className="bg-white dark:bg-[#1e293b] py-16 px-4 md:px-10 lg:px-20">
                         <div className="max-w-7xl mx-auto">
                             <div className="flex items-center gap-4 mb-10">
                                 <h2 className="text-xl font-bold text-[#1a2355] dark:text-white flex-shrink-0">
@@ -293,7 +293,7 @@ export default async function NewsDetailPage({
                                 {related.map((item) => (
                                     <li
                                         key={item.news_id}
-                                        className="group bg-gray-50 dark:bg-[#101733] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+                                        className="group bg-gray-50 dark:bg-[#0f172a] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
                                     >
                                         <Link href={`/news/${newsSlug(item.news_id, item.title)}`}>
                                             <div className="h-48 relative overflow-hidden">

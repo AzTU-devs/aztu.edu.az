@@ -47,7 +47,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                 style={{ scaleX: scrollYProgress }}
             />
 
-            <main ref={containerRef} className="min-h-screen bg-page">
+            <main ref={containerRef} className="min-h-screen bg-page dark:bg-[#0f172a]">
 
                 {/* Hero banner */}
                 <section className="relative bg-gradient-to-br from-[#060d1f] via-[#1a2355] to-[#0f2a4a] overflow-hidden">
@@ -148,7 +148,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                                 <motion.div
                                     whileHover={{ x: -3 }}
                                     transition={{ duration: 0.2 }}
-                                    className="inline-flex items-center gap-2 text-[#1a2355] dark:text-white font-semibold text-sm bg-white dark:bg-[#161f42] rounded-xl px-4 py-2.5 shadow-md cursor-pointer hover:shadow-lg transition-shadow"
+                                    className="inline-flex items-center gap-2 text-[#1a2355] dark:text-white font-semibold text-sm bg-white dark:bg-[#1e293b] rounded-xl px-4 py-2.5 shadow-md cursor-pointer hover:shadow-lg transition-shadow"
                                 >
                                     <ArrowBackIcon sx={{ fontSize: 18 }} />
                                     Layihələrə qayıt

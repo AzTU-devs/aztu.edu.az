@@ -94,7 +94,7 @@ export default function DepartmentLeadershipPage({ params }: Props) {
     return (
         <div className="space-y-10">
             {/* HERO ROW */}
-            <section className="relative overflow-hidden rounded-[22px] bg-white dark:bg-slate-900/60 backdrop-blur-xl border-2 border-[#1a2355]/15 dark:border-white/10 p-5 md:p-8 shadow-xl">
+            <section className="relative overflow-hidden rounded-[1.5rem] bg-white dark:bg-slate-900/60 backdrop-blur-xl border-2 border-[#1a2355]/15 dark:border-white/10 p-5 md:p-8 shadow-xl">
                 <div className="absolute -top-24 -right-24 w-72 h-72 bg-[#ee7c7e]/15 blur-3xl rounded-full pointer-events-none" />
                 <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-blue-500/10 blur-3xl rounded-full pointer-events-none" />
 
@@ -107,8 +107,8 @@ export default function DepartmentLeadershipPage({ params }: Props) {
                             transition={{ duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
                             className="relative max-w-xs lg:max-w-none mx-auto"
                         >
-                            <div className="absolute -top-2 -left-2 w-16 h-16 border-t-[3px] border-l-[3px] border-[#ee7c7e] rounded-tl-[18px] z-20 pointer-events-none" />
-                            <div className="absolute -bottom-2 -right-2 w-16 h-16 border-b-[3px] border-r-[3px] border-[#ee7c7e] rounded-br-[18px] z-20 pointer-events-none" />
+                            <div className="absolute -top-2 -left-2 w-16 h-16 border-t-[3px] border-l-[3px] border-[#ee7c7e] rounded-tl-[1.25rem] z-20 pointer-events-none" />
+                            <div className="absolute -bottom-2 -right-2 w-16 h-16 border-b-[3px] border-r-[3px] border-[#ee7c7e] rounded-br-[1.25rem] z-20 pointer-events-none" />
                             <div className="aspect-[3/4] rounded-2xl overflow-hidden border-4 border-white dark:border-slate-800 shadow-xl bg-gradient-to-br from-[#1a2355] to-[#0f172a] flex items-center justify-center">
                                 {profileImage ? (
                                     /* eslint-disable-next-line @next/next/no-img-element */
@@ -133,7 +133,7 @@ export default function DepartmentLeadershipPage({ params }: Props) {
                         >
                             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ee7c7e]/10 border border-[#ee7c7e]/30 mb-3">
                                 <VerifiedIcon sx={{ fontSize: 13 }} className="text-[#ee7c7e]" />
-                                <span className="text-[#ee7c7e] text-[10px] font-black uppercase tracking-[0.14em]">
+                                <span className="text-[#ee7c7e] text-[10px] font-black uppercase tracking-[0.3em]">
                                     {t.leadership}
                                 </span>
                             </span>
@@ -141,12 +141,12 @@ export default function DepartmentLeadershipPage({ params }: Props) {
                                 {directorFullName}
                             </h1>
                             {director.scientific_title && (
-                                <p className="text-xs md:text-sm font-bold text-gray-500 dark:text-slate-400 uppercase tracking-[0.13em]">
+                                <p className="text-xs md:text-sm font-bold text-gray-500 dark:text-slate-400 uppercase tracking-[0.25em]">
                                     {director.scientific_title}
                                 </p>
                             )}
                             {director.scientific_degree && (
-                                <p className="text-[#ee7c7e] text-[11px] font-black uppercase tracking-[0.13em] mt-2">
+                                <p className="text-[#ee7c7e] text-[11px] font-black uppercase tracking-[0.25em] mt-2">
                                     {director.scientific_degree}
                                 </p>
                             )}
@@ -164,14 +164,14 @@ export default function DepartmentLeadershipPage({ params }: Props) {
                                 {director.phone && (
                                     <a
                                         href={`tel:${director.phone}`}
-                                        className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white dark:bg-[#161f42] border-2 border-[#1a2355]/15 dark:border-white/10 text-[#1a2355] dark:text-white font-bold text-xs hover:border-[#ee7c7e] hover:text-[#ee7c7e] transition-colors"
+                                        className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border-2 border-[#1a2355]/15 dark:border-white/10 text-[#1a2355] dark:text-white font-bold text-xs hover:border-[#ee7c7e] hover:text-[#ee7c7e] transition-colors"
                                     >
                                         <PhoneIcon sx={{ fontSize: 14 }} />
                                         {director.phone}
                                     </a>
                                 )}
                                 {director.room_number && (
-                                    <span className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white dark:bg-[#161f42] border-2 border-[#1a2355]/15 dark:border-white/10 text-[#1a2355] dark:text-white font-bold text-xs">
+                                    <span className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border-2 border-[#1a2355]/15 dark:border-white/10 text-[#1a2355] dark:text-white font-bold text-xs">
                                         <LocationOnIcon sx={{ fontSize: 14 }} />
                                         {t.office} {director.room_number}
                                     </span>
@@ -192,7 +192,7 @@ export default function DepartmentLeadershipPage({ params }: Props) {
                                 <AccessTimeIcon className="text-[#ee7c7e]" sx={{ fontSize: 20 }} />
                             </div>
                             <div>
-                                <p className="text-[10px] font-black uppercase tracking-[0.14em] text-[#ee7c7e]">
+                                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#ee7c7e]">
                                     {t.reception}
                                 </p>
                                 <p className="text-xs font-bold text-white/70">{t.receptionSub}</p>
@@ -241,7 +241,7 @@ export default function DepartmentLeadershipPage({ params }: Props) {
                                 <SchoolIcon className="text-white" sx={{ fontSize: 22 }} />
                             </div>
                             <div>
-                                <p className="text-[10px] font-black uppercase tracking-[0.14em] text-[#ee7c7e] mb-0.5">
+                                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#ee7c7e] mb-0.5">
                                     {t.educationEyebrow}
                                 </p>
                                 <h2 className="text-xl md:text-2xl font-black text-[#1a2355] dark:text-white tracking-tight">
@@ -285,7 +285,7 @@ export default function DepartmentLeadershipPage({ params }: Props) {
                                             <div className="relative z-10 flex items-start justify-between gap-3">
                                                 <div className="flex-1 min-w-0">
                                                     {year && (
-                                                        <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-[0.13em] text-white bg-gradient-to-r ${palette} mb-2 shadow-sm`}>
+                                                        <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-[0.25em] text-white bg-gradient-to-r ${palette} mb-2 shadow-sm`}>
                                                             {year}
                                                         </span>
                                                     )}

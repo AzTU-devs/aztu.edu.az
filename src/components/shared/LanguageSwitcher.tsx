@@ -20,7 +20,7 @@ export default function LanguageSwitcher({ variant = "header-open" }: Props) {
         whileHover={{ scale: 1.06 }}
         whileTap={{ scale: 0.94 }}
         transition={{ duration: 0.15 }}
-        className="rounded-lg w-10 h-10 flex items-center justify-center font-bold text-sm bg-[#1a2355] dark:bg-[#161f42] text-white cursor-pointer"
+        className="rounded-lg w-10 h-10 flex items-center justify-center font-bold text-sm bg-[#1a2355] dark:bg-[#1e3a5f] text-white cursor-pointer"
         aria-label="Switch language"
       >
         {label}

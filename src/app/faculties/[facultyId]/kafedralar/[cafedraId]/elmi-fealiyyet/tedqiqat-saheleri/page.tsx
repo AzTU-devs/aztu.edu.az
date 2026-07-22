@@ -57,7 +57,7 @@ export default function TedqiqatSaheleriPage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-80px" }}
                       transition={{ duration: 0.5, delay: Math.min(idx * 0.04, 0.3), ease: [0.23, 1, 0.32, 1] }}
-                      className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-[#101733] dark:hover:border-white/20 md:p-6"
+                      className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-slate-900 dark:hover:border-white/20 md:p-6"
                     >
                       <div className="flex items-start gap-3.5">
                         <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-sm font-bold ${palette.tint}`}>

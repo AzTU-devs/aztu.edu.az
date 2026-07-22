@@ -152,7 +152,7 @@ export default function FacultyKafedralarPage({ params }: Props) {
                             >
                                 <Link
                                     href={baseLink}
-                                    className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-[#101733] dark:hover:border-white/20"
+                                    className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-slate-900 dark:hover:border-white/20"
                                 >
                                     <div className="mb-5 flex items-center justify-between">
                                         <span className={`flex h-12 w-12 items-center justify-center rounded-xl ${palette.tint}`}>

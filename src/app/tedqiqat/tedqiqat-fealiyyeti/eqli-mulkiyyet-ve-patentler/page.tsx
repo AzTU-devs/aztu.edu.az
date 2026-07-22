@@ -58,7 +58,7 @@ export default function IntellectualPropertyPage() {
     };
 
     return (
-        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-[#fafafa] dark:bg-[#0b1330] selection:bg-[#ee7c7e]/30">
             
             {/* FUTURISTIC HERO BANNER */}
             <section ref={bannerRef} className="relative h-[80vh] min-h-[600px] w-full flex items-center overflow-hidden bg-black">
@@ -88,7 +88,7 @@ export default function IntellectualPropertyPage() {
                         <motion.nav 
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="flex items-center gap-4 text-white/40 text-[10px] font-black uppercase tracking-[0.15em] mb-12"
+                            className="flex items-center gap-4 text-white/40 text-[10px] font-black uppercase tracking-[0.4em] mb-12"
                         >
                             <Link href="/" className="hover:text-[#ee7c7e] transition-colors flex items-center gap-2 group">
                                 <HomeIcon sx={{ fontSize: 14 }} className="group-hover:scale-110 transition-transform" />
@@ -107,7 +107,7 @@ export default function IntellectualPropertyPage() {
                         >
                             <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 mb-8 shadow-2xl">
                                 <div className="w-2.5 h-2.5 rounded-full bg-[#ee7c7e] shadow-[0_0_12px_#ee7c7e] animate-pulse" />
-                                <span className="text-white text-[12px] font-black uppercase tracking-[0.16em]">
+                                <span className="text-white text-[12px] font-black uppercase tracking-[0.5em]">
                                     {p.eyebrow}
                                 </span>
                             </div>
@@ -155,11 +155,11 @@ export default function IntellectualPropertyPage() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="relative mb-32 p-10 md:p-16 rounded-[18px] bg-[#1a2355] dark:bg-white/[0.02] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.2)] overflow-hidden group"
+                        className="relative mb-32 p-10 md:p-16 rounded-[2rem] bg-[#1a2355] dark:bg-white/[0.02] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.2)] overflow-hidden group"
                     >
                         <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                         <div className="relative z-10 max-w-4xl">
-                            {/* <h2 className="text-white/40 text-xs font-black uppercase tracking-[0.16em] mb-8">{t.common?.introduction || "Introduction"}</h2> */}
+                            {/* <h2 className="text-white/40 text-xs font-black uppercase tracking-[0.5em] mb-8">{t.common?.introduction || "Introduction"}</h2> */}
                             <p className="text-white text-lg md:text-2xl font-bold leading-relaxed tracking-tight opacity-90">
                                 {p.description}
                             </p>
@@ -181,7 +181,7 @@ export default function IntellectualPropertyPage() {
                                     <div className="h-px flex-1 bg-gradient-to-r from-[#ee7c7e]/50 to-transparent" />
                                 </div>
 
-                                <div className="overflow-x-auto rounded-[22px] border border-gray-100 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-xl shadow-2xl">
+                                <div className="overflow-x-auto rounded-[1.5rem] border border-gray-100 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-xl shadow-2xl">
                                     <table className="w-full text-left border-collapse">
                                         <thead>
                                             <tr className="bg-[#1a2355] dark:bg-[#ee7c7e] text-white">
@@ -229,7 +229,7 @@ export default function IntellectualPropertyPage() {
                                     initial={{ scale: 0.9, opacity: 0, y: 20 }}
                                     animate={{ scale: 1, opacity: 1, y: 0 }}
                                     exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                                    className="relative w-full max-w-6xl h-full bg-white dark:bg-[#101733] rounded-[18px] overflow-hidden flex flex-col shadow-2xl"
+                                    className="relative w-full max-w-6xl h-full bg-white dark:bg-[#0b1330] rounded-[1.75rem] overflow-hidden flex flex-col shadow-2xl"
                                 >
                                     {/* Modal Header */}
                                     <div className="flex items-center justify-between px-8 py-6 border-b border-gray-100 dark:border-white/10 bg-white/50 dark:bg-white/5 backdrop-blur-md">
@@ -272,7 +272,7 @@ export default function IntellectualPropertyPage() {
                     <div className="mt-40">
                         <div className="flex flex-col md:flex-row items-end justify-between gap-8 mb-16">
                             <div className="max-w-xl">
-                                <span className="text-[#ee7c7e] text-xs font-black uppercase tracking-[0.15em] mb-4 block">{t.common.moreInSection}</span>
+                                <span className="text-[#ee7c7e] text-xs font-black uppercase tracking-[0.4em] mb-4 block">{t.common.moreInSection}</span>
                                 <h3 className="text-3xl md:text-5xl font-black text-[#1a2355] dark:text-white tracking-tighter">Digər Maraqlı Bölmələr</h3>
                             </div>
                         </div>
@@ -286,7 +286,7 @@ export default function IntellectualPropertyPage() {
                                 <Link
                                     key={i}
                                     href={link.href}
-                                    className="group relative h-64 rounded-[18px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 p-10 flex flex-col justify-between hover:scale-[1.02] hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                                    className="group relative h-64 rounded-[1.75rem] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 p-10 flex flex-col justify-between hover:scale-[1.02] hover:shadow-2xl transition-all duration-500 overflow-hidden"
                                 >
                                     <div 
                                         className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" 

@@ -57,9 +57,9 @@ export default function ImprovementPlanFlow() {
       : "A staged action plan for continuous quality improvement and reaching strategic goals.";
 
   return (
-    <div className="w-full rounded-[22px] overflow-hidden border-2 border-[#1a2355]/30 dark:border-white/5 bg-gradient-to-br from-white via-blue-50/40 to-white dark:from-[#0b1632] dark:via-[#0d1b3e] dark:to-[#0b1632] p-6 md:p-8 mb-8">
+    <div className="w-full rounded-[1.5rem] overflow-hidden border-2 border-[#1a2355]/30 dark:border-white/5 bg-gradient-to-br from-white via-blue-50/40 to-white dark:from-[#0b1632] dark:via-[#0d1b3e] dark:to-[#0b1632] p-6 md:p-8 mb-8">
       <div className="mb-6">
-        <p className="text-[11px] font-black uppercase tracking-[0.12em] text-[#ee7c7e]">{eyebrow}</p>
+        <p className="text-[11px] font-black uppercase tracking-[0.2em] text-[#ee7c7e]">{eyebrow}</p>
         <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{note}</p>
       </div>
 
@@ -82,7 +82,7 @@ export default function ImprovementPlanFlow() {
                 style={{ background: `linear-gradient(135deg, ${s.color}, ${s.color}cc)` }}
               >
                 <Icon sx={{ fontSize: 24, color: "white" }} />
-                <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-white dark:bg-[#161f42] text-[10px] font-black flex items-center justify-center shadow border border-[#1a2355]/20 dark:border-white/10" style={{ color: s.color }}>
+                <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-white dark:bg-[#0d1b3e] text-[10px] font-black flex items-center justify-center shadow border border-[#1a2355]/20 dark:border-white/10" style={{ color: s.color }}>
                   {String(idx + 1).padStart(2, "0")}
                 </span>
               </div>

@@ -96,7 +96,7 @@ export default function ResearchLaboratoriesPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-page transition-colors pb-20">
+        <main className="min-h-screen bg-page dark:bg-slate-900 transition-colors pb-20">
             {/* Page Banner */}
             <div className="relative overflow-hidden bg-[#0b1330] pt-40 pb-20 px-4 md:px-10 lg:px-12 w-full min-h-[400px] flex flex-col justify-end">
                 <div className="absolute inset-0 z-0">
@@ -116,7 +116,7 @@ export default function ResearchLaboratoriesPage() {
                     <motion.nav
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="flex items-center gap-1.5 text-white/50 text-sm mb-6 flex-wrap font-black uppercase tracking-[0.14em]"
+                        className="flex items-center gap-1.5 text-white/50 text-sm mb-6 flex-wrap font-black uppercase tracking-[0.3em]"
                     >
                         {breadcrumbs.map((crumb, i) => (
                             <div key={i} className="flex items-center gap-1.5">
@@ -155,11 +155,11 @@ export default function ResearchLaboratoriesPage() {
                 {loading ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         {[...Array(8)].map((_, i) => (
-                            <div key={i} className="h-64 rounded-[22px] bg-white dark:bg-[#161f42] border border-gray-100 dark:border-slate-700 animate-pulse" />
+                            <div key={i} className="h-64 rounded-[1.5rem] bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 animate-pulse" />
                         ))}
                     </div>
                 ) : groups.length === 0 ? (
-                    <div className="text-center py-32 bg-white dark:bg-[#161f42] rounded-[18px] border-2 border-dashed border-gray-100 dark:border-slate-700 shadow-sm">
+                    <div className="text-center py-32 bg-white dark:bg-slate-800 rounded-[2rem] border-2 border-dashed border-gray-100 dark:border-slate-700 shadow-sm">
                         <ScienceIcon sx={{ fontSize: 64, color: "#1a2355", opacity: 0.1 }} />
                         <p className="text-gray-400 font-black uppercase tracking-widest text-sm mt-4">
                             {t.noContent}
@@ -173,7 +173,7 @@ export default function ResearchLaboratoriesPage() {
                                     <div className="w-12 h-12 rounded-xl bg-[#1a2355] flex items-center justify-center text-white shadow-lg">
                                         <BusinessIcon />
                                     </div>
-                                    <h2 className="text-2xl md:text-3xl font-black text-[#1a2355] dark:text-white tracking-tight">
+                                    <h2 className="text-2xl md:text-3xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight">
                                         {group.name}
                                     </h2>
                                     <div className="flex-grow h-[2px] bg-gradient-to-r from-gray-200 to-transparent dark:from-slate-700 ml-4 hidden md:block" />
@@ -197,7 +197,7 @@ export default function ResearchLaboratoriesPage() {
                                             >
                                                 <Link
                                                     href={path}
-                                                    className="group block relative h-full bg-white dark:bg-[#161f42] rounded-[22px] shadow-sm hover:shadow-[0_20px_50px_rgba(26,35,85,0.1)] border border-gray-100 dark:border-slate-700 hover:border-[#ee7c7e]/20 overflow-hidden transition-all duration-500"
+                                                    className="group block relative h-full bg-white dark:bg-slate-800 rounded-[1.5rem] shadow-sm hover:shadow-[0_20px_50px_rgba(26,35,85,0.1)] border border-gray-100 dark:border-slate-700 hover:border-[#ee7c7e]/20 overflow-hidden transition-all duration-500"
                                                 >
                                                     {img ? (
                                                         <div className="relative h-40 w-full overflow-hidden">

@@ -80,7 +80,7 @@ export default function Loading() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.5 }}
-                        className="text-white text-lg md:text-xl font-black uppercase tracking-[0.15em] text-center max-w-md leading-relaxed"
+                        className="text-white text-lg md:text-xl font-black uppercase tracking-[0.4em] text-center max-w-md leading-relaxed"
                     >
                         Azərbaycan Texniki Universiteti
                     </motion.h1>

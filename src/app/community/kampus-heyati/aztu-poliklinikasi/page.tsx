@@ -194,16 +194,16 @@ export default function AztuPoliklinikasi() {
   const communityHref = lang === "az" ? "/az/icma" : "/en/community";
 
   return (
-    <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
+    <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
 
       {/* HERO */}
       <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <div className="absolute inset-0 bg-[#0b1330]" />
-          <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[1.75rem] lg:rounded-bl-[10rem]" />
+          <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[4rem] lg:rounded-bl-[16rem]" />
           <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: "radial-gradient(white 0.5px, transparent 0.5px)", backgroundSize: "32px 32px" }} />
           <div
-            className="absolute top-0 right-0 w-full lg:w-[85%] h-full opacity-15 rounded-bl-[1.75rem] lg:rounded-bl-[10rem] overflow-hidden"
+            className="absolute top-0 right-0 w-full lg:w-[85%] h-full opacity-15 rounded-bl-[4rem] lg:rounded-bl-[16rem] overflow-hidden"
             style={{ backgroundImage: `url(${IMAGES[0]})`, backgroundSize: "cover", backgroundPosition: "center" }}
           />
         </div>
@@ -226,7 +226,7 @@ export default function AztuPoliklinikasi() {
 
           <div className="max-w-4xl">
             <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.14em] mb-6">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
                 {p.eyebrow}
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
@@ -240,7 +240,7 @@ export default function AztuPoliklinikasi() {
         </div>
       </div>
 
-      <div className="px-4 md:px-10 lg:px-20 py-24 bg-white dark:bg-[#101733] relative overflow-hidden">
+      <div className="px-4 md:px-10 lg:px-20 py-24 bg-white dark:bg-[#0b1330] relative overflow-hidden">
         <div className="relative z-10 max-w-[1600px] mx-auto space-y-32">
 
           {/* STATS */}
@@ -258,7 +258,7 @@ export default function AztuPoliklinikasi() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className="bg-white dark:bg-[#161f42] rounded-[22px] p-6 border border-gray-100 dark:border-white/10 shadow-xl flex flex-col items-center text-center gap-3"
+                  className="bg-white dark:bg-[#0d1b3e] rounded-[1.5rem] p-6 border border-gray-100 dark:border-white/10 shadow-xl flex flex-col items-center text-center gap-3"
                 >
                   <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center">
                     {statIcons[stat.icon]}
@@ -336,7 +336,7 @@ export default function AztuPoliklinikasi() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-[#1a2355] rounded-[18px] p-10 text-white relative overflow-hidden"
+              className="bg-[#1a2355] rounded-[2rem] p-10 text-white relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">
                 <MedicalServicesIcon sx={{ fontSize: 160 }} />
@@ -361,7 +361,7 @@ export default function AztuPoliklinikasi() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-white dark:bg-white/5 rounded-[18px] p-10 border border-gray-100 dark:border-white/10 shadow-xl"
+              className="bg-white dark:bg-white/5 rounded-[2rem] p-10 border border-gray-100 dark:border-white/10 shadow-xl"
             >
               <div className="flex items-center gap-3 mb-3">
                 <PeopleIcon className="text-[#ee7c7e]" sx={{ fontSize: 28 }} />
@@ -386,7 +386,7 @@ export default function AztuPoliklinikasi() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-gray-50 dark:bg-white/5 rounded-[18px] p-10 border border-gray-100 dark:border-white/10 flex gap-6 items-start"
+              className="bg-gray-50 dark:bg-white/5 rounded-[1.75rem] p-10 border border-gray-100 dark:border-white/10 flex gap-6 items-start"
             >
               <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center shrink-0">
                 <HandshakeIcon className="text-[#ee7c7e]" sx={{ fontSize: 28 }} />
@@ -402,7 +402,7 @@ export default function AztuPoliklinikasi() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-gray-50 dark:bg-white/5 rounded-[18px] p-10 border border-gray-100 dark:border-white/10"
+              className="bg-gray-50 dark:bg-white/5 rounded-[1.75rem] p-10 border border-gray-100 dark:border-white/10"
             >
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center shrink-0">
@@ -439,7 +439,7 @@ export default function AztuPoliklinikasi() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.05 }}
-                  className={`relative overflow-hidden rounded-[18px] shadow-lg group ${
+                  className={`relative overflow-hidden rounded-[1.25rem] shadow-lg group ${
                     i === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-square"
                   }`}
                 >

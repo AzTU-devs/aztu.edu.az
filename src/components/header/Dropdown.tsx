@@ -19,7 +19,7 @@ export default function Dropdown({ header, onClose }: Props) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-      className="absolute inset-x-0 top-full w-full bg-white dark:bg-[#101733] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] dark:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] border-t border-[#1a2355]/20 dark:border-[#ee7c7e]/15 z-40 overflow-y-auto max-h-[calc(100vh-100px)]"
+      className="absolute inset-x-0 top-full w-full bg-white dark:bg-[#0b1330] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] dark:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] border-t border-[#1a2355]/20 dark:border-[#ee7c7e]/15 z-40 overflow-y-auto max-h-[calc(100vh-100px)]"
     >
       {/* BACKGROUND DECORATIONS */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -58,7 +58,7 @@ export default function Dropdown({ header, onClose }: Props) {
       <div className="relative z-10 flex items-stretch px-[40px] md:px-[60px] xl:px-[80px] py-12 max-w-[1800px] mx-auto gap-10 min-h-[600px]">
         
         {/* LEFT VISUAL: The Immersive Banner */}
-        <div className="hidden lg:block w-[340px] xl:w-[440px] flex-shrink-0 relative rounded-[18px] overflow-hidden shadow-2xl group/banner ring-1 ring-black/5 dark:ring-white/10">
+        <div className="hidden lg:block w-[340px] xl:w-[440px] flex-shrink-0 relative rounded-[2rem] overflow-hidden shadow-2xl group/banner ring-1 ring-black/5 dark:ring-white/10">
             <Image
                 src={AzTUBg}
                 alt="AzTU"
@@ -78,7 +78,7 @@ export default function Dropdown({ header, onClose }: Props) {
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 mb-6 shadow-xl">
                         <div className="w-2 h-2 rounded-full bg-[#ee7c7e] shadow-[0_0_10px_#ee7c7e]" />
-                        <span className="text-white text-[10px] font-black uppercase tracking-[0.15em]">
+                        <span className="text-white text-[10px] font-black uppercase tracking-[0.4em]">
                             Global Leader
                         </span>
                     </div>
@@ -95,7 +95,7 @@ export default function Dropdown({ header, onClose }: Props) {
         {/* RIGHT CONTENT: High-Density Card Grid */}
         <div className="flex-1 py-2 relative">
             {/* Background Content Panel */}
-            <div className="absolute inset-0 bg-gray-50/40 dark:bg-white/[0.01] rounded-[18px] -m-6 pointer-events-none" />
+            <div className="absolute inset-0 bg-gray-50/40 dark:bg-white/[0.01] rounded-[2rem] -m-6 pointer-events-none" />
             
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
                 {header.items.map((item, idx) => (
@@ -104,7 +104,7 @@ export default function Dropdown({ header, onClose }: Props) {
                         initial={{ opacity: 0, scale: 0.98 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: idx * 0.05 + 0.2, duration: 0.5 }}
-                        className="group/item flex flex-col bg-white dark:bg-white/5 hover:bg-white dark:hover:bg-white/[0.08] p-8 rounded-[18px] border border-[#1a2355]/20 dark:border-[#ee7c7e]/15 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/20 transition-all duration-500"
+                        className="group/item flex flex-col bg-white dark:bg-white/5 hover:bg-white dark:hover:bg-white/[0.08] p-8 rounded-[1.75rem] border border-[#1a2355]/20 dark:border-[#ee7c7e]/15 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/20 transition-all duration-500"
                     >
                         {/* Category Header */}
                         <div className="relative mb-6">
@@ -114,12 +114,12 @@ export default function Dropdown({ header, onClose }: Props) {
                                     onClick={onClose}
                                     className="inline-flex items-center group/title"
                                 >
-                                    <span className="text-[13px] font-black uppercase tracking-[0.13em] text-[#1a2355] dark:text-blue-300 group-hover/title:text-[#ee7c7e] transition-colors duration-300">
+                                    <span className="text-[13px] font-black uppercase tracking-[0.25em] text-[#1a2355] dark:text-blue-300 group-hover/title:text-[#ee7c7e] transition-colors duration-300">
                                         {item.title}
                                     </span>
                                 </Link>
                             ) : (
-                                <span className="text-[13px] font-black uppercase tracking-[0.13em] text-[#1a2355]/30 dark:text-white/20">
+                                <span className="text-[13px] font-black uppercase tracking-[0.25em] text-[#1a2355]/30 dark:text-white/20">
                                     {item.title}
                                 </span>
                             )}

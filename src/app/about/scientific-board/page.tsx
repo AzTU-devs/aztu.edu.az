@@ -32,7 +32,7 @@ function HomeStyleSection({
     return (
         <section
             ref={ref}
-            className={`relative px-4 md:px-10 lg:px-20 py-24 ${dark ? 'bg-[#0b1330]' : 'bg-white dark:bg-[#101733]'} overflow-hidden transition-colors duration-500`}
+            className={`relative px-4 md:px-10 lg:px-20 py-24 ${dark ? 'bg-[#0b1330]' : 'bg-white dark:bg-[#0b1330]'} overflow-hidden transition-colors duration-500`}
         >
             {/* STUNNING BACKGROUND ELEMENTS */}
             <div className="absolute inset-0 pointer-events-none">
@@ -62,7 +62,7 @@ function HomeStyleSection({
                     >
                         <div className={`inline-flex items-center gap-3 px-4 py-2 rounded-2xl ${dark ? 'bg-white/5 border-white/10' : 'bg-gray-50 dark:bg-white/5 border-gray-100 dark:border-white/10'} border mb-6 shadow-sm`}>
                             <div className="w-2 h-2 rounded-full bg-[#ee7c7e] animate-pulse shadow-[0_0_8px_#ee7c7e]" />
-                            <span className={`${dark ? 'text-white' : 'text-[#1a2355] dark:text-white'} text-[11px] font-black uppercase tracking-[0.15em]`}>
+                            <span className={`${dark ? 'text-white' : 'text-[#1a2355] dark:text-white'} text-[11px] font-black uppercase tracking-[0.4em]`}>
                                 {badge}
                             </span>
                         </div>
@@ -114,7 +114,7 @@ export default function ScientificBoardPage() {
                 accentTitle={lang === 'az' ? 'Haqqında' : 'Board'}
                 watermark="Board"
             >
-                <div className="p-8 md:p-12 rounded-[18px] bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5 shadow-2xl">
+                <div className="p-8 md:p-12 rounded-[2rem] bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5 shadow-2xl">
                     <p className="text-gray-600 dark:text-gray-400 text-xl leading-relaxed italic">
                         &quot;{data.aboutText}&quot;
                     </p>
@@ -137,7 +137,7 @@ export default function ScientificBoardPage() {
                         <div className="overflow-x-auto rounded-2xl border border-[#1a2355]/15 dark:border-white/10 shadow-xl bg-[#0b1330] backdrop-blur-xl">
                             <table className="w-full text-left border-collapse">
                                 <thead>
-                                    <tr className="bg-white/10 text-white uppercase text-[10px] font-black tracking-[0.12em]">
+                                    <tr className="bg-white/10 text-white uppercase text-[10px] font-black tracking-[0.2em]">
                                         {data.scientificCouncil.headers.map((h, i) => (
                                             <th key={i} className="px-4 py-3 border-b border-white/10">{h}</th>
                                         ))}
@@ -200,7 +200,7 @@ export default function ScientificBoardPage() {
                         <div className="relative z-10">
                             <div className="inline-flex items-center gap-3 px-3 py-1.5 rounded-xl bg-white/10 border border-white/10 mb-4">
                                 <div className="w-2 h-2 rounded-full bg-[#ee7c7e] animate-pulse" />
-                                <span className="text-white text-[10px] font-black uppercase tracking-[0.14em]">{data.digitalCouncil.secretariat.title}</span>
+                                <span className="text-white text-[10px] font-black uppercase tracking-[0.3em]">{data.digitalCouncil.secretariat.title}</span>
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {data.digitalCouncil.secretariat.members.map((member, i) => (
@@ -227,11 +227,11 @@ export default function ScientificBoardPage() {
             </HomeStyleSection>
 
             {/* MORE IN THIS SECTION - Home Style Links */}
-            <section className="px-4 md:px-10 lg:px-20 py-24 bg-gray-50 dark:bg-[#101733]/50 border-t border-gray-100 dark:border-white/5">
+            <section className="px-4 md:px-10 lg:px-20 py-24 bg-gray-50 dark:bg-[#0b1330]/50 border-t border-gray-100 dark:border-white/5">
                 <div className="max-w-[1600px] mx-auto">
                     <div className="flex items-center gap-6 mb-16">
                         <div className="w-2 h-12 bg-[#ee7c7e] rounded-full" />
-                        <h2 className="text-3xl font-black text-[#1a2355] dark:text-white tracking-tighter">
+                        <h2 className="text-3xl font-black text-[#1a2355] dark:text-white uppercase tracking-tighter">
                             {t.common.moreInSection}
                         </h2>
                     </div>
@@ -239,7 +239,7 @@ export default function ScientificBoardPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         {data.related.map((link, i) => (
                             <Link key={i} href={link.href} className="group">
-                                <div className="relative flex items-center justify-between p-8 bg-white dark:bg-white/5 rounded-[18px] border border-gray-100 dark:border-white/5 transition-all duration-500 hover:bg-[#1a2355] hover:border-[#1a2355] group-hover:shadow-[0_30px_60px_-15px_rgba(26,35,85,0.3)]">
+                                <div className="relative flex items-center justify-between p-8 bg-white dark:bg-white/5 rounded-[1.75rem] border border-gray-100 dark:border-white/5 transition-all duration-500 hover:bg-[#1a2355] hover:border-[#1a2355] group-hover:shadow-[0_30px_60px_-15px_rgba(26,35,85,0.3)]">
                                     <div className="flex items-center gap-5">
                                         <div className="w-12 h-12 rounded-2xl bg-gray-50 dark:bg-white/5 flex items-center justify-center text-[#1a2355] dark:text-white group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-500">
                                             {i === 0 ? <SchoolIcon sx={{ fontSize: 24 }} /> : i === 1 ? <GroupsIcon sx={{ fontSize: 24 }} /> : <SettingsIcon sx={{ fontSize: 24 }} />}

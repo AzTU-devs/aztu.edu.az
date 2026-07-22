@@ -79,7 +79,7 @@ export default function KtsSidebar() {
 
   return (
     <div className="sticky top-28 space-y-4">
-      <div className="bg-white dark:bg-[#161f42] rounded-[22px] border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/10 overflow-hidden shadow-xl">
+      <div className="bg-white dark:bg-[#0d1b3e] rounded-[1.5rem] border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/10 overflow-hidden shadow-xl">
         <div className="px-6 py-5 border-b border-[#1a2355]/30 dark:border-white/10">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 bg-[#ee7c7e] rounded-xl flex items-center justify-center shrink-0">
@@ -117,7 +117,7 @@ export default function KtsSidebar() {
         </nav>
       </div>
 
-      <div className="bg-gradient-to-br from-[#1a2355] to-[#0b1330] rounded-[22px] p-6 text-white shadow-xl">
+      <div className="bg-gradient-to-br from-[#1a2355] to-[#0b1330] rounded-[1.5rem] p-6 text-white shadow-xl">
         <div className="flex items-center gap-2 mb-4">
           <div className="w-2 h-2 rounded-full bg-[#ee7c7e] animate-pulse" />
           <h4 className="font-black text-xs uppercase tracking-widest text-[#ee7c7e]">

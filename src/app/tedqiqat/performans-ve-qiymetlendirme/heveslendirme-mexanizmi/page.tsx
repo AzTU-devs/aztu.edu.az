@@ -33,7 +33,7 @@ export default function IncentiveMechanismPage() {
     const y = useTransform(scrollY, [0, 500], [0, 200]);
 
     return (
-        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-[#fafafa] dark:bg-[#0b1330] selection:bg-[#ee7c7e]/30">
 
             {/* HERO BANNER */}
             <section ref={bannerRef} className="relative h-[80vh] min-h-[600px] w-full flex items-center overflow-hidden bg-black">
@@ -63,7 +63,7 @@ export default function IncentiveMechanismPage() {
                         <motion.nav
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="flex items-center gap-4 text-white/40 text-[10px] font-black uppercase tracking-[0.15em] mb-12"
+                            className="flex items-center gap-4 text-white/40 text-[10px] font-black uppercase tracking-[0.4em] mb-12"
                         >
                             <Link href="/" className="hover:text-[#ee7c7e] transition-colors flex items-center gap-2 group">
                                 <HomeIcon sx={{ fontSize: 14 }} className="group-hover:scale-110 transition-transform" />
@@ -82,7 +82,7 @@ export default function IncentiveMechanismPage() {
                         >
                             <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 mb-8 shadow-2xl">
                                 <div className="w-2.5 h-2.5 rounded-full bg-[#ee7c7e] shadow-[0_0_12px_#ee7c7e] animate-pulse" />
-                                <span className="text-white text-[12px] font-black uppercase tracking-[0.16em]">
+                                <span className="text-white text-[12px] font-black uppercase tracking-[0.5em]">
                                     {p.eyebrow}
                                 </span>
                             </div>
@@ -130,11 +130,11 @@ export default function IncentiveMechanismPage() {
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="lg:col-span-2 relative p-10 md:p-16 rounded-[18px] bg-[#1a2355] dark:bg-white/[0.02] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.2)] overflow-hidden group"
+                            className="lg:col-span-2 relative p-10 md:p-16 rounded-[2rem] bg-[#1a2355] dark:bg-white/[0.02] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.2)] overflow-hidden group"
                         >
                             <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                             <div className="relative z-10">
-                                <h2 className="text-white/40 text-xs font-black uppercase tracking-[0.16em] mb-8">{p.aboutLabel}</h2>
+                                <h2 className="text-white/40 text-xs font-black uppercase tracking-[0.5em] mb-8">{p.aboutLabel}</h2>
                                 <p className="text-white text-xl md:text-3xl font-black leading-snug tracking-tight">
                                     {p.intro}
                                 </p>
@@ -145,12 +145,12 @@ export default function IncentiveMechanismPage() {
                             initial={{ opacity: 0, x: 30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="relative p-10 rounded-[18px] bg-[#ee7c7e] flex flex-col items-center justify-center text-center shadow-2xl group hover:scale-[1.02] transition-transform duration-500"
+                            className="relative p-10 rounded-[2rem] bg-[#ee7c7e] flex flex-col items-center justify-center text-center shadow-2xl group hover:scale-[1.02] transition-transform duration-500"
                         >
                             <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                 <LaunchIcon className="text-white" sx={{ fontSize: 40 }} />
                             </div>
-                            <h3 className="text-white text-2xl font-black mb-6 leading-tight tracking-tighter">
+                            <h3 className="text-white text-2xl font-black mb-6 leading-tight uppercase tracking-tighter">
                                 {p.portalTitle}
                             </h3>
                             <Link
@@ -169,7 +169,7 @@ export default function IncentiveMechanismPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-                        className="relative p-8 md:p-14 rounded-[18px] bg-white dark:bg-white/5 backdrop-blur-xl border border-gray-100 dark:border-white/10 shadow-2xl overflow-hidden"
+                        className="relative p-8 md:p-14 rounded-[1.75rem] bg-white dark:bg-white/5 backdrop-blur-xl border border-gray-100 dark:border-white/10 shadow-2xl overflow-hidden"
                     >
                         <div className="absolute top-0 left-0 w-1.5 h-full bg-[#ee7c7e]" />
                         <div className="flex items-center gap-4 mb-10">

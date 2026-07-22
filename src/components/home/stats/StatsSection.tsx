@@ -68,29 +68,37 @@ function StatCard({ stat, index, isInView }: { stat: Stat; index: number; isInVi
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1], delay: 0.05 + index * 0.05 }}
-            className="group relative w-full flex flex-col items-center text-center px-5 py-8"
+            transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1], delay: 0.1 + index * 0.05 }}
+            className="group relative w-full flex flex-col items-center p-6 lg:p-8 rounded-[1.5rem] bg-white/5 backdrop-blur-sm border border-white/5 hover:bg-white/10 hover:border-[#ee7c7e]/30 transition-all duration-500 shadow-xl"
         >
+            {/* Animated hover highlight */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            
             {/* Icon */}
-            <div className="mb-5 w-11 h-11 rounded-full border border-[var(--line-strong)] flex items-center justify-center transition-colors duration-500 group-hover:border-[#ee7c7e]/40 group-hover:bg-[#ee7c7e]/5">
-                <Icon sx={{ fontSize: 20 }} className="text-[var(--ink-subtle)] group-hover:text-[#ee7c7e] transition-colors duration-500" />
+            <div className="relative z-10 mb-6 w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-inner">
+                <Icon sx={{ fontSize: 32, color: "rgba(255,255,255,0.9)" }} className="group-hover:text-[#ee7c7e] transition-colors" />
             </div>
 
             {/* Counter */}
-            <div className="flex items-baseline justify-center gap-0.5 mb-3 whitespace-nowrap">
-                <span className="text-4xl lg:text-[2.75rem] font-semibold text-[var(--ink)] leading-none tabular-nums tracking-[-0.04em]">
+            <div className="relative z-10 flex items-baseline justify-center gap-1 mb-2 whitespace-nowrap">
+                <span className="text-4xl md:text-5xl font-black text-white leading-none tabular-nums tracking-tighter">
                     {count.toLocaleString()}
                 </span>
-                <span className="text-xl font-semibold text-[#ee7c7e] leading-none">
+                <span className="text-xl md:text-2xl font-black text-[#ee7c7e] leading-none">
                     {stat.suffix}
                 </span>
             </div>
 
             {/* Labels */}
-            <p className="text-[var(--ink)] text-[13px] font-semibold leading-snug mb-1.5">{stat.label}</p>
-            <p className="text-[var(--ink-subtle)] text-[11px] font-medium leading-snug">{stat.sublabel}</p>
+            <div className="relative z-10 text-center">
+                <p className="text-white text-sm font-black uppercase tracking-[0.1em] mb-1">{stat.label}</p>
+                <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest">{stat.sublabel}</p>
+            </div>
+
+            {/* Decorative bottom line */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#ee7c7e] group-hover:w-1/2 transition-all duration-500" />
         </motion.div>
     );
 }
@@ -109,43 +117,66 @@ export default function StatsSection() {
     return (
         <section
             ref={sectionRef}
-            className="relative section-padding"
+            className="relative bg-[#0b1330] overflow-hidden py-24"
         >
-            <div className="shell !px-0">
+            {/* BACKGROUND ELEMENTS */}
+            <div className="absolute inset-0 pointer-events-none">
+                {/* Dotted Pattern */}
+                <div className="absolute inset-0 opacity-[0.05]"
+                    style={{
+                        backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+                        backgroundSize: "40px 40px",
+                    }}
+                />
+                
+                {/* Glow Orbs */}
+                <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[100%] bg-[#1a2355] blur-[150px] rounded-full opacity-50" />
+                <div className="absolute bottom-[-20%] right-[-10%] w-[40%] h-[80%] bg-[#ee7c7e]/10 blur-[120px] rounded-full" />
+                
+                {/* Brand Accent */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[300px] font-black text-white/[0.01] select-none tracking-tighter">
+                    AZTU
+                </div>
+            </div>
+
+            <div className="relative z-10 max-w-[1600px] mx-auto px-[40px] md:px-[80px] xl:px-[120px]">
                 {/* Section Header */}
-                <div className="mb-14 max-w-3xl">
+                <div className="mb-20 text-center">
                     <motion.div
-                        initial={{ opacity: 0, y: 12 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6 }}
-                        className="flex items-center gap-3 mb-5"
+                        className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-white/5 border border-white/10 mb-6"
                     >
-                        <span className="w-6 h-px bg-[#ee7c7e]" />
-                        <span className="eyebrow">{t.stats.sectionLabel}</span>
+                        <div className="w-2 h-2 rounded-full bg-[#ee7c7e] animate-pulse" />
+                        <span className="text-white text-[11px] font-black uppercase tracking-[0.4em]">
+                            {t.stats.sectionLabel}
+                        </span>
                     </motion.div>
-
+                    
                     <motion.h2
-                        initial={{ opacity: 0, y: 12 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.6, delay: 0.08 }}
-                        className="section-title"
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        className="text-4xl md:text-6xl font-black text-white leading-tight tracking-tighter"
                     >
                         {t.stats.sectionTitle}
                     </motion.h2>
                 </div>
 
-                {/* Stats grid — hairline-divided cells on the white canvas */}
-                <div className="surface-card grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 overflow-hidden !p-0">
+                {/* Stats Grid — all items in one row */}
+                <div className="flex flex-wrap justify-center gap-4 lg:gap-6">
                     {stats.map((stat, i) => (
-                        <div
-                            key={i}
-                            className="border-r border-b border-[var(--line)] flex -mr-px -mb-px"
-                        >
+                        <div key={i} className="basis-[calc(50%-0.5rem)] sm:basis-[calc(33.333%-0.75rem)] md:basis-[calc(25%-0.75rem)] lg:basis-[calc(14.2857%-1.286rem)] min-w-[180px] flex">
                             <StatCard stat={stat} index={i} isInView={isInView} />
                         </div>
                     ))}
                 </div>
             </div>
+
+            {/* Subtle top/bottom glow borders */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#ee7c7e]/20 to-transparent" />
         </section>
     );
 }
