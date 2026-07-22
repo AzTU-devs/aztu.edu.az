@@ -270,12 +270,12 @@ export default function FAQPage() {
                                     {[0, 1, 2].map((i) => (
                                         <div
                                             key={i}
-                                            className="h-40 rounded-[12px] bg-[#1a2355]/5 dark:bg-white/5 animate-pulse"
+                                            className="h-40 rounded-[22px] bg-[#1a2355]/5 dark:bg-white/5 animate-pulse"
                                         />
                                     ))}
                                 </div>
                             ) : feedback.length === 0 ? (
-                                <div className="rounded-[12px] border-2 border-dashed border-[#1a2355]/15 dark:border-white/10 p-10 text-center text-[#1a2355]/50 dark:text-white/40 font-medium">
+                                <div className="rounded-[22px] border-2 border-dashed border-[#1a2355]/15 dark:border-white/10 p-10 text-center text-[#1a2355]/50 dark:text-white/40 font-medium">
                                     {t.youSaidWeDidEmpty}
                                 </div>
                             ) : (
@@ -351,7 +351,7 @@ function FeedbackCard({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.05, ease: [0.23, 1, 0.32, 1] }}
-            className="overflow-hidden rounded-[12px] border-2 border-[#1a2355]/15 dark:border-[#ee7c7e]/20 bg-white dark:bg-slate-900 shadow-lg shadow-[#1a2355]/5"
+            className="overflow-hidden rounded-[22px] border-2 border-[#1a2355]/15 dark:border-[#ee7c7e]/20 bg-white dark:bg-[#101733] shadow-lg shadow-[#1a2355]/5"
         >
             <div className="p-7 border-b border-[#1a2355]/10 dark:border-white/5">
                 <div className="flex items-center gap-3 mb-3">
@@ -403,9 +403,9 @@ function FAQAccordion({
     onClick: () => void;
 }) {
     return (
-        <div className={`overflow-hidden rounded-[12px] border-2 transition-all duration-500 ${
+        <div className={`overflow-hidden rounded-[22px] border-2 transition-all duration-500 ${
             isOpen 
-            ? "bg-white dark:bg-slate-900 border-[#ee7c7e] shadow-2xl shadow-[#ee7c7e]/10 scale-[1.02]" 
+            ? "bg-white dark:bg-[#101733] border-[#ee7c7e] shadow-2xl shadow-[#ee7c7e]/10 scale-[1.02]" 
             : "bg-white/50 dark:bg-slate-900/50 border-[#1a2355]/25 dark:border-[#ee7c7e]/20 hover:border-[#ee7c7e]/40"
         }`}>
             <button

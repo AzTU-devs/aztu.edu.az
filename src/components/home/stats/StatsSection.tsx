@@ -74,13 +74,13 @@ function StatCard({ stat, index, isInView }: { stat: Stat; index: number; isInVi
             className="group relative w-full flex flex-col items-center text-center px-5 py-8"
         >
             {/* Icon */}
-            <div className="mb-5 w-11 h-11 rounded-full border border-[#1a2355]/10 flex items-center justify-center transition-colors duration-500 group-hover:border-[#ee7c7e]/40 group-hover:bg-[#ee7c7e]/5">
-                <Icon sx={{ fontSize: 20 }} className="text-[#1a2355]/60 group-hover:text-[#ee7c7e] transition-colors duration-500" />
+            <div className="mb-5 w-11 h-11 rounded-full border border-[var(--line-strong)] flex items-center justify-center transition-colors duration-500 group-hover:border-[#ee7c7e]/40 group-hover:bg-[#ee7c7e]/5">
+                <Icon sx={{ fontSize: 20 }} className="text-[var(--ink-subtle)] group-hover:text-[#ee7c7e] transition-colors duration-500" />
             </div>
 
             {/* Counter */}
             <div className="flex items-baseline justify-center gap-0.5 mb-3 whitespace-nowrap">
-                <span className="text-4xl lg:text-[2.75rem] font-semibold text-[#10163a] leading-none tabular-nums tracking-[-0.04em]">
+                <span className="text-4xl lg:text-[2.75rem] font-semibold text-[var(--ink)] leading-none tabular-nums tracking-[-0.04em]">
                     {count.toLocaleString()}
                 </span>
                 <span className="text-xl font-semibold text-[#ee7c7e] leading-none">
@@ -89,8 +89,8 @@ function StatCard({ stat, index, isInView }: { stat: Stat; index: number; isInVi
             </div>
 
             {/* Labels */}
-            <p className="text-[#10163a] text-[13px] font-semibold leading-snug mb-1.5">{stat.label}</p>
-            <p className="text-[#8a93ad] text-[11px] font-medium leading-snug">{stat.sublabel}</p>
+            <p className="text-[var(--ink)] text-[13px] font-semibold leading-snug mb-1.5">{stat.label}</p>
+            <p className="text-[var(--ink-subtle)] text-[11px] font-medium leading-snug">{stat.sublabel}</p>
         </motion.div>
     );
 }
@@ -109,7 +109,7 @@ export default function StatsSection() {
     return (
         <section
             ref={sectionRef}
-            className="relative bg-white section-padding"
+            className="relative section-padding"
         >
             <div className="shell !px-0">
                 {/* Section Header */}
@@ -135,11 +135,11 @@ export default function StatsSection() {
                 </div>
 
                 {/* Stats grid — hairline-divided cells on the white canvas */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 border-t border-l border-[#1a2355]/[0.09]">
+                <div className="surface-card grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 overflow-hidden !p-0">
                     {stats.map((stat, i) => (
                         <div
                             key={i}
-                            className="border-r border-b border-[#1a2355]/[0.09] flex"
+                            className="border-r border-b border-[var(--line)] flex -mr-px -mb-px"
                         >
                             <StatCard stat={stat} index={i} isInView={isInView} />
                         </div>

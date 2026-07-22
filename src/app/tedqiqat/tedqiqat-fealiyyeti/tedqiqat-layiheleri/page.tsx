@@ -53,14 +53,14 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: index * 0.1, ease: [0.23, 1, 0.32, 1] }}
-            className="group relative flex flex-col xl:flex-row gap-10 p-8 md:p-12 rounded-[14px] bg-white dark:bg-white/5 backdrop-blur-xl border border-gray-100 dark:border-white/10 hover:border-[#ee7c7e]/30 transition-all duration-500 shadow-2xl overflow-hidden"
+            className="group relative flex flex-col xl:flex-row gap-10 p-8 md:p-12 rounded-[18px] bg-white dark:bg-white/5 backdrop-blur-xl border border-gray-100 dark:border-white/10 hover:border-[#ee7c7e]/30 transition-all duration-500 shadow-2xl overflow-hidden"
         >
             <div className="absolute -inset-24 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-3xl pointer-events-none" />
             
             {/* Image Section - Only show if image exists */}
             {coverUrl && (
                 <div className="xl:w-1/3 flex-shrink-0">
-                    <div className="relative aspect-video xl:aspect-[3/4] rounded-[12px] overflow-hidden bg-gray-100 dark:bg-white/5 border border-gray-100 dark:border-white/10 shadow-xl group-hover:scale-[1.02] transition-transform duration-500">
+                    <div className="relative aspect-video xl:aspect-[3/4] rounded-[22px] overflow-hidden bg-gray-100 dark:bg-white/5 border border-gray-100 dark:border-white/10 shadow-xl group-hover:scale-[1.02] transition-transform duration-500">
                         <Image
                             src={coverUrl}
                             alt={project.name}
@@ -180,7 +180,7 @@ export default function ResearchProjectsPage() {
     }, [lang]);
 
     return (
-        <main className="min-h-screen bg-white dark:bg-[#0b1330] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
             
             {/* FUTURISTIC HERO BANNER */}
             <section ref={bannerRef} className="relative h-[80vh] min-h-[600px] w-full flex items-center overflow-hidden bg-black">
@@ -277,7 +277,7 @@ export default function ResearchProjectsPage() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="relative mb-32 p-10 md:p-16 rounded-[14px] bg-[#1a2355] dark:bg-white/[0.02] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.2)] overflow-hidden text-center group"
+                        className="relative mb-32 p-10 md:p-16 rounded-[18px] bg-[#1a2355] dark:bg-white/[0.02] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.2)] overflow-hidden text-center group"
                     >
                         <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                         <div className="relative z-10 max-w-4xl mx-auto">
@@ -294,11 +294,11 @@ export default function ResearchProjectsPage() {
                             Array.from({ length: 3 }).map((_, i) => (
                                 <div
                                     key={i}
-                                    className="animate-pulse h-72 rounded-[14px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10"
+                                    className="animate-pulse h-72 rounded-[18px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10"
                                 />
                             ))
                         ) : projects.length === 0 ? (
-                            <div className="text-center py-32 rounded-[14px] bg-white dark:bg-white/5 border-2 border-dashed border-gray-100 dark:border-white/10">
+                            <div className="text-center py-32 rounded-[18px] bg-white dark:bg-white/5 border-2 border-dashed border-gray-100 dark:border-white/10">
                                 <AssignmentIcon sx={{ fontSize: 64 }} className="text-[#1a2355] opacity-10 dark:text-white" />
                                 <p className="text-gray-400 font-black uppercase tracking-widest text-sm mt-4">
                                     {lang === "az" ? "Məlumat tapılmadı" : "No data found"}
@@ -329,7 +329,7 @@ export default function ResearchProjectsPage() {
                                 <Link
                                     key={i}
                                     href={link.href}
-                                    className="group relative h-64 rounded-[14px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 p-10 flex flex-col justify-between hover:scale-[1.02] hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                                    className="group relative h-64 rounded-[18px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 p-10 flex flex-col justify-between hover:scale-[1.02] hover:shadow-2xl transition-all duration-500 overflow-hidden"
                                 >
                                     <div 
                                         className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" 

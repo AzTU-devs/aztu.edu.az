@@ -66,7 +66,7 @@ export default function ResearchInstitutesPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-page dark:bg-slate-900 transition-colors pb-20">
+        <main className="min-h-screen bg-page transition-colors pb-20">
             {/* Stunning Page Banner */}
             <div className="relative overflow-hidden bg-[#0b1330] pt-40 pb-20 px-4 md:px-10 lg:px-12 w-full min-h-[400px] flex flex-col justify-end">
                 {/* Video Background */}
@@ -132,11 +132,11 @@ export default function ResearchInstitutesPage() {
                 {loading ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                         {Array.from({ length: 8 }).map((_, i) => (
-                            <div key={i} className="animate-pulse bg-white dark:bg-slate-800 rounded-[14px] shadow-xl border border-gray-100 dark:border-slate-700 p-10 h-64" />
+                            <div key={i} className="animate-pulse bg-white dark:bg-[#161f42] rounded-[18px] shadow-xl border border-gray-100 dark:border-slate-700 p-10 h-64" />
                         ))}
                     </div>
                 ) : institutes.length === 0 ? (
-                    <div className="text-center py-32 bg-white dark:bg-slate-800 rounded-[14px] border-2 border-dashed border-gray-100 dark:border-slate-700 shadow-sm">
+                    <div className="text-center py-32 bg-white dark:bg-[#161f42] rounded-[18px] border-2 border-dashed border-gray-100 dark:border-slate-700 shadow-sm">
                         <ScienceIcon sx={{ fontSize: 64, color: "#1a2355", opacity: 0.1 }} />
                         <p className="text-gray-400 font-black uppercase tracking-widest text-sm mt-4">
                             {t.noContent}
@@ -163,10 +163,10 @@ export default function ResearchInstitutesPage() {
                                 >
                                     <Link
                                         href={path}
-                                        className="group block relative h-full bg-white dark:bg-slate-800 rounded-[14px] shadow-sm hover:shadow-[0_20px_50px_rgba(26,35,85,0.1)] border-2 border-transparent hover:border-[#ee7c7e]/20 p-8 transition-all duration-500 overflow-hidden"
+                                        className="group block relative h-full bg-white dark:bg-[#161f42] rounded-[18px] shadow-sm hover:shadow-[0_20px_50px_rgba(26,35,85,0.1)] border-2 border-transparent hover:border-[#ee7c7e]/20 p-8 transition-all duration-500 overflow-hidden"
                                     >
                                         {/* Decorative Background */}
-                                        <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 dark:bg-slate-700/30 rounded-bl-[2rem] -mr-8 -mt-8 transition-transform group-hover:scale-110" />
+                                        <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 dark:bg-slate-700/30 rounded-bl-[1.5rem] -mr-8 -mt-8 transition-transform group-hover:scale-110" />
                                         
                                         <div className="relative z-10 flex flex-col h-full">
                                             {/* Card Header — the institute logo, falling back to a mark */}

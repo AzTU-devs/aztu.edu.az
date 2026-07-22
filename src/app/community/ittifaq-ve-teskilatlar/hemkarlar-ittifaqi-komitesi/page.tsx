@@ -188,12 +188,12 @@ export default function HemkarlarIttifaqiPage() {
   const p = DATA[lang];
 
   return (
-    <main className="min-h-screen bg-white dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+    <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
       {/* HERO */}
       <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <div className="absolute inset-0 bg-[#0b1330]" />
-          <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[2.5rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
+          <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[1.75rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
           <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: "radial-gradient(white 0.5px, transparent 0.5px)", backgroundSize: "32px 32px" }} />
         </div>
 
@@ -240,7 +240,7 @@ export default function HemkarlarIttifaqiPage() {
         </div>
       </div>
 
-      <div className="px-4 md:px-10 lg:px-20 py-24 space-y-32 bg-white dark:bg-[#0b1330] relative overflow-hidden">
+      <div className="px-4 md:px-10 lg:px-20 py-24 space-y-32 bg-white dark:bg-[#101733] relative overflow-hidden">
         <div className="relative z-10 max-w-[1600px] mx-auto">
 
           {/* ABOUT & CHAIR */}
@@ -342,7 +342,7 @@ export default function HemkarlarIttifaqiPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.07 }}
-                  className="bg-white dark:bg-white/5 rounded-[12px] p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-lg hover:border-[#ee7c7e]/20 transition-all duration-300 group"
+                  className="bg-white dark:bg-white/5 rounded-[22px] p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-lg hover:border-[#ee7c7e]/20 transition-all duration-300 group"
                 >
                   <div className="w-12 h-12 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center mb-5 group-hover:bg-[#ee7c7e]/20 transition-colors">
                     {functionIcons[fn.icon]}
@@ -366,7 +366,7 @@ export default function HemkarlarIttifaqiPage() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-slate-50 dark:bg-white/5 rounded-[14px] p-10 md:p-16 border border-slate-100 dark:border-white/10 mb-32 relative overflow-hidden"
+            className="bg-slate-50 dark:bg-white/5 rounded-[18px] p-10 md:p-16 border border-slate-100 dark:border-white/10 mb-32 relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 p-16 opacity-5 pointer-events-none">
               <GroupsIcon sx={{ fontSize: 200 }} />

@@ -58,7 +58,7 @@ export default function IntellectualPropertyPage() {
     };
 
     return (
-        <main className="min-h-screen bg-white dark:bg-[#0b1330] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
             
             {/* FUTURISTIC HERO BANNER */}
             <section ref={bannerRef} className="relative h-[80vh] min-h-[600px] w-full flex items-center overflow-hidden bg-black">
@@ -155,7 +155,7 @@ export default function IntellectualPropertyPage() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="relative mb-32 p-10 md:p-16 rounded-[14px] bg-[#1a2355] dark:bg-white/[0.02] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.2)] overflow-hidden group"
+                        className="relative mb-32 p-10 md:p-16 rounded-[18px] bg-[#1a2355] dark:bg-white/[0.02] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.2)] overflow-hidden group"
                     >
                         <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                         <div className="relative z-10 max-w-4xl">
@@ -181,7 +181,7 @@ export default function IntellectualPropertyPage() {
                                     <div className="h-px flex-1 bg-gradient-to-r from-[#ee7c7e]/50 to-transparent" />
                                 </div>
 
-                                <div className="overflow-x-auto rounded-[12px] border border-gray-100 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-xl shadow-2xl">
+                                <div className="overflow-x-auto rounded-[22px] border border-gray-100 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-xl shadow-2xl">
                                     <table className="w-full text-left border-collapse">
                                         <thead>
                                             <tr className="bg-[#1a2355] dark:bg-[#ee7c7e] text-white">
@@ -229,7 +229,7 @@ export default function IntellectualPropertyPage() {
                                     initial={{ scale: 0.9, opacity: 0, y: 20 }}
                                     animate={{ scale: 1, opacity: 1, y: 0 }}
                                     exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                                    className="relative w-full max-w-6xl h-full bg-white dark:bg-[#0b1330] rounded-[14px] overflow-hidden flex flex-col shadow-2xl"
+                                    className="relative w-full max-w-6xl h-full bg-white dark:bg-[#101733] rounded-[18px] overflow-hidden flex flex-col shadow-2xl"
                                 >
                                     {/* Modal Header */}
                                     <div className="flex items-center justify-between px-8 py-6 border-b border-gray-100 dark:border-white/10 bg-white/50 dark:bg-white/5 backdrop-blur-md">
@@ -286,7 +286,7 @@ export default function IntellectualPropertyPage() {
                                 <Link
                                     key={i}
                                     href={link.href}
-                                    className="group relative h-64 rounded-[14px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 p-10 flex flex-col justify-between hover:scale-[1.02] hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                                    className="group relative h-64 rounded-[18px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 p-10 flex flex-col justify-between hover:scale-[1.02] hover:shadow-2xl transition-all duration-500 overflow-hidden"
                                 >
                                     <div 
                                         className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" 

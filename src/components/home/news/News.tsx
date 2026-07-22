@@ -74,7 +74,7 @@ export default function News() {
     return (
         <section
             ref={sectionRef}
-            className="relative bg-white section-padding"
+            className="relative section-padding"
         >
             <div className="shell !px-0">
                 {/* Section Header */}
@@ -118,10 +118,10 @@ export default function News() {
                             exit={{ opacity: 0 }}
                             className="flex flex-col lg:flex-row gap-10 animate-pulse"
                         >
-                            <div className="lg:w-[55%] bg-[#1a2355]/[0.04] rounded-[16px] h-[40rem]" />
+                            <div className="lg:w-[55%] bg-[var(--surface-inset)] rounded-[22px] h-[40rem]" />
                             <div className="lg:w-[45%] grid grid-cols-1 sm:grid-cols-2 gap-8">
                                 {[1, 2, 3, 4].map((i) => (
-                                    <div key={i} className="bg-[#1a2355]/[0.04] rounded-[12px] h-72" />
+                                    <div key={i} className="bg-[var(--surface-inset)] rounded-[22px] h-72" />
                                 ))}
                             </div>
                         </motion.div>
@@ -140,7 +140,7 @@ export default function News() {
                             className="lg:w-[55%]"
                         >
                             <Link href={`/news/${newsSlug(featured.news_id, featured.title)}`}>
-                                <div className="surface-card group relative h-full !rounded-[16px] overflow-hidden hover:-translate-y-1">
+                                <div className="surface-card group relative h-full !rounded-[22px] overflow-hidden hover:-translate-y-1">
                                     {/* Image Section */}
                                     <div className="relative h-[25rem] md:h-[32rem] overflow-hidden">
                                         <Image
@@ -202,7 +202,7 @@ export default function News() {
                                         </p>
                                         <div className="flex items-center gap-4 text-[#1a2355] dark:text-[#ee7c7e] font-black uppercase tracking-[0.14em] text-[11px]">
                                             <span>{t.news.readMore}</span>
-                                            <div className="w-12 h-12 rounded-2xl bg-[#1a2355]/5 dark:bg-[#ee7c7e]/10 flex items-center justify-center group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-500 group-hover:shadow-lg group-hover:shadow-[#ee7c7e]/30">
+                                            <div className="w-12 h-12 rounded-2xl bg-[var(--surface-inset)] dark:bg-[#ee7c7e]/10 flex items-center justify-center group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-500 group-hover:shadow-lg group-hover:shadow-[#ee7c7e]/30">
                                                 <ChevronRightIcon sx={{ fontSize: 24 }} className="group-hover:translate-x-1 transition-transform" />
                                             </div>
                                         </div>
@@ -222,7 +222,7 @@ export default function News() {
                                     className="h-full"
                                 >
                                     <Link href={`/news/${newsSlug(item.news_id, item.title)}`}>
-                                        <div className="group h-full flex flex-col bg-white dark:bg-white/5 rounded-[14px] border-2 border-[#1a2355]/5 dark:border-white/5 overflow-hidden transition-all duration-700 hover:shadow-[0_30px_60px_-15px_rgba(26,35,85,0.15)] hover:shadow-[#ee7c7e]/10 hover:border-[#ee7c7e]/20 hover:-translate-y-2">
+                                        <div className="group h-full flex flex-col bg-white dark:bg-white/5 rounded-[18px] border-2 border-[#1a2355]/5 dark:border-white/5 overflow-hidden transition-all duration-700 hover:shadow-[0_30px_60px_-15px_rgba(26,35,85,0.15)] hover:shadow-[#ee7c7e]/10 hover:border-[#ee7c7e]/20 hover:-translate-y-2">
                                             <div className="relative h-56 overflow-hidden">
                                                 <Image
                                                     src={`${item.cover_image}`}

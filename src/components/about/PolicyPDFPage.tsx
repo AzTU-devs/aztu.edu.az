@@ -21,7 +21,7 @@ export default function PolicyPDFPage({ title, subtitle, pdfUrl, downloadFilenam
 
     return (
         <>
-            <main className="min-h-screen bg-page dark:bg-[#0f172a]">
+            <main className="min-h-screen bg-page">
                 <AboutPageBanner
                     eyebrow="Policies & Documents"
                     title={title}
@@ -52,7 +52,7 @@ export default function PolicyPDFPage({ title, subtitle, pdfUrl, downloadFilenam
                             href={pdfUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-white dark:bg-[#1e293b] border border-gray-200 dark:border-slate-700 text-[#1a2355] dark:text-white font-bold px-6 py-3 rounded-xl hover:shadow-md transition-all duration-200"
+                            className="inline-flex items-center gap-2 bg-white dark:bg-[#161f42] border border-gray-200 dark:border-slate-700 text-[#1a2355] dark:text-white font-bold px-6 py-3 rounded-xl hover:shadow-md transition-all duration-200"
                         >
                             <OpenInNewIcon sx={{ fontSize: 18 }} />
                             Open in New Tab
@@ -90,7 +90,7 @@ export default function PolicyPDFPage({ title, subtitle, pdfUrl, downloadFilenam
                                 </div>
                             </SectionBlock>
                         ) : (
-                            <div className="rounded-2xl overflow-hidden border border-gray-200 dark:border-slate-700 shadow-lg bg-white dark:bg-[#1e293b]">
+                            <div className="rounded-2xl overflow-hidden border border-gray-200 dark:border-slate-700 shadow-lg bg-white dark:bg-[#161f42]">
                                 <iframe
                                     src={pdfUrl}
                                     className="w-full"

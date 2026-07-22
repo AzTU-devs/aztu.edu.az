@@ -99,11 +99,11 @@ export default function ProjectsPage() {
                 {loading ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                         {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
-                            <div key={i} className="h-80 rounded-[14px] bg-white/80 dark:bg-slate-800/50 backdrop-blur-xl animate-pulse border-2 border-[#1a2355]/30 dark:border-white/10" />
+                            <div key={i} className="h-80 rounded-[18px] bg-white/80 dark:bg-slate-800/50 backdrop-blur-xl animate-pulse border-2 border-[#1a2355]/30 dark:border-white/10" />
                         ))}
                     </div>
                 ) : projects.length === 0 ? (
-                    <div className="text-center py-40 bg-white/80 dark:bg-slate-800/50 backdrop-blur-xl rounded-[16px] border-2 border-dashed border-[#1a2355]/20 dark:border-white/10 relative z-10">
+                    <div className="text-center py-40 bg-white/80 dark:bg-slate-800/50 backdrop-blur-xl rounded-[22px] border-2 border-dashed border-[#1a2355]/20 dark:border-white/10 relative z-10">
                         <FolderOpenIcon sx={{ fontSize: 80, color: "#1a2355", opacity: 0.1 }} className="mb-6" />
                         <p className="text-gray-400 font-black uppercase tracking-[0.14em] text-sm">
                             {lang === 'az' ? 'Layihə tapılmadı.' : 'No projects found.'}
@@ -123,9 +123,9 @@ export default function ProjectsPage() {
                                     animate="visible"
                                 >
                                     <Link href={`/projects/${project.project_id}`} className="group block h-full">
-                                        <div className="relative h-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[14px] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/30 dark:border-white/5 p-10 transition-all duration-700 overflow-hidden hover:-translate-y-2 hover:border-[#ee7c7e]/30">
+                                        <div className="relative h-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[18px] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/30 dark:border-white/5 p-10 transition-all duration-700 overflow-hidden hover:-translate-y-2 hover:border-[#ee7c7e]/30">
                                             {/* Decorative Background */}
-                                            <div className="absolute top-0 right-0 w-32 h-32 bg-[#1a2355]/5 dark:bg-white/5 rounded-bl-[2rem] -mr-8 -mt-8 transition-transform duration-700 group-hover:scale-110" />
+                                            <div className="absolute top-0 right-0 w-32 h-32 bg-[#1a2355]/5 dark:bg-white/5 rounded-bl-[1.5rem] -mr-8 -mt-8 transition-transform duration-700 group-hover:scale-110" />
                                             <div className={`absolute bottom-0 left-0 w-full h-1.5 bg-gradient-to-r ${color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                                             
                                             <div className="relative z-10 flex flex-col h-full">
@@ -170,7 +170,7 @@ export default function ProjectsPage() {
                             disabled={loadingMore}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="group px-12 py-5 bg-[#1a2355] text-white rounded-[12px] font-black uppercase text-xs tracking-[0.14em] shadow-2xl shadow-blue-900/40 hover:bg-[#ee7c7e] hover:shadow-red-900/40 transition-all duration-500 flex items-center gap-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="group px-12 py-5 bg-[#1a2355] text-white rounded-[22px] font-black uppercase text-xs tracking-[0.14em] shadow-2xl shadow-blue-900/40 hover:bg-[#ee7c7e] hover:shadow-red-900/40 transition-all duration-500 flex items-center gap-4 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {loadingMore ? (
                                 <div className="w-5 h-5 rounded-full border-2 border-white border-t-transparent animate-spin" />

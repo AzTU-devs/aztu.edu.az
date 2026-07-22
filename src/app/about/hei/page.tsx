@@ -28,7 +28,7 @@ export default function HEIPage() {
     const p = t.pages.about.hei;
 
     return (
-        <main className="min-h-screen bg-white dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
             {/* STUNNING HERO SECTION */}
             <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -65,7 +65,7 @@ export default function HEIPage() {
                 </div>
             </div>
 
-            <div className="px-4 md:px-10 lg:px-20 py-24 space-y-32 bg-white dark:bg-[#0b1330] relative overflow-hidden">
+            <div className="px-4 md:px-10 lg:px-20 py-24 space-y-32 bg-white dark:bg-[#101733] relative overflow-hidden">
                 <div className="relative z-10 max-w-[1600px] mx-auto">
                     
                     {/* 1. ABOUT & DIRECTOR */}
@@ -85,7 +85,7 @@ export default function HEIPage() {
                             </div>
 
                             {/* Mission Section */}
-                            <div className="mt-16 p-8 rounded-[14px] bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10">
+                            <div className="mt-16 p-8 rounded-[18px] bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10">
                                 <h3 className="text-2xl font-black text-[#1a2355] dark:text-white mb-6 flex items-center gap-3">
                                     <EngineeringIcon className="text-[#ee7c7e]" />
                                     {p.missionTitle}
@@ -147,7 +147,7 @@ export default function HEIPage() {
                             initial={{ opacity: 0, x: -30 }} 
                             whileInView={{ opacity: 1, x: 0 }} 
                             viewport={{ once: true }}
-                            className="bg-[#1a2355] rounded-[14px] p-10 md:p-14 text-white relative overflow-hidden group"
+                            className="bg-[#1a2355] rounded-[18px] p-10 md:p-14 text-white relative overflow-hidden group"
                         >
                             <div className="absolute top-0 right-0 p-10 opacity-5 group-hover:opacity-10 transition-opacity">
                                 <SchoolIcon sx={{ fontSize: 150 }} />
@@ -183,7 +183,7 @@ export default function HEIPage() {
                             initial={{ opacity: 0, x: 30 }} 
                             whileInView={{ opacity: 1, x: 0 }} 
                             viewport={{ once: true }}
-                            className="bg-white dark:bg-white/5 rounded-[14px] p-10 md:p-14 border border-gray-100 dark:border-white/10 shadow-xl relative overflow-hidden group"
+                            className="bg-white dark:bg-white/5 rounded-[18px] p-10 md:p-14 border border-gray-100 dark:border-white/10 shadow-xl relative overflow-hidden group"
                         >
                             <div className="absolute top-0 right-0 p-10 opacity-5 group-hover:opacity-10 transition-opacity">
                                 <ScienceIcon sx={{ fontSize: 150 }} />
@@ -209,7 +209,7 @@ export default function HEIPage() {
                         initial={{ opacity: 0, y: 30 }} 
                         whileInView={{ opacity: 1, y: 0 }} 
                         viewport={{ once: true }}
-                        className="bg-gray-50 dark:bg-white/5 rounded-[14px] p-10 md:p-16 border border-gray-100 dark:border-white/10 mb-32"
+                        className="bg-gray-50 dark:bg-white/5 rounded-[18px] p-10 md:p-16 border border-gray-100 dark:border-white/10 mb-32"
                     >
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
                             <div className="lg:col-span-7">
@@ -244,14 +244,14 @@ export default function HEIPage() {
                                 </div>
                             </div>
                             <div className="lg:col-span-5 space-y-8">
-                                <div className="p-8 rounded-[12px] bg-[#ee7c7e] text-white shadow-xl shadow-[#ee7c7e]/20">
+                                <div className="p-8 rounded-[22px] bg-[#ee7c7e] text-white shadow-xl shadow-[#ee7c7e]/20">
                                     <h4 className="text-xl font-black mb-4 flex items-center gap-3">
                                         <AssignmentIndIcon />
                                         {lang === "az" ? "Qəbul" : "Admission"}
                                     </h4>
                                     <p className="text-sm leading-relaxed text-white/90">{p.doctoralAdmission}</p>
                                 </div>
-                                <div className="p-8 rounded-[12px] bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10">
+                                <div className="p-8 rounded-[22px] bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10">
                                     <h4 className="text-sm font-black uppercase tracking-widest text-[#1a2355] dark:text-white mb-6">{p.doctoralFormatsTitle}</h4>
                                     <div className="space-y-3">
                                         {p.doctoralFormats.map((format: string) => (
@@ -340,7 +340,7 @@ export default function HEIPage() {
                         </section>
 
                         {/* Management Board */}
-                        <section className="bg-slate-50 dark:bg-white/5 rounded-[16px] p-10 md:p-20 relative overflow-hidden border border-slate-100 dark:border-white/10">
+                        <section className="bg-slate-50 dark:bg-white/5 rounded-[22px] p-10 md:p-20 relative overflow-hidden border border-slate-100 dark:border-white/10">
                             <div className="absolute top-0 right-0 p-20 opacity-5">
                                 <GroupsIcon sx={{ fontSize: 200 }} />
                             </div>
@@ -392,13 +392,13 @@ export default function HEIPage() {
                                     <h4 className="text-xl font-black text-[#1a2355] dark:text-white mb-10 text-center">{p.board.requirementsTitle}</h4>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                         {p.board.requirements.map((req: string, i: number) => (
-                                            <div key={i} className="p-8 rounded-[14px] bg-white dark:bg-white/5 border border-slate-100 dark:border-white/10 text-sm text-gray-500 dark:text-gray-400 leading-relaxed shadow-sm">
+                                            <div key={i} className="p-8 rounded-[18px] bg-white dark:bg-white/5 border border-slate-100 dark:border-white/10 text-sm text-gray-500 dark:text-gray-400 leading-relaxed shadow-sm">
                                                 {req}
                                             </div>
                                         ))}
                                     </div>
                                     <div className="mt-16 text-center">
-                                        <div className="inline-block p-8 rounded-[12px] bg-[#1a2355] text-white">
+                                        <div className="inline-block p-8 rounded-[22px] bg-[#1a2355] text-white">
                                             <p className="text-sm font-bold opacity-60 uppercase tracking-widest mb-2">{p.board.title} {lang === "az" ? "Sədri" : "Chairman"}</p>
                                             <p className="text-xl font-black">{p.board.chairman}</p>
                                         </div>
@@ -439,7 +439,7 @@ export default function HEIPage() {
                         </h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             {p.related.map((link: any) => (
-                                <Link key={link.href} href={link.href} className="group flex items-center justify-between bg-white dark:bg-white/5 p-6 rounded-[10px] border border-gray-100 dark:border-white/10 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl">
+                                <Link key={link.href} href={link.href} className="group flex items-center justify-between bg-white dark:bg-white/5 p-6 rounded-[18px] border border-gray-100 dark:border-white/10 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl">
                                     <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
                                     <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-white/10 flex items-center justify-center group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300">
                                         <ChevronRightIcon sx={{ fontSize: 20 }} className="group-hover:translate-x-1 transition-transform" />

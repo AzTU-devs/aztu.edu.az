@@ -97,7 +97,7 @@ export default function ElaqePage({ params }: Props) {
                         >
                             <Wrapper
                                 {...wrapperProps}
-                                className="group flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-slate-900 dark:hover:border-white/20"
+                                className="group flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-[#101733] dark:hover:border-white/20"
                             >
                                 <span className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${palette.tint}`}>
                                     <Icon sx={{ fontSize: 24 }} />

@@ -28,13 +28,13 @@ export default function PartnerUniversitiesPage() {
     );
 
     return (
-        <main className="min-h-screen bg-white dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
             {/* HERO SECTION */}
             <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48">
                 {/* Background Graphics */}
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                     <div className="absolute inset-0 bg-[#0b1330]" />
-                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[2.5rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
+                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[1.75rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#0b1330] via-[#0b1330]/80 to-transparent hidden lg:block" />
                     <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#ee7c7e]/5 rounded-full blur-3xl" />
                 </div>
@@ -87,12 +87,12 @@ export default function PartnerUniversitiesPage() {
                                 placeholder={lang === 'az' ? "Universitet və ya ölkə axtar..." : "Search by university or country..."}
                                 value={searchQuery}
                                 onChange={(e) => setSearchSearchQuery(e.target.value)}
-                                className="w-full pl-16 pr-8 py-6 bg-white dark:bg-slate-900 rounded-[12px] border-2 border-gray-100 dark:border-slate-800 focus:border-[#ee7c7e] dark:focus:border-[#ee7c7e] outline-none shadow-xl shadow-blue-900/5 transition-all text-gray-700 dark:text-gray-200 font-bold"
+                                className="w-full pl-16 pr-8 py-6 bg-white dark:bg-[#101733] rounded-[22px] border-2 border-gray-100 dark:border-slate-800 focus:border-[#ee7c7e] dark:focus:border-[#ee7c7e] outline-none shadow-xl shadow-blue-900/5 transition-all text-gray-700 dark:text-gray-200 font-bold"
                             />
                         </div>
 
                         {/* Table Container */}
-                        <div className="bg-white dark:bg-slate-900 rounded-[14px] border border-gray-100 dark:border-slate-800 shadow-2xl shadow-blue-900/5 overflow-hidden">
+                        <div className="bg-white dark:bg-[#101733] rounded-[18px] border border-gray-100 dark:border-slate-800 shadow-2xl shadow-blue-900/5 overflow-hidden">
                             <div className="overflow-x-auto">
                                 <table className="w-full text-left border-collapse">
                                     <thead>
@@ -119,7 +119,7 @@ export default function PartnerUniversitiesPage() {
                                                 >
                                                     <td className="px-6 py-6 text-sm font-black text-gray-400 group-hover:text-[#ee7c7e] transition-colors">{uni.id}</td>
                                                     <td className="px-6 py-6">
-                                                        <div className="w-12 h-12 rounded-xl bg-gray-100 dark:bg-slate-800 flex items-center justify-center text-gray-400 group-hover:bg-[#ee7c7e]/10 group-hover:text-[#ee7c7e] transition-all">
+                                                        <div className="w-12 h-12 rounded-xl bg-gray-100 dark:bg-[#161f42] flex items-center justify-center text-gray-400 group-hover:bg-[#ee7c7e]/10 group-hover:text-[#ee7c7e] transition-all">
                                                             <SchoolIcon sx={{ fontSize: 24 }} />
                                                         </div>
                                                     </td>
@@ -150,7 +150,7 @@ export default function PartnerUniversitiesPage() {
                                                                 href={uni.website} 
                                                                 target="_blank" 
                                                                 rel="noopener noreferrer"
-                                                                className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-slate-800 flex items-center justify-center text-gray-400 hover:bg-[#1a2355] hover:text-white transition-all"
+                                                                className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-[#161f42] flex items-center justify-center text-gray-400 hover:bg-[#1a2355] hover:text-white transition-all"
                                                             >
                                                                 <LaunchIcon sx={{ fontSize: 18 }} />
                                                             </a>
@@ -164,7 +164,7 @@ export default function PartnerUniversitiesPage() {
                             </div>
                             {filteredUniversities.length === 0 && (
                                 <div className="py-20 text-center">
-                                    <div className="w-20 h-20 bg-gray-50 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6 text-gray-300">
+                                    <div className="w-20 h-20 bg-gray-50 dark:bg-[#161f42] rounded-full flex items-center justify-center mx-auto mb-6 text-gray-300">
                                         <SearchIcon sx={{ fontSize: 40 }} />
                                     </div>
                                     <p className="text-gray-500 font-bold">No universities found matching your search.</p>
@@ -177,7 +177,7 @@ export default function PartnerUniversitiesPage() {
                     <div className="lg:col-span-3 space-y-8">
                         <div className="sticky top-28 space-y-8">
                             {/* CTA Card */}
-                            <div className="p-10 rounded-[14px] bg-white dark:bg-slate-900 border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/20 shadow-2xl relative overflow-hidden group">
+                            <div className="p-10 rounded-[18px] bg-white dark:bg-[#101733] border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/20 shadow-2xl relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
                                 <div className="relative z-10">
                                     <div className="w-14 h-14 rounded-2xl bg-[#1a2355] text-white flex items-center justify-center mb-8 shadow-xl shadow-blue-900/20">
@@ -205,7 +205,7 @@ export default function PartnerUniversitiesPage() {
                                         <Link 
                                             key={link.href} 
                                             href={link.href}
-                                            className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[10px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
+                                            className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[18px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
                                         >
                                             <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
                                             <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-slate-700 flex items-center justify-center group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300">

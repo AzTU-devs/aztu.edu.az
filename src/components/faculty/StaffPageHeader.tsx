@@ -30,7 +30,7 @@ export default function StaffPageHeader({
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 items-center gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-slate-900 md:p-8 lg:grid-cols-12"
+            className="grid grid-cols-1 items-center gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-[#101733] md:p-8 lg:grid-cols-12"
         >
             <div className={hasStats ? "lg:col-span-8" : "lg:col-span-12"}>
                 <div className="mb-4 flex items-center gap-3">

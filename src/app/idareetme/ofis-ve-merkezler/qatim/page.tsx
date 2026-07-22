@@ -298,7 +298,7 @@ export default function QatimPage() {
   const p = DATA[lang];
 
   return (
-    <main className="min-h-screen bg-white dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+    <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
       {/* ── HERO ───────────────────────────────────────────────────────────── */}
       <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -358,7 +358,7 @@ export default function QatimPage() {
       </div>
 
       {/* ── CONTENT ────────────────────────────────────────────────────────── */}
-      <div className="px-4 md:px-10 lg:px-20 py-24 bg-white dark:bg-[#0b1330] relative overflow-hidden">
+      <div className="px-4 md:px-10 lg:px-20 py-24 bg-white dark:bg-[#101733] relative overflow-hidden">
         <div className="relative z-10 max-w-[1600px] mx-auto space-y-32">
 
           {/* ── 1. About ─────────────────────────────────────────────────── */}
@@ -418,7 +418,7 @@ export default function QatimPage() {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-[#1a2355] rounded-[14px] p-10 md:p-14 text-white relative overflow-hidden"
+            className="bg-[#1a2355] rounded-[18px] p-10 md:p-14 text-white relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
               <AccountBalanceIcon sx={{ fontSize: 200 }} />

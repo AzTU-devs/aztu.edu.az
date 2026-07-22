@@ -141,7 +141,7 @@ export default function FacultiesPage() {
                             initial={{ opacity: 0, y: 14 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
-                            className="lg:col-span-5 relative bg-white dark:bg-slate-900/70 backdrop-blur-xl rounded-[12px] border-2 border-[#1a2355]/15 dark:border-white/10 p-6 shadow-xl overflow-hidden"
+                            className="lg:col-span-5 relative bg-white dark:bg-slate-900/70 backdrop-blur-xl rounded-[22px] border-2 border-[#1a2355]/15 dark:border-white/10 p-6 shadow-xl overflow-hidden"
                         >
                             <div className="absolute -top-16 -right-16 w-48 h-48 bg-[#ee7c7e]/10 blur-3xl rounded-full" />
                             <div className="relative z-10 flex items-center gap-5">
@@ -183,7 +183,7 @@ export default function FacultiesPage() {
                                     value={query}
                                     onChange={(e) => setQuery(e.target.value)}
                                     placeholder={t.searchPlaceholder}
-                                    className="w-full h-full min-h-[88px] pl-16 pr-16 rounded-[12px] bg-white dark:bg-slate-900/70 border-2 border-[#1a2355]/15 dark:border-white/10 text-[#1a2355] dark:text-white placeholder:text-gray-400 dark:placeholder:text-slate-500 text-sm font-bold outline-none focus:border-[#ee7c7e] transition-colors shadow-xl"
+                                    className="w-full h-full min-h-[88px] pl-16 pr-16 rounded-[22px] bg-white dark:bg-slate-900/70 border-2 border-[#1a2355]/15 dark:border-white/10 text-[#1a2355] dark:text-white placeholder:text-gray-400 dark:placeholder:text-slate-500 text-sm font-bold outline-none focus:border-[#ee7c7e] transition-colors shadow-xl"
                                 />
                                 {query && (
                                     <button
@@ -225,12 +225,12 @@ export default function FacultiesPage() {
                         {Array.from({ length: 8 }).map((_, i) => (
                             <div
                                 key={i}
-                                className="animate-pulse bg-white/60 backdrop-blur-xl rounded-[14px] border-2 border-[#1a2355]/10 p-8 h-80"
+                                className="animate-pulse bg-white/60 backdrop-blur-xl rounded-[18px] border-2 border-[#1a2355]/10 p-8 h-80"
                             />
                         ))}
                     </div>
                 ) : faculties.length === 0 ? (
-                    <div className="text-center py-32 bg-white/60 backdrop-blur-3xl rounded-[14px] border-2 border-dashed border-gray-200 shadow-xl relative z-10">
+                    <div className="text-center py-32 bg-white/60 backdrop-blur-3xl rounded-[18px] border-2 border-dashed border-gray-200 shadow-xl relative z-10">
                         <SchoolIcon
                             sx={{ fontSize: 80, color: "#ee7c7e", opacity: 0.2 }}
                             className="mb-6 animate-pulse"
@@ -238,7 +238,7 @@ export default function FacultiesPage() {
                         <p className="text-gray-400 font-black uppercase tracking-[0.14em] text-sm">{t.noContent}</p>
                     </div>
                 ) : filtered.length === 0 ? (
-                    <div className="text-center py-24 bg-white/60 backdrop-blur-3xl rounded-[14px] border-2 border-dashed border-gray-200 shadow-xl relative z-10">
+                    <div className="text-center py-24 bg-white/60 backdrop-blur-3xl rounded-[18px] border-2 border-dashed border-gray-200 shadow-xl relative z-10">
                         <div className="w-16 h-16 rounded-2xl bg-[#1a2355]/5 mx-auto flex items-center justify-center mb-5">
                             <SearchIcon sx={{ fontSize: 32 }} className="text-[#1a2355]/40" />
                         </div>
@@ -277,7 +277,7 @@ export default function FacultiesPage() {
                                 >
                                     <Link
                                         href={aboutLink}
-                                        className={`group relative block h-full rounded-[14px] bg-white dark:bg-slate-900/70 backdrop-blur-xl border-2 border-[#1a2355]/10 dark:border-white/10 p-7 transition-all duration-500 overflow-hidden hover:-translate-y-2 hover:border-transparent hover:shadow-2xl ${palette.glow}`}
+                                        className={`group relative block h-full rounded-[18px] bg-white dark:bg-slate-900/70 backdrop-blur-xl border-2 border-[#1a2355]/10 dark:border-white/10 p-7 transition-all duration-500 overflow-hidden hover:-translate-y-2 hover:border-transparent hover:shadow-2xl ${palette.glow}`}
                                     >
                                         {/* Top color band */}
                                         <div
@@ -341,7 +341,7 @@ export default function FacultiesPage() {
                                                     {t.viewMore}
                                                 </span>
                                                 <div
-                                                    className={`w-11 h-11 rounded-2xl bg-white dark:bg-slate-800 flex items-center justify-center transition-all duration-500 group-hover:bg-gradient-to-br group-hover:${palette.gradient} group-hover:text-white group-hover:translate-x-1 shadow-md border border-gray-100 dark:border-white/10`}
+                                                    className={`w-11 h-11 rounded-2xl bg-white dark:bg-[#161f42] flex items-center justify-center transition-all duration-500 group-hover:bg-gradient-to-br group-hover:${palette.gradient} group-hover:text-white group-hover:translate-x-1 shadow-md border border-gray-100 dark:border-white/10`}
                                                 >
                                                     <ChevronRightIcon sx={{ fontSize: 22 }} />
                                                 </div>

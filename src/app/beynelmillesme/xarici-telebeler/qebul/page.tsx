@@ -19,13 +19,13 @@ export default function ForeignStudentsAdmissionPage() {
     const p = t.pages.internationalization.foreignStudentsAdmission;
 
     return (
-        <main className="min-h-screen bg-page dark:bg-[#0a0c1a] selection:bg-[#ee7c7e]/30 transition-colors duration-500">
+        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30 transition-colors duration-500">
             {/* HERO SECTION */}
             <div className="relative min-h-[70vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
                 {/* Background Refined Graphics */}
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-[#0a0c1a]" />
-                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#111827] to-[#0f172a] rounded-bl-[2.5rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
+                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#111827] to-[#0f172a] rounded-bl-[1.75rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#0a0c1a] via-[#0a0c1a]/60 to-transparent hidden lg:block" />
                     <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#ee7c7e]/5 rounded-full blur-3xl" />
                 </div>
@@ -75,7 +75,7 @@ export default function ForeignStudentsAdmissionPage() {
                                 {p.documentsTitle}
                             </h2>
                             
-                            <div className="bg-white dark:bg-slate-900 rounded-[14px] border border-gray-100 dark:border-slate-800 p-8 lg:p-12 shadow-xl shadow-blue-900/5 transition-all duration-500">
+                            <div className="bg-white dark:bg-[#101733] rounded-[18px] border border-gray-100 dark:border-slate-800 p-8 lg:p-12 shadow-xl shadow-blue-900/5 transition-all duration-500">
                                 <ul className="space-y-6">
                                     {p.documents.map((doc, idx) => (
                                         <motion.li 
@@ -97,7 +97,7 @@ export default function ForeignStudentsAdmissionPage() {
                         </section>
 
                         {/* Application Process */}
-                        <section className="bg-white dark:bg-slate-900 rounded-[14px] border border-gray-100 dark:border-slate-800 p-8 lg:p-12 shadow-xl shadow-blue-900/5">
+                        <section className="bg-white dark:bg-[#101733] rounded-[18px] border border-gray-100 dark:border-slate-800 p-8 lg:p-12 shadow-xl shadow-blue-900/5">
                             <h2 className="text-3xl font-black text-[#1a2355] dark:text-white mb-8 flex items-center gap-4">
                                 <span className="w-2.5 h-10 bg-[#ee7c7e] rounded-full" />
                                 {p.processTitle}
@@ -128,7 +128,7 @@ export default function ForeignStudentsAdmissionPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="bg-[#0a0c1a] rounded-[14px] p-10 text-white relative overflow-hidden group"
+                                className="bg-[#0a0c1a] rounded-[18px] p-10 text-white relative overflow-hidden group"
                             >
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:scale-150 transition-transform duration-700" />
                                 <div className="relative z-10">
@@ -146,7 +146,7 @@ export default function ForeignStudentsAdmissionPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="bg-white dark:bg-slate-900 rounded-[14px] border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/10 p-10 shadow-xl shadow-blue-900/5 group"
+                                className="bg-white dark:bg-[#101733] rounded-[18px] border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/10 p-10 shadow-xl shadow-blue-900/5 group"
                             >
                                 <div className="w-12 h-12 rounded-xl bg-[#1a2355]/5 dark:bg-[#ee7c7e]/10 flex items-center justify-center mb-8">
                                     <LanguageIcon className="text-[#ee7c7e]" />
@@ -159,7 +159,7 @@ export default function ForeignStudentsAdmissionPage() {
                         </div>
 
                         {/* Important Note */}
-                        <section className="bg-amber-50 dark:bg-amber-900/10 rounded-[14px] border border-amber-100 dark:border-amber-900/20 p-8 lg:p-12">
+                        <section className="bg-amber-50 dark:bg-amber-900/10 rounded-[18px] border border-amber-100 dark:border-amber-900/20 p-8 lg:p-12">
                             <h2 className="text-2xl font-black text-amber-800 dark:text-amber-500 mb-6 flex items-center gap-3">
                                 <InfoIcon />
                                 {p.importantNoteTitle}
@@ -174,7 +174,7 @@ export default function ForeignStudentsAdmissionPage() {
                     <div className="lg:col-span-4 space-y-8">
                         <div className="sticky top-28 space-y-8">
                             {/* CTA Card */}
-                            <div className="p-10 rounded-[14px] bg-white dark:bg-slate-900 border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/20 shadow-2xl relative overflow-hidden group">
+                            <div className="p-10 rounded-[18px] bg-white dark:bg-[#101733] border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/20 shadow-2xl relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
                                 <div className="relative z-10">
                                     <div className="w-14 h-14 rounded-2xl bg-[#1a2355] text-white flex items-center justify-center mb-8 shadow-xl shadow-blue-900/20">
@@ -202,7 +202,7 @@ export default function ForeignStudentsAdmissionPage() {
                                         <Link 
                                             key={link.href} 
                                             href={link.href}
-                                            className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[10px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
+                                            className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[18px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
                                         >
                                             <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
                                             <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-slate-700 flex items-center justify-center group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300">

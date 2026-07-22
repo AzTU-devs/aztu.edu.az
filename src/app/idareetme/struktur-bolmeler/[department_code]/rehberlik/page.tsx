@@ -94,7 +94,7 @@ export default function DepartmentLeadershipPage({ params }: Props) {
     return (
         <div className="space-y-10">
             {/* HERO ROW */}
-            <section className="relative overflow-hidden rounded-[12px] bg-white dark:bg-slate-900/60 backdrop-blur-xl border-2 border-[#1a2355]/15 dark:border-white/10 p-5 md:p-8 shadow-xl">
+            <section className="relative overflow-hidden rounded-[22px] bg-white dark:bg-slate-900/60 backdrop-blur-xl border-2 border-[#1a2355]/15 dark:border-white/10 p-5 md:p-8 shadow-xl">
                 <div className="absolute -top-24 -right-24 w-72 h-72 bg-[#ee7c7e]/15 blur-3xl rounded-full pointer-events-none" />
                 <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-blue-500/10 blur-3xl rounded-full pointer-events-none" />
 
@@ -107,8 +107,8 @@ export default function DepartmentLeadershipPage({ params }: Props) {
                             transition={{ duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
                             className="relative max-w-xs lg:max-w-none mx-auto"
                         >
-                            <div className="absolute -top-2 -left-2 w-16 h-16 border-t-[3px] border-l-[3px] border-[#ee7c7e] rounded-tl-[10px] z-20 pointer-events-none" />
-                            <div className="absolute -bottom-2 -right-2 w-16 h-16 border-b-[3px] border-r-[3px] border-[#ee7c7e] rounded-br-[10px] z-20 pointer-events-none" />
+                            <div className="absolute -top-2 -left-2 w-16 h-16 border-t-[3px] border-l-[3px] border-[#ee7c7e] rounded-tl-[18px] z-20 pointer-events-none" />
+                            <div className="absolute -bottom-2 -right-2 w-16 h-16 border-b-[3px] border-r-[3px] border-[#ee7c7e] rounded-br-[18px] z-20 pointer-events-none" />
                             <div className="aspect-[3/4] rounded-2xl overflow-hidden border-4 border-white dark:border-slate-800 shadow-xl bg-gradient-to-br from-[#1a2355] to-[#0f172a] flex items-center justify-center">
                                 {profileImage ? (
                                     /* eslint-disable-next-line @next/next/no-img-element */
@@ -164,14 +164,14 @@ export default function DepartmentLeadershipPage({ params }: Props) {
                                 {director.phone && (
                                     <a
                                         href={`tel:${director.phone}`}
-                                        className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border-2 border-[#1a2355]/15 dark:border-white/10 text-[#1a2355] dark:text-white font-bold text-xs hover:border-[#ee7c7e] hover:text-[#ee7c7e] transition-colors"
+                                        className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white dark:bg-[#161f42] border-2 border-[#1a2355]/15 dark:border-white/10 text-[#1a2355] dark:text-white font-bold text-xs hover:border-[#ee7c7e] hover:text-[#ee7c7e] transition-colors"
                                     >
                                         <PhoneIcon sx={{ fontSize: 14 }} />
                                         {director.phone}
                                     </a>
                                 )}
                                 {director.room_number && (
-                                    <span className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border-2 border-[#1a2355]/15 dark:border-white/10 text-[#1a2355] dark:text-white font-bold text-xs">
+                                    <span className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white dark:bg-[#161f42] border-2 border-[#1a2355]/15 dark:border-white/10 text-[#1a2355] dark:text-white font-bold text-xs">
                                         <LocationOnIcon sx={{ fontSize: 14 }} />
                                         {t.office} {director.room_number}
                                     </span>

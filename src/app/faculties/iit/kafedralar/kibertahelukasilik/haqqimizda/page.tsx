@@ -77,7 +77,7 @@ export default function CafedraHaqqimizdaPage() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
-                className="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 flex flex-col items-center text-center justify-center"
+                className="bg-white dark:bg-[#161f42] p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 flex flex-col items-center text-center justify-center"
               >
                   <span className="text-2xl font-black text-[#1a2355] dark:text-blue-400 mb-1">{stat.value}</span>
                   <span className="text-[10px] uppercase font-bold text-gray-400 tracking-wider leading-tight">{stat.label}</span>

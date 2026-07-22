@@ -19,7 +19,7 @@ export default function TAUPage() {
     const partnerHref = lang === "az" ? "/haqqimizda/terefdas-universitet-ve-elaqeli-institutlar" : "/about/partner-universities-and-related-institutes";
 
     return (
-        <main className="min-h-screen bg-white dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
             {/* STUNNING HERO SECTION - MATCHING HOME/RECTOR STYLE */}
             <div className="relative min-h-[60vh] lg:min-h-[70vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
                 {/* Background Graphics */}
@@ -67,7 +67,7 @@ export default function TAUPage() {
             </div>
 
             {/* CONTENT SECTIONS - MATCHING HOME PAGE PADDING AND STYLE */}
-            <div className="px-4 md:px-10 lg:px-20 py-24 space-y-24 bg-white dark:bg-[#0b1330] relative overflow-hidden">
+            <div className="px-4 md:px-10 lg:px-20 py-24 space-y-24 bg-white dark:bg-[#101733] relative overflow-hidden">
                 {/* Background Decorations for Content Section */}
                 <div className="absolute inset-0 pointer-events-none opacity-40">
                     <div className="absolute top-0 right-0 w-96 h-96 bg-[#1a2355]/5 blur-3xl rounded-full" />
@@ -84,7 +84,7 @@ export default function TAUPage() {
                                 whileInView={{ opacity: 1, y: 0 }} 
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.08 }}
-                                className="bg-gray-50 dark:bg-white/5 p-8 rounded-[12px] border border-gray-100 dark:border-white/10 hover:border-[#ee7c7e]/30 transition-all duration-300 shadow-sm"
+                                className="bg-gray-50 dark:bg-white/5 p-8 rounded-[22px] border border-gray-100 dark:border-white/10 hover:border-[#ee7c7e]/30 transition-all duration-300 shadow-sm"
                             >
                                 <p className="text-3xl font-black text-[#1a2355] dark:text-white mb-1">{f.value}</p>
                                 <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">{f.label}</p>
@@ -119,7 +119,7 @@ export default function TAUPage() {
                                         href={p.websiteUrl} 
                                         target="_blank" 
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-4 bg-[#1a2355] text-white px-8 py-4 rounded-[10px] font-black uppercase tracking-widest text-xs hover:bg-[#ee7c7e] transition-all shadow-xl shadow-[#1a2355]/20 group"
+                                        className="inline-flex items-center gap-4 bg-[#1a2355] text-white px-8 py-4 rounded-[18px] font-black uppercase tracking-widest text-xs hover:bg-[#ee7c7e] transition-all shadow-xl shadow-[#1a2355]/20 group"
                                     >
                                         <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
                                             <LaunchIcon sx={{ fontSize: 18 }} />
@@ -140,7 +140,7 @@ export default function TAUPage() {
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                             {p.related.map((link: any) => (
                                 <Link key={link.href} href={link.href}
-                                    className="group flex items-center justify-between bg-white dark:bg-white/5 p-6 rounded-[10px] border border-gray-100 dark:border-white/10 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl">
+                                    className="group flex items-center justify-between bg-white dark:bg-white/5 p-6 rounded-[18px] border border-gray-100 dark:border-white/10 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl">
                                     <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
                                     <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-white/10 flex items-center justify-center group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300">
                                         <ChevronRightIcon sx={{ fontSize: 20 }} className="group-hover:translate-x-1 transition-transform" />

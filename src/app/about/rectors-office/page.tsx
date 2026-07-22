@@ -221,7 +221,7 @@ export default function RectorsOfficePage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.05 + i * 0.08, duration: 0.5 }}
-                                className="group relative bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl rounded-[12px] p-6 border border-[#1a2355]/15 dark:border-white/10 hover:border-[#ee7c7e]/40 hover:-translate-y-1 transition-all duration-500 overflow-hidden"
+                                className="group relative bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl rounded-[22px] p-6 border border-[#1a2355]/15 dark:border-white/10 hover:border-[#ee7c7e]/40 hover:-translate-y-1 transition-all duration-500 overflow-hidden"
                             >
                                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#ee7c7e]/5 blur-3xl rounded-full group-hover:scale-150 transition-transform duration-700" />
                                 <div className="relative z-10">
@@ -244,7 +244,7 @@ export default function RectorsOfficePage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.05 + responsibilities.length * 0.08, duration: 0.5 }}
-                            className="relative bg-[#1a2355] text-white rounded-[12px] p-6 overflow-hidden"
+                            className="relative bg-[#1a2355] text-white rounded-[22px] p-6 overflow-hidden"
                         >
                             <div className="absolute -top-12 -right-12 w-44 h-44 bg-[#ee7c7e]/30 blur-3xl rounded-full" />
                             <div className="relative z-10 h-full flex flex-col justify-between gap-6">
@@ -301,7 +301,7 @@ export default function RectorsOfficePage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1, duration: 0.6 }}
-                                className="group relative bg-white/85 dark:bg-slate-900/70 backdrop-blur-xl rounded-[12px] border border-[#1a2355]/15 dark:border-white/10 hover:border-[#ee7c7e]/40 hover:shadow-2xl hover:shadow-[#1a2355]/10 transition-all duration-500 overflow-hidden flex flex-col sm:flex-row"
+                                className="group relative bg-white/85 dark:bg-slate-900/70 backdrop-blur-xl rounded-[22px] border border-[#1a2355]/15 dark:border-white/10 hover:border-[#ee7c7e]/40 hover:shadow-2xl hover:shadow-[#1a2355]/10 transition-all duration-500 overflow-hidden flex flex-col sm:flex-row"
                             >
                                 {/* Left: photo */}
                                 <div className="relative w-full sm:w-[40%] aspect-[4/5] sm:aspect-auto bg-gradient-to-br from-[#1a2355] to-[#0f172a] flex items-center justify-center shrink-0 overflow-hidden">
@@ -365,7 +365,7 @@ export default function RectorsOfficePage() {
             {/* OFFICE CONTACT STRIP */}
             <section className="relative px-4 md:px-10 lg:px-20 py-16 z-10">
                 <div className="max-w-[1400px] mx-auto">
-                    <div className="relative bg-[#1a2355] rounded-[14px] p-8 lg:p-12 overflow-hidden text-white">
+                    <div className="relative bg-[#1a2355] rounded-[18px] p-8 lg:p-12 overflow-hidden text-white">
                         <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-[#ee7c7e]/15 blur-[120px] rounded-full" />
                         <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] bg-blue-500/10 blur-[120px] rounded-full" />
 
@@ -433,7 +433,7 @@ export default function RectorsOfficePage() {
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className="group relative flex items-center justify-between bg-white/80 dark:bg-slate-900/50 backdrop-blur-xl p-8 rounded-[12px] border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 hover:border-[#ee7c7e]/40 dark:hover:border-[#ee7c7e]/50 transition-all duration-500 shadow-lg hover:shadow-2xl overflow-hidden"
+                                className="group relative flex items-center justify-between bg-white/80 dark:bg-slate-900/50 backdrop-blur-xl p-8 rounded-[22px] border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 hover:border-[#ee7c7e]/40 dark:hover:border-[#ee7c7e]/50 transition-all duration-500 shadow-lg hover:shadow-2xl overflow-hidden"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/5 via-transparent to-[#1a2355]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 <span className="relative text-[#1a2355] dark:text-white font-black text-base group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>

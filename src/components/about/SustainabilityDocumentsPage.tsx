@@ -92,7 +92,7 @@ export default function SustainabilityDocumentsPage() {
     }, [active]);
 
     return (
-        <main className="min-h-screen bg-page dark:bg-[#0f172a]">
+        <main className="min-h-screen bg-page">
             <AboutPageBanner
                 eyebrow={c.eyebrow}
                 title={c.title}
@@ -132,7 +132,7 @@ export default function SustainabilityDocumentsPage() {
                                 initial={{ opacity: 0, y: 16 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.4, delay: i * 0.06 }}
-                                className="group relative text-left bg-white dark:bg-slate-900 rounded-[12px] border-2 border-[#1a2355]/10 dark:border-white/10 p-7 hover:border-[#ee7c7e] hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 overflow-hidden"
+                                className="group relative text-left bg-white dark:bg-[#101733] rounded-[22px] border-2 border-[#1a2355]/10 dark:border-white/10 p-7 hover:border-[#ee7c7e] hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 overflow-hidden"
                             >
                                 <div className="absolute -top-12 -right-12 w-40 h-40 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
                                 <div className="relative z-10 flex items-start gap-5">
@@ -152,7 +152,7 @@ export default function SustainabilityDocumentsPage() {
                                                 href={url}
                                                 download={doc.file}
                                                 onClick={(e) => e.stopPropagation()}
-                                                className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#1a2355] dark:text-white bg-gray-50 dark:bg-slate-800 hover:bg-[#1a2355] hover:text-white dark:hover:bg-[#ee7c7e] px-3 py-1.5 rounded-lg border border-gray-200 dark:border-slate-700 transition-colors"
+                                                className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#1a2355] dark:text-white bg-gray-50 dark:bg-[#161f42] hover:bg-[#1a2355] hover:text-white dark:hover:bg-[#ee7c7e] px-3 py-1.5 rounded-lg border border-gray-200 dark:border-slate-700 transition-colors"
                                             >
                                                 <DownloadIcon sx={{ fontSize: 12 }} />
                                                 {c.download}
@@ -180,10 +180,10 @@ export default function SustainabilityDocumentsPage() {
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.95, opacity: 0 }}
                             transition={{ type: "spring", damping: 26, stiffness: 240 }}
-                            className="relative w-full max-w-6xl h-[88vh] bg-white dark:bg-slate-900 rounded-[10px] overflow-hidden shadow-2xl flex flex-col"
+                            className="relative w-full max-w-6xl h-[88vh] bg-white dark:bg-[#101733] rounded-[18px] overflow-hidden shadow-2xl flex flex-col"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <div className="flex items-center justify-between gap-4 px-6 py-4 border-b border-gray-100 dark:border-slate-800 bg-white dark:bg-slate-900">
+                            <div className="flex items-center justify-between gap-4 px-6 py-4 border-b border-gray-100 dark:border-slate-800 bg-white dark:bg-[#101733]">
                                 <div className="flex items-center gap-3 min-w-0">
                                     <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
                                         <PictureAsPdfIcon sx={{ fontSize: 22 }} />
@@ -198,7 +198,7 @@ export default function SustainabilityDocumentsPage() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label={c.openNewTab}
-                                        className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-[#1a2355] dark:text-white bg-gray-50 dark:bg-slate-800 hover:bg-[#1a2355] hover:text-white px-2.5 sm:px-3 py-2 rounded-lg transition-colors"
+                                        className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-[#1a2355] dark:text-white bg-gray-50 dark:bg-[#161f42] hover:bg-[#1a2355] hover:text-white px-2.5 sm:px-3 py-2 rounded-lg transition-colors"
                                     >
                                         <OpenInNewIcon sx={{ fontSize: 14 }} />
                                         <span className="hidden sm:inline">{c.openNewTab}</span>
@@ -214,7 +214,7 @@ export default function SustainabilityDocumentsPage() {
                                     <button
                                         type="button"
                                         onClick={() => setActive(null)}
-                                        className="w-9 h-9 rounded-lg bg-gray-100 dark:bg-slate-800 hover:bg-[#1a2355] hover:text-white text-[#1a2355] dark:text-white flex items-center justify-center transition-colors"
+                                        className="w-9 h-9 rounded-lg bg-gray-100 dark:bg-[#161f42] hover:bg-[#1a2355] hover:text-white text-[#1a2355] dark:text-white flex items-center justify-center transition-colors"
                                         aria-label="Close"
                                     >
                                         <CloseIcon sx={{ fontSize: 18 }} />
@@ -223,7 +223,7 @@ export default function SustainabilityDocumentsPage() {
                             </div>
                             <iframe
                                 src={buildUrl(active.file)}
-                                className="flex-1 w-full bg-gray-100 dark:bg-slate-950"
+                                className="flex-1 w-full bg-gray-100 dark:bg-[#070b1a]"
                                 title={lang === "az" ? active.titleAz : active.titleEn}
                             />
                         </motion.div>

@@ -42,7 +42,7 @@ export default function VirtualTourPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-                    className="flex-1 rounded-[12px] md:rounded-[16px] overflow-hidden border border-white/5 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative bg-black"
+                    className="flex-1 rounded-[22px] md:rounded-[22px] overflow-hidden border border-white/5 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative bg-black"
                 >
                     {/* The Virtual Tour Iframe */}
                     <iframe 

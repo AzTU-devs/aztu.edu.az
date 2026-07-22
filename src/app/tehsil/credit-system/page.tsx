@@ -21,7 +21,7 @@ export default function CreditSystemPage() {
     if (!data) return null;
 
     return (
-        <main className="min-h-screen transition-colors duration-500 bg-page dark:bg-[#0a0c1a]">
+        <main className="min-h-screen transition-colors duration-500 bg-page">
              <PageHero
                 title={data.title}
                 description={data.subtitle}
@@ -38,7 +38,7 @@ export default function CreditSystemPage() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mb-20 p-8 md:p-12 rounded-[14px] bg-white dark:bg-slate-800/50 backdrop-blur-md border border-gray-100 dark:border-white/10 shadow-2xl shadow-blue-900/5 flex flex-col md:flex-row items-center justify-between gap-8"
+                    className="mb-20 p-8 md:p-12 rounded-[18px] bg-white dark:bg-slate-800/50 backdrop-blur-md border border-gray-100 dark:border-white/10 shadow-2xl shadow-blue-900/5 flex flex-col md:flex-row items-center justify-between gap-8"
                 >
                     <div className="flex items-center gap-6">
                         <div className="w-16 h-16 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e]">
@@ -57,7 +57,7 @@ export default function CreditSystemPage() {
                         href={data.pdfUrl} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="group flex items-center gap-4 px-10 py-5 bg-[#1a2355] text-white rounded-[12px] font-black uppercase text-[12px] tracking-[0.12em] hover:bg-[#ee7c7e] transition-all duration-500 shadow-2xl shadow-[#1a2355]/20 hover:shadow-[#ee7c7e]/40"
+                        className="group flex items-center gap-4 px-10 py-5 bg-[#1a2355] text-white rounded-[22px] font-black uppercase text-[12px] tracking-[0.12em] hover:bg-[#ee7c7e] transition-all duration-500 shadow-2xl shadow-[#1a2355]/20 hover:shadow-[#ee7c7e]/40"
                     >
                         {lang === 'az' ? 'Sənədi Yüklə' : 'Download Document'}
                         <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-white/20">
@@ -73,7 +73,7 @@ export default function CreditSystemPage() {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
-                            className="flex flex-col h-full bg-white dark:bg-slate-800/40 backdrop-blur-md rounded-[14px] border border-gray-100 dark:border-white/10 p-8 md:p-10 shadow-2xl shadow-blue-900/5 hover:border-[#ee7c7e]/30 transition-all duration-500"
+                            className="flex flex-col h-full bg-white dark:bg-slate-800/40 backdrop-blur-md rounded-[18px] border border-gray-100 dark:border-white/10 p-8 md:p-10 shadow-2xl shadow-blue-900/5 hover:border-[#ee7c7e]/30 transition-all duration-500"
                         >
                             <div className="flex items-center gap-3 mb-8">
                                 <div className="w-1.5 h-8 bg-[#ee7c7e] rounded-full" />
@@ -137,7 +137,7 @@ export default function CreditSystemPage() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="p-10 rounded-[14px] bg-[#1a2355] text-white shadow-2xl relative overflow-hidden group"
+                        className="p-10 rounded-[18px] bg-[#1a2355] text-white shadow-2xl relative overflow-hidden group"
                     >
                          <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:scale-150 transition-transform duration-700" />
                          <SpeedIcon sx={{ fontSize: 48 }} className="text-[#ee7c7e] mb-8 relative z-10" />
@@ -149,7 +149,7 @@ export default function CreditSystemPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="p-10 rounded-[14px] bg-white dark:bg-slate-800/40 border border-gray-100 dark:border-white/10 shadow-2xl relative overflow-hidden group"
+                        className="p-10 rounded-[18px] bg-white dark:bg-slate-800/40 border border-gray-100 dark:border-white/10 shadow-2xl relative overflow-hidden group"
                     >
                          <AutoStoriesIcon sx={{ fontSize: 48 }} className="text-[#ee7c7e] mb-8 relative z-10" />
                          <h4 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tighter mb-4 relative z-10">{lang === 'az' ? 'Keyfiyyət' : 'Quality'}</h4>
@@ -160,7 +160,7 @@ export default function CreditSystemPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="p-10 rounded-[14px] bg-white dark:bg-slate-800/40 border border-gray-100 dark:border-white/10 shadow-2xl relative overflow-hidden group"
+                        className="p-10 rounded-[18px] bg-white dark:bg-slate-800/40 border border-gray-100 dark:border-white/10 shadow-2xl relative overflow-hidden group"
                     >
                          <HistoryEduIcon sx={{ fontSize: 48 }} className="text-[#ee7c7e] mb-8 relative z-10" />
                          <h4 className="text-2xl font-black text-[#1a2355] dark:text-white uppercase tracking-tighter mb-4 relative z-10">{lang === 'az' ? 'Tanınma' : 'Recognition'}</h4>

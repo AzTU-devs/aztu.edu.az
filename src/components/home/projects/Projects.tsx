@@ -44,7 +44,7 @@ export default function Projects() {
     return (
         <section
             ref={sectionRef}
-            className="relative bg-white section-padding"
+            className="relative section-padding"
         >
             <div className="shell !px-0">
                 {/* Section Header */}
@@ -89,7 +89,7 @@ export default function Projects() {
                             className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 animate-pulse"
                         >
                             {[1, 2, 3, 4].map((i) => (
-                                <div key={i} className="bg-gray-100 dark:bg-white/5 rounded-[14px] h-64 border border-gray-100 dark:border-white/5" />
+                                <div key={i} className="bg-gray-100 dark:bg-white/5 rounded-[18px] h-64 border border-gray-100 dark:border-white/5" />
                             ))}
                         </motion.div>
                     )}
@@ -116,10 +116,10 @@ export default function Projects() {
                                         <div className="surface-card group relative h-full flex flex-col p-7 transition-all duration-500 hover:-translate-y-1 overflow-hidden">
                                             {/* Top Interaction */}
                                             <div className="relative z-10 flex items-center justify-between mb-7">
-                                                <div className="w-12 h-12 rounded-[10px] bg-[#1a2355]/[0.04] flex items-center justify-center transition-colors duration-500" style={{ color: variant.accent }}>
+                                                <div className="w-12 h-12 rounded-[18px] bg-[var(--surface-inset)] flex items-center justify-center transition-colors duration-500" style={{ color: variant.accent }}>
                                                     <FolderOpenIcon sx={{ fontSize: 24 }} />
                                                 </div>
-                                                <div className="w-9 h-9 rounded-full border border-[#1a2355]/10 flex items-center justify-center text-[#8a93ad] group-hover:text-white group-hover:bg-[#ee7c7e] group-hover:border-[#ee7c7e] transition-all duration-500">
+                                                <div className="w-9 h-9 rounded-full border border-[var(--line-strong)] flex items-center justify-center text-[var(--ink-subtle)] group-hover:text-white group-hover:bg-[#ee7c7e] group-hover:border-[#ee7c7e] transition-all duration-500">
                                                     <ArrowOutwardIcon sx={{ fontSize: 16 }} />
                                                 </div>
                                             </div>

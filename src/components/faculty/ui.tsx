@@ -70,7 +70,7 @@ export const FACULTY_PALETTES: FacultyPalette[] = [
 
 /** Base surface used across faculty pages. */
 export const cardBase =
-  "rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900 shadow-sm";
+  "rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#101733] shadow-sm";
 
 /* ── Section heading: icon tile + eyebrow + title + optional action ── */
 export function SectionHeading({
@@ -171,7 +171,7 @@ export function SearchBox({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-2xl border border-slate-200 bg-white py-3.5 pl-12 pr-12 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-[#ee7c7e] focus:ring-4 focus:ring-[#ee7c7e]/10 dark:border-white/10 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-500"
+        className="w-full rounded-2xl border border-slate-200 bg-white py-3.5 pl-12 pr-12 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-[#ee7c7e] focus:ring-4 focus:ring-[#ee7c7e]/10 dark:border-white/10 dark:bg-[#101733] dark:text-white dark:placeholder:text-slate-500"
       />
       {value && (
         <button

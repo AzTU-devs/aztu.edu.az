@@ -70,8 +70,10 @@ export default function PageHero({
             >
               <source src={finalVideoSrc} type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-[#0a0c1a]/40" />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0c1a]/20 via-transparent to-[#0a0c1a]/80" />
+            {/* Breadcrumbs and the eyebrow sit high in the frame, where the
+                footage is often brightest — the top stop keeps them legible. */}
+            <div className="absolute inset-0 bg-[#0a0c1a]/45" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0c1a]/75 via-[#0a0c1a]/25 to-[#0a0c1a]/85" />
           </>
         )}
       </div>

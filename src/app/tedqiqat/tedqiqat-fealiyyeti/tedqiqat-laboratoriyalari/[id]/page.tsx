@@ -82,7 +82,7 @@ export default function LaboratoryDetailPage() {
 
     if (loading) {
         return (
-            <main className="min-h-screen bg-page dark:bg-slate-900 flex items-center justify-center">
+            <main className="min-h-screen bg-page flex items-center justify-center">
                 <div className="h-12 w-12 rounded-full border-4 border-[#1a2355]/20 border-t-[#1a2355] animate-spin" />
             </main>
         );
@@ -90,7 +90,7 @@ export default function LaboratoryDetailPage() {
 
     if (!lab) {
         return (
-            <main className="min-h-screen bg-page dark:bg-slate-900 flex flex-col items-center justify-center gap-6 px-4">
+            <main className="min-h-screen bg-page flex flex-col items-center justify-center gap-6 px-4">
                 <ScienceIcon sx={{ fontSize: 64, color: "#1a2355", opacity: 0.15 }} />
                 <p className="text-gray-500 dark:text-slate-400 font-black uppercase tracking-widest text-sm">{t.notFound}</p>
                 <Link href={labsHref} className="text-[#1a2355] dark:text-blue-400 font-bold underline">{t.allLabs}</Link>
@@ -123,7 +123,7 @@ export default function LaboratoryDetailPage() {
     ].filter((r) => r.value);
 
     return (
-        <main className="min-h-screen bg-page dark:bg-slate-900 transition-colors pb-20">
+        <main className="min-h-screen bg-page transition-colors pb-20">
             {/* Header Banner */}
             <div className="relative overflow-hidden bg-[#0b1330] pt-40 pb-20 px-4 md:px-10 lg:px-12 w-full min-h-[400px] flex flex-col justify-end">
                 <div className="absolute inset-0 z-0">
@@ -179,7 +179,7 @@ export default function LaboratoryDetailPage() {
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="bg-white dark:bg-slate-800 rounded-[14px] p-8 md:p-10 shadow-sm border border-gray-100 dark:border-slate-700"
+                                className="bg-white dark:bg-[#161f42] rounded-[18px] p-8 md:p-10 shadow-sm border border-gray-100 dark:border-slate-700"
                             >
                                 <div className="flex items-center gap-4 mb-6">
                                     <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
@@ -199,7 +199,7 @@ export default function LaboratoryDetailPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
-                                className="bg-white dark:bg-slate-800 rounded-[14px] p-8 md:p-10 shadow-sm border border-gray-100 dark:border-slate-700"
+                                className="bg-white dark:bg-[#161f42] rounded-[18px] p-8 md:p-10 shadow-sm border border-gray-100 dark:border-slate-700"
                             >
                                 <div className="flex items-center gap-4 mb-6">
                                     <div className="w-12 h-12 rounded-xl bg-green-50 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
@@ -226,7 +226,7 @@ export default function LaboratoryDetailPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.15 }}
-                                className="bg-white dark:bg-slate-800 rounded-[14px] p-8 md:p-10 shadow-sm border border-gray-100 dark:border-slate-700"
+                                className="bg-white dark:bg-[#161f42] rounded-[18px] p-8 md:p-10 shadow-sm border border-gray-100 dark:border-slate-700"
                             >
                                 <div className="flex items-center gap-4 mb-6">
                                     <div className="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400">
@@ -256,7 +256,7 @@ export default function LaboratoryDetailPage() {
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: 0.2 }}
-                                className="bg-white dark:bg-slate-800 rounded-[14px] p-6 md:p-8 shadow-sm border border-gray-100 dark:border-slate-700"
+                                className="bg-white dark:bg-[#161f42] rounded-[18px] p-6 md:p-8 shadow-sm border border-gray-100 dark:border-slate-700"
                             >
                                 <div className="flex items-center gap-4 mb-6">
                                     <div className="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
@@ -278,7 +278,7 @@ export default function LaboratoryDetailPage() {
                             <motion.div
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                className="bg-[#1a2355] rounded-[14px] p-8 text-white shadow-xl shadow-blue-900/20"
+                                className="bg-[#1a2355] rounded-[18px] p-8 text-white shadow-xl shadow-blue-900/20"
                             >
                                 <div className="flex items-center gap-4 mb-6">
                                     <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
@@ -299,7 +299,7 @@ export default function LaboratoryDetailPage() {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="bg-white dark:bg-slate-800 rounded-[14px] p-8 shadow-sm border border-gray-100 dark:border-slate-700"
+                            className="bg-white dark:bg-[#161f42] rounded-[18px] p-8 shadow-sm border border-gray-100 dark:border-slate-700"
                         >
                             <div className="flex items-center gap-4 mb-6">
                                 <div className="w-10 h-10 rounded-xl bg-red-50 dark:bg-red-900/30 flex items-center justify-center text-red-600 dark:text-red-400">
@@ -333,7 +333,7 @@ export default function LaboratoryDetailPage() {
                         {/* Quick Action */}
                         <Link
                             href={labsHref}
-                            className="flex items-center justify-between bg-white dark:bg-slate-800 rounded-2xl p-6 border border-gray-100 dark:border-slate-700 group hover:bg-gray-50 dark:hover:bg-slate-700 transition-all shadow-sm"
+                            className="flex items-center justify-between bg-white dark:bg-[#161f42] rounded-2xl p-6 border border-gray-100 dark:border-slate-700 group hover:bg-gray-50 dark:hover:bg-slate-700 transition-all shadow-sm"
                         >
                             <span className="font-black uppercase tracking-widest text-xs text-[#1a2355] dark:text-blue-400">
                                 {t.allLabs}

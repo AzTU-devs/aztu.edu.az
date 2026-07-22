@@ -24,7 +24,7 @@ export default function StaticSubPage({ section, item }: Props) {
     const videoSrc = isStudentPage ? studentVideoSrc : (isResearchPage ? "/heroBgVideos/research.mp4" : null);
 
     return (
-        <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden bg-page dark:bg-[#0a0c1a]">
+        <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden bg-page">
             {/* STUNNING BACKGROUND ELEMENTS */}
 
             {/* Dark blue + coral accent blobs for visual depth */}
@@ -49,7 +49,7 @@ export default function StaticSubPage({ section, item }: Props) {
                             whileInView={{ opacity: 1, scale: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
-                            className="bg-white dark:bg-slate-900/40 backdrop-blur-3xl rounded-[14px] border-2 border-[#1a2355]/30 dark:border-white/10 p-10 md:p-16 shadow-2xl shadow-[#1a2355]/15 relative overflow-hidden group hover:border-[#ee7c7e] transition-all duration-500"
+                            className="bg-white dark:bg-slate-900/40 backdrop-blur-3xl rounded-[18px] border-2 border-[#1a2355]/30 dark:border-white/10 p-10 md:p-16 shadow-2xl shadow-[#1a2355]/15 relative overflow-hidden group hover:border-[#ee7c7e] transition-all duration-500"
                         >
                             <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#1a2355] via-[#ee7c7e] to-[#1a2355]" />
                             <div className="absolute top-0 left-0 w-1 h-full bg-[#1a2355]" />
@@ -77,7 +77,7 @@ export default function StaticSubPage({ section, item }: Props) {
                                         <Link
                                             key={other.slug}
                                             href={`${section.basePath}/${other.slug}`}
-                                            className="group relative h-full flex flex-col justify-between p-8 bg-white dark:bg-slate-900/60 backdrop-blur-xl rounded-[14px] border-2 border-[#1a2355]/30 dark:border-white/10 transition-all duration-500 hover:border-[#ee7c7e] hover:bg-[#1a2355] hover:text-white dark:hover:bg-slate-800 hover:shadow-[0_20px_40px_rgba(26,35,85,0.25)] overflow-hidden"
+                                            className="group relative h-full flex flex-col justify-between p-8 bg-white dark:bg-slate-900/60 backdrop-blur-xl rounded-[18px] border-2 border-[#1a2355]/30 dark:border-white/10 transition-all duration-500 hover:border-[#ee7c7e] hover:bg-[#1a2355] hover:text-white dark:hover:bg-slate-800 hover:shadow-[0_20px_40px_rgba(26,35,85,0.25)] overflow-hidden"
                                         >
                                             <div className="absolute top-0 right-0 w-24 h-24 bg-[#ee7c7e]/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:scale-150 transition-transform" />
 
@@ -104,7 +104,7 @@ export default function StaticSubPage({ section, item }: Props) {
                                 initial={{ opacity: 0, x: 20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
-                                className="sticky top-28 p-10 rounded-[14px] bg-[#1a2355] border-2 border-[#1a2355] text-white shadow-2xl shadow-[#1a2355]/30 relative overflow-hidden group hover:border-[#ee7c7e] transition-all duration-500"
+                                className="sticky top-28 p-10 rounded-[18px] bg-[#1a2355] border-2 border-[#1a2355] text-white shadow-2xl shadow-[#1a2355]/30 relative overflow-hidden group hover:border-[#ee7c7e] transition-all duration-500"
                             >
                                 <div className="absolute -top-10 -right-10 w-48 h-48 bg-[#ee7c7e]/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
                                 <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-[#ee7c7e]/10 rounded-full blur-3xl" />

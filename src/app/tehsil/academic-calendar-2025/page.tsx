@@ -19,7 +19,7 @@ export default function AcademicCalendar2025Page() {
     if (!data) return null;
 
     return (
-        <main className="min-h-screen transition-colors duration-500 bg-page dark:bg-[#0a0c1a]">
+        <main className="min-h-screen transition-colors duration-500 bg-page">
             <PageHero
                 title={data.title}
                 description={data.subtitle}
@@ -40,7 +40,7 @@ export default function AcademicCalendar2025Page() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: idx * 0.1 }}
-                            className="bg-white/80 dark:bg-slate-900/40 backdrop-blur-3xl rounded-[16px] p-10 md:p-16 border-2 border-[#ee7c7e]/20 shadow-2xl relative overflow-hidden group hover:border-[#ee7c7e]/50 transition-all duration-500"
+                            className="bg-white/80 dark:bg-slate-900/40 backdrop-blur-3xl rounded-[22px] p-10 md:p-16 border-2 border-[#ee7c7e]/20 shadow-2xl relative overflow-hidden group hover:border-[#ee7c7e]/50 transition-all duration-500"
                         >
                             <div className="absolute top-0 right-0 w-64 h-64 bg-[#ee7c7e]/5 blur-[100px] rounded-full" />
                             
@@ -75,7 +75,7 @@ export default function AcademicCalendar2025Page() {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
-                                className="p-10 rounded-[14px] bg-gray-50 dark:bg-slate-900/60 backdrop-blur-xl border-2 border-transparent dark:border-white/5 shadow-2xl group hover:border-[#ee7c7e]/40 transition-all duration-500"
+                                className="p-10 rounded-[18px] bg-gray-50 dark:bg-slate-900/60 backdrop-blur-xl border-2 border-transparent dark:border-white/5 shadow-2xl group hover:border-[#ee7c7e]/40 transition-all duration-500"
                             >
                                 <div className="w-16 h-16 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e] mb-8 group-hover:bg-[#ee7c7e] group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-lg">
                                     {i === 0 ? <SchoolIcon sx={{ fontSize: 32 }} /> : <InfoIcon sx={{ fontSize: 32 }} />}

@@ -37,7 +37,7 @@ export default function RespondentDistribution() {
   let offset = 0;
 
   return (
-    <div className="w-full rounded-[12px] overflow-hidden border-2 border-[#1a2355]/30 dark:border-white/5 bg-gradient-to-br from-white via-blue-50/40 to-white dark:from-[#0b1632] dark:via-[#0d1b3e] dark:to-[#0b1632] p-6 md:p-8 mb-8">
+    <div className="w-full rounded-[22px] overflow-hidden border-2 border-[#1a2355]/30 dark:border-white/5 bg-gradient-to-br from-white via-blue-50/40 to-white dark:from-[#0b1632] dark:via-[#0d1b3e] dark:to-[#0b1632] p-6 md:p-8 mb-8">
       <div className="mb-6">
         <h3 className="text-lg font-black uppercase tracking-tight text-[#1a2355] dark:text-white">{title}</h3>
         <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -86,7 +86,7 @@ export default function RespondentDistribution() {
         </div>
 
         {/* Legend table */}
-        <div className="md:col-span-3 bg-white/70 dark:bg-[#0b1632]/60 rounded-2xl border border-[#1a2355]/15 dark:border-white/5 overflow-hidden">
+        <div className="md:col-span-3 bg-white/70 dark:bg-[#101733]/60 rounded-2xl border border-[#1a2355]/15 dark:border-white/5 overflow-hidden">
           <div className="grid grid-cols-12 px-4 py-2 text-[10px] font-black uppercase tracking-[0.15em] text-gray-500 dark:text-gray-400 border-b border-[#1a2355]/10 dark:border-white/5">
             <div className="col-span-7">{categoryLabel}</div>
             <div className="col-span-3 text-right">{countLabel}</div>

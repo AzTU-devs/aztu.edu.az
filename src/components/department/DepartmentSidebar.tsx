@@ -67,7 +67,7 @@ export default function DepartmentSidebar({ departmentSlug }: Props) {
     return (
         <nav
             aria-label={lang === "az" ? "Şöbə naviqasiyası" : "Department navigation"}
-            className="relative bg-white dark:bg-slate-900/70 backdrop-blur-xl rounded-[12px] border-2 border-[#1a2355]/10 dark:border-white/10 shadow-xl shadow-[#1a2355]/5 overflow-hidden"
+            className="relative bg-white dark:bg-slate-900/70 backdrop-blur-xl rounded-[22px] border-2 border-[#1a2355]/10 dark:border-white/10 shadow-xl shadow-[#1a2355]/5 overflow-hidden"
         >
             {/* Decorative blur */}
             <div className="absolute -top-12 -right-12 w-40 h-40 bg-[#ee7c7e]/10 blur-3xl rounded-full pointer-events-none" />

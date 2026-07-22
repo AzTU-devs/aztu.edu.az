@@ -128,7 +128,7 @@ export default function ResearchInstituteDetailLayout({ children, params }: Prop
                                 <motion.div 
                                     initial={{ opacity: 0, scale: 0.8 }}
                                     animate={{ opacity: 1, scale: 1 }}
-                                    className="w-32 h-32 md:w-40 md:h-40 rounded-[14px] bg-white p-8 flex items-center justify-center flex-shrink-0 shadow-2xl border-4 border-white/10 z-30"
+                                    className="w-32 h-32 md:w-40 md:h-40 rounded-[18px] bg-white p-8 flex items-center justify-center flex-shrink-0 shadow-2xl border-4 border-white/10 z-30"
                                 >
                                     <img 
                                         src={logoUrl} 
@@ -137,7 +137,7 @@ export default function ResearchInstituteDetailLayout({ children, params }: Prop
                                     />
                                 </motion.div>
                             ) : loading ? (
-                                <div className="w-32 h-32 md:w-40 md:h-40 rounded-[14px] bg-white/10 animate-pulse border-4 border-white/5 z-30" />
+                                <div className="w-32 h-32 md:w-40 md:h-40 rounded-[18px] bg-white/10 animate-pulse border-4 border-white/5 z-30" />
                             ) : null}
                             <div className="flex-1">
                                 {loading ? (
@@ -193,7 +193,7 @@ export default function ResearchInstituteDetailLayout({ children, params }: Prop
                             animate={{ x: 0 }}
                             exit={{ x: "-100%" }}
                             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                            className="absolute left-0 top-0 bottom-0 w-[300px] bg-white dark:bg-slate-800 overflow-y-auto shadow-2xl"
+                            className="absolute left-0 top-0 bottom-0 w-[300px] bg-white dark:bg-[#161f42] overflow-y-auto shadow-2xl"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="p-8">
@@ -219,7 +219,7 @@ export default function ResearchInstituteDetailLayout({ children, params }: Prop
                     <aside className="hidden lg:block lg:w-80 flex-shrink-0">
                         <div className="sticky top-28 space-y-8">
                             <ResearchInstituteSidebar instituteSlug={instituteSlug} />
-                            <div className="rounded-[14px] bg-[#1a2355] p-10 text-white overflow-hidden relative group shadow-2xl">
+                            <div className="rounded-[18px] bg-[#1a2355] p-10 text-white overflow-hidden relative group shadow-2xl">
                                 <div className="absolute -right-4 -bottom-4 w-32 h-32 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-all duration-500" />
                                 <h3 className="text-xl font-black tracking-tighter mb-4 relative z-10">{t.needHelp}</h3>
                                 <p className="text-white/60 text-sm mb-8 relative z-10 leading-relaxed font-medium">

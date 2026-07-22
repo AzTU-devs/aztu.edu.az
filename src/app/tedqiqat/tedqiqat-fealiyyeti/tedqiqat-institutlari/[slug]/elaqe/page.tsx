@@ -76,9 +76,9 @@ export default function ResearchInstituteContactPage({ params }: Props) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
-              className="relative group overflow-hidden rounded-[12px] bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 p-8 shadow-sm hover:shadow-2xl transition-all duration-500"
+              className="relative group overflow-hidden rounded-[22px] bg-white dark:bg-[#161f42] border border-gray-100 dark:border-slate-700 p-8 shadow-sm hover:shadow-2xl transition-all duration-500"
             >
-              <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${field.color} opacity-5 rounded-bl-[2rem] -mr-8 -mt-8 transition-transform group-hover:scale-110`} />
+              <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${field.color} opacity-5 rounded-bl-[1.5rem] -mr-8 -mt-8 transition-transform group-hover:scale-110`} />
               
               <div className="flex items-start gap-6 relative z-10">
                 <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${field.color} text-white flex items-center justify-center flex-shrink-0 shadow-lg`}>
@@ -117,7 +117,7 @@ export default function ResearchInstituteContactPage({ params }: Props) {
         transition={{ delay: 0.4 }}
       >
         <SectionBlock title={currentLang === "az" ? "Məkanımız" : "Our Location"}>
-          <div className="relative w-full h-80 rounded-[14px] overflow-hidden bg-gray-100 dark:bg-slate-800 border-4 border-white dark:border-slate-700 shadow-xl group">
+          <div className="relative w-full h-80 rounded-[18px] overflow-hidden bg-gray-100 dark:bg-[#161f42] border-4 border-white dark:border-slate-700 shadow-xl group">
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-[#1a2355]/5 to-[#1a2355]/10">
               <div className="w-20 h-20 rounded-full bg-white dark:bg-slate-700 flex items-center justify-center shadow-2xl mb-4 group-hover:scale-110 transition-transform duration-500">
                 <LocationOnIcon sx={{ fontSize: 40, color: "#ee7c7e" }} />

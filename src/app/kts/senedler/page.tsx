@@ -208,7 +208,7 @@ function DocCard({ doc, index, lang }: { doc: typeof DOCUMENTS[0]; index: number
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.04 }}
-      className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-xl rounded-[12px] border-2 border-[#1a2355]/30 dark:border-white/5 overflow-hidden shadow-lg hover:border-[#ee7c7e]/20 transition-all duration-300"
+      className="bg-white/80 dark:bg-[#161f42]/80 backdrop-blur-xl rounded-[22px] border-2 border-[#1a2355]/30 dark:border-white/5 overflow-hidden shadow-lg hover:border-[#ee7c7e]/20 transition-all duration-300"
     >
       <div className="flex items-center gap-4 px-6 py-4">
         <div className="w-10 h-10 rounded-xl bg-[#ee7c7e]/10 flex items-center justify-center shrink-0">
@@ -249,7 +249,7 @@ function DocCard({ doc, index, lang }: { doc: typeof DOCUMENTS[0]; index: number
             animate={{ height: 600 }}
             exit={{ height: 0 }}
             transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-            className="overflow-hidden bg-gray-50 dark:bg-[#050d20]"
+            className="overflow-hidden bg-gray-50 dark:bg-[#070b1a]"
           >
             <iframe
               src={embedUrl}
@@ -286,7 +286,7 @@ export default function SenedlerPage() {
   }[lang];
 
   return (
-    <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden bg-page dark:bg-[#080f25]">
+    <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden bg-page">
 
       <PageHero
         title={copy.title}

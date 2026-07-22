@@ -19,7 +19,7 @@ export default function AboutSlugPage() {
     if (!section || !item) {
         return (
             <>
-                <main className="min-h-screen flex flex-col items-center justify-center bg-page dark:bg-[#0f172a] px-4">
+                <main className="min-h-screen flex flex-col items-center justify-center bg-page px-4">
                     <h1 className="text-3xl font-bold text-[#1a2355] dark:text-white mb-4">Page not found</h1>
                     <p className="text-gray-500 mb-8">The page you are looking for does not exist.</p>
                     <Link href="/" className="flex items-center gap-1 bg-[#1a2355] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#1a2355]/90 transition-colors">

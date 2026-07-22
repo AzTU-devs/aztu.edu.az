@@ -159,7 +159,7 @@ export default function ContactPage() {
                         transition={{ duration: 0.7 }}
                         className="lg:col-span-5"
                     >
-                        <div className="sticky top-28 relative overflow-hidden rounded-[14px] bg-gradient-to-br from-[#0b1330] via-[#1a2355] to-[#13365E] p-10 md:p-12 text-white shadow-2xl border-2 border-white/10">
+                        <div className="sticky top-28 relative overflow-hidden rounded-[18px] bg-gradient-to-br from-[#0b1330] via-[#1a2355] to-[#13365E] p-10 md:p-12 text-white shadow-2xl border-2 border-white/10">
                             <div className="absolute top-0 right-0 w-64 h-64 bg-[#ee7c7e]/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
                             <div className="absolute bottom-0 left-0 w-56 h-56 bg-blue-500/20 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
 
@@ -271,7 +271,7 @@ export default function ContactPage() {
                         transition={{ duration: 0.7, delay: 0.1 }}
                         className="lg:col-span-7"
                     >
-                        <div className="relative overflow-hidden bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[14px] border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 p-10 md:p-14 shadow-2xl shadow-blue-900/5">
+                        <div className="relative overflow-hidden bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[18px] border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 p-10 md:p-14 shadow-2xl shadow-blue-900/5">
                             <div className="absolute top-0 right-0 w-48 h-48 bg-[#ee7c7e]/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl pointer-events-none" />
 
                             <div className="relative z-10">
@@ -400,7 +400,7 @@ export default function ContactPage() {
                             {t.mapTitle}
                         </h2>
                     </div>
-                    <div className="relative rounded-[14px] overflow-hidden border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 shadow-2xl shadow-blue-900/10 h-[450px] md:h-[520px]">
+                    <div className="relative rounded-[18px] overflow-hidden border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 shadow-2xl shadow-blue-900/10 h-[450px] md:h-[520px]">
                         <iframe
                             title="AzTU Map"
                             src="https://www.google.com/maps?q=Azerbaijan+Technical+University,+H.Javid+Avenue+25,+Baku&output=embed"

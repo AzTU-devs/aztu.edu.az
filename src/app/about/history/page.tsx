@@ -29,7 +29,7 @@ export default function HistoryPage() {
     const p = t.pages.about.history;
 
     return (
-        <main className="min-h-screen bg-white dark:bg-[#050816] selection:bg-[#ee7c7e]/30 overflow-hidden">
+        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30 overflow-hidden">
             {/* STUNNING BACKGROUND ELEMENTS */}
 
             {/* HERO SECTION */}
@@ -78,7 +78,7 @@ export default function HistoryPage() {
 
             {/* STATS STRIP */}
             <div className="relative z-20 -mt-16 px-4 md:px-10 lg:px-20 mb-24">
-                <div className="max-w-[1400px] mx-auto bg-white/80 dark:bg-slate-900/60 backdrop-blur-3xl rounded-[14px] shadow-2xl border-2 border-[#1a2355]/10 dark:border-[#ee7c7e]/20 p-8 lg:p-12">
+                <div className="max-w-[1400px] mx-auto bg-white/80 dark:bg-slate-900/60 backdrop-blur-3xl rounded-[18px] shadow-2xl border-2 border-[#1a2355]/10 dark:border-[#ee7c7e]/20 p-8 lg:p-12">
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
                         {p.stats.map((s, i) => (
                             <motion.div
@@ -119,7 +119,7 @@ export default function HistoryPage() {
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className="group flex items-center justify-between bg-white dark:bg-slate-900/40 p-8 rounded-[12px] border-2 border-[#1a2355]/10 dark:border-white/5 hover:border-[#ee7c7e]/40 transition-all duration-500 shadow-lg hover:shadow-[0_0_30px_rgba(238,124,126,0.1)]"
+                                className="group flex items-center justify-between bg-white dark:bg-slate-900/40 p-8 rounded-[22px] border-2 border-[#1a2355]/10 dark:border-white/5 hover:border-[#ee7c7e]/40 transition-all duration-500 shadow-lg hover:shadow-[0_0_30px_rgba(238,124,126,0.1)]"
                             >
                                 <span className="text-[#1a2355] dark:text-white font-black text-base group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
                                 <div className="w-12 h-12 rounded-2xl bg-[#1a2355]/5 dark:bg-white/5 flex items-center justify-center group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-500 shadow-lg">

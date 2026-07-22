@@ -30,13 +30,13 @@ export default function DirectorCard({ director }: DirectorCardProps) {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-[14px] shadow-[0_10px_50px_-12px_rgba(0,0,0,0.08)] border border-gray-100 dark:border-slate-700/50 overflow-hidden">
+    <div className="bg-white dark:bg-[#161f42] rounded-[18px] shadow-[0_10px_50px_-12px_rgba(0,0,0,0.08)] border border-gray-100 dark:border-slate-700/50 overflow-hidden">
       <div className="flex flex-col lg:flex-row">
         {/* Left: Profile Photo & Key Info */}
         <div className="lg:w-1/3 p-8 lg:p-12 bg-gray-50/50 dark:bg-slate-900/20 border-r border-gray-100 dark:border-slate-700/50 flex flex-col items-center text-center">
           <div className="relative group">
-            <div className="absolute inset-0 bg-[#ee7c7e] rounded-[12px] rotate-6 scale-95 opacity-20 group-hover:rotate-12 transition-transform duration-500" />
-            <div className="relative w-56 h-56 rounded-[12px] bg-white dark:bg-slate-700 overflow-hidden border-8 border-white dark:border-slate-800 shadow-2xl">
+            <div className="absolute inset-0 bg-[#ee7c7e] rounded-[22px] rotate-6 scale-95 opacity-20 group-hover:rotate-12 transition-transform duration-500" />
+            <div className="relative w-56 h-56 rounded-[22px] bg-white dark:bg-slate-700 overflow-hidden border-8 border-white dark:border-slate-800 shadow-2xl">
               {profileImage ? (
                 <img src={profileImage} alt={fullName} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
               ) : (
@@ -58,7 +58,7 @@ export default function DirectorCard({ director }: DirectorCardProps) {
 
           <div className="mt-8 w-full space-y-3">
              {director.scientific_degree && (
-                <div className="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 shadow-sm text-sm text-gray-600 dark:text-slate-300 font-medium">
+                <div className="p-4 rounded-2xl bg-white dark:bg-[#161f42] border border-gray-100 dark:border-slate-700 shadow-sm text-sm text-gray-600 dark:text-slate-300 font-medium">
                   {director.scientific_degree}
                 </div>
              )}
@@ -91,7 +91,7 @@ export default function DirectorCard({ director }: DirectorCardProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {/* Working Hours Card */}
             {workingHours.length > 0 && (
-              <div className="p-8 rounded-[12px] bg-[#1a2355]/5 dark:bg-white/5 border border-[#1a2355]/30 dark:border-white/10">
+              <div className="p-8 rounded-[22px] bg-[#1a2355]/5 dark:bg-white/5 border border-[#1a2355]/30 dark:border-white/10">
                 <h4 className="text-sm font-black text-[#1a2355] dark:text-white mb-6 uppercase tracking-[0.12em] flex items-center gap-2">
                   <AccessTimeIcon sx={{ fontSize: 20, color: "#ee7c7e" }} />
                   {t.reception}
@@ -110,7 +110,7 @@ export default function DirectorCard({ director }: DirectorCardProps) {
 
             {/* Education Card */}
             {educations.length > 0 && (
-              <div className="p-8 rounded-[12px] bg-gray-50 dark:bg-slate-900/40 border border-gray-100 dark:border-slate-700/50">
+              <div className="p-8 rounded-[22px] bg-gray-50 dark:bg-slate-900/40 border border-gray-100 dark:border-slate-700/50">
                 <h4 className="text-sm font-black text-[#1a2355] dark:text-white mb-6 uppercase tracking-[0.12em] flex items-center gap-2">
                   <SchoolIcon sx={{ fontSize: 20, color: "#ee7c7e" }} />
                   {t.education}

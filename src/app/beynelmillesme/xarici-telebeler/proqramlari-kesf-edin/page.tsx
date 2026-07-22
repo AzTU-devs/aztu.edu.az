@@ -59,12 +59,12 @@ export default function DiscoverProgramsPage() {
     };
 
     return (
-        <main className="min-h-screen bg-white dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
             {/* HERO */}
             <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48">
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                     <div className="absolute inset-0 bg-[#0b1330]" />
-                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[2.5rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
+                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[1.75rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#0b1330] via-[#0b1330]/80 to-transparent hidden lg:block" />
                     <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#ee7c7e]/5 rounded-full blur-3xl" />
                 </div>
@@ -137,7 +137,7 @@ export default function DiscoverProgramsPage() {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: fIdx * 0.08, duration: 0.6 }}
-                                        className="bg-white dark:bg-slate-900 rounded-[14px] border border-gray-100 dark:border-slate-800 shadow-xl shadow-blue-900/5 overflow-hidden"
+                                        className="bg-white dark:bg-[#101733] rounded-[18px] border border-gray-100 dark:border-slate-800 shadow-xl shadow-blue-900/5 overflow-hidden"
                                     >
                                         {/* Faculty header */}
                                         <div className="relative bg-gradient-to-br from-[#1a2355] to-[#13365E] px-8 py-6 flex items-center gap-4">
@@ -196,7 +196,7 @@ export default function DiscoverProgramsPage() {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="relative rounded-[14px] overflow-hidden"
+                            className="relative rounded-[18px] overflow-hidden"
                         >
                             <div className="absolute inset-0 bg-gradient-to-br from-[#1a2355] via-[#1a2355] to-[#13365E]" />
                             <div className="absolute top-0 left-0 w-64 h-64 bg-[#ee7c7e]/15 rounded-full -translate-y-1/2 -translate-x-1/2 blur-3xl" />
@@ -220,7 +220,7 @@ export default function DiscoverProgramsPage() {
                     {/* Sidebar */}
                     <div className="lg:col-span-4">
                         <div className="sticky top-28 space-y-8">
-                            <div className="p-10 rounded-[14px] bg-[#1a2355] text-white shadow-2xl relative overflow-hidden">
+                            <div className="p-10 rounded-[18px] bg-[#1a2355] text-white shadow-2xl relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
                                 <div className="relative z-10">
                                     <TranslateIcon className="text-[#ee7c7e] mb-6" sx={{ fontSize: 40 }} />
@@ -242,7 +242,7 @@ export default function DiscoverProgramsPage() {
                                         <Link
                                             key={link.href}
                                             href={link.href}
-                                            className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-5 rounded-[10px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
+                                            className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-5 rounded-[18px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
                                         >
                                             <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">
                                                 {link.title}

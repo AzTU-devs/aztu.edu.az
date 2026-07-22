@@ -82,13 +82,13 @@ export default function DekanPage({ params }: Props) {
     return (
         <div className="space-y-8">
             {/* Profile card */}
-            <section className="grid grid-cols-1 gap-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-slate-900 md:p-8 lg:grid-cols-12">
+            <section className="grid grid-cols-1 gap-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-[#101733] md:p-8 lg:grid-cols-12">
                 <div className="lg:col-span-4">
                     <motion.div
                         initial={{ opacity: 0, y: 14 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="aspect-[3/4] overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 dark:border-white/10 dark:bg-slate-800"
+                        className="aspect-[3/4] overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 dark:border-white/10 dark:bg-[#161f42]"
                     >
                         {director.profile_image ? (
                             /* eslint-disable-next-line @next/next/no-img-element */
@@ -188,7 +188,7 @@ export default function DekanPage({ params }: Props) {
 
             {/* Biography */}
             {director.bio && (
-                <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-slate-900 md:p-8">
+                <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-[#101733] md:p-8">
                     <SectionHeading
                         icon={PersonIcon}
                         eyebrow={currentLang === "az" ? "Tərcümeyi-hal" : "Biography"}
@@ -204,7 +204,7 @@ export default function DekanPage({ params }: Props) {
 
             {/* Education timeline */}
             {sortedEducations.length > 0 && (
-                <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-slate-900 md:p-8">
+                <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-[#101733] md:p-8">
                     <SectionHeading
                         icon={SchoolIcon}
                         eyebrow={currentLang === "az" ? "Akademik yol" : "Academic journey"}
@@ -246,7 +246,7 @@ export default function DekanPage({ params }: Props) {
 
             {/* Research fields */}
             {director.scientific_research_fields && director.scientific_research_fields.length > 0 && (
-                <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-slate-900 md:p-8">
+                <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-[#101733] md:p-8">
                     <SectionHeading
                         icon={ScienceIcon}
                         eyebrow={currentLang === "az" ? "Elmi maraq" : "Scholarly focus"}

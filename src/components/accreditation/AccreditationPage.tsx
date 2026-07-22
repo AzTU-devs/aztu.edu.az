@@ -220,10 +220,10 @@ export default function AccreditationPage() {
   const aboutHref = lang === "az" ? "/haqqimizda" : "/about";
 
   const card =
-    "bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-3xl rounded-[14px] border-2 border-[#1a2355]/30 dark:border-white/5 p-8 md:p-12 shadow-xl shadow-blue-900/5 relative overflow-hidden";
+    "bg-white/80 dark:bg-[#161f42]/80 backdrop-blur-3xl rounded-[18px] border-2 border-[#1a2355]/30 dark:border-white/5 p-8 md:p-12 shadow-xl shadow-blue-900/5 relative overflow-hidden";
 
   return (
-    <main className="min-h-screen bg-white dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+    <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
       {/* HERO */}
       <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -507,9 +507,9 @@ export default function AccreditationPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-xl rounded-[12px] border-2 border-[#1a2355]/30 dark:border-white/5 overflow-hidden shadow-lg hover:border-[#ee7c7e]/30 transition-all duration-300 group flex flex-col"
+                className="bg-white/80 dark:bg-[#161f42]/80 backdrop-blur-xl rounded-[22px] border-2 border-[#1a2355]/30 dark:border-white/5 overflow-hidden shadow-lg hover:border-[#ee7c7e]/30 transition-all duration-300 group flex flex-col"
               >
-                <div className="relative w-full aspect-[4/3] bg-gray-50 dark:bg-[#050d20]">
+                <div className="relative w-full aspect-[4/3] bg-gray-50 dark:bg-[#070b1a]">
                   <Image
                     src={prog.img}
                     alt={prog.title}

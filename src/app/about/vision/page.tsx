@@ -16,7 +16,7 @@ export default function VisionPage() {
     const p = t.pages.about.vision;
 
     return (
-        <main className="min-h-screen bg-white dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
             {/* HERO SECTION */}
             <div className="relative min-h-[90vh] flex flex-col pt-44 lg:pt-48">
                 {/* Background Graphics */}
@@ -73,7 +73,7 @@ export default function VisionPage() {
                             <Link 
                                 key={link.href} 
                                 href={link.href}
-                                className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[10px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
+                                className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[18px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
                             >
                                 <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
                                 <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-slate-700 flex items-center justify-center group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300">

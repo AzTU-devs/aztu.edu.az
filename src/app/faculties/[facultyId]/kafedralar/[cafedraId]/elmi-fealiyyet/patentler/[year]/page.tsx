@@ -75,7 +75,7 @@ export default function PatentlerYearPage({ params }: Props) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.4 }}
-                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-slate-900 dark:hover:border-white/20"
+                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-[#101733] dark:hover:border-white/20"
               >
                 <div className="flex gap-4">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#1a2355] text-sm font-bold text-white">

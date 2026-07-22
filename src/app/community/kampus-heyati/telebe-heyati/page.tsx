@@ -148,12 +148,12 @@ export default function StudentLifePage() {
   const campusLifeHref = lang === "az" ? "/az/icma/kampus-heyati" : "/en/community/campus-life";
 
   return (
-    <main className="min-h-screen bg-white dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+    <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
       {/* HERO */}
       <div className="relative min-h-[45vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <div className="absolute inset-0 bg-[#0b1330]" />
-          <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[2.5rem] lg:rounded-bl-[10rem]" />
+          <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[1.75rem] lg:rounded-bl-[10rem]" />
           <div
             className="absolute inset-0 opacity-[0.1]"
             style={{
@@ -202,7 +202,7 @@ export default function StudentLifePage() {
       </div>
 
       {/* INTRO */}
-      <div className="px-4 md:px-10 lg:px-20 py-20 bg-white dark:bg-[#0b1330]">
+      <div className="px-4 md:px-10 lg:px-20 py-20 bg-white dark:bg-[#101733]">
         <div className="max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
             <div className="lg:col-span-8">
@@ -217,7 +217,7 @@ export default function StudentLifePage() {
               </p>
             </div>
             <div className="lg:col-span-4">
-              <div className="bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-[14px] p-10 text-white shadow-xl h-full flex flex-col justify-center">
+              <div className="bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-[18px] p-10 text-white shadow-xl h-full flex flex-col justify-center">
                 <SchoolIcon sx={{ fontSize: 48 }} className="text-[#ee7c7e] mb-4" />
                 <p className="text-base font-medium leading-relaxed opacity-90">
                   {p.subtitle}
@@ -235,7 +235,7 @@ export default function StudentLifePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="bg-white dark:bg-white/5 rounded-[14px] p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/20 transition-all group"
+                className="bg-white dark:bg-white/5 rounded-[18px] p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/20 transition-all group"
               >
                 <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 text-[#ee7c7e] flex items-center justify-center mb-6 group-hover:bg-[#ee7c7e] group-hover:text-white transition-colors duration-300">
                   {ICONS[section.icon] ?? ICONS.school}
@@ -251,7 +251,7 @@ export default function StudentLifePage() {
           </div>
 
           {/* CLOSING */}
-          <div className="mt-20 p-12 rounded-[14px] bg-[#1a2355] text-white">
+          <div className="mt-20 p-12 rounded-[18px] bg-[#1a2355] text-white">
             <p className="text-lg md:text-xl font-medium leading-relaxed text-center opacity-90 max-w-4xl mx-auto">
               {p.closing}
             </p>

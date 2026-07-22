@@ -19,10 +19,10 @@ export default function SectionBlock({ title, children, className = "", accent =
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={`
-        relative rounded-[12px] p-6 md:p-9 transition-all duration-400 overflow-hidden
+        relative rounded-[22px] p-6 md:p-9 transition-all duration-400 overflow-hidden
         ${dark
           ? 'bg-[#1a2355] text-white border border-[#1a2355]'
-          : 'surface-card text-[#10163a]'
+          : 'surface-card text-[var(--ink)]'
         }
         ${className}
       `}
@@ -30,7 +30,7 @@ export default function SectionBlock({ title, children, className = "", accent =
       {title && (
         <div className="flex items-center gap-3 mb-7">
           <span className="w-1 h-5 bg-[#ee7c7e] rounded-full" />
-          <h2 className={`text-lg md:text-xl font-semibold tracking-[-0.02em] ${dark ? 'text-white' : 'text-[#10163a]'}`}>
+          <h2 className={`text-lg md:text-xl font-semibold tracking-[-0.02em] ${dark ? 'text-white' : 'text-[var(--ink)]'}`}>
             {title}
           </h2>
         </div>

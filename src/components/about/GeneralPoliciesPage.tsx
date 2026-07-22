@@ -387,7 +387,7 @@ export default function GeneralPoliciesPage() {
     const isFiltered = filter !== "all" || query.trim().length > 0;
 
     return (
-        <main className="min-h-screen bg-page dark:bg-[#0f172a]">
+        <main className="min-h-screen bg-page">
             <AboutPageBanner
                 eyebrow={c.eyebrow}
                 title={c.title}
@@ -588,7 +588,7 @@ export default function GeneralPoliciesPage() {
                                         initial={{ opacity: 0, y: 18 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.4, delay: Math.min(i * 0.025, 0.25) }}
-                                        className="group relative text-left flex flex-col h-full bg-white dark:bg-[#1e293b] rounded-3xl border-2 border-[#1a2355]/15 dark:border-white/10 p-6 md:p-7 shadow-sm hover:shadow-2xl hover:shadow-[#1a2355]/15 hover:border-[#ee7c7e] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                                        className="group relative text-left flex flex-col h-full bg-white dark:bg-[#161f42] rounded-3xl border-2 border-[#1a2355]/15 dark:border-white/10 p-6 md:p-7 shadow-sm hover:shadow-2xl hover:shadow-[#1a2355]/15 hover:border-[#ee7c7e] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
                                     >
                                         <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#1a2355] via-[#ee7c7e] to-[#1a2355] opacity-50 group-hover:opacity-100 transition-opacity" />
                                         <div className="absolute -top-12 -right-12 w-36 h-36 rounded-full bg-[#ee7c7e]/5 blur-3xl group-hover:bg-[#ee7c7e]/15 transition-colors" />
@@ -649,9 +649,9 @@ export default function GeneralPoliciesPage() {
                             exit={{ opacity: 0, scale: 0.96, y: 12 }}
                             transition={{ duration: 0.25 }}
                             onClick={(e) => e.stopPropagation()}
-                            className="relative w-full max-w-6xl h-[90vh] bg-white dark:bg-[#0f172a] rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 dark:border-white/10"
+                            className="relative w-full max-w-6xl h-[90vh] bg-white dark:bg-[#101733] rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 dark:border-white/10"
                         >
-                            <div className="flex items-center gap-3 md:gap-4 p-3 md:p-4 border-b border-gray-200 dark:border-white/10 bg-white dark:bg-[#0f172a]">
+                            <div className="flex items-center gap-3 md:gap-4 p-3 md:p-4 border-b border-gray-200 dark:border-white/10 bg-white dark:bg-[#101733]">
                                 <div className="w-10 h-10 rounded-xl bg-[#ee7c7e]/10 flex items-center justify-center shrink-0 border border-[#ee7c7e]/20">
                                     <PictureAsPdfIcon sx={{ fontSize: 20 }} className="text-[#ee7c7e]" />
                                 </div>
@@ -696,7 +696,7 @@ export default function GeneralPoliciesPage() {
                                 </button>
                             </div>
 
-                            <div className="flex-1 bg-gray-100 dark:bg-[#0a0c1a] relative">
+                            <div className="flex-1 bg-gray-100 dark:bg-[#070b1a] relative">
                                 <iframe
                                     key={activeUrl}
                                     src={activeUrl}

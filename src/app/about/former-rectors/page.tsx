@@ -141,7 +141,7 @@ export default function FormerRectorsPage() {
             <div className="relative min-h-[50vh] lg:min-h-[60vh] flex flex-col pt-44 lg:pt-48 z-10">
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                     <div className="absolute inset-0 bg-[#0b1330]" />
-                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[2.5rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
+                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[1.75rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#0b1330] via-[#0b1330]/80 to-transparent hidden lg:block" />
                     <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse" />
                 </div>
@@ -189,7 +189,7 @@ export default function FormerRectorsPage() {
             <div className="relative px-4 md:px-10 lg:px-20 py-24 z-10">
                 <div className="max-w-[1400px] mx-auto">
                     {p.rectors.length === 0 ? (
-                        <div className="rounded-[12px] border border-[#1a2355]/15 dark:border-white/10 bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl p-12 text-center">
+                        <div className="rounded-[22px] border border-[#1a2355]/15 dark:border-white/10 bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl p-12 text-center">
                             <p className="text-[#1a2355] dark:text-white font-bold text-lg">
                                 {lang === "az" ? "Məlumat tezliklə əlavə olunacaq." : "Information will be added soon."}
                             </p>
@@ -203,7 +203,7 @@ export default function FormerRectorsPage() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: i * 0.05 }}
-                                    className="group relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[14px] p-8 flex flex-col items-center text-center gap-6 shadow-[0_4px_20px_-4px_rgba(26,35,85,0.1)] hover:shadow-[0_40px_80px_-15px_rgba(26,35,85,0.2)] border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 transition-all duration-500 hover:-translate-y-2 overflow-hidden"
+                                    className="group relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[18px] p-8 flex flex-col items-center text-center gap-6 shadow-[0_4px_20px_-4px_rgba(26,35,85,0.1)] hover:shadow-[0_40px_80px_-15px_rgba(26,35,85,0.2)] border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 transition-all duration-500 hover:-translate-y-2 overflow-hidden"
                                 >
                                     <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#ee7c7e] via-[#1a2355] to-[#ee7c7e] opacity-20 group-hover:opacity-100 transition-opacity duration-500" />
 

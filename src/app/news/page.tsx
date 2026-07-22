@@ -131,10 +131,10 @@ export default function NewsPage() {
 
             {/* ── Category Filter ── */}
             <div className="sticky top-[84px] lg:top-4 z-30 mx-4 md:mx-10 lg:mx-20 -mt-8">
-                <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-2 border-[#1a2355]/30 dark:border-white/10 p-2.5 rounded-[14px] shadow-2xl shadow-black/5 flex items-center gap-2 overflow-x-auto no-scrollbar scrollbar-hide max-w-[1600px] mx-auto">
+                <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-2 border-[#1a2355]/30 dark:border-white/10 p-2.5 rounded-[18px] shadow-2xl shadow-black/5 flex items-center gap-2 overflow-x-auto no-scrollbar scrollbar-hide max-w-[1600px] mx-auto">
                     <button
                         onClick={() => setActiveCategoryId(ALL_CATEGORY_ID)}
-                        className={`flex-shrink-0 px-8 py-3.5 rounded-[12px] font-black text-[10px] uppercase tracking-[0.12em] transition-all duration-500 cursor-pointer ${activeCategoryId === ALL_CATEGORY_ID
+                        className={`flex-shrink-0 px-8 py-3.5 rounded-[22px] font-black text-[10px] uppercase tracking-[0.12em] transition-all duration-500 cursor-pointer ${activeCategoryId === ALL_CATEGORY_ID
                                 ? "bg-[#1a2355] text-white shadow-xl"
                                 : "text-[#1a2355] dark:text-white/60 hover:bg-[#1a2355]/5 dark:hover:bg-white/5"
                             }`}
@@ -148,7 +148,7 @@ export default function NewsPage() {
                             <button
                                 key={id}
                                 onClick={() => setActiveCategoryId(id)}
-                                className={`flex-shrink-0 px-8 py-3.5 rounded-[12px] font-black text-[10px] uppercase tracking-[0.12em] transition-all duration-500 cursor-pointer ${active
+                                className={`flex-shrink-0 px-8 py-3.5 rounded-[22px] font-black text-[10px] uppercase tracking-[0.12em] transition-all duration-500 cursor-pointer ${active
                                         ? "bg-[#1a2355] text-white shadow-xl"
                                         : "text-[#1a2355] dark:text-white/60 hover:bg-[#1a2355]/5 dark:hover:bg-white/5"
                                     }`}
@@ -227,7 +227,7 @@ export default function NewsPage() {
                         className="mb-20"
                     >
                         <Link href={`/news/${newsSlug(featured.news_id, featured.title)}`}>
-                            <div className="group relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[16px] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/30 dark:border-white/10 overflow-hidden flex flex-col lg:flex-row hover:border-[#ee7c7e]/30 transition-all duration-700">
+                            <div className="group relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[22px] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/30 dark:border-white/10 overflow-hidden flex flex-col lg:flex-row hover:border-[#ee7c7e]/30 transition-all duration-700">
                                 <div className="lg:w-3/5 w-full h-[320px] lg:h-auto lg:min-h-[500px] relative overflow-hidden">
                                     <Image
                                         src={`${featured.cover_image}`}
@@ -280,7 +280,7 @@ export default function NewsPage() {
                             animate="visible"
                         >
                             <Link href={`/news/${newsSlug(item.news_id, item.title)}`} className="group block h-full">
-                                <div className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[14px] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/30 dark:border-white/10 overflow-hidden flex flex-col h-full hover:border-[#ee7c7e]/30 transition-all duration-700 hover:-translate-y-2">
+                                <div className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[18px] shadow-2xl shadow-blue-900/5 border-2 border-[#1a2355]/30 dark:border-white/10 overflow-hidden flex flex-col h-full hover:border-[#ee7c7e]/30 transition-all duration-700 hover:-translate-y-2">
                                     <div className="h-72 relative overflow-hidden">
                                         <Image
                                             src={`${item.cover_image}`}
@@ -329,7 +329,7 @@ export default function NewsPage() {
                             disabled={listLoading}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="group px-12 py-5 bg-[#1a2355] text-white rounded-[12px] font-black uppercase text-xs tracking-[0.14em] shadow-2xl shadow-blue-900/40 hover:bg-[#ee7c7e] hover:shadow-red-900/40 transition-all duration-500 flex items-center gap-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="group px-12 py-5 bg-[#1a2355] text-white rounded-[22px] font-black uppercase text-xs tracking-[0.14em] shadow-2xl shadow-blue-900/40 hover:bg-[#ee7c7e] hover:shadow-red-900/40 transition-all duration-500 flex items-center gap-4 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {listLoading ? (
                                 <div className="w-5 h-5 rounded-full border-2 border-white border-t-transparent animate-spin" />

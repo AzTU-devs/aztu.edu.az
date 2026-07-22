@@ -33,7 +33,7 @@ export default function IncentiveMechanismPage() {
     const y = useTransform(scrollY, [0, 500], [0, 200]);
 
     return (
-        <main className="min-h-screen bg-white dark:bg-[#0b1330] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
 
             {/* HERO BANNER */}
             <section ref={bannerRef} className="relative h-[80vh] min-h-[600px] w-full flex items-center overflow-hidden bg-black">
@@ -130,7 +130,7 @@ export default function IncentiveMechanismPage() {
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="lg:col-span-2 relative p-10 md:p-16 rounded-[14px] bg-[#1a2355] dark:bg-white/[0.02] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.2)] overflow-hidden group"
+                            className="lg:col-span-2 relative p-10 md:p-16 rounded-[18px] bg-[#1a2355] dark:bg-white/[0.02] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.2)] overflow-hidden group"
                         >
                             <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                             <div className="relative z-10">
@@ -145,7 +145,7 @@ export default function IncentiveMechanismPage() {
                             initial={{ opacity: 0, x: 30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="relative p-10 rounded-[14px] bg-[#ee7c7e] flex flex-col items-center justify-center text-center shadow-2xl group hover:scale-[1.02] transition-transform duration-500"
+                            className="relative p-10 rounded-[18px] bg-[#ee7c7e] flex flex-col items-center justify-center text-center shadow-2xl group hover:scale-[1.02] transition-transform duration-500"
                         >
                             <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                 <LaunchIcon className="text-white" sx={{ fontSize: 40 }} />
@@ -169,7 +169,7 @@ export default function IncentiveMechanismPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-                        className="relative p-8 md:p-14 rounded-[14px] bg-white dark:bg-white/5 backdrop-blur-xl border border-gray-100 dark:border-white/10 shadow-2xl overflow-hidden"
+                        className="relative p-8 md:p-14 rounded-[18px] bg-white dark:bg-white/5 backdrop-blur-xl border border-gray-100 dark:border-white/10 shadow-2xl overflow-hidden"
                     >
                         <div className="absolute top-0 left-0 w-1.5 h-full bg-[#ee7c7e]" />
                         <div className="flex items-center gap-4 mb-10">

@@ -31,7 +31,7 @@ export default function Collaborators() {
     return (
         <section
             ref={sectionRef}
-            className="relative bg-white section-padding"
+            className="relative section-padding"
         >
             <div className="shell !px-0">
                 {/* Section Header */}
@@ -57,9 +57,9 @@ export default function Collaborators() {
                         transition={{ duration: 0.7, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
                     >
                         <Link href="/beynelxalq/collaborations">
-                            <button className="group inline-flex items-center gap-3 rounded-full border border-[#1a2355]/12 bg-white py-3 pl-6 pr-3 text-[13px] font-semibold text-[#10163a] transition-all duration-300 hover:border-[#1a2355] hover:bg-[#1a2355] hover:text-white cursor-pointer">
+                            <button className="group inline-flex items-center gap-3 rounded-full border border-[var(--line-strong)] bg-[var(--surface)] py-3 pl-6 pr-3 text-[13px] font-semibold text-[var(--ink)] transition-all duration-300 hover:border-[#1a2355] hover:bg-[#1a2355] hover:text-white cursor-pointer">
                                 {t.collaborators.viewAll}
-                                <span className="w-8 h-8 rounded-full bg-[#1a2355]/5 flex items-center justify-center transition-all duration-300 group-hover:bg-white/15">
+                                <span className="w-8 h-8 rounded-full bg-[var(--surface-inset)] flex items-center justify-center transition-all duration-300 group-hover:bg-white/15">
                                     <ChevronRightIcon sx={{ fontSize: 18 }} />
                                 </span>
                             </button>
@@ -75,11 +75,11 @@ export default function Collaborators() {
                     className="relative"
                 >
                     {/* Visual container with rounded corners and subtle shadow */}
-                    <div className="relative overflow-hidden rounded-[12px] bg-white border border-[#1a2355]/[0.09] py-10">
+                    <div className="relative overflow-hidden rounded-[22px] bg-[var(--surface)] border border-[var(--line)] py-10">
 
                         {/* Fade edges */}
-                        <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-                        <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+                        <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-[var(--canvas)] to-transparent pointer-events-none" />
+                        <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-[var(--canvas)] to-transparent pointer-events-none" />
 
                         {doubled.length > 0 ? (
                             <div className="flex animate-marquee gap-8 w-max items-center">
@@ -90,7 +90,7 @@ export default function Collaborators() {
                                         target={collab.website_url ? "_blank" : undefined}
                                         rel="noopener noreferrer"
                                         title={collab.name}
-                                        className="group relative flex-shrink-0 flex items-center justify-center w-52 h-32 bg-white rounded-[10px] transition-all duration-500 border border-[#1a2355]/[0.09] hover:border-[#1a2355]/20 overflow-hidden"
+                                        className="group relative flex-shrink-0 flex items-center justify-center w-52 h-32 bg-[#fff] rounded-[18px] transition-all duration-500 border border-[var(--line)] hover:border-[#1a2355]/20 overflow-hidden"
                                     >
                                         <div className="relative z-10 flex flex-col items-center gap-4 px-6">
                                             <Image
@@ -103,7 +103,7 @@ export default function Collaborators() {
                                                 className="max-h-14 max-w-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-100 group-hover:scale-110"
                                                 unoptimized={false}
                                             />
-                                            <span className="text-[10px] font-semibold text-[#8a93ad] group-hover:text-[#10163a] text-center uppercase tracking-[0.12em] transition-colors duration-500 line-clamp-1 max-w-full">
+                                            <span className="text-[10px] font-semibold text-[var(--ink-subtle)] group-hover:text-[var(--ink)] text-center uppercase tracking-[0.12em] transition-colors duration-500 line-clamp-1 max-w-full">
                                                 {collab.name}
                                             </span>
                                         </div>
@@ -113,7 +113,7 @@ export default function Collaborators() {
                         ) : (
                             <div className="flex animate-pulse gap-8">
                                 {[1, 2, 3, 4, 5, 6].map((i) => (
-                                    <div key={i} className="flex-shrink-0 w-52 h-32 bg-[#1a2355]/[0.04] rounded-[10px]" />
+                                    <div key={i} className="flex-shrink-0 w-52 h-32 bg-[var(--surface-inset)] rounded-[18px]" />
                                 ))}
                             </div>
                         )}

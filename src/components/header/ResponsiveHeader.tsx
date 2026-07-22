@@ -94,7 +94,7 @@ export default function ResponsiveHeader() {
             <header 
                 className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
                     scrolled 
-                    ? "bg-white/90 dark:bg-[#0b1330]/90 backdrop-blur-xl border-b border-black/5 dark:border-white/5 py-2 shadow-xl" 
+                    ? "bg-white/90 dark:bg-[#101733]/90 backdrop-blur-xl border-b border-black/5 dark:border-white/5 py-2 shadow-xl" 
                     : "bg-gradient-to-b from-black/40 to-transparent py-4"
                 }`}
             >
@@ -214,7 +214,7 @@ export default function ResponsiveHeader() {
                                         href={href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className={`flex flex-col items-center justify-center gap-3 rounded-[10px] p-4 text-white/60 bg-white/5 border border-white/5 transition-all duration-300 group ${color} hover:text-white active:scale-95`}
+                                        className={`flex flex-col items-center justify-center gap-3 rounded-[18px] p-4 text-white/60 bg-white/5 border border-white/5 transition-all duration-300 group ${color} hover:text-white active:scale-95`}
                                     >
                                         <div className="group-hover:scale-110 group-hover:text-inherit transition-transform duration-300">
                                             {icon}
@@ -263,7 +263,7 @@ export default function ResponsiveHeader() {
                                             <Link
                                                 href={header.direct_url}
                                                 onClick={() => setIsOpen(false)}
-                                                className="w-full flex items-center px-6 py-5 rounded-[10px] text-[14px] font-black text-white/70 hover:text-white bg-white/5 hover:bg-white/10 border border-white/5 transition-colors uppercase tracking-[0.12em] shadow-xl group"
+                                                className="w-full flex items-center px-6 py-5 rounded-[18px] text-[14px] font-black text-white/70 hover:text-white bg-white/5 hover:bg-white/10 border border-white/5 transition-colors uppercase tracking-[0.12em] shadow-xl group"
                                             >
                                                 <span className="flex-1">{header.title}</span>
                                                 <ChevronRightIcon sx={{ fontSize: 18 }} className="opacity-20 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
@@ -276,7 +276,7 @@ export default function ResponsiveHeader() {
                                         <div key={header.id} className="space-y-2">
                                             <button
                                                 onClick={() => toggleHeader(header.id)}
-                                                className={`w-full flex items-center justify-between px-6 py-5 rounded-[10px] text-left text-[14px] font-black uppercase tracking-[0.12em] transition-colors duration-200 shadow-xl border ${
+                                                className={`w-full flex items-center justify-between px-6 py-5 rounded-[18px] text-left text-[14px] font-black uppercase tracking-[0.12em] transition-colors duration-200 shadow-xl border ${
                                                     isExpanded
                                                     ? "bg-[#ee7c7e] text-white border-[#ee7c7e] shadow-[#ee7c7e]/20"
                                                     : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white border-white/5"
@@ -293,7 +293,7 @@ export default function ResponsiveHeader() {
 
                                             {isExpanded && (
                                                 <div
-                                                    className="overflow-hidden rounded-[10px] bg-white/[0.03] border border-white/5 px-2 py-2 mb-4"
+                                                    className="overflow-hidden rounded-[18px] bg-white/[0.03] border border-white/5 px-2 py-2 mb-4"
                                                 >
                                                         {header.items.map((item) => (
                                                             <div key={item.id} className="py-1">

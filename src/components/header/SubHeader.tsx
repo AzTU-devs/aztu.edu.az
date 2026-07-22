@@ -77,14 +77,14 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
                     y: { type: "spring", stiffness: 280, damping: 28 },
                     opacity: { duration: 0.2 },
                 }}
-                className="fixed top-0 left-0 w-full bg-white/[0.97] dark:bg-[#0f172a]/[0.97] backdrop-blur-xl shadow-[0_2px_24px_rgba(26,35,85,0.10)] dark:shadow-[0_2px_24px_rgba(0,0,0,0.4)] z-50"
+                className="fixed top-0 left-0 w-full bg-white/[0.97] dark:bg-[#101733]/[0.97] backdrop-blur-xl shadow-[0_2px_24px_rgba(26,35,85,0.10)] dark:shadow-[0_2px_24px_rgba(0,0,0,0.4)] z-50"
             >
                 <nav className="relative flex flex-row items-center justify-between w-full px-4 sm:px-8 lg:px-[100px] py-[11px] lg:py-[14px]">
                     {/* LEFT: Animated Burger Button */}
                     <button
                         onClick={() => setIsDrawerOpen(true)}
                         aria-label="Open navigation menu"
-                        className="flex flex-col items-center justify-center gap-[5px] w-11 h-11 rounded-xl bg-[#f5f7ff] dark:bg-[#1e293b] border border-[#1a2355]/20 dark:border-[#ee7c7e]/20 hover:bg-[#eef2ff] dark:hover:bg-[#263548] hover:border-[#5A9BD3]/40 transition-all duration-200 cursor-pointer"
+                        className="flex flex-col items-center justify-center gap-[5px] w-11 h-11 rounded-xl bg-[#f5f7ff] dark:bg-[#161f42] border border-[#1a2355]/20 dark:border-[#ee7c7e]/20 hover:bg-[#eef2ff] dark:hover:bg-[#263548] hover:border-[#5A9BD3]/40 transition-all duration-200 cursor-pointer"
                     >
                         <motion.span
                             className="block h-[2px] w-5 bg-[#1a2355] dark:bg-white rounded-full origin-center"
@@ -123,7 +123,7 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
                             whileTap={{ scale: 0.94 }}
                             transition={{ duration: 0.15 }}
                             aria-label="Toggle dark mode"
-                            className="w-10 h-10 rounded-full flex items-center justify-center bg-[#f5f7ff] dark:bg-[#1e293b] border border-[#1a2355]/20 dark:border-[#ee7c7e]/20 hover:bg-[#5A9BD3] hover:border-[#5A9BD3] text-[#5A9BD3] dark:text-white hover:text-white transition-all duration-200"
+                            className="w-10 h-10 rounded-full flex items-center justify-center bg-[#f5f7ff] dark:bg-[#161f42] border border-[#1a2355]/20 dark:border-[#ee7c7e]/20 hover:bg-[#5A9BD3] hover:border-[#5A9BD3] text-[#5A9BD3] dark:text-white hover:text-white transition-all duration-200"
                         >
                             {theme === "dark" ? (
                                 <LightModeIcon sx={{ fontSize: 18, color: "inherit" }} />
@@ -137,7 +137,7 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
                             whileHover={{ scale: 1.06 }}
                             whileTap={{ scale: 0.94 }}
                             transition={{ duration: 0.15 }}
-                            className="w-10 h-10 rounded-full flex items-center justify-center bg-[#f5f7ff] dark:bg-[#1e293b] border border-[#1a2355]/20 dark:border-[#ee7c7e]/20 hover:bg-[#5A9BD3] hover:border-[#5A9BD3] text-[#5A9BD3] dark:text-white hover:text-white transition-all duration-200"
+                            className="w-10 h-10 rounded-full flex items-center justify-center bg-[#f5f7ff] dark:bg-[#161f42] border border-[#1a2355]/20 dark:border-[#ee7c7e]/20 hover:bg-[#5A9BD3] hover:border-[#5A9BD3] text-[#5A9BD3] dark:text-white hover:text-white transition-all duration-200"
                             aria-label="Search"
                         >
                             <SearchIcon sx={{ fontSize: 18, color: "inherit" }} />
@@ -184,7 +184,7 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
                         animate={{ x: 0 }}
                         exit={{ x: "-100%" }}
                         transition={{ type: "spring", stiffness: 300, damping: 35 }}
-                        className="fixed top-0 left-0 h-full w-[320px] max-w-[90vw] z-[70] bg-white dark:bg-[#0f172a] shadow-2xl flex flex-col overflow-hidden"
+                        className="fixed top-0 left-0 h-full w-[320px] max-w-[90vw] z-[70] bg-white dark:bg-[#101733] shadow-2xl flex flex-col overflow-hidden"
                     >
                         {/* Drawer header */}
                         <div className="flex items-center justify-between px-5 py-4 bg-[#0b1e3a]">

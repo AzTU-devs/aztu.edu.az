@@ -55,7 +55,7 @@ export default function DepartmentDetailLayout({ children, params }: Props) {
         : "/en/management/structural-units";
 
     return (
-        <div className="min-h-screen bg-page dark:bg-slate-900 transition-colors text-[#1a2355] dark:text-white">
+        <div className="min-h-screen bg-page transition-colors text-[#1a2355] dark:text-white">
             {/* Stunning Banner */}
             <div className="relative overflow-hidden bg-[#1a2355] pt-32 pb-16 md:pt-40 md:pb-24">
                 <div 
@@ -123,7 +123,7 @@ export default function DepartmentDetailLayout({ children, params }: Props) {
                     </motion.div>
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 h-12 bg-gray-50 dark:bg-slate-900 z-20" 
+                <div className="absolute bottom-0 left-0 right-0 h-12 bg-gray-50 dark:bg-[#101733] z-20" 
                      style={{ clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 100%)" }} />
             </div>
 
@@ -153,7 +153,7 @@ export default function DepartmentDetailLayout({ children, params }: Props) {
                             animate={{ x: 0 }}
                             exit={{ x: "-100%" }}
                             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                            className="absolute left-0 top-0 bottom-0 w-[280px] bg-white dark:bg-slate-800 overflow-y-auto shadow-2xl"
+                            className="absolute left-0 top-0 bottom-0 w-[280px] bg-white dark:bg-[#161f42] overflow-y-auto shadow-2xl"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="p-6">
@@ -174,7 +174,7 @@ export default function DepartmentDetailLayout({ children, params }: Props) {
                 <aside className="hidden lg:block lg:w-72 flex-shrink-0">
                     <div className="sticky top-28 space-y-6">
                         <DepartmentSidebar departmentSlug={departmentSlug} />
-                        <div className="rounded-[12px] bg-gradient-to-br from-[#1a2355] to-[#2a3a8a] p-8 text-white overflow-hidden relative group">
+                        <div className="rounded-[22px] bg-gradient-to-br from-[#1a2355] to-[#2a3a8a] p-8 text-white overflow-hidden relative group">
                             <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-all duration-500" />
                             <h3 className="text-lg font-bold mb-2 relative z-10">{t.needHelp}</h3>
                             <p className="text-white/70 text-sm mb-6 relative z-10 leading-relaxed">

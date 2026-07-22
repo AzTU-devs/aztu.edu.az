@@ -21,12 +21,12 @@ export default function FoundationProgramPage() {
     const p = t.pages.internationalization.foundationProgram;
 
     return (
-        <main className="min-h-screen bg-white dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
             {/* HERO SECTION */}
             <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48">
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                     <div className="absolute inset-0 bg-[#0b1330]" />
-                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[2.5rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
+                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[1.75rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#0b1330] via-[#0b1330]/80 to-transparent hidden lg:block" />
                     <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#ee7c7e]/5 rounded-full blur-3xl" />
                 </div>
@@ -76,7 +76,7 @@ export default function FoundationProgramPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.1, duration: 0.6 }}
-                                className="group bg-white dark:bg-slate-900 rounded-[12px] p-8 border border-gray-100 dark:border-slate-800 shadow-2xl shadow-blue-900/5 hover:shadow-blue-900/10 hover:-translate-y-1 transition-all duration-500"
+                                className="group bg-white dark:bg-[#101733] rounded-[22px] p-8 border border-gray-100 dark:border-slate-800 shadow-2xl shadow-blue-900/5 hover:shadow-blue-900/10 hover:-translate-y-1 transition-all duration-500"
                             >
                                 <div className="flex items-center gap-5">
                                     <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 dark:bg-[#ee7c7e]/15 flex items-center justify-center text-[#ee7c7e] group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-500 shrink-0">
@@ -107,7 +107,7 @@ export default function FoundationProgramPage() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="relative bg-white dark:bg-slate-900 rounded-[14px] p-8 lg:p-12 border border-gray-100 dark:border-slate-800 shadow-xl shadow-blue-900/5 overflow-hidden"
+                            className="relative bg-white dark:bg-[#101733] rounded-[18px] p-8 lg:p-12 border border-gray-100 dark:border-slate-800 shadow-xl shadow-blue-900/5 overflow-hidden"
                         >
                             <div className="absolute -top-12 -right-12 w-48 h-48 bg-[#ee7c7e]/5 rounded-full blur-3xl" />
                             <div className="relative z-10 flex flex-col md:flex-row gap-8">
@@ -145,9 +145,9 @@ export default function FoundationProgramPage() {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: idx * 0.15, duration: 0.6 }}
-                                        className={`relative rounded-[14px] p-8 lg:p-10 overflow-hidden group transition-all duration-500 hover:-translate-y-1 ${
+                                        className={`relative rounded-[18px] p-8 lg:p-10 overflow-hidden group transition-all duration-500 hover:-translate-y-1 ${
                                             idx === 0
-                                                ? "bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-xl shadow-blue-900/5 hover:shadow-2xl"
+                                                ? "bg-white dark:bg-[#101733] border border-gray-100 dark:border-slate-800 shadow-xl shadow-blue-900/5 hover:shadow-2xl"
                                                 : "bg-[#1a2355] text-white shadow-2xl shadow-blue-900/20"
                                         }`}
                                     >
@@ -215,7 +215,7 @@ export default function FoundationProgramPage() {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="relative rounded-[14px] overflow-hidden"
+                            className="relative rounded-[18px] overflow-hidden"
                         >
                             <div className="absolute inset-0 bg-gradient-to-br from-[#1a2355] via-[#1a2355] to-[#13365E]" />
                             <div className="absolute top-0 left-0 w-64 h-64 bg-[#ee7c7e]/15 rounded-full -translate-y-1/2 -translate-x-1/2 blur-3xl" />
@@ -262,7 +262,7 @@ export default function FoundationProgramPage() {
                     <div className="lg:col-span-4 space-y-8">
                         <div className="sticky top-28 space-y-8">
                             {/* CTA Card */}
-                            <div className="p-10 rounded-[14px] bg-white dark:bg-slate-900 border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/20 shadow-2xl relative overflow-hidden group">
+                            <div className="p-10 rounded-[18px] bg-white dark:bg-[#101733] border-2 border-[#1a2355]/30 dark:border-[#ee7c7e]/20 shadow-2xl relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
                                 <div className="relative z-10">
                                     <div className="w-14 h-14 rounded-2xl bg-[#1a2355] text-white flex items-center justify-center mb-8 shadow-xl shadow-blue-900/20">
@@ -286,7 +286,7 @@ export default function FoundationProgramPage() {
                                         <Link
                                             key={link.href}
                                             href={link.href}
-                                            className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[10px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
+                                            className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[18px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
                                         >
                                             <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
                                             <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-slate-700 flex items-center justify-center group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300">

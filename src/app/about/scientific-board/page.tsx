@@ -32,7 +32,7 @@ function HomeStyleSection({
     return (
         <section
             ref={ref}
-            className={`relative px-4 md:px-10 lg:px-20 py-24 ${dark ? 'bg-[#0b1330]' : 'bg-white dark:bg-[#0b1330]'} overflow-hidden transition-colors duration-500`}
+            className={`relative px-4 md:px-10 lg:px-20 py-24 ${dark ? 'bg-[#0b1330]' : 'bg-white dark:bg-[#101733]'} overflow-hidden transition-colors duration-500`}
         >
             {/* STUNNING BACKGROUND ELEMENTS */}
             <div className="absolute inset-0 pointer-events-none">
@@ -114,7 +114,7 @@ export default function ScientificBoardPage() {
                 accentTitle={lang === 'az' ? 'Haqqında' : 'Board'}
                 watermark="Board"
             >
-                <div className="p-8 md:p-12 rounded-[14px] bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5 shadow-2xl">
+                <div className="p-8 md:p-12 rounded-[18px] bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5 shadow-2xl">
                     <p className="text-gray-600 dark:text-gray-400 text-xl leading-relaxed italic">
                         &quot;{data.aboutText}&quot;
                     </p>
@@ -227,7 +227,7 @@ export default function ScientificBoardPage() {
             </HomeStyleSection>
 
             {/* MORE IN THIS SECTION - Home Style Links */}
-            <section className="px-4 md:px-10 lg:px-20 py-24 bg-gray-50 dark:bg-[#0b1330]/50 border-t border-gray-100 dark:border-white/5">
+            <section className="px-4 md:px-10 lg:px-20 py-24 bg-gray-50 dark:bg-[#101733]/50 border-t border-gray-100 dark:border-white/5">
                 <div className="max-w-[1600px] mx-auto">
                     <div className="flex items-center gap-6 mb-16">
                         <div className="w-2 h-12 bg-[#ee7c7e] rounded-full" />
@@ -239,7 +239,7 @@ export default function ScientificBoardPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         {data.related.map((link, i) => (
                             <Link key={i} href={link.href} className="group">
-                                <div className="relative flex items-center justify-between p-8 bg-white dark:bg-white/5 rounded-[14px] border border-gray-100 dark:border-white/5 transition-all duration-500 hover:bg-[#1a2355] hover:border-[#1a2355] group-hover:shadow-[0_30px_60px_-15px_rgba(26,35,85,0.3)]">
+                                <div className="relative flex items-center justify-between p-8 bg-white dark:bg-white/5 rounded-[18px] border border-gray-100 dark:border-white/5 transition-all duration-500 hover:bg-[#1a2355] hover:border-[#1a2355] group-hover:shadow-[0_30px_60px_-15px_rgba(26,35,85,0.3)]">
                                     <div className="flex items-center gap-5">
                                         <div className="w-12 h-12 rounded-2xl bg-gray-50 dark:bg-white/5 flex items-center justify-center text-[#1a2355] dark:text-white group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-500">
                                             {i === 0 ? <SchoolIcon sx={{ fontSize: 24 }} /> : i === 1 ? <GroupsIcon sx={{ fontSize: 24 }} /> : <SettingsIcon sx={{ fontSize: 24 }} />}

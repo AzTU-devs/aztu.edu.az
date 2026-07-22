@@ -127,7 +127,7 @@ export default function IxtisaslarPage({ params }: Props) {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: idx * 0.05 }}
-                        className="group flex flex-col justify-between gap-5 rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-slate-900 dark:hover:border-white/20 md:flex-row md:items-center"
+                        className="group flex flex-col justify-between gap-5 rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-[#101733] dark:hover:border-white/20 md:flex-row md:items-center"
                       >
                         <div className="min-w-0 flex-1">
                           <div className="mb-2 flex flex-wrap items-center gap-3">

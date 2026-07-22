@@ -18,12 +18,12 @@ export default function ScholarshipOpportunitiesPage() {
     const p = t.pages.internationalization.scholarship;
 
     return (
-        <main className="min-h-screen bg-page dark:bg-[#0a0c1a] selection:bg-[#ee7c7e]/30 transition-colors duration-500">
+        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30 transition-colors duration-500">
             {/* HERO SECTION */}
             <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-[#0a0c1a]" />
-                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#111827] to-[#0f172a] rounded-bl-[2.5rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
+                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#111827] to-[#0f172a] rounded-bl-[1.75rem] lg:rounded-bl-[10rem] transition-all duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#0a0c1a] via-[#0a0c1a]/60 to-transparent hidden lg:block" />
                     <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#ee7c7e]/5 rounded-full blur-3xl" />
                 </div>
@@ -69,7 +69,7 @@ export default function ScholarshipOpportunitiesPage() {
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="bg-white dark:bg-slate-900 rounded-[14px] border border-gray-100 dark:border-slate-800 p-8 lg:p-12 shadow-2xl shadow-blue-900/5 overflow-hidden relative"
+                                className="bg-white dark:bg-[#101733] rounded-[18px] border border-gray-100 dark:border-slate-800 p-8 lg:p-12 shadow-2xl shadow-blue-900/5 overflow-hidden relative"
                             >
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#ee7c7e]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
                                 
@@ -117,7 +117,7 @@ export default function ScholarshipOpportunitiesPage() {
                                                     <h3 className="text-sm font-black text-[#1a2355] dark:text-white uppercase tracking-[0.12em] mb-4">{p.labels.studyLevels}</h3>
                                                     <div className="flex flex-wrap gap-2">
                                                         {program.levels.map((level: string, i: number) => (
-                                                            <span key={i} className="px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-bold border border-slate-100 dark:border-slate-700">
+                                                            <span key={i} className="px-4 py-2 rounded-lg bg-slate-50 dark:bg-[#161f42] text-slate-600 dark:text-slate-400 text-xs font-bold border border-slate-100 dark:border-slate-700">
                                                                 {level}
                                                             </span>
                                                         ))}
@@ -167,7 +167,7 @@ export default function ScholarshipOpportunitiesPage() {
                     <div className="lg:col-span-4">
                         <div className="sticky top-28 space-y-8">
                             {/* Academic Merit Card */}
-                            <div className="p-10 rounded-[14px] bg-[#1a2355] text-white shadow-2xl relative overflow-hidden group">
+                            <div className="p-10 rounded-[18px] bg-[#1a2355] text-white shadow-2xl relative overflow-hidden group">
                                 <div className="absolute top-0 left-0 w-32 h-32 bg-[#ee7c7e]/20 rounded-full -translate-y-1/2 -translate-x-1/2 blur-2xl" />
                                 <div className="relative z-10 text-center">
                                     <SchoolIcon className="text-[#ee7c7e] mb-6 mx-auto" sx={{ fontSize: 40 }} />
@@ -187,7 +187,7 @@ export default function ScholarshipOpportunitiesPage() {
                                     <Link
                                         key={link.href}
                                         href={link.href}
-                                        className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[10px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
+                                        className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[18px] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
                                     >
                                         <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
                                         <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-slate-700 flex items-center justify-center group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300">

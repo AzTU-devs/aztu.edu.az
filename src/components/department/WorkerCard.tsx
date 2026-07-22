@@ -13,7 +13,7 @@ export default function WorkerCard({ worker }: WorkerCardProps) {
   const profileImage = getImageUrl(worker.profile_image);
 
   return (
-    <div className="group bg-white dark:bg-slate-800 rounded-3xl p-6 flex flex-col items-center text-center gap-4 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_-6px_rgba(0,0,0,0.08)] border border-[#1a2355]/20 dark:border-[#ee7c7e]/20 transition-all duration-500 hover:-translate-y-1">
+    <div className="group bg-white dark:bg-[#161f42] rounded-3xl p-6 flex flex-col items-center text-center gap-4 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_-6px_rgba(0,0,0,0.08)] border border-[#1a2355]/20 dark:border-[#ee7c7e]/20 transition-all duration-500 hover:-translate-y-1">
       {/* Avatar with decorative ring */}
       <div className="relative p-1 rounded-full border-2 border-dashed border-[#ee7c7e]/40 group-hover:border-[#ee7c7e] transition-colors duration-500">
         <div className="w-24 h-24 rounded-full bg-gray-50 dark:bg-slate-700 overflow-hidden shadow-inner">

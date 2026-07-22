@@ -188,7 +188,7 @@ export default function Footer() {
                         </div>
 
                         {/* Contact Column - Anchored to the right */}
-                        <div className="bg-white/[0.04] border border-white/10 rounded-[12px] p-9 relative overflow-hidden group self-start w-full xl:w-[420px] shrink-0">
+                        <div className="bg-white/[0.04] border border-white/10 rounded-[22px] p-9 relative overflow-hidden group self-start w-full xl:w-[420px] shrink-0">
 
                             <h3 className="text-white text-[12px] font-semibold uppercase tracking-[0.14em] mb-7 relative z-10">
                                 {t.footer.contactTitle}
@@ -255,7 +255,7 @@ export default function Footer() {
                                     href={href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="group relative flex items-center justify-center bg-white/[0.06] border border-white/10 rounded-[10px] p-6 w-40 h-22 hover:bg-white/12 hover:border-white/25 transition-all duration-500 overflow-hidden"
+                                    className="group relative flex items-center justify-center bg-white/[0.06] border border-white/10 rounded-[18px] p-6 w-40 h-22 hover:bg-white/12 hover:border-white/25 transition-all duration-500 overflow-hidden"
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                                     <Image src={src} alt={label} className="relative z-10 w-full h-auto grayscale-[0.4] opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-95 group-hover:scale-105" />
@@ -273,7 +273,7 @@ export default function Footer() {
                                 <Link
                                     key={label}
                                     href={href}
-                                    className="group flex flex-col items-center justify-center bg-white/[0.06] w-26 h-26 rounded-[10px] border border-white/10 hover:bg-[#ee7c7e] hover:border-[#ee7c7e] transition-all duration-500"
+                                    className="group flex flex-col items-center justify-center bg-white/[0.06] w-26 h-26 rounded-[18px] border border-white/10 hover:bg-[#ee7c7e] hover:border-[#ee7c7e] transition-all duration-500"
                                 >
                                     <Icon sx={{ fontSize: 32 }} className="text-white/60 group-hover:text-white transition-colors" />
                                     <span className="text-white/45 group-hover:text-white text-[10px] font-semibold uppercase tracking-[0.12em] text-center mt-3 px-2 line-clamp-1">
@@ -287,7 +287,7 @@ export default function Footer() {
                                 href={APPEAL_URL}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group flex flex-col items-center justify-center bg-white/[0.06] w-26 h-26 rounded-[10px] border border-white/10 hover:bg-[#ee7c7e] hover:border-[#ee7c7e] transition-all duration-500"
+                                className="group flex flex-col items-center justify-center bg-white/[0.06] w-26 h-26 rounded-[18px] border border-white/10 hover:bg-[#ee7c7e] hover:border-[#ee7c7e] transition-all duration-500"
                             >
                                 <GavelIcon sx={{ fontSize: 32 }} className="text-white/60 group-hover:text-white transition-colors" />
                                 <span className="text-white/45 group-hover:text-white text-[10px] font-semibold uppercase tracking-[0.12em] text-center mt-3 px-2 line-clamp-1">

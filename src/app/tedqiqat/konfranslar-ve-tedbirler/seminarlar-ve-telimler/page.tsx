@@ -35,7 +35,7 @@ export default function SeminarsAndTrainingsPage() {
     const y = useTransform(scrollY, [0, 500], [0, 200]);
 
     return (
-        <main className="min-h-screen bg-white dark:bg-[#0b1330] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
 
             {/* HERO BANNER */}
             <section ref={bannerRef} className="relative h-[80vh] min-h-[600px] w-full flex items-center overflow-hidden bg-black">
@@ -132,7 +132,7 @@ export default function SeminarsAndTrainingsPage() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="relative mb-24 p-10 md:p-16 rounded-[14px] bg-[#1a2355] dark:bg-white/[0.02] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.2)] overflow-hidden text-center"
+                        className="relative mb-24 p-10 md:p-16 rounded-[18px] bg-[#1a2355] dark:bg-white/[0.02] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.2)] overflow-hidden text-center"
                     >
                         <div className="relative z-10 max-w-4xl mx-auto">
                             <p className="text-white text-xl md:text-3xl font-black leading-snug tracking-tight">
@@ -151,7 +151,7 @@ export default function SeminarsAndTrainingsPage() {
                             {p.upcomingTitle}
                         </h3>
 
-                        <div className="rounded-[14px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 p-12 md:p-16 flex flex-col items-center text-center shadow-xl">
+                        <div className="rounded-[18px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 p-12 md:p-16 flex flex-col items-center text-center shadow-xl">
                             <div className="w-16 h-16 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e] mb-6">
                                 <EventIcon sx={{ fontSize: 32 }} />
                             </div>
@@ -178,7 +178,7 @@ export default function SeminarsAndTrainingsPage() {
                                 <Link
                                     key={i}
                                     href={link.href}
-                                    className="group relative h-64 rounded-[14px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 p-10 flex flex-col justify-between hover:scale-[1.02] hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                                    className="group relative h-64 rounded-[18px] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 p-10 flex flex-col justify-between hover:scale-[1.02] hover:shadow-2xl transition-all duration-500 overflow-hidden"
                                 >
                                     <div
                                         className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"

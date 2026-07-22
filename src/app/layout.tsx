@@ -147,9 +147,10 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
+  // Match the --canvas token in each theme so the browser chrome blends in.
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
+    { media: "(prefers-color-scheme: light)", color: "#f2f5fb" },
+    { media: "(prefers-color-scheme: dark)", color: "#070b1a" },
   ],
   colorScheme: "light dark",
 };
@@ -238,6 +239,14 @@ export default function RootLayout({
   return (
     <html lang="az" suppressHydrationWarning>
       <head>
+        {/* Apply the stored theme before first paint. ThemeContext syncs it in
+            an effect, which runs after hydration — without this the page paints
+            light first and dark-mode users see a flash on every navigation. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("aztu-theme");if(t==="dark"){document.documentElement.classList.add("dark")}}catch(e){}})();`,
+          }}
+        />
         <link rel="preconnect" href={API_BASE} />
         <link rel="dns-prefetch" href={API_BASE} />
         <link rel="alternate" type="application/rss+xml" title="AzTU Xəbərləri" href="/feed.xml" />

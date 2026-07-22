@@ -30,7 +30,7 @@ export default function StudyPlanPage() {
     // ---- Not found ----
     if (!plan) {
         return (
-            <main className="min-h-screen flex flex-col items-center justify-center bg-white dark:bg-[#0f172a] px-4 text-center">
+            <main className="min-h-screen flex flex-col items-center justify-center bg-page px-4 text-center">
                 <div className="w-16 h-16 rounded-2xl bg-[#ee7c7e]/10 text-[#ee7c7e] flex items-center justify-center mb-6">
                     <ErrorOutlineIcon sx={{ fontSize: 32 }} />
                 </div>
@@ -57,7 +57,7 @@ export default function StudyPlanPage() {
     }));
 
     const SemesterCard = ({ semester }: { semester: StudyPlanSemester }) => (
-        <div className="bg-white dark:bg-slate-900 rounded-[12px] border border-gray-100 dark:border-slate-800 shadow-xl shadow-blue-900/5 overflow-hidden flex flex-col">
+        <div className="bg-white dark:bg-[#101733] rounded-[22px] border border-gray-100 dark:border-slate-800 shadow-xl shadow-blue-900/5 overflow-hidden flex flex-col">
             {/* Header */}
             <div className="relative bg-gradient-to-br from-[#1a2355] to-[#13365E] px-6 py-5 flex items-center justify-between gap-3">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-[#ee7c7e]/15 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
@@ -120,12 +120,12 @@ export default function StudyPlanPage() {
     );
 
     return (
-        <main className="min-h-screen bg-white dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
             {/* HERO */}
             <div className="relative flex flex-col pt-44 lg:pt-48">
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                     <div className="absolute inset-0 bg-[#0b1330]" />
-                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[2.5rem] lg:rounded-bl-[10rem]" />
+                    <div className="absolute top-0 right-0 w-full lg:w-[85%] h-full bg-gradient-to-br from-[#1a2355] to-[#13365E] rounded-bl-[1.75rem] lg:rounded-bl-[10rem]" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#0b1330] via-[#0b1330]/80 to-transparent hidden lg:block" />
                     <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#ee7c7e]/5 rounded-full blur-3xl" />
                 </div>

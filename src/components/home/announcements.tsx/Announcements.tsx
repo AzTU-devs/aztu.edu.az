@@ -65,7 +65,7 @@ export default function Announcements() {
     return (
         <section
             ref={sectionRef}
-            className="relative bg-white section-padding"
+            className="relative section-padding"
         >
             <div className="shell !px-0">
                 {/* Section Header */}
@@ -91,9 +91,9 @@ export default function Announcements() {
                         transition={{ duration: 0.7, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
                     >
                         <Link href="/announcement">
-                            <button className="group inline-flex items-center gap-3 rounded-full border border-[#1a2355]/12 bg-white py-3 pl-6 pr-3 text-[13px] font-semibold text-[#10163a] transition-all duration-300 hover:border-[#1a2355] hover:bg-[#1a2355] hover:text-white cursor-pointer">
+                            <button className="group inline-flex items-center gap-3 rounded-full border border-[var(--line-strong)] bg-[var(--surface)] py-3 pl-6 pr-3 text-[13px] font-semibold text-[var(--ink)] transition-all duration-300 hover:border-[#1a2355] hover:bg-[#1a2355] hover:text-white cursor-pointer">
                                 {t.announcements.viewAll}
-                                <span className="w-8 h-8 rounded-full bg-[#1a2355]/5 flex items-center justify-center transition-all duration-300 group-hover:bg-white/15">
+                                <span className="w-8 h-8 rounded-full bg-[var(--surface-inset)] flex items-center justify-center transition-all duration-300 group-hover:bg-white/15">
                                     <ChevronRightIcon sx={{ fontSize: 18 }} />
                                 </span>
                             </button>
@@ -111,14 +111,14 @@ export default function Announcements() {
                             className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 animate-pulse"
                         >
                             {[1, 2, 3, 4].map((i) => (
-                                <div key={i} className="bg-[#1a2355]/[0.04] rounded-[12px] h-48 border border-[#1a2355]/[0.06]" />
+                                <div key={i} className="bg-[var(--surface-inset)] rounded-[22px] h-48 border border-[var(--line)]" />
                             ))}
                         </motion.div>
                     )}
                 </AnimatePresence>
 
                 {!loading && errored && (
-                    <div className="rounded-[14px] border border-[#ee7c7e]/30 bg-[#ee7c7e]/5 text-[#545e80] text-sm px-6 py-4 mb-6">
+                    <div className="rounded-[18px] border border-[#ee7c7e]/30 bg-[#ee7c7e]/5 text-[var(--ink-muted)] text-sm px-6 py-4 mb-6">
                         {t.announcements.sectionLabel} — connection error. Please retry.
                     </div>
                 )}
@@ -144,25 +144,25 @@ export default function Announcements() {
                                         <div className="surface-card group relative h-full flex flex-col p-7 overflow-hidden hover:-translate-y-1">
                                             {/* Date Badge */}
                                             <div className="mb-7 flex items-center gap-4">
-                                                <div className="w-14 h-14 rounded-[14px] bg-[#1a2355]/[0.04] border border-[#1a2355]/[0.07] flex flex-col items-center justify-center text-[#10163a] transition-colors duration-500 group-hover:bg-[#ee7c7e] group-hover:border-[#ee7c7e] group-hover:text-white">
+                                                <div className="w-14 h-14 rounded-[18px] bg-[var(--surface-inset)] border border-[var(--line)] flex flex-col items-center justify-center text-[var(--ink)] transition-colors duration-500 group-hover:bg-[#ee7c7e] group-hover:border-[#ee7c7e] group-hover:text-white">
                                                     <span className="text-lg font-semibold leading-none tabular-nums">{date}</span>
                                                     <span className="text-[10px] font-medium uppercase tracking-wide opacity-60 group-hover:opacity-100">{month}</span>
                                                 </div>
                                                 <div className="h-px flex-1 bg-[#1a2355]/[0.09]" />
-                                                <CalendarMonthIcon sx={{ fontSize: 16 }} className="text-[#8a93ad]" />
+                                                <CalendarMonthIcon sx={{ fontSize: 16 }} className="text-[var(--ink-subtle)]" />
                                             </div>
 
                                             {/* Content */}
                                             <div className="flex-1">
-                                                <h3 className="text-[#10163a] font-semibold text-[17px] leading-snug line-clamp-3 tracking-[-0.01em] transition-colors duration-300 group-hover:text-[#ee7c7e]">
+                                                <h3 className="text-[var(--ink)] font-semibold text-[17px] leading-snug line-clamp-3 tracking-[-0.01em] transition-colors duration-300 group-hover:text-[#ee7c7e]">
                                                     {announcement.title}
                                                 </h3>
                                             </div>
 
                                             {/* Footer Interaction */}
                                             <div className="mt-7 flex items-center justify-between">
-                                                <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#8a93ad] transition-colors group-hover:text-[#ee7c7e]">Details</span>
-                                                <div className="w-9 h-9 rounded-full bg-[#1a2355]/[0.04] flex items-center justify-center text-[#1a2355] transition-all duration-300 group-hover:bg-[#ee7c7e] group-hover:text-white">
+                                                <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--ink-subtle)] transition-colors group-hover:text-[#ee7c7e]">Details</span>
+                                                <div className="w-9 h-9 rounded-full bg-[var(--surface-inset)] flex items-center justify-center text-[#1a2355] transition-all duration-300 group-hover:bg-[#ee7c7e] group-hover:text-white">
                                                     <ChevronRightIcon sx={{ fontSize: 18 }} />
                                                 </div>
                                             </div>
