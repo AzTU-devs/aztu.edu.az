@@ -1,223 +1,318 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import LaunchIcon from "@mui/icons-material/Launch";
-import HomeIcon from "@mui/icons-material/Home";
-import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
-import StarIcon from "@mui/icons-material/Star";
-import ScienceIcon from "@mui/icons-material/Science";
-import PublicIcon from "@mui/icons-material/Public";
-import DevicesIcon from "@mui/icons-material/Devices";
-import NaturePeopleIcon from "@mui/icons-material/NaturePeople";
+
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
-import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
+import { getAboutPage } from "@/services/aboutService/aboutService";
+import { getImageUrl } from "@/services/departmentService/departmentService";
+import type { AboutPage } from "@/types/about";
 
-const PILLAR_ICONS = [
-    <StarIcon key="star" sx={{ fontSize: 28 }} />,
-    <ScienceIcon key="sci" sx={{ fontSize: 28 }} />,
-    <PublicIcon key="pub" sx={{ fontSize: 28 }} />,
-    <DevicesIcon key="dev" sx={{ fontSize: 28 }} />,
-    <NaturePeopleIcon key="nat" sx={{ fontSize: 28 }} />,
-];
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import HomeIcon from "@mui/icons-material/Home";
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
+import SanitizedHtml from "@/components/shared/SanitizedHtml";
+
+const PAGE_KEY = "strategic-plan";
+
+interface PillarView {
+    title: string;
+    descriptionHtml: string;
+    tags: string[];
+}
+
+interface ListView {
+    key: string;
+    style: string;
+    title: string;
+    items: string[];
+}
+
+interface LinkView {
+    label: string;
+    url: string;
+}
 
 export default function StrategicPlanPage() {
     const t = useTranslation();
     const { lang } = useLanguage();
     const p = t.pages.about.strategicPlan;
 
-    const parentLabel = lang === "az" ? "Vizyon və Missiya" : "Vision & Mission";
-    const parentHref = lang === "az" ? "/haqqimizda/vizyon-ve-missiya" : "/about/vision-mission";
+    const [page, setPage] = useState<AboutPage | null>(null);
+
+    useEffect(() => {
+        let cancelled = false;
+        getAboutPage(PAGE_KEY, lang).then((result) => {
+            if (!cancelled) setPage(result);
+        });
+        return () => {
+            cancelled = true;
+        };
+    }, [lang]);
+
+    // The CMS is the source of truth once the page is published; until then the
+    // built-in copy keeps the page complete rather than blank.
+    const title = page?.title || p.title;
+    const descriptionHtml = page?.description || `<p>${p.subtitle}</p>`;
+    const linksTitle = page?.links_title || t.common.moreInSection;
+    const pillarsTitle =
+        page?.pillars_title || (lang === "az" ? "Strateji Sütunlar" : "Strategic Pillars");
+
+    // Either an uploaded file's stored path or a URL an editor pasted.
+    const documentUrl = page?.document_url
+        ? getImageUrl(page.document_url)
+        : p.pdfUrl;
+    const documentLabel =
+        page?.document_label ||
+        (lang === "az" ? "Tam sənədi yüklə" : "Download Full Document");
+
+    const pillars: PillarView[] = page?.pillars?.length
+        ? page.pillars.map((pillar) => ({
+              title: pillar.title ?? "",
+              descriptionHtml: pillar.description ?? "",
+              tags: pillar.tags ?? [],
+          }))
+        : p.pillars.map(
+              (pillar: { title: string; description: string; targets: string[] }) => ({
+                  title: pillar.title,
+                  descriptionHtml: `<p>${pillar.description}</p>`,
+                  tags: pillar.targets ?? [],
+              })
+          );
+
+    const lists: ListView[] = page?.lists?.length
+        ? page.lists.map((entry) => ({
+              key: entry.list_key,
+              style: entry.style,
+              title: entry.title ?? "",
+              items: entry.items ?? [],
+          }))
+        : [
+              { key: "values", style: "bullet", title: p.valuesTitle, items: p.values },
+              { key: "kpis", style: "number", title: p.targetsTitle, items: p.targets },
+          ];
+
+    const links: LinkView[] = page?.links?.length
+        ? page.links.map((link) => ({ label: link.label ?? "", url: link.url ?? "#" }))
+        : p.related.map((link: { title: string; href: string }) => ({
+              label: link.title,
+              url: link.href,
+          }));
 
     return (
         <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
-            {/* STUNNING HERO SECTION */}
-            <div className="relative min-h-[60vh] lg:min-h-[70vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
-                <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            {/* HERO */}
+            <div className="relative flex min-h-[52vh] flex-col pt-36 lg:pt-40">
+                <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
                     <AboutHeroVideoBg />
                 </div>
 
-                <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-20">
-                    <nav className="flex items-center gap-2 text-white/60 text-xs mb-12">
-                        <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-                            <HomeIcon sx={{ fontSize: 14 }} />
-                            Home
+                <div className="relative z-10 mx-auto w-full max-w-[1400px] px-4 pb-16 md:px-10 lg:px-16">
+                    <nav className="mb-10 flex items-center gap-1.5 text-[11px] text-white/55">
+                        <Link href="/" className="flex items-center gap-1 transition-colors hover:text-white">
+                            <HomeIcon sx={{ fontSize: 13 }} />
+                            {t.common.home}
                         </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={lang === "az" ? "/haqqimizda" : "/about"} className="hover:text-white transition-colors">
+                        <ChevronRightIcon sx={{ fontSize: 11 }} />
+                        <Link
+                            href={lang === "az" ? "/haqqimizda" : "/about"}
+                            className="transition-colors hover:text-white"
+                        >
                             {t.nav.sections.about}
                         </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={parentHref} className="hover:text-white transition-colors">
-                            {parentLabel}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <span className="text-[#ee7c7e] font-bold">{p.breadcrumb}</span>
+                        <ChevronRightIcon sx={{ fontSize: 11 }} />
+                        <span className="font-semibold text-[#ee7c7e]">{p.breadcrumb}</span>
                     </nav>
 
-                    <div className="max-w-4xl">
-                        <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-                            <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
-                                {p.eyebrow}
-                            </span>
-                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
-                                {p.title}
-                            </h1>
-                            <p className="text-xl text-white/80 font-medium mb-10 max-w-2xl leading-relaxed italic">
-                                &quot;{p.subtitle}&quot;
-                            </p>
+                    <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        className="max-w-3xl"
+                    >
+                        <span className="mb-5 inline-block rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-[#ee7c7e] backdrop-blur-md">
+                            {p.eyebrow}
+                        </span>
+                        <h1 className="mb-5 text-3xl font-black leading-[1.08] tracking-tight text-white md:text-4xl lg:text-5xl">
+                            {title}
+                        </h1>
+                        <SanitizedHtml
+                            html={descriptionHtml}
+                            className="prose prose-invert mb-7 max-w-2xl text-base leading-relaxed lg:text-lg [&_p]:text-white/75"
+                        />
 
-                            <div className="flex gap-4">
-                                <a 
-                                    href={p.pdfUrl} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-3 bg-white text-[#1a2355] px-6 py-3 rounded-xl font-bold hover:bg-[#ee7c7e] hover:text-white transition-all shadow-xl group"
-                                >
-                                    <PictureAsPdfIcon />
-                                    {lang === "az" ? "Tam sənədi yüklə" : "Download Full Document"}
-                                </a>
-                            </div>
-                        </motion.div>
-                    </div>
+                        {documentUrl ? (
+                            <a
+                                href={documentUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group inline-flex items-center gap-2.5 rounded-xl bg-white px-5 py-3 text-sm font-bold text-[#1a2355] shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#ee7c7e] hover:text-white"
+                            >
+                                <FileDownloadIcon sx={{ fontSize: 18 }} />
+                                {documentLabel}
+                            </a>
+                        ) : null}
+                    </motion.div>
                 </div>
             </div>
 
-            <div className="px-4 md:px-10 lg:px-20 py-24 space-y-32 bg-white dark:bg-[#0b1330] relative overflow-hidden">
-                <div className="relative z-10 max-w-[1600px] mx-auto">
-                    
-                    {/* Vision & Mission Summary */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
-                        <motion.div 
-                            initial={{ opacity: 0, y: 20 }} 
-                            whileInView={{ opacity: 1, y: 0 }} 
-                            viewport={{ once: true }}
-                            className="bg-gray-50 dark:bg-white/5 p-10 rounded-[2rem] border border-gray-100 dark:border-white/10"
-                        >
-                            <h2 className="text-2xl font-black text-[#1a2355] dark:text-white mb-6 flex items-center gap-3">
-                                <div className="w-1.5 h-8 bg-[#ee7c7e] rounded-full" />
-                                {lang === "az" ? "Vizyon" : "Vision"}
+            <div className="px-4 pb-20 pt-16 md:px-10 lg:px-16">
+                {/* STRATEGIC PILLARS
+                    Each card leads with a large ghosted ordinal, so the set reads
+                    as a numbered sequence without a heavy badge. */}
+                {pillars.length > 0 && (
+                    <section className="mx-auto max-w-[1400px]">
+                        <div className="mb-8">
+                            <h2 className="text-xl font-black tracking-tight text-[#1a2355] dark:text-white lg:text-2xl">
+                                {pillarsTitle}
                             </h2>
-                            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">{p.vision}</p>
-                        </motion.div>
-                        <motion.div 
-                            initial={{ opacity: 0, y: 20 }} 
-                            whileInView={{ opacity: 1, y: 0 }} 
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                            className="bg-gray-50 dark:bg-white/5 p-10 rounded-[2rem] border border-gray-100 dark:border-white/10"
-                        >
-                            <h2 className="text-2xl font-black text-[#1a2355] dark:text-white mb-6 flex items-center gap-3">
-                                <div className="w-1.5 h-8 bg-[#ee7c7e] rounded-full" />
-                                {lang === "az" ? "Missiya" : "Mission"}
-                            </h2>
-                            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">{p.mission}</p>
-                        </motion.div>
-                    </div>
-
-                    {/* Strategic Pillars */}
-                    <div className="mb-32">
-                        <div className="mb-12">
-                            <h2 className="text-3xl md:text-4xl font-black text-[#1a2355] dark:text-white mb-4">
-                                {lang === "az" ? "Strateji Sütunlar" : "Strategic Pillars"}
-                            </h2>
-                            <div className="w-20 h-1.5 bg-[#ee7c7e] rounded-full" />
+                            <span className="mt-2 block h-1 w-14 rounded-full bg-[#ee7c7e]" />
                         </div>
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                            {p.pillars.map((pillar: any, i: number) => (
-                                <motion.div
-                                    key={pillar.num}
-                                    initial={{ opacity: 0, y: 24 }}
+
+                        <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+                            {pillars.map((pillar, index) => (
+                                <motion.article
+                                    key={`${pillar.title}-${index}`}
+                                    initial={{ opacity: 0, y: 18 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                                    viewport={{ once: true, margin: "-60px" }}
+                                    transition={{ duration: 0.45, delay: (index % 2) * 0.06 }}
+                                    className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md dark:border-slate-700/60 dark:bg-slate-800/50"
                                 >
-                                    <div className="bg-white dark:bg-white/5 p-8 rounded-[1.75rem] border border-gray-100 dark:border-white/10 shadow-sm h-full flex gap-6">
-                                        <div className="text-5xl font-black text-[#1a2355]/10 dark:text-white/10 select-none">
-                                            {pillar.num}
-                                        </div>
-                                        <div className="flex-1">
-                                            <div className="text-[#ee7c7e] mb-4">{PILLAR_ICONS[i]}</div>
-                                            <h3 className="text-[#1a2355] dark:text-white font-black text-xl mb-3">{pillar.title}</h3>
-                                            <p className="text-gray-500 dark:text-gray-400 mb-6 leading-relaxed">{pillar.description}</p>
-                                            <div className="flex flex-wrap gap-2">
-                                                {pillar.targets.map((target: string) => (
-                                                    <span key={target} className="px-3 py-1 rounded-full bg-gray-100 dark:bg-white/10 text-[10px] font-black uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                                                        {target}
-                                                    </span>
-                                                ))}
-                                            </div>
+                                    {/* Accent rail that fills in on hover. */}
+                                    <span
+                                        aria-hidden
+                                        className="absolute inset-y-0 left-0 w-0.5 bg-[#ee7c7e]/0 transition-colors duration-300 group-hover:bg-[#ee7c7e]"
+                                    />
+
+                                    <div className="flex items-start gap-4">
+                                        <span
+                                            aria-hidden
+                                            className="select-none text-3xl font-black leading-none text-[#1a2355]/10 dark:text-white/10"
+                                        >
+                                            {String(index + 1).padStart(2, "0")}
+                                        </span>
+
+                                        <div className="min-w-0 flex-1">
+                                            <h3 className="mb-2 text-base font-black leading-snug tracking-tight text-[#1a2355] dark:text-white lg:text-lg">
+                                                {pillar.title}
+                                            </h3>
+
+                                            <SanitizedHtml
+                                                html={pillar.descriptionHtml}
+                                                className="prose prose-slate mb-4 max-w-none text-sm leading-relaxed dark:prose-invert lg:text-[15px] [&_p]:text-slate-600 dark:[&_p]:text-slate-300"
+                                            />
+
+                                            {pillar.tags.length > 0 && (
+                                                <ul className="flex flex-wrap gap-1.5">
+                                                    {pillar.tags.map((tag) => (
+                                                        <li
+                                                            key={tag}
+                                                            className="rounded-md bg-slate-100 px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-slate-500 dark:bg-slate-700/60 dark:text-slate-300"
+                                                        >
+                                                            {tag}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            )}
                                         </div>
                                     </div>
-                                </motion.div>
+                                </motion.article>
                             ))}
                         </div>
-                    </div>
+                    </section>
+                )}
 
-                    {/* Values & KPIs */}
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-                        <motion.div 
-                            initial={{ opacity: 0, x: -30 }} 
-                            whileInView={{ opacity: 1, x: 0 }} 
-                            viewport={{ once: true }}
-                            className="lg:col-span-5"
-                        >
-                            <h2 className="text-2xl font-black text-[#1a2355] dark:text-white mb-8 flex items-center gap-3">
-                                <div className="w-1.5 h-8 bg-[#ee7c7e] rounded-full" />
-                                {p.valuesTitle}
-                            </h2>
-                            <div className="grid grid-cols-1 gap-4">
-                                {p.values.map((val: string, i: number) => (
-                                    <div key={i} className="flex items-center gap-4 bg-gray-50 dark:bg-white/5 p-5 rounded-2xl border border-gray-100 dark:border-white/10 transition-all hover:border-[#ee7c7e]/30 group">
-                                        <div className="w-2 h-2 rounded-full bg-[#ee7c7e]" />
-                                        <span className="font-black text-[#1a2355] dark:text-white uppercase tracking-widest text-xs group-hover:text-[#ee7c7e] transition-colors">{val}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </motion.div>
+                {/* VALUES + KPIs — bulleted and numbered, side by side. */}
+                {lists.length > 0 && (
+                    <section className="mx-auto mt-14 grid max-w-[1400px] grid-cols-1 gap-5 lg:grid-cols-2">
+                        {lists.map((list, listIndex) => {
+                            const numbered = list.style === "number";
 
-                        <motion.div 
-                            initial={{ opacity: 0, x: 30 }} 
-                            whileInView={{ opacity: 1, x: 0 }} 
-                            viewport={{ once: true }}
-                            className="lg:col-span-7"
-                        >
-                            <h2 className="text-2xl font-black text-[#1a2355] dark:text-white mb-8 flex items-center gap-3">
-                                <div className="w-1.5 h-8 bg-[#ee7c7e] rounded-full" />
-                                {p.targetsTitle}
-                            </h2>
-                            <div className="space-y-4">
-                                {p.targets.map((target: string, i: number) => (
-                                    <div key={i} className="flex gap-4 items-start p-6 bg-[#1a2355]/5 dark:bg-white/5 rounded-3xl border-l-4 border-[#ee7c7e]">
-                                        <div className="text-[#ee7c7e] font-black text-lg">{(i + 1).toString().padStart(2, '0')}</div>
-                                        <p className="text-[#1a2355] dark:text-white/80 font-medium">{target}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </motion.div>
-                    </div>
+                            return (
+                                <motion.div
+                                    key={list.key}
+                                    initial={{ opacity: 0, y: 18 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: "-60px" }}
+                                    transition={{ duration: 0.45, delay: listIndex * 0.06 }}
+                                    className={`rounded-2xl p-6 lg:p-8 ${
+                                        numbered
+                                            ? "bg-[#1a2355] shadow-lg shadow-[#1a2355]/20 dark:bg-slate-900"
+                                            : "border border-slate-200/80 bg-white shadow-sm dark:border-slate-700/60 dark:bg-slate-800/50"
+                                    }`}
+                                >
+                                    <h2
+                                        className={`mb-5 text-base font-black uppercase tracking-wide lg:text-lg ${
+                                            numbered ? "text-white" : "text-[#1a2355] dark:text-white"
+                                        }`}
+                                    >
+                                        {list.title}
+                                    </h2>
 
-                    {/* Related Links */}
-                    <div className="pt-20 mt-32 border-t border-gray-100 dark:border-white/10">
-                        <h2 className="text-xl font-black text-[#1a2355] dark:text-white mb-8 flex items-center gap-3">
-                            <div className="w-2 h-8 bg-[#ee7c7e] rounded-full" />
-                            {t.common.moreInSection}
+                                    <ul className="space-y-3">
+                                        {list.items.map((item, index) => (
+                                            <li key={item} className="flex items-start gap-3">
+                                                {numbered ? (
+                                                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-[#ee7c7e]/15 text-[10px] font-black text-[#ee7c7e]">
+                                                        {index + 1}
+                                                    </span>
+                                                ) : (
+                                                    <span
+                                                        aria-hidden
+                                                        className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#ee7c7e]"
+                                                    />
+                                                )}
+                                                <span
+                                                    className={`text-sm leading-relaxed lg:text-[15px] ${
+                                                        numbered
+                                                            ? "text-white/85"
+                                                            : "text-slate-600 dark:text-slate-300"
+                                                    }`}
+                                                >
+                                                    {item}
+                                                </span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </motion.div>
+                            );
+                        })}
+                    </section>
+                )}
+
+                {/* MORE IN THIS SECTION */}
+                {links.length > 0 && (
+                    <section className="mx-auto mt-16 max-w-[1400px] border-t border-slate-200 pt-12 dark:border-slate-800">
+                        <h2 className="mb-6 flex items-center gap-2.5 text-sm font-black uppercase tracking-wide text-[#1a2355] dark:text-white">
+                            <span className="h-5 w-1.5 rounded-full bg-[#ee7c7e]" />
+                            {linksTitle}
                         </h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                            {p.related.map((link: any) => (
-                                <Link key={link.href} href={link.href}
-                                    className="group flex items-center justify-between bg-white dark:bg-white/5 p-6 rounded-[1.25rem] border border-gray-100 dark:border-white/10 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl">
-                                    <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
-                                    <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-white/10 flex items-center justify-center group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300">
-                                        <ChevronRightIcon sx={{ fontSize: 20 }} className="group-hover:translate-x-1 transition-transform" />
-                                    </div>
+
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                            {links.map((link, index) => (
+                                <Link
+                                    key={`${link.url}-${index}`}
+                                    href={link.url}
+                                    className="group flex items-center justify-between gap-3 rounded-xl border border-slate-200/80 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#ee7c7e]/50 hover:shadow-md dark:border-slate-700/60 dark:bg-slate-800/50"
+                                >
+                                    <span className="text-sm font-bold text-[#1a2355] transition-colors group-hover:text-[#ee7c7e] dark:text-white">
+                                        {link.label}
+                                    </span>
+                                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-50 text-[#1a2355] transition-all duration-300 group-hover:bg-[#1a2355] group-hover:text-white dark:bg-slate-700 dark:text-white">
+                                        <ChevronRightIcon
+                                            sx={{ fontSize: 17 }}
+                                            className="transition-transform group-hover:translate-x-0.5"
+                                        />
+                                    </span>
                                 </Link>
                             ))}
                         </div>
-                    </div>
-                </div>
+                    </section>
+                )}
             </div>
         </main>
     );
