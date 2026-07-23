@@ -1,136 +1,210 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
+import { getAboutPage } from "@/services/aboutService/aboutService";
+import type { AboutPage } from "@/types/about";
 
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import HomeIcon from "@mui/icons-material/Home";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import SchoolIcon from "@mui/icons-material/School";
-import PeopleIcon from "@mui/icons-material/People";
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-
-const STAT_ICONS = [
-    <CalendarMonthIcon key="cal" sx={{ fontSize: 32 }} />,
-    <SchoolIcon key="school" sx={{ fontSize: 32 }} />,
-    <PeopleIcon key="people" sx={{ fontSize: 32 }} />,
-    <EmojiEventsIcon key="trophy" sx={{ fontSize: 32 }} />,
-];
-
-import Timeline from "@/components/shared/Timeline";
 import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
+import SanitizedHtml from "@/components/shared/SanitizedHtml";
+
+const PAGE_KEY = "history";
+
+interface MilestoneView {
+    year: string;
+    title: string;
+    descriptionHtml: string;
+}
+
+interface LinkView {
+    label: string;
+    url: string;
+}
 
 export default function HistoryPage() {
     const t = useTranslation();
     const { lang } = useLanguage();
     const p = t.pages.about.history;
 
-    return (
-        <main className="min-h-screen bg-[#f8fafc] dark:bg-[#050816] selection:bg-[#ee7c7e]/30 overflow-hidden">
-            {/* STUNNING BACKGROUND ELEMENTS */}
-            <div className="bg-mesh opacity-100" />
-            <div className="bg-grid-premium opacity-10" />
+    const [page, setPage] = useState<AboutPage | null>(null);
 
-            {/* HERO SECTION */}
-            <div className="relative min-h-[80vh] flex flex-col pt-44 lg:pt-48">
-                {/* Background Graphics */}
-                <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+    useEffect(() => {
+        let cancelled = false;
+        getAboutPage(PAGE_KEY, lang).then((result) => {
+            if (!cancelled) setPage(result);
+        });
+        return () => {
+            cancelled = true;
+        };
+    }, [lang]);
+
+    // The CMS is the source of truth once the page is published; until then the
+    // built-in copy keeps the page complete rather than blank.
+    const title = page?.title || p.title;
+    const descriptionHtml = page?.description || `<p>${p.subtitle}</p>`;
+    const linksTitle = page?.links_title || t.common.moreInSection;
+
+    const milestones: MilestoneView[] = page?.milestones?.length
+        ? page.milestones.map((milestone) => ({
+              year: milestone.year ?? "",
+              title: milestone.title ?? "",
+              descriptionHtml: milestone.description ?? "",
+          }))
+        : p.milestones.map((milestone: { year: string; title: string; description: string }) => ({
+              year: milestone.year,
+              title: milestone.title,
+              descriptionHtml: `<p>${milestone.description}</p>`,
+          }));
+
+    const links: LinkView[] = page?.links?.length
+        ? page.links.map((link) => ({ label: link.label ?? "", url: link.url ?? "#" }))
+        : p.related.map((link: { title: string; href: string }) => ({
+              label: link.title,
+              url: link.href,
+          }));
+
+    return (
+        <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+            {/* HERO */}
+            <div className="relative flex min-h-[52vh] flex-col pt-36 lg:pt-40">
+                <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
                     <AboutHeroVideoBg />
                 </div>
 
-                <div className="relative z-10 flex-1 flex flex-col max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-12">
-                    {/* Breadcrumbs */}
-                    <nav className="flex items-center gap-2 text-white/60 text-xs mb-12 lg:mb-16">
-                        <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-                            <HomeIcon sx={{ fontSize: 14 }} />
-                            Home
+                <div className="relative z-10 mx-auto w-full max-w-[1400px] px-4 pb-16 md:px-10 lg:px-16">
+                    <nav className="mb-10 flex items-center gap-1.5 text-[11px] text-white/55">
+                        <Link href="/" className="flex items-center gap-1 transition-colors hover:text-white">
+                            <HomeIcon sx={{ fontSize: 13 }} />
+                            {t.common.home}
                         </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={lang === "az" ? "/haqqimizda" : "/about"} className="hover:text-white transition-colors">
+                        <ChevronRightIcon sx={{ fontSize: 11 }} />
+                        <Link
+                            href={lang === "az" ? "/haqqimizda" : "/about"}
+                            className="transition-colors hover:text-white"
+                        >
                             {t.nav.sections.about}
                         </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <span className="text-[#ee7c7e] font-bold">{p.breadcrumb}</span>
+                        <ChevronRightIcon sx={{ fontSize: 11 }} />
+                        <span className="font-semibold text-[#ee7c7e]">{p.breadcrumb}</span>
                     </nav>
 
-                    <div className="flex-1 flex flex-col justify-center">
-                        <div className="max-w-4xl">
-                            <motion.div
-                                initial={{ opacity: 0, x: -30 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.8, ease: "easeOut" }}
-                            >
-                                <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
-                                    {p.eyebrow}
-                                </span>
-                                <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
-                                    {p.title}
-                                </h1>
-                                <p className="text-xl lg:text-3xl text-white font-medium mb-10 max-w-3xl leading-relaxed border-l-4 border-[#ee7c7e] pl-8">
-                                    {p.subtitle}
-                                </p>
-                            </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        className="max-w-3xl"
+                    >
+                        <span className="mb-5 inline-block rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-[#ee7c7e] backdrop-blur-md">
+                            {p.eyebrow}
+                        </span>
+                        <h1 className="mb-5 text-3xl font-black leading-[1.08] tracking-tight text-white md:text-4xl lg:text-5xl">
+                            {title}
+                        </h1>
+                        <SanitizedHtml
+                            html={descriptionHtml}
+                            className="prose prose-invert max-w-2xl text-base leading-relaxed lg:text-lg [&_p]:text-white/75"
+                        />
+                    </motion.div>
+                </div>
+            </div>
+
+            {/* TIMELINE
+                A centre spine with cards alternating either side on desktop,
+                collapsing to a single left-anchored rail on smaller screens. */}
+            <div className="px-4 pb-20 pt-16 md:px-10 lg:px-16">
+                <div className="relative mx-auto max-w-[1200px]">
+                    {/* The spine. Fades out at both ends so it reads as a thread
+                        rather than a hard rule. */}
+                    <span
+                        aria-hidden
+                        className="absolute bottom-0 left-[13px] top-0 w-px bg-gradient-to-b from-transparent via-[#ee7c7e]/35 to-transparent lg:left-1/2 lg:-translate-x-1/2"
+                    />
+
+                    <ol className="space-y-8 lg:space-y-2">
+                        {milestones.map((milestone, index) => {
+                            const flip = index % 2 === 1;
+
+                            return (
+                                <li key={`${milestone.year}-${index}`} className="relative">
+                                    {/* Node on the spine, aligned with the card's first line. */}
+                                    <span
+                                        aria-hidden
+                                        className="absolute left-[13px] top-7 z-10 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-[#ee7c7e] ring-4 ring-[#f8fafc] dark:ring-[#0f172a] lg:left-1/2"
+                                    />
+
+                                    <div className="lg:grid lg:grid-cols-2 lg:gap-14">
+                                        <motion.article
+                                            initial={{ opacity: 0, y: 18 }}
+                                            whileInView={{ opacity: 1, y: 0 }}
+                                            viewport={{ once: true, margin: "-60px" }}
+                                            transition={{ duration: 0.45 }}
+                                            className={`group ml-9 rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-shadow duration-300 hover:shadow-md dark:border-slate-700/60 dark:bg-slate-800/50 lg:ml-0 lg:my-6 lg:p-6 ${
+                                                flip
+                                                    ? "lg:col-start-2"
+                                                    : "lg:col-start-1 lg:text-right"
+                                            }`}
+                                        >
+                                            <span
+                                                className={`mb-2.5 inline-flex items-center rounded-md bg-[#ee7c7e]/10 px-2.5 py-1 text-xs font-black tracking-wide text-[#ee7c7e] ${
+                                                    flip ? "" : "lg:ml-auto"
+                                                }`}
+                                            >
+                                                {milestone.year}
+                                            </span>
+
+                                            <h2 className="mb-2 text-base font-black leading-snug tracking-tight text-[#1a2355] dark:text-white lg:text-lg">
+                                                {milestone.title}
+                                            </h2>
+
+                                            <SanitizedHtml
+                                                html={milestone.descriptionHtml}
+                                                className={`prose prose-slate max-w-none text-sm leading-relaxed dark:prose-invert lg:text-[15px] [&_p]:text-slate-600 dark:[&_p]:text-slate-300 ${
+                                                    flip ? "" : "lg:[&_p]:text-right"
+                                                }`}
+                                            />
+                                        </motion.article>
+                                    </div>
+                                </li>
+                            );
+                        })}
+                    </ol>
+                </div>
+
+                {/* MORE IN THIS SECTION */}
+                {links.length > 0 && (
+                    <section className="mx-auto mt-16 max-w-[1200px] border-t border-slate-200 pt-12 dark:border-slate-800">
+                        <h2 className="mb-6 flex items-center gap-2.5 text-sm font-black uppercase tracking-wide text-[#1a2355] dark:text-white">
+                            <span className="h-5 w-1.5 rounded-full bg-[#ee7c7e]" />
+                            {linksTitle}
+                        </h2>
+
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                            {links.map((link, index) => (
+                                <Link
+                                    key={`${link.url}-${index}`}
+                                    href={link.url}
+                                    className="group flex items-center justify-between gap-3 rounded-xl border border-slate-200/80 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#ee7c7e]/50 hover:shadow-md dark:border-slate-700/60 dark:bg-slate-800/50"
+                                >
+                                    <span className="text-sm font-bold text-[#1a2355] transition-colors group-hover:text-[#ee7c7e] dark:text-white">
+                                        {link.label}
+                                    </span>
+                                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-50 text-[#1a2355] transition-all duration-300 group-hover:bg-[#1a2355] group-hover:text-white dark:bg-slate-700 dark:text-white">
+                                        <ChevronRightIcon
+                                            sx={{ fontSize: 17 }}
+                                            className="transition-transform group-hover:translate-x-0.5"
+                                        />
+                                    </span>
+                                </Link>
+                            ))}
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* STATS STRIP */}
-            <div className="relative z-20 -mt-16 px-4 md:px-10 lg:px-20 mb-24">
-                <div className="max-w-[1400px] mx-auto bg-white/80 dark:bg-slate-900/60 backdrop-blur-3xl rounded-[2rem] shadow-2xl border-2 border-[#1a2355]/10 dark:border-[#ee7c7e]/20 p-8 lg:p-12">
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-                        {p.stats.map((s, i) => (
-                            <motion.div
-                                key={s.label}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
-                                className="flex flex-col items-center text-center group"
-                            >
-                                <div className="w-16 h-16 rounded-2xl bg-[#ee7c7e]/10 text-[#ee7c7e] flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-300 shadow-lg">
-                                    {STAT_ICONS[i]}
-                                </div>
-                                <span className="text-3xl lg:text-4xl font-black text-[#1a2355] dark:text-white mb-1">{s.value}</span>
-                                <span className="text-xs font-black uppercase tracking-widest text-[#1a2355]/60 dark:text-white/40">{s.label}</span>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-            {/* TIMELINE SECTION */}
-            <div className="px-4 md:px-10 lg:px-20 py-24 relative">
-                <div className="max-w-5xl mx-auto">
-                    <Timeline items={p.milestones} />
-                </div>
-            </div>
-
-            {/* RELATED LINKS */}
-            <div className="px-4 md:px-10 lg:px-20 py-24 bg-white/60 dark:bg-slate-900/40 backdrop-blur-3xl border-t border-[#1a2355]/10 dark:border-white/5">
-                <div className="max-w-[1400px] mx-auto">
-                    <h2 className="text-2xl font-black text-[#1a2355] dark:text-white mb-10 flex items-center gap-4">
-                        <div className="w-2.5 h-10 bg-[#ee7c7e] rounded-full animate-pulse shadow-[0_0_15px_rgba(238,124,126,0.5)]" />
-                        {t.common.moreInSection}
-                    </h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                        {p.related.map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className="group flex items-center justify-between bg-white dark:bg-slate-900/40 p-8 rounded-[1.5rem] border-2 border-[#1a2355]/10 dark:border-white/5 hover:border-[#ee7c7e]/40 transition-all duration-500 shadow-lg hover:shadow-[0_0_30px_rgba(238,124,126,0.1)]"
-                            >
-                                <span className="text-[#1a2355] dark:text-white font-black text-base group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
-                                <div className="w-12 h-12 rounded-2xl bg-[#1a2355]/5 dark:bg-white/5 flex items-center justify-center group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-500 shadow-lg">
-                                    <ChevronRightIcon sx={{ fontSize: 24 }} className="group-hover:translate-x-1 transition-transform" />
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
-                </div>
+                    </section>
+                )}
             </div>
         </main>
     );
