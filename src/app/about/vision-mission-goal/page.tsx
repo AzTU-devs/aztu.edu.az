@@ -1,179 +1,234 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
+import { getAboutPage } from "@/services/aboutService/aboutService";
+import type { AboutPage } from "@/types/about";
 
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import HomeIcon from "@mui/icons-material/Home";
-import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import TrackChangesIcon from '@mui/icons-material/TrackChanges';
-import StarIcon from '@mui/icons-material/Star';
+import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import TrackChangesIcon from "@mui/icons-material/TrackChanges";
+import FlagIcon from "@mui/icons-material/Flag";
 import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
+import SanitizedHtml from "@/components/shared/SanitizedHtml";
+
+const PAGE_KEY = "vision-mission-goal";
+
+/** The card icons are part of the design, so they live here rather than in the CMS. */
+const BLOCK_ICONS: Record<string, typeof TrackChangesIcon> = {
+    mission: TrackChangesIcon,
+    vision: VisibilityIcon,
+    goal: FlagIcon,
+};
+
+interface CardView {
+    key: string;
+    title: string;
+    bodyHtml: string;
+}
+
+interface LinkView {
+    label: string;
+    url: string;
+}
 
 export default function VisionMissionGoalPage() {
     const t = useTranslation();
     const { lang } = useLanguage();
     const p = t.pages.about.visionMissionGoal;
 
+    const [page, setPage] = useState<AboutPage | null>(null);
+
+    useEffect(() => {
+        let cancelled = false;
+        getAboutPage(PAGE_KEY, lang).then((result) => {
+            if (!cancelled) setPage(result);
+        });
+        return () => {
+            cancelled = true;
+        };
+    }, [lang]);
+
+    // The CMS is the source of truth once the page is published; until then the
+    // built-in copy keeps the page complete rather than blank.
+    const title = page?.title || p.title;
+    const descriptionHtml = page?.description || `<p>${p.subtitle}</p>`;
+    const linksTitle = page?.links_title || t.common.moreInSection;
+
+    const cards: CardView[] = page?.blocks?.length
+        ? page.blocks.map((block) => ({
+              key: block.block_key,
+              title: block.title ?? "",
+              bodyHtml: block.body ?? "",
+          }))
+        : [
+              { key: "mission", title: p.missionTitle, bodyHtml: `<p>${p.missionText}</p>` },
+              { key: "vision", title: p.visionTitle, bodyHtml: `<p>${p.visionText}</p>` },
+              { key: "goal", title: p.goalTitle, bodyHtml: `<p>${p.goalText}</p>` },
+          ];
+
+    const links: LinkView[] = page?.links?.length
+        ? page.links.map((link) => ({ label: link.label ?? "", url: link.url ?? "#" }))
+        : p.related.map((link: { title: string; href: string }) => ({
+              label: link.title,
+              url: link.href,
+          }));
+
     return (
         <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
-            {/* HERO SECTION */}
-            <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48">
-                {/* Background Graphics */}
-                <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            {/* HERO */}
+            <div className="relative flex min-h-[52vh] flex-col pt-36 lg:pt-40">
+                <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
                     <AboutHeroVideoBg />
                 </div>
 
-                <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-12">
-                    {/* Breadcrumbs */}
-                    <nav className="flex items-center gap-2 text-white/60 text-xs mb-12 lg:mb-16">
-                        <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-                            <HomeIcon sx={{ fontSize: 14 }} />
+                <div className="relative z-10 mx-auto w-full max-w-[1400px] px-4 pb-16 md:px-10 lg:px-16">
+                    <nav className="mb-10 flex items-center gap-1.5 text-[11px] text-white/55">
+                        <Link href="/" className="flex items-center gap-1 transition-colors hover:text-white">
+                            <HomeIcon sx={{ fontSize: 13 }} />
                             {t.common.home}
                         </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={lang === "az" ? "/haqqimizda" : "/about"} className="hover:text-white transition-colors">
+                        <ChevronRightIcon sx={{ fontSize: 11 }} />
+                        <Link
+                            href={lang === "az" ? "/haqqimizda" : "/about"}
+                            className="transition-colors hover:text-white"
+                        >
                             {t.nav.sections.about}
                         </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <span className="text-[#ee7c7e] font-bold">{p.breadcrumb}</span>
+                        <ChevronRightIcon sx={{ fontSize: 11 }} />
+                        <span className="font-semibold text-[#ee7c7e]">{p.breadcrumb}</span>
                     </nav>
 
-                    <div className="max-w-5xl">
-                        <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
-                        >
-                            <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
-                                {p.eyebrow}
-                            </span>
-                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
-                                {p.title}
-                            </h1>
-                            <p className="text-xl lg:text-2xl text-white/80 max-w-3xl leading-relaxed">
-                                {p.subtitle}
-                            </p>
-                        </motion.div>
-                    </div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        className="max-w-3xl"
+                    >
+                        <span className="mb-5 inline-block rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-[#ee7c7e] backdrop-blur-md">
+                            {p.eyebrow}
+                        </span>
+                        <h1 className="mb-5 text-3xl font-black leading-[1.08] tracking-tight text-white md:text-4xl lg:text-5xl">
+                            {title}
+                        </h1>
+                        <SanitizedHtml
+                            html={descriptionHtml}
+                            className="prose prose-invert max-w-2xl text-base leading-relaxed lg:text-lg [&_p]:text-white/75"
+                        />
+                    </motion.div>
                 </div>
             </div>
 
-            {/* CONTENT SECTIONS */}
-            <div className="relative z-10 -mt-24 px-4 md:px-10 lg:px-20 pb-24">
-                <div className="max-w-[1600px] mx-auto grid grid-cols-1 gap-8">
-                    {/* MISSION */}
-                    <motion.div 
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="bg-white dark:bg-slate-800/50 rounded-[1.75rem] p-8 md:p-12 lg:p-16 shadow-xl border border-gray-100 dark:border-slate-700 relative overflow-hidden group"
-                    >
-                        <div className="absolute top-0 right-0 p-12 opacity-5 group-hover:opacity-10 transition-opacity">
-                            <StarIcon sx={{ fontSize: 120 }} />
-                        </div>
-                        <div className="relative z-10">
-                            <div className="flex items-center gap-4 mb-8">
-                                <div className="w-12 h-12 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e]">
-                                    <TrackChangesIcon />
-                                </div>
-                                <h2 className="text-3xl lg:text-4xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight">
-                                    {p.missionTitle}
-                                </h2>
-                            </div>
-                            <div className="relative">
-                                <FormatQuoteIcon className="absolute -top-10 -left-8 text-[#ee7c7e]/10" sx={{ fontSize: 80 }} />
-                                <p className="text-2xl lg:text-3xl text-slate-600 dark:text-slate-300 font-medium leading-relaxed italic">
-                                    &quot;{p.missionText}&quot;
-                                </p>
-                            </div>
-                        </div>
-                    </motion.div>
+            {/* STATEMENT CARDS */}
+            <div className="relative z-10 -mt-12 px-4 pb-20 md:px-10 lg:px-16">
+                <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-5">
+                    {cards.map((card, index) => {
+                        const Icon = BLOCK_ICONS[card.key] ?? TrackChangesIcon;
+                        // Alternating light/dark, so three stacked statements read as
+                        // distinct cards rather than one long block.
+                        const dark = index % 2 === 1;
 
-                    {/* VISION */}
-                    <motion.div 
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="bg-[#1a2355] dark:bg-slate-900 rounded-[1.75rem] p-8 md:p-12 lg:p-16 shadow-xl relative overflow-hidden group"
-                    >
-                        <div className="absolute top-0 right-0 p-12 opacity-5 group-hover:opacity-10 transition-opacity text-white">
-                            <VisibilityIcon sx={{ fontSize: 120 }} />
-                        </div>
-                        <div className="relative z-10">
-                            <div className="flex items-center gap-4 mb-8">
-                                <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-[#ee7c7e]">
-                                    <VisibilityIcon />
-                                </div>
-                                <h2 className="text-3xl lg:text-4xl font-black text-white uppercase tracking-tight">
-                                    {p.visionTitle}
-                                </h2>
-                            </div>
-                            <div className="relative">
-                                <FormatQuoteIcon className="absolute -top-10 -left-8 text-white/10" sx={{ fontSize: 80 }} />
-                                <p className="text-2xl lg:text-3xl text-white/90 font-medium leading-relaxed italic">
-                                    &quot;{p.visionText}&quot;
-                                </p>
-                            </div>
-                        </div>
-                    </motion.div>
+                        return (
+                            <motion.article
+                                key={card.key}
+                                initial={{ opacity: 0, y: 18 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-80px" }}
+                                transition={{ duration: 0.45, delay: index * 0.06 }}
+                                className={`group relative overflow-hidden rounded-2xl p-6 transition-shadow duration-300 md:p-8 lg:p-10 ${
+                                    dark
+                                        ? "bg-[#1a2355] shadow-lg shadow-[#1a2355]/20 dark:bg-slate-900"
+                                        : "border border-slate-200/80 bg-white shadow-sm hover:shadow-md dark:border-slate-700/60 dark:bg-slate-800/50"
+                                }`}
+                            >
+                                {/* Watermark — decorative, and deliberately restrained. */}
+                                <Icon
+                                    aria-hidden
+                                    sx={{ fontSize: 96 }}
+                                    className={`pointer-events-none absolute -right-4 -top-4 transition-opacity duration-500 ${
+                                        dark
+                                            ? "text-white/[0.04] group-hover:text-white/[0.07]"
+                                            : "text-[#1a2355]/[0.035] group-hover:text-[#1a2355]/[0.06]"
+                                    }`}
+                                />
 
-                    {/* GOAL */}
-                    <motion.div 
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="bg-white dark:bg-slate-800/50 rounded-[1.75rem] p-8 md:p-12 lg:p-16 shadow-xl border border-gray-100 dark:border-slate-700 relative overflow-hidden group"
-                    >
-                        <div className="absolute top-0 right-0 p-12 opacity-5 group-hover:opacity-10 transition-opacity">
-                            <TrackChangesIcon sx={{ fontSize: 120 }} />
-                        </div>
-                        <div className="relative z-10">
-                            <div className="flex items-center gap-4 mb-8">
-                                <div className="w-12 h-12 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e]">
-                                    <StarIcon />
+                                <div className="relative z-10">
+                                    <div className="mb-5 flex items-center gap-3">
+                                        <span
+                                            className={`flex h-9 w-9 items-center justify-center rounded-lg text-[#ee7c7e] ${
+                                                dark ? "bg-white/10" : "bg-[#ee7c7e]/10"
+                                            }`}
+                                        >
+                                            <Icon sx={{ fontSize: 18 }} />
+                                        </span>
+                                        <h2
+                                            className={`text-base font-black uppercase tracking-wide lg:text-lg ${
+                                                dark ? "text-white" : "text-[#1a2355] dark:text-white"
+                                            }`}
+                                        >
+                                            {card.title}
+                                        </h2>
+                                    </div>
+
+                                    <div className="relative pl-6">
+                                        <FormatQuoteIcon
+                                            aria-hidden
+                                            sx={{ fontSize: 34 }}
+                                            style={{ left: "-0.35rem" }}
+                                            className={`absolute -top-1 ${
+                                                dark ? "text-white/15" : "text-[#ee7c7e]/20"
+                                            }`}
+                                        />
+                                        <SanitizedHtml
+                                            html={card.bodyHtml}
+                                            className={`prose max-w-3xl text-base font-medium italic leading-relaxed lg:text-lg ${
+                                                dark
+                                                    ? "prose-invert [&_p]:text-white/90"
+                                                    : "prose-slate dark:prose-invert [&_p]:text-slate-600 dark:[&_p]:text-slate-300"
+                                            }`}
+                                        />
+                                    </div>
                                 </div>
-                                <h2 className="text-3xl lg:text-4xl font-black text-[#1a2355] dark:text-white uppercase tracking-tight">
-                                    {p.goalTitle}
-                                </h2>
-                            </div>
-                            <div className="relative">
-                                <FormatQuoteIcon className="absolute -top-10 -left-8 text-[#ee7c7e]/10" sx={{ fontSize: 80 }} />
-                                <p className="text-2xl lg:text-3xl text-slate-600 dark:text-slate-300 font-medium leading-relaxed italic">
-                                    &quot;{p.goalText}&quot;
-                                </p>
-                            </div>
-                        </div>
-                    </motion.div>
+                            </motion.article>
+                        );
+                    })}
                 </div>
 
-                {/* RELATED LINKS */}
-                <section className="mt-24 pt-20 border-t border-gray-200 dark:border-slate-800 max-w-[1600px] mx-auto">
-                    <h2 className="text-xl font-black text-[#1a2355] dark:text-white mb-8 flex items-center gap-3">
-                        <div className="w-2 h-8 bg-[#ee7c7e] rounded-full" />
-                        {t.common.moreInSection}
-                    </h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                        {p.related.map((link: any) => (
-                            <Link 
-                                key={link.href} 
-                                href={link.href}
-                                className="group flex items-center justify-between bg-white dark:bg-slate-800/50 p-6 rounded-[1.25rem] border border-gray-100 dark:border-slate-700 hover:border-[#1a2355] dark:hover:border-[#ee7c7e] transition-all duration-300 shadow-sm hover:shadow-xl"
-                            >
-                                <span className="text-[#1a2355] dark:text-white font-black text-sm group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
-                                <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-slate-700 flex items-center justify-center group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300">
-                                    <ChevronRightIcon sx={{ fontSize: 20 }} className="group-hover:translate-x-1 transition-transform" />
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
-                </section>
+                {/* MORE IN THIS SECTION */}
+                {links.length > 0 && (
+                    <section className="mx-auto mt-16 max-w-[1400px] border-t border-slate-200 pt-12 dark:border-slate-800">
+                        <h2 className="mb-6 flex items-center gap-2.5 text-sm font-black uppercase tracking-wide text-[#1a2355] dark:text-white">
+                            <span className="h-5 w-1.5 rounded-full bg-[#ee7c7e]" />
+                            {linksTitle}
+                        </h2>
+
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                            {links.map((link, index) => (
+                                <Link
+                                    key={`${link.url}-${index}`}
+                                    href={link.url}
+                                    className="group flex items-center justify-between gap-3 rounded-xl border border-slate-200/80 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#ee7c7e]/50 hover:shadow-md dark:border-slate-700/60 dark:bg-slate-800/50"
+                                >
+                                    <span className="text-sm font-bold text-[#1a2355] transition-colors group-hover:text-[#ee7c7e] dark:text-white">
+                                        {link.label}
+                                    </span>
+                                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-50 text-[#1a2355] transition-all duration-300 group-hover:bg-[#1a2355] group-hover:text-white dark:bg-slate-700 dark:text-white">
+                                        <ChevronRightIcon
+                                            sx={{ fontSize: 17 }}
+                                            className="transition-transform group-hover:translate-x-0.5"
+                                        />
+                                    </span>
+                                </Link>
+                            ))}
+                        </div>
+                    </section>
+                )}
             </div>
         </main>
     );
