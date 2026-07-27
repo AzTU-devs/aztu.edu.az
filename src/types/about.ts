@@ -56,6 +56,22 @@ export interface AboutPage {
     pillars_title: string | null;
     /** An uploaded file's path or a pasted URL — the page treats them alike. */
     document_url: string | null;
+
+    // ── Rector template ─────────────────────────────────────────────────
+    /** Portrait — an uploaded file's path or a pasted URL. */
+    image_url: string | null;
+    /** Language-neutral hero fact, e.g. "30+ Years". */
+    experience: string | null;
+    email: string | null;
+    /** Hero stat value, per language — "Texniki elmlər". */
+    degree: string | null;
+    /** Hero stat value, per language — "Professor". */
+    position: string | null;
+    /** The rector's message — rich text. */
+    message: string | null;
+    /** "About the rector" biography — rich text. */
+    about: string | null;
+
     /** Derived server-side from the copy above — never authored by hand. */
     seo: {
         title: string | null;
@@ -66,4 +82,6 @@ export interface AboutPage {
     milestones: AboutMilestone[];
     pillars: AboutPillar[];
     lists: AboutList[];
+    /** Portrait gallery — language-neutral images, in display order. */
+    images: { image_url: string }[];
 }
