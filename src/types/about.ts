@@ -82,6 +82,6 @@ export interface AboutPage {
     milestones: AboutMilestone[];
     pillars: AboutPillar[];
     lists: AboutList[];
-    /** Portrait gallery — language-neutral images, in display order. */
-    images: { image_url: string }[];
+    /** Portrait gallery — absolute image URLs, in display order. */
+    images: string[];
 }

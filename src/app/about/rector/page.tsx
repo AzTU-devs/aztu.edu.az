@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
+import VilayetVeliyev from "@/../public/vilayet_veliyev.jpg";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
 import { getAboutPage } from "@/services/aboutService/aboutService";
@@ -11,10 +13,9 @@ import { getImageUrl } from "@/services/departmentService/departmentService";
 import type { AboutPage } from "@/types/about";
 
 import EmailIcon from "@mui/icons-material/Email";
+import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import SchoolIcon from "@mui/icons-material/School";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
-import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
-import PersonIcon from "@mui/icons-material/Person";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 import PageHero from "@/components/shared/PageHero";
@@ -23,48 +24,60 @@ import SanitizedHtml from "@/components/shared/SanitizedHtml";
 
 const PAGE_KEY = "rector";
 
-/**
- * Horizontal auto-scrolling gallery strip. The images are remote CMS URLs, so a
- * plain <img> is used rather than next/image (which would need every upstream
- * host whitelisted in next.config). The list is tripled for a seamless loop.
- */
-function ContinuousGallery({ items }: { items: string[] }) {
-    if (items.length === 0) return null;
-    const loop = [...items, ...items, ...items];
+const rectorData = {
+    email: "rector@aztu.edu.az",
+};
+
+/** Plain text out of the CMS's rich hero quote, without its surrounding quotes. */
+function heroQuoteText(html: string): string {
+    return html
+        .replace(/<[^>]+>/g, " ")
+        .replace(/\s+/g, " ")
+        .replace(/^[\s"“”«»]+|[\s"“”«»]+$/g, "")
+        .trim();
+}
+
+function ContinuousGallery({ items }: { items: { image: string }[] }) {
+    // Duplicate items to ensure smooth looping
+    const doubledItems = [...items, ...items, ...items];
 
     return (
-        <div className="relative w-full overflow-hidden py-4">
-            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-[#f8fafc] to-transparent dark:from-[#0f172a]" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-[#f8fafc] to-transparent dark:from-[#0f172a]" />
+        <div className="relative w-full overflow-hidden py-10">
+            {/* Gradient Mask for Edges */}
+            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#f0f4f8] dark:from-[#0b1330] to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#f0f4f8] dark:from-[#0b1330] to-transparent z-10 pointer-events-none" />
 
             <motion.div
-                className="flex w-max gap-5"
-                animate={{ x: ["0%", "-33.33%"] }}
-                transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+                className="flex gap-8 w-max"
+                animate={{
+                    x: ["0%", "-33.33%"]
+                }}
+                transition={{
+                    duration: 40,
+                    repeat: Infinity,
+                    ease: "linear"
+                }}
             >
-                {loop.map((src, index) => (
+                {doubledItems.map((item, idx) => (
                     <div
-                        key={index}
-                        className="group relative aspect-[4/3] w-72 shrink-0 overflow-hidden rounded-xl border border-slate-200/80 shadow-sm dark:border-slate-700/60"
+                        key={idx}
+                        className="relative w-80 md:w-96 aspect-[4/3] rounded-[22px] overflow-hidden border-2 border-[#1a2355]/30 dark:border-white/10 shadow-lg group hover:scale-[1.02] transition-transform duration-500"
                     >
+                        {/* Remote CMS URLs, so a plain <img> rather than next/image
+                            (which would need every upstream host whitelisted). */}
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                            src={src}
-                            alt=""
+                            src={item.image}
+                            alt="Rector Activity"
                             loading="lazy"
-                            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#1a2355]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>
                 ))}
             </motion.div>
         </div>
     );
-}
-
-interface StatView {
-    icon: typeof SchoolIcon;
-    label: string;
-    value: string;
 }
 
 export default function RectorPage() {
@@ -84,213 +97,257 @@ export default function RectorPage() {
         };
     }, [lang]);
 
-    const aboutHref = lang === "az" ? "/haqqimizda" : "/about";
+    const leadershipLabel = lang === "az" ? "Rəhbərlik və İdarəetmə" : "Leadership and Management";
+    const leadershipHref = lang === "az" ? "/haqqimizda/rehbetlik-ve-idareetme" : "/about/leadership-and-management";
 
     // The CMS is the source of truth once published; until then the built-in
     // copy keeps the page complete rather than blank.
-    const name = page?.title || p.title;
-    const portrait = page?.image_url ? getImageUrl(page.image_url) : "/vilayet_veliyev.jpg";
-    const degree = page?.degree || (lang === "az" ? "Texniki elmlər" : "Technical Sciences");
-    const position = page?.position || "Professor";
-    const experience = page?.experience || "30+ Years";
-    const email = page?.email || "rector@aztu.edu.az";
+    const fullName = page?.title || (lang === "az" ? "Vilayət Vəliyev" : "Vilayat Valiyev");
+    const email = page?.email || rectorData.email;
+    const portrait = page?.image_url ? getImageUrl(page.image_url) : null;
 
-    const messageHtml = page?.message || `<p>${(p.message ?? []).join("</p><p>")}</p>`;
-    const messageTitle = p.messageTitle;
-    const aboutHtml = page?.about || `<p>${(p.aboutRector ?? []).join("</p><p>")}</p>`;
-    const aboutTitle = p.aboutRectorTitle;
+    // The hero quote is the CMS `description`; the static page used the second
+    // paragraph of the message, which is the same sentence.
+    const heroQuote = page?.description
+        ? heroQuoteText(page.description)
+        : p.message[1];
 
-    const officesList = page?.lists?.find((entry) => entry.list_key === "offices");
-    const offices: string[] = officesList?.items ?? (p.departments ?? []);
-    const officesTitle = officesList?.title || p.departmentsTitle;
-
-    const gallery: string[] = page?.images?.length
-        ? page.images.map((image) => getImageUrl(image.image_url))
-        : (p.galleryItems ?? []).map((item: { image: string }) => item.image);
-
-    const linksTitle = page?.links_title || t.common.moreInSection;
-    const links = page?.links?.length
-        ? page.links.map((link) => ({ label: link.label ?? "", url: link.url ?? "#" }))
-        : (p.related ?? []).map((link: { title: string; href: string }) => ({
-              label: link.title,
-              url: link.href,
-          }));
-
-    const stats: StatView[] = [
-        { icon: SchoolIcon, label: lang === "az" ? "Elmi dərəcə" : "Degree", value: degree },
-        { icon: WorkspacePremiumIcon, label: lang === "az" ? "Vəzifə" : "Title", value: position },
-        { icon: HistoryEduIcon, label: lang === "az" ? "Təcrübə" : "Experience", value: experience },
+    // Static labels were English-only chrome; the values now come from the CMS.
+    const stats = [
+        {
+            icon: SchoolIcon,
+            label: "Doctorate",
+            value: page?.degree || "Technical Sciences",
+        },
+        {
+            icon: WorkspacePremiumIcon,
+            label: "Title",
+            value: page?.position || "Professor",
+        },
+        {
+            icon: FormatQuoteIcon,
+            label: "Experience",
+            value: page?.experience || "30+ Years",
+        },
     ];
 
+    // The whole message column — salutation, body, the priority list and the
+    // sign-off — is one rich-text field in the CMS. The fallback rebuilds the
+    // same document from the locale pieces the static page rendered separately.
+    const messageHtml =
+        page?.message ||
+        [
+            ...p.message.map((para: string, i: number) =>
+                i === 0 ? `<p><strong>${para}</strong></p>` : `<p>${para}</p>`
+            ),
+            `<p><strong>${p.priorityIntro}</strong></p>`,
+            `<ul>${p.priorities.map((item: string) => `<li>${item}</li>`).join("")}</ul>`,
+            ...p.messageClosing.map((para: string) => `<p>${para}</p>`),
+        ].join("");
+
+    const aboutHtml =
+        page?.about || p.aboutRector.map((para: string) => `<p>${para}</p>`).join("");
+
+    // Departments reporting to the rector — the CMS 'offices' list, else locale.
+    const officesList = page?.lists?.find((entry) => entry.list_key === "offices");
+    const departments: string[] =
+        officesList?.items?.length ? officesList.items : (p.departments as string[]);
+
+    // The public API returns `images` as already-absolute URLs; getImageUrl
+    // passes those through unchanged and only prefixes relative fallback paths.
+    const gallery: { image: string }[] = page?.images?.length
+        ? page.images.map((url) => ({ image: getImageUrl(url) }))
+        : (p.galleryItems as { image: string }[]);
+
+    const links = page?.links?.length
+        ? page.links.map((link) => ({ title: link.label ?? "", href: link.url ?? "#" }))
+        : (p.related as { title: string; href: string }[]);
+
     return (
-        <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+        <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden">
+            {/* STUNNING BACKGROUND ELEMENTS */}
+
             <PageHero
-                title={name}
+                title={fullName}
                 eyebrow={p.eyebrow}
                 breadcrumbs={[
-                    { label: t.nav.sections.about, href: aboutHref },
+                    { label: t.nav.sections.about, href: lang === "az" ? "/haqqimizda" : "/about" },
+                    { label: leadershipLabel, href: leadershipHref },
                     { label: p.breadcrumb },
                 ]}
-            />
+            >
+                <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div className="lg:col-span-7 order-2 lg:order-1">
+                        <p className="text-lg lg:text-xl text-white/80 font-medium mb-10 max-w-2xl leading-relaxed italic">
+                            &quot;{heroQuote}&quot;
+                        </p>
 
-            <PageContainer className="space-y-16">
-                {/* PROFILE — portrait, name, degree/title, contact and the three stats. */}
-                <section className="-mt-24 grid grid-cols-1 gap-6 lg:grid-cols-12">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="lg:col-span-4"
-                    >
-                        <div className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-lg dark:border-slate-700/60 dark:bg-slate-800/50">
-                            <div className="relative aspect-[4/5] w-full bg-slate-100 dark:bg-slate-800">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+                            {stats.map((stat, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.4 + (i * 0.1) }}
+                                    className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 hover:bg-white/10 transition-colors"
+                                >
+                                    <stat.icon className="text-[#ee7c7e] mb-3" sx={{ fontSize: 28 }} />
+                                    <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">{stat.label}</p>
+                                    <p className="text-sm font-bold text-white">{stat.value}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+
+                        <div className="flex flex-wrap gap-4">
+                            <a href={`mailto:${email}`} className="flex items-center gap-3 px-6 py-3.5 bg-white text-[#1a2355] rounded-2xl font-black text-sm hover:bg-[#ee7c7e] hover:text-white transition-all duration-300 shadow-xl shadow-black/20 group">
+                                <EmailIcon sx={{ fontSize: 18 }} />
+                                {email}
+                            </a>
+                        </div>
+                    </div>
+
+                    <div className="lg:col-span-5 order-1 lg:order-2">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="relative aspect-square max-w-xs sm:max-w-sm lg:max-w-md mx-auto"
+                        >
+                            <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 lg:-top-6 lg:-left-6 w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 border-t-4 border-l-4 border-[#ee7c7e] rounded-tl-3xl z-20" />
+                            <div className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 lg:-bottom-6 lg:-right-6 w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 border-b-4 border-r-4 border-[#ee7c7e] rounded-br-3xl z-20" />
+                            <div className="relative w-full h-full rounded-[18px] overflow-hidden shadow-2xl z-10 border border-white/10">
                                 {portrait ? (
                                     // eslint-disable-next-line @next/next/no-img-element
                                     <img
                                         src={portrait}
-                                        alt={name}
-                                        className="h-full w-full object-cover"
+                                        alt={fullName}
+                                        className="absolute inset-0 h-full w-full object-cover object-top"
                                     />
                                 ) : (
-                                    <div className="flex h-full w-full items-center justify-center text-slate-300">
-                                        <PersonIcon sx={{ fontSize: 88 }} />
-                                    </div>
+                                    <Image
+                                        src={VilayetVeliyev}
+                                        alt={fullName}
+                                        fill
+                                        priority
+                                        className="object-cover object-top"
+                                    />
                                 )}
                             </div>
-                        </div>
-                    </motion.div>
+                        </motion.div>
+                    </div>
+                </div>
+            </PageHero>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.08 }}
-                        className="flex flex-col justify-center lg:col-span-8"
-                    >
-                        <h2 className="text-2xl font-black tracking-tight text-[#1a2355] dark:text-white lg:text-3xl">
-                            {name}
+            <PageContainer className="space-y-32">
+                {/* RECTOR'S MESSAGE */}
+                <section>
+                    <div className="max-w-4xl mx-auto text-center mb-16">
+                        <h2 className="text-3xl lg:text-5xl font-black text-[#1a2355] dark:text-white mb-6">
+                            {p.messageTitle}
                         </h2>
-                        <p className="mt-1 text-sm font-semibold text-[#ee7c7e]">
-                            {degree}
-                            {position ? ` · ${position}` : ""}
-                        </p>
+                        <div className="h-1.5 w-24 bg-[#ee7c7e] mx-auto rounded-full" />
+                    </div>
 
-                        <a
-                            href={`mailto:${email}`}
-                            className="mt-3 inline-flex w-fit items-center gap-2 text-sm text-slate-600 transition-colors hover:text-[#ee7c7e] dark:text-slate-300"
-                        >
-                            <EmailIcon sx={{ fontSize: 16 }} />
-                            {email}
-                        </a>
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+                        <div className="lg:col-span-8">
+                            <SanitizedHtml
+                                html={messageHtml}
+                                className="prose prose-slate dark:prose-invert max-w-none text-base lg:text-lg text-justify [&_p]:text-gray-600 dark:[&_p]:text-slate-300 [&_li]:text-gray-600 dark:[&_li]:text-slate-300 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:marker:text-[#ee7c7e] [&_strong]:text-[#1a2355] dark:[&_strong]:text-white"
+                            />
+                        </div>
+                        <div className="lg:col-span-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl p-10 rounded-[18px] border-2 border-[#1a2355]/30 dark:border-white/10 shadow-xl relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
+                            <FormatQuoteIcon className="absolute -top-6 -left-6 text-[#ee7c7e]/20" sx={{ fontSize: 100 }} />
+                            <h3 className="text-xl font-black text-[#1a2355] dark:text-white mb-6 relative z-10">
+                                {p.aboutRectorTitle}
+                            </h3>
+                            <SanitizedHtml
+                                html={aboutHtml}
+                                className="prose prose-sm dark:prose-invert max-w-none relative z-10 [&_p]:text-gray-600 dark:[&_p]:text-slate-400 [&_p]:font-medium"
+                            />
+                        </div>
+                    </div>
+                </section>
 
-                        <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                            {stats.map((stat) => (
-                                <div
-                                    key={stat.label}
-                                    className="rounded-xl border border-slate-200/80 bg-white p-4 shadow-sm dark:border-slate-700/60 dark:bg-slate-800/50"
-                                >
-                                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#ee7c7e]/10 text-[#ee7c7e]">
-                                        <stat.icon sx={{ fontSize: 17 }} />
-                                    </span>
-                                    <p className="mt-2 text-[10px] font-black uppercase tracking-widest text-slate-400">
-                                        {stat.label}
-                                    </p>
-                                    <p className="text-sm font-bold text-[#1a2355] dark:text-white">
-                                        {stat.value}
-                                    </p>
+                {/* DEPARTMENTS UNDER RECTOR */}
+                <section className="bg-[#1a2355] rounded-[22px] p-10 md:p-20 text-white relative overflow-hidden shadow-2xl border-4 border-white/5">
+                    <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-[100px]" />
+
+                    <div className="relative z-10">
+                        <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-20">
+                            <div className="max-w-2xl">
+                                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-white/10 border border-white/20 mb-6">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-[#ee7c7e] animate-pulse" />
+                                    <span className="text-white text-[10px] font-black uppercase tracking-[0.14em]">{p.departmentsTag}</span>
                                 </div>
+                                <h2 className="text-4xl lg:text-5xl font-black mb-6 tracking-tighter">{p.departmentsTitle}</h2>
+                                <p className="text-white/60 text-lg">{p.departmentsSubtitle}</p>
+                            </div>
+                            <div className="flex items-center gap-4 px-8 py-5 rounded-[22px] bg-white/10 border border-white/20 backdrop-blur-xl">
+                                <span className="text-4xl font-black text-[#ee7c7e]">{departments.length}</span>
+                                <div className="h-10 w-px bg-white/20 mx-2" />
+                                <span className="text-[10px] font-black uppercase tracking-widest text-white/60">{p.totalUnitsLabel}</span>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                            {departments.map((dept, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, y: 10 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.03 }}
+                                    className="group flex items-center gap-5 p-6 rounded-[22px] bg-white/5 border border-white/10 hover:bg-[#ee7c7e] hover:border-[#ee7c7e] transition-all duration-500 hover:-translate-y-1"
+                                >
+                                    <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-white group-hover:text-[#ee7c7e] transition-all duration-500">
+                                        <span className="text-xs font-black">{i + 1}</span>
+                                    </div>
+                                    <span className="text-sm font-bold text-white/80 group-hover:text-white transition-colors">{dept}</span>
+                                </motion.div>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
                 </section>
 
-                {/* MESSAGE */}
-                <section className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm dark:border-slate-700/60 dark:bg-slate-800/50 md:p-8 lg:p-10">
-                    <h2 className="mb-5 flex items-center gap-2.5 text-lg font-black tracking-tight text-[#1a2355] dark:text-white">
-                        <span className="h-6 w-1.5 rounded-full bg-[#ee7c7e]" />
-                        {messageTitle}
-                    </h2>
-                    <SanitizedHtml
-                        html={messageHtml}
-                        className="prose prose-slate max-w-none dark:prose-invert [&_p]:text-slate-600 dark:[&_p]:text-slate-300"
-                    />
-                </section>
-
-                {/* ABOUT THE RECTOR */}
-                <section className="rounded-2xl bg-[#1a2355] p-6 shadow-lg shadow-[#1a2355]/20 dark:bg-slate-900 md:p-8 lg:p-10">
-                    <h2 className="mb-5 flex items-center gap-2.5 text-lg font-black tracking-tight text-white">
-                        <span className="h-6 w-1.5 rounded-full bg-[#ee7c7e]" />
-                        {aboutTitle}
-                    </h2>
-                    <SanitizedHtml
-                        html={aboutHtml}
-                        className="prose prose-invert max-w-none [&_p]:text-white/85"
-                    />
-                </section>
-
-                {/* OFFICES REPORTING TO THE RECTOR */}
-                {offices.length > 0 && (
-                    <section>
-                        <h2 className="mb-5 flex items-center gap-2.5 text-lg font-black tracking-tight text-[#1a2355] dark:text-white">
-                            <span className="h-6 w-1.5 rounded-full bg-[#ee7c7e]" />
-                            {officesTitle}
-                        </h2>
-                        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                            {offices.map((office, index) => (
-                                <div
-                                    key={`${office}-${index}`}
-                                    className="flex items-center gap-3 rounded-xl border border-slate-200/80 bg-white p-4 shadow-sm dark:border-slate-700/60 dark:bg-slate-800/50"
-                                >
-                                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-[#ee7c7e]/10 text-xs font-black text-[#ee7c7e]">
-                                        {index + 1}
-                                    </span>
-                                    <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
-                                        {office}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-                )}
-
-                {/* GALLERY */}
+                {/* GALLERY SECTION */}
                 {gallery.length > 0 && (
                     <section>
-                        <h2 className="mb-1 flex items-center gap-2.5 text-lg font-black tracking-tight text-[#1a2355] dark:text-white">
-                            <span className="h-6 w-1.5 rounded-full bg-[#ee7c7e]" />
-                            {p.galleryTitle}
-                        </h2>
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-16">
+                            <div className="flex items-center gap-6">
+                                <div className="w-2.5 h-12 bg-[#ee7c7e] rounded-full animate-pulse shadow-[0_0_15px_rgba(238,124,126,0.5)]" />
+                                <div>
+                                    <h2 className="text-4xl lg:text-5xl font-black text-[#1a2355] dark:text-white tracking-tighter">{p.galleryTitle}</h2>
+                                    <p className="text-gray-500 dark:text-slate-400 font-medium">{p.gallerySubtitle}</p>
+                                </div>
+                            </div>
+                            <div className="flex-1 h-px bg-gradient-to-r from-[#1a2355]/10 via-[#1a2355]/5 to-transparent dark:from-white/10 dark:via-white/5 ml-10" />
+                        </div>
                         <ContinuousGallery items={gallery} />
                     </section>
                 )}
 
-                {/* MORE IN THIS SECTION */}
-                {links.length > 0 && (
-                    <section className="border-t border-slate-200 pt-10 dark:border-slate-800">
-                        <h2 className="mb-6 flex items-center gap-2.5 text-sm font-black uppercase tracking-wide text-[#1a2355] dark:text-white">
-                            <span className="h-5 w-1.5 rounded-full bg-[#ee7c7e]" />
-                            {linksTitle}
-                        </h2>
-                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                            {links.map((link, index) => (
-                                <Link
-                                    key={`${link.url}-${index}`}
-                                    href={link.url}
-                                    className="group flex items-center justify-between gap-3 rounded-xl border border-slate-200/80 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#ee7c7e]/50 hover:shadow-md dark:border-slate-700/60 dark:bg-slate-800/50"
-                                >
-                                    <span className="text-sm font-bold text-[#1a2355] transition-colors group-hover:text-[#ee7c7e] dark:text-white">
-                                        {link.label}
-                                    </span>
-                                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-50 text-[#1a2355] transition-all duration-300 group-hover:bg-[#1a2355] group-hover:text-white dark:bg-slate-700 dark:text-white">
-                                        <ChevronRightIcon
-                                            sx={{ fontSize: 17 }}
-                                            className="transition-transform group-hover:translate-x-0.5"
-                                        />
-                                    </span>
-                                </Link>
-                            ))}
-                        </div>
-                    </section>
-                )}
+                {/* RELATED LINKS */}
+                <section className="pt-20 border-t border-[#1a2355]/30 dark:border-white/10">
+                    <h2 className="text-2xl font-black text-[#1a2355] dark:text-white mb-10 flex items-center gap-4">
+                        <div className="w-2.5 h-10 bg-[#ee7c7e] rounded-full animate-pulse shadow-[0_0_15px_rgba(238,124,126,0.5)]" />
+                        {t.common.moreInSection}
+                    </h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        {links.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className="group relative flex items-center justify-between bg-white/80 dark:bg-slate-900/50 backdrop-blur-xl p-8 rounded-[22px] border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 hover:border-[#ee7c7e]/40 dark:hover:border-[#ee7c7e]/50 transition-all duration-500 shadow-lg hover:shadow-2xl overflow-hidden"
+                            >
+                                <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/5 via-transparent to-[#1a2355]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                <span className="relative text-[#1a2355] dark:text-white font-black text-base group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
+                                <div className="relative w-12 h-12 rounded-2xl bg-[#1a2355]/5 dark:bg-white/5 flex items-center justify-center group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300 border border-[#1a2355]/30 dark:border-white/5">
+                                    <ChevronRightIcon sx={{ fontSize: 24 }} className="group-hover:translate-x-1 transition-transform" />
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </section>
             </PageContainer>
         </main>
     );
