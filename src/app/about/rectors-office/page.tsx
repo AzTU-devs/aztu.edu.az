@@ -121,9 +121,6 @@ export default function RectorsOfficePage() {
 
     return (
         <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden">
-            <div className="bg-mesh" />
-            <div className="bg-grid-premium" />
-
             {/* HERO */}
             <div className="relative min-h-[60vh] lg:min-h-[70vh] flex flex-col pt-44 lg:pt-48 z-10">
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">

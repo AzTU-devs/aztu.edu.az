@@ -85,10 +85,6 @@ export default function AnnouncementsPage() {
 
     return (
         <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden">
-            {/* STUNNING BACKGROUND ELEMENTS - MATCHING HOME PAGE */}
-            <div className="bg-mesh" />
-            <div className="bg-grid-premium" />
-
             <PageHero
                 title={lang === 'az' ? "Elanlar" : "Announcements"}
                 description={lang === 'az' ? "AzTU-nun akademik, tədris, qəbul və inzibati elanları ilə tanış olun." : "Stay updated with academic, educational, admission, and administrative announcements from AzTU."}

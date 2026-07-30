@@ -227,7 +227,7 @@ export default function ScientificBoardPage() {
             </HomeStyleSection>
 
             {/* MORE IN THIS SECTION - Home Style Links */}
-            <section className="px-4 md:px-10 lg:px-20 py-24 bg-gray-50 dark:bg-[#0b1330]/50 border-t border-gray-100 dark:border-white/5">
+            <section className="px-4 md:px-10 lg:px-20 py-24 border-t border-gray-100 dark:border-white/5">
                 <div className="max-w-[1600px] mx-auto">
                     <div className="flex items-center gap-6 mb-16">
                         <div className="w-2 h-12 bg-[#ee7c7e] rounded-full" />

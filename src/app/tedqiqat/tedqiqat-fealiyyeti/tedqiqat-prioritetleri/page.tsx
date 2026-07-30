@@ -98,7 +98,7 @@ export default function ResearchPrioritiesPage() {
         : [];
 
     return (
-        <main className="min-h-screen bg-page dark:bg-[#0b1330] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/30">
             <PageHero
                 title={title}
                 description={heroDescription}

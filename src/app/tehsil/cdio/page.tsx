@@ -105,7 +105,7 @@ export default function CDIOPage() {
     if (!data) return null;
 
     return (
-        <main className="min-h-screen bg-page dark:bg-[#0a0c1a] transition-colors duration-500">
+        <main className="min-h-screen bg-page transition-colors duration-500">
             <AboutPageBanner
                 eyebrow={data.eyebrow}
                 title={data.title}
@@ -226,7 +226,7 @@ export default function CDIOPage() {
             </Section>
 
             {/* BOTTOM HIGHLIGHT */}
-            <section className="px-4 md:px-10 lg:px-20 py-24 bg-gray-50 dark:bg-[#0a0c1a]">
+            <section className="px-4 md:px-10 lg:px-20 py-24">
                 <div className="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
                     {[
                         {

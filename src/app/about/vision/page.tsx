@@ -16,7 +16,7 @@ export default function VisionPage() {
     const p = t.pages.about.vision;
 
     return (
-        <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen selection:bg-[#ee7c7e]/30">
             {/* HERO SECTION */}
             <div className="relative min-h-[90vh] flex flex-col pt-44 lg:pt-48">
                 {/* Background Graphics */}

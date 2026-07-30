@@ -58,7 +58,7 @@ export default function CafedraDetailLayout({ children, params }: Props) {
 
     return (
         <ScientificActivityProvider cafedraCode={cafedraId}>
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">
+        <div className="min-h-screen transition-colors">
             {/* ── Hero banner ── */}
             <div className="relative overflow-hidden bg-[#0b1330] pt-32 pb-14 px-4 md:px-8 lg:px-12">
                 {/* Campus image background */}

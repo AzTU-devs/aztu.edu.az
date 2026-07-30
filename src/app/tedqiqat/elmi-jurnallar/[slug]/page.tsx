@@ -125,7 +125,7 @@ export default function ScientificJournalPage({ params }: Props) {
     };
 
     return (
-        <main className="min-h-screen bg-page dark:bg-[#0b1330] transition-colors duration-500">
+        <main className="min-h-screen bg-page transition-colors duration-500">
              <AboutPageBanner
                 eyebrow={data.eyebrow}
                 title={journal.title}
@@ -233,7 +233,7 @@ export default function ScientificJournalPage({ params }: Props) {
             )}
 
             {/* EXTERNAL LINK CTA */}
-            <section className="px-4 md:px-10 lg:px-20 py-24 bg-gray-50 dark:bg-[#0b1330]/50">
+            <section className="px-4 md:px-10 lg:px-20 py-24">
                 <div className="max-w-[1600px] mx-auto">
                     <div className="p-12 md:p-20 rounded-[2.5rem] bg-[#1a2355] text-white shadow-2xl relative overflow-hidden text-center flex flex-col items-center group">
                          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl group-hover:scale-125 transition-transform duration-1000" />

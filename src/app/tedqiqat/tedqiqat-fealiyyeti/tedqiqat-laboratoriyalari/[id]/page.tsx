@@ -82,7 +82,7 @@ export default function LaboratoryDetailPage() {
 
     if (loading) {
         return (
-            <main className="min-h-screen bg-page dark:bg-slate-900 flex items-center justify-center">
+            <main className="min-h-screen bg-page flex items-center justify-center">
                 <div className="h-12 w-12 rounded-full border-4 border-[#1a2355]/20 border-t-[#1a2355] animate-spin" />
             </main>
         );
@@ -90,7 +90,7 @@ export default function LaboratoryDetailPage() {
 
     if (!lab) {
         return (
-            <main className="min-h-screen bg-page dark:bg-slate-900 flex flex-col items-center justify-center gap-6 px-4">
+            <main className="min-h-screen bg-page flex flex-col items-center justify-center gap-6 px-4">
                 <ScienceIcon sx={{ fontSize: 64, color: "#1a2355", opacity: 0.15 }} />
                 <p className="text-gray-500 dark:text-slate-400 font-black uppercase tracking-widest text-sm">{t.notFound}</p>
                 <Link href={labsHref} className="text-[#1a2355] dark:text-blue-400 font-bold underline">{t.allLabs}</Link>
@@ -123,7 +123,7 @@ export default function LaboratoryDetailPage() {
     ].filter((r) => r.value);
 
     return (
-        <main className="min-h-screen bg-page dark:bg-slate-900 transition-colors pb-20">
+        <main className="min-h-screen bg-page transition-colors pb-20">
             {/* Header Banner */}
             <div className="relative overflow-hidden bg-[#0b1330] pt-40 pb-20 px-4 md:px-10 lg:px-12 w-full min-h-[400px] flex flex-col justify-end">
                 <div className="absolute inset-0 z-0">

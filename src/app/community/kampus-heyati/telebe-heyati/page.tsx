@@ -148,7 +148,7 @@ export default function StudentLifePage() {
   const campusLifeHref = lang === "az" ? "/az/icma/kampus-heyati" : "/en/community/campus-life";
 
   return (
-    <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+    <main className="min-h-screen selection:bg-[#ee7c7e]/30">
       {/* HERO */}
       <div className="relative min-h-[45vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">

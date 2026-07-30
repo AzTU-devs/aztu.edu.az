@@ -136,9 +136,6 @@ export default function FormerRectorsPage() {
 
     return (
         <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden">
-            <div className="bg-mesh" />
-            <div className="bg-grid-premium" />
-
             {/* HERO SECTION */}
             <div className="relative min-h-[50vh] lg:min-h-[60vh] flex flex-col pt-44 lg:pt-48 z-10">
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">

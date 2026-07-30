@@ -84,10 +84,6 @@ export default function ProjectsPage() {
 
     return (
         <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden pb-32">
-            {/* STUNNING BACKGROUND ELEMENTS - MATCHING HOME PAGE */}
-            <div className="bg-mesh" />
-            <div className="bg-grid-premium" />
-
             <PageHero
                 title={lang === 'az' ? 'Elmi Layihələr' : 'Research Projects'}
                 description={lang === 'az' ? 'AzTU-nun elmi-tədqiqat və innovasiya layihələri ilə tanış olun.' : 'Explore the scientific research and innovation projects of AzTU.'}

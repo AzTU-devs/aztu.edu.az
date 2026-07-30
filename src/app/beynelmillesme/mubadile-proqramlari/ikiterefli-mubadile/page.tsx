@@ -17,7 +17,7 @@ export default function BilateralExchangePage() {
     const p = t.pages.internationalization.bilateralExchange;
 
     return (
-        <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen selection:bg-[#ee7c7e]/30">
             {/* HERO SECTION */}
             <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48">
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">

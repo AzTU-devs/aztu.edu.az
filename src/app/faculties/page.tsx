@@ -123,14 +123,6 @@ export default function FacultiesPage() {
 
     return (
         <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden pb-32 bg-page">
-            <div className="bg-mesh opacity-100" />
-            <div className="bg-grid-premium opacity-10" />
-
-            <div className="fixed top-1/4 -left-20 w-[600px] h-[600px] bg-blue-600/5 blur-[150px] rounded-full animate-pulse pointer-events-none" />
-            <div
-                className="fixed bottom-1/4 -right-20 w-[600px] h-[600px] bg-[#ee7c7e]/5 blur-[150px] rounded-full animate-pulse pointer-events-none"
-                style={{ animationDelay: "2s" }}
-            />
 
             <PageHero
                 title={t.title}

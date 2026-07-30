@@ -24,14 +24,7 @@ export default function StaticSubPage({ section, item }: Props) {
     const videoSrc = isStudentPage ? studentVideoSrc : (isResearchPage ? "/heroBgVideos/research.mp4" : null);
 
     return (
-        <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden bg-page dark:bg-[#0a0c1a]">
-            {/* STUNNING BACKGROUND ELEMENTS */}
-            <div className="bg-mesh opacity-100" />
-            <div className="bg-grid-premium opacity-10" />
-
-            {/* Dark blue + coral accent blobs for visual depth */}
-            <div className="fixed top-1/4 -left-20 w-96 h-96 bg-[#1a2355]/15 blur-[120px] rounded-full animate-pulse" />
-            <div className="fixed bottom-1/4 -right-20 w-96 h-96 bg-[#ee7c7e]/10 blur-[120px] rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
+        <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden bg-page">
 
             <PageHero
                 title={item.title}

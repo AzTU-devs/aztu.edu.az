@@ -58,7 +58,7 @@ export default function IntellectualPropertyPage() {
     };
 
     return (
-        <main className="min-h-screen bg-[#fafafa] dark:bg-[#0b1330] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen selection:bg-[#ee7c7e]/30">
             
             {/* FUTURISTIC HERO BANNER */}
             <section ref={bannerRef} className="relative h-[80vh] min-h-[600px] w-full flex items-center overflow-hidden bg-black">

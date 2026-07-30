@@ -119,10 +119,6 @@ export default function NewsPage() {
 
     return (
         <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden pb-32">
-            {/* STUNNING BACKGROUND ELEMENTS - MATCHING HOME PAGE */}
-            <div className="bg-mesh" />
-            <div className="bg-grid-premium" />
-
             <PageHero
                 title={t.news.pageTitle}
                 description={t.news.pageDescription}

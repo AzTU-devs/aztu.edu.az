@@ -141,9 +141,6 @@ export default function ContactPage() {
 
     return (
         <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden">
-            <div className="bg-mesh" />
-            <div className="bg-grid-premium" />
-
             <PageHero
                 title={t.title}
                 description={t.description}

@@ -223,7 +223,7 @@ export default function AccreditationPage() {
     "bg-white/80 dark:bg-[#0d1b3e]/80 backdrop-blur-3xl rounded-[1.75rem] border-2 border-[#1a2355]/30 dark:border-white/5 p-8 md:p-12 shadow-xl shadow-blue-900/5 relative overflow-hidden";
 
   return (
-    <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+    <main className="min-h-screen selection:bg-[#ee7c7e]/30">
       {/* HERO */}
       <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">

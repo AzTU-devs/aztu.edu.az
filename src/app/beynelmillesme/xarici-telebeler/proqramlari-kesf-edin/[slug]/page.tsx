@@ -30,7 +30,7 @@ export default function StudyPlanPage() {
     // ---- Not found ----
     if (!plan) {
         return (
-            <main className="min-h-screen flex flex-col items-center justify-center bg-[#f8fafc] dark:bg-[#0f172a] px-4 text-center">
+            <main className="min-h-screen flex flex-col items-center justify-center px-4 text-center">
                 <div className="w-16 h-16 rounded-2xl bg-[#ee7c7e]/10 text-[#ee7c7e] flex items-center justify-center mb-6">
                     <ErrorOutlineIcon sx={{ fontSize: 32 }} />
                 </div>
@@ -120,7 +120,7 @@ export default function StudyPlanPage() {
     );
 
     return (
-        <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen selection:bg-[#ee7c7e]/30">
             {/* HERO */}
             <div className="relative flex flex-col pt-44 lg:pt-48">
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">

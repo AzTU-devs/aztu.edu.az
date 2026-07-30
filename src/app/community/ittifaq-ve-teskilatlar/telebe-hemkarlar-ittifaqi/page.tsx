@@ -300,7 +300,7 @@ export default function TelebeHemkarlarIttifaqiPage() {
   const sectionHref = lang === "az" ? "/az/icma/ittifaq-ve-teskilatlar" : "/en/community/unions-and-organizations";
 
   return (
-    <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+    <main className="min-h-screen selection:bg-[#ee7c7e]/30">
 
       {/* HERO */}
       <div className="relative min-h-[55vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">

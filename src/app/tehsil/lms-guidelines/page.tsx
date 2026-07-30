@@ -88,7 +88,7 @@ export default function LMSGuidelinesPage() {
     if (!data) return null;
 
     return (
-        <main className="min-h-screen bg-page dark:bg-[#0a0c1a] transition-colors duration-500">
+        <main className="min-h-screen bg-page transition-colors duration-500">
              <AboutPageBanner
                 eyebrow={data.eyebrow}
                 title={data.title}
@@ -206,7 +206,7 @@ export default function LMSGuidelinesPage() {
             </HomeStyleSection>
 
             {/* Features Highlight */}
-            <section className="px-4 md:px-10 lg:px-20 py-24 bg-gray-50 dark:bg-[#0a0c1a]">
+            <section className="px-4 md:px-10 lg:px-20 py-24">
                 <div className="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div className="p-10 rounded-[2rem] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 shadow-2xl relative overflow-hidden group hover:-translate-y-2 transition-all duration-500">
                          <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 dark:bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />

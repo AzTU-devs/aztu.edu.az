@@ -38,12 +38,6 @@ export default function RankingsPage() {
 
     return (
         <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden bg-page">
-            {/* STUNNING BACKGROUND ELEMENTS */}
-            <div className="bg-mesh opacity-100" />
-            <div className="bg-grid-premium opacity-10" />
-            
-            <div className="fixed top-1/4 -left-20 w-96 h-96 bg-blue-600/5 blur-[120px] rounded-full animate-pulse" />
-            <div className="fixed bottom-1/4 -right-20 w-96 h-96 bg-[#ee7c7e]/5 blur-[120px] rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
 
             <PageHero
                 title={rankings.title}

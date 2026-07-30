@@ -92,7 +92,7 @@ export default async function AnnouncementDetailPage({
         <>
             <NewsScrollProgress />
 
-            <main className="min-h-screen bg-page dark:bg-[#0f172a]">
+            <main className="min-h-screen bg-page">
                 {/* Hero */}
                 <section className="relative bg-gradient-to-br from-[#060d1f] via-[#1a2355] to-[#0f2a4a] overflow-hidden">
                     <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-3xl pointer-events-none" />

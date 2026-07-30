@@ -92,7 +92,7 @@ export default function SustainabilityDocumentsPage() {
     }, [active]);
 
     return (
-        <main className="min-h-screen bg-page dark:bg-[#0f172a]">
+        <main className="min-h-screen bg-page">
             <AboutPageBanner
                 eyebrow={c.eyebrow}
                 title={c.title}

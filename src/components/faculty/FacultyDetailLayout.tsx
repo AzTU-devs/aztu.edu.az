@@ -36,7 +36,7 @@ export default function FacultyDetailLayout({ children, params }: Props) {
     const contactPath = `/${currentLang}/${currentLang === "az" ? "akademik/fakulteler" : "academic/faculties"}/${facultySlug}/${currentLang === "az" ? "haqqimizda/elaqe" : "about/contact"}`;
 
     return (
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">
+        <div className="min-h-screen transition-colors">
             {/* ── Hero banner ── */}
             <div className="relative overflow-hidden bg-[#0b1330] pt-32 pb-14 px-4 md:px-8 lg:px-12">
                 {/* Video background */}

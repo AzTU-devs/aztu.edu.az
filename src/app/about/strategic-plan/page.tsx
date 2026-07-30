@@ -103,7 +103,7 @@ export default function StrategicPlanPage() {
           }));
 
     return (
-        <main className="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] selection:bg-[#ee7c7e]/30">
+        <main className="min-h-screen selection:bg-[#ee7c7e]/30">
             {/* HERO */}
             <div className="relative flex min-h-[52vh] flex-col pt-36 lg:pt-40">
                 <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
