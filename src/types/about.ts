@@ -34,6 +34,23 @@ export interface AboutList {
     items: string[] | null;
 }
 
+/** One vice-rector card, with its own "see profile" detail copy. */
+export interface AboutPerson {
+    name: string | null;
+    /** "Doctor of Technical Sciences, Professor". */
+    degree: string | null;
+    /** "Vice-Rector for Academic Affairs". */
+    position: string | null;
+    email: string | null;
+    phone: string | null;
+    /** Optional internal extension. */
+    phone_code: string | null;
+    /** Portrait — an absolute URL or a stored path. */
+    image_url: string | null;
+    /** The long profile — rich text. */
+    bio: string | null;
+}
+
 /** One button in the "More in this section" block. */
 export interface AboutLink {
     url: string | null;
@@ -72,6 +89,14 @@ export interface AboutPage {
     /** "About the rector" biography — rich text. */
     about: string | null;
 
+    // ── Vice-rector template ────────────────────────────────────────────
+    /** Comma/·-separated category line for the hero. */
+    domains: string | null;
+    /** The page's second heading ("Executive Leadership"). */
+    section_title: string | null;
+    /** The rich-text paragraph under it. */
+    section_body: string | null;
+
     /** Derived server-side from the copy above — never authored by hand. */
     seo: {
         title: string | null;
@@ -84,4 +109,6 @@ export interface AboutPage {
     lists: AboutList[];
     /** Portrait gallery — absolute image URLs, in display order. */
     images: string[];
+    /** Vice-rector cards, in display order. */
+    persons: AboutPerson[];
 }

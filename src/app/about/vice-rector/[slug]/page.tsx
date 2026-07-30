@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -7,16 +8,20 @@ import { motion } from "framer-motion";
 import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import PersonIcon from "@mui/icons-material/Person";
-import SchoolIcon from "@mui/icons-material/School";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 
 import PageHero from "@/components/shared/PageHero";
 import PageContainer from "@/components/shared/PageContainer";
+import SanitizedHtml from "@/components/shared/SanitizedHtml";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
+import { getAboutPage } from "@/services/aboutService/aboutService";
+import { getImageUrl } from "@/services/departmentService/departmentService";
+import type { AboutPage } from "@/types/about";
+
+const PAGE_KEY = "vice-rector";
 
 export default function ViceRectorDetailPage() {
     const params = useParams();
@@ -26,6 +31,23 @@ export default function ViceRectorDetailPage() {
     const { lang } = useLanguage();
     const p = t.pages.about.viceRector;
 
+    const [page, setPage] = useState<AboutPage | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        let cancelled = false;
+        setLoading(true);
+        getAboutPage(PAGE_KEY, lang).then((result) => {
+            if (!cancelled) {
+                setPage(result);
+                setLoading(false);
+            }
+        });
+        return () => {
+            cancelled = true;
+        };
+    }, [lang]);
+
     const aboutHref = lang === "az" ? "/haqqimizda" : "/about";
     const leadershipLabel = lang === "az" ? "Rəhbərlik və İdarəetmə" : "Leadership and Management";
     const leadershipHref = lang === "az" ? "/haqqimizda/rehbetlik-ve-idareetme" : "/about/leadership-and-management";
@@ -33,21 +55,37 @@ export default function ViceRectorDetailPage() {
         ? "/haqqimizda/rehbetlik-ve-idareetme/prorektor"
         : "/about/leadership-and-management/vice-rector";
 
-    const vr = p.viceRectors.find((v) => v.slug === slug);
-    const others = p.viceRectors.filter((v) => v.slug !== slug);
+    // Profiles are addressed by 1-based position.
+    const persons = page?.persons ?? [];
+    const position = Number(slug);
+    const vr =
+        Number.isInteger(position) && position >= 1 && position <= persons.length
+            ? persons[position - 1]
+            : undefined;
+    const others = persons
+        .map((person, index) => ({ person, index: index + 1 }))
+        .filter((entry) => entry.index !== position);
+
+    if (loading) {
+        return (
+            <main className="flex min-h-screen items-center justify-center bg-[#f7f8fb] dark:bg-[#0b1120]">
+                <span className="h-10 w-10 animate-spin rounded-full border-2 border-[#ee7c7e] border-t-transparent" />
+            </main>
+        );
+    }
 
     if (!vr) {
         return (
-            <main className="min-h-screen flex flex-col items-center justify-center px-4">
-                <h1 className="text-3xl font-bold text-[#1a2355] dark:text-white mb-4">
+            <main className="flex min-h-screen flex-col items-center justify-center bg-[#f7f8fb] px-4 dark:bg-[#0b1120]">
+                <h1 className="mb-3 text-2xl font-black text-[#1a2355] dark:text-white">
                     {lang === "az" ? "Səhifə tapılmadı" : "Page not found"}
                 </h1>
-                <p className="text-gray-500 dark:text-slate-400 mb-8">
+                <p className="mb-8 text-sm text-slate-500 dark:text-slate-400">
                     {lang === "az" ? "Axtardığınız prorektor mövcud deyil." : "The vice-rector you are looking for does not exist."}
                 </p>
                 <Link
                     href={listHref}
-                    className="flex items-center gap-2 bg-[#1a2355] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#ee7c7e] transition-colors"
+                    className="flex items-center gap-2 rounded-xl bg-[#1a2355] px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-[#ee7c7e]"
                 >
                     <ArrowBackIcon sx={{ fontSize: 18 }} />
                     {p.backToList}
@@ -56,67 +94,78 @@ export default function ViceRectorDetailPage() {
         );
     }
 
+    const name = vr.name ?? "";
+    const degree = vr.degree ?? "";
+    const councilPosition = vr.position ?? "";
+    const email = vr.email ?? "";
+    const phone = vr.phone ?? "";
+    const portrait = vr.image_url ? getImageUrl(vr.image_url) : "";
+    const bioHtml = vr.bio ?? "";
+
     return (
-        <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden">
+        <main className="min-h-screen bg-[#f7f8fb] dark:bg-[#0b1120] selection:bg-[#ee7c7e]/25">
             <PageHero
-                title={vr.name}
+                title={name}
                 eyebrow={p.eyebrow}
                 breadcrumbs={[
                     { label: t.nav.sections.about, href: aboutHref },
                     { label: leadershipLabel, href: leadershipHref },
                     { label: p.breadcrumb, href: listHref },
-                    { label: vr.name },
+                    { label: name },
                 ]}
             >
-                <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    <div className="lg:col-span-7 order-2 lg:order-1">
-                        <p className="inline-block text-[10px] uppercase tracking-[0.4em] text-[#ee7c7e] font-black bg-[#ee7c7e]/10 border border-[#ee7c7e]/30 px-4 py-2 rounded-full mb-6">
-                            {vr.degree}
-                        </p>
-                        <p className="text-lg lg:text-xl text-white/80 font-bold mb-10 max-w-2xl leading-relaxed">
-                            {vr.title}
+                <div className="mt-8 grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
+                    <div className="order-2 lg:order-1 lg:col-span-7">
+                        {degree ? (
+                            <p className="mb-5 inline-block rounded-full border border-[#ee7c7e]/30 bg-[#ee7c7e]/10 px-3.5 py-1.5 text-[11px] font-semibold text-[#ee7c7e]">
+                                {degree}
+                            </p>
+                        ) : null}
+                        <p className="mb-8 max-w-2xl text-lg font-bold leading-relaxed text-white/80 lg:text-xl">
+                            {councilPosition}
                         </p>
 
-                        <div className="flex flex-wrap gap-4">
-                            {vr.email && (
+                        <div className="flex flex-wrap gap-3">
+                            {email ? (
                                 <a
-                                    href={`mailto:${vr.email}`}
-                                    className="flex items-center gap-3 px-6 py-3.5 bg-white text-[#1a2355] rounded-2xl font-black text-sm hover:bg-[#ee7c7e] hover:text-white transition-all duration-300 shadow-xl shadow-black/20"
+                                    href={`mailto:${email}`}
+                                    className="flex items-center gap-2.5 rounded-xl bg-white px-5 py-3 text-sm font-bold text-[#1a2355] shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#ee7c7e] hover:text-white"
                                 >
-                                    <EmailIcon sx={{ fontSize: 18 }} />
-                                    {vr.email}
+                                    <EmailIcon sx={{ fontSize: 17 }} />
+                                    {email}
                                 </a>
-                            )}
-                            {vr.phone && (
+                            ) : null}
+                            {phone ? (
                                 <a
-                                    href={`tel:${vr.phone.replace(/\s+/g, "")}`}
-                                    className="flex items-center gap-3 px-6 py-3.5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-2xl font-black text-sm hover:bg-white/20 transition-all duration-300"
+                                    href={`tel:${phone.replace(/\s+/g, "")}`}
+                                    className="flex items-center gap-2.5 rounded-xl border border-white/15 bg-white/[0.06] px-5 py-3 text-sm font-bold text-white backdrop-blur-md transition-colors hover:bg-white/[0.12]"
                                 >
-                                    <LocalPhoneIcon sx={{ fontSize: 18 }} />
-                                    {vr.phone}
+                                    <LocalPhoneIcon sx={{ fontSize: 17 }} />
+                                    {phone}
                                 </a>
-                            )}
+                            ) : null}
                         </div>
                     </div>
 
-                    <div className="lg:col-span-5 order-1 lg:order-2">
+                    <div className="order-1 lg:order-2 lg:col-span-5">
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
+                            initial={{ opacity: 0, scale: 0.94 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            className="relative aspect-square max-w-md mx-auto"
+                            transition={{ duration: 0.5 }}
+                            className="relative mx-auto aspect-[4/5] max-w-sm"
                         >
-                            <div className="absolute -top-6 -left-6 w-24 h-24 border-t-4 border-l-4 border-[#ee7c7e] rounded-tl-3xl z-20" />
-                            <div className="absolute -bottom-6 -right-6 w-24 h-24 border-b-4 border-r-4 border-[#ee7c7e] rounded-br-3xl z-20" />
-                            <div className="relative w-full h-full rounded-[1.75rem] overflow-hidden shadow-2xl z-10 border border-white/10 bg-gradient-to-br from-[#1a2355] to-[#0f172a] flex items-center justify-center">
-                                {vr.photoUrl ? (
+                            <span className="absolute -left-3 -top-3 z-20 h-16 w-16 rounded-tl-2xl border-l-2 border-t-2 border-[#ee7c7e]" />
+                            <span className="absolute -bottom-3 -right-3 z-20 h-16 w-16 rounded-br-2xl border-b-2 border-r-2 border-[#ee7c7e]" />
+                            <div className="relative z-10 flex h-full w-full items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#1a2355] to-[#0f172a] shadow-2xl">
+                                {portrait ? (
                                     // eslint-disable-next-line @next/next/no-img-element
                                     <img
-                                        src={vr.photoUrl}
-                                        alt={vr.name}
-                                        className="w-full h-full object-cover object-top"
+                                        src={portrait}
+                                        alt={name}
+                                        className="h-full w-full object-cover object-top"
                                     />
                                 ) : (
-                                    <PersonIcon sx={{ fontSize: 220, color: "white", opacity: 0.25 }} />
+                                    <PersonIcon sx={{ fontSize: 180, color: "white", opacity: 0.2 }} />
                                 )}
                             </div>
                         </motion.div>
@@ -124,121 +173,114 @@ export default function ViceRectorDetailPage() {
                 </div>
             </PageHero>
 
-            <PageContainer className="space-y-24">
+            <PageContainer className="space-y-16">
                 {/* BIOGRAPHY */}
-                <section>
-                    <div className="max-w-4xl mx-auto text-center mb-14">
-                        <h2 className="text-3xl lg:text-5xl font-black text-[#1a2355] dark:text-white mb-6 tracking-tighter">
+                <section className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12">
+                    <div className="lg:col-span-8">
+                        <h2 className="mb-6 flex items-center gap-2.5 text-xl font-black tracking-tight text-[#1a2355] dark:text-white lg:text-2xl">
+                            <span className="h-6 w-1.5 rounded-full bg-[#ee7c7e]" />
                             {p.biographyTitle}
                         </h2>
-                        <div className="h-1.5 w-24 bg-[#ee7c7e] mx-auto rounded-full" />
+                        <SanitizedHtml
+                            html={bioHtml}
+                            className="prose prose-slate max-w-none dark:prose-invert [&_p]:text-justify [&_p]:text-slate-600 dark:[&_p]:text-slate-300"
+                        />
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-                        <div className="lg:col-span-8 space-y-5">
-                            {vr.biography.map((para, i) => (
-                                <p
-                                    key={i}
-                                    className="text-base lg:text-lg text-gray-600 dark:text-slate-300 text-justify leading-relaxed"
-                                >
-                                    {para}
-                                </p>
-                            ))}
-                        </div>
-
-                        <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-28">
-                            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl p-8 rounded-[1.75rem] border-2 border-[#1a2355]/30 dark:border-white/10 shadow-xl relative overflow-hidden">
-                                <FormatQuoteIcon className="absolute -top-6 -left-6 text-[#ee7c7e]/20" sx={{ fontSize: 100 }} />
-                                <h3 className="text-base font-black text-[#1a2355] dark:text-white mb-6 relative z-10 flex items-center gap-3">
-                                    <WorkspacePremiumIcon className="text-[#ee7c7e]" sx={{ fontSize: 22 }} />
+                    <div className="space-y-5 lg:col-span-4 lg:sticky lg:top-28">
+                        {degree ? (
+                            <div className="rounded-2xl border border-slate-200/70 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                                <h3 className="mb-3 flex items-center gap-2.5 text-sm font-black text-[#1a2355] dark:text-white">
+                                    <WorkspacePremiumIcon className="text-[#ee7c7e]" sx={{ fontSize: 20 }} />
                                     {lang === "az" ? "Akademik dərəcə" : "Academic Degree"}
                                 </h3>
-                                <p className="text-sm text-gray-600 dark:text-slate-300 font-medium relative z-10 leading-relaxed">
-                                    {vr.degree}
+                                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                                    {degree}
                                 </p>
                             </div>
+                        ) : null}
 
-                            <div className="bg-[#1a2355] p-8 rounded-[1.75rem] text-white shadow-xl relative overflow-hidden">
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
-                                <h3 className="text-base font-black text-white mb-6 relative z-10 flex items-center gap-3">
-                                    <SchoolIcon className="text-[#ee7c7e]" sx={{ fontSize: 22 }} />
-                                    {p.contactTitle}
-                                </h3>
-                                <div className="space-y-4 relative z-10">
-                                    {vr.email && (
+                        {(email || phone) ? (
+                            <div className="relative overflow-hidden rounded-2xl bg-[#1a2355] p-6 text-white shadow-lg shadow-[#1a2355]/20 dark:bg-slate-900">
+                                <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[#ee7c7e]/15 blur-2xl" />
+                                <h3 className="relative z-10 mb-4 text-sm font-black">{p.contactTitle}</h3>
+                                <div className="relative z-10 space-y-3">
+                                    {email ? (
                                         <a
-                                            href={`mailto:${vr.email}`}
-                                            className="flex items-center gap-3 text-sm text-white/80 hover:text-[#ee7c7e] transition-colors group"
+                                            href={`mailto:${email}`}
+                                            className="group flex items-center gap-3 text-sm text-white/80 transition-colors hover:text-[#ee7c7e]"
                                         >
-                                            <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-[#ee7c7e] transition-colors">
-                                                <EmailIcon sx={{ fontSize: 16 }} />
-                                            </div>
-                                            <span className="break-all">{vr.email}</span>
+                                            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 transition-colors group-hover:bg-[#ee7c7e]">
+                                                <EmailIcon sx={{ fontSize: 15 }} />
+                                            </span>
+                                            <span className="break-all">{email}</span>
                                         </a>
-                                    )}
-                                    {vr.phone && (
+                                    ) : null}
+                                    {phone ? (
                                         <a
-                                            href={`tel:${vr.phone.replace(/\s+/g, "")}`}
-                                            className="flex items-center gap-3 text-sm text-white/80 hover:text-[#ee7c7e] transition-colors group"
+                                            href={`tel:${phone.replace(/\s+/g, "")}`}
+                                            className="group flex items-center gap-3 text-sm text-white/80 transition-colors hover:text-[#ee7c7e]"
                                         >
-                                            <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-[#ee7c7e] transition-colors">
-                                                <LocalPhoneIcon sx={{ fontSize: 16 }} />
-                                            </div>
-                                            <span>{vr.phone}</span>
+                                            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 transition-colors group-hover:bg-[#ee7c7e]">
+                                                <LocalPhoneIcon sx={{ fontSize: 15 }} />
+                                            </span>
+                                            <span>{phone}</span>
                                         </a>
-                                    )}
+                                    ) : null}
                                 </div>
                             </div>
-                        </div>
+                        ) : null}
                     </div>
                 </section>
 
                 {/* OTHER VICE-RECTORS */}
                 {others.length > 0 && (
-                    <section className="pt-16 border-t border-[#1a2355]/20 dark:border-white/10">
-                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
-                            <h2 className="text-2xl lg:text-3xl font-black text-[#1a2355] dark:text-white flex items-center gap-4">
-                                <div className="w-2.5 h-10 bg-[#ee7c7e] rounded-full animate-pulse shadow-[0_0_15px_rgba(238,124,126,0.5)]" />
+                    <section className="border-t border-slate-200 pt-10 dark:border-slate-800">
+                        <div className="mb-6 flex flex-col justify-between gap-4 md:flex-row md:items-center">
+                            <h2 className="flex items-center gap-2.5 text-sm font-black uppercase tracking-wide text-[#1a2355] dark:text-white">
+                                <span className="h-5 w-1.5 rounded-full bg-[#ee7c7e]" />
                                 {lang === "az" ? "Digər prorektorlar" : "Other Vice-Rectors"}
                             </h2>
                             <Link
                                 href={listHref}
-                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#1a2355]/5 dark:bg-white/5 border border-[#1a2355]/10 dark:border-white/10 text-[#1a2355] dark:text-white text-sm font-bold hover:bg-[#1a2355] hover:text-white transition-colors"
+                                className="inline-flex w-fit items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-xs font-bold text-[#1a2355] transition-colors hover:bg-[#1a2355] hover:text-white dark:border-slate-700 dark:bg-slate-900/60 dark:text-white"
                             >
-                                <ArrowBackIcon sx={{ fontSize: 16 }} />
+                                <ArrowBackIcon sx={{ fontSize: 15 }} />
                                 {p.backToList}
                             </Link>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {others.map((o) => (
-                                <Link
-                                    key={o.slug}
-                                    href={`${listHref}/${o.slug}`}
-                                    className="group relative flex items-center gap-4 bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl rounded-2xl border-2 border-[#1a2355]/20 dark:border-white/10 p-5 hover:border-[#ee7c7e] hover:-translate-y-1 transition-all duration-500 overflow-hidden"
-                                >
-                                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#1a2355] to-[#0f172a] flex items-center justify-center shrink-0 border-2 border-white dark:border-slate-800 shadow-md group-hover:border-[#ee7c7e]/40 transition-colors">
-                                        {o.photoUrl ? (
-                                            // eslint-disable-next-line @next/next/no-img-element
-                                            <img
-                                                src={o.photoUrl}
-                                                alt={o.name}
-                                                className="w-full h-full object-cover rounded-full"
-                                            />
-                                        ) : (
-                                            <PersonIcon sx={{ fontSize: 30, color: "white", opacity: 0.5 }} />
-                                        )}
-                                    </div>
-                                    <div className="flex-1 min-w-0">
-                                        <p className="text-sm font-black text-[#1a2355] dark:text-white truncate group-hover:text-[#ee7c7e] transition-colors">
-                                            {o.name}
-                                        </p>
-                                        <p className="text-xs text-gray-500 dark:text-slate-400 truncate mt-0.5">
-                                            {o.title}
-                                        </p>
-                                    </div>
-                                    <ChevronRightIcon sx={{ fontSize: 18 }} className="text-[#1a2355]/40 dark:text-white/40 group-hover:text-[#ee7c7e] group-hover:translate-x-1 transition-all" />
-                                </Link>
-                            ))}
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                            {others.map(({ person, index }) => {
+                                const img = person.image_url ? getImageUrl(person.image_url) : "";
+                                return (
+                                    <Link
+                                        key={index}
+                                        href={`${listHref}/${index}`}
+                                        className="group flex items-center gap-4 rounded-xl border border-slate-200/70 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#ee7c7e]/50 hover:shadow-md dark:border-slate-800 dark:bg-slate-900/60"
+                                    >
+                                        <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-[#1a2355] to-[#0f172a]">
+                                            {img ? (
+                                                // eslint-disable-next-line @next/next/no-img-element
+                                                <img src={img} alt={person.name ?? ""} className="h-full w-full object-cover" />
+                                            ) : (
+                                                <PersonIcon sx={{ fontSize: 24, color: "white", opacity: 0.5 }} />
+                                            )}
+                                        </span>
+                                        <div className="min-w-0 flex-1">
+                                            <p className="truncate text-sm font-black text-[#1a2355] transition-colors group-hover:text-[#ee7c7e] dark:text-white">
+                                                {person.name}
+                                            </p>
+                                            <p className="mt-0.5 truncate text-xs text-slate-500 dark:text-slate-400">
+                                                {person.position}
+                                            </p>
+                                        </div>
+                                        <ChevronRightIcon
+                                            sx={{ fontSize: 17 }}
+                                            className="text-slate-300 transition-all group-hover:translate-x-0.5 group-hover:text-[#ee7c7e] dark:text-slate-600"
+                                        />
+                                    </Link>
+                                );
+                            })}
                         </div>
                     </section>
                 )}

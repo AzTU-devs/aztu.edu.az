@@ -1,5 +1,4 @@
 const MEDIA_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site";
-const VR_MEDIA = `${MEDIA_BASE}/media/prod/vice-rectors`;
 
 const en = {
   common: {
@@ -861,68 +860,6 @@ const en = {
         contactTitle: "Contact",
         biographyTitle: "Biography",
         backToList: "Back to all Vice-Rectors",
-        viceRectors: [
-          {
-            slug: "subhan-namazov",
-            name: "Prof. Subhan Namazov",
-            degree: "Doctor of Technical Sciences, Professor",
-            title: "Vice-Rector for Academic Affairs",
-            email: "subhan.namazov@aztu.edu.az",
-            phone: "+994 12 539 08 57",
-            photoUrl: `${VR_MEDIA}/subhan_namazov.jpeg`,
-            biography: [
-              "In 1994, he graduated with honors from the Faculty of Metallurgy at Azerbaijan Technical University (AzTU) and began his professional career as a research engineer. In 1997, he defended his candidate dissertation in Materials Science and was awarded the degree of Candidate of Technical Sciences (equivalent to a PhD). In 2007, he received his Doctor of Technical Sciences degree in Materials Science. In 2010, he was awarded the academic title of Professor by the Higher Attestation Commission.",
-              "From 1993 to 1994, he was awarded an international scholarship—the ISESCO Prize.",
-              "In 1996, he joined AzTU as an assistant professor and subsequently served as an associate professor in the same department from 2000 to 2010. From 2003 to 2011, he held the position of Head of the Academic Department at AzTU. From 2011 to 2020, he headed the Department of Metallurgy and Materials Science, making a significant contribution to the education and training of numerous bachelor's, master's, and doctoral students. Under his academic supervision, 7 candidates successfully defended their dissertations to receive their PhDs in Technical Sciences.",
-              "From 2001 to 2002, through the German Academic Exchange Service (DAAD), he conducted doctoral research on developing new materials at the Institutes of Metallurgy and Materials Science at RWTH Aachen University in Germany.",
-              "In 2013, under a two-month DAAD grant project, he undertook a scientific mission to the University of Rostock in Germany to conduct joint research and develop academic programs. From 2013 to 2015, he served as the head of the “Assessment and Quality Management” center within the framework of the TEMPUS project, implemented jointly with the Technical University of Cologne (Germany), the University of Graz (Austria), and the Warsaw University of Technology (Poland).",
-              "He has served as the scientific supervisor and manager of several projects funded by the Azerbaijan Science Foundation and the Ministry of Science and Education. He continues to successfully coordinate and manage nearly 10 TEMPUS and ERASMUS+ KA2 educational projects at AzTU.",
-              "From 2008 to 2016, he served as an independent expert on the Expert Council for Technical Sciences of the Higher Attestation Commission under the President of the Republic of Azerbaijan, and from 2011 to 2017 as an independent expert for the Civil Service Affairs Commission under the President of the Republic of Azerbaijan. From 2016 to 2019, he was a member of the Doctoral Dissertation Council at AzTU and served as an official opponent for various dissertation defenses.",
-              "He is currently the Chairman of the Dissertation Council in Metallurgy and Mechanical Engineering at AzTU.",
-              "From 2018 to 2022, he served as Vice-Rector for International Relations at Azerbaijan Technical University, contributing significantly to expanding AzTU's global academic partnerships, international recognition, and participation in global projects.",
-              "From May 2022 to June 2026, he served as Vice-Rector for Science and Innovation at Azerbaijan Technical University.",
-              "In June 2026, he was appointed Vice-Rector for Academic Affairs at Azerbaijan Technical University.",
-              "He is the author of more than 220 scientific works, including 1 monograph, 6 inventions, and 6 textbooks and teaching materials. His research has been published in reputable scientific journals across the USA, Germany, Austria, Russia, Ukraine, Slovakia, Spain, Yugoslavia, Turkey, Latvia, and Switzerland. He has also presented his work at more than 20 international symposia and conferences.",
-              "In 2016, he was elected a full member (Academician) of the International Academy of Engineering.",
-              "In 2011, he was awarded the “Badge of Distinction for Advanced Education Workers of the Republic of Azerbaijan.” On December 30, 2020, by decree of the President of the Republic of Azerbaijan, he was honored with the title of “Honored Teacher.”",
-              "He is fluent in Russian, German, and English.",
-              "He is married and has three children.",
-            ],
-          },
-          {
-            slug: "fariz-mammadov",
-            name: "Dr. Fariz Mammadov",
-            degree: "PhD in Economics (Econometrics and Economic Statistics)",
-            title: "Vice-Rector for International Relations",
-            email: "fariz.mammadov@aztu.edu.az",
-            phone: "+994 12 539 08 57",
-            photoUrl: `${VR_MEDIA}/fariz_mammadov.jpeg`,
-            biography: [
-              "Dr. Fariz Mammadov is a senior academic leader and expert in international relations, with extensive experience in higher education management, energy policy, and strategic development. He currently serves as Vice-Rector for International Relations at Azerbaijan Technical University (AzTU), where he leads the university's internationalization strategy, including the development of global partnerships, engagement in international academic networks, and the implementation of joint degree programs, academic mobility, and international research initiatives. He also serves as Head of the MBA Program at AzTU's Institute of Higher Education.",
-              "Dr. Mammadov has a strong multidisciplinary background in energy policy, strategic planning, economic analysis, and higher education governance. Prior to his current role, he conducted research at the Economic Reforms Scientific Research Institute under the Ministry of Economy of Azerbaijan and held senior management positions at Azerenerji JSC.",
-              "He has actively contributed to major international projects in collaboration with leading organizations such as the World Bank, Asian Development Bank, European Union, and UNDP, serving as an energy expert, national consultant, economist, and project coordinator. His work has supported the advancement of Azerbaijan's energy policy, sector modernization, climate action planning, and strategic reform initiatives.",
-              "Dr. Mammadov holds a PhD in Economics (Econometrics and Economic Statistics) and a Master's degree in Business Administration from a joint program of ADA University and Maastricht School of Management (Netherlands). He also holds a Master's degree in Political Science from Baku State University.",
-              "He is a member of the International Association for Energy Economics (IAEE) and holds internationally recognized certifications, including ISO 50001 Energy Management Systems, ISO/IEC 42001 Artificial Intelligence Management Systems, and IPMA Certified Project Management Professional.",
-            ],
-          },
-          {
-            slug: "rashad-aliyev",
-            name: "Rashad Aliyev",
-            degree: "PhD in Econometrics, MBA",
-            title: "Vice-Rector for Finance and Operations",
-            email: "rashad.aliyev@aztu.edu.az",
-            phone: "+994 12 539 08 57",
-            photoUrl: `${VR_MEDIA}/rashad_aliyev.JPG`,
-            biography: [
-              "Rashad Aliyev is a senior executive with nearly two decades of experience in management, finance, information technologies, marketing, and innovation. He currently serves as Vice-Rector for Finance and Operations at Azerbaijan Technical University, where he leads financial strategy, enhances operational efficiency, and drives institutional development.",
-              "Throughout his career, he has built extensive experience across banking, corporate governance, and business development, holding leadership positions at Azersun Holding, ASB Bank, Royal Bank, and Performance Center (Chevrolet Azerbaijan). He most recently served as Chairman of the Board at AAAF Holding, demonstrating strong expertise in strategic management and organizational transformation.",
-              "Aliyev is also actively engaged in the startup and innovation ecosystem, particularly in the fintech sector, where he has led his own initiatives and supported emerging entrepreneurs as an expert.",
-              "He was appointed Vice-Rector for Digitalization and Projects on August 11, 2021, and Vice-Rector for Finance and Operations on February 22, 2023. Since 2022, he has also served as President of the AzTU Basketball Club on a voluntary basis.",
-              "He holds a Bachelor's degree in Political Science from Istanbul University, an MBA from Azerbaijan State University of Economics, and a PhD in Econometrics from Baku Engineering University. He has also completed the Manager Training Program supported by GIZ (Germany) and the Ministry of Economy of Azerbaijan.",
-              "Aliyev has participated in international training and conferences across the United States, Turkey, Qatar, Germany, Italy, Poland, the Czech Republic, and other European countries, and is fluent in English, Turkish, and Russian.",
-            ],
-          },
-        ],
         related: [
           { title: "Rector", href: "/about/leadership-and-management/rector" },
           { title: "Scientific Board", href: "/about/leadership-and-management/scientific-board" },

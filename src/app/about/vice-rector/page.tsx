@@ -1,186 +1,248 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
 import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import PersonIcon from "@mui/icons-material/Person";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import SchoolIcon from "@mui/icons-material/School";
 import GroupsIcon from "@mui/icons-material/Groups";
+import WorkspacesIcon from "@mui/icons-material/Workspaces";
 
 import PageHero from "@/components/shared/PageHero";
 import PageContainer from "@/components/shared/PageContainer";
+import SanitizedHtml from "@/components/shared/SanitizedHtml";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
+import { getAboutPage } from "@/services/aboutService/aboutService";
+import { getImageUrl } from "@/services/departmentService/departmentService";
+import type { AboutPage } from "@/types/about";
+
+const PAGE_KEY = "vice-rector";
+
+interface PersonView {
+    index: number;
+    name: string;
+    degree: string;
+    position: string;
+    email: string;
+    phone: string;
+    image: string;
+}
+
+interface LinkView {
+    label: string;
+    url: string;
+}
 
 export default function ViceRectorPage() {
     const t = useTranslation();
     const { lang } = useLanguage();
     const p = t.pages.about.viceRector;
 
+    const [page, setPage] = useState<AboutPage | null>(null);
+
+    useEffect(() => {
+        let cancelled = false;
+        getAboutPage(PAGE_KEY, lang).then((result) => {
+            if (!cancelled) setPage(result);
+        });
+        return () => {
+            cancelled = true;
+        };
+    }, [lang]);
+
     const aboutHref = lang === "az" ? "/haqqimizda" : "/about";
     const leadershipLabel = lang === "az" ? "Rəhbərlik və İdarəetmə" : "Leadership and Management";
     const leadershipHref = lang === "az" ? "/haqqimizda/rehbetlik-ve-idareetme" : "/about/leadership-and-management";
+    // Profiles are addressed by position (1-based) — persons carry no slug.
     const detailBase = lang === "az"
         ? "/haqqimizda/rehbetlik-ve-idareetme/prorektor"
         : "/about/leadership-and-management/vice-rector";
 
+    // The CMS is the source of truth once published; the page chrome (eyebrow,
+    // breadcrumb, the "see profile" label) stays static because it is not edited
+    // in the dashboard.
+    const title = page?.title || p.title;
+    const heroDescriptionHtml = page?.description ?? `<p>${p.subtitle}</p>`;
+    const sectionTitle =
+        page?.section_title || (lang === "az" ? "İcraçı Rəhbərlik" : "Executive Leadership");
+    const sectionBodyHtml = page?.section_body ?? `<p>${p.overviewText}</p>`;
+    const domains =
+        page?.domains ||
+        (lang === "az"
+            ? "Akademik · Elm · Beynəlxalq · Maliyyə"
+            : "Academic · Science · International · Finance");
+    const linksTitle = page?.links_title || t.common.moreInSection;
+
+    const persons: PersonView[] = (page?.persons ?? []).map((person, index) => ({
+        index: index + 1,
+        name: person.name ?? "",
+        degree: person.degree ?? "",
+        position: person.position ?? "",
+        email: person.email ?? "",
+        phone: person.phone ?? "",
+        image: person.image_url ? getImageUrl(person.image_url) : "",
+    }));
+
+    const links: LinkView[] = (page?.links ?? []).map((link) => ({
+        label: link.label ?? "",
+        url: link.url ?? "#",
+    }));
+
     return (
-        <main className="relative min-h-screen selection:bg-[#ee7c7e]/30 overflow-hidden">
+        <main className="min-h-screen bg-[#f7f8fb] dark:bg-[#0b1120] selection:bg-[#ee7c7e]/25">
             <PageHero
-                title={p.title}
+                title={title}
                 eyebrow={p.eyebrow}
-                description={p.subtitle}
                 breadcrumbs={[
                     { label: t.nav.sections.about, href: aboutHref },
                     { label: leadershipLabel, href: leadershipHref },
                     { label: p.breadcrumb },
                 ]}
             >
-                <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl">
-                    <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5">
-                        <GroupsIcon className="text-[#ee7c7e] mb-3" sx={{ fontSize: 28 }} />
-                        <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">
-                            {lang === "az" ? "Prorektor sayı" : "Vice-Rectors"}
-                        </p>
-                        <p className="text-sm font-bold text-white">{p.viceRectors.length}</p>
+                <SanitizedHtml
+                    html={heroDescriptionHtml}
+                    className="prose prose-invert mt-4 max-w-2xl text-base leading-relaxed [&_p]:text-white/75"
+                />
+
+                <div className="mt-8 flex flex-wrap gap-3">
+                    <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3 backdrop-blur-md">
+                        <GroupsIcon className="text-[#ee7c7e]" sx={{ fontSize: 20 }} />
+                        <div>
+                            <p className="text-[10px] font-semibold uppercase tracking-widest text-white/45">
+                                {lang === "az" ? "Prorektor sayı" : "Vice-Rectors"}
+                            </p>
+                            <p className="text-sm font-bold text-white">{persons.length}</p>
+                        </div>
                     </div>
-                    <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5">
-                        <SchoolIcon className="text-[#ee7c7e] mb-3" sx={{ fontSize: 28 }} />
-                        <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">
-                            {lang === "az" ? "Sahə" : "Domains"}
-                        </p>
-                        <p className="text-sm font-bold text-white">
-                            {lang === "az" ? "Akademik · Elm · Beynəlxalq · Maliyyə" : "Academic · Science · International · Finance"}
-                        </p>
+                    <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3 backdrop-blur-md">
+                        <WorkspacesIcon className="text-[#ee7c7e]" sx={{ fontSize: 20 }} />
+                        <div>
+                            <p className="text-[10px] font-semibold uppercase tracking-widest text-white/45">
+                                {lang === "az" ? "Sahələr" : "Domains"}
+                            </p>
+                            <p className="text-sm font-bold text-white">{domains}</p>
+                        </div>
                     </div>
                 </div>
             </PageHero>
 
-            <PageContainer className="space-y-24">
-                {/* OVERVIEW */}
-                <section>
-                    <div className="max-w-4xl mx-auto text-center mb-14">
-                        <h2 className="text-3xl lg:text-5xl font-black text-[#1a2355] dark:text-white mb-6 tracking-tighter">
-                            {lang === "az" ? "İcraçı Rəhbərlik" : "Executive Leadership"}
-                        </h2>
-                        <div className="h-1.5 w-24 bg-[#ee7c7e] mx-auto rounded-full mb-8" />
-                        <p className="text-base lg:text-lg text-gray-600 dark:text-slate-300 leading-relaxed">
-                            {p.overviewText}
-                        </p>
-                    </div>
+            <PageContainer className="space-y-16">
+                {/* EXECUTIVE LEADERSHIP */}
+                <section className="mx-auto max-w-3xl text-center">
+                    <h2 className="text-2xl font-black tracking-tight text-[#1a2355] dark:text-white lg:text-3xl">
+                        {sectionTitle}
+                    </h2>
+                    <span className="mx-auto mt-3 block h-1 w-12 rounded-full bg-[#ee7c7e]" />
+                    <SanitizedHtml
+                        html={sectionBodyHtml}
+                        className="prose prose-slate mx-auto mt-5 max-w-none dark:prose-invert [&_p]:text-slate-600 dark:[&_p]:text-slate-300"
+                    />
                 </section>
 
-                {/* CARDS */}
-                <section>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
-                        {p.viceRectors.map((vr, i) => (
+                {/* PERSON CARDS */}
+                {persons.length > 0 && (
+                    <section className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                        {persons.map((person, i) => (
                             <motion.div
-                                key={vr.slug}
-                                initial={{ opacity: 0, y: 24 }}
+                                key={person.index}
+                                initial={{ opacity: 0, y: 18 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: i * 0.08 }}
+                                viewport={{ once: true, margin: "-60px" }}
+                                transition={{ duration: 0.45, delay: (i % 3) * 0.06 }}
                             >
                                 <Link
-                                    href={`${detailBase}/${vr.slug}`}
-                                    className="group relative flex flex-col h-full bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl rounded-[1.5rem] border-2 border-[#1a2355]/20 dark:border-white/10 p-6 transition-all duration-500 hover:-translate-y-2 hover:border-[#ee7c7e] hover:shadow-2xl hover:shadow-[#1a2355]/20 overflow-hidden"
+                                    href={`${detailBase}/${person.index}`}
+                                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/70 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#1a2355]/10 dark:border-slate-800 dark:bg-slate-900/60"
                                 >
-                                    {/* Decorative blur */}
-                                    <div className="absolute -top-12 -right-12 w-40 h-40 bg-[#ee7c7e]/10 blur-3xl rounded-full group-hover:scale-150 transition-transform duration-700" />
-                                    <div className="absolute -bottom-12 -left-12 w-40 h-40 bg-[#1a2355]/5 blur-3xl rounded-full group-hover:bg-[#ee7c7e]/10 transition-colors duration-700" />
-
-                                    {/* Avatar */}
-                                    <div className="relative z-10 flex items-center justify-center mb-5">
-                                        <div className="relative w-32 h-32">
-                                            <div className="w-full h-full rounded-full bg-gradient-to-br from-[#1a2355] to-[#0f172a] border-4 border-white dark:border-slate-800 shadow-xl flex items-center justify-center overflow-hidden group-hover:border-[#ee7c7e]/40 transition-colors duration-500">
-                                                {vr.photoUrl ? (
-                                                    // eslint-disable-next-line @next/next/no-img-element
-                                                    <img
-                                                        src={vr.photoUrl}
-                                                        alt={vr.name}
-                                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                                    />
-                                                ) : (
-                                                    <PersonIcon sx={{ fontSize: 64, color: "white", opacity: 0.4 }} />
-                                                )}
+                                    {/* Portrait band — a soft navy field so a photo, or its
+                                        absence, reads consistently. */}
+                                    <div className="relative aspect-[5/4] w-full overflow-hidden bg-gradient-to-br from-[#1a2355] to-[#0f172a]">
+                                        {person.image ? (
+                                            // eslint-disable-next-line @next/next/no-img-element
+                                            <img
+                                                src={person.image}
+                                                alt={person.name}
+                                                className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                                            />
+                                        ) : (
+                                            <div className="flex h-full w-full items-center justify-center">
+                                                <PersonIcon sx={{ fontSize: 72, color: "white", opacity: 0.25 }} />
                                             </div>
-                                            <div className="absolute bottom-0 right-0 w-9 h-9 rounded-full bg-[#ee7c7e] border-4 border-white dark:border-slate-800 flex items-center justify-center shadow-lg z-10">
-                                                <SchoolIcon sx={{ fontSize: 14, color: "white" }} />
-                                            </div>
-                                        </div>
+                                        )}
+                                        {person.degree ? (
+                                            <span className="absolute bottom-3 left-3 rounded-md bg-black/35 px-2.5 py-1 text-[10px] font-semibold text-white backdrop-blur-sm">
+                                                {person.degree}
+                                            </span>
+                                        ) : null}
                                     </div>
 
-                                    {/* Name & degree */}
-                                    <div className="relative z-10 text-center mb-4">
-                                        <h3 className="text-base lg:text-lg font-black text-[#1a2355] dark:text-white leading-tight group-hover:text-[#ee7c7e] transition-colors duration-300">
-                                            {vr.name}
+                                    <div className="flex flex-1 flex-col p-5">
+                                        <h3 className="text-base font-black leading-snug text-[#1a2355] transition-colors group-hover:text-[#ee7c7e] dark:text-white">
+                                            {person.name}
                                         </h3>
-                                        <p className="text-[10px] uppercase tracking-wider text-[#ee7c7e] font-black mt-2 bg-[#ee7c7e]/10 px-3 py-1 rounded-full inline-block">
-                                            {vr.degree}
+                                        <p className="mt-1.5 text-sm font-medium leading-snug text-slate-500 dark:text-slate-400">
+                                            {person.position}
                                         </p>
-                                    </div>
 
-                                    {/* Title */}
-                                    <div className="relative z-10 text-center mb-5 px-2">
-                                        <p className="text-sm font-bold text-[#1a2355]/80 dark:text-slate-200 leading-snug">
-                                            {vr.title}
-                                        </p>
-                                    </div>
+                                        <div className="mt-4 space-y-1.5 border-t border-slate-100 pt-4 dark:border-slate-800">
+                                            {person.email ? (
+                                                <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                                                    <EmailIcon sx={{ fontSize: 14 }} className="text-[#ee7c7e]" />
+                                                    <span className="truncate">{person.email}</span>
+                                                </div>
+                                            ) : null}
+                                            {person.phone ? (
+                                                <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                                                    <LocalPhoneIcon sx={{ fontSize: 14 }} className="text-[#ee7c7e]" />
+                                                    <span>{person.phone}</span>
+                                                </div>
+                                            ) : null}
+                                        </div>
 
-                                    {/* Contact */}
-                                    <div className="relative z-10 mt-auto pt-4 border-t border-[#1a2355]/10 dark:border-white/10 space-y-2">
-                                        {vr.email && (
-                                            <div className="flex items-center gap-2 text-[11px] text-gray-600 dark:text-slate-300">
-                                                <EmailIcon sx={{ fontSize: 14, color: "#ee7c7e" }} />
-                                                <span className="truncate">{vr.email}</span>
-                                            </div>
-                                        )}
-                                        {vr.phone && (
-                                            <div className="flex items-center gap-2 text-[11px] text-gray-600 dark:text-slate-300">
-                                                <LocalPhoneIcon sx={{ fontSize: 14, color: "#ee7c7e" }} />
-                                                <span>{vr.phone}</span>
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    {/* CTA */}
-                                    <div className="relative z-10 mt-5 flex items-center justify-between rounded-xl bg-[#1a2355]/5 dark:bg-white/5 px-4 py-2.5 group-hover:bg-[#ee7c7e] transition-colors duration-300">
-                                        <span className="text-[11px] font-black uppercase tracking-widest text-[#1a2355] dark:text-white group-hover:text-white transition-colors">
+                                        <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#1a2355] transition-colors group-hover:text-[#ee7c7e] dark:text-white">
                                             {p.cardCta}
+                                            <ArrowForwardIcon
+                                                sx={{ fontSize: 15 }}
+                                                className="transition-transform group-hover:translate-x-0.5"
+                                            />
                                         </span>
-                                        <ChevronRightIcon sx={{ fontSize: 16 }} className="text-[#1a2355] dark:text-white group-hover:text-white group-hover:translate-x-1 transition-all duration-300" />
                                     </div>
                                 </Link>
                             </motion.div>
                         ))}
-                    </div>
-                </section>
+                    </section>
+                )}
 
-                {/* RELATED */}
-                <section className="pt-16 border-t border-[#1a2355]/20 dark:border-white/10">
-                    <h2 className="text-2xl font-black text-[#1a2355] dark:text-white mb-10 flex items-center gap-4">
-                        <div className="w-2.5 h-10 bg-[#ee7c7e] rounded-full animate-pulse shadow-[0_0_15px_rgba(238,124,126,0.5)]" />
-                        {t.common.moreInSection}
-                    </h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                        {p.related.map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className="group relative flex items-center justify-between bg-white/80 dark:bg-slate-900/50 backdrop-blur-xl p-8 rounded-[1.5rem] border-2 border-[#1a2355]/30 dark:border-[#1a2355]/30 hover:border-[#ee7c7e]/40 dark:hover:border-[#ee7c7e]/50 transition-all duration-500 shadow-lg hover:shadow-2xl overflow-hidden"
-                            >
-                                <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/5 via-transparent to-[#1a2355]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                <span className="relative text-[#1a2355] dark:text-white font-black text-base group-hover:text-[#ee7c7e] transition-colors">{link.title}</span>
-                                <div className="relative w-12 h-12 rounded-2xl bg-[#1a2355]/5 dark:bg-white/5 flex items-center justify-center group-hover:bg-[#1a2355] group-hover:text-white transition-all duration-300 border border-[#1a2355]/30 dark:border-white/5">
-                                    <ChevronRightIcon sx={{ fontSize: 24 }} className="group-hover:translate-x-1 transition-transform" />
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
-                </section>
+                {/* MORE IN THIS SECTION */}
+                {links.length > 0 && (
+                    <section className="border-t border-slate-200 pt-10 dark:border-slate-800">
+                        <h2 className="mb-6 flex items-center gap-2.5 text-sm font-black uppercase tracking-wide text-[#1a2355] dark:text-white">
+                            <span className="h-5 w-1.5 rounded-full bg-[#ee7c7e]" />
+                            {linksTitle}
+                        </h2>
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                            {links.map((link, index) => (
+                                <Link
+                                    key={`${link.url}-${index}`}
+                                    href={link.url}
+                                    className="group flex items-center justify-between gap-3 rounded-xl border border-slate-200/70 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#ee7c7e]/50 hover:shadow-md dark:border-slate-800 dark:bg-slate-900/60"
+                                >
+                                    <span className="text-sm font-bold text-[#1a2355] transition-colors group-hover:text-[#ee7c7e] dark:text-white">
+                                        {link.label}
+                                    </span>
+                                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-50 text-[#1a2355] transition-all duration-300 group-hover:bg-[#1a2355] group-hover:text-white dark:bg-slate-800 dark:text-white">
+                                        <ChevronRightIcon sx={{ fontSize: 17 }} className="transition-transform group-hover:translate-x-0.5" />
+                                    </span>
+                                </Link>
+                            ))}
+                        </div>
+                    </section>
+                )}
             </PageContainer>
         </main>
     );

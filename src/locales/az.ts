@@ -1,5 +1,4 @@
 const MEDIA_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site";
-const VR_MEDIA = `${MEDIA_BASE}/media/prod/vice-rectors`;
 
 const az = {
   common: {
@@ -908,67 +907,6 @@ const az = {
         contactTitle: "Əlaqə",
         biographyTitle: "Bioqrafiya",
         backToList: "Bütün prorektorlara qayıt",
-        viceRectors: [
-          {
-            slug: "subhan-namazov",
-            name: "Prof. Sübhan Namazov",
-            degree: "Texnika elmləri doktoru, professor",
-            title: "Tədris məsələləri üzrə prorektor",
-            email: "subhan.namazov@aztu.edu.az",
-            phone: "+994 12 539 08 57",
-            photoUrl: `${VR_MEDIA}/subhan_namazov.jpeg`,
-            biography: [
-              "1994-cü ildə Azərbaycan Texniki Universitetini Metallurgiya fakültəsini fərqlənmə diplomu ilə bitirmiş və tədqiqatçı-mühəndis kimi əmək fəaliyyətinə başlamışdır. 1997-ci ildə Materialşünaslıq ixtisası üzrə namizədlik dissertasiyası müdafiə etmiş və texnika elmləri namizədi, 2007-ci ildə Materialşünaslıq ixtisası üzrə texnika elmləri doktoru elmi dərəcəsi almışdır. 2010-cu ildə Ali Attestasiya Komissiyası tərəfindən professor elmi adına layiq görülmüşdür.",
-              "1993-1994-cü illərdə Beynəlxalq təqaüdə – ISESKO mükafatına layiq görülmüşdür.",
-              "1996-cı ildən AzTU-da assistent, 2000-ci ildən 2010-cu ilədək həmin kafedrada dosent vəzifəsində çalışmışdır. 2003-cü ildən 2011-ci ilədək AzTU-nun tədris şöbəsinin müdiri vəzifəsində çalışmışdır. 2011-ci ildən 2020-ci ilədək “Metallurgiya və metalşünaslıq” kafedrasına rəhbərlik etmiş, çoxsaylı bakalavr, magistr və doktorant hazırlığında mühüm töhfə vermişdir. Onun elmi rəhbərliyilə 7 nəfər texnika üzrə fəlsəfə doktoru hazırlanmışdır.",
-              "2001-2002-ci illərdə Almaniyanın Alman Akademik Mübadilə Xidmətinin (DAAD) xəttilə, Almaniyanın Aaxen Texniki Universitetinin «Metallurgiya» və «Materialşünaslıq» İnstitutlarında yeni materiallarının alınması istiqamətində doktorluq dissertasiyasının mövzusu üzrə tədqiqatlarını tamamlamışdır.",
-              "2013-cü ildə DAAD-nin 2 aylıq Qrant layihəsi çərçivəsində Almaniyanın Rostok Universitetində birgə elmi tədqiqat işləri aparılması və tədris proqramlarının işlənməsi üçün elmi ezamiyyətdə olmuşdur. 2013-2015-ci illərdə Almaniyanın Köln Texniki, Avstriyanın Qraç və Polşanın Varşava Politexnik Universitetləri ilə birgə yerinə yetirilən TEMPUS layihəsi çərçivəsində “Qiymətləndirmə və keyfiyyət menecmenti” üzrə mərkəzin rəhbəri olmuşdur.",
-              "Azərbaycan Elm Fondu, Elm və təhsil Nazirliyi tərəfindən maliyyələşən bir neçə layihənin elmi rəhbəri və meneceri olmuşdur. AzTU-da təhsil sahəsində yerinə yetirilən 10-dək TEMPUS, ERASMUS+KA2 layihələrinin koordinator və meneceri kimi uğurla fəaliyyət göstərməkdədir.",
-              "2008-2016-cı illərdə Azərbaycan Respublikası Prezidenti yanında Ali Attestasiya Komissiyasının texnika elmləri üzrə Ekspert Şurasının, 2011-2017-ci illərdə Azərbaycan Respublikası Prezidenti yanında Dövlət Qulluğu məsələləri üzrə Komissiyanın müstəqil eksperti kimi fəaliyyət göstərmişdir. 2016-2019-cu illərdə AzTU-da fəaliyyət göstərən doktorluq Dissertasiya Şurasının üzvü və dissertasiya işlərinə rəsmi opponenti olmuşdur.",
-              "Hazırda AzTU nəzdində Metallurgiya və maşınqayırma sahəsində fəaliyyət göstərən Dissertasiya Şurasının sədridir.",
-              "2018-2022-ci illərdə Azərbaycan Texniki Universitetin Beynəlxalq əlaqələr üzrə prorektoru vəzifəsində çalışmışdır. AzTU-nun elm və təhsil sahəsində Beynəlxalq əlaqələrinin yaradılmasında, beynəlxalq aləmdə tanınmasında, beynəlxalq layihələrdə iştirakında səmərəli fəaliyyəti olmuşdur.",
-              "2022-ci ilin may ayından 2026-cı ilin iyun ayınadək Azərbaycan Texniki Universitetinin Elm və innovasiyalar üzrə prorektoru vəzifəsində çalışmışdır.",
-              "2026-cı ilin iyun ayından Azərbaycan Texniki Universitetinin Tədris məsələləri üzrə prorektoru vəzifəsinə təyin olunmuşdur.",
-              "220-dan çox elmi işin, o cümlədən 1 monoqrafiya, 6 ixtira, 6 dərs vəsaiti və dərsliyin müəllifidir. Elmi əsərləri ABŞ, Almaniya, Avstriya, Rusiya, Ukrayna, Slovakiya, İspaniya, Yuqoslaviya, Türkiyə, Latviya, İsveçrədə müxtəlif elmi məcmuələrdə nəşr edilmişdir. 20-dək Beynəlxalq Simpozium və konfranslarda məruzələrlə çıxışlar etmişdir.",
-              "2016-cı ildə Beynəlxalq Mühəndislik Akademiyasının həqiqi üzvü – akademiki seçilmişdir.",
-              "2011-ci ildə «Azərbaycan Respublikası Qabaqcıl Təhsil İşçisi Döş Nişanı» ilə təltif olunmuşdur. 30.12.2020-ci il tarixdə Azərbaycan Respublikası Prezidentinin sərəncamı ilə “Əməkdar müəllim” fəxri adına layiq görülmüşdür.",
-              "Rus, alman və ingilis dillərini bilir.",
-              "Ailəlidir, üç övladı var.",
-            ],
-          },
-          {
-            slug: "fariz-mammadov",
-            name: "Dr. Fariz Məmmədov",
-            degree: "İqtisad elmləri üzrə fəlsəfə doktoru",
-            title: "Beynəlxalq əlaqələr üzrə prorektor",
-            email: "fariz.mammadov@aztu.edu.az",
-            phone: "+994 12 539 08 57",
-            photoUrl: `${VR_MEDIA}/fariz_mammadov.jpeg`,
-            biography: [
-              "Dr. Fariz Məmmədov ali təhsil idarəçiliyi, enerji siyasəti və strateji inkişaf sahəsində geniş təcrübəyə malik tanınmış mütəxəssisdir. O, hazırda Azərbaycan Texniki Universitetində Beynəlxalq əlaqələr üzrə prorektor vəzifəsində çalışır və universitetin beynəlmiləlləşmə strategiyasına rəhbərlik edir. Bu çərçivədə o, xarici ali təhsil müəssisələri ilə strateji tərəfdaşlıqların qurulması, beynəlxalq akademik şəbəkələrdə iştirak, ikili diplom proqramlarının inkişafı, eləcə də beynəlxalq tədris, tədqiqat və akademik mobillik layihələrinin həyata keçirilməsini təmin edir. O, eyni zamanda AzTU-nun nəzdində fəaliyyət göstərən MBA proqramının rəhbəridir.",
-              "Dr. Məmmədov enerji siyasəti, strateji planlaşdırma, iqtisadi təhlil və ali təhsil idarəçiliyi istiqamətlərində çoxşaxəli peşəkar təcrübəyə malikdir. O, əvvəlki fəaliyyətində Azərbaycan Respublikası İqtisadiyyat Nazirliyinin İqtisadi İslahatlar Elmi-Tədqiqat İnstitutunda tədqiqat fəaliyyəti ilə məşğul olmuş, həmçinin “Azərenerji” ASC-də rəhbər vəzifələrdə çalışmışdır.",
-              "O, Dünya Bankı, Asiya İnkişaf Bankı, Avropa İttifaqı və BMT-nin İnkişaf Proqramı kimi nüfuzlu beynəlxalq təşkilatlarla əməkdaşlıq çərçivəsində bir sıra mühüm layihələrdə enerji eksperti, milli məsləhətçi, iqtisadçı və layihə əlaqələndiricisi kimi iştirak etmişdir. Bu fəaliyyət çərçivəsində Azərbaycanın enerji siyasətinin inkişafı, enerji sektorunun modernləşdirilməsi, iqlim fəaliyyət planları və strateji islahat təşəbbüslərinə mühüm töhfələr vermişdir.",
-              "Dr. Məmmədov iqtisad elmləri üzrə fəlsəfə doktorudur (ekonometrika və iqtisadi statistika). O, ADA Universiteti və Maastricht İdarəetmə Məktəbinin (Niderland) birgə proqramı üzrə Biznesin təşkili və idarə olunması üzrə magistr dərəcəsinə, həmçinin Bakı Dövlət Universitetində Siyasi elmlər üzrə magistr dərəcəsinə malikdir.",
-              "O, Beynəlxalq Enerji İqtisadçıları Assosiasiyasının (IAEE) üzvüdür və ISO 50001 Enerji Menecment Sistemi, ISO/IEC 42001 Süni İntellekt Menecment Sistemi, eləcə də IPMA sertifikatlı layihə menecmenti mütəxəssisi kimi beynəlxalq sertifikatlara malikdir.",
-            ],
-          },
-          {
-            slug: "rashad-aliyev",
-            name: "Rəşad Əliyev",
-            degree: "Ekonometriya üzrə fəlsəfə doktoru",
-            title: "Maliyyə-təsərrüfat işləri üzrə prorektor",
-            email: "rashad.aliyev@aztu.edu.az",
-            phone: "+994 12 539 08 57",
-            photoUrl: `${VR_MEDIA}/rashad_aliyev.JPG`,
-            biography: [
-              "Rəşad Əliyev idarəetmə, maliyyə, informasiya texnologiyaları və innovasiya sahələrində 20 ilə yaxın təcrübəyə malik təcrübəli rəhbər və mütəxəssisdir. O, hazırda Azərbaycan Texniki Universitetində Maliyyə-təsərrüfat işləri üzrə prorektor kimi universitetin maliyyə strategiyasının formalaşdırılmasına, əməliyyat səmərəliliyinin artırılmasına və institusional inkişafın təmin edilməsinə rəhbərlik edir.",
-              "Peşəkar fəaliyyəti ərzində o, bankçılıq, korporativ idarəetmə və biznesin inkişafı sahələrində geniş təcrübə qazanmış, Azersun Holding, ASB Bank, Royal Bank, Performance Center (Chevrolet Azerbaijan) kimi nüfuzlu qurumlarda rəhbər vəzifələrdə çalışmışdır. Son olaraq AAAF Holding-də İdarə Heyətinin sədri kimi fəaliyyət göstərmiş, strateji idarəetmə və təşkilati transformasiya sahələrində mühüm nəticələr əldə etmişdir.",
-              "Rəşad Əliyev innovasiya və startap ekosistemində də fəal iştirak edir, xüsusilə fintech sahəsində həm öz layihələrini inkişaf etdirmiş, həm də müxtəlif təşəbbüslərə ekspert dəstəyi göstərmişdir. O, 11 avqust 2021-ci ildə Rəqəmsallaşma və layihələr üzrə prorektor, 22 fevral 2023-cü ildən isə Maliyyə-təsərrüfat işləri üzrə prorektor vəzifələrinə təyin olunmuşdur. Eyni zamanda, 2022-ci ildən etibarən ictimai əsaslarla AzTU Basketbol Klubunun prezidenti kimi fəaliyyət göstərir.",
-              "Təhsilini İstanbul Universitetində bakalavr (Politologiya), Azərbaycan Dövlət İqtisad Universitetində MBA, və Bakı Mühəndislik Universitetində PhD (ekonometriya) üzrə tamamlamışdır. O, həmçinin GIZ və Azərbaycan Respublikası İqtisadiyyat Nazirliyinin dəstəyi ilə Menecer Təlim Proqramını uğurla bitirmişdir.",
-              "Beynəlxalq təcrübəyə malik olan Rəşad Əliyev ABŞ, Türkiyə, Qətər, Almaniya, İtaliya, Polşa, Çexiya və digər Avropa ölkələrində keçirilən təlim və konfranslarda iştirak etmişdir. İngilis, türk və rus dillərini sərbəst bilir.",
-            ],
-          },
-        ],
         related: [
           { title: "Rektor", href: "/haqqimizda/rehbetlik-ve-idareetme/rektor" },
           { title: "Elmi Şura", href: "/haqqimizda/rehbetlik-ve-idareetme/elmi-sura" },
