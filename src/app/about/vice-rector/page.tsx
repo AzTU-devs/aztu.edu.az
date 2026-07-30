@@ -159,9 +159,10 @@ export default function ViceRectorPage() {
                                     href={`${detailBase}/${person.index}`}
                                     className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/70 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#1a2355]/10 dark:border-slate-800 dark:bg-slate-900/60"
                                 >
-                                    {/* Portrait band — a soft navy field so a photo, or its
-                                        absence, reads consistently. */}
-                                    <div className="relative aspect-[5/4] w-full overflow-hidden bg-gradient-to-br from-[#1a2355] to-[#0f172a]">
+                                    {/* Portrait band — a portrait-oriented field matching the
+                                        native 2:3 photos, so the whole person reads (not just the
+                                        head). A soft navy field covers any letterboxing. */}
+                                    <div className="relative aspect-[2/3] w-full overflow-hidden bg-gradient-to-br from-[#1a2355] to-[#0f172a]">
                                         {person.image ? (
                                             // eslint-disable-next-line @next/next/no-img-element
                                             <img
