@@ -144,6 +144,25 @@ const en = {
       { label: "GreenMetric", value: "835" },
       { label: "Accreditation", value: "20+" },
     ],
+    certificates: {
+      attested: "Attested ranking",
+      cta: "All rankings",
+      railLabel: "Ranking certificates",
+      videoSlide: "Intro video",
+      slide: "Certificate",
+      prev: "Previous",
+      next: "Next",
+      play: "Start autoplay",
+      pause: "Pause autoplay",
+      documentHint: "Official certificate",
+      families: {
+        video: "Video",
+        world: "World",
+        europe: "Europe",
+        subject: "By Subject",
+        other: "Other",
+      },
+    },
   },
 
   stats: {

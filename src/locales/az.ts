@@ -145,6 +145,25 @@ const az = {
       { label: "GreenMetric", value: "835" },
       { label: "Akkreditasiya", value: "20+" },
     ],
+    certificates: {
+      attested: "Təsdiqlənmiş reytinq",
+      cta: "Bütün reytinqlər",
+      railLabel: "Reytinq sertifikatları",
+      videoSlide: "Təqdimat videosu",
+      slide: "Sertifikat",
+      prev: "Əvvəlki",
+      next: "Növbəti",
+      play: "Avtomatik keçidi başlat",
+      pause: "Avtomatik keçidi dayandır",
+      documentHint: "Rəsmi sertifikat",
+      families: {
+        video: "Video",
+        world: "Dünya",
+        europe: "Avropa",
+        subject: "Fənn üzrə",
+        other: "Digər",
+      },
+    },
   },
 
   stats: {
