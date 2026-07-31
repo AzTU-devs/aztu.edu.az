@@ -148,6 +148,12 @@ const az = {
     certificates: {
       attested: "Təsdiqlənmiş reytinq",
       cta: "Bütün reytinqlər",
+      // AQAS is a programme-accreditation agency, not a ranking body — its
+      // slides get their own chip, kicker and CTA. Keys must stay in lockstep
+      // with en.ts: `Locale` is `typeof az`.
+      aqasAttested: "Təsdiqlənmiş akkreditasiya",
+      aqasKicker: "Proqram akkreditasiyası",
+      aqasCta: "Bütün akkreditasiyalar",
       railLabel: "Reytinq sertifikatları",
       videoSlide: "Təqdimat videosu",
       slide: "Sertifikat",
@@ -162,6 +168,7 @@ const az = {
         europe: "Avropa",
         subject: "Fənn üzrə",
         other: "Digər",
+        aqas: "AQAS akkreditasiyası",
       },
     },
   },

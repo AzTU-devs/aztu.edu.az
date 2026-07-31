@@ -23,6 +23,7 @@ import {
     getCertificateFileUrl,
     type HeroCertificate,
     type HeroCertificateFamily,
+    type HeroCertificateIssuer,
 } from "@/services/heroCertificateService/heroCertificateService"
 
 /* ------------------------------------------------------------------ *
@@ -54,6 +55,16 @@ const SLOT_H = 48
 type Slide =
     | { kind: "video" }
     | { kind: "cert"; cert: HeroCertificate }
+
+/** Filmstrip group identity. QS certificates group by family exactly as before;
+ *  AQAS is a single group of its own, because programme accreditations have no
+ *  family. "video" is the fixed first group. */
+type GroupKey = HeroCertificateFamily | "video" | "aqas"
+
+/** Anything that is not literally "aqas" is QS — the same test the service
+ *  applies, restated here so a hand-built HeroCertificate can't slip past. */
+const issuerOf = (cert?: HeroCertificate | null): HeroCertificateIssuer =>
+    cert?.issuer === "aqas" ? "aqas" : "qs"
 
 const pad = (n: number) => String(n).padStart(2, "0")
 
@@ -355,19 +366,46 @@ export default function HeroSection() {
     )
 
     const famLabels = t.hero.certificates.families
-    const famLabel = (family: HeroCertificateFamily | "video") =>
-        famLabels[family] ?? famLabels.other
+    /* `family` is nullable now (AQAS rows carry none, and so does an unknown
+     * value from the API), so the null case is handled here rather than by an
+     * accidental `undefined` lookup. */
+    const famLabel = (family: GroupKey | null | undefined) =>
+        (family ? famLabels[family] : undefined) ?? famLabels.other
 
-    // Filmstrip groups: a new group starts whenever `family` changes.
+    /** The label a certificate answers to outside the readout (sheet alt text,
+     *  filmstrip tooltip, placeholder slug). QS keeps the family label it has
+     *  today; AQAS must never fall through to "Other". */
+    const certLabel = (cert: HeroCertificate) =>
+        issuerOf(cert) === "aqas" ? famLabel("aqas") : famLabel(cert.family)
+
+    /* Filmstrip groups, issuer-first: the video slot, then the QS families in
+     * display_order (run-length, exactly as before), then ONE AQAS group at the
+     * end. Reordering the strip does not touch slide indices — the buttons still
+     * call goTo(i) with the rotation's own index. */
     const groups = useMemo(() => {
-        const out: { key: string; family: HeroCertificateFamily | "video"; items: number[] }[] = []
+        const video: number[] = []
+        const qs: { key: string; family: GroupKey; items: number[] }[] = []
+        const aqas: number[] = []
+
         slides.forEach((slide, i) => {
-            const family: HeroCertificateFamily | "video" =
-                slide.kind === "video" ? "video" : slide.cert.family
-            const last = out[out.length - 1]
+            if (slide.kind === "video") {
+                video.push(i)
+                return
+            }
+            if (issuerOf(slide.cert) === "aqas") {
+                aqas.push(i)
+                return
+            }
+            const family: GroupKey = slide.cert.family ?? "other"
+            const last = qs[qs.length - 1]
             if (last && last.family === family) last.items.push(i)
-            else out.push({ key: `${family}-${i}`, family, items: [i] })
+            else qs.push({ key: `qs-${family}-${i}`, family, items: [i] })
         })
+
+        const out: { key: string; family: GroupKey; items: number[] }[] = []
+        if (video.length) out.push({ key: "video", family: "video", items: video })
+        out.push(...qs)
+        if (aqas.length) out.push({ key: "aqas", family: "aqas", items: aqas })
         return out
     }, [slides])
 
@@ -393,6 +431,14 @@ export default function HeroSection() {
     }))
 
     const rankingsHref = lang === "az" ? "/az/haqqimizda/reytinqler" : "/en/about/rankings"
+    /* The accreditation page. `accreditation` has no entry in the middleware's
+     * SLUG_MAP, so the last segment is deliberately identical in both languages;
+     * only the About segment translates (`about` <-> `haqqimizda`), and the
+     * middleware normalises both onto src/app/haqqimizda/accreditation.
+     * Lang-prefixed like rankingsHref, so an EN visitor is never bounced through
+     * an AZ path by the cookie fallback. */
+    const accreditationHref =
+        lang === "az" ? "/az/haqqimizda/accreditation" : "/en/about/accreditation"
     const hasRail = certificates.length > 0
 
     const issuedDate = formatIssuedDate(activeCert?.issued_date ?? null, lang)
@@ -400,9 +446,24 @@ export default function HeroSection() {
     if (issuedDate) metaParts.push(issuedDate)
     if (activeCert?.signer) metaParts.push(activeCert.signer)
 
+    /* Every issuer test in this file asks "is it 'aqas'?" and never "is it
+     * 'qs'?", so a payload from the pre-migration backend — which has no
+     * `issuer` key at all — takes the identical code path it takes today. */
+    const issuer = issuerOf(activeCert)
+    const isAqas = issuer === "aqas"
+
     const rankLabel = activeCert?.rank_label ?? ""
     const hasEq = rankLabel.startsWith("=")
     const rankRest = hasEq ? rankLabel.slice(1) : rankLabel
+    /* A QS row with an empty rank must not paint an empty focal slot. */
+    const showRank = !isAqas && rankLabel !== ""
+    /* AQAS promotes the programme name into the focal slot, so it must not also
+     * render again below as the small title. */
+    const progName = activeCert?.title || famLabel("aqas")
+
+    const certCta = isAqas
+        ? { href: accreditationHref, label: t.hero.certificates.aqasCta }
+        : { href: rankingsHref, label: t.hero.certificates.cta }
 
     return (
         <section
@@ -458,24 +519,53 @@ export default function HeroSection() {
                 {/* LEFT — hero copy on slot 00, certificate readout otherwise */}
                 <div className="hx-left">
                     {isCert && activeCert ? (
-                        <div key={`readout-${index}`} className="hx-readout hx-in">
-                            <div className="hx-chip hx-chip-qs">
-                                <span className="hx-qsmark">QS</span>
-                                <span>{t.hero.certificates.attested}</span>
+                        /* `hx-iss-*` carries the accent tokens for the whole
+                           readout: amber for QS-attested facts, teal for
+                           AQAS-attested ones, never both. The fork below adds no
+                           wrapper element, so the nth-child entry stagger still
+                           lands on the individual rows (QS 6, AQAS 5). */
+                        <div
+                            key={`readout-${index}`}
+                            className={`hx-readout hx-in hx-iss-${issuer}`}
+                        >
+                            <div className="hx-chip hx-chip-iss">
+                                <span className="hx-issmark">{isAqas ? "AQAS" : "QS"}</span>
+                                <span>
+                                    {isAqas
+                                        ? t.hero.certificates.aqasAttested
+                                        : t.hero.certificates.attested}
+                                </span>
                             </div>
 
                             <div className="hx-kicker">
-                                {activeCert.kicker || famLabel(activeCert.family)}
+                                {activeCert.kicker ||
+                                    (isAqas
+                                        ? t.hero.certificates.aqasKicker
+                                        : famLabel(activeCert.family))}
                             </div>
 
-                            <div className="hx-rank">
-                                {hasEq && <span className="hx-eq">=</span>}
-                                {rankRest}
-                            </div>
+                            {/* THE focal slot. QS puts the rank numeral here;
+                                AQAS has no rank, so the programme name takes it
+                                and nothing is invented to fill the gap. */}
+                            {isAqas ? (
+                                <h2 className="hx-prog">{progName}</h2>
+                            ) : (
+                                showRank && (
+                                    <div className="hx-rank">
+                                        {hasEq && <span className="hx-eq">=</span>}
+                                        {rankRest}
+                                    </div>
+                                )
+                            )}
 
-                            <h2 className="hx-cert-title">
-                                {activeCert.title || famLabel(activeCert.family)}
-                            </h2>
+                            {/* Small title — QS only. On an AQAS slide the title
+                                is already the focal element above; rendering it
+                                here too would duplicate it. */}
+                            {!isAqas && (
+                                <h2 className="hx-cert-title">
+                                    {activeCert.title || famLabel(activeCert.family)}
+                                </h2>
+                            )}
 
                             <div className="hx-meta">
                                 {metaParts.length > 0 ? (
@@ -491,8 +581,11 @@ export default function HeroSection() {
                             </div>
 
                             <div className="hx-acts">
-                                <Link href={rankingsHref} className="hx-btn hx-btn-amber">
-                                    <span>{t.hero.certificates.cta}</span>
+                                {/* Points at whichever page actually backs the
+                                    slide: rankings for QS, accreditation for
+                                    AQAS. Accent comes from hx-iss-*. */}
+                                <Link href={certCta.href} className="hx-btn hx-btn-acc">
+                                    <span>{certCta.label}</span>
                                     <span className="hx-arw" aria-hidden="true">
                                         →
                                     </span>
@@ -709,7 +802,7 @@ export default function HeroSection() {
                                                         front
                                                             ? cert.title ||
                                                               cert.rank_label ||
-                                                              famLabel(cert.family)
+                                                              certLabel(cert)
                                                             : ""
                                                     }
                                                     width={SHEET_W}
@@ -720,7 +813,7 @@ export default function HeroSection() {
                                             ) : (
                                                 <CertificatePlaceholder
                                                     cert={cert}
-                                                    familyLabel={famLabel(cert.family)}
+                                                    familyLabel={certLabel(cert)}
                                                     hint={t.hero.certificates.documentHint}
                                                 />
                                             )}
@@ -810,7 +903,14 @@ export default function HeroSection() {
                                                 : slide.cert.title ||
                                                   (slide.cert.rank_label
                                                       ? `${t.hero.certificates.slide} ${slide.cert.rank_label}`
-                                                      : `${t.hero.certificates.slide} ${famLabel(slide.cert.family)}`)
+                                                      : `${t.hero.certificates.slide} ${certLabel(slide.cert)}`)
+                                        /* The image-less thumb paints an issuer
+                                         * band, so it has to know the issuer or
+                                         * an AQAS slot would show QS amber. */
+                                        const phAqas =
+                                            slide.kind === "cert" &&
+                                            !thumb &&
+                                            issuerOf(slide.cert) === "aqas"
                                         return (
                                             <button
                                                 key={i}
@@ -824,7 +924,7 @@ export default function HeroSection() {
                                                 aria-selected={active}
                                                 aria-label={`${pad(i)} — ${label}`}
                                                 title={label}
-                                                className={`hx-slot${slide.kind === "video" ? " hx-slot-video" : ""}${slide.kind === "cert" && !thumb ? " hx-slot-ph" : ""}`}
+                                                className={`hx-slot${slide.kind === "video" ? " hx-slot-video" : ""}${slide.kind === "cert" && !thumb ? " hx-slot-ph" : ""}${phAqas ? " hx-slot-ph-aqas" : ""}`}
                                             >
                                                 {thumb && (
                                                     <img
@@ -914,15 +1014,20 @@ function CertificatePlaceholder({
     familyLabel: string
     hint: string
 }) {
+    const aqas = issuerOf(cert) === "aqas"
     return (
-        <div className="hx-ph">
+        /* The fallback sheet is part of the slide, so it obeys the same colour
+           discipline: an AQAS certificate shows no amber anywhere. */
+        <div className={`hx-ph${aqas ? " hx-ph-aqas" : ""}`}>
             <div className="hx-ph-band" />
             <div className="hx-ph-body">
                 <span className="hx-ph-slug">{cert.kicker || familyLabel}</span>
-                <span className="hx-ph-num">{cert.rank_label}</span>
+                {/* AQAS has no rank position — the slot is left out entirely
+                    rather than filled with something invented. */}
+                {cert.rank_label && <span className="hx-ph-num">{cert.rank_label}</span>}
                 <span className="hx-ph-drop">{cert.title || hint}</span>
                 <span className="hx-ph-rule" />
-                <span className="hx-ph-sign">{cert.signer || "QS"}</span>
+                <span className="hx-ph-sign">{cert.signer || (aqas ? "AQAS" : "QS")}</span>
             </div>
         </div>
     )
@@ -935,7 +1040,19 @@ function CertificatePlaceholder({
  * Class names are `hx-` prefixed because this <style> is global.
  * ------------------------------------------------------------------ */
 const HERO_CSS = `
-.hx-hero{ isolation:isolate; }
+/* ---------- 0. TOKENS ----------
+   Three voices, strictly separated:
+     --hx-coral  AzTU's own voice — interaction and active state. Never a fact.
+     --hx-qs     QS-attested facts ONLY.
+     --hx-aqas   AQAS-attested facts ONLY.
+   A QS slide must show no teal and an AQAS slide no amber; the readout picks
+   one of the two accent sets below and everything inside it inherits. */
+.hx-hero{
+  isolation:isolate;
+  --hx-coral:#ee7c7e;
+  --hx-qs:#f5821f;
+  --hx-aqas:#3fb9c6;
+}
 .hx-hero p{ text-align:left; text-justify:auto; }
 .hx-hero :focus-visible{ outline:2px solid #ee7c7e; outline-offset:2px; }
 
@@ -989,6 +1106,33 @@ const HERO_CSS = `
 .hx-hero.is-cert .hx-stats{ opacity:0; transform:translateY(-18px) scale(.96); pointer-events:none; }
 
 /* ---------- READOUT ---------- */
+/* Per-issuer accent set. The QS values are the literal originals, so a QS slide
+   renders pixel-for-pixel as it did before the accent was made a variable;
+   .hx-readout also carries them as its default, so a readout that somehow
+   arrives without an hx-iss-* class still looks exactly like today. */
+.hx-readout,
+.hx-readout.hx-iss-qs{
+  --acc:var(--hx-qs);
+  --acc-ink:#ffce9a;
+  --acc-on:#150c02;
+  --acc-chip-bg:rgba(245,130,31,.13);
+  --acc-chip-bd:rgba(245,130,31,.42);
+  --acc-btn-bg:rgba(245,130,31,.14);
+  --acc-btn-bd:rgba(245,130,31,.4);
+  --acc-glow:rgba(245,130,31,.28);
+  --acc-eq:rgba(245,130,31,.5);
+}
+.hx-readout.hx-iss-aqas{
+  --acc:var(--hx-aqas);
+  --acc-ink:#a9e7ee;
+  --acc-on:#04222a;
+  --acc-chip-bg:rgba(63,185,198,.13);
+  --acc-chip-bd:rgba(63,185,198,.42);
+  --acc-btn-bg:rgba(63,185,198,.14);
+  --acc-btn-bd:rgba(63,185,198,.4);
+  --acc-glow:rgba(63,185,198,.26);
+  --acc-eq:rgba(63,185,198,.5);
+}
 .hx-readout{ min-width:0; display:flex; flex-direction:column; align-items:flex-start;
   gap:clamp(14px,1.7vw,20px); }
 .hx-readout h2,.hx-readout p{ margin:0; }
@@ -1006,21 +1150,33 @@ const HERO_CSS = `
   border:1px solid rgba(255,255,255,.16); backdrop-filter:blur(14px); color:#fff;
   font-family:var(--font-geist-mono),ui-monospace,monospace;
   font-size:.6rem; letter-spacing:.22em; text-transform:uppercase; }
-.hx-chip-qs{ background:rgba(245,130,31,.13); border-color:rgba(245,130,31,.42); color:#ffce9a; }
+/* Attribution chip — amber on a QS slide, teal on an AQAS one. */
+.hx-chip-iss{ background:var(--acc-chip-bg); border-color:var(--acc-chip-bd); color:var(--acc-ink); }
 /* Coral: AzTU's own voice. The badge dot is the only coral mark on slot 00. */
 .hx-dot{ width:6px; height:6px; border-radius:50%; flex-shrink:0;
-  background:#ee7c7e; box-shadow:0 0 10px #ee7c7e; }
-.hx-qsmark{ background:#f5821f; color:#150c02; padding:2px 6px; border-radius:4px;
+  background:var(--hx-coral); box-shadow:0 0 10px var(--hx-coral); }
+.hx-issmark{ background:var(--acc); color:var(--acc-on); padding:2px 6px; border-radius:4px;
   font-family:var(--font-geist-sans),Inter,sans-serif; font-weight:900; font-size:.72rem;
   letter-spacing:-.03em; }
 
 .hx-kicker{ font-family:var(--font-geist-mono),ui-monospace,monospace; font-size:.68rem;
   letter-spacing:.3em; text-transform:uppercase; color:#a3abcd; margin-bottom:-6px; }
 
+/* THE focal slot, QS variant: a rank position. Digits, so tabular-nums and
+   tight negative tracking. */
 .hx-rank{ font-size:clamp(3.6rem,8.4vw,7rem); font-weight:900; line-height:.84;
-  letter-spacing:-.055em; font-variant-numeric:tabular-nums; color:#f5821f;
-  text-shadow:0 22px 60px rgba(245,130,31,.28); }
-.hx-eq{ font-size:.52em; vertical-align:.34em; margin-right:.04em; color:rgba(245,130,31,.5); }
+  letter-spacing:-.055em; font-variant-numeric:tabular-nums; color:var(--acc);
+  text-shadow:0 22px 60px var(--acc-glow); }
+.hx-eq{ font-size:.52em; vertical-align:.34em; margin-right:.04em; color:var(--acc-eq); }
+
+/* THE focal slot, AQAS variant: the programme name. Same weight and the same
+   accent-driven glow as .hx-rank so the two read as one slot, but this is prose
+   — no tabular figures, gentler tracking, a line-height that survives wrapping,
+   and a measure that keeps "Electrical and Electronics Engineering (BA)" inside
+   the column instead of overflowing it. */
+.hx-prog{ font-size:clamp(1.7rem,3.4vw,3rem); font-weight:900; line-height:1.03;
+  letter-spacing:-.035em; color:var(--acc); text-shadow:0 22px 60px var(--acc-glow);
+  max-width:15ch; text-wrap:balance; overflow-wrap:anywhere; }
 
 .hx-cert-title{ font-size:clamp(1.05rem,2.1vw,1.72rem); font-weight:800; letter-spacing:-.035em;
   line-height:1.14; max-width:20ch; color:#fff; text-wrap:balance; }
@@ -1051,13 +1207,16 @@ const HERO_CSS = `
 /* AzTU controls — coral. */
 .hx-btn-solid{ background:#fff; color:#1a2355; border-color:#fff;
   box-shadow:0 20px 40px rgba(0,0,0,.4); }
-.hx-btn-solid:hover{ background:#ee7c7e; color:#fff; border-color:#ee7c7e; }
+.hx-btn-solid:hover{ background:var(--hx-coral); color:#fff; border-color:var(--hx-coral); }
 .hx-btn-ghost{ background:rgba(255,255,255,.06); color:#fff;
   border-color:rgba(255,255,255,.2); backdrop-filter:blur(14px); }
 .hx-btn-ghost:hover{ background:rgba(255,255,255,.13); }
-/* The ONE amber control in the hero, and only because it points at QS data. */
-.hx-btn-amber{ background:rgba(245,130,31,.14); color:#ffce9a; border-color:rgba(245,130,31,.4); }
-.hx-btn-amber:hover{ background:#f5821f; color:#150c02; border-color:#f5821f; }
+/* The ONE accent-coloured control in the hero, and only because it points at
+   the attesting body's own page: amber -> QS rankings, teal -> AQAS
+   accreditation. It lives inside .hx-readout, so it can never pick up an accent
+   the rest of the slide is not already using. */
+.hx-btn-acc{ background:var(--acc-btn-bg); color:var(--acc-ink); border-color:var(--acc-btn-bd); }
+.hx-btn-acc:hover{ background:var(--acc); color:var(--acc-on); border-color:var(--acc); }
 .hx-arw{ font-family:var(--font-geist-mono),ui-monospace,monospace; font-size:.9rem; line-height:1; }
 
 /* ---------- CERTIFICATE STACK ---------- */
@@ -1113,6 +1272,10 @@ const HERO_CSS = `
 .hx-ph-rule{ width:44%; height:1px; background:#e6e9f2; margin-top:auto; }
 .hx-ph-sign{ font-family:var(--font-geist-mono),ui-monospace,monospace; font-size:.46rem;
   letter-spacing:.16em; text-transform:uppercase; color:#c9cedd; }
+/* AQAS fallback sheet: the band and the dashed drop are the only two coloured
+   surfaces on it, and both are amber by default — they must be teal here. */
+.hx-ph-aqas .hx-ph-band{ background:linear-gradient(101deg,#6fd2dd,#3fb9c6 62%,#2f97a4); }
+.hx-ph-aqas .hx-ph-drop{ border-color:#b3dde2; background:rgba(63,185,198,.05); color:#3d8d97; }
 
 /* ---------- 5. FILMSTRIP ---------- */
 .hx-rail-wrap{ position:absolute; left:0; right:0; bottom:0; z-index:8;
@@ -1166,6 +1329,7 @@ const HERO_CSS = `
   background:linear-gradient(101deg,#f7a233,#e05f12); opacity:.65; }
 .hx-slot-ph::after{ content:""; position:absolute; left:18%; right:18%; top:44%; height:1px;
   background:#d2d6e4; box-shadow:0 6px 0 #d2d6e4, 0 12px 0 #dfe2ec; }
+.hx-slot-ph-aqas::before{ background:linear-gradient(101deg,#6fd2dd,#2f97a4); }
 .hx-slot-ph[aria-current="true"]::before{ opacity:1; }
 
 .hx-ring{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:2; }
@@ -1190,7 +1354,8 @@ const HERO_CSS = `
   .hx-stage{ height:auto; padding-top:6px; }
   .hx-stack{ width:min(216px,58%); }
   .hx-rank{ font-size:clamp(3rem,13vw,4.6rem); }
-  .hx-cert-title,.hx-hero-h1,.hx-lede{ max-width:100%; }
+  .hx-prog{ font-size:clamp(1.45rem,6vw,2.3rem); }
+  .hx-cert-title,.hx-hero-h1,.hx-lede,.hx-prog{ max-width:100%; }
 }
 @media (min-width:641px) and (max-width:1000px){
   .hx-stats{ display:grid; grid-template-columns:1fr 1fr; }

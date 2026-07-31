@@ -147,6 +147,10 @@ const en = {
     certificates: {
       attested: "Attested ranking",
       cta: "All rankings",
+      // Mirrors az.ts exactly — a missing key here breaks the Locale type.
+      aqasAttested: "Attested accreditation",
+      aqasKicker: "Programme accreditation",
+      aqasCta: "All accreditations",
       railLabel: "Ranking certificates",
       videoSlide: "Intro video",
       slide: "Certificate",
@@ -161,6 +165,7 @@ const en = {
         europe: "Europe",
         subject: "By Subject",
         other: "Other",
+        aqas: "AQAS accreditation",
       },
     },
   },
