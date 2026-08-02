@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useTranslation } from "@/hooks/useTranslation";
+import { useLanguage } from "@/context/LanguageContext";
 
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import HomeIcon from "@mui/icons-material/Home";
 import StarsIcon from "@mui/icons-material/Stars";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ScheduleIcon from "@mui/icons-material/Schedule";
@@ -18,11 +18,13 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 const DURATION_ICONS = [GroupsIcon, WorkOutlineIcon, ScheduleIcon];
 
 export default function ErasmusMobilityPage() {
     const t = useTranslation();
+    const { lang } = useLanguage();
     const p = t.pages.internationalization.erasmusMobility;
 
     return (
@@ -37,14 +39,13 @@ export default function ErasmusMobilityPage() {
                 </div>
 
                 <div className="relative z-10 flex-1 flex flex-col max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-12">
-                    <nav className="flex items-center gap-2 text-white/60 text-xs mb-12 lg:mb-16">
-                        <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-                            <HomeIcon sx={{ fontSize: 14 }} />
-                            Home
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <span className="text-[#ee7c7e] font-bold">{p.breadcrumb}</span>
-                    </nav>
+                    <Breadcrumbs
+                        items={[
+                            { label: t.nav.items.internationalization, href: `/${lang}/${lang === "az" ? "beynelmilellesme" : "internationalization"}` },
+                            { label: t.nav.items.exchangePrograms, href: `/${lang}/${lang === "az" ? "beynelmilellesme" : "internationalization"}/${lang === "az" ? "mubadile-proqramlari" : "exchange-programs"}` },
+                            { label: p.breadcrumb },
+                        ]}
+                    />
 
                     <div className="flex-1 flex flex-col justify-center">
                         <div className="max-w-5xl">

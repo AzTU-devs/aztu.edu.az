@@ -1,15 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
-import HomeIcon from "@mui/icons-material/Home";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-
-interface Crumb {
-    label: string;
-    href?: string;
-}
+import Breadcrumbs, { type Crumb } from "@/components/shared/Breadcrumbs";
 
 interface AboutPageBannerProps {
     eyebrow?: string;
@@ -78,29 +71,7 @@ export default function AboutPageBanner({ eyebrow, title, subtitle, breadcrumbs,
             <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-white/3 pointer-events-none z-10 blur-2xl" />
 
             <div className="relative z-20">
-                {/* Breadcrumb */}
-                <motion.nav 
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="flex items-center gap-2 text-white/40 text-[10px] font-black uppercase tracking-[0.4em] mb-10 flex-wrap"
-                >
-                    <Link href="/" className="hover:text-[#ee7c7e] transition-colors flex items-center gap-2 group">
-                        <HomeIcon sx={{ fontSize: 14 }} className="group-hover:scale-110 transition-transform" />
-                        Home
-                    </Link>
-                    {breadcrumbs.map((crumb, i) => (
-                        <span key={i} className="flex items-center gap-2">
-                            <ChevronRightIcon sx={{ fontSize: 12 }} />
-                            {crumb.href ? (
-                                <Link href={crumb.href} className="hover:text-white transition-colors">
-                                    {crumb.label}
-                                </Link>
-                            ) : (
-                                <span className="text-white/90">{crumb.label}</span>
-                            )}
-                        </span>
-                    ))}
-                </motion.nav>
+                <Breadcrumbs items={breadcrumbs} />
 
                 {eyebrow && (
                     <motion.div

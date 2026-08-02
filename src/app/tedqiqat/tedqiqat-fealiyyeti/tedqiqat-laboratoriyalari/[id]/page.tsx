@@ -5,7 +5,6 @@ import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import HomeIcon from "@mui/icons-material/Home";
 import ScienceIcon from "@mui/icons-material/Science";
 import BusinessIcon from "@mui/icons-material/Business";
 import InfoIcon from "@mui/icons-material/Info";
@@ -25,6 +24,7 @@ import {
 import { getImageUrl } from "@/services/researchInstituteService/researchInstituteService";
 import SanitizedHtml from "@/components/shared/SanitizedHtml";
 import NewsGallery from "@/components/news/NewsGallery";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 export default function LaboratoryDetailPage() {
     const { id } = useParams();
@@ -57,7 +57,6 @@ export default function LaboratoryDetailPage() {
     }, [labId, currentLang]);
 
     const t = {
-        home: currentLang === "az" ? "Ana səhifə" : "Home",
         research: currentLang === "az" ? "Tədqiqat" : "Research",
         activity: currentLang === "az" ? "Tədqiqat fəaliyyəti" : "Research activity",
         labs: currentLang === "az" ? "Tədqiqat laboratoriyaları" : "Research laboratories",
@@ -108,7 +107,6 @@ export default function LaboratoryDetailPage() {
     const uniqueGallery = Array.from(new Set(galleryImages));
 
     const breadcrumbs = [
-        { label: t.home, href: "/" },
         { label: t.research, href: currentLang === "az" ? "/tedqiqat" : "/research" },
         { label: t.activity, href: currentLang === "az" ? "/tedqiqat/tedqiqat-fealiyyeti" : "/research/research-activity" },
         { label: t.labs, href: labsHref },
@@ -140,25 +138,7 @@ export default function LaboratoryDetailPage() {
                 </div>
 
                 <div className="relative z-20 w-full">
-                    <motion.nav
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="flex items-center gap-1.5 text-white/50 text-sm mb-6 flex-wrap font-black uppercase tracking-[0.3em]"
-                    >
-                        {breadcrumbs.map((crumb, i) => (
-                            <div key={i} className="flex items-center gap-1.5">
-                                {crumb.href ? (
-                                    <Link href={crumb.href} className="hover:text-white transition-colors flex items-center gap-1">
-                                        {i === 0 && <HomeIcon sx={{ fontSize: 16 }} />}
-                                        {crumb.label}
-                                    </Link>
-                                ) : (
-                                    <span className="text-[#ee7c7e]">{crumb.label}</span>
-                                )}
-                                {i < breadcrumbs.length - 1 && <ChevronRightIcon sx={{ fontSize: 13 }} />}
-                            </div>
-                        ))}
-                    </motion.nav>
+                    <Breadcrumbs items={breadcrumbs} />
                     <motion.h1
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}

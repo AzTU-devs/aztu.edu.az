@@ -8,11 +8,11 @@ import { getCafedraByCode } from "@/services/cafedraService/cafedraService";
 import type { CafedraDetail } from "@/types/cafedra";
 import CafedraSidebar from "@/components/cafedra/CafedraSidebar";
 import { ScientificActivityProvider } from "@/context/ScientificActivityContext";
-import HomeIcon from "@mui/icons-material/Home";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 interface Props {
     children: React.ReactNode;
@@ -71,28 +71,13 @@ export default function CafedraDetailLayout({ children, params }: Props) {
 
                 <div className="relative z-10 mx-auto w-full max-w-[1600px]">
                     {/* Breadcrumb */}
-                    <motion.nav
-                        initial={{ opacity: 0, y: -8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="mb-6 flex flex-wrap items-center gap-2 text-[13px] font-medium text-white/60"
-                    >
-                        <Link href="/" className="flex items-center gap-1.5 transition-colors hover:text-white">
-                            <HomeIcon sx={{ fontSize: 16 }} />
-                            {t.home}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 14 }} className="text-white/30" />
-                        <Link href={facultiesPath} className="transition-colors hover:text-white">
-                            {currentLang === "az" ? "Fakültələr" : "Faculties"}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 14 }} className="text-white/30" />
-                        <Link href={facultyPath} className="uppercase transition-colors hover:text-white">
-                            {facultyId.replace(/[_-]+/g, " ").slice(0, 24)}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 14 }} className="text-white/30" />
-                        <span className="max-w-[160px] truncate font-semibold text-[#ee7c7e] md:max-w-none">
-                            {loading ? "…" : displayTitle}
-                        </span>
-                    </motion.nav>
+                    <Breadcrumbs
+                        items={[
+                            { label: currentLang === "az" ? "Fakültələr" : "Faculties", href: facultiesPath },
+                            { label: facultyId.replace(/[_-]+/g, " ").slice(0, 24), href: facultyPath },
+                            { label: loading ? "…" : displayTitle },
+                        ]}
+                    />
 
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}

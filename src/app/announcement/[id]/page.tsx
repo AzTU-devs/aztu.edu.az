@@ -14,6 +14,7 @@ import CopyLinkButton from "@/components/shared/CopyLinkButton";
 import { fetchAnnouncementDetail, fetchAnnouncementList, type Lang } from "@/util/fetchers";
 import { absUrl, SITE_URL } from "@/util/seo";
 import { parseAnnouncementSlug, announcementSlug } from "@/util/slugify";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 export const revalidate = 30;
 export const dynamicParams = true;
@@ -29,7 +30,6 @@ function formatDate(iso: string | undefined, lang: Lang) {
 
 const UI = {
     az: {
-        home: "Ana səhifə",
         announcements: "Elanlar",
         backToAnnouncements: "Elanlara qayıt",
         aboutAnnouncement: "Elan haqqında",
@@ -41,7 +41,6 @@ const UI = {
         noContent: "Məzmun mövcud deyil.",
     },
     en: {
-        home: "Home",
         announcements: "Announcements",
         backToAnnouncements: "Back to announcements",
         aboutAnnouncement: "About this announcement",
@@ -104,20 +103,12 @@ export default async function AnnouncementDetailPage({
                     )}
 
                     <div className="relative z-10 px-4 md:px-10 lg:px-20 pt-32 pb-12 max-w-7xl mx-auto">
-                        <nav
-                            aria-label="Breadcrumb"
-                            className="flex items-center gap-1.5 text-white/40 text-xs mb-8 flex-wrap"
-                        >
-                            <Link href="/" className="hover:text-white/80 transition-colors">
-                                {t.home}
-                            </Link>
-                            <ChevronRightIcon sx={{ fontSize: 14 }} />
-                            <Link href="/announcement" className="hover:text-white/80 transition-colors">
-                                {t.announcements}
-                            </Link>
-                            <ChevronRightIcon sx={{ fontSize: 14 }} />
-                            <span className="text-white/60 truncate max-w-xs">{title}</span>
-                        </nav>
+                        <Breadcrumbs
+                            items={[
+                                { label: t.announcements, href: "/announcement" },
+                                { label: title },
+                            ]}
+                        />
 
                         {heroSrc ? (
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">

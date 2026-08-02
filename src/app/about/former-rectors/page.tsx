@@ -1,16 +1,14 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 import { useLanguage } from "@/context/LanguageContext";
 
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import HistoryIcon from '@mui/icons-material/History';
 import VerifiedIcon from "@mui/icons-material/Verified";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 interface FormerRector {
     name: string;
@@ -146,22 +144,13 @@ export default function FormerRectorsPage() {
                 </div>
 
                 <div className="relative z-10 flex-1 flex flex-col max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-12">
-                    <nav className="flex flex-wrap items-center gap-2 text-white/60 text-xs mb-12 lg:mb-16">
-                        <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-                            <HomeIcon sx={{ fontSize: 14 }} />
-                            {lang === "az" ? "Ana səhifə" : "Home"}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={aboutHref} className="hover:text-white transition-colors">
-                            {aboutLabel}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={leadershipHref} className="hover:text-white transition-colors">
-                            {leadershipLabel}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <span className="text-[#ee7c7e] font-bold">{p.breadcrumb}</span>
-                    </nav>
+                    <Breadcrumbs
+                        items={[
+                            { label: aboutLabel, href: aboutHref },
+                            { label: leadershipLabel, href: leadershipHref },
+                            { label: p.breadcrumb },
+                        ]}
+                    />
 
                     <div className="flex-1 flex flex-col justify-center">
                         <motion.div

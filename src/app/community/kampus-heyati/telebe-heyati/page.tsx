@@ -1,10 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
-import HomeIcon from "@mui/icons-material/Home";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import SchoolIcon from "@mui/icons-material/School";
 import GroupsIcon from "@mui/icons-material/Groups";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
@@ -13,6 +10,7 @@ import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import PublicIcon from "@mui/icons-material/Public";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 const DATA = {
   az: {
@@ -164,22 +162,13 @@ export default function StudentLifePage() {
         </div>
 
         <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-20">
-          <nav className="flex items-center gap-2 text-white/60 text-xs mb-12 flex-wrap">
-            <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-              <HomeIcon sx={{ fontSize: 14 }} />
-              {p.home}
-            </Link>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <Link href={communityHref} className="hover:text-white transition-colors">
-              {p.community}
-            </Link>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <Link href={campusLifeHref} className="hover:text-white transition-colors">
-              {p.campusLife}
-            </Link>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <span className="text-[#ee7c7e] font-bold">{p.title}</span>
-          </nav>
+          <Breadcrumbs
+              items={[
+                  { label: p.community, href: communityHref },
+                  { label: p.campusLife, href: campusLifeHref },
+                  { label: p.title },
+              ]}
+          />
 
           <div className="max-w-4xl">
             <motion.div

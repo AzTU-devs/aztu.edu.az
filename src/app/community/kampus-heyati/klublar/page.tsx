@@ -1,15 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
-import HomeIcon from "@mui/icons-material/Home";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import SearchIcon from "@mui/icons-material/Search";
 import PhoneIcon from "@mui/icons-material/Phone";
 import PersonIcon from "@mui/icons-material/Person";
 import GroupsIcon from "@mui/icons-material/Groups";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 const CLUBS_DATA = [
   {
@@ -245,18 +243,13 @@ export default function KlublarPage() {
         </div>
 
         <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-20">
-          <nav className="flex items-center gap-2 text-white/60 text-xs mb-12 flex-wrap">
-            <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-              <HomeIcon sx={{ fontSize: 14 }} />
-              {t.home}
-            </Link>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <Link href={communityHref} className="hover:text-white transition-colors">{t.community}</Link>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <Link href={campusLifeHref} className="hover:text-white transition-colors">{t.campusLife}</Link>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <span className="text-[#ee7c7e] font-bold">{t.title}</span>
-          </nav>
+          <Breadcrumbs
+              items={[
+                  { label: t.community, href: communityHref },
+                  { label: t.campusLife, href: campusLifeHref },
+                  { label: t.title },
+              ]}
+          />
 
           <div className="max-w-4xl">
             <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>

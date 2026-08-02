@@ -1,11 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
-import HomeIcon from "@mui/icons-material/Home";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import GavelIcon from "@mui/icons-material/Gavel";
 import PublicIcon from "@mui/icons-material/Public";
@@ -13,6 +10,7 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import ArticleIcon from "@mui/icons-material/Article";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 const AQAS_PROGRAMS = {
   az: [
@@ -231,17 +229,12 @@ export default function AccreditationPage() {
         </div>
 
         <div className="relative z-10 flex-1 flex flex-col max-w-[1400px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-16">
-          <nav className="flex items-center gap-2 text-white/60 text-xs mb-12">
-            <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-              <HomeIcon sx={{ fontSize: 14 }} />
-            </Link>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <Link href={aboutHref} className="hover:text-white transition-colors">
-              {c.eyebrow}
-            </Link>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <span className="text-[#ee7c7e] font-bold">{c.breadcrumb}</span>
-          </nav>
+          <Breadcrumbs
+              items={[
+                  { label: c.eyebrow, href: aboutHref },
+                  { label: c.breadcrumb },
+              ]}
+          />
 
           <div className="flex-1 flex flex-col justify-center">
             <motion.div

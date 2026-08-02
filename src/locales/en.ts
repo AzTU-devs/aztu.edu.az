@@ -56,6 +56,11 @@ const en = {
     moreInSection: "More in this section",
     comingSoon: "Coming Soon",
     backToHome: "Back to Home",
+    menu: {
+      section: "Section",
+      tagline: "Defining the next generation of technical education.",
+      empty: "No sub-links have been added to this section yet.",
+    },
   },
 
   nav: {
@@ -113,6 +118,9 @@ const en = {
       higherEducationInstitute: "Graduate School (Higher Education Institute)",
       internationalStudents: "International Students Unit",
       exchangePrograms: "Exchange Programs",
+      internationalization: "Internationalization",
+      internationalPartnership: "International Partnership",
+      foreignStudents: "Foreign Students",
       orhunExchange: "Orhun Exchange Program",
       lmsGuidelines: "LMS Guidelines",
       researchActivities: "Research Activities",

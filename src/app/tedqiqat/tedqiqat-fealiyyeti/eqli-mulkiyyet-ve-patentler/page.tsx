@@ -2,8 +2,6 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import HomeIcon from "@mui/icons-material/Home";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CloseIcon from "@mui/icons-material/Close";
 import LaunchIcon from "@mui/icons-material/Launch";
@@ -11,6 +9,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 interface Patent {
     no: string;
@@ -85,20 +84,12 @@ export default function IntellectualPropertyPage() {
 
                 <div className="relative z-20 w-full px-[40px] md:px-[80px] xl:px-[120px]">
                     <div className="max-w-5xl">
-                        <motion.nav 
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            className="flex items-center gap-4 text-white/40 text-[10px] font-black uppercase tracking-[0.4em] mb-12"
-                        >
-                            <Link href="/" className="hover:text-[#ee7c7e] transition-colors flex items-center gap-2 group">
-                                <HomeIcon sx={{ fontSize: 14 }} className="group-hover:scale-110 transition-transform" />
-                                {t.common.home}
-                            </Link>
-                            <ChevronRightIcon sx={{ fontSize: 12 }} />
-                            <span className="cursor-default">{t.nav.sections.research}</span>
-                            <ChevronRightIcon sx={{ fontSize: 12 }} />
-                            <span className="text-white/90">{p.breadcrumb}</span>
-                        </motion.nav>
+                        <Breadcrumbs
+                            items={[
+                                { label: t.nav.sections.research },
+                                { label: p.breadcrumb },
+                            ]}
+                        />
 
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}

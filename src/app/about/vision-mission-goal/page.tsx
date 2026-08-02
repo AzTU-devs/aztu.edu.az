@@ -10,13 +10,13 @@ import { getAboutPage } from "@/services/aboutService/aboutService";
 import type { AboutPage } from "@/types/about";
 
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import HomeIcon from "@mui/icons-material/Home";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import TrackChangesIcon from "@mui/icons-material/TrackChanges";
 import FlagIcon from "@mui/icons-material/Flag";
 import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
 import SanitizedHtml from "@/components/shared/SanitizedHtml";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 const PAGE_KEY = "vision-mission-goal";
 
@@ -89,21 +89,12 @@ export default function VisionMissionGoalPage() {
                 </div>
 
                 <div className="relative z-10 mx-auto w-full max-w-[1400px] px-4 pb-16 md:px-10 lg:px-16">
-                    <nav className="mb-10 flex items-center gap-1.5 text-[11px] text-white/55">
-                        <Link href="/" className="flex items-center gap-1 transition-colors hover:text-white">
-                            <HomeIcon sx={{ fontSize: 13 }} />
-                            {t.common.home}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 11 }} />
-                        <Link
-                            href={lang === "az" ? "/haqqimizda" : "/about"}
-                            className="transition-colors hover:text-white"
-                        >
-                            {t.nav.sections.about}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 11 }} />
-                        <span className="font-semibold text-[#ee7c7e]">{p.breadcrumb}</span>
-                    </nav>
+                    <Breadcrumbs
+                        items={[
+                            { label: t.nav.sections.about, href: lang === "az" ? "/haqqimizda" : "/about" },
+                            { label: p.breadcrumb },
+                        ]}
+                    />
 
                     <motion.div
                         initial={{ opacity: 0, y: 16 }}

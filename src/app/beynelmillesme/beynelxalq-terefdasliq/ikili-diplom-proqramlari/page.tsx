@@ -6,10 +6,10 @@ import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
 
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import HomeIcon from "@mui/icons-material/Home";
 import PublicIcon from '@mui/icons-material/Public';
 import SchoolIcon from '@mui/icons-material/School';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 export default function DoubleDegreeProgramsPage() {
     const t = useTranslation();
@@ -30,14 +30,13 @@ export default function DoubleDegreeProgramsPage() {
 
                 <div className="relative z-10 flex-1 flex flex-col max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-12">
                     {/* Breadcrumbs */}
-                    <nav className="flex items-center gap-2 text-white/60 text-xs mb-12 lg:mb-16">
-                        <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-                            <HomeIcon sx={{ fontSize: 14 }} />
-                            Home
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <span className="text-[#ee7c7e] font-bold">{p.breadcrumb}</span>
-                    </nav>
+                    <Breadcrumbs
+                        items={[
+                            { label: t.nav.items.internationalization, href: `/${lang}/${lang === "az" ? "beynelmilellesme" : "internationalization"}` },
+                            { label: t.nav.items.internationalPartnership, href: `/${lang}/${lang === "az" ? "beynelmilellesme" : "internationalization"}/${lang === "az" ? "beynelxalq-terefdasliq" : "international-partnership"}` },
+                            { label: p.breadcrumb },
+                        ]}
+                    />
 
                     <div className="flex-1 flex flex-col justify-center">
                         <div className="max-w-5xl">

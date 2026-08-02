@@ -1,11 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
-import HomeIcon from "@mui/icons-material/Home";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import PeopleIcon from "@mui/icons-material/People";
 import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
@@ -17,6 +14,7 @@ import BusinessIcon from "@mui/icons-material/Business";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import HandshakeIcon from "@mui/icons-material/Handshake";
 import BadgeIcon from "@mui/icons-material/Badge";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 const IMAGES = [
   "https://www.aztu.edu.az/web_admin/upload/files/aztu.edu.az/menus/4-2025/IMG_2797.jpg",
@@ -209,20 +207,13 @@ export default function AztuPoliklinikasi() {
         </div>
 
         <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-20">
-          <nav className="flex items-center gap-2 text-white/60 text-xs mb-12 flex-wrap">
-            <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-              <HomeIcon sx={{ fontSize: 14 }} />
-              {p.homeLabel}
-            </Link>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <Link href={communityHref} className="hover:text-white transition-colors">
-              {p.communityLabel}
-            </Link>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <span className="text-white/40">{p.breadcrumbSection}</span>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <span className="text-[#ee7c7e] font-bold">{p.title}</span>
-          </nav>
+          <Breadcrumbs
+              items={[
+                  { label: p.communityLabel, href: communityHref },
+                  { label: p.breadcrumbSection },
+                  { label: p.title },
+              ]}
+          />
 
           <div className="max-w-4xl">
             <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>

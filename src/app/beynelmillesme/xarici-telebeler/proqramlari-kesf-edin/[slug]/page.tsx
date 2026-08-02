@@ -4,9 +4,8 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { useTranslation } from "@/hooks/useTranslation";
+import { useLanguage } from "@/context/LanguageContext";
 
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import HomeIcon from "@mui/icons-material/Home";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import TranslateIcon from "@mui/icons-material/Translate";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
@@ -14,6 +13,7 @@ import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 
 import { getStudyPlan, getStudyPlansForSlug } from "@/data/studyPlans";
 import type { StudyPlanSemester } from "@/types/studyPlan";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 const BASE = "/beynelmillesme/xarici-telebeler/proqramlari-kesf-edin";
 
@@ -22,6 +22,8 @@ export default function StudyPlanPage() {
     const id = typeof params.slug === "string" ? params.slug : Array.isArray(params.slug) ? params.slug[0] : "";
 
     const t = useTranslation();
+
+    const { lang } = useLanguage();
     const p = t.pages.internationalization.exploreProgram;
     const sp = p.studyPlanPage;
 
@@ -132,17 +134,14 @@ export default function StudyPlanPage() {
 
                 <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-16">
                     {/* Breadcrumb */}
-                    <nav className="flex items-center flex-wrap gap-2 text-white/60 text-xs mb-10 lg:mb-14">
-                        <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-                            <HomeIcon sx={{ fontSize: 14 }} />
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={BASE} className="hover:text-white transition-colors">
-                            {p.breadcrumb}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <span className="text-[#ee7c7e] font-bold">{plan.program}</span>
-                    </nav>
+                    <Breadcrumbs
+                        items={[
+                            { label: t.nav.items.internationalization, href: `/${lang}/${lang === "az" ? "beynelmilellesme" : "internationalization"}` },
+                            { label: t.nav.items.foreignStudents, href: `/${lang}/${lang === "az" ? "beynelmilellesme" : "internationalization"}/${lang === "az" ? "xarici-telebeler" : "foreign-students"}` },
+                            { label: p.breadcrumb, href: BASE },
+                            { label: plan.program },
+                        ]}
+                    />
 
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}

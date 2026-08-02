@@ -3,7 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import type { MenuHeader } from "@/services/menu/menuService";
+import { useTranslation } from "@/hooks/useTranslation";
 import AzTUBg from "@/../public/aztu.png";
 
 type Props = {
@@ -12,161 +14,138 @@ type Props = {
 };
 
 export default function Dropdown({ header, onClose }: Props) {
+  const t = useTranslation();
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: -20 }}
+      initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-      className="absolute inset-x-0 top-full w-full bg-white dark:bg-[#0b1330] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] dark:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] border-t border-[#1a2355]/20 dark:border-[#ee7c7e]/15 z-40 overflow-y-auto max-h-[calc(100vh-100px)]"
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.28, ease: [0.23, 1, 0.32, 1] }}
+      className="absolute inset-x-0 top-full z-40 w-full overflow-hidden border-t border-[#1a2355]/15 bg-white shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] dark:border-[#ee7c7e]/15 dark:bg-[#0b1330] dark:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)]"
     >
       {/* BACKGROUND DECORATIONS */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {/* Dotted Grid Pattern */}
-          <div className="absolute inset-0 opacity-[0.12] dark:opacity-[0.04]"
-               style={{ backgroundImage: 'radial-gradient(#ee7c7e 0.5px, transparent 0.5px)', backgroundSize: '32px 32px' }} />
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-[0.10] dark:opacity-[0.04]"
+          style={{
+            backgroundImage: "radial-gradient(#ee7c7e 0.5px, transparent 0.5px)",
+            backgroundSize: "32px 32px",
+          }}
+        />
+        <div className="absolute right-[-10%] top-[-10%] h-[60%] w-[60%] rounded-full bg-[#ee7c7e]/[0.04] blur-[120px] dark:bg-[#ee7c7e]/[0.08]" />
+        <div className="absolute bottom-[-10%] left-[15%] h-[45%] w-[40%] rounded-full bg-[#1a2355]/[0.03] blur-[110px] dark:bg-blue-500/[0.04]" />
 
-          {/* Technical Blueprint Lines */}
-          <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] dark:opacity-[0.05]">
-              <svg width="100%" height="100%" fill="none">
-                  <defs>
-                      <pattern id="grid" width="160" height="160" patternUnits="userSpaceOnUse">
-                          <path d="M 160 0 L 0 0 0 160" stroke="currentColor" strokeWidth="1"/>
-                      </pattern>
-                  </defs>
-                  <rect width="100%" height="100%" fill="url(#grid)" />
-              </svg>
-          </div>
-
-          {/* Floating Geometric Accents */}
-          <div className="absolute top-20 right-[15%] w-32 h-32 border border-[#ee7c7e]/25 rounded-3xl rotate-12 animate-pulse" />
-          <div className="absolute bottom-40 left-[10%] w-48 h-48 border border-[#1a2355]/20 dark:border-[#ee7c7e]/15 rounded-full" />
-
-          {/* Subtle Mesh Gradients / Glow Orbs */}
-          <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#ee7c7e]/[0.04] dark:bg-[#ee7c7e]/[0.08] blur-[120px] rounded-full animate-pulse" />
-          <div className="absolute top-[20%] left-[-5%] w-[30%] h-[40%] bg-[#1a2355]/[0.03] dark:bg-blue-500/[0.04] blur-[100px] rounded-full" />
-          <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[40%] bg-[#1a2355]/[0.03] dark:bg-white/[0.02] blur-[100px] rounded-full" />
-          <div className="absolute bottom-[10%] right-[10%] w-[25%] h-[25%] bg-[#ee7c7e]/[0.02] blur-[80px] rounded-full" />
-          
-          {/* Brand Watermark */}
-          <div className="absolute right-10 bottom-10 select-none opacity-[0.03] dark:opacity-[0.06]">
-              <h1 className="text-[200px] font-black tracking-tighter leading-none text-[#1a2355] dark:text-white">AzTU</h1>
-          </div>
+        {/* Brand watermark — keeps sparse sections from reading as an empty panel */}
+        <div className="absolute bottom-4 right-10 select-none opacity-[0.035] dark:opacity-[0.028]">
+          <span className="text-[190px] font-black leading-none tracking-tighter text-[#1a2355] dark:text-white">
+            AzTU
+          </span>
+        </div>
       </div>
 
-      <div className="relative z-10 flex items-stretch px-[40px] md:px-[60px] xl:px-[80px] py-12 max-w-[1800px] mx-auto gap-10 min-h-[600px]">
-        
-        {/* LEFT VISUAL: The Immersive Banner */}
-        <div className="hidden lg:block w-[340px] xl:w-[440px] flex-shrink-0 relative rounded-[2rem] overflow-hidden shadow-2xl group/banner ring-1 ring-black/5 dark:ring-white/10">
-            <Image
-                src={AzTUBg}
-                alt="AzTU"
-                fill
-                className="object-cover transition-transform duration-1000 group-hover/banner:scale-110"
-                priority
-            />
-            {/* Multi-layered dark/brand overlays */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1a2355] via-[#1a2355]/40 to-transparent dark:from-[#0b1330] dark:via-transparent" />
-            <div className="absolute inset-0 bg-black/10 dark:bg-transparent" />
-            
-            <div className="absolute bottom-0 left-0 right-0 p-10">
-                <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.2, duration: 0.6 }}
-                >
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 mb-6 shadow-xl">
-                        <div className="w-2 h-2 rounded-full bg-[#ee7c7e] shadow-[0_0_10px_#ee7c7e]" />
-                        <span className="text-white text-[10px] font-black uppercase tracking-[0.4em]">
-                            Global Leader
-                        </span>
-                    </div>
-                    <h3 className="text-white text-5xl font-black leading-tight tracking-tighter mb-4 drop-shadow-2xl">
-                        {header.title}
-                    </h3>
-                    <p className="text-white/60 text-base font-bold leading-relaxed max-w-[300px] uppercase tracking-widest border-l-2 border-[#ee7c7e] pl-4">
-                        Defining the next generation of technical education.
-                    </p>
-                </motion.div>
-            </div>
-        </div>
+      {/*
+        The panel height is locked so every menu opens at exactly the same size —
+        only the column list inside scrolls when a section has more links.
+      */}
+      <div className="relative z-10 flex h-[clamp(380px,calc(100vh-170px),560px)] w-full gap-10 px-[80px] py-8 xl:px-[120px]">
+        {/* LEFT: fixed feature banner — identical for every section */}
+        <aside className="group/banner relative hidden w-[300px] shrink-0 overflow-hidden rounded-[1.75rem] shadow-xl ring-1 ring-black/5 lg:block xl:w-[360px] dark:ring-white/10">
+          <Image
+            src={AzTUBg}
+            alt="AzTU"
+            fill
+            sizes="360px"
+            className="object-cover transition-transform duration-[1200ms] group-hover/banner:scale-105"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1a2355] via-[#1a2355]/45 to-transparent dark:from-[#0b1330] dark:via-[#0b1330]/40" />
 
-        {/* RIGHT CONTENT: High-Density Card Grid */}
-        <div className="flex-1 py-2 relative">
-            {/* Background Content Panel */}
-            <div className="absolute inset-0 bg-gray-50/40 dark:bg-white/[0.01] rounded-[2rem] -m-6 pointer-events-none" />
-            
-            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
-                {header.items.map((item, idx) => (
-                    <motion.div
-                        key={item.id}
-                        initial={{ opacity: 0, scale: 0.98 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: idx * 0.05 + 0.2, duration: 0.5 }}
-                        className="group/item flex flex-col bg-white dark:bg-white/5 hover:bg-white dark:hover:bg-white/[0.08] p-8 rounded-[1.75rem] border border-[#1a2355]/20 dark:border-[#ee7c7e]/15 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/20 transition-all duration-500"
+          <div className="absolute inset-x-0 bottom-0 p-8">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-3 py-1.5 backdrop-blur-xl">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#ee7c7e] shadow-[0_0_10px_#ee7c7e]" />
+              <span className="text-[9px] font-black uppercase tracking-[0.35em] text-white">
+                {t.common.menu.section}
+              </span>
+            </div>
+
+            <h3 className="mb-4 text-3xl font-black leading-[1.1] tracking-tight text-white xl:text-4xl">
+              {header.title}
+            </h3>
+
+            {/* inline text-align beats the unlayered global `p { text-align: justify }` */}
+            <p
+              style={{ textAlign: "left" }}
+              className="border-l-2 border-[#ee7c7e] pl-4 text-[12px] font-semibold leading-relaxed text-white/65"
+            >
+              {t.common.menu.tagline}
+            </p>
+          </div>
+        </aside>
+
+        {/* RIGHT: the only part that changes between sections */}
+        <div className="dropdown-scroll min-w-0 flex-1 overflow-y-auto pr-1">
+          <motion.div
+            key={header.id}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="grid auto-rows-min grid-cols-1 gap-x-10 gap-y-8 md:grid-cols-2 xl:grid-cols-3"
+          >
+            {header.items.map((item) => (
+              <div key={item.id} className="flex min-w-0 flex-col">
+                {/* Column heading */}
+                <div className="mb-3 flex items-center gap-2.5 border-b border-[#1a2355]/12 pb-2.5 dark:border-white/10">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#ee7c7e]" />
+                  {item.direct_url ? (
+                    <Link
+                      href={item.direct_url}
+                      onClick={onClose}
+                      className="min-w-0 truncate text-[12px] font-black uppercase tracking-[0.2em] text-[#1a2355] transition-colors hover:text-[#ee7c7e] dark:text-blue-300 dark:hover:text-[#ee7c7e]"
                     >
-                        {/* Category Header */}
-                        <div className="relative mb-6">
-                            {item.direct_url ? (
-                                <Link
-                                    href={item.direct_url}
-                                    onClick={onClose}
-                                    className="inline-flex items-center group/title"
-                                >
-                                    <span className="text-[13px] font-black uppercase tracking-[0.25em] text-[#1a2355] dark:text-blue-300 group-hover/title:text-[#ee7c7e] transition-colors duration-300">
-                                        {item.title}
-                                    </span>
-                                </Link>
-                            ) : (
-                                <span className="text-[13px] font-black uppercase tracking-[0.25em] text-[#1a2355]/30 dark:text-white/20">
-                                    {item.title}
-                                </span>
-                            )}
-                            {/* Stylish Dot Indicator */}
-                            <div className="h-1.5 w-1.5 bg-[#ee7c7e] rounded-full mt-2 group-hover/item:scale-150 group-hover/item:shadow-[0_0_8px_#ee7c7e] transition-all duration-300" />
-                        </div>
+                      {item.title}
+                    </Link>
+                  ) : (
+                    <span className="min-w-0 truncate text-[12px] font-black uppercase tracking-[0.2em] text-[#1a2355]/75 dark:text-white/55">
+                      {item.title}
+                    </span>
+                  )}
+                </div>
 
-                        {/* Level 3 Link List */}
-                        {item.sub_items && item.sub_items.length > 0 && (
-                            <ul className="flex flex-col gap-1">
-                                {item.sub_items.map((sub) => (
-                                    <li key={sub.id}>
-                                        <Link
-                                            href={sub.direct_url}
-                                            onClick={onClose}
-                                            className="group/link flex items-center py-2 text-[14.5px] font-bold text-gray-500 dark:text-white/50 hover:text-[#1a2355] dark:hover:text-white transition-all duration-300"
-                                        >
-                                            <span className="group-hover:translate-x-1.5 transition-transform duration-300">
-                                                {sub.title}
-                                            </span>
-                                            <ChevronRightIcon 
-                                                sx={{ fontSize: 14 }} 
-                                                className="ml-2 text-[#ee7c7e] opacity-0 group-hover/link:opacity-100 transition-all duration-300"
-                                            />
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </motion.div>
-                ))}
-            </div>
+                {/* Column links */}
+                {item.sub_items && item.sub_items.length > 0 ? (
+                  <ul className="flex flex-col">
+                    {item.sub_items.map((sub) => (
+                      <li key={sub.id}>
+                        <Link
+                          href={sub.direct_url}
+                          onClick={onClose}
+                          className="group/link -mx-2.5 flex items-center justify-between gap-3 rounded-xl px-2.5 py-[7px] text-[13.5px] font-semibold leading-snug text-gray-600 transition-colors duration-200 hover:bg-[#1a2355]/[0.04] hover:text-[#1a2355] dark:text-white/55 dark:hover:bg-white/[0.06] dark:hover:text-white"
+                        >
+                          <span className="min-w-0">{sub.title}</span>
+                          <ChevronRightIcon
+                            sx={{ fontSize: 15 }}
+                            className="shrink-0 text-[#ee7c7e] opacity-0 transition-all duration-200 group-hover/link:translate-x-0.5 group-hover/link:opacity-100"
+                          />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  !item.direct_url && (
+                    <p
+                      style={{ textAlign: "left" }}
+                      className="text-[12.5px] font-medium leading-relaxed text-gray-400 dark:text-white/30"
+                    >
+                      {t.common.menu.empty}
+                    </p>
+                  )
+                )}
+              </div>
+            ))}
+          </motion.div>
         </div>
       </div>
-
     </motion.div>
   );
-}
-
-function ChevronRightIcon({ className, sx }: { className?: string; sx?: any }) {
-    return (
-        <svg 
-            className={className}
-            style={sx}
-            width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-        >
-            <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-    );
 }

@@ -7,12 +7,12 @@ import Link from "next/link";
 import { motion, useScroll } from "framer-motion";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import SanitizedHtml from "@/components/shared/SanitizedHtml";
 import { getProjectById, type ProjectDetail } from "@/services/projectService/projectService";
 import { API_BASE_URL } from "@/util/apiClient";
 import { useRef } from "react";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 const MONTHS_AZ = [
     "Yanvar", "Fevral", "Mart", "Aprel", "May", "İyun",
@@ -55,18 +55,12 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                     <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#ee7c7e]/10 blur-3xl pointer-events-none" />
 
                     <div className="relative z-10 px-4 md:px-10 lg:px-20 pt-36 pb-16">
-                        <motion.nav
-                            initial={{ opacity: 0, x: -16 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.45 }}
-                            className="flex items-center gap-1.5 text-white/40 text-xs mb-8 flex-wrap"
-                        >
-                            <Link href="/" className="hover:text-white/80 transition-colors">Ana səhifə</Link>
-                            <ChevronRightIcon sx={{ fontSize: 14 }} />
-                            <Link href="/projects" className="hover:text-white/80 transition-colors">Layihələr</Link>
-                            <ChevronRightIcon sx={{ fontSize: 14 }} />
-                            <span className="text-white/60 truncate max-w-xs">{project?.title ?? "..."}</span>
-                        </motion.nav>
+                        <Breadcrumbs
+                            items={[
+                                { label: "Layihələr", href: "/projects" },
+                                { label: project?.title ?? "..." },
+                            ]}
+                        />
 
                         <motion.h1
                             initial={{ opacity: 0, y: 24 }}

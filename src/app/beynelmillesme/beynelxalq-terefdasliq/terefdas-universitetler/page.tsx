@@ -8,11 +8,11 @@ import { useLanguage } from "@/context/LanguageContext";
 import { PARTNER_UNIVERSITIES } from "@/data/partnerUniversities";
 
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import HomeIcon from "@mui/icons-material/Home";
 import SchoolIcon from '@mui/icons-material/School';
 import LanguageIcon from '@mui/icons-material/Language';
 import SearchIcon from '@mui/icons-material/Search';
 import LaunchIcon from '@mui/icons-material/Launch';
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 export default function PartnerUniversitiesPage() {
     const t = useTranslation();
@@ -41,14 +41,13 @@ export default function PartnerUniversitiesPage() {
 
                 <div className="relative z-10 flex-1 flex flex-col max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-12">
                     {/* Breadcrumbs */}
-                    <nav className="flex items-center gap-2 text-white/60 text-xs mb-12 lg:mb-16">
-                        <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-                            <HomeIcon sx={{ fontSize: 14 }} />
-                            Home
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <span className="text-[#ee7c7e] font-bold">{p.breadcrumb}</span>
-                    </nav>
+                    <Breadcrumbs
+                        items={[
+                            { label: t.nav.items.internationalization, href: `/${lang}/${lang === "az" ? "beynelmilellesme" : "internationalization"}` },
+                            { label: t.nav.items.internationalPartnership, href: `/${lang}/${lang === "az" ? "beynelmilellesme" : "internationalization"}/${lang === "az" ? "beynelxalq-terefdasliq" : "international-partnership"}` },
+                            { label: p.breadcrumb },
+                        ]}
+                    />
 
                     <div className="flex-1 flex flex-col justify-center">
                         <div className="max-w-5xl">

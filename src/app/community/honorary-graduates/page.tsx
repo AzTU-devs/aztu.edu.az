@@ -1,16 +1,14 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
 
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import SchoolIcon from "@mui/icons-material/School";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 export default function HonoraryGraduatesPage() {
     const t = useTranslation();
@@ -35,22 +33,13 @@ export default function HonoraryGraduatesPage() {
 
                 <div className="relative z-10 flex-1 flex flex-col max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-12">
                     {/* Breadcrumbs */}
-                    <nav className="flex flex-wrap items-center gap-2 text-white/60 text-xs mb-12 lg:mb-16">
-                        <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-                            <HomeIcon sx={{ fontSize: 14 }} />
-                            Home
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={communityHref} className="hover:text-white transition-colors">
-                            {communityLabel}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={honorsHref} className="hover:text-white transition-colors">
-                            {honorsLabel}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <span className="text-[#ee7c7e] font-bold">{p.breadcrumb}</span>
-                    </nav>
+                    <Breadcrumbs
+                        items={[
+                            { label: communityLabel, href: communityHref },
+                            { label: honorsLabel, href: honorsHref },
+                            { label: p.breadcrumb },
+                        ]}
+                    />
 
                     <div className="flex-1 flex flex-col justify-center">
                         <motion.div

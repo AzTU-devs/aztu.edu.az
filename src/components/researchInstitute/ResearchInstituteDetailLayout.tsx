@@ -4,7 +4,6 @@ import { use, useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import ResearchInstituteSidebar from "@/components/researchInstitute/ResearchInstituteSidebar";
-import HomeIcon from "@mui/icons-material/Home";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -12,6 +11,7 @@ import { getResearchInstituteBySlug, getImageUrl } from "@/services/researchInst
 import type { ResearchInstituteDetail } from "@/types/researchInstitute";
 import { useLanguage } from "@/context/LanguageContext";
 import { usePathname } from "next/navigation";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 interface Props {
     children: React.ReactNode;
@@ -99,24 +99,12 @@ export default function ResearchInstituteDetailLayout({ children, params }: Prop
                 )}
                 
                 <div className="relative z-20">
-                    <motion.nav 
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        className="flex items-center gap-2 text-white/40 text-[10px] font-black uppercase tracking-[0.4em] mb-10 flex-wrap"
-                    >
-                        <Link href="/" className="hover:text-[#ee7c7e] transition-colors flex items-center gap-1 group">
-                            <HomeIcon sx={{ fontSize: 14 }} className="group-hover:scale-110 transition-transform" />
-                            {t.home}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={institutesListPath} className="hover:text-white transition-colors">
-                            {t.institutes}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <span className="text-[#ee7c7e] font-black truncate max-w-[250px]">
-                            {loading ? "..." : (institute?.name ?? "")}
-                        </span>
-                    </motion.nav>
+                    <Breadcrumbs
+                        items={[
+                            { label: t.institutes, href: institutesListPath },
+                            { label: loading ? "..." : (institute?.name ?? "") },
+                        ]}
+                    />
 
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}

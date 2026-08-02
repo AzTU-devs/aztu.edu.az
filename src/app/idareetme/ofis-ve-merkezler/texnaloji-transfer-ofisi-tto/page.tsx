@@ -1,12 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import PersonCard from "@/components/shared/PersonCard";
 import { useLanguage } from "@/context/LanguageContext";
 
-import HomeIcon from "@mui/icons-material/Home";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import BusinessIcon from "@mui/icons-material/Business";
@@ -14,6 +11,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import ScienceIcon from "@mui/icons-material/Science";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 interface FunctionItem {
   title: string;
@@ -301,28 +299,13 @@ export default function TTOPage() {
         </div>
 
         <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-20">
-          <nav className="flex items-center gap-2 text-white/60 text-xs mb-12 flex-wrap">
-            <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-              <HomeIcon sx={{ fontSize: 14 }} />
-              {lang === "az" ? "Ana səhifə" : "Home"}
-            </Link>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <Link
-              href={lang === "az" ? "/idareetme" : "/management"}
-              className="hover:text-white transition-colors"
-            >
-              {p.eyebrow}
-            </Link>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <Link
-              href="/idareetme/ofis-ve-merkezler"
-              className="hover:text-white transition-colors"
-            >
-              {p.breadcrumbSection}
-            </Link>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <span className="text-[#ee7c7e] font-bold">{p.title}</span>
-          </nav>
+          <Breadcrumbs
+              items={[
+                  { label: p.eyebrow, href: lang === "az" ? "/idareetme" : "/management" },
+                  { label: p.breadcrumbSection, href: "/idareetme/ofis-ve-merkezler" },
+                  { label: p.title },
+              ]}
+          />
 
           <div className="max-w-4xl">
             <motion.div

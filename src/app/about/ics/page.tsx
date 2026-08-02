@@ -6,7 +6,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import LaunchIcon from "@mui/icons-material/Launch";
-import HomeIcon from "@mui/icons-material/Home";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturing";
@@ -16,6 +15,7 @@ import TrafficIcon from "@mui/icons-material/Traffic";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
 import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 const RESEARCH_AREAS = [
     { icon: <SettingsSuggestIcon sx={{ fontSize: 28 }} />, title: "Automatic Control Theory", desc: "Stability analysis, optimal and adaptive control, and robust systems design." },
@@ -43,22 +43,13 @@ export default function ICSPage() {
                 </div>
 
                 <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-20">
-                    <nav className="flex items-center gap-2 text-white/60 text-xs mb-12">
-                        <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-                            <HomeIcon sx={{ fontSize: 14 }} />
-                            Home
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={lang === "az" ? "/haqqimizda" : "/about"} className="hover:text-white transition-colors">
-                            {t.nav.sections.about}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={partnerHref} className="hover:text-white transition-colors">
-                            {partnerLabel}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <span className="text-[#ee7c7e] font-bold">{p.breadcrumb}</span>
-                    </nav>
+                    <Breadcrumbs
+                        items={[
+                            { label: t.nav.sections.about, href: lang === "az" ? "/haqqimizda" : "/about" },
+                            { label: partnerLabel, href: partnerHref },
+                            { label: p.breadcrumb },
+                        ]}
+                    />
 
                     <div className="max-w-4xl">
                         <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>

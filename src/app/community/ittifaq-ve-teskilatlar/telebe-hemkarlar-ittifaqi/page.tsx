@@ -1,13 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import PersonCard from "@/components/shared/PersonCard";
-import HomeIcon from "@mui/icons-material/Home";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import PersonIcon from "@mui/icons-material/Person";
@@ -22,6 +19,7 @@ import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 type TabKey = "about" | "chair" | "activities" | "clubs" | "membership" | "contact";
 
@@ -311,18 +309,13 @@ export default function TelebeHemkarlarIttifaqiPage() {
         </div>
 
         <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-20">
-          <nav className="flex items-center gap-2 text-white/60 text-xs mb-12 flex-wrap">
-            <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-              <HomeIcon sx={{ fontSize: 14 }} />
-              {p.homeLabel}
-            </Link>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <Link href={communityHref} className="hover:text-white transition-colors">{p.communityLabel}</Link>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <Link href={sectionHref} className="hover:text-white transition-colors">{p.breadcrumbSection}</Link>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <span className="text-[#ee7c7e] font-bold">{p.title}</span>
-          </nav>
+          <Breadcrumbs
+              items={[
+                  { label: p.communityLabel, href: communityHref },
+                  { label: p.breadcrumbSection, href: sectionHref },
+                  { label: p.title },
+              ]}
+          />
 
           <div className="max-w-4xl">
             <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>

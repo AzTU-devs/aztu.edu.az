@@ -1,16 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import HomeIcon from "@mui/icons-material/Home";
 import { usePathname } from "next/navigation";
-import { useLanguage } from "@/context/LanguageContext";
+import Breadcrumbs, { type Crumb } from "@/components/shared/Breadcrumbs";
 
-interface Breadcrumb {
-  label: string;
-  href?: string;
-}
+type Breadcrumb = Crumb;
 
 interface PageHeroProps {
   title: string;
@@ -31,7 +25,6 @@ export default function PageHero({
   children,
   videoSrc,
 }: PageHeroProps) {
-  const { lang } = useLanguage();
   const pathname = usePathname();
 
   const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site";
@@ -105,31 +98,7 @@ export default function PageHero({
 
       {/* Main Content Wrap */}
       <div className="relative z-20 w-full max-w-[1600px] mx-auto">
-        {/* Breadcrumbs with glass style */}
-        <motion.nav 
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex flex-wrap items-center gap-3 mb-8"
-        >
-          <div className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white/5 backdrop-blur-2xl border-2 border-white/10 text-white/70 text-[10px] font-black uppercase tracking-[0.3em] shadow-2xl">
-            <Link href="/" className="hover:text-[#ee7c7e] transition-colors flex items-center gap-2">
-                <HomeIcon sx={{ fontSize: 14 }} />
-                Home
-            </Link>
-            {breadcrumbs.map((crumb, idx) => (
-                <div key={idx} className="flex items-center gap-2">
-                <ChevronRightIcon sx={{ fontSize: 12 }} className="text-[#ee7c7e]" />
-                {crumb.href ? (
-                    <Link href={crumb.href} className="hover:text-[#ee7c7e] transition-colors">
-                    {crumb.label}
-                    </Link>
-                ) : (
-                    <span className="text-white font-black">{crumb.label}</span>
-                )}
-                </div>
-            ))}
-          </div>
-        </motion.nav>
+        <Breadcrumbs items={breadcrumbs} />
 
         {eyebrow && (
           <motion.div 

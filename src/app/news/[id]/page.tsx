@@ -17,6 +17,7 @@ import CopyLinkButton from "@/components/shared/CopyLinkButton";
 import { parseNewsSlug, newsSlug } from "@/util/slugify";
 import { fetchNewsDetail, fetchNewsList, fetchNewsCategories, type Lang } from "@/util/fetchers";
 import { absUrl, SITE_URL } from "@/util/seo";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 export const revalidate = 30;
 export const dynamicParams = true;
@@ -32,7 +33,6 @@ function formatDate(iso: string | undefined, lang: Lang) {
 
 const UI = {
     az: {
-        home: "Ana səhifə",
         news: "Xəbərlər",
         images: "şəkil",
         backToNews: "Xəbərlərə qayıt",
@@ -46,7 +46,6 @@ const UI = {
         allNews: "Bütün xəbərlər",
     },
     en: {
-        home: "Home",
         news: "News",
         images: "images",
         backToNews: "Back to news",
@@ -123,20 +122,12 @@ export default async function NewsDetailPage({
                     <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#ee7c7e]/10 blur-3xl pointer-events-none" />
 
                     <div className="relative z-10 px-4 md:px-10 lg:px-20 pt-32 pb-12 max-w-7xl mx-auto">
-                        <nav
-                            aria-label="Breadcrumb"
-                            className="flex items-center gap-1.5 text-white/40 text-xs mb-8 flex-wrap"
-                        >
-                            <Link href="/" className="hover:text-white/80 transition-colors">
-                                {t.home}
-                            </Link>
-                            <ChevronRightIcon sx={{ fontSize: 14 }} />
-                            <Link href="/news" className="hover:text-white/80 transition-colors">
-                                {t.news}
-                            </Link>
-                            <ChevronRightIcon sx={{ fontSize: 14 }} />
-                            <span className="text-white/60 truncate max-w-xs">{title}</span>
-                        </nav>
+                        <Breadcrumbs
+                            items={[
+                                { label: t.news, href: "/news" },
+                                { label: title },
+                            ]}
+                        />
 
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                             {/* Left: title + meta */}

@@ -56,6 +56,11 @@ const az = {
     moreInSection: "Bu bölmədə daha çox",
     comingSoon: "Tezliklə",
     backToHome: "Ana səhifəyə qayıt",
+    menu: {
+      section: "Bölmə",
+      tagline: "Mühəndislik təhsilinin yeni nəslini formalaşdırırıq.",
+      empty: "Bu bölmə üçün alt keçidlər hələ əlavə olunmayıb.",
+    },
   },
 
   nav: {
@@ -114,6 +119,9 @@ const az = {
       higherEducationInstitute: "Yüksək Təhsil İnstitutu (YTİ)",
       internationalStudents: "Beynəlxalq Tələbələr Bölməsi",
       exchangePrograms: "Mübadilə Proqramları",
+      internationalization: "Beynəlmiləlləşmə",
+      internationalPartnership: "Beynəlxalq Tərəfdaşlıq",
+      foreignStudents: "Xarici Tələbələr",
       orhunExchange: "Orhun Mübadilə Proqramı",
       lmsGuidelines: "LMS Qaydaları",
       researchActivities: "Tədqiqat Fəaliyyəti",

@@ -1,11 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
-import HomeIcon from "@mui/icons-material/Home";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -14,6 +11,7 @@ import HistoryIcon from "@mui/icons-material/History";
 import GroupsIcon from "@mui/icons-material/Groups";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import PersonCard from "@/components/shared/PersonCard";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 type TabKey = "about" | "sections" | "coaches" | "competitions" | "contact";
 
@@ -167,18 +165,13 @@ export default function SportPage() {
         </div>
 
         <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-20">
-          <nav className="flex items-center gap-2 text-white/60 text-xs mb-12 flex-wrap">
-            <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-              <HomeIcon sx={{ fontSize: 14 }} />
-              {p.home}
-            </Link>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <Link href={communityHref} className="hover:text-white transition-colors">{p.community}</Link>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <Link href={campusLifeHref} className="hover:text-white transition-colors">{p.campusLife}</Link>
-            <ChevronRightIcon sx={{ fontSize: 12 }} />
-            <span className="text-[#ee7c7e] font-bold">{p.title}</span>
-          </nav>
+          <Breadcrumbs
+              items={[
+                  { label: p.community, href: communityHref },
+                  { label: p.campusLife, href: campusLifeHref },
+                  { label: p.title },
+              ]}
+          />
 
           <div className="max-w-4xl">
             <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>

@@ -5,10 +5,10 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import LaunchIcon from "@mui/icons-material/Launch";
-import HomeIcon from "@mui/icons-material/Home";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
 import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 export default function TAUPage() {
     const t = useTranslation();
@@ -29,22 +29,13 @@ export default function TAUPage() {
 
                 <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-20">
                     {/* Breadcrumbs */}
-                    <nav className="flex items-center gap-2 text-white/60 text-xs mb-12">
-                        <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-                            <HomeIcon sx={{ fontSize: 14 }} />
-                            Home
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={lang === "az" ? "/haqqimizda" : "/about"} className="hover:text-white transition-colors">
-                            {t.nav.sections.about}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={partnerHref} className="hover:text-white transition-colors">
-                            {partnerLabel}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <span className="text-[#ee7c7e] font-bold">{p.breadcrumb}</span>
-                    </nav>
+                    <Breadcrumbs
+                        items={[
+                            { label: t.nav.sections.about, href: lang === "az" ? "/haqqimizda" : "/about" },
+                            { label: partnerLabel, href: partnerHref },
+                            { label: p.breadcrumb },
+                        ]}
+                    />
 
                     <div className="max-w-4xl">
                         <motion.div

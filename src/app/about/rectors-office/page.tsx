@@ -10,7 +10,6 @@ import { API_BASE_URL } from "@/util/apiClient";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
-import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import GroupsIcon from "@mui/icons-material/Groups";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
@@ -20,6 +19,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 interface StaffMember {
     name: string;
@@ -129,22 +129,13 @@ export default function RectorsOfficePage() {
 
                 <div className="relative z-10 flex-1 flex flex-col max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-16">
                     {/* Breadcrumbs */}
-                    <nav className="flex items-center gap-2 text-white/60 text-xs mb-12 lg:mb-16">
-                        <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-                            <HomeIcon sx={{ fontSize: 14 }} />
-                            Home
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={aboutHref} className="hover:text-white transition-colors">
-                            {t.nav.sections.about}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <Link href={leadershipHref} className="hover:text-white transition-colors">
-                            {leadershipLabel}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <span className="text-[#ee7c7e] font-bold">{p.breadcrumb}</span>
-                    </nav>
+                    <Breadcrumbs
+                        items={[
+                            { label: t.nav.sections.about, href: aboutHref },
+                            { label: leadershipLabel, href: leadershipHref },
+                            { label: p.breadcrumb },
+                        ]}
+                    />
 
                     <motion.div
                         initial={{ opacity: 0, y: 24 }}

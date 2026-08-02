@@ -41,7 +41,6 @@ export default function CafedrasPage() {
     }, [currentLang]);
 
     const t = {
-        home: currentLang === "az" ? "Ana səhifə" : "Home",
         cafedras: currentLang === "az" ? "Kafedralar" : "Departments",
         title: currentLang === "az" ? "Akademik Kafedralar" : "Academic Departments",
         description: currentLang === "az" 

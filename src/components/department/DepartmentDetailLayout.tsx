@@ -4,13 +4,13 @@ import { use, useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import DepartmentSidebar from "@/components/department/DepartmentSidebar";
-import HomeIcon from "@mui/icons-material/Home";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { getDepartmentBySlug } from "@/services/departmentService/departmentService";
 import type { DepartmentDetail } from "@/types/department";
 import { useLanguage } from "@/context/LanguageContext";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 interface Props {
     children: React.ReactNode;
@@ -73,24 +73,12 @@ export default function DepartmentDetailLayout({ children, params }: Props) {
                 </div>
                 
                 <div className="relative px-4 md:px-10 lg:px-12 w-full z-20">
-                    <motion.nav 
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="flex items-center gap-1.5 text-white/50 text-sm mb-6 flex-wrap font-bold"
-                    >
-                        <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-                            <HomeIcon sx={{ fontSize: 16 }} />
-                            {t.home}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 14 }} />
-                        <Link href={listPath} className="hover:text-white transition-colors">
-                            {t.departments}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 14 }} />
-                        <span className="text-[#ee7c7e] font-medium truncate max-w-[200px]">
-                            {loading ? "..." : (department?.department_name ?? "")}
-                        </span>
-                    </motion.nav>
+                    <Breadcrumbs
+                        items={[
+                            { label: t.departments, href: listPath },
+                            { label: loading ? "..." : (department?.department_name ?? "") },
+                        ]}
+                    />
 
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}

@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useTranslation } from "@/hooks/useTranslation";
+import { useLanguage } from "@/context/LanguageContext";
 
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import HomeIcon from "@mui/icons-material/Home";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import EventIcon from "@mui/icons-material/Event";
 import TranslateIcon from "@mui/icons-material/Translate";
@@ -13,11 +13,13 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import GroupsIcon from "@mui/icons-material/Groups";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 const FACT_ICONS = [ScheduleIcon, EventIcon, TranslateIcon];
 
 export default function FoundationProgramPage() {
     const t = useTranslation();
+    const { lang } = useLanguage();
     const p = t.pages.internationalization.foundationProgram;
 
     return (
@@ -33,14 +35,13 @@ export default function FoundationProgramPage() {
 
                 <div className="relative z-10 flex-1 flex flex-col max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-12">
                     {/* Breadcrumbs */}
-                    <nav className="flex items-center gap-2 text-white/60 text-xs mb-12 lg:mb-16">
-                        <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-                            <HomeIcon sx={{ fontSize: 14 }} />
-                            Home
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 12 }} />
-                        <span className="text-[#ee7c7e] font-bold">{p.breadcrumb}</span>
-                    </nav>
+                    <Breadcrumbs
+                        items={[
+                            { label: t.nav.items.internationalization, href: `/${lang}/${lang === "az" ? "beynelmilellesme" : "internationalization"}` },
+                            { label: t.nav.items.foreignStudents, href: `/${lang}/${lang === "az" ? "beynelmilellesme" : "internationalization"}/${lang === "az" ? "xarici-telebeler" : "foreign-students"}` },
+                            { label: p.breadcrumb },
+                        ]}
+                    />
 
                     <div className="flex-1 flex flex-col justify-center">
                         <div className="max-w-5xl">

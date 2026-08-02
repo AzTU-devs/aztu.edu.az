@@ -4,7 +4,6 @@ import { use, useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import FacultySidebar from "@/components/faculty/FacultySidebar";
-import HomeIcon from "@mui/icons-material/Home";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -12,6 +11,7 @@ import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
 import { getFacultyBySlug } from "@/services/facultyService/facultyService";
 import type { FacultyDetail } from "@/types/faculty";
 import { useLanguage } from "@/context/LanguageContext";
+import Breadcrumbs from "@/components/shared/Breadcrumbs";
 
 interface Props {
     children: React.ReactNode;
@@ -61,24 +61,12 @@ export default function FacultyDetailLayout({ children, params }: Props) {
 
                 <div className="relative z-10 mx-auto w-full max-w-[1600px]">
                     {/* Breadcrumb */}
-                    <motion.nav
-                        initial={{ opacity: 0, y: -8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="mb-6 flex flex-wrap items-center gap-2 text-[13px] font-medium text-white/60"
-                    >
-                        <Link href="/" className="flex items-center gap-1.5 transition-colors hover:text-white">
-                            <HomeIcon sx={{ fontSize: 16 }} />
-                            {currentLang === "az" ? "Ana səhifə" : "Home"}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 14 }} className="text-white/30" />
-                        <Link href={institutesListPath} className="transition-colors hover:text-white">
-                            {currentLang === "az" ? "Fakültələr" : "Faculties"}
-                        </Link>
-                        <ChevronRightIcon sx={{ fontSize: 14 }} className="text-white/30" />
-                        <span className="max-w-[160px] truncate font-semibold text-[#ee7c7e] md:max-w-none">
-                            {faculty?.title ?? facultySlug}
-                        </span>
-                    </motion.nav>
+                    <Breadcrumbs
+                        items={[
+                            { label: currentLang === "az" ? "Fakültələr" : "Faculties", href: institutesListPath },
+                            { label: faculty?.title ?? facultySlug },
+                        ]}
+                    />
 
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
