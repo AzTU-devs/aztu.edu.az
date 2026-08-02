@@ -4,7 +4,7 @@ import { use, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import DepartmentHero from "@/components/department/DepartmentHero";
-import DepartmentTabs from "@/components/department/DepartmentTabs";
+import DepartmentSidebar from "@/components/department/DepartmentSidebar";
 import { getDepartmentBySlug } from "@/services/departmentService/departmentService";
 import type { DepartmentDetail } from "@/types/department";
 import { useLanguage } from "@/context/LanguageContext";
@@ -47,18 +47,24 @@ export default function DepartmentDetailLayout({ children, params }: Props) {
                 listPath={listPath}
             />
 
-            <DepartmentTabs departmentSlug={departmentSlug} />
+            <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-8 px-4 py-10 md:px-10 md:py-14 lg:flex-row lg:gap-10 lg:px-20">
+                <aside className="lg:w-[292px] lg:shrink-0">
+                    <div className="lg:sticky lg:top-28">
+                        <DepartmentSidebar departmentSlug={departmentSlug} />
+                    </div>
+                </aside>
 
-            <main className="mx-auto w-full max-w-[1600px] px-4 py-10 md:px-10 md:py-14 lg:px-20">
-                <motion.div
-                    key={currentLang + departmentSlug}
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-                >
-                    {children}
-                </motion.div>
-            </main>
+                <main className="min-w-0 flex-1">
+                    <motion.div
+                        key={currentLang + departmentSlug}
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+                    >
+                        {children}
+                    </motion.div>
+                </main>
+            </div>
         </div>
     );
 }

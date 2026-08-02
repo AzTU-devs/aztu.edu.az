@@ -72,11 +72,7 @@ export default function DepartmentsPage() {
         const locale = currentLang === "az" ? "az" : "en";
         const q = query.trim().toLocaleLowerCase(locale);
         if (!q) return list;
-        return list.filter(
-            (d) =>
-                d.department_name.toLocaleLowerCase(locale).includes(q) ||
-                (d.department_code ?? "").toLocaleLowerCase(locale).includes(q)
-        );
+        return list.filter((d) => d.department_name.toLocaleLowerCase(locale).includes(q));
     }, [list, query, currentLang]);
 
     return (
@@ -209,11 +205,6 @@ export default function DepartmentsPage() {
                                             <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#1a2355] text-[15px] font-black tracking-tight text-white transition-colors duration-300 group-hover:bg-[#ee7c7e] dark:bg-white/10 dark:group-hover:bg-[#ee7c7e]">
                                                 {monogram(dept.department_name)}
                                             </span>
-                                            {dept.department_code && (
-                                                <span className="rounded-lg border border-slate-200 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 transition-colors group-hover:border-[#ee7c7e]/40 group-hover:text-[#ee7c7e] dark:border-white/10 dark:text-slate-500">
-                                                    {dept.department_code}
-                                                </span>
-                                            )}
                                         </div>
 
                                         <h2 className="relative z-10 mb-5 line-clamp-3 text-[17px] font-black leading-snug tracking-tight text-[#1a2355] transition-colors duration-300 group-hover:text-[#ee7c7e] dark:text-white">

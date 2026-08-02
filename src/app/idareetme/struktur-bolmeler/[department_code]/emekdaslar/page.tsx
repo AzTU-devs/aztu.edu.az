@@ -114,7 +114,7 @@ export default function DepartmentStaffPage({ params }: Props) {
                     <p className="mt-1 text-xs text-slate-400">{t.emptyHint}</p>
                 </div>
             ) : (
-                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                     {filtered.map((w, index) => (
                         <StaffCard
                             key={w.id}
