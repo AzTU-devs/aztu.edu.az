@@ -8,10 +8,11 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
-import { getFacultyBySlug } from "@/services/facultyService/facultyService";
+import { getFacultyBySlug, getImageUrl } from "@/services/facultyService/facultyService";
 import type { FacultyDetail } from "@/types/faculty";
 import { useLanguage } from "@/context/LanguageContext";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
+import HeroLeaderCard from "@/components/shared/HeroLeaderCard";
 
 interface Props {
     children: React.ReactNode;
@@ -22,14 +23,17 @@ export default function FacultyDetailLayout({ children, params }: Props) {
     const { facultyId: facultySlug } = use(params);
     const { lang: currentLang } = useLanguage();
     const [faculty, setFaculty] = useState<FacultyDetail | null>(null);
+    const [loading, setLoading] = useState(true);
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
         getFacultyBySlug(facultySlug, currentLang)
             .then((result) => {
                 if (result) setFaculty(result);
             })
-            .catch(() => {});
+            .catch(() => {})
+            .finally(() => setLoading(false));
     }, [facultySlug, currentLang]);
 
     const institutesListPath = `/${currentLang}/${currentLang === "az" ? "akademik/fakulteler" : "academic/faculties"}`;
@@ -68,24 +72,36 @@ export default function FacultyDetailLayout({ children, params }: Props) {
                         ]}
                     />
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-                    >
-                        {faculty?.faculty_code && (
-                            <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-[#ee7c7e] px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-white shadow-lg shadow-[#ee7c7e]/25">
-                                <span className="h-1.5 w-1.5 rounded-full bg-white" />
-                                {faculty.faculty_code}
-                            </span>
-                        )}
-                        <h1 className="max-w-4xl text-3xl font-extrabold leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
-                            {faculty?.title ?? facultySlug}
-                        </h1>
-                        <p className="mt-4 text-sm font-medium uppercase tracking-[0.3em] text-white/50">
-                            {currentLang === "az" ? "Fakültə Portalı" : "Faculty Portal"}
-                        </p>
-                    </motion.div>
+                    <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+                            className="lg:col-span-7"
+                        >
+                            {faculty?.faculty_code && (
+                                <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-[#ee7c7e] px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-white shadow-lg shadow-[#ee7c7e]/25">
+                                    <span className="h-1.5 w-1.5 rounded-full bg-white" />
+                                    {faculty.faculty_code}
+                                </span>
+                            )}
+                            <h1 className="max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
+                                {faculty?.title ?? facultySlug}
+                            </h1>
+                            <p className="mt-4 text-sm font-medium uppercase tracking-[0.3em] text-white/50">
+                                {currentLang === "az" ? "Fakültə Portalı" : "Faculty Portal"}
+                            </p>
+                        </motion.div>
+
+                        <HeroLeaderCard
+                            eyebrow={currentLang === "az" ? "Dekan" : "Dean"}
+                            leader={faculty?.director}
+                            resolveImage={getImageUrl}
+                            lang={currentLang}
+                            loading={loading}
+                            className="lg:col-span-5"
+                        />
+                    </div>
                 </div>
 
                 {/* thin accent line */}

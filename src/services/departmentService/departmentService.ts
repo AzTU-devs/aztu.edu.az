@@ -2,7 +2,7 @@ import apiClient, { API_BASE_URL, type Lang } from "@/util/apiClient";
 import type { DepartmentSummary, DepartmentDetail } from "@/types/department";
 import { slugify } from "@/util/slugify";
 
-export function getImageUrl(path?: string): string {
+export function getImageUrl(path?: string | null): string {
   if (!path) return "";
   if (path.startsWith("http://") || path.startsWith("https://")) return path;
   const base = (API_BASE_URL ?? "").replace(/\/$/, "");

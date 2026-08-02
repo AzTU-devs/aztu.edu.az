@@ -13,6 +13,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
+import HeroLeaderCard from "@/components/shared/HeroLeaderCard";
+import { getImageUrl } from "@/services/facultyService/facultyService";
 
 interface Props {
     children: React.ReactNode;
@@ -43,6 +45,7 @@ export default function CafedraDetailLayout({ children, params }: Props) {
         contactText: currentLang === "az" ? "Kafedra ilə bağlı suallarınız üçün bizimlə əlaqə saxlayın." : "Reach out to us for any questions about the department.",
         contactBtn: currentLang === "az" ? "Əlaqə" : "Contact",
         portal: currentLang === "az" ? "Kafedra Portalı" : "Department Portal",
+        head: currentLang === "az" ? "Kafedra müdiri" : "Head of Department",
     };
 
     const prettifiedFallback = cafedraId
@@ -79,24 +82,36 @@ export default function CafedraDetailLayout({ children, params }: Props) {
                         ]}
                     />
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-                    >
-                        {cafedra?.cafedra_code && (
-                            <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-[#ee7c7e] px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-white shadow-lg shadow-[#ee7c7e]/25">
-                                <span className="h-1.5 w-1.5 rounded-full bg-white" />
-                                {cafedra.cafedra_code}
-                            </span>
-                        )}
-                        <h1 className="max-w-4xl text-3xl font-extrabold leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
-                            {loading ? "…" : displayTitle}
-                        </h1>
-                        <p className="mt-4 text-sm font-medium uppercase tracking-[0.3em] text-white/50">
-                            {t.portal}
-                        </p>
-                    </motion.div>
+                    <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+                            className="lg:col-span-7"
+                        >
+                            {cafedra?.cafedra_code && (
+                                <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-[#ee7c7e] px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-white shadow-lg shadow-[#ee7c7e]/25">
+                                    <span className="h-1.5 w-1.5 rounded-full bg-white" />
+                                    {cafedra.cafedra_code}
+                                </span>
+                            )}
+                            <h1 className="max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
+                                {loading ? "…" : displayTitle}
+                            </h1>
+                            <p className="mt-4 text-sm font-medium uppercase tracking-[0.3em] text-white/50">
+                                {t.portal}
+                            </p>
+                        </motion.div>
+
+                        <HeroLeaderCard
+                            eyebrow={t.head}
+                            leader={cafedra?.director}
+                            resolveImage={getImageUrl}
+                            lang={currentLang}
+                            loading={loading}
+                            className="lg:col-span-5"
+                        />
+                    </div>
                 </div>
 
                 {/* thin accent line */}

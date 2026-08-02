@@ -2,14 +2,10 @@
 
 import { motion } from "framer-motion";
 
-import PersonIcon from "@mui/icons-material/Person";
-import EmailIcon from "@mui/icons-material/Email";
-import PhoneIcon from "@mui/icons-material/Phone";
-import MeetingRoomIcon from "@mui/icons-material/MeetingRoom";
-import VerifiedIcon from "@mui/icons-material/Verified";
 
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
+import HeroLeaderCard from "@/components/shared/HeroLeaderCard";
 import { getImageUrl } from "@/services/departmentService/departmentService";
 import type { DepartmentDetail } from "@/types/department";
 
@@ -26,15 +22,9 @@ export default function DepartmentHero({ department, loading, lang, listPath }: 
         units: lang === "az" ? "Struktur Bölmələr" : "Structural Units",
         head: lang === "az" ? "Şöbə rəhbəri" : "Department head",
         staff: lang === "az" ? "əməkdaş" : "staff members",
-        room: lang === "az" ? "Otaq" : "Room",
-        noHead: lang === "az" ? "Məlumat əlavə ediləcək" : "To be announced",
     };
 
     const director = department?.director;
-    const directorName = director
-        ? [director.first_name, director.last_name, director.father_name].filter(Boolean).join(" ")
-        : "";
-    const directorPhoto = director ? getImageUrl(director.profile_image) : "";
     const staffCount = department?.workers?.length ?? 0;
 
     return (
@@ -102,88 +92,14 @@ export default function DepartmentHero({ department, loading, lang, listPath }: 
                     </div>
 
                     {/* Department head — the hero's second subject, not a footnote */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 24 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.12, ease: [0.23, 1, 0.32, 1] }}
+                    <HeroLeaderCard
+                        eyebrow={t.head}
+                        leader={director}
+                        resolveImage={getImageUrl}
+                        lang={lang}
+                        loading={loading}
                         className="lg:col-span-5"
-                    >
-                        <div className="rounded-[1.5rem] border border-white/12 bg-white/[0.07] p-6 shadow-2xl shadow-black/25 backdrop-blur-2xl md:p-7">
-                            <p className="mb-6 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.32em] text-white/50">
-                                <VerifiedIcon sx={{ fontSize: 15 }} className="text-[#ee7c7e]" />
-                                {t.head}
-                            </p>
-
-                            <div className="flex items-center gap-5">
-                                <div className="h-28 w-28 shrink-0 overflow-hidden rounded-2xl border border-white/15 bg-white/10 shadow-xl md:h-32 md:w-32">
-                                    {directorPhoto ? (
-                                        /* eslint-disable-next-line @next/next/no-img-element */
-                                        <img
-                                            src={directorPhoto}
-                                            alt={directorName}
-                                            className="h-full w-full object-cover"
-                                        />
-                                    ) : (
-                                        <span className="flex h-full w-full items-center justify-center">
-                                            <PersonIcon sx={{ fontSize: 56 }} className="text-white/25" />
-                                        </span>
-                                    )}
-                                </div>
-
-                                <div className="min-w-0 flex-1">
-                                    {loading ? (
-                                        <div className="space-y-2.5">
-                                            <div className="h-6 w-44 animate-pulse rounded-lg bg-white/10" />
-                                            <div className="h-4 w-28 animate-pulse rounded-lg bg-white/[0.07]" />
-                                        </div>
-                                    ) : (
-                                        <p className="text-xl font-black leading-[1.15] tracking-tight text-white md:text-2xl">
-                                            {directorName || t.noHead}
-                                        </p>
-                                    )}
-                                    {director?.scientific_title && (
-                                        <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.22em] text-white/50">
-                                            {director.scientific_title}
-                                        </p>
-                                    )}
-                                    {director?.scientific_degree && (
-                                        <p className="mt-1.5 text-[13px] font-bold leading-snug text-[#ee7c7e]">
-                                            {director.scientific_degree}
-                                        </p>
-                                    )}
-                                </div>
-                            </div>
-
-                            {(director?.email || director?.phone || director?.room_number) && (
-                                <div className="mt-6 flex flex-wrap gap-2 border-t border-white/10 pt-5">
-                                    {director?.email && (
-                                        <a
-                                            href={`mailto:${director.email}`}
-                                            className="inline-flex min-w-0 items-center gap-2 rounded-xl border border-white/12 bg-white/[0.06] px-3.5 py-2.5 text-xs font-bold text-white transition-colors hover:border-[#ee7c7e]/50 hover:bg-white/[0.12]"
-                                        >
-                                            <EmailIcon sx={{ fontSize: 15 }} className="shrink-0 text-[#ee7c7e]" />
-                                            <span className="truncate">{director.email}</span>
-                                        </a>
-                                    )}
-                                    {director?.phone && (
-                                        <a
-                                            href={`tel:${director.phone}`}
-                                            className="inline-flex items-center gap-2 rounded-xl border border-white/12 bg-white/[0.06] px-3.5 py-2.5 text-xs font-bold text-white transition-colors hover:border-[#ee7c7e]/50 hover:bg-white/[0.12]"
-                                        >
-                                            <PhoneIcon sx={{ fontSize: 15 }} className="shrink-0 text-[#ee7c7e]" />
-                                            {director.phone}
-                                        </a>
-                                    )}
-                                    {director?.room_number && (
-                                        <span className="inline-flex items-center gap-2 rounded-xl border border-white/12 bg-white/[0.06] px-3.5 py-2.5 text-xs font-bold text-white">
-                                            <MeetingRoomIcon sx={{ fontSize: 15 }} className="shrink-0 text-[#ee7c7e]" />
-                                            {t.room} {director.room_number}
-                                        </span>
-                                    )}
-                                </div>
-                            )}
-                        </div>
-                    </motion.div>
+                    />
                 </div>
             </div>
         </header>
