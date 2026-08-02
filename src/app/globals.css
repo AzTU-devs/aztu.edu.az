@@ -198,3 +198,16 @@ p {
 .dark .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.18);
 }
+
+/* ============================================================
+   OPT-OUT FROM THE GLOBAL JUSTIFIED BODY COPY.
+   `p { text-align: justify }` above is unlayered, so Tailwind's
+   `text-left` utility (which lives in a layer) cannot beat it.
+   Add `text-flow` to a container to get normal ragged-right text.
+   ============================================================ */
+.text-flow,
+.text-flow p,
+.text-flow li {
+  text-align: left;
+  text-justify: auto;
+}
