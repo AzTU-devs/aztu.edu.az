@@ -1316,36 +1316,6 @@ const en = {
       },
     },
     research: {
-      scientificJournals: {
-        eyebrow: "Research",
-        subtitle: "Scientific journals published by AzTU.",
-        breadcrumb: "Scientific Journals",
-        machineScience: {
-          title: "Machine Science",
-          about: "A scientific journal published by AzTU. Publishes original research in engineering and technology.",
-          details: {
-            issn: "2227-6912",
-            eissn: "2790-0479",
-            year: "1948",
-            issuesPerYear: "2",
-            language: "Azerbaijani, Russian, English",
-            founder: "Azerbaijan Technical University",
-            link: "https://aztu.edu.az/elmi-jurnallar/masin-elmi",
-          },
-        },
-        energySustainability: {
-          title: "Energy Sustainability, Risks and Decision-Making",
-          about: "An international scientific journal on energy sustainability, risk management and decision making processes.",
-          details: {
-            issn: "3023-5294",
-            language: "English",
-            year: "2023",
-            issuesPerYear: "2",
-            founder: "Azerbaijan Technical University",
-            link: "https://aztu.edu.az/elmi-jurnallar/enerji-davamliligi",
-          },
-        },
-      },
       priorities: {
         eyebrow: "Research",
         title: "Priority Research Areas",

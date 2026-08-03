@@ -1,263 +1,331 @@
 "use client";
 
-import { useTranslation } from "@/hooks/useTranslation";
-import { useLanguage } from "@/context/LanguageContext";
-import AboutPageBanner from "@/components/about/AboutPageBanner";
-import { motion, useInView } from "framer-motion";
-import { useRef, use } from "react";
-import Image from "next/image";
+import { use, useEffect, useState } from "react";
 import Link from "next/link";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { motion } from "framer-motion";
+
+import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import PublicIcon from "@mui/icons-material/Public";
-import DescriptionIcon from "@mui/icons-material/Description";
-import PersonIcon from "@mui/icons-material/Person";
-import GroupsIcon from "@mui/icons-material/Groups";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import NumbersIcon from "@mui/icons-material/Numbers";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import LayersIcon from "@mui/icons-material/Layers";
+import TranslateIcon from "@mui/icons-material/Translate";
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import LinkIcon from "@mui/icons-material/Link";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 
-function HomeStyleSection({ 
-    badge, 
-    title, 
-    accentTitle, 
-    children, 
-    dark = false,
-    watermark = ""
-}: { 
-    badge: string; 
-    title: string; 
-    accentTitle?: string; 
-    children: React.ReactNode; 
-    dark?: boolean;
-    watermark?: string;
-}) {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "-100px" });
+import AboutPageBanner from "@/components/about/AboutPageBanner";
+import SanitizedHtml from "@/components/shared/SanitizedHtml";
+import { useLanguage } from "@/context/LanguageContext";
+import { getResearchPage } from "@/services/researchService/researchService";
+import { getImageUrl } from "@/services/departmentService/departmentService";
+import type { ResearchPage } from "@/types/research";
 
-    return (
-        <section
-            ref={ref}
-            className={`relative px-4 md:px-10 lg:px-20 py-24 ${dark ? 'bg-[#0b1330]' : 'bg-white dark:bg-[#0b1330]'} overflow-hidden transition-colors duration-500`}
-        >
-            <div className="absolute inset-0 pointer-events-none">
-                <div className={`absolute inset-0 ${dark ? 'opacity-[0.04]' : 'opacity-[0.12] dark:opacity-[0.04]'}`} 
-                     style={{ backgroundImage: `radial-gradient(${dark ? 'white' : '#ee7c7e'} 0.5px, transparent 0.5px)`, backgroundSize: '32px 32px' }} />
-                
-                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#1a2355]/[0.03] dark:bg-[#1a2355]/[0.1] blur-[120px] rounded-full" />
-                <div className={`absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] ${dark ? 'bg-blue-500/[0.05]' : 'bg-[#ee7c7e]/[0.03] dark:bg-[#ee7c7e]/[0.08]'} blur-[100px] rounded-full animate-pulse`} />
-                
-                {watermark && (
-                    <div className="absolute left-10 bottom-10 select-none opacity-[0.02] dark:opacity-[0.05]">
-                        <h1 className={`text-[120px] md:text-[180px] font-black tracking-tighter leading-none ${dark ? 'text-white' : 'text-[#1a2355] dark:text-white'} uppercase`}>{watermark}</h1>
-                    </div>
-                )}
-            </div>
-
-            <div className="relative z-10 max-w-[1600px] mx-auto">
-                <div className="mb-16">
-                    <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
-                    >
-                        <div className={`inline-flex items-center gap-3 px-4 py-2 rounded-2xl ${dark ? 'bg-white/5 border-white/10' : 'bg-gray-50 dark:bg-white/5 border-gray-100 dark:border-white/10'} border mb-6 shadow-sm`}>
-                            <div className="w-2 h-2 rounded-full bg-[#ee7c7e] animate-pulse shadow-[0_0_8px_#ee7c7e]" />
-                            <span className={`${dark ? 'text-white' : 'text-[#1a2355] dark:text-white'} text-[11px] font-black uppercase tracking-[0.4em]`}>
-                                {badge}
-                            </span>
-                        </div>
-                        <h2 className={`text-4xl md:text-6xl font-black ${dark ? 'text-white' : 'text-[#1a2355] dark:text-white'} leading-tight tracking-tighter`}>
-                            {title} {accentTitle && <span className="text-[#ee7c7e]">{accentTitle}</span>}
-                        </h2>
-                    </motion.div>
-                </div>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1], delay: 0.2 }}
-                >
-                    {children}
-                </motion.div>
-            </div>
-        </section>
-    );
-}
+/**
+ * Each journal is a backend `research_pages` document (template "journal"),
+ * addressed on the site by its az or en slug. This maps the URL slug to the
+ * page_key the API reads; the hero video is the section default (static), and
+ * every other field comes from the CMS.
+ */
+const SLUG_TO_KEY: Record<string, string> = {
+    "masin-elmi": "journal-machine-science",
+    "machine-science": "journal-machine-science",
+    "enerji-davamliligi-riskler-ve-qerarlarin-qebul-edilmesi": "journal-energy-sustainability",
+    "energy-sustainability-risks-and-decision-making": "journal-energy-sustainability",
+    "elmi-eserler": "journal-scientific-works",
+    "scientific-works": "journal-scientific-works",
+};
 
 interface Props {
     params: Promise<{ slug: string }>;
 }
 
+interface DetailView {
+    label: string;
+    value: string;
+    icon: typeof NumbersIcon;
+    href?: string;
+}
+
 export default function ScientificJournalPage({ params }: Props) {
     const { slug } = use(params);
-    const t = useTranslation();
     const { lang } = useLanguage();
-    const data = t.pages.research?.scientificJournals;
+    const az = lang === "az";
 
-    if (!data) return null;
+    const pageKey = SLUG_TO_KEY[slug.toLowerCase()];
 
-    let journal: any = null;
-    const normalizedSlug = slug.toLowerCase();
-    
-    if (normalizedSlug === "machine-science" || normalizedSlug === "masin-elmi") {
-        journal = data.machineScience;
-    } else if (normalizedSlug === "energy-sustainability-risks-and-decision-making" || normalizedSlug === "enerji-davamliligi-riskler-ve-qerarlarin-qebul-edilmesi") {
-        journal = data.energySustainability;
+    const [page, setPage] = useState<ResearchPage | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (!pageKey) {
+            setLoading(false);
+            return;
+        }
+        let cancelled = false;
+        setLoading(true);
+        getResearchPage(pageKey, lang).then((result) => {
+            if (!cancelled) {
+                setPage(result);
+                setLoading(false);
+            }
+        });
+        return () => {
+            cancelled = true;
+        };
+    }, [pageKey, lang]);
+
+    const researchHref = az ? "/tedqiqat" : "/research";
+    const journalsLabel = az ? "Elmi Jurnallar" : "Scientific Journals";
+
+    // ── Loading ──────────────────────────────────────────────────────────────
+    if (loading) {
+        return (
+            <main className="min-h-screen bg-page">
+                <AboutPageBanner
+                    eyebrow={az ? "Tədqiqat" : "Research"}
+                    title={journalsLabel}
+                    subtitle={az ? "Elmi jurnal yüklənir…" : "Loading the journal…"}
+                    breadcrumbs={[
+                        { label: az ? "Tədqiqat" : "Research", href: researchHref },
+                        { label: journalsLabel },
+                    ]}
+                />
+                <div className="mx-auto flex max-w-[1400px] justify-center px-4 py-32">
+                    <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#ee7c7e] border-t-transparent" />
+                </div>
+            </main>
+        );
     }
 
-    if (!journal) return (
-         <main className="min-h-screen flex flex-col items-center justify-center bg-page px-4">
-            <h1 className="text-3xl font-bold text-[#1a2355] mb-4">{lang === 'az' ? 'Jurnal tapılmadı' : 'Journal not found'}</h1>
-            <Link href="/" className="flex items-center gap-1 bg-[#1a2355] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#1a2355]/90 transition-colors">
-                {lang === 'az' ? 'Ana səhifəyə qayıt' : 'Back to home'}
-                <ChevronRightIcon sx={{ fontSize: 18 }} />
-            </Link>
-        </main>
-    );
+    // ── Unknown slug or not published ──────────────────────────────────────────
+    if (!pageKey || !page) {
+        return (
+            <main className="flex min-h-screen flex-col items-center justify-center bg-page px-4">
+                <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-[#1a2355] text-white shadow-2xl">
+                    <AutoStoriesIcon sx={{ fontSize: 40 }} />
+                </div>
+                <h1 className="mt-8 text-center text-3xl font-black text-[#1a2355] dark:text-white">
+                    {az ? "Jurnal tapılmadı" : "Journal not found"}
+                </h1>
+                <p className="mt-3 max-w-md text-center text-slate-500 dark:text-slate-400">
+                    {az
+                        ? "Bu jurnal mövcud deyil və ya hələ dərc olunmayıb."
+                        : "This journal does not exist or has not been published yet."}
+                </p>
+                <Link
+                    href={researchHref}
+                    className="mt-8 inline-flex items-center gap-1.5 rounded-2xl bg-[#1a2355] px-7 py-3.5 font-bold text-white transition-colors hover:bg-[#1a2355]/90"
+                >
+                    {az ? "Tədqiqata qayıt" : "Back to Research"}
+                    <ChevronRightIcon sx={{ fontSize: 18 }} />
+                </Link>
+            </main>
+        );
+    }
 
-    const detailLabels: Record<string, string> = {
-        issn: "ISSN",
-        eissn: "E-ISSN",
-        year: lang === 'az' ? "Təsis ili" : "Year of Establishment",
-        issuesPerYear: lang === 'az' ? "İllik buraxılış sayı" : "Issues per Year",
-        language: lang === 'az' ? "Dil" : "Language",
-        founder: lang === 'az' ? "Təsisçi" : "Founder",
-        doi: "DOI",
-        link: lang === 'az' ? "Jurnal linki" : "Journal Link"
-    };
+    // ── Loaded ─────────────────────────────────────────────────────────────────
+    const journalName = page.journal_name || page.title || journalsLabel;
+    const cover = page.image_url ? getImageUrl(page.image_url) : "";
+    const buttonUrl = (page.button_url || "").trim();
+    const buttonHref = buttonUrl
+        ? buttonUrl.startsWith("http")
+            ? buttonUrl
+            : `https://${buttonUrl}`
+        : "";
+    const buttonLabel = page.button_label || (az ? "Jurnalın saytına keç" : "Visit the journal");
+
+    const doiHref = page.doi
+        ? page.doi.startsWith("http")
+            ? page.doi
+            : page.doi.startsWith("10.")
+            ? `https://doi.org/${page.doi}`
+            : ""
+        : "";
+
+    const details: DetailView[] = (
+        [
+            { label: "ISSN", value: page.issn, icon: NumbersIcon },
+            { label: "E-ISSN", value: page.eissn, icon: NumbersIcon },
+            { label: az ? "Nəşr ili" : "Publication Year", value: page.publication_year, icon: CalendarMonthIcon },
+            { label: az ? "İllik buraxılış sayı" : "Issues per Year", value: page.yearly_count, icon: LayersIcon },
+            { label: az ? "Dil" : "Language", value: page.journal_language, icon: TranslateIcon },
+            { label: az ? "Təsisçi" : "Founder", value: page.founder, icon: AccountBalanceIcon },
+            { label: "DOI", value: page.doi, icon: LinkIcon, href: doiHref || undefined },
+        ] as Array<DetailView & { value: string | null }>
+    ).filter((d): d is DetailView => Boolean(d.value && d.value.trim()));
 
     return (
-        <main className="min-h-screen bg-page transition-colors duration-500">
-             <AboutPageBanner
-                eyebrow={data.eyebrow}
-                title={journal.title}
-                subtitle={data.subtitle}
+        <main className="min-h-screen bg-page selection:bg-[#ee7c7e]/25">
+            <AboutPageBanner
+                eyebrow={az ? "Tədqiqat" : "Research"}
+                title={journalName}
+                subtitle={az ? "AzTU-nun elmi jurnalı" : "A scientific journal of AzTU"}
                 breadcrumbs={[
-                    { label: lang === 'az' ? 'Tədqiqat' : 'Research', href: '#' },
-                    { label: data.breadcrumb }
+                    { label: az ? "Tədqiqat" : "Research", href: researchHref },
+                    { label: journalsLabel },
+                    { label: journalName },
                 ]}
             />
 
-            {/* OVERVIEW & IMAGE */}
-            <HomeStyleSection 
-                badge={lang === 'az' ? 'İcmal' : 'Overview'} 
-                title={lang === 'az' ? 'Jurnal' : 'The'} 
-                accentTitle={lang === 'az' ? 'Haqqında' : 'Journal'}
-                watermark="About"
-            >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-                    <div className="lg:col-span-7 space-y-12">
-                         <div className="p-10 md:p-16 rounded-[2rem] bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5 shadow-2xl">
-                            <p className="text-gray-600 dark:text-gray-400 text-xl leading-relaxed text-justify">
-                                {journal.about}
-                            </p>
-                        </div>
-                        
-                        {/* Detail Grid */}
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                            {Object.entries(journal.details).map(([key, value]: [string, any]) => (
-                                <div key={key} className="p-6 rounded-[1.5rem] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 shadow-lg group hover:border-[#ee7c7e]/30 transition-all">
-                                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#ee7c7e] mb-2">{detailLabels[key]}</p>
-                                    {key === 'link' ? (
-                                        <a href={value.startsWith('http') ? value : `https://${value}`} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-[#1a2355] dark:text-white hover:text-[#ee7c7e] break-all transition-colors flex items-center gap-2">
-                                            {value} <PublicIcon sx={{ fontSize: 14 }} />
-                                        </a>
+            {/* ── FLOATING JOURNAL CARD ─────────────────────────────────────── */}
+            <section className="relative z-20 -mt-16 px-4 pb-4 md:px-10 lg:px-20">
+                <div className="mx-auto max-w-[1400px]">
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+                        className="overflow-hidden rounded-[2rem] border border-slate-200/70 bg-white shadow-2xl shadow-[#1a2355]/10 dark:border-white/10 dark:bg-[#0f1836]"
+                    >
+                        <div className="grid md:grid-cols-[minmax(0,360px)_1fr]">
+                            {/* Cover */}
+                            <div className="relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#1a2355] to-[#0b1330] p-8 md:p-10">
+                                <div className="pointer-events-none absolute -left-16 -top-16 h-56 w-56 rounded-full bg-[#ee7c7e]/20 blur-3xl" />
+                                <div className="pointer-events-none absolute -bottom-16 -right-16 h-56 w-56 rounded-full bg-blue-500/20 blur-3xl" />
+                                <div className="relative w-full max-w-[240px] overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
+                                    {cover ? (
+                                        // eslint-disable-next-line @next/next/no-img-element
+                                        <img src={cover} alt={journalName} className="aspect-[3/4] w-full object-cover" />
                                     ) : (
-                                        <p className="text-sm font-bold text-[#1a2355] dark:text-white">{value}</p>
+                                        <div className="flex aspect-[3/4] w-full items-center justify-center bg-white/[0.04]">
+                                            <AutoStoriesIcon sx={{ fontSize: 96, color: "white", opacity: 0.18 }} />
+                                        </div>
                                     )}
                                 </div>
-                            ))}
-                        </div>
-                    </div>
-                    
-                    <div className="lg:col-span-5 relative group">
-                         <div className="absolute inset-0 bg-[#ee7c7e]/20 blur-[100px] rounded-full scale-75 group-hover:scale-100 transition-transform duration-1000" />
-                         <div className="relative rounded-[2rem] overflow-hidden border border-gray-100 dark:border-white/10 shadow-2xl">
-                            {journal.image ? (
-                                <Image 
-                                    src={journal.image} 
-                                    alt={journal.title} 
-                                    width={800} 
-                                    height={1000} 
-                                    className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-1000" 
-                                />
-                            ) : (
-                                <div className="aspect-[3/4] bg-gradient-to-br from-[#1a2355] to-[#0b1330] flex items-center justify-center">
-                                     <MenuBookIcon sx={{ fontSize: 120, color: 'white', opacity: 0.1 }} />
-                                </div>
-                            )}
-                         </div>
-                    </div>
-                </div>
-            </HomeStyleSection>
+                            </div>
 
-            {/* EDITORIAL BOARD (If exists) */}
-            {journal.chiefEditor && (
-                <HomeStyleSection 
-                    badge={lang === 'az' ? 'Heyət' : 'Board'} 
-                    title={lang === 'az' ? 'Redaksiya' : 'Editorial'} 
-                    accentTitle={lang === 'az' ? 'Heyəti' : 'Board'}
-                    dark={true}
-                    watermark="Board"
-                >
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                        <div className="lg:col-span-5">
-                             <div className="p-12 rounded-[2rem] bg-white/5 border border-white/10 backdrop-blur-xl h-full flex flex-col justify-center shadow-2xl group hover:border-[#ee7c7e]/30 transition-all">
-                                <div className="w-16 h-16 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e] mb-8">
-                                    <PersonIcon sx={{ fontSize: 32 }} />
-                                </div>
-                                <h4 className="text-white text-[11px] font-black uppercase tracking-[0.4em] mb-4">{lang === 'az' ? 'Baş Redaktor' : 'Chief Editor'}</h4>
-                                <p className="text-white text-3xl font-black leading-tight group-hover:text-[#ee7c7e] transition-colors">
-                                    {journal.chiefEditor}
-                                </p>
-                             </div>
-                        </div>
-                        <div className="lg:col-span-7">
-                             <div className="p-12 rounded-[2rem] bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl">
-                                <div className="flex items-center gap-6 mb-12">
-                                     <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white">
-                                        <GroupsIcon />
-                                     </div>
-                                     <h4 className="text-white text-2xl font-black uppercase tracking-tight">{lang === 'az' ? 'Redaksiya Heyəti' : 'Editorial Board'}</h4>
-                                </div>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    {journal.editorialBoard.map((member: string, i: number) => (
-                                        <div key={i} className="flex items-center gap-4 group">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-[#ee7c7e]" />
-                                            <p className="text-white/70 font-bold group-hover:text-white transition-colors">{member}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                             </div>
-                        </div>
-                    </div>
-                </HomeStyleSection>
-            )}
+                            {/* Info */}
+                            <div className="flex flex-col justify-center p-8 md:p-12">
+                                <span className="inline-flex w-fit items-center gap-2 rounded-full border border-[#ee7c7e]/30 bg-[#ee7c7e]/10 px-3.5 py-1.5 text-[11px] font-black uppercase tracking-[0.25em] text-[#ee7c7e]">
+                                    <AutoStoriesIcon sx={{ fontSize: 14 }} />
+                                    {az ? "Elmi Jurnal" : "Scientific Journal"}
+                                </span>
+                                <h1 className="mt-5 text-3xl font-black leading-tight tracking-tight text-[#1a2355] dark:text-white lg:text-4xl">
+                                    {journalName}
+                                </h1>
 
-            {/* EXTERNAL LINK CTA */}
-            <section className="px-4 md:px-10 lg:px-20 py-24">
-                <div className="max-w-[1600px] mx-auto">
-                    <div className="p-12 md:p-20 rounded-[2.5rem] bg-[#1a2355] text-white shadow-2xl relative overflow-hidden text-center flex flex-col items-center group">
-                         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl group-hover:scale-125 transition-transform duration-1000" />
-                         <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#ee7c7e]/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
-                         
-                         <div className="w-20 h-20 rounded-[1.5rem] bg-[#ee7c7e] flex items-center justify-center mb-10 shadow-[0_0_40px_rgba(238,124,126,0.4)]">
-                            <DescriptionIcon sx={{ fontSize: 40 }} />
-                         </div>
-                         <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8 leading-tight">
-                            {lang === 'az' ? 'Arxivə daxil olun və' : 'Access the Archives and'} <br/>
-                            {lang === 'az' ? 'Məqalələri oxuyun' : 'Read the Articles'}
-                         </h3>
-                         <a 
-                            href={journal.details.link.startsWith('http') ? journal.details.link : `https://${journal.details.link}`} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="px-12 py-6 bg-white text-[#1a2355] rounded-[1.75rem] font-black uppercase text-[12px] tracking-[0.2em] hover:bg-[#ee7c7e] hover:text-white transition-all duration-500 shadow-2xl hover:shadow-[#ee7c7e]/40 hover:-translate-y-1 flex items-center gap-3"
-                         >
-                            {lang === 'az' ? 'Jurnalın Rəsmi Saytı' : 'Official Journal Website'}
-                            <PublicIcon sx={{ fontSize: 18 }} />
-                         </a>
-                    </div>
+                                {page.description ? (
+                                    <SanitizedHtml
+                                        html={page.description}
+                                        className="prose prose-slate mt-4 max-w-none text-[15px] leading-relaxed dark:prose-invert [&_p]:text-slate-600 dark:[&_p]:text-slate-300"
+                                    />
+                                ) : null}
+
+                                {buttonHref ? (
+                                    <a
+                                        href={buttonHref}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group mt-7 inline-flex w-fit items-center gap-2.5 rounded-2xl bg-[#1a2355] px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#1a2355]/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#ee7c7e] hover:shadow-[#ee7c7e]/30"
+                                    >
+                                        {buttonLabel}
+                                        <ArrowOutwardIcon
+                                            sx={{ fontSize: 18 }}
+                                            className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                                        />
+                                    </a>
+                                ) : null}
+                            </div>
+                        </div>
+                    </motion.div>
                 </div>
             </section>
+
+            {/* ── DETAILS GRID ──────────────────────────────────────────────── */}
+            {details.length > 0 && (
+                <section className="px-4 py-10 md:px-10 lg:px-20">
+                    <div className="mx-auto max-w-[1400px]">
+                        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+                            {details.map((detail, i) => {
+                                const Icon = detail.icon;
+                                return (
+                                    <motion.div
+                                        key={detail.label}
+                                        initial={{ opacity: 0, y: 14 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, margin: "-40px" }}
+                                        transition={{ duration: 0.4, delay: (i % 4) * 0.05 }}
+                                        className="group rounded-2xl border border-slate-200/70 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#ee7c7e]/40 hover:shadow-md dark:border-white/10 dark:bg-[#0f1836]"
+                                    >
+                                        <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#1a2355]/5 text-[#1a2355] transition-colors group-hover:bg-[#ee7c7e]/10 group-hover:text-[#ee7c7e] dark:bg-white/5 dark:text-white">
+                                            <Icon sx={{ fontSize: 18 }} />
+                                        </span>
+                                        <p className="mt-4 text-[10px] font-black uppercase tracking-[0.2em] text-[#ee7c7e]">
+                                            {detail.label}
+                                        </p>
+                                        {detail.href ? (
+                                            <a
+                                                href={detail.href}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="mt-1 flex items-center gap-1 break-all text-sm font-bold text-[#1a2355] transition-colors hover:text-[#ee7c7e] dark:text-white"
+                                            >
+                                                {detail.value}
+                                                <PublicIcon sx={{ fontSize: 13 }} />
+                                            </a>
+                                        ) : (
+                                            <p className="mt-1 text-sm font-bold text-[#1a2355] dark:text-white">
+                                                {detail.value}
+                                            </p>
+                                        )}
+                                    </motion.div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {/* ── ABOUT THE JOURNAL ─────────────────────────────────────────── */}
+            {page.body_html ? (
+                <section className="px-4 py-14 md:px-10 lg:px-20">
+                    <div className="mx-auto max-w-[1000px]">
+                        <div className="mb-8 flex items-center gap-3">
+                            <span className="h-8 w-1.5 rounded-full bg-[#ee7c7e]" />
+                            <h2 className="text-2xl font-black tracking-tight text-[#1a2355] dark:text-white lg:text-3xl">
+                                {az ? "Jurnal Haqqında" : "About the Journal"}
+                            </h2>
+                        </div>
+                        <div className="relative overflow-hidden rounded-[2rem] border border-slate-200/70 bg-white p-8 shadow-sm dark:border-white/10 dark:bg-[#0f1836] md:p-12">
+                            <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[#ee7c7e]/[0.07] blur-3xl" />
+                            <SanitizedHtml
+                                html={page.body_html}
+                                className="prose prose-slate relative z-10 max-w-none leading-relaxed dark:prose-invert md:prose-lg [&_p]:text-slate-600 dark:[&_p]:text-slate-300"
+                            />
+                        </div>
+                    </div>
+                </section>
+            ) : null}
+
+            {/* ── CTA BAND ──────────────────────────────────────────────────── */}
+            {buttonHref ? (
+                <section className="px-4 pb-24 pt-6 md:px-10 lg:px-20">
+                    <div className="mx-auto max-w-[1400px]">
+                        <div className="group relative flex flex-col items-center overflow-hidden rounded-[2.5rem] bg-[#1a2355] px-6 py-16 text-center text-white shadow-2xl md:px-20">
+                            <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white/5 blur-3xl transition-transform duration-1000 group-hover:scale-125" />
+                            <div className="pointer-events-none absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-[#ee7c7e]/10 blur-3xl" />
+                            <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-[#ee7c7e] shadow-[0_0_40px_rgba(238,124,126,0.4)]">
+                                <AutoStoriesIcon sx={{ fontSize: 32 }} />
+                            </div>
+                            <h3 className="relative mt-8 max-w-2xl text-2xl font-black leading-tight tracking-tight md:text-4xl">
+                                {az
+                                    ? "Jurnalın arxivinə daxil olun və məqalələri oxuyun"
+                                    : "Access the journal archive and read the articles"}
+                            </h3>
+                            <a
+                                href={buttonHref}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="relative mt-10 inline-flex items-center gap-3 rounded-2xl bg-white px-10 py-5 text-[12px] font-black uppercase tracking-[0.2em] text-[#1a2355] shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-[#ee7c7e] hover:text-white"
+                            >
+                                {buttonLabel}
+                                <PublicIcon sx={{ fontSize: 18 }} />
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            ) : null}
         </main>
     );
 }

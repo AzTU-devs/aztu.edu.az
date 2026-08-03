@@ -1412,36 +1412,6 @@ const az = {
       },
     },
     research: {
-      scientificJournals: {
-        eyebrow: "Tədqiqat",
-        subtitle: "AzTU-nun nəşr etdiyi elmi jurnallar.",
-        breadcrumb: "Elmi Jurnallar",
-        machineScience: {
-          title: "Maşın Elmi",
-          about: "AzTU tərəfindən nəşr edilən elmi jurnal. Mühəndislik və texnologiya sahəsində orijinal tədqiqat işlərini dərc edir.",
-          details: {
-            issn: "2227-6912",
-            eissn: "2790-0479",
-            year: "1948",
-            issuesPerYear: "2",
-            language: "Azərbaycan, Rus, İngilis",
-            founder: "Azərbaycan Texniki Universiteti",
-            link: "https://aztu.edu.az/elmi-jurnallar/masin-elmi",
-          },
-        },
-        energySustainability: {
-          title: "Enerji Davamlılığı, Risklər və Qərarların Qəbul Edilməsi",
-          about: "Enerji davamlılığı, risk idarəetməsi və qərar qəbul etmə proseslərinə dair beynəlxalq elmi jurnal.",
-          details: {
-            issn: "3023-5294",
-            language: "İngilis",
-            year: "2023",
-            issuesPerYear: "2",
-            founder: "Azərbaycan Texniki Universiteti",
-            link: "https://aztu.edu.az/elmi-jurnallar/enerji-davamliligi",
-          },
-        },
-      },
       priorities: {
         eyebrow: "Tədqiqat",
         title: "Prioritet Tədqiqat İstiqamətləri",
