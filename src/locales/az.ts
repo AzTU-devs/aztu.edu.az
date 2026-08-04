@@ -1052,104 +1052,10 @@ const az = {
         ],
       },
 
-      tau: {
-        eyebrow: "Bağlı Qurum",
-        title: "Türkiyə–Azərbaycan Universiteti",
-        subtitle: "Ali təhsil sahəsində müasir və innovativ əməkdaşlıq modeli.",
-        breadcrumb: "TAU",
-        aboutTitle: "TAU haqqında",
-        paragraphs: [
-          "Türkiyə–Azərbaycan Universiteti iki qardaş ölkə arasında ali təhsil sahəsində strateji tərəfdaşlığın müasir modelidir. Universitet hər iki ölkənin akademik ənənələrini və qabaqcıl təhsil yanaşmalarını birləşdirərək beynəlxalq standartlara uyğun mühit formalaşdırır.",
-          "Təhsil proqramları Türkiyənin aparıcı universitetləri (İTÜ, ODTÜ, Hacettepe) və AzTU-nun sıx əməkdaşlığı ilə hazırlanır. Məqsəd qlobal rəqabətə davamlı mühəndislər hazırlamaqdır.",
-          "Tədris prosesi müasir laboratoriyalar və sənaye ilə inteqrasiya olunmuş praktik yanaşma üzərində qurulub."
-        ],
-        websiteUrl: "https://tau.edu.az/",
-        programmesTitle: "Təklif edilən proqramlar",
-        facts: [
-          { label: "Təsis ili", value: "2024" },
-          { label: "Məkan", value: "Bakı, Azərbaycan" },
-          { label: "Tələbə", value: "3000+" },
-          { label: "Dərəcə Proqramları", value: "30+" },
-        ],
-        related: [
-          { title: "İnformasiya Texnologiyaları İnstitutu", href: "/about/iit" },
-          { title: "İdarəetmə Sistemləri İnstitutu", href: "/about/ics" },
-          { title: "Bakı Texniki Kollecləri", href: "/about/baku-technical-colleges" },
-        ],
-      },
 
-      iit: {
-        eyebrow: "Bağlı Qurum",
-        title: "İnformasiya Texnologiyaları İnstitutu",
-        subtitle: "AzTU-nun İKT sahəsində tədqiqat və təhsil mərkəzi.",
-        breadcrumb: "İTİ",
-        aboutTitle: "İnstitut haqqında",
-        paragraphs: [
-          "AzTU təhsil, tədqiqat və innovasiyanın inteqrasiyasını gücləndirən strateji tərəfdaşlıqlar vasitəsilə müasir akademik ekosistem formalaşdırır.",
-          "AMEA-nın İnformasiya Texnologiyaları İnstitutu rəqəmsal transformasiya, süni intellekt və data elmi sahəsində ölkənin aparıcı elmi mərkəzidir.",
-          "AzTU ilə əməkdaşlıq çərçivəsində institut birgə elmi layihələr həyata keçirir və qabaqcıl biliklərin tədrisə inteqrasiyasını təmin edir."
-        ],
-        websiteUrl: "https://ict.az/",
-        related: [
-          { title: "Türkiyə-Azərbaycan Universiteti (TAU)", href: "/about/tau" },
-          { title: "İdarəetmə Sistemləri İnstitutu", href: "/about/ics" },
-          { title: "Bakı Texniki Kollecləri", href: "/about/baku-technical-colleges" },
-        ],
-      },
 
-      ics: {
-        eyebrow: "Bağlı Qurum",
-        title: "İdarəetmə Sistemləri İnstitutu",
-        subtitle: "Avtomatlaşdırma və idarəetmə texnologiyaları üzrə lider tədqiqat müəssisəsi.",
-        breadcrumb: "İSİ",
-        aboutTitle: "İnstitut haqqında",
-        paragraphs: [
-          "İdarəetmə Sistemləri İnstitutu sistem mühəndisliyi və intellektual idarəetmə texnologiyaları sahəsində ixtisaslaşmış nüfuzlu elmi müəssisədir.",
-          "AzTU ilə tərəfdaşlıq çərçivəsində fənlərarası tədqiqatlar dəstəklənir və mühəndislik təhsilinin inkişafına töhfə verilir."
-        ],
-        websiteUrl: "https://isi.az/",
-        related: [
-          { title: "Türkiyə-Azərbaycan Universiteti (TAU)", href: "/about/tau" },
-          { title: "İnformasiya Texnologiyaları İnstitutu", href: "/about/iit" },
-          { title: "Bakı Texniki Kollecləri", href: "/about/baku-technical-colleges" },
-        ],
-      },
 
-      bakuTechnicalColleges: {
-        eyebrow: "Bağlı Qurum",
-        title: "Bakı Texniki Kolleci",
-        subtitle: "Əmək bazarının tələblərinə uyğun peşəkar kadrların hazırlanması.",
-        breadcrumb: "Bakı Texniki Kolleci",
-        aboutTitle: "Kollec haqqında",
-        paragraphs: [
-          "Bakı Texniki Kolleci 1996-cı ildə Bakı Politexnik və Maşınqayırma texnikumlarının birləşdirilməsi əsasında yaradılmışdır.",
-          "2015-ci ildən AzTU-nun nəzdində fəaliyyət göstərən kollec subbakalavr səviyyəsində müasir təhsil proqramları təqdim edir."
-        ],
-        websiteUrl: "https://bakitexnikikolleci.edu.az/",
-        related: [
-          { title: "Bakı Dövlət Kollecləri", href: "/about/baku-state-colleges" },
-          { title: "Türkiyə-Azərbaycan Universiteti (TAU)", href: "/about/tau" },
-          { title: "İnformasiya Texnologiyaları İnstitutu", href: "/about/iit" },
-        ],
-      },
 
-      bakuStateColleges: {
-        eyebrow: "Bağlı Qurum",
-        title: "Bakı Dövlət Rabitə və Nəqliyyat Kolleci",
-        subtitle: "Rabitə və nəqliyyat sahələrində orta ixtisas təhsilini təmin edən aparıcı müəssisə.",
-        breadcrumb: "BDRNK",
-        aboutTitle: "Kollec haqqında",
-        paragraphs: [
-          "Bakı Dövlət Rabitə və Nəqliyyat Kolleci AzTU-nun nəzdində fəaliyyət göstərən, rəqabətədavamlı mütəxəssislər hazırlayan təhsil ocağıdır.",
-          "Kollecin tarixi 1931-ci ilə söykənir. Bu gün müasir tədris mühiti ilə tələbələrin peşəkar kompetensiyalarını inkişaf etdirir."
-        ],
-        websiteUrl: "https://rabitakolleci.edu.az/",
-        related: [
-          { title: "Bakı Texniki Kolleci", href: "/about/baku-technical-colleges" },
-          { title: "Türkiyə-Azərbaycan Universiteti (TAU)", href: "/about/tau" },
-          { title: "İnformasiya Texnologiyaları İnstitutu", href: "/about/iit" },
-        ],
-      },
 
       generalPolicies: {
         eyebrow: "Siyasətlər və Sənədlər",

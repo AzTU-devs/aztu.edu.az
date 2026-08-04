@@ -1,17 +1,15 @@
 "use client";
 
-import { use, useEffect, useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { FacultyPanel, FACULTY_PALETTES } from "@/components/faculty/ui";
+import { use, useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { FacultyPanel } from "@/components/faculty/ui";
 import InfoIcon from "@mui/icons-material/Info";
 import TrackChangesIcon from "@mui/icons-material/TrackChanges";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import ScienceIcon from "@mui/icons-material/Science";
 import BusinessIcon from "@mui/icons-material/Business";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-import SchoolIcon from "@mui/icons-material/School";
 import PublicIcon from "@mui/icons-material/Public";
-import PersonIcon from "@mui/icons-material/Person";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { getFacultyBySlug } from "@/services/facultyService/facultyService";
@@ -21,32 +19,6 @@ import AssignedNewsSection from "@/components/news/AssignedNewsSection";
 
 interface Props {
   params: Promise<{ facultyId: string }>;
-}
-
-function StatCard({ label, value, icon: Icon, index }: { label: string; value: number; icon: any; index: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const palette = FACULTY_PALETTES[index % FACULTY_PALETTES.length];
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 12 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: index * 0.04, duration: 0.4 }}
-      className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md dark:border-white/10 dark:bg-slate-900"
-    >
-      <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${palette.tint}`}>
-        <Icon sx={{ fontSize: 24 }} />
-      </div>
-      <span className="block text-3xl font-bold tabular-nums tracking-tight text-slate-900 dark:text-white">
-        {value}
-      </span>
-      <span className="mt-1 block text-[11px] font-semibold uppercase tracking-wide leading-snug text-slate-500 dark:text-slate-400">
-        {label}
-      </span>
-    </motion.div>
-  );
 }
 
 const SECTION_ICONS: Record<string, React.ElementType> = {
@@ -80,19 +52,7 @@ export default function FacultyHaqqimizdaPage({ params }: Props) {
       });
   }, [facultySlug, currentLang]);
 
-  const stats = faculty ? [
-    { label: currentLang === "az" ? "Kafedralar" : "Departments", value: faculty.cafedra_count, icon: AccountTreeIcon },
-    { label: currentLang === "az" ? "Dekan müavinləri" : "Deputy Deans", value: faculty.deputy_dean_count, icon: PersonIcon },
-    { label: currentLang === "az" ? "Bakalavr ixtisasları" : "Bachelor Programs", value: faculty.bachelor_programs_count, icon: SchoolIcon },
-    { label: currentLang === "az" ? "Magistratura ixtisasları" : "Master Programs", value: faculty.master_programs_count, icon: SchoolIcon },
-    { label: currentLang === "az" ? "Doktorantura ixtisasları" : "PhD Programs", value: faculty.phd_programs_count, icon: SchoolIcon },
-    { label: currentLang === "az" ? "Laboratoriyalar" : "Laboratories", value: faculty.laboratories_count, icon: ScienceIcon },
-    { label: currentLang === "az" ? "Beynəlxalq əlaqələr" : "Int. Collaborations", value: faculty.international_collaborations_count, icon: PublicIcon },
-    { label: currentLang === "az" ? "Sənaye əməkdaşlığı" : "Industrial Partners", value: faculty.industrial_collaborations_count, icon: BusinessIcon },
-    { label: currentLang === "az" ? "Layihə və patentlər" : "Projects & Patents", value: faculty.projects_patents_count, icon: AssignmentIcon },
-  ].filter(s => s.value !== null && s.value !== undefined) : [];
-
-  const renderContentSection = (id: string, title: string, items?: ContentSection[], htmlContent?: string) => {
+  const renderContentSection =(id: string, title: string, items?: ContentSection[], htmlContent?: string) => {
     const hasItems = items && items.length > 0;
     const hasHtml = htmlContent !== undefined && htmlContent !== null && htmlContent !== "";
     if (!hasItems && !hasHtml) return null;
@@ -190,15 +150,6 @@ export default function FacultyHaqqimizdaPage({ params }: Props) {
 
       {/* Directions of action */}
       {renderContentSection("istiqametler", currentLang === "az" ? "Fəaliyyət istiqamətləri" : "Directions of Action", faculty?.directions_of_action)}
-
-      {/* Stats */}
-      {stats.length > 0 && (
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4">
-          {stats.map((stat, i) => (
-            <StatCard key={stat.label} label={stat.label} value={stat.value} icon={stat.icon} index={i} />
-          ))}
-        </div>
-      )}
 
       {/* SDG */}
       {faculty?.sdgs && faculty.sdgs.length > 0 && (

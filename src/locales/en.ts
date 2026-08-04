@@ -960,100 +960,10 @@ const en = {
         ],
       },
 
-      tau: {
-        eyebrow: "Affiliated Entity",
-        title: "Türkiye–Azerbaijan University",
-        subtitle: "A modern model for strategic academic collaboration.",
-        breadcrumb: "TAU",
-        aboutTitle: "About TAU",
-        paragraphs: [
-          "Türkiye–Azerbaijan University (TAU) represents a strategic partnership between two brotherly nations. It combines the academic traditions of both countries to provide international standard education.",
-          "Academic programs are developed with top Turkish universities (ITU, METU, Hacettepe) to produce globally competitive engineers.",
-          "The curriculum is built on practice-oriented learning in modern laboratories."
-        ],
-        websiteUrl: "https://tau.edu.az/",
-        programmesTitle: "Programs Offered",
-        facts: [
-          { label: "Established", value: "2024" },
-          { label: "Location", value: "Baku, Azerbaijan" },
-          { label: "Students", value: "3,000+" },
-          { label: "Degrees", value: "30+" },
-        ],
-        related: [
-          { title: "IIT", href: "/about/iit" },
-          { title: "ICS", href: "/about/ics" },
-          { title: "Technical Colleges", href: "/about/colleges" },
-        ],
-      },
 
-      iit: {
-        eyebrow: "Affiliated Entity",
-        title: "Institute of Information Technology",
-        subtitle: "AzTU’s hub for ICT research and education.",
-        breadcrumb: "IIT",
-        aboutTitle: "About the Institute",
-        paragraphs: [
-          "AzTU fosters a dynamic academic ecosystem through strategic partnerships.",
-          "The Institute of Information Technology (ANAS) is a leader in digital transformation, AI, and data science.",
-          "Through joint initiatives, we integrate cutting-edge tech into our curricula."
-        ],
-        websiteUrl: "https://ict.az/en/",
-        related: [
-          { title: "TAU", href: "/about/tau" },
-          { title: "ICS", href: "/about/ics" },
-        ],
-      },
 
-      ics: {
-        eyebrow: "Affiliated Entity",
-        title: "Institute of Control Systems",
-        subtitle: "Leading research in automation and control technologies.",
-        breadcrumb: "ICS",
-        aboutTitle: "About the Institute",
-        paragraphs: [
-          "The Institute of Control Systems specializes in systems engineering and automation.",
-          "Our partnership enhances interdisciplinary research and the development of intelligent management systems."
-        ],
-        websiteUrl: "https://isi.az/en/",
-        related: [
-          { title: "TAU", href: "/about/tau" },
-          { title: "IIT", href: "/about/iit" },
-        ],
-      },
 
-      bakuTechnicalColleges: {
-        eyebrow: "Affiliated Entity",
-        title: "Baku Technical College",
-        subtitle: "Preparing competitive professionals for the modern labor market.",
-        breadcrumb: "Technical College",
-        aboutTitle: "About the College",
-        paragraphs: [
-          "Founded in 1996 through a merger of historic technical schools, it has a long legacy in engineering training.",
-          "Since 2015, it has operated under AzTU, offering sub-bachelor level programs in various technical fields."
-        ],
-        websiteUrl: "https://bakitexnikikolleci.edu.az/",
-        related: [
-          { title: "Communication College", href: "/about/baku-state-colleges" },
-          { title: "TAU", href: "/about/tau" },
-        ],
-      },
 
-      bakuStateColleges: {
-        eyebrow: "Affiliated Entity",
-        title: "Baku State College of Communication and Transport",
-        subtitle: "A leader in mid-level communication and transport education.",
-        breadcrumb: "Communication College",
-        aboutTitle: "About the College",
-        paragraphs: [
-          "AzTU's specialized college for transport and communication, producing competitive experts since 1931.",
-          "We emphasize technical proficiency and analytical thinking through modern practice-oriented methods."
-        ],
-        websiteUrl: "https://rabitakolleci.edu.az/",
-        related: [
-          { title: "Technical College", href: "/about/baku-technical-colleges" },
-          { title: "TAU", href: "/about/tau" },
-        ],
-      },
 
       generalPolicies: {
         eyebrow: "Policies & Documents",

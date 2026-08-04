@@ -37,6 +37,8 @@ export interface AboutList {
 /** One vice-rector card, with its own "see profile" detail copy. */
 export interface AboutPerson {
     name: string | null;
+    /** Family name — the former-rectors page and a partner institution's director. */
+    surname: string | null;
     /** "Doctor of Technical Sciences, Professor". */
     degree: string | null;
     /** "Vice-Rector for Academic Affairs". */
