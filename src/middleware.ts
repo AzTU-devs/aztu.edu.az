@@ -99,6 +99,8 @@ const SLUG_MAP: Record<string, string> = {
     "masin-elmi": "machine-science",
     "energy-sustainability-risks-and-decision-making": "enerji-davamliligi-riskler-ve-qerarlarin-qebul-edilmesi",
     "enerji-davamliligi-riskler-ve-qerarlarin-qebul-edilmesi": "energy-sustainability-risks-and-decision-making",
+    "scientific-works": "elmi-eserler",
+    "elmi-eserler": "scientific-works",
     "internal-grant-programs": "daxili-qrant-proqramlari",
     "daxili-qrant-proqramlari": "internal-grant-programs",
     "seminars-and-trainings": "seminarlar-ve-telimler",
@@ -286,7 +288,7 @@ const SLUG_MAP: Record<string, string> = {
 const EN_SLUGS = new Set([
     "research", "about", "management", "internationalization", "community", "contact-us",
     "research-activity", "performance-and-evaluation", "incentive-mechanism", "conferences-and-events", "publications-and-broadcasting",
-    "open-access-policy", "scientific-journals", "machine-science", "energy-sustainability-risks-and-decision-making",
+    "open-access-policy", "scientific-journals", "machine-science", "energy-sustainability-risks-and-decision-making", "scientific-works",
     "internal-grant-programs", "seminars-and-trainings", "research-projects", "intellectual-property-and-patents",
     "research-institutes", "research-laboratories", "vision-mission", "history-of-aztu",
     "75th-anniversary-film", "leadership-and-management", "rector", "rectors-office", "vice-rector", "vice-rectors", "scientific-board",
@@ -431,10 +433,15 @@ export function middleware(request: NextRequest) {
         
         if (segments_rest[1] === "nesrler-ve-yayim" && (segments_rest[2] === "open-access-policy" || segments_rest[2] === "aciq-giris-siyaseti")) {
             segments_rest = ["tedqiqat", "nesrler-ve-yayim", "aciq-giris-siyaseti"];
-        } else if (segments_rest[2] === "scientific-journals" || segments_rest[2] === "elmi-jurnallar") {
-            segments_rest[2] = "elmi-jurnallar";
-            if (segments_rest[3] === "machine-science" || segments_rest[3] === "masin-elmi") segments_rest[3] = "masin-elmi";
-            if (segments_rest[3] === "energy-sustainability-risks-and-decision-making" || segments_rest[3] === "enerji-davamliligi-riskler-ve-qerarlarin-qebul-edilmesi") segments_rest[3] = "enerji-davamliligi-riskler-ve-qerarlarin-qebul-edilmesi";
+        } else if (segments_rest[1] === "scientific-journals" || segments_rest[1] === "elmi-jurnallar") {
+            // "elmi-jurnallar" is a direct child of research → the section is at
+            // index 1 and the journal slug at index 2. The az URL already equals
+            // the internal path, but the en URL must be translated here or it
+            // rewrites to a non-existent /tedqiqat/scientific-journals/… route.
+            segments_rest[1] = "elmi-jurnallar";
+            if (segments_rest[2] === "machine-science" || segments_rest[2] === "masin-elmi") segments_rest[2] = "masin-elmi";
+            if (segments_rest[2] === "energy-sustainability-risks-and-decision-making" || segments_rest[2] === "enerji-davamliligi-riskler-ve-qerarlarin-qebul-edilmesi") segments_rest[2] = "enerji-davamliligi-riskler-ve-qerarlarin-qebul-edilmesi";
+            if (segments_rest[2] === "scientific-works" || segments_rest[2] === "elmi-eserler") segments_rest[2] = "elmi-eserler";
         } else if (segments_rest[1] === "tedqiqat-fealiyyeti" && segments_rest[2]) {
             const researchActivityMap: Record<string, string> = {
                 "intellectual-property-and-patents": "eqli-mulkiyyet-ve-patentler",
