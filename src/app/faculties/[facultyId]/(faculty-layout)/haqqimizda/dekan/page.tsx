@@ -43,7 +43,7 @@ export default function DekanPage({ params }: Props) {
 
     const director = faculty?.director;
     const directorFullName = director
-        ? [director.first_name, director.last_name, director.father_name].filter(Boolean).join(" ")
+        ? [director.first_name, director.last_name].filter(Boolean).join(" ")
         : "";
 
     const educations: Education[] =
@@ -143,10 +143,10 @@ export default function DekanPage({ params }: Props) {
                                     {director.phone}
                                 </a>
                             )}
-                            {director.room_number && (
+                            {director.room && (
                                 <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-xs font-semibold text-slate-700 dark:border-white/10 dark:text-white">
                                     <LocationOnIcon sx={{ fontSize: 16 }} />
-                                    {director.room_number}
+                                    {director.room}
                                 </span>
                             )}
                         </div>

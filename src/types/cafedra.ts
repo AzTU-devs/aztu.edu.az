@@ -14,14 +14,13 @@ export interface Personnel {
   id: number;
   first_name: string;
   last_name: string;
-  father_name: string;
   profile_image: string | null;
   scientific_degree: string | null;
   scientific_title: string | null;
   bio: string | null;
   email: string | null;
   phone: string | null;
-  room_number: string | null;
+  room: string | null;
   duty: string | null;
   scientific_name: string | null;
   scientific_research_fields?: string[];

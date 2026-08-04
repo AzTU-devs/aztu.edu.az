@@ -35,7 +35,7 @@ export default function DepartmentStaffPage({ params }: Props) {
         const q = search.trim().toLocaleLowerCase(locale);
         if (!q) return workers;
         return workers.filter((w) => {
-            const fullName = [w.first_name, w.last_name, w.father_name]
+            const fullName = [w.first_name, w.last_name]
                 .filter(Boolean)
                 .join(" ")
                 .toLocaleLowerCase(locale);
@@ -119,7 +119,7 @@ export default function DepartmentStaffPage({ params }: Props) {
                         <StaffCard
                             key={w.id}
                             fullName={
-                                [w.first_name, w.last_name, w.father_name].filter(Boolean).join(" ") ||
+                                [w.first_name, w.last_name].filter(Boolean).join(" ") ||
                                 (currentLang === "az" ? "Naməlum" : "Unknown")
                             }
                             role={w.duty}

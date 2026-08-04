@@ -45,7 +45,7 @@ export default function KafedraMudiriPage({ params }: Props) {
 
   const head = cafedra?.director;
   const headFullName = head
-    ? [head.first_name, head.last_name, head.father_name].filter(Boolean).join(" ")
+    ? [head.first_name, head.last_name].filter(Boolean).join(" ")
     : "";
 
   if (loading) {
@@ -140,10 +140,10 @@ export default function KafedraMudiriPage({ params }: Props) {
                   {head.phone}
                 </a>
               )}
-              {head.room_number && (
+              {head.room && (
                 <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-xs font-semibold text-slate-700 dark:border-white/10 dark:text-white">
                   <LocationOnIcon sx={{ fontSize: 16 }} />
-                  {head.room_number}
+                  {head.room}
                 </span>
               )}
             </div>

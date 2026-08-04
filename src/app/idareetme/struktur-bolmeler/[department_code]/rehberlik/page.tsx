@@ -56,7 +56,7 @@ export default function DepartmentLeadershipPage({ params }: Props) {
     if (!director) return <ComingSoon label={t.noData} />;
 
     const profileImage = getImageUrl(director.profile_image);
-    const fullName = [director.first_name, director.last_name, director.father_name]
+    const fullName = [director.first_name, director.last_name]
         .filter(Boolean)
         .join(" ");
 
@@ -140,10 +140,10 @@ export default function DepartmentLeadershipPage({ params }: Props) {
                                     {director.phone}
                                 </a>
                             )}
-                            {director.room_number && (
+                            {director.room && (
                                 <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-xs font-bold text-[#1a2355] dark:border-white/10 dark:text-white">
                                     <LocationOnIcon sx={{ fontSize: 15 }} />
-                                    {t.office} {director.room_number}
+                                    {t.office} {director.room}
                                 </span>
                             )}
                         </div>

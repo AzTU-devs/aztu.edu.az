@@ -27,12 +27,11 @@ export interface SectionItem {
 export interface DepartmentDirector {
   first_name: string;
   last_name: string;
-  father_name: string;
   scientific_degree?: string;
   scientific_title?: string;
   email?: string;
   phone?: string;
-  room_number?: string;
+  room?: string;
   bio?: string;
   profile_image?: string;
   working_hours?: WorkingHour[] | string;
@@ -43,7 +42,6 @@ export interface DepartmentWorker {
   id: number;
   first_name: string;
   last_name: string;
-  father_name: string;
   duty: string;
   scientific_info?: string;
   email?: string;

@@ -11,12 +11,11 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 export type HeroLeader = {
     first_name?: string | null;
     last_name?: string | null;
-    father_name?: string | null;
     scientific_title?: string | null;
     scientific_degree?: string | null;
     email?: string | null;
     phone?: string | null;
-    room_number?: string | null;
+    room?: string | null;
     profile_image?: string | null;
 };
 
@@ -52,10 +51,10 @@ export default function HeroLeaderCard({
     };
 
     const name = leader
-        ? [leader.first_name, leader.last_name, leader.father_name].filter(Boolean).join(" ")
+        ? [leader.first_name, leader.last_name].filter(Boolean).join(" ")
         : "";
     const photo = leader ? resolveImage(leader.profile_image) : undefined;
-    const hasContact = Boolean(leader?.email || leader?.phone || leader?.room_number);
+    const hasContact = Boolean(leader?.email || leader?.phone || leader?.room);
 
     return (
         <motion.div
@@ -126,10 +125,10 @@ export default function HeroLeaderCard({
                                 {leader.phone}
                             </a>
                         )}
-                        {leader?.room_number && (
+                        {leader?.room && (
                             <span className="inline-flex items-center gap-2 rounded-xl border border-white/12 bg-white/[0.06] px-3.5 py-2.5 text-xs font-bold text-white">
                                 <MeetingRoomIcon sx={{ fontSize: 15 }} className="shrink-0 text-[#ee7c7e]" />
-                                {t.room} {leader.room_number}
+                                {t.room} {leader.room}
                             </span>
                         )}
                     </div>

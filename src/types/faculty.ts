@@ -2,7 +2,6 @@ export interface PersonnelItem {
   id: number;
   first_name: string;
   last_name: string;
-  father_name: string;
   duty: string;
   scientific_name: string;
   scientific_degree: string;
@@ -31,14 +30,13 @@ export interface ScientificEvent {
 export interface Director {
   first_name: string;
   last_name: string;
-  father_name: string;
   scientific_degree: string;
   scientific_title: string;
   bio: string;
   profile_image: string | null;
   email: string;
   phone: string;
-  room_number: string;
+  room: string;
   scientific_research_fields: string[];
   working_hours: WorkingHour[];
   scientific_events: ScientificEvent[];

@@ -41,7 +41,7 @@ export default function AkademikHeyatPage({ params }: Props) {
         const q = search.trim().toLocaleLowerCase(currentLang === "az" ? "az" : "en");
         if (!q) return workers;
         return workers.filter((w) => {
-            const fullName = [w.first_name, w.last_name, w.father_name]
+            const fullName = [w.first_name, w.last_name]
                 .filter(Boolean)
                 .join(" ")
                 .toLocaleLowerCase(currentLang === "az" ? "az" : "en");
@@ -117,7 +117,7 @@ export default function AkademikHeyatPage({ params }: Props) {
                     ) : (
                         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                             {filtered.map((w, index) => {
-                                const fullName = [w.first_name, w.last_name, w.father_name]
+                                const fullName = [w.first_name, w.last_name]
                                     .filter(Boolean)
                                     .join(" ");
                                 return (

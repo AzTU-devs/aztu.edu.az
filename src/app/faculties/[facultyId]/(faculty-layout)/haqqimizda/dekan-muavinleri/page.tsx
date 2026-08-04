@@ -72,7 +72,7 @@ export default function DekanMuavinleriPage({ params }: Props) {
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {deputyDeans.map((vd, index) => {
-                        const fullName = [vd.first_name, vd.last_name, vd.father_name].filter(Boolean).join(" ");
+                        const fullName = [vd.first_name, vd.last_name].filter(Boolean).join(" ");
                         return (
                             <StaffCard
                                 key={vd.id}

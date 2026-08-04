@@ -72,7 +72,7 @@ export default function ElmiSuraPage({ params }: Props) {
                 <div className="space-y-2.5">
                     {members.map((m, idx) => {
                         const palette = FACULTY_PALETTES[idx % FACULTY_PALETTES.length];
-                        const fullName = [m.first_name, m.last_name, m.father_name]
+                        const fullName = [m.first_name, m.last_name]
                             .filter(Boolean)
                             .join(" ");
                         return (

@@ -51,7 +51,7 @@ export default function CafedraEmekdaslarPage({ params }: Props) {
   const uniqueWorkers = Array.from(new Map(allWorkers.map(item => [item.id, item])).values());
 
   const filtered = uniqueWorkers.filter((w) => {
-    const fullName = [w.first_name, w.last_name, w.father_name].filter(Boolean).join(" ").toLowerCase();
+    const fullName = [w.first_name, w.last_name].filter(Boolean).join(" ").toLowerCase();
     const duty = (w.duty || w.scientific_title || w.scientific_degree || "").toLowerCase();
     const q = search.toLowerCase();
     return fullName.includes(q) || duty.includes(q);
@@ -118,7 +118,7 @@ export default function CafedraEmekdaslarPage({ params }: Props) {
           ) : (
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
               {filtered.map((p, index) => {
-                const fullName = [p.first_name, p.last_name, p.father_name].filter(Boolean).join(" ");
+                const fullName = [p.first_name, p.last_name].filter(Boolean).join(" ");
                 return (
                   <StaffCard
                     key={p.id}

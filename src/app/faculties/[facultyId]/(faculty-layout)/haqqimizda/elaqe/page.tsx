@@ -42,8 +42,8 @@ export default function ElaqePage({ params }: Props) {
         {
             icon: LocationOnIcon,
             label: currentLang === "az" ? "Ünvan" : "Office Address",
-            value: director?.room_number
-                ? `${currentLang === "az" ? "Otaq" : "Room"} ${director.room_number}`
+            value: director?.room
+                ? `${currentLang === "az" ? "Otaq" : "Room"} ${director.room}`
                 : currentLang === "az" ? "Bina 6, AzTU" : "Building 6, AzTU",
             sub: currentLang === "az" ? "H.Cavid pr. 25, Bakı" : "25 H.Javid Ave, Baku",
         },
