@@ -17,6 +17,8 @@ import QsLogo from "@/../public/logos/qs-logo.svg"
 import TheLogo from "@/../public/logos/the-logo.svg"
 import GreenMetricLogo from "@/../public/logos/greenmetric-logo.png"
 import { getArticleCounters } from "@/services/article/articleService"
+import { getHomePage } from "@/services/homeService/homeService"
+import type { HomePage } from "@/types/home"
 import apiClient from "@/util/apiClient"
 import {
     getHeroCertificates,
@@ -118,6 +120,7 @@ export default function HeroSection() {
     const { lang } = useLanguage()
 
     const [videoSrc, setVideoSrc] = useState<string>(LOCAL_VIDEO)
+    const [homePage, setHomePage] = useState<HomePage | null>(null)
     const [certificates, setCertificates] = useState<HeroCertificate[]>([])
     const [rawIndex, setIndex] = useState(0)
     const [cycleKey, setCycleKey] = useState(0)
@@ -205,6 +208,18 @@ export default function HeroSection() {
         })
         return () => {
             alive = false
+        }
+    }, [lang])
+
+    // Home CMS metrics. Keyed on `lang` so a language switch refetches; a
+    // cancelled guard prevents a stale response from overwriting a newer one.
+    useEffect(() => {
+        let cancelled = false
+        getHomePage("home", lang).then((result) => {
+            if (!cancelled) setHomePage(result)
+        })
+        return () => {
+            cancelled = true
         }
     }, [lang])
 
@@ -423,7 +438,22 @@ export default function HeroSection() {
 
     const currentTitle = t.hero.title
     const RANKING_LOGOS = [QsLogo, TheLogo, GreenMetricLogo]
-    const quickStats = t.hero.stats.map((stat, i) => ({
+    /* The ranking logos/icons are decoration mapped BY INDEX and stay in code;
+       only label/value come from the CMS. When hero_metrics is published it is
+       the source of truth, otherwise the built-in locale copy keeps the rail
+       populated so the hero never regresses to empty tiles. */
+    const heroMetrics = homePage?.hero_metrics
+    const quickStats = (
+        heroMetrics && heroMetrics.length > 0
+            ? heroMetrics.map((metric) => ({
+                  label: metric.label,
+                  value: `${metric.value}${metric.suffix}`,
+              }))
+            : t.hero.stats.map((stat: { label: string; value: string }) => ({
+                  label: stat.label,
+                  value: stat.value,
+              }))
+    ).map((stat, i) => ({
         icon: i === 3 ? GroupsIcon : WorkspacePremiumIcon,
         logo: i < 3 ? RANKING_LOGOS[i] : null,
         label: stat.label,
@@ -686,22 +716,29 @@ export default function HeroSection() {
                         aria-hidden={isCert || undefined}
                         {...inertWhen(isCert)}
                     >
-                        {quickStats.map((stat, i) => (
+                        {quickStats.map((stat, i) => {
+                            /* Split "801+" into the number and the trailing symbol so
+                               the suffix can carry the coral accent on its own. Works
+                               for CMS values and the locale fallback alike. */
+                            const vm = String(stat.value).match(/^([\d.,\s]+)(.*)$/)
+                            const vNum = vm ? vm[1].trim() : stat.value
+                            const vSuf = vm ? vm[2].trim() : ""
+                            return (
                             <motion.div
                                 key={i}
-                                initial={reduced ? false : { opacity: 0, x: 60 }}
-                                animate={{ opacity: 1, x: 0 }}
+                                initial={reduced ? false : { opacity: 0, y: 24 }}
+                                animate={{ opacity: 1, y: 0 }}
                                 transition={{
-                                    delay: reduced ? 0 : 1.3 + i * 0.15,
-                                    duration: reduced ? 0 : 0.7,
+                                    delay: reduced ? 0 : 1.3 + i * 0.12,
+                                    duration: reduced ? 0 : 0.6,
                                     ease: [0.23, 1, 0.32, 1],
                                 }}
-                                whileHover={{ x: -6, scale: 1.01, transition: { duration: 0.3 } }}
-                                className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-xl md:rounded-2xl p-2.5 md:p-3.5 flex items-center gap-3 group hover:bg-white/10 transition-colors duration-400 shadow-[0_15px_30px_rgba(0,0,0,0.25)] relative overflow-hidden"
+                                whileHover={{ y: -4, transition: { duration: 0.25 } }}
+                                className="group relative flex flex-col justify-between gap-3 min-h-[104px] md:min-h-[118px] p-3 md:p-4 rounded-2xl bg-white/[0.06] backdrop-blur-2xl border border-white/10 hover:bg-white/[0.1] hover:border-[#ee7c7e]/40 transition-colors duration-300 shadow-[0_15px_30px_rgba(0,0,0,0.25)] overflow-hidden"
                             >
-                                <div className="absolute top-0 right-0 w-14 h-14 md:w-20 md:h-20 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-xl group-hover:bg-[#ee7c7e]/10 transition-colors" />
+                                <div className="absolute -top-6 -right-6 w-20 h-20 bg-white/5 rounded-full blur-2xl group-hover:bg-[#ee7c7e]/15 transition-colors duration-500" />
                                 <div
-                                    className={`rounded-lg md:rounded-xl flex items-center justify-center transition-colors duration-400 shadow-md shrink-0 overflow-hidden ${stat.logo ? "w-16 h-8 md:w-20 md:h-9 bg-white px-1.5 py-1" : "w-8 h-8 md:w-10 md:h-10 bg-white/10 group-hover:bg-[#ee7c7e]"}`}
+                                    className={`relative z-10 rounded-xl flex items-center justify-center transition-colors duration-300 shadow-md shrink-0 overflow-hidden ${stat.logo ? "w-[70px] h-8 md:w-20 md:h-9 bg-white px-1.5 py-1" : "w-8 h-8 md:w-10 md:h-10 bg-white/10 group-hover:bg-[#ee7c7e]"}`}
                                 >
                                     {stat.logo ? (
                                         <Image
@@ -713,21 +750,30 @@ export default function HeroSection() {
                                         />
                                     ) : (
                                         <stat.icon
-                                            className="text-white group-hover:scale-110 transition-transform duration-400"
+                                            className="text-white group-hover:scale-110 transition-transform duration-300"
                                             sx={{ fontSize: { xs: 16, md: 20 } }}
                                         />
                                     )}
                                 </div>
-                                <div className="min-w-0">
-                                    <p className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] text-white/40 mb-0.5 group-hover:text-[#ee7c7e] transition-colors truncate">
+                                <div className="relative z-10 min-w-0">
+                                    <p className="flex items-baseline gap-0.5 leading-none">
+                                        <span className="text-2xl md:text-3xl font-black text-white tracking-tighter truncate">
+                                            {vNum}
+                                        </span>
+                                        {vSuf && (
+                                            <span className="text-lg md:text-xl font-black text-[#ee7c7e]">
+                                                {vSuf}
+                                            </span>
+                                        )}
+                                    </p>
+                                    <p className="mt-1.5 text-[8px] md:text-[9px] font-black uppercase tracking-[0.18em] text-white/45 group-hover:text-[#ee7c7e] transition-colors duration-300 truncate">
                                         {stat.label}
                                     </p>
-                                    <p className="text-sm md:text-lg lg:text-xl font-black text-white tracking-tighter truncate">
-                                        {stat.value}
-                                    </p>
                                 </div>
+                                <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ee7c7e] group-hover:w-full transition-all duration-500" />
                             </motion.div>
-                        ))}
+                            )
+                        })}
 
                         {/* Scopus & WoS */}
                         <motion.div
@@ -738,7 +784,7 @@ export default function HeroSection() {
                                 duration: reduced ? 0 : 0.7,
                                 ease: [0.23, 1, 0.32, 1],
                             }}
-                            className="grid grid-cols-2 gap-2"
+                            className="col-span-2 grid grid-cols-2 gap-2"
                         >
                             <a
                                 href="https://www.scopus.com/pages/organization/60071968"
@@ -1101,7 +1147,7 @@ const HERO_CSS = `
 .hx-right{ min-width:0; display:grid; align-items:center; height:100%; }
 .hx-right > *{ grid-area:1/1; min-width:0; }
 
-.hx-stats{ display:flex; flex-direction:column; gap:12px; min-width:0;
+.hx-stats{ display:grid; grid-template-columns:1fr 1fr; gap:12px; min-width:0; align-content:center;
   transition:opacity .5s ease, transform .5s cubic-bezier(.22,1,.36,1); }
 .hx-hero.is-cert .hx-stats{ opacity:0; transform:translateY(-18px) scale(.96); pointer-events:none; }
 

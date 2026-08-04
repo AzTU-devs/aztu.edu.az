@@ -8,7 +8,11 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import PublicIcon from "@mui/icons-material/Public";
 import ScienceIcon from "@mui/icons-material/Science";
+import BarChartIcon from "@mui/icons-material/BarChart";
 import { useTranslation } from "@/hooks/useTranslation";
+import { useLanguage } from "@/context/LanguageContext";
+import { getHomePage } from "@/services/homeService/homeService";
+import type { HomePage } from "@/types/home";
 
 interface Stat {
     icon: React.ElementType;
@@ -27,6 +31,9 @@ const STAT_META = [
     { icon: PublicIcon,       value: 150,    suffix: "+" },
     { icon: ScienceIcon,      value: 100,   suffix: "+" },
 ];
+
+// Icon shown when the CMS publishes more rows than STAT_META has decoration for.
+const FALLBACK_ICON = BarChartIcon;
 
 function useCountUp(target: number, isInView: boolean, duration = 2000) {
     const [count, setCount] = useState(0);
@@ -75,7 +82,10 @@ function StatCard({ stat, index, isInView }: { stat: Stat; index: number; isInVi
         >
             {/* Animated hover highlight */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#ee7c7e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
+
+            {/* Corner glow for depth */}
+            <div className="absolute -top-10 -right-10 w-28 h-28 rounded-full bg-[#1a2355]/50 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
             {/* Icon */}
             <div className="relative z-10 mb-6 w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-inner">
                 <Icon sx={{ fontSize: 32, color: "rgba(255,255,255,0.9)" }} className="group-hover:text-[#ee7c7e] transition-colors" />
@@ -105,14 +115,43 @@ function StatCard({ stat, index, isInView }: { stat: Stat; index: number; isInVi
 
 export default function StatsSection() {
     const t = useTranslation();
+    const { lang } = useLanguage();
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-50px" });
 
-    const stats: Stat[] = STAT_META.map((meta, i) => ({
-        ...meta,
-        label: t.stats.items[i]?.label || "",
-        sublabel: t.stats.items[i]?.sublabel || "",
-    }));
+    const [homePage, setHomePage] = useState<HomePage | null>(null);
+
+    // Home CMS metrics. Keyed on `lang` so a language switch refetches; a
+    // cancelled guard prevents a stale response from overwriting a newer one.
+    useEffect(() => {
+        let cancelled = false;
+        getHomePage("home", lang).then((result) => {
+            if (!cancelled) setHomePage(result);
+        });
+        return () => {
+            cancelled = true;
+        };
+    }, [lang]);
+
+    // Icons stay in code, mapped BY INDEX; only value/suffix/label/sublabel come
+    // from the CMS. When number_metrics is published it drives the rows (the
+    // numeric part of `value` feeds the count-up, `suffix` is appended after);
+    // otherwise the built-in STAT_META + locale copy keeps the section intact.
+    const numberMetrics = homePage?.number_metrics;
+    const stats: Stat[] =
+        numberMetrics && numberMetrics.length > 0
+            ? numberMetrics.map((metric, i) => ({
+                  icon: STAT_META[i]?.icon ?? FALLBACK_ICON,
+                  value: Number(String(metric.value).replace(/[^0-9.]/g, "")) || 0,
+                  suffix: metric.suffix,
+                  label: metric.label,
+                  sublabel: metric.sublabel ?? "",
+              }))
+            : STAT_META.map((meta, i) => ({
+                  ...meta,
+                  label: t.stats.items[i]?.label || "",
+                  sublabel: t.stats.items[i]?.sublabel || "",
+              }));
 
     return (
         <section
@@ -164,14 +203,35 @@ export default function StatsSection() {
                     </motion.h2>
                 </div>
 
-                {/* Stats Grid — all items in one row */}
-                <div className="flex flex-wrap justify-center gap-4 lg:gap-6">
-                    {stats.map((stat, i) => (
-                        <div key={i} className="basis-[calc(50%-0.5rem)] sm:basis-[calc(33.333%-0.75rem)] md:basis-[calc(25%-0.75rem)] lg:basis-[calc(14.2857%-1.286rem)] min-w-[180px] flex">
-                            <StatCard stat={stat} index={i} isInView={isInView} />
+                {/* Stats — the first four across the top, the remainder centered
+                    beneath. Every cell is locked to a quarter width so a bottom row
+                    of three lands centred directly under the top row of four. */}
+                {(() => {
+                    const topRow = stats.slice(0, 4);
+                    const bottomRow = stats.slice(4);
+                    const cell =
+                        "flex w-[calc(50%-0.5rem)] min-w-[150px] md:w-[calc(25%-1.125rem)] md:min-w-0";
+                    return (
+                        <div className="space-y-4 lg:space-y-6">
+                            <div className="flex flex-wrap justify-center gap-4 lg:gap-6">
+                                {topRow.map((stat, i) => (
+                                    <div key={i} className={cell}>
+                                        <StatCard stat={stat} index={i} isInView={isInView} />
+                                    </div>
+                                ))}
+                            </div>
+                            {bottomRow.length > 0 && (
+                                <div className="flex flex-wrap justify-center gap-4 lg:gap-6">
+                                    {bottomRow.map((stat, i) => (
+                                        <div key={i + 4} className={cell}>
+                                            <StatCard stat={stat} index={i + 4} isInView={isInView} />
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
-                    ))}
-                </div>
+                    );
+                })()}
             </div>
 
             {/* Subtle top/bottom glow borders */}
