@@ -1,4 +1,4 @@
-import type { Lang } from "@/util/apiClient";
+import apiClient, { type Lang } from "@/util/apiClient";
 import type { AboutPage } from "@/types/about";
 
 /**
@@ -49,4 +49,18 @@ export const getAboutPage = async (
         console.warn(`[about] "${pageKey}" could not be reached:`, error);
         return null;
     }
+};
+
+/**
+ * Records a public view of a document — fired when the user opens its preview or
+ * downloads it. This is an admin-only metric, so the call is fire-and-forget:
+ * failures are swallowed and never block or surface in the UI. The backend's
+ * public API-key middleware does not gate this POST.
+ */
+export const incrementDocumentView = (documentId: number): void => {
+    apiClient
+        .post(`/api/about/public/documents/${documentId}/view`)
+        .catch(() => {
+            /* metric only — ignore failures */
+        });
 };

@@ -128,7 +128,7 @@ export default function HeroLeaderCard({
                         {leader?.room && (
                             <span className="inline-flex items-center gap-2 rounded-xl border border-white/12 bg-white/[0.06] px-3.5 py-2.5 text-xs font-bold text-white">
                                 <MeetingRoomIcon sx={{ fontSize: 15 }} className="shrink-0 text-[#ee7c7e]" />
-                                {t.room} {leader.room}
+                                {leader.room}
                             </span>
                         )}
                     </div>

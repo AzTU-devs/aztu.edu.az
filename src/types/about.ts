@@ -59,6 +59,37 @@ export interface AboutLink {
     label: string | null;
 }
 
+/** A heading that groups documents on a regulatory-documents page. */
+export interface AboutDocCategory {
+    category_key: string;
+    name: string | null;
+}
+
+/** The publishing organization a document belongs to — its logo and name are
+ *  shown on the document card. */
+export interface AboutDocOrganization {
+    organization_key: string;
+    /** Logo — an absolute URL or a stored path (resolve with getImageUrl). */
+    logo_url: string | null;
+    name: string | null;
+}
+
+/** One downloadable document card. The file is per-language — the API has
+ *  already resolved `file_url` to the requested language's file. */
+export interface AboutDocument {
+    /** Stable id — used to attribute a public view increment. */
+    id: number;
+    /** Links the card to a doc_categories entry; null = uncategorised. */
+    category_key: string | null;
+    /** Links the card to a doc_organizations entry; null = none. */
+    organization_key: string | null;
+    /** Admin-only metric — never displayed on the public page. */
+    view_count: number;
+    name: string | null;
+    /** The language-specific file — an absolute URL or a stored path. */
+    file_url: string | null;
+}
+
 /** An About screen, already resolved to a single language by the API. */
 export interface AboutPage {
     page_key: string;
@@ -113,4 +144,10 @@ export interface AboutPage {
     images: string[];
     /** Vice-rector cards, in display order. */
     persons: AboutPerson[];
+    /** Category headings for a regulatory-documents page (empty for a flat list). */
+    doc_categories: AboutDocCategory[];
+    /** Publishing organizations referenced by the documents (empty if none). */
+    doc_organizations: AboutDocOrganization[];
+    /** Downloadable document cards, each with a per-language file. */
+    documents: AboutDocument[];
 }

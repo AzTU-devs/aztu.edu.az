@@ -143,7 +143,7 @@ export default function DepartmentLeadershipPage({ params }: Props) {
                             {director.room && (
                                 <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-xs font-bold text-[#1a2355] dark:border-white/10 dark:text-white">
                                     <LocationOnIcon sx={{ fontSize: 15 }} />
-                                    {t.office} {director.room}
+                                    {director.room}
                                 </span>
                             )}
                         </div>

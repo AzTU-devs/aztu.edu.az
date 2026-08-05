@@ -43,7 +43,7 @@ export default function CafedraElaqePage({ params }: Props) {
     {
       icon: LocationOnIcon,
       label: currentLang === "az" ? "Ünvan" : "Office Address",
-      value: head?.room ? `${currentLang === "az" ? "Otaq" : "Room"} ${head.room}` : (currentLang === "az" ? "AzTU" : "AzTU"),
+      value: head?.room ? head.room : (currentLang === "az" ? "AzTU" : "AzTU"),
       sub: currentLang === "az" ? "H.Cavid pr. 25, Bakı" : "25 H.Javid Ave, Baku",
     },
     {
