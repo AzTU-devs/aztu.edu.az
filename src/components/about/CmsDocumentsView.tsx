@@ -224,8 +224,8 @@ export default function CmsDocumentsView({
                             transition={{ duration: 0.5 }}
                             className="lg:col-span-5 grid grid-cols-2 gap-3 md:gap-4"
                         >
-                            <div className="flex items-center gap-3 md:gap-4 bg-white dark:bg-slate-900/60 backdrop-blur-xl rounded-3xl border-2 border-[#1a2355]/15 dark:border-white/10 p-4 md:p-5">
-                                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#1a2355] text-white flex items-center justify-center shrink-0">
+                            <div className="flex items-center gap-3 md:gap-4 bg-white dark:bg-slate-900/60 backdrop-blur-xl rounded-xl border border-[#1a2355]/15 dark:border-white/10 p-4 md:p-5">
+                                <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-[#1a2355] text-white flex items-center justify-center shrink-0">
                                     <DescriptionIcon sx={{ fontSize: 24 }} />
                                 </div>
                                 <div className="min-w-0">
@@ -237,8 +237,8 @@ export default function CmsDocumentsView({
                                     </p>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-3 md:gap-4 bg-white dark:bg-slate-900/60 backdrop-blur-xl rounded-3xl border-2 border-[#1a2355]/15 dark:border-white/10 p-4 md:p-5">
-                                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#ee7c7e] text-white flex items-center justify-center shrink-0">
+                            <div className="flex items-center gap-3 md:gap-4 bg-white dark:bg-slate-900/60 backdrop-blur-xl rounded-xl border border-[#1a2355]/15 dark:border-white/10 p-4 md:p-5">
+                                <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-[#ee7c7e] text-white flex items-center justify-center shrink-0">
                                     {showCategories ? (
                                         <CategoryIcon sx={{ fontSize: 24 }} />
                                     ) : (
@@ -277,7 +277,7 @@ export default function CmsDocumentsView({
                                     value={query}
                                     onChange={(e) => setQuery(e.target.value)}
                                     placeholder={c.searchPlaceholder}
-                                    className="w-full pl-14 pr-14 py-4 lg:py-5 rounded-3xl bg-white dark:bg-slate-900/60 border-2 border-[#1a2355]/15 dark:border-white/10 text-[#1a2355] dark:text-white placeholder:text-gray-400 dark:placeholder:text-slate-500 text-sm font-medium outline-none focus:border-[#ee7c7e] transition-colors shadow-sm"
+                                    className="w-full pl-14 pr-14 py-4 lg:py-5 rounded-xl bg-white dark:bg-slate-900/60 border border-[#1a2355]/15 dark:border-white/10 text-[#1a2355] dark:text-white placeholder:text-gray-400 dark:placeholder:text-slate-500 text-sm font-medium outline-none focus:border-[#ee7c7e] transition-colors shadow-sm"
                                 />
                                 {query && (
                                     <button
@@ -434,7 +434,7 @@ export default function CmsDocumentsView({
                             exit={{ opacity: 0, scale: 0.96, y: 12 }}
                             transition={{ duration: 0.25 }}
                             onClick={(e) => e.stopPropagation()}
-                            className="relative w-full max-w-6xl h-[90vh] bg-white dark:bg-[#0f172a] rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 dark:border-white/10"
+                            className="relative w-full max-w-6xl h-[90vh] bg-white dark:bg-[#0f172a] rounded-lg shadow-2xl flex flex-col overflow-hidden border border-gray-200 dark:border-white/10"
                         >
                             <div className="flex items-center gap-3 md:gap-4 p-3 md:p-4 border-b border-gray-200 dark:border-white/10">
                                 <div className="w-10 h-10 rounded-xl bg-[#ee7c7e]/10 flex items-center justify-center shrink-0 border border-[#ee7c7e]/20 overflow-hidden">
@@ -506,7 +506,7 @@ export default function CmsDocumentsView({
                                     />
                                 ) : (
                                     <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-                                        <div className="w-16 h-16 rounded-2xl bg-[#1a2355]/5 dark:bg-white/5 flex items-center justify-center mb-5">
+                                        <div className="w-16 h-16 rounded-lg bg-[#1a2355]/5 dark:bg-white/5 flex items-center justify-center mb-5">
                                             <PictureAsPdfIcon
                                                 sx={{ fontSize: 32 }}
                                                 className="text-[#1a2355]/40 dark:text-white/40"
@@ -571,7 +571,7 @@ function DocumentCard({ doc, index, copy, onOpen, onDownload }: DocumentCardProp
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: Math.min(index * 0.025, 0.25) }}
-            className="group relative flex flex-col h-full bg-white dark:bg-[#1e293b] rounded-3xl border-2 border-[#1a2355]/15 dark:border-white/10 shadow-sm hover:shadow-2xl hover:shadow-[#1a2355]/15 hover:border-[#ee7c7e] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+            className="group relative flex flex-col h-full bg-white dark:bg-[#1e293b] rounded-xl border border-[#1a2355]/15 dark:border-white/10 shadow-sm hover:shadow-2xl hover:shadow-[#1a2355]/15 hover:border-[#ee7c7e] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
         >
             {/* PREVIEW THUMBNAIL — click opens the modal */}
             <button
@@ -695,7 +695,7 @@ function Dropdown({ icon, value, onChange, options }: DropdownProps) {
             <select
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
-                className="appearance-none pl-10 pr-10 py-2.5 rounded-full text-xs font-black uppercase tracking-widest bg-white dark:bg-slate-900/60 border-2 border-[#1a2355]/15 dark:border-white/10 text-[#1a2355] dark:text-white outline-none focus:border-[#ee7c7e] transition-colors cursor-pointer max-w-[240px] truncate"
+                className="appearance-none pl-10 pr-10 py-2.5 rounded-full text-xs font-black uppercase tracking-widest bg-white dark:bg-slate-900/60 border border-[#1a2355]/15 dark:border-white/10 text-[#1a2355] dark:text-white outline-none focus:border-[#ee7c7e] transition-colors cursor-pointer max-w-[240px] truncate"
             >
                 {options.map((o) => (
                     <option key={o.value} value={o.value}>
@@ -723,9 +723,9 @@ function EmptyState({ icon, title, hint, action }: EmptyStateProps) {
         <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex flex-col items-center justify-center text-center py-24 px-6 rounded-3xl border-2 border-dashed border-[#1a2355]/20 dark:border-white/10 bg-white/40 dark:bg-slate-900/40"
+            className="flex flex-col items-center justify-center text-center py-24 px-6 rounded-xl border border-dashed border-[#1a2355]/20 dark:border-white/10 bg-white/40 dark:bg-slate-900/40"
         >
-            <div className="w-16 h-16 rounded-2xl bg-[#1a2355]/5 dark:bg-white/5 flex items-center justify-center mb-5">
+            <div className="w-16 h-16 rounded-lg bg-[#1a2355]/5 dark:bg-white/5 flex items-center justify-center mb-5">
                 {icon}
             </div>
             <h3 className="text-lg font-black text-[#1a2355] dark:text-white mb-2">
