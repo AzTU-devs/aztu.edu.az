@@ -257,8 +257,6 @@ const SLUG_MAP: Record<string, string> = {
     "deputy-deans": "dekan-muavinleri",
     "dekan-muavinleri": "deputy-deans",
     "scientific-council": "elmi-sura",
-    "academic-staff": "akademik-heyat",
-    "akademik-heyat": "academic-staff",
     "staff": "emekdaslar",
     "emekdaslar": "staff",
     "contact": "elaqe",
@@ -307,7 +305,7 @@ const EN_SLUGS = new Set([
     "offices-and-centers", "nabran-recreation-center", "library-information-center",
     "career-and-employment-center", "sabah-programs", "lifelong-education", "technology-transfer-office-tto",
     "international-relations", "specialties", "departments",
-    "specializations", "dean", "deputy-deans", "scientific-council", "academic-staff", "staff", "contact", "leadership",
+    "specializations", "dean", "deputy-deans", "scientific-council", "staff", "contact", "leadership",
     "qa",
     "students",
     "academic-calendar-and-rules", "academic-calendar-2025", "academic-calendar-2026",
@@ -318,6 +316,27 @@ const EN_SLUGS = new Set([
     "international-students",
     "regulatory-documents", "policy-documents", "sustainability-documents",
     ]);
+
+/**
+ * Higher Education Institute (YTİ) section slugs → the route folder name.
+ * The folders under src/app/about/hei/ use the AZ slug, so AZ slugs map to
+ * themselves and only the EN slugs actually translate.
+ * Keep in sync with src/components/hei/heiNav.ts.
+ */
+const HEI_SUB_MAP: Record<string, string> = {
+    "haqqimizda": "haqqimizda",
+    "about": "haqqimizda",
+    "doktorantura": "doktorantura",
+    "doctoral-studies": "doktorantura",
+    "rehberlik": "rehberlik",
+    "leadership": "rehberlik",
+    "emekdaslar": "emekdaslar",
+    "staff": "emekdaslar",
+    "idare-heyeti": "idare-heyeti",
+    "management-board": "idare-heyeti",
+    "elaqe": "elaqe",
+    "contact": "elaqe",
+};
 
 function translateCafedraTail(tail: string[]): string[] {
   return tail.map((seg) => CAFEDRA_PAGE_MAP[seg] ?? seg);
@@ -502,7 +521,11 @@ export function middleware(request: NextRequest) {
     } else if (segments_rest[0] === "academic" || segments_rest[0] === "akademik") {
         if ((segments_rest[1] === "education-and-programs" || segments_rest[1] === "tehsil-ve-proqramlar") &&
             (segments_rest[2] === "higher-education-institute-hei" || segments_rest[2] === "yuksek-tehsil-institutu-yti")) {
-            segments_rest = ["about", "hei"];
+            // The institute portal has sub-sections; the route folders use the AZ
+            // slug, so an EN section slug is translated on the way in.
+            // Keep in sync with src/components/hei/heiNav.ts.
+            const section = segments_rest[3] ? HEI_SUB_MAP[segments_rest[3]] ?? segments_rest[3] : undefined;
+            segments_rest = section ? ["about", "hei", section] : ["about", "hei"];
         } else if ((segments_rest[1] === "education-and-programs" || segments_rest[1] === "tehsil-ve-proqramlar") &&
             segments_rest[2] === "mba") {
             segments_rest = ["about", "mba"];
@@ -528,7 +551,6 @@ export function middleware(request: NextRequest) {
                         if (subSlug === "dean") subSlug = "dekan";
                         if (subSlug === "deputy-deans") subSlug = "dekan-muavinleri";
                         if (subSlug === "scientific-council") subSlug = "elmi-sura";
-                        if (subSlug === "academic-staff") subSlug = "akademik-heyat";
                         if (subSlug === "staff") subSlug = "emekdaslar";
                         if (subSlug === "contact") subSlug = "elaqe";
                         segments_rest = ["faculties", facultySlug, aboutSub, subSlug, ...segments_rest.slice(5)];
@@ -561,7 +583,6 @@ export function middleware(request: NextRequest) {
                     if (subSlug === "dean") subSlug = "dekan";
                     if (subSlug === "deputy-deans") subSlug = "dekan-muavinleri";
                     if (subSlug === "scientific-council") subSlug = "elmi-sura";
-                    if (subSlug === "academic-staff") subSlug = "akademik-heyat";
                     if (subSlug === "staff") subSlug = "emekdaslar";
                     if (subSlug === "contact") subSlug = "elaqe";
                     segments_rest = ["faculties", facultySlug, aboutSub, subSlug, ...segments_rest.slice(4)];

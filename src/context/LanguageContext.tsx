@@ -77,7 +77,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
               "dekan": "dean",
               "dekan-muavinleri": "deputy-deans",
               "elmi-sura": "scientific-council",
-              "akademik-heyat": "academic-staff",
               "emekdaslar": "staff",
               "elaqe": "contact"
           };
@@ -85,7 +84,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
               "dean": "dekan",
               "deputy-deans": "dekan-muavinleri",
               "scientific-council": "elmi-sura",
-              "academic-staff": "akademik-heyat",
               "staff": "emekdaslar",
               "contact": "elaqe"
           };
@@ -336,14 +334,33 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
           const eduMap: Record<string, string> = {
               "tehsil-ve-proqramlar": "education-and-programs",
               "education-and-programs": "tehsil-ve-proqramlar",
+              "yuksek-tehsil-institutu-yti": "higher-education-institute-hei",
+              "higher-education-institute-hei": "yuksek-tehsil-institutu-yti",
           };
-          if (newLang === "en") {
-              segments[1] = "academic";
-              if (segments[2] && eduMap[segments[2]]) segments[2] = eduMap[segments[2]];
-          } else {
-              segments[1] = "akademik";
-              if (segments[2] && eduMap[segments[2]]) segments[2] = eduMap[segments[2]];
-          }
+          // Higher Education Institute portal sections (segments[4]).
+          // Keep in sync with src/components/hei/heiNav.ts and middleware's HEI_SUB_MAP.
+          const heiSectionMap: Record<string, string> = {
+              "haqqimizda": "about",
+              "about": "haqqimizda",
+              "doktorantura": "doctoral-studies",
+              "doctoral-studies": "doktorantura",
+              "rehberlik": "leadership",
+              "leadership": "rehberlik",
+              "emekdaslar": "staff",
+              "staff": "emekdaslar",
+              "idare-heyeti": "management-board",
+              "management-board": "idare-heyeti",
+              "elaqe": "contact",
+              "contact": "elaqe",
+          };
+          const isHei =
+              segments[3] === "yuksek-tehsil-institutu-yti" ||
+              segments[3] === "higher-education-institute-hei";
+
+          segments[1] = newLang === "en" ? "academic" : "akademik";
+          if (segments[2] && eduMap[segments[2]]) segments[2] = eduMap[segments[2]];
+          if (segments[3] && eduMap[segments[3]]) segments[3] = eduMap[segments[3]];
+          if (isHei && segments[4] && heiSectionMap[segments[4]]) segments[4] = heiSectionMap[segments[4]];
       }
 
       // Translate slugs for Vision & Mission

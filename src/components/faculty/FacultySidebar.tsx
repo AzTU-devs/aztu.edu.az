@@ -40,7 +40,6 @@ function buildNavItems(facultyId: string, lang: string): NavItem[] {
   const deanSlug = lang === "az" ? "dekan" : "dean";
   const deputySlug = lang === "az" ? "dekan-muavinleri" : "deputy-deans";
   const councilSlug = lang === "az" ? "elmi-sura" : "scientific-council";
-  const academicSlug = lang === "az" ? "akademik-heyat" : "academic-staff";
   const staffSlug = lang === "az" ? "emekdaslar" : "staff";
   const contactSlug = lang === "az" ? "elaqe" : "contact";
 
@@ -56,7 +55,6 @@ function buildNavItems(facultyId: string, lang: string): NavItem[] {
         { label: lang === "az" ? "Dekan" : "Dean", href: `${base}/${aboutSlug}/${deanSlug}` },
         { label: lang === "az" ? "Dekan müavinləri" : "Deputy Deans", href: `${base}/${aboutSlug}/${deputySlug}` },
         { label: lang === "az" ? "Fakültə elmi şurası" : "Faculty Scientific Council", href: `${base}/${aboutSlug}/${councilSlug}` },
-        { label: lang === "az" ? "Akademik heyət" : "Academic Staff", href: `${base}/${aboutSlug}/${academicSlug}` },
         { label: lang === "az" ? "Əməkdaşlar" : "Staff", href: `${base}/${aboutSlug}/${staffSlug}` },
         { label: lang === "az" ? "Əlaqə" : "Contact", href: `${base}/${aboutSlug}/${contactSlug}` },
       ],

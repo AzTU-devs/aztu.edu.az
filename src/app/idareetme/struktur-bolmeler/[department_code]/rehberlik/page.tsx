@@ -18,6 +18,7 @@ import { SectionCard, CARD } from "@/components/department/ui";
 import { getDepartmentBySlug, getImageUrl } from "@/services/departmentService/departmentService";
 import type { DepartmentDetail, Education, WorkingHour } from "@/types/department";
 import { useLanguage } from "@/context/LanguageContext";
+import { sortEducations, formatEducationYears } from "@/util/educationOrder";
 
 interface Props {
     params: Promise<{ department_code: string }>;
@@ -64,10 +65,7 @@ export default function DepartmentLeadershipPage({ params }: Props) {
         ? director.working_hours
         : [];
     const educations: Education[] = Array.isArray(director.educations) ? director.educations : [];
-    const sortedEducations = [...educations].sort(
-        (a, b) =>
-            (parseInt(String(b.year ?? "0"), 10) || 0) - (parseInt(String(a.year ?? "0"), 10) || 0)
-    );
+    const sortedEducations = sortEducations(educations);
 
     return (
         <div className="space-y-6">
@@ -213,9 +211,9 @@ export default function DepartmentLeadershipPage({ params }: Props) {
                             >
                                 <span className="relative z-10 mt-1.5 h-[15px] w-[15px] shrink-0 rounded-full border-[3px] border-white bg-[#1a2355] ring-1 ring-slate-200 dark:border-slate-900 dark:ring-white/15" />
                                 <div className="min-w-0 flex-1">
-                                    {edu.year && (
+                                    {formatEducationYears(edu) && (
                                         <span className="mb-1.5 inline-block rounded-md bg-[#ee7c7e]/10 px-2 py-0.5 text-[10px] font-black tabular-nums uppercase tracking-[0.2em] text-[#ee7c7e]">
-                                            {edu.year}
+                                            {formatEducationYears(edu)}
                                         </span>
                                     )}
                                     <h3 className="text-[15px] font-black leading-snug text-[#1a2355] dark:text-white">

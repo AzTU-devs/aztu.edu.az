@@ -17,6 +17,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import { sortEducations } from "@/util/educationOrder";
 
 export default function AdminDepartmentPage() {
   const params = useParams();
@@ -147,7 +148,7 @@ export default function AdminDepartmentPage() {
                   <h3 className="font-bold text-[#1a2355] dark:text-white text-sm">Təhsil</h3>
                 </div>
                 <ul className="space-y-3">
-                  {dir.education.map((edu) => (
+                  {sortEducations(dir.education).map((edu) => (
                     <li key={edu.year} className="flex items-start gap-3">
                       <span className="text-xs font-bold text-[#1a2355] dark:text-blue-400 bg-[#1a2355]/10 dark:bg-[#1a2355]/20 px-2 py-1 rounded-lg flex-shrink-0 mt-0.5 min-w-[42px] text-center">
                         {edu.year}

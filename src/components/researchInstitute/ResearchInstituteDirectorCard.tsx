@@ -8,6 +8,7 @@ import ScienceIcon from "@mui/icons-material/Science";
 import SanitizedHtml from "@/components/shared/SanitizedHtml";
 import { getImageUrl } from "@/services/researchInstituteService/researchInstituteService";
 import type { ResearchInstituteDirector } from "@/types/researchInstitute";
+import { sortEducations } from "@/util/educationOrder";
 
 interface DirectorCardProps {
   director: ResearchInstituteDirector;
@@ -105,14 +106,14 @@ export default function ResearchInstituteDirectorCard({ director, lang }: Direct
             )}
 
             {/* Education Card */}
-            {director.educations.length > 0 && (
+            {sortEducations(director.educations).length > 0 && (
               <div className="p-8 rounded-[1.5rem] bg-gray-50 dark:bg-slate-900/40 border border-gray-100 dark:border-slate-700/50">
                 <h4 className="text-sm font-black text-[#1a2355] dark:text-white mb-6 uppercase tracking-[0.2em] flex items-center gap-2">
                   <SchoolIcon sx={{ fontSize: 20, color: "#ee7c7e" }} />
                   {labels.education}
                 </h4>
                 <ul className="space-y-6">
-                  {director.educations.map((edu) => (
+                  {sortEducations(director.educations).map((edu) => (
                     <li key={edu.id} className="relative pl-6 before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:bg-[#ee7c7e] before:rounded-full">
                       <p className="text-sm font-black text-gray-800 dark:text-white leading-tight">
                         {edu.degree}

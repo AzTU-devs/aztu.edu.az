@@ -17,6 +17,7 @@ import SchoolIcon from "@mui/icons-material/School";
 import PublicIcon from "@mui/icons-material/Public";
 import { useLanguage } from "@/context/LanguageContext";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
+import { sortEducations } from "@/util/educationOrder";
 
 const DATA = {
   az: {
@@ -409,7 +410,7 @@ export default function HemkarlarIttifaqiPage() {
             <div className="lg:col-span-4">
               <h4 className="text-sm font-black uppercase tracking-widest text-[#1a2355] dark:text-white mb-8">{p.chairEducationTitle}</h4>
               <div className="space-y-4">
-                {p.chairEducation.map((item, i) => (
+                {sortEducations(p.chairEducation).map((item, i) => (
                   <div key={i} className="relative pl-6 border-l-2 border-[#ee7c7e]/30 pb-4">
                     <div className="absolute left-[-5px] top-1.5 w-2 h-2 rounded-full bg-[#ee7c7e]" />
                     <span className="text-xs font-black text-[#ee7c7e] uppercase tracking-widest block mb-1">{item.period}</span>

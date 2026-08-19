@@ -14,6 +14,9 @@ export interface WorkingHour {
 export interface Education {
   degree?: string;
   university?: string;
+  start_year?: string | number;
+  end_year?: string | number | null;
+  /** Legacy single-year shape; the API sends start_year/end_year. */
   year?: string | number;
 }
 

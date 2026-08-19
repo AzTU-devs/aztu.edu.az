@@ -16,19 +16,13 @@ export default function manifest(): MetadataRoute.Manifest {
         categories: ["education", "university", "research"],
         icons: [
             {
-                src: "/logo/aztu-logo-light.png",
-                sizes: "192x192",
-                type: "image/png",
-                purpose: "any",
-            },
-            {
-                src: "/logo/aztu-logo-light.png",
+                src: "/logo/aztu-logo-dark-icon.png",
                 sizes: "512x512",
                 type: "image/png",
                 purpose: "any",
             },
             {
-                src: "/logo/aztu-logo-light.png",
+                src: "/logo/aztu-logo-dark-icon.png",
                 sizes: "512x512",
                 type: "image/png",
                 purpose: "maskable",

@@ -37,6 +37,7 @@ import SchoolIcon from "@mui/icons-material/School";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
+import { sortEducations } from "@/util/educationOrder";
 
 type TabKey = "about" | "chair" | "secretariat" | "board" | "departments" | "clubs" | "activities" | "sdg" | "contact";
 
@@ -526,7 +527,7 @@ export default function TelebeGenclerTeskilatiPage() {
                       <div>
                         <h3 className="text-sm font-black uppercase tracking-widest text-[#1a2355] dark:text-white mb-6">{p.chair.educationTitle}</h3>
                         <div className="space-y-4">
-                          {p.chair.education.map((item, i) => (
+                          {sortEducations(p.chair.education).map((item, i) => (
                             <div key={i} className="relative pl-6 border-l-2 border-[#ee7c7e]/30 pb-4">
                               <div className="absolute left-[-5px] top-1.5 w-2 h-2 rounded-full bg-[#ee7c7e]" />
                               <span className="text-xs font-black text-[#ee7c7e] uppercase tracking-widest block mb-1">{item.period}</span>

@@ -12,6 +12,7 @@ import { getResearchInstituteBySlug, getImageUrl } from "@/services/researchInst
 import type { ResearchInstituteDetail, ResearchInstituteDirector } from "@/types/researchInstitute";
 import { useLanguage } from "@/context/LanguageContext";
 import SanitizedHtml from "@/components/shared/SanitizedHtml";
+import { sortEducations } from "@/util/educationOrder";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -28,6 +29,7 @@ interface LeadershipLabels {
 
 function LeadershipBlock({ person, labels }: { person: ResearchInstituteDirector; labels: LeadershipLabels }) {
   const fullName = person.full_name || "";
+  const educations = sortEducations(person.educations);
   return (
     <div className="space-y-10">
       <div className="flex flex-col md:flex-row gap-10">
@@ -124,11 +126,11 @@ function LeadershipBlock({ person, labels }: { person: ResearchInstituteDirector
         </motion.div>
       )}
 
-      {person.educations && person.educations.length > 0 && (
+      {educations.length > 0 && (
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <SectionBlock title={labels.education} accent>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {person.educations.map((edu, index) => {
+              {educations.map((edu, index) => {
                 const years = [edu.start_year, edu.end_year].filter(Boolean).join(" – ");
                 return (
                   <div

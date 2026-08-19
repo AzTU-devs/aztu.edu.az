@@ -4,6 +4,7 @@ import SectionBlock from "@/components/shared/SectionBlock";
 import PersonCard from "@/components/shared/PersonCard";
 import SchoolIcon from "@mui/icons-material/School";
 import ScienceIcon from "@mui/icons-material/Science";
+import { sortEducations } from "@/util/educationOrder";
 
 export default function KafedraMudiriPage() {
   const director = {
@@ -110,7 +111,7 @@ export default function KafedraMudiriPage() {
                         Təhsil
                     </h4>
                     <ul className="space-y-3">
-                        {director.education.map((item, i) => (
+                        {sortEducations(director.education).map((item, i) => (
                             <li key={i} className="text-sm text-gray-600 dark:text-gray-300">
                                 <p className="font-bold text-[#1a2355] dark:text-white text-xs">{item.years}</p>
                                 <p className="mt-0.5">{item.degree}</p>

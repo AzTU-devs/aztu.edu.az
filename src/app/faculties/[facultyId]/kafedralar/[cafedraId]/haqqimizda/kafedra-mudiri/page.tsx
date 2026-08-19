@@ -19,6 +19,7 @@ import { getImageUrl } from "@/services/facultyService/facultyService";
 import type { CafedraDetail } from "@/types/cafedra";
 import { useLanguage } from "@/context/LanguageContext";
 import SanitizedHtml from "@/components/shared/SanitizedHtml";
+import { sortEducations } from "@/util/educationOrder";
 
 interface Props {
   params: Promise<{ facultyId: string; cafedraId: string }>;
@@ -44,6 +45,7 @@ export default function KafedraMudiriPage({ params }: Props) {
   }, [cafedraId, currentLang]);
 
   const head = cafedra?.director;
+  const headEducations = sortEducations(head?.educations);
   const headFullName = head
     ? [head.first_name, head.last_name].filter(Boolean).join(" ")
     : "";
@@ -199,7 +201,7 @@ export default function KafedraMudiriPage({ params }: Props) {
       )}
 
       {/* Education timeline */}
-      {head.educations && head.educations.length > 0 && (
+      {headEducations.length > 0 && (
         <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-slate-900 md:p-8">
           <SectionHeading
             icon={SchoolIcon}
@@ -210,7 +212,7 @@ export default function KafedraMudiriPage({ params }: Props) {
           <div className="relative pl-6">
             <div className="absolute left-[7px] top-1 bottom-1 w-px bg-slate-200 dark:bg-white/10" />
             <ol className="space-y-6">
-              {head.educations.map((edu: { degree: string; university: string; start_year: number; end_year: number }, index: number) => {
+              {headEducations.map((edu, index) => {
                 const palette = FACULTY_PALETTES[index % FACULTY_PALETTES.length];
                 const years = [edu.start_year, edu.end_year].filter(Boolean).join(" – ");
                 return (

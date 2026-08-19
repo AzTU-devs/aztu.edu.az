@@ -13,6 +13,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
+import { sortEducations } from "@/util/educationOrder";
 
 // ─── Interfaces ───────────────────────────────────────────────────────────────
 
@@ -407,7 +408,7 @@ export default function KaryeraMerkeziPage() {
                   {/* Vertical line */}
                   <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-white/10" />
                   <div className="space-y-8">
-                    {p.headEducation.map((edu, i) => (
+                    {sortEducations(p.headEducation).map((edu, i) => (
                       <div key={i} className="relative pl-14">
                         {/* Dot */}
                         <div className="absolute left-[11px] top-1 w-5 h-5 rounded-full bg-[#ee7c7e] border-4 border-white dark:border-[#0b1330]" />

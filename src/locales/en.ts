@@ -602,48 +602,149 @@ const en = {
       },
 
       rankings: {
-        eyebrow: "Rankings",
+        eyebrow: "International Rankings",
         title: "International Rankings",
-        subtitle: "Global recognition and educational quality indicators of AzTU.",
+        subtitle: "Where AzTU stands among the world's universities — as assessed by QS, Times Higher Education and UI GreenMetric.",
         breadcrumb: "Rankings",
-        importanceTitle: "Importance",
-        importanceItems: [
-          "Enhances global visibility and institutional reputation.",
-          "Enables comparative assessment of educational quality.",
-          "Attracts international students and strategic partners.",
-          "Supports evidence-based management and development."
+        intro:
+          "Azerbaijan Technical University is assessed by three leading international ranking systems. Every figure below is taken from the ranking body's own published results.",
+
+        glanceTitle: "At a glance",
+        glance: [
+          { value: "801–850", label: "QS World University Rankings", note: "QS WUR 2027 — first entry into the top 1000" },
+          { value: "476", label: "QS Europe Rankings", note: "QS Europe 2026" },
+          { value: "30", label: "QS Europe — Western Asia", note: "Regional position, 2026" },
+          { value: "835", label: "UI GreenMetric", note: "2025 — up 179 places in a single year" }
         ],
-        systems: [
+
+        bodiesTitle: "Results by ranking system",
+        bodiesLead:
+          "Each system measures a university against different criteria. AzTU's official position in every one of them is listed below.",
+
+        bodies: [
           {
+            key: "qs",
             name: "QS World University Rankings",
-            criteria: "Academic reputation, Employer reputation, Research impact, and Internationalization.",
-            methodology: "https://www.topuniversities.com/world-university-rankings/methodology",
-            logo: "/logos/qs-logo.svg"
+            logo: "/logos/qs-logo.svg",
+            tagline: "Quacquarelli Symonds — United Kingdom",
+            criteria:
+              "Academic reputation, employer reputation, research impact, faculty–student ratio and internationalisation.",
+            methodologyUrl: "https://www.topuniversities.com/world-university-rankings/methodology",
+            profileUrl: "https://www.topuniversities.com/universities/azerbaijan-technical-university",
+            profileLabel: "AzTU on QS",
+            results: [
+              { label: "World University Rankings", value: "801–850", year: "2027", note: "AzTU's first appearance in the top 1000 (851–900 in 2026)" },
+              { label: "Europe Rankings", value: "476", year: "2026" },
+              { label: "Europe Rankings — Western Asia", value: "30", year: "2026", note: "Regional position" },
+              { label: "Rankings by Subject", value: "701–750", year: "2026" },
+              { label: "Sustainability Rankings", value: "1501+", year: "2026" }
+            ]
           },
           {
-            name: "Times Higher Education (THE) Rankings",
-            criteria: "Teaching, Research environment, Citations, Industry income, and International outlook.",
-            methodology: "https://www.timeshighereducation.com/world-university-rankings/methodology",
-            logo: "/logos/the-logo.svg"
+            key: "the",
+            name: "Times Higher Education",
+            logo: "/logos/the-logo.svg",
+            tagline: "THE — United Kingdom",
+            criteria:
+              "Teaching, research environment, citation impact, industry income and international outlook.",
+            methodologyUrl: "https://www.timeshighereducation.com/world-university-rankings/methodology",
+            profileUrl: "https://www.timeshighereducation.com/world-university-rankings/azerbaijan-technical-university-aztu",
+            profileLabel: "AzTU on THE",
+            results: [
+              { label: "Sustainability Impact Rankings", value: "1001–1500", year: "2026" },
+              { label: "Interdisciplinary Science Rankings", value: "801+", year: "2026" },
+              { label: "Subject Rankings — Engineering", value: "1251+", year: "2026", href: "https://www.timeshighereducation.com/world-university-rankings/2026/subject-ranking/engineering" },
+              { label: "Subject Rankings — Physical Sciences", value: "1251+", year: "2026", href: "https://www.timeshighereducation.com/world-university-rankings/2026/subject-ranking/physical-sciences" }
+            ]
           },
           {
+            key: "greenmetric",
             name: "UI GreenMetric",
-            criteria: "Infrastructure, Energy, Waste, Water, Transportation, and Education.",
-            methodology: "https://uigreenmetric.com/rankings",
-            logo: "/logos/greenmetric-logo.svg"
+            logo: "/logos/greenmetric-logo.png",
+            tagline: "Universitas Indonesia — Indonesia",
+            criteria:
+              "Setting and infrastructure, energy and climate change, waste, water, transportation, and education and research.",
+            methodologyUrl: "https://uigreenmetric.com/rankings",
+            profileUrl: "https://uigreenmetric.com/university/aztu.edu.az",
+            profileLabel: "AzTU on GreenMetric",
+            results: [
+              { label: "World rank", value: "835", year: "2025", note: "Out of 1,745 ranked universities" },
+              { label: "National rank", value: "7", year: "2025", note: "Of 19 ranked Azerbaijani institutions" },
+              { label: "Total score", value: "5,797.5", year: "2025", note: "Out of a possible 10,000" },
+              { label: "World rank", value: "1014", year: "2024", note: "First year of participation" }
+            ]
           }
         ],
-        positionsTitle: "Current Ranking Positions",
-        positions: [
-          { name: "QS Europe 2026", position: "476" },
-          { name: "QS Europe 2026 (Western Asia)", position: "30" },
-          { name: "QS World University Rankings (New Entrant)", position: "851-900" },
-          { name: "QS World Rankings by Subject 2026", position: "701-750" },
-          { name: "World's Most Sustainable University (2025)", position: "835" },
-          { name: "World's Most Sustainable University (2024)", position: "1014" }
+
+        subjectLinkLabel: "Open the ranking",
+        methodologyLabel: "Methodology",
+
+        sdgTitle: "Performance by Sustainable Development Goal",
+        sdgLead:
+          "The THE Sustainability Impact Rankings assess universities against the UN Sustainable Development Goals. AzTU is ranked on nine of them in 2026.",
+        sdgs: [
+          { code: "SDG 13", name: "Climate Action", band: "401–600" },
+          { code: "SDG 14", name: "Life Below Water", band: "401–600" },
+          { code: "SDG 17", name: "Partnerships for the Goals", band: "401–600" },
+          { code: "SDG 2", name: "Zero Hunger", band: "601–800" },
+          { code: "SDG 7", name: "Affordable and Clean Energy", band: "601–800" },
+          { code: "SDG 8", name: "Decent Work and Economic Growth", band: "601–800" },
+          { code: "SDG 10", name: "Reduced Inequalities", band: "601–800" },
+          { code: "SDG 11", name: "Sustainable Cities and Communities", band: "601–800" },
+          { code: "SDG 12", name: "Responsible Consumption and Production", band: "601–800" }
         ],
-        profileLink: "View AzTU THE Profile",
-        profileUrl: "https://www.timeshighereducation.com/world-university-rankings/azerbaijan-technical-university-aztu"
+
+        gmTitle: "GreenMetric: up 179 places in one year",
+        gmLead:
+          "AzTU entered the UI GreenMetric ranking for the first time in 2024. Within a single year the university climbed from 1014th to 835th, lifting its total score from 4,645 to 5,797.5.",
+        gmYears: [
+          { year: "2024", rank: "1014", score: "4,645", note: "First entry" },
+          { year: "2025", rank: "835", score: "5,797.5", note: "Up 179 places" }
+        ],
+        gmRankLabel: "World rank",
+        gmScoreLabel: "Total score",
+        gmCategoriesTitle: "Category scores (2025 / 2024)",
+        gmCategories: [
+          { name: "Setting and infrastructure", short: "SI", max: 1500, current: 700, previous: 550 },
+          { name: "Energy and climate change", short: "EC", max: 2100, current: 1185, previous: 935 },
+          { name: "Waste management", short: "WS", max: 1800, current: 825, previous: 675 },
+          { name: "Water", short: "WR", max: 1000, current: 675, previous: 210 },
+          { name: "Transportation", short: "TR", max: 1800, current: 1037.5, previous: 1100 },
+          { name: "Education and research", short: "ED", max: 1800, current: 1375, previous: 1175 }
+        ],
+        gmNote:
+          "The largest gain came in water management (210 → 675 points). Transportation is the only category where the score edged down.",
+        gmMaxLabel: "max",
+
+        certificatesTitle: "Ranking certificates",
+        certificatesLead:
+          "Official certificates issued to AzTU by the ranking bodies. Click any certificate to enlarge it.",
+        certificateOpen: "View certificate",
+        certificatePdf: "PDF document",
+        certificateClose: "Close",
+        certificatePrev: "Previous",
+        certificateNext: "Next",
+
+        importanceTitle: "Why rankings matter",
+        importanceItems: [
+          "They raise the university's visibility and reputation worldwide.",
+          "They allow educational quality to be compared on a common basis.",
+          "They help attract international students and strategic partners.",
+          "They support evidence-based management and development decisions."
+        ],
+
+        sourcesTitle: "Sources",
+        sources: [
+          { label: "QS World University Rankings", href: "https://www.topuniversities.com/world-university-rankings" },
+          { label: "Times Higher Education — AzTU profile", href: "https://www.timeshighereducation.com/world-university-rankings/azerbaijan-technical-university-aztu" },
+          { label: "UI GreenMetric — AzTU profile", href: "https://uigreenmetric.com/university/aztu.edu.az" }
+        ],
+
+        related: [
+          { title: "Accreditation", href: "/en/about/accreditation" },
+          { title: "Strategic Plan", href: "/en/about/vision-mission/strategic-plan" },
+          { title: "History of AzTU", href: "/en/about/vision-mission/history-of-aztu" }
+        ]
       },
 
       history: {
@@ -1046,7 +1147,7 @@ const en = {
           email: "yti@aztu.edu.az"
         },
         related: [
-          { title: "Higher Education Institute (HEI)", href: "/about/hei" },
+          { title: "Higher Education Institute (HEI)", href: "/en/academic/education-and-programs/higher-education-institute-hei" },
           { title: "Postgraduate Programs", href: "/students/postgraduates/postgraduate-specialties" },
           { title: "Dual Degree Programs", href: "/students/postgraduates/exchange-programs" },
         ],

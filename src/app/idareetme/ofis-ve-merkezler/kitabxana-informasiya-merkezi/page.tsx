@@ -15,6 +15,7 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
+import { sortEducations } from "@/util/educationOrder";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -926,7 +927,7 @@ export default function KitabxanaInformasiyaMerkeziPage() {
                   {/* Vertical line */}
                   <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-white/10" />
                   <div className="space-y-8">
-                    {p.directorEducation.map((edu, i) => (
+                    {sortEducations(p.directorEducation).map((edu, i) => (
                       <div key={i} className="relative pl-14">
                         {/* Dot */}
                         <div className="absolute left-[11px] top-1 w-5 h-5 rounded-full bg-[#ee7c7e] border-4 border-white dark:border-[#0b1330]" />

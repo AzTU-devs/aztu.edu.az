@@ -5,8 +5,6 @@ import { motion } from "framer-motion";
 
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
-import HeroLeaderCard from "@/components/shared/HeroLeaderCard";
-import { getImageUrl } from "@/services/departmentService/departmentService";
 import type { DepartmentDetail } from "@/types/department";
 
 type Props = {
@@ -20,11 +18,9 @@ export default function DepartmentHero({ department, loading, lang, listPath }: 
     const t = {
         section: lang === "az" ? "Struktur bölmə" : "Structural unit",
         units: lang === "az" ? "Struktur Bölmələr" : "Structural Units",
-        head: lang === "az" ? "Şöbə rəhbəri" : "Department head",
         staff: lang === "az" ? "əməkdaş" : "staff members",
     };
 
-    const director = department?.director;
     const staffCount = department?.workers?.length ?? 0;
 
     return (
@@ -47,9 +43,8 @@ export default function DepartmentHero({ department, loading, lang, listPath }: 
                     ]}
                 />
 
-                <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
-                    {/* Identity */}
-                    <div className="lg:col-span-7">
+                {/* Identity */}
+                <div className="max-w-4xl">
                         <motion.div
                             initial={{ opacity: 0, y: 18 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -89,17 +84,6 @@ export default function DepartmentHero({ department, loading, lang, listPath }: 
                                 )}
                             </div>
                         </motion.div>
-                    </div>
-
-                    {/* Department head — the hero's second subject, not a footnote */}
-                    <HeroLeaderCard
-                        eyebrow={t.head}
-                        leader={director}
-                        resolveImage={getImageUrl}
-                        lang={lang}
-                        loading={loading}
-                        className="lg:col-span-5"
-                    />
                 </div>
             </div>
         </header>

@@ -129,17 +129,19 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  // Favicon / app icons — the dark logo, square-cropped to the navy shield mark
+  // so it stays legible down to 16x16 (the full lockup letterboxes into mush).
   icons: {
     icon: [
-      { url: "/aztu-logo-light.webp", type: "image/webp" },
+      { url: "/logo/aztu-logo-dark-icon.png", type: "image/png", sizes: "512x512" },
     ],
-    shortcut: "/aztu-logo-light.webp",
-    apple: "/aztu-logo-light.webp",
+    shortcut: "/logo/aztu-logo-dark-icon.png",
+    apple: "/logo/aztu-logo-dark-icon.png",
   },
   manifest: "/manifest.webmanifest",
   other: {
     "msapplication-TileColor": "#1a2355",
-    "msapplication-TileImage": "/logo/aztu-logo-light.png",
+    "msapplication-TileImage": "/logo/aztu-logo-dark-icon.png",
   },
 };
 

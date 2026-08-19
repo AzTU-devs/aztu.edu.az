@@ -691,18 +691,6 @@ export default function HeroSection() {
                                         aria-hidden="true"
                                     />
                                 </button>
-
-                                {/* One anchor, not an <a> wrapping a <button> — the old
-                                    nesting was invalid HTML and swallowed the pill's focus
-                                    ring. */}
-                                <Link href="/virtual-tour" className="hx-btn hx-btn-ghost group">
-                                    <span>{lang === "az" ? "Virtual Tur" : "Virtual Tour"}</span>
-                                    <PlayArrowIcon
-                                        className="group-hover:translate-x-0.5 transition-transform"
-                                        sx={{ fontSize: 15 }}
-                                        aria-hidden="true"
-                                    />
-                                </Link>
                             </motion.div>
                         </motion.div>
                     )}
@@ -790,16 +778,16 @@ export default function HeroSection() {
                                 href="https://www.scopus.com/pages/organization/60071968"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group relative overflow-hidden rounded-xl md:rounded-2xl border border-white/10 hover:border-[#F08300]/40 hover:scale-105 active:scale-95 transition-[transform,border-color] duration-400 cursor-pointer h-[48px] md:h-[56px]"
+                                className="group relative flex items-center justify-center overflow-hidden rounded-xl md:rounded-2xl border border-white/10 bg-white px-3 py-1 md:px-4 hover:border-[#F08300]/40 hover:scale-105 active:scale-95 transition-[transform,border-color] duration-400 cursor-pointer h-[48px] md:h-[56px]"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-br from-[#F08300]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 z-10" />
                                 <img
-                                    src="/logos/scopus-logo.svg"
+                                    src="/scopus_logo.png"
                                     alt="Scopus"
-                                    width={160}
-                                    height={56}
+                                    width={761}
+                                    height={278}
                                     decoding="async"
-                                    className="w-full h-full object-fill"
+                                    className="block h-full w-full object-contain"
                                 />
                             </a>
 
@@ -807,16 +795,16 @@ export default function HeroSection() {
                                 href="https://www.webofscience.com/wos/woscc/summary/5667f913-5f6b-4e0b-8fe9-e12d8f6be1f1-01af1662f4/relevance/1?state=%7B%22searchType%22:%22generalSearch%22%7D"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group relative overflow-hidden rounded-xl md:rounded-2xl border border-white/10 hover:border-[#005A9C]/40 hover:scale-105 active:scale-95 transition-[transform,border-color] duration-400 cursor-pointer h-[48px] md:h-[56px]"
+                                className="group relative flex items-center justify-center overflow-hidden rounded-xl md:rounded-2xl border border-white/10 bg-white px-3 py-1 md:px-4 hover:border-[#005A9C]/40 hover:scale-105 active:scale-95 transition-[transform,border-color] duration-400 cursor-pointer h-[48px] md:h-[56px]"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-br from-[#005A9C]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 z-10" />
                                 <img
-                                    src="/logos/wos-logo.svg"
+                                    src="/web_of_science_logo.png"
                                     alt="Web of Science"
-                                    width={160}
-                                    height={56}
+                                    width={888}
+                                    height={198}
                                     decoding="async"
-                                    className="w-full h-full object-fill"
+                                    className="block h-full w-full object-contain"
                                 />
                             </a>
                         </motion.div>
@@ -1254,9 +1242,6 @@ const HERO_CSS = `
 .hx-btn-solid{ background:#fff; color:#1a2355; border-color:#fff;
   box-shadow:0 20px 40px rgba(0,0,0,.4); }
 .hx-btn-solid:hover{ background:var(--hx-coral); color:#fff; border-color:var(--hx-coral); }
-.hx-btn-ghost{ background:rgba(255,255,255,.06); color:#fff;
-  border-color:rgba(255,255,255,.2); backdrop-filter:blur(14px); }
-.hx-btn-ghost:hover{ background:rgba(255,255,255,.13); }
 /* The ONE accent-coloured control in the hero, and only because it points at
    the attesting body's own page: amber -> QS rankings, teal -> AQAS
    accreditation. It lives inside .hx-readout, so it can never pick up an accent

@@ -17,6 +17,7 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import { getFacultyBySlug, getImageUrl } from "@/services/facultyService/facultyService";
 import type { FacultyDetail, Education } from "@/types/faculty";
 import { useLanguage } from "@/context/LanguageContext";
+import { sortEducations } from "@/util/educationOrder";
 
 interface Props {
     params: Promise<{ facultyId: string }>;
@@ -50,11 +51,7 @@ export default function DekanPage({ params }: Props) {
         (director?.educations as Education[] | undefined) ??
         ((director as unknown as { education?: Education[] })?.education ?? []);
 
-    const sortedEducations = [...educations].sort((a, b) => {
-        const ay = parseInt(a.start_year, 10) || 0;
-        const by = parseInt(b.start_year, 10) || 0;
-        return by - ay;
-    });
+    const sortedEducations = sortEducations(educations);
 
     if (loading) {
         return (

@@ -605,48 +605,149 @@ const az = {
       },
 
       rankings: {
-        eyebrow: "Reytinqlər",
+        eyebrow: "Beynəlxalq Reytinqlər",
         title: "Beynəlxalq Reytinqlər",
-        subtitle: "AzTU-nun qlobal səviyyədə tanınması və təhsil keyfiyyətinin beynəlxalq göstəriciləri.",
+        subtitle: "AzTU-nun dünya universitetləri arasındakı mövqeyi — QS, Times Higher Education və UI GreenMetric qiymətləndirmələri üzrə.",
         breadcrumb: "Reytinqlər",
-        importanceTitle: "Əhəmiyyəti",
+        intro:
+          "Azərbaycan Texniki Universiteti üç aparıcı beynəlxalq reytinq sistemində qiymətləndirilir. Aşağıdakı göstəricilər müstəqil qurumların rəsmi nəşrlərinə əsaslanır.",
+
+        glanceTitle: "Bir baxışda",
+        glance: [
+          { value: "801–850", label: "QS Dünya Universitetləri Reytinqi", note: "QS WUR 2027 — ilk dəfə TOP-1000" },
+          { value: "476", label: "QS Avropa Reytinqi", note: "QS Europe 2026" },
+          { value: "30", label: "QS Avropa — Qərbi Asiya", note: "Regional mövqe, 2026" },
+          { value: "835", label: "UI GreenMetric", note: "2025 — bir ildə 179 pillə irəli" }
+        ],
+
+        bodiesTitle: "Reytinq sistemləri üzrə nəticələr",
+        bodiesLead:
+          "Hər bir sistem universiteti fərqli meyarlarla ölçür. Aşağıda AzTU-nun hər sistem üzrə rəsmi mövqeləri verilmişdir.",
+
+        bodies: [
+          {
+            key: "qs",
+            name: "QS World University Rankings",
+            logo: "/logos/qs-logo.svg",
+            tagline: "Quacquarelli Symonds — Böyük Britaniya",
+            criteria:
+              "Akademik nüfuz, işəgötürənlər arasında reputasiya, elmi tədqiqatların təsiri, müəllim-tələbə nisbəti və beynəlmiləlləşmə səviyyəsi.",
+            methodologyUrl: "https://www.topuniversities.com/world-university-rankings/methodology",
+            profileUrl: "https://www.topuniversities.com/universities/azerbaijan-technical-university",
+            profileLabel: "AzTU-nun QS profili",
+            results: [
+              { label: "Dünya Universitetləri Reytinqi", value: "801–850", year: "2027", note: "AzTU ilk dəfə TOP-1000-ə daxil olub (2026-cı ildə 851–900)" },
+              { label: "Avropa Reytinqi", value: "476", year: "2026" },
+              { label: "Avropa Reytinqi — Qərbi Asiya", value: "30", year: "2026", note: "Regional mövqe" },
+              { label: "İxtisaslar üzrə Reytinq", value: "701–750", year: "2026" },
+              { label: "Dayanıqlılıq Reytinqi", value: "1501+", year: "2026" }
+            ]
+          },
+          {
+            key: "the",
+            name: "Times Higher Education",
+            logo: "/logos/the-logo.svg",
+            tagline: "THE — Böyük Britaniya",
+            criteria:
+              "Tədris keyfiyyəti, elmi tədqiqat mühiti, sitatların təsiri, sənaye gəlirləri və beynəlxalq görünüş.",
+            methodologyUrl: "https://www.timeshighereducation.com/world-university-rankings/methodology",
+            profileUrl: "https://www.timeshighereducation.com/world-university-rankings/azerbaijan-technical-university-aztu",
+            profileLabel: "AzTU-nun THE profili",
+            results: [
+              { label: "Dayanıqlı İnkişaf Təsiri Reytinqi", value: "1001–1500", year: "2026" },
+              { label: "Fənlərarası Elm Reytinqi", value: "801+", year: "2026" },
+              { label: "İxtisaslar üzrə — Mühəndislik", value: "1251+", year: "2026", href: "https://www.timeshighereducation.com/world-university-rankings/2026/subject-ranking/engineering" },
+              { label: "İxtisaslar üzrə — Fizika elmləri", value: "1251+", year: "2026", href: "https://www.timeshighereducation.com/world-university-rankings/2026/subject-ranking/physical-sciences" }
+            ]
+          },
+          {
+            key: "greenmetric",
+            name: "UI GreenMetric",
+            logo: "/logos/greenmetric-logo.png",
+            tagline: "Universitas Indonesia — İndoneziya",
+            criteria:
+              "İnfrastruktur, enerji və iqlim dəyişikliyi, tullantıların idarə olunması, su resursları, nəqliyyat siyasəti, ekoloji təhsil və tədqiqat.",
+            methodologyUrl: "https://uigreenmetric.com/rankings",
+            profileUrl: "https://uigreenmetric.com/university/aztu.edu.az",
+            profileLabel: "AzTU-nun GreenMetric profili",
+            results: [
+              { label: "Dünya üzrə mövqe", value: "835", year: "2025", note: "1 745 universitet arasında" },
+              { label: "Ölkə üzrə mövqe", value: "7", year: "2025", note: "Azərbaycandan 19 universitet arasında" },
+              { label: "Ümumi bal", value: "5 797,5", year: "2025", note: "10 000 mümkün baldan" },
+              { label: "Dünya üzrə mövqe", value: "1014", year: "2024", note: "İlk iştirak ili" }
+            ]
+          }
+        ],
+
+        subjectLinkLabel: "Reytinqə keçid",
+        methodologyLabel: "Metodologiya",
+
+        sdgTitle: "Dayanıqlı İnkişaf Məqsədləri üzrə nəticələr",
+        sdgLead:
+          "THE Dayanıqlı İnkişaf Təsiri Reytinqi universitetləri BMT-nin Dayanıqlı İnkişaf Məqsədləri (SDG) üzrə qiymətləndirir. AzTU 2026-cı ildə doqquz məqsəd üzrə sıralanıb.",
+        sdgs: [
+          { code: "SDG 13", name: "İqlim Dəyişikliyi ilə Mübarizə", band: "401–600" },
+          { code: "SDG 14", name: "Su Altında Həyat", band: "401–600" },
+          { code: "SDG 17", name: "Məqsədlər Naminə Tərəfdaşlıq", band: "401–600" },
+          { code: "SDG 2", name: "Aclığa Son", band: "601–800" },
+          { code: "SDG 7", name: "Münasib Qiymətli və Təmiz Enerji", band: "601–800" },
+          { code: "SDG 8", name: "Layiqli İş və İqtisadi Artım", band: "601–800" },
+          { code: "SDG 10", name: "Bərabərsizliklərin Azaldılması", band: "601–800" },
+          { code: "SDG 11", name: "Dayanıqlı Şəhərlər və İcmalar", band: "601–800" },
+          { code: "SDG 12", name: "Məsuliyyətli İstehlak və İstehsal", band: "601–800" }
+        ],
+
+        gmTitle: "GreenMetric: bir ildə 179 pillə irəli",
+        gmLead:
+          "AzTU UI GreenMetric reytinqində 2024-cü ildə ilk dəfə iştirak edib. Bir il ərzində universitet 1014-cü yerdən 835-ci yerə yüksəlib, ümumi balı isə 4 645-dən 5 797,5-ə qalxıb.",
+        gmYears: [
+          { year: "2024", rank: "1014", score: "4 645", note: "İlk iştirak" },
+          { year: "2025", rank: "835", score: "5 797,5", note: "179 pillə irəli" }
+        ],
+        gmRankLabel: "Dünya üzrə mövqe",
+        gmScoreLabel: "Ümumi bal",
+        gmCategoriesTitle: "Kateqoriyalar üzrə bal (2025 / 2024)",
+        gmCategories: [
+          { name: "İnfrastruktur", short: "SI", max: 1500, current: 700, previous: 550 },
+          { name: "Enerji və iqlim dəyişikliyi", short: "EC", max: 2100, current: 1185, previous: 935 },
+          { name: "Tullantıların idarə olunması", short: "WS", max: 1800, current: 825, previous: 675 },
+          { name: "Su resursları", short: "WR", max: 1000, current: 675, previous: 210 },
+          { name: "Nəqliyyat", short: "TR", max: 1800, current: 1037.5, previous: 1100 },
+          { name: "Təhsil və tədqiqat", short: "ED", max: 1800, current: 1375, previous: 1175 }
+        ],
+        gmNote:
+          "Ən böyük irəliləyiş su resurslarının idarə olunmasında qeydə alınıb (210 → 675 bal). Nəqliyyat yeganə kateqoriyadır ki, bal cüzi azalıb.",
+        gmMaxLabel: "maksimum",
+
+        certificatesTitle: "Reytinq sertifikatları",
+        certificatesLead:
+          "Reytinq qurumları tərəfindən AzTU-ya verilmiş rəsmi sertifikatlar. Böyütmək üçün üzərinə klikləyin.",
+        certificateOpen: "Sertifikata bax",
+        certificatePdf: "PDF sənəd",
+        certificateClose: "Bağla",
+        certificatePrev: "Əvvəlki",
+        certificateNext: "Növbəti",
+
+        importanceTitle: "Reytinqlər niyə vacibdir",
         importanceItems: [
           "Universitetlərin qlobal səviyyədə tanınmasını artırır.",
           "Təhsil keyfiyyətinin müqayisəli qiymətləndirilməsinə imkan yaradır.",
           "Beynəlxalq tələbə və tərəfdaşların cəlb olunmasına kömək edir.",
           "Strateji inkişaf və idarəetmə qərarlarına dəstək verir."
         ],
-        systems: [
-          {
-            name: "QS World University Rankings",
-            criteria: "Akademik nüfuz, işəgötürənlər arasında reputasiya, elmi tədqiqatların təsiri, beynəlmiləlləşmə səviyyəsi.",
-            methodology: "https://www.topuniversities.com/world-university-rankings/methodology",
-            logo: "/logos/qs-logo.svg"
-          },
-          {
-            name: "Times Higher Education (THE) Rankings",
-            criteria: "Tədris keyfiyyəti, elmi tədqiqat fəaliyyəti, sitatların təsiri, sənaye gəlirləri, beynəlmiləlləşmə.",
-            methodology: "https://www.timeshighereducation.com/world-university-rankings/methodology",
-            logo: "/logos/the-logo.svg"
-          },
-          {
-            name: "UI GreenMetric World University Rankings",
-            criteria: "Enerji istifadəsi və iqlim dəyişiklikləri, tullantıların idarə olunması, nəqliyyat siyasəti, su resurslarının idarə olunması, ekoloji təhsil və tədqiqat.",
-            methodology: "https://uigreenmetric.com/rankings",
-            logo: "/logos/greenmetric-logo.svg"
-          }
+
+        sourcesTitle: "Mənbələr",
+        sources: [
+          { label: "QS World University Rankings", href: "https://www.topuniversities.com/world-university-rankings" },
+          { label: "Times Higher Education — AzTU profili", href: "https://www.timeshighereducation.com/world-university-rankings/azerbaijan-technical-university-aztu" },
+          { label: "UI GreenMetric — AzTU profili", href: "https://uigreenmetric.com/university/aztu.edu.az" }
         ],
-        positionsTitle: "Beynəlxalq Reytinqlərdə Mövqeyimiz",
-        positions: [
-          { name: "QS Europe 2026", position: "476" },
-          { name: "QS Europe 2026 (Western Asia)", position: "30" },
-          { name: "QS World University Rankings (New Entrant)", position: "851-900" },
-          { name: "QS World University Rankings by Subject 2026", position: "701-750" },
-          { name: "The World's Most Sustainable University (2025)", position: "835" },
-          { name: "The World's Most Sustainable University (2024)", position: "1014" }
-        ],
-        profileLink: "AzTU-nun THE profili",
-        profileUrl: "https://www.timeshighereducation.com/world-university-rankings/azerbaijan-technical-university-aztu"
+
+        related: [
+          { title: "Akkreditasiya", href: "/az/haqqimizda/accreditation" },
+          { title: "Strateji Plan", href: "/az/haqqimizda/vizyon-ve-missiya/strateji-plan" },
+          { title: "AzTU-nun Tarixi", href: "/az/haqqimizda/vizyon-ve-missiya/aztu-nun-tarixi" }
+        ]
       },
 
       history: {
@@ -1138,7 +1239,7 @@ const az = {
           email: "yti@aztu.edu.az"
         },
         related: [
-          { title: "Yüksək Təhsil İnstitutu (YTİ)", href: "/haqqimizda/yuksek-tehsil-institutu-yti" },
+          { title: "Yüksək Təhsil İnstitutu (YTİ)", href: "/az/akademik/tehsil-ve-proqramlar/yuksek-tehsil-institutu-yti" },
           { title: "Magistratura Proqramları", href: "/telebeler/magistratura/magistratura-ixtisaslari" },
           { title: "İkili Diplom Proqramları", href: "/telebeler/magistratura/mubadile-proqramlari" },
         ],
