@@ -152,7 +152,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
             "eqli-mulkiyyet-ve-patentler": "intellectual-property-and-patents",
             "performans-ve-qiymetlendirme": "performance-and-evaluation",
             "heveslendirme-mexanizmi": "incentive-mechanism",
-            "daxili-qrant-proqramlari": "daxili-qrant-proqramlari",
+            "daxili-qrant-proqramlari": "internal-grant-programs",
             "konfranslar-ve-tedbirler": "conferences-and-events",
             "seminarlar-ve-telimler": "seminars-and-trainings",
             "direktor": "director",

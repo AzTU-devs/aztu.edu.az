@@ -446,9 +446,25 @@ export function middleware(request: NextRequest) {
         if (segments_rest[1] === "research-activity" || segments_rest[1] === "tedqiqat-fealiyyeti") segments_rest[1] = "tedqiqat-fealiyyeti";
         if (segments_rest[1] === "performance-and-evaluation" || segments_rest[1] === "performans-ve-qiymetlendirme") {
             segments_rest[1] = "performans-ve-qiymetlendirme";
-            if (segments_rest[2] === "incentive-mechanism" || segments_rest[2] === "heveslendirme-mexanizmi") segments_rest[2] = "heveslendirme-mexanizmi";
+            // The child slug has to be translated too, or the en URL rewrites to
+            // a route that does not exist on disk.
+            const performanceMap: Record<string, string> = {
+                "incentive-mechanism": "heveslendirme-mexanizmi",
+                "internal-grant-programs": "daxili-qrant-proqramlari",
+            };
+            if (segments_rest[2] && performanceMap[segments_rest[2]]) {
+                segments_rest[2] = performanceMap[segments_rest[2]];
+            }
         }
-        if (segments_rest[1] === "conferences-and-events" || segments_rest[1] === "konfranslar-ve-tedbirler") segments_rest[1] = "konfranslar-ve-tedbirler";
+        if (segments_rest[1] === "conferences-and-events" || segments_rest[1] === "konfranslar-ve-tedbirler") {
+            segments_rest[1] = "konfranslar-ve-tedbirler";
+            const conferencesMap: Record<string, string> = {
+                "seminars-and-trainings": "seminarlar-ve-telimler",
+            };
+            if (segments_rest[2] && conferencesMap[segments_rest[2]]) {
+                segments_rest[2] = conferencesMap[segments_rest[2]];
+            }
+        }
         if (segments_rest[1] === "publications-and-broadcasting" || segments_rest[1] === "nesrler-ve-yayim") segments_rest[1] = "nesrler-ve-yayim";
         
         if (segments_rest[1] === "nesrler-ve-yayim" && (segments_rest[2] === "open-access-policy" || segments_rest[2] === "aciq-giris-siyaseti")) {
