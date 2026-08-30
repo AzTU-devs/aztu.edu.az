@@ -1,35 +1,40 @@
-"use client";
-
-import { useParams } from "next/navigation";
-import { getSectionByKey, getItemBySlug } from "@/config/navigation";
+import { notFound } from "next/navigation";
+import { getSectionByKey, getItemBySlug, getSectionSlugs } from "@/config/navigation";
 import StaticSubPage from "@/components/pages/StaticSubPage";
-
-import Link from "next/link";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 const SECTION_KEY = "media";
 
-export default function MediaSlugPage() {
-    const params = useParams();
-    const slug = typeof params.slug === "string" ? params.slug : Array.isArray(params.slug) ? params.slug[0] : "";
+/**
+ * Server component on purpose.
+ *
+ * The slug is validated against the static navigation config before anything is
+ * streamed, so an unknown slug produces a real HTTP 404. Doing this in a client
+ * component only ever painted an error screen on top of a 200 response, which
+ * left search engines and uptime checks believing the page was healthy.
+ */
+export default async function MediaSlugPage({
+    params,
+}: {
+    params: Promise<{ slug: string }>;
+}) {
+    const { slug } = await params;
 
     const section = getSectionByKey(SECTION_KEY);
     const item = section ? getItemBySlug(SECTION_KEY, slug) : undefined;
 
-    if (!section || !item) {
-        return (
-            <>
-                <main className="min-h-screen flex flex-col items-center justify-center bg-page px-4">
-                    <h1 className="text-3xl font-bold text-[#1a2355] mb-4">Səhifə tapılmadı</h1>
-                    <p className="text-gray-500 mb-8">Axtardığınız səhifə mövcud deyil.</p>
-                    <Link href="/" className="flex items-center gap-1 bg-[#1a2355] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#1a2355]/90 transition-colors">
-                        Ana səhifəyə qayıt
-                        <ChevronRightIcon sx={{ fontSize: 18 }} />
-                    </Link>
-                </main>
-                </>
-        );
-    }
+    if (!section || !item) notFound();
 
     return <StaticSubPage section={section} item={item} />;
+}
+
+/**
+ * The slug set is fixed static config, so these pages prerender and the router
+ * rejects anything outside the set. Requests arriving through the middleware
+ * rewrite still report 200 — Next does not surface a not-found status across a
+ * rewrite — but the visitor gets the correct, bilingual not-found screen.
+ */
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+    return getSectionSlugs(SECTION_KEY).map((slug) => ({ slug }));
 }

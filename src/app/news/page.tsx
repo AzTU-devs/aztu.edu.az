@@ -252,7 +252,7 @@ export default function NewsPage() {
                                     {featured.sdg_numbers && featured.sdg_numbers.length > 0 && (
                                         <SDGBadges numbers={featured.sdg_numbers} size={48} className="mb-6" />
                                     )}
-                                    <p className="text-gray-500 dark:text-white/60 text-lg leading-relaxed line-clamp-3 mb-12 text-justify font-medium">
+                                    <p className="text-gray-500 dark:text-white/60 text-lg leading-relaxed line-clamp-3 mb-12 font-medium">
                                         {stripHtml(featured.html_content, 240)}
                                     </p>
                                     <div className="flex items-center gap-3 text-[#1a2355] dark:text-white font-black text-xs uppercase tracking-[0.2em] group-hover:text-[#ee7c7e] transition-all">
@@ -301,7 +301,7 @@ export default function NewsPage() {
                                         {item.sdg_numbers && item.sdg_numbers.length > 0 && (
                                             <SDGBadges numbers={item.sdg_numbers} size={36} className="mb-4" />
                                         )}
-                                        <p className="text-gray-500 dark:text-white/40 text-sm leading-relaxed line-clamp-3 mb-8 text-justify font-medium">
+                                        <p className="text-gray-500 dark:text-white/40 text-sm leading-relaxed line-clamp-3 mb-8 font-medium">
                                             {stripHtml(item.html_content, 180)}
                                         </p>
                                         <div className="mt-auto flex items-center justify-between">

@@ -189,7 +189,7 @@ export default function CafedraIxtisaslarPage({ params }: Props) {
               <ArrowForwardIcon sx={{ fontSize: 18 }} />
             </a>
             <Link
-              href={`/faculties/${facultyId}/kafedralar/${cafedraId}/haqqimizda/elaqe`}
+              href={`/${currentLang}/faculties/${facultyId}/kafedralar/${cafedraId}/haqqimizda/elaqe`}
               className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white/20"
             >
               {currentLang === "az" ? "Məlumat al" : "Get Information"}

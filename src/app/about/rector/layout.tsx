@@ -1,8 +1,7 @@
-import type { Metadata } from "next";
 import Script from "next/script";
-import { buildMetadata, breadcrumbJsonLd, SITE_URL } from "@/util/seo";
+import { createMetadata, breadcrumbJsonLd, SITE_URL } from "@/util/seo";
 
-export const metadata: Metadata = buildMetadata({
+export const generateMetadata = createMetadata({
     titleAz: "Rektor — Vilayət Vəliyev | Azərbaycan Texniki Universiteti",
     titleEn: "Rector — Vilayet Valiyev | Azerbaijan Technical University",
     descriptionAz:

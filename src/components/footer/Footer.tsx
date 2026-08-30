@@ -25,6 +25,7 @@ import HaydarAliyevFoundation from "@/../public/heydar-aliyev-foundation.png";
 import EmailIcon from '@mui/icons-material/Email';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import GavelIcon from '@mui/icons-material/Gavel';
+import { brandLang } from "@/util/brandLang";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://api-aztu.karamshukurlu.site";
 
@@ -138,10 +139,10 @@ export default function Footer() {
                     {/* TOP SECTION: Branding & Social */}
                     <div className="flex flex-col lg:flex-row items-center justify-between gap-12 mb-20 pb-12 border-b border-white/5">
                         <div className="text-center lg:text-left">
-                            <h2 className="text-2xl md:text-4xl font-black text-white tracking-tighter uppercase mb-2 drop-shadow-lg">
+                            <h2 lang={brandLang(universityName)} className="text-2xl md:text-4xl font-black text-white tracking-tighter uppercase mb-2 drop-shadow-lg">
                                 {universityName}
                             </h2>
-                            <p className="text-[#ee7c7e] text-[11px] font-black uppercase tracking-[0.5em] opacity-90">
+                            <p lang="en" className="text-[#ee7c7e] text-[11px] font-black uppercase tracking-[0.5em] opacity-90">
                                 Innovation & Technology Hub
                             </p>
                         </div>

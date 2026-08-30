@@ -1,9 +1,8 @@
-import type { Metadata } from "next";
 
 import HeiDetailLayout from "@/components/hei/HeiDetailLayout";
-import { buildMetadata } from "@/util/seo";
+import { createMetadata } from "@/util/seo";
 
-export const metadata: Metadata = buildMetadata({
+export const generateMetadata = createMetadata({
     titleAz: "Yüksək Təhsil İnstitutu (YTİ)",
     titleEn: "Higher Education Institute (HEI)",
     descriptionAz:

@@ -1,10 +1,9 @@
-import type { Metadata } from "next";
 import Script from "next/script";
-import { buildMetadata, breadcrumbJsonLd, SITE_URL } from "@/util/seo";
+import { createMetadata, breadcrumbJsonLd, SITE_URL } from "@/util/seo";
 import { fetchAnnouncementList } from "@/util/fetchers";
 import { announcementSlug } from "@/util/slugify";
 
-export const metadata: Metadata = buildMetadata({
+export const generateMetadata = createMetadata({
     titleAz: "Elanlar",
     titleEn: "Announcements",
     descriptionAz:

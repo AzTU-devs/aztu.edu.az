@@ -183,7 +183,7 @@ export default function ViceRectorDetailPage() {
                         </h2>
                         <SanitizedHtml
                             html={bioHtml}
-                            className="prose prose-slate max-w-none dark:prose-invert [&_p]:text-justify [&_p]:text-slate-600 dark:[&_p]:text-slate-300"
+                            className="prose prose-slate max-w-none dark:prose-invert [&_p]:text-slate-600 dark:[&_p]:text-slate-300"
                         />
                     </div>
 

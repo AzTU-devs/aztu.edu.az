@@ -201,7 +201,7 @@ export default function StudentLifePage() {
                   {p.title}
                 </h2>
               </div>
-              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-justify">
+              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed ">
                 {p.intro}
               </p>
             </div>
@@ -232,7 +232,7 @@ export default function StudentLifePage() {
                 <h3 className="text-xl font-black text-[#1a2355] dark:text-white mb-4 leading-tight group-hover:text-[#ee7c7e] transition-colors">
                   {section.title}
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed text-justify">
+                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed ">
                   {section.body}
                 </p>
               </motion.div>

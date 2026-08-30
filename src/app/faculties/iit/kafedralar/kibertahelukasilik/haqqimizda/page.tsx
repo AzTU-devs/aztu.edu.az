@@ -9,6 +9,7 @@ import ArticleIcon from "@mui/icons-material/Article";
 import PhoneIcon from "@mui/icons-material/Phone";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 const statsData = [
     { label: "Bakalavr proqramları", value: "1" },
@@ -22,31 +23,32 @@ const statsData = [
 ];
 
 export default function CafedraHaqqimizdaPage() {
+  const { lang } = useLanguage();
   const facultyId = "iit";
   const cafedraId = "kibertahelukasilik";
 
   const subPages = [
     {
       label: "Kafedra müdiri",
-      href: `/faculties/${facultyId}/kafedralar/${cafedraId}/haqqimizda/kafedra-mudiri`,
+      href: `/${lang}/faculties/${facultyId}/kafedralar/${cafedraId}/haqqimizda/kafedra-mudiri`,
       icon: <PersonIcon sx={{ color: "#1a2355" }} />,
       desc: "Kafedra müdiri haqqında ətraflı məlumat",
     },
     {
       label: "Əməkdaşlar",
-      href: `/faculties/${facultyId}/kafedralar/${cafedraId}/haqqimizda/emekdaslar`,
+      href: `/${lang}/faculties/${facultyId}/kafedralar/${cafedraId}/haqqimizda/emekdaslar`,
       icon: <GroupIcon sx={{ color: "#1a2355" }} />,
       desc: "Kafedranın bütün əməkdaşları",
     },
     {
       label: "Xəbərlər",
-      href: `/faculties/${facultyId}/kafedralar/${cafedraId}/haqqimizda/xeberler`,
+      href: `/${lang}/faculties/${facultyId}/kafedralar/${cafedraId}/haqqimizda/xeberler`,
       icon: <ArticleIcon sx={{ color: "#1a2355" }} />,
       desc: "Kafedranın son xəbərləri və elanları",
     },
     {
       label: "Əlaqə",
-      href: `/faculties/${facultyId}/kafedralar/${cafedraId}/haqqimizda/elaqe`,
+      href: `/${lang}/faculties/${facultyId}/kafedralar/${cafedraId}/haqqimizda/elaqe`,
       icon: <PhoneIcon sx={{ color: "#1a2355" }} />,
       desc: "Əlaqə məlumatları",
     },

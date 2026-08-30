@@ -1,8 +1,7 @@
-import type { Metadata } from "next";
 import Script from "next/script";
-import { buildMetadata, SITE_URL, SITE_NAME_AZ, SITE_NAME_EN } from "@/util/seo";
+import { createMetadata, SITE_URL, SITE_NAME_AZ, SITE_NAME_EN } from "@/util/seo";
 
-export const metadata: Metadata = buildMetadata({
+export const generateMetadata = createMetadata({
     titleAz: "Əlaqə | AzTU",
     titleEn: "Contact Us | AzTU",
     descriptionAz:

@@ -179,7 +179,7 @@ export default function IncentiveMechanismPage() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: 0.1 + (i * 0.08) }}
-                                    className="text-gray-600 dark:text-white/60 text-base md:text-lg font-medium leading-relaxed text-justify"
+                                    className="text-gray-600 dark:text-white/60 text-base md:text-lg font-medium leading-relaxed "
                                 >
                                     {para}
                                 </motion.p>

@@ -3,6 +3,7 @@ import Script from "next/script";
 import { parseNewsSlug } from "@/util/slugify";
 import {
     buildMetadata,
+    resolveRequestLang,
     breadcrumbJsonLd,
     stripHtml,
     SITE_URL,
@@ -25,7 +26,7 @@ export async function generateMetadata({
             descriptionAz: "Bu xəbər tapılmadı.",
             pathAz: `/news/${slug}`,
             noindex: true,
-        });
+        }, await resolveRequestLang());
     }
     const [az, en] = await Promise.all([fetchNewsDetail(id, "az"), fetchNewsDetail(id, "en")]);
     const detail = az ?? en;
@@ -35,7 +36,7 @@ export async function generateMetadata({
             descriptionAz: "Bu xəbər tapılmadı.",
             pathAz: `/news/${slug}`,
             noindex: true,
-        });
+        }, await resolveRequestLang());
     }
 
     const titleAz = detail.az_title || detail.en_title;
@@ -68,7 +69,7 @@ export async function generateMetadata({
             titleAz,
             "Azərbaycan Texniki Universiteti",
         ].filter(Boolean),
-    });
+    }, await resolveRequestLang());
 }
 
 export default async function NewsDetailLayout({

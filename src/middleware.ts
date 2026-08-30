@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { CAFEDRA_PAGE_MAP } from "@/util/cafedraSlugs";
+import { LANG_HEADER } from "@/util/langHeader";
 
 const SUPPORTED_LANGS = ["az", "en"];
 const DEFAULT_LANG = "az";
@@ -762,6 +763,10 @@ export function middleware(request: NextRequest) {
     const rewriteUrl = new URL(targetPath, request.url);
     const requestHeaders = new Headers(request.headers);
     requestHeaders.set("x-middleware-rewrite", "true");
+    // The locale only exists in the URL prefix, which the rewrite strips. Pass it
+    // on so server components — above all `generateMetadata` — can localise the
+    // <title>, <meta> and <html lang> layer instead of always emitting Azerbaijani.
+    requestHeaders.set(LANG_HEADER, lang);
 
     const response = NextResponse.rewrite(rewriteUrl, {
         request: { headers: requestHeaders },

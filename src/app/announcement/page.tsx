@@ -144,7 +144,7 @@ export default function AnnouncementsPage() {
                                     </h2>
 
                                     {featured.html_content && (
-                                        <div className="text-gray-500 dark:text-white/60 text-xl leading-relaxed line-clamp-3 text-justify font-medium">
+                                        <div className="text-gray-500 dark:text-white/60 text-xl leading-relaxed line-clamp-3 font-medium">
                                             <SanitizedHtml html={featured.html_content} className="prose-p:my-0" />
                                         </div>
                                     )}

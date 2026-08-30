@@ -295,7 +295,7 @@ export default function KaryeraMerkeziPage() {
                 {p.aboutTitle}
               </h2>
             </div>
-            <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-justify">
+            <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed ">
               {p.aboutText.map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
@@ -390,7 +390,7 @@ export default function KaryeraMerkeziPage() {
                   {p.headBio.split("\n\n").map((para, i) => (
                     <p
                       key={i}
-                      className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-justify"
+                      className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed "
                     >
                       {para}
                     </p>

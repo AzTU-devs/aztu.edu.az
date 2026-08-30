@@ -1,5 +1,4 @@
-import type { Metadata } from "next";
-import { buildMetadata } from "@/util/seo";
+import { createMetadata } from "@/util/seo";
 
 /**
  * Static per-page SEO.
@@ -9,7 +8,7 @@ import { buildMetadata } from "@/util/seo";
  * fetch. These tags describe the page rather than its editable copy, which
  * means they stay correct no matter what an editor types.
  */
-export const metadata: Metadata = buildMetadata({
+export const generateMetadata = createMetadata({
     titleAz: "Strateji İnkişaf Planı | Azərbaycan Texniki Universiteti",
     titleEn: "Strategic Development Plan | Azerbaijan Technical University",
     descriptionAz:

@@ -342,7 +342,7 @@ export default function TTOPage() {
               <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
               <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">{p.aboutTitle}</h2>
             </div>
-            <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-justify">
+            <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed ">
               {p.aboutText.map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
@@ -527,7 +527,7 @@ export default function TTOPage() {
                 <h3 className="text-sm font-black uppercase tracking-widest text-gray-400 mb-6">{p.headBioTitle}</h3>
                 <div className="space-y-6">
                   {p.headBio.split("\n\n").map((para, i) => (
-                    <p key={i} className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-justify">
+                    <p key={i} className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed ">
                       {para}
                     </p>
                   ))}

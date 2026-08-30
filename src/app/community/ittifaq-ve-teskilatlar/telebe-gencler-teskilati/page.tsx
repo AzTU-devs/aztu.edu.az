@@ -474,7 +474,7 @@ export default function TelebeGenclerTeskilatiPage() {
                         <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">{p.about.title}</h2>
                       </div>
                       {p.about.paragraphs.map((para, i) => (
-                        <p key={i} className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-justify">{para}</p>
+                        <p key={i} className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed ">{para}</p>
                       ))}
                       
                       <div className="pt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">

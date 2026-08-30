@@ -251,7 +251,7 @@ export default function RectorPage() {
                         <div className="lg:col-span-8">
                             <SanitizedHtml
                                 html={messageHtml}
-                                className="prose prose-slate dark:prose-invert max-w-none text-base lg:text-lg text-justify [&_p]:text-gray-600 dark:[&_p]:text-slate-300 [&_li]:text-gray-600 dark:[&_li]:text-slate-300 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:marker:text-[#ee7c7e] [&_strong]:text-[#1a2355] dark:[&_strong]:text-white"
+                                className="prose prose-slate dark:prose-invert max-w-none text-base lg:text-lg  [&_p]:text-gray-600 dark:[&_p]:text-slate-300 [&_li]:text-gray-600 dark:[&_li]:text-slate-300 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:marker:text-[#ee7c7e] [&_strong]:text-[#1a2355] dark:[&_strong]:text-white"
                             />
                         </div>
                         <div className="lg:col-span-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl p-10 rounded-[18px] border-2 border-[#1a2355]/30 dark:border-white/10 shadow-xl relative overflow-hidden">

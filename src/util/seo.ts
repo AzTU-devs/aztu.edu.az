@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { LANG_HEADER } from "@/util/langHeader";
+
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://aztu.edu.az";
 export const SITE_NAME_AZ = "Azərbaycan Texniki Universiteti";
 export const SITE_NAME_EN = "Azerbaijan Technical University";
@@ -49,7 +51,14 @@ export function absUrl(path: string | null | undefined): string {
     return `${apiBase.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
 }
 
-export function buildMetadata(input: SeoInput): Metadata {
+/**
+ * Build the metadata for one page in one language.
+ *
+ * `lang` defaults to Azerbaijani so the existing synchronous call sites keep
+ * their current behaviour; pages that want per-request localisation go through
+ * {@link createMetadata} instead.
+ */
+export function buildMetadata(input: SeoInput, lang: Lang = "az"): Metadata {
     const {
         titleAz,
         titleEn,
@@ -74,7 +83,18 @@ export function buildMetadata(input: SeoInput): Metadata {
     // When real /az + /en URLs are supplied, canonical/hreflang/og:url use the
     // non-redirecting /az URL with a proper /en alternate. Otherwise fall back to
     // the prefix-less path (legacy behaviour).
-    const canonical = localeUrls ? withSlash(localeUrls.az) : prefixless;
+    const isEn = lang === "en";
+    // Fall back to the Azerbaijani copy rather than emitting an empty tag when a
+    // page has not been given English strings yet.
+    const title = (isEn ? titleEn : titleAz) || titleAz;
+    const description = (isEn ? descriptionEn : descriptionAz) || descriptionAz;
+    const siteName = isEn ? SITE_NAME_EN : SITE_NAME_AZ;
+
+    // Canonical points at the URL for the language actually being served, so the
+    // English tree stops declaring the Azerbaijani page as its canonical.
+    const canonical = localeUrls
+        ? withSlash(isEn ? localeUrls.en : localeUrls.az)
+        : prefixless;
     const languages = localeUrls
         ? {
               "az-AZ": withSlash(localeUrls.az),
@@ -88,9 +108,22 @@ export function buildMetadata(input: SeoInput): Metadata {
           };
     const ogImage = absUrl(image);
 
+    // The root layout's title template is Azerbaijani ("%s | Azərbaycan Texniki
+    // Universiteti"), so an English title has to be absolute or it ends up
+    // half-translated. The site name is appended only when the page has not
+    // already put a brand in its own title.
+    const brandedTitle =
+        /aztu|azerbaijan technical university/i.test(title) ? title : `${title} | ${SITE_NAME_EN}`;
+
+    // The root layout appends the site name through its title template. A page
+    // whose own title already carries a brand must therefore be absolute, or the
+    // name is printed twice ("Haqqımızda | Azərbaycan Texniki Universiteti |
+    // Azərbaycan Texniki Universiteti").
+    const alreadyBranded = new RegExp(`aztu|${SITE_NAME_AZ}|${SITE_NAME_EN}`, "i").test(title);
+
     return {
-        title: titleAz,
-        description: descriptionAz,
+        title: isEn ? { absolute: brandedTitle } : alreadyBranded ? { absolute: title } : title,
+        description,
         keywords,
         alternates: {
             canonical,
@@ -98,18 +131,18 @@ export function buildMetadata(input: SeoInput): Metadata {
         },
         openGraph: {
             type: type === "profile" ? "profile" : type,
-            locale: "az_AZ",
-            alternateLocale: ["en_US"],
+            locale: isEn ? "en_US" : "az_AZ",
+            alternateLocale: [isEn ? "az_AZ" : "en_US"],
             url: canonical,
-            siteName: SITE_NAME_AZ,
-            title: titleAz,
-            description: descriptionAz,
+            siteName,
+            title: isEn ? brandedTitle : title,
+            description,
             images: [
                 {
                     url: ogImage,
                     width: 1200,
                     height: 630,
-                    alt: titleAz,
+                    alt: title,
                 },
             ],
             ...(type === "article"
@@ -123,8 +156,8 @@ export function buildMetadata(input: SeoInput): Metadata {
         },
         twitter: {
             card: "summary_large_image",
-            title: titleEn ?? titleAz,
-            description: descriptionEn ?? descriptionAz,
+            title: isEn ? brandedTitle : title,
+            description,
             images: [ogImage],
         },
         robots: noindex
@@ -140,6 +173,43 @@ export function buildMetadata(input: SeoInput): Metadata {
                       "max-video-preview": -1,
                   },
               },
+    };
+}
+
+/**
+ * The locale of the request currently being rendered, as passed through by the
+ * middleware. Server-only — `headers()` is unavailable during static rendering,
+ * so anything that cannot resolve a locale falls back to Azerbaijani, which is
+ * the site default.
+ */
+export async function resolveRequestLang(): Promise<Lang> {
+    try {
+        const { headers } = await import("next/headers");
+        const store = await headers();
+        return store.get(LANG_HEADER) === "en" ? "en" : "az";
+    } catch {
+        return "az";
+    }
+}
+
+/**
+ * Locale-aware companion to {@link buildMetadata}.
+ *
+ * Both language trees rewrite onto the same routes, so a statically exported
+ * `metadata` object can only ever describe one of them — which is why every
+ * English page used to ship an Azerbaijani `<title>` and `<meta description>`.
+ * This returns a `generateMetadata` function instead, so each request gets the
+ * copy for its own language:
+ *
+ *     export const generateMetadata = createMetadata({ … });
+ *
+ * The English strings are optional; a page that has not supplied them keeps the
+ * Azerbaijani text rather than rendering an empty tag.
+ */
+export function createMetadata(input: SeoInput): () => Promise<Metadata> {
+    return async function generateMetadata(): Promise<Metadata> {
+        const lang = await resolveRequestLang();
+        return buildMetadata(input, lang);
     };
 }
 

@@ -55,7 +55,7 @@ export default function CafedraGirisPage({ params }: Props) {
       <div id={id} className="scroll-mt-28">
         <FacultyPanel title={title} icon={Icon}>
           {htmlContent ? (
-            <div className="prose prose-sm md:prose-base max-w-none text-justify leading-relaxed text-slate-600 dark:text-slate-300 dark:prose-invert">
+            <div className="prose prose-sm md:prose-base max-w-none  leading-relaxed text-slate-600 dark:text-slate-300 dark:prose-invert">
               <SanitizedHtml html={htmlContent} />
             </div>
           ) : (

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { STATIC_FACULTIES } from "@/data/staticFaculties";
-import { buildMetadata, breadcrumbJsonLd, SITE_URL, SITE_NAME_AZ } from "@/util/seo";
+import { buildMetadata, breadcrumbJsonLd, resolveRequestLang, SITE_URL, SITE_NAME_AZ } from "@/util/seo";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://api-aztu.karamshukurlu.site";
 
@@ -75,7 +75,7 @@ export async function generateMetadata({
             "ixtisas",
             "specialization",
         ],
-    });
+    }, await resolveRequestLang());
 }
 
 export default async function FacultyIdLayout({

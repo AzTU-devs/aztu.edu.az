@@ -80,7 +80,7 @@ export default function ResearchInstituteDirectorCard({ director, lang }: Direct
               <div className="relative z-10">
                 <SanitizedHtml
                   html={director.biography}
-                  className="prose prose-sm md:prose-base dark:prose-invert max-w-none text-gray-600 dark:text-slate-300 leading-relaxed font-medium text-justify"
+                  className="prose prose-sm md:prose-base dark:prose-invert max-w-none text-gray-600 dark:text-slate-300 leading-relaxed font-medium "
                 />
               </div>
             </div>

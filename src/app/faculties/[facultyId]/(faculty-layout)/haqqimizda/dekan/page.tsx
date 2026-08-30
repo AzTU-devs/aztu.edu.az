@@ -193,7 +193,7 @@ export default function DekanPage({ params }: Props) {
                         className="mb-6"
                     />
                     <div
-                        className="prose prose-sm md:prose-base max-w-none text-justify leading-relaxed text-slate-600 dark:text-slate-300 dark:prose-invert"
+                        className="prose prose-sm md:prose-base max-w-none  leading-relaxed text-slate-600 dark:text-slate-300 dark:prose-invert"
                         dangerouslySetInnerHTML={{ __html: director.bio }}
                     />
                 </section>

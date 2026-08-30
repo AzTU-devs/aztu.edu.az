@@ -350,7 +350,7 @@ export default function QatimPage() {
                 {p.aboutTitle}
               </h2>
             </div>
-            <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-justify">
+            <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed ">
               {p.aboutText.map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
@@ -382,7 +382,7 @@ export default function QatimPage() {
                   <div className="w-12 h-12 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e] font-black text-lg shrink-0 group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-300">
                     {String(i + 1).padStart(2, "0")}
                   </div>
-                  <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed text-justify font-medium">
+                  <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed font-medium">
                     {obj}
                   </p>
                 </motion.div>
@@ -449,7 +449,7 @@ export default function QatimPage() {
                   {p.headBio.split("\n\n").map((para, i) => (
                     <p
                       key={i}
-                      className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-justify"
+                      className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed "
                     >
                       {para}
                     </p>

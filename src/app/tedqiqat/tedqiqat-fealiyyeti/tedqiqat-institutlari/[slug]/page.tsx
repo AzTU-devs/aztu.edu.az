@@ -64,7 +64,7 @@ export default function ResearchInstituteAboutPage({ params }: Props) {
                 <SectionBlock title={labels.about} accent>
                     <SanitizedHtml
                         html={institute.about}
-                        className={`${proseClasses} text-lg text-justify w-full`}
+                        className={`${proseClasses} text-lg  w-full`}
                     />
                 </SectionBlock>
             )}

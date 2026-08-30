@@ -232,6 +232,12 @@ const websiteJsonLd = {
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://api-aztu.karamshukurlu.site";
 
+/*
+ * `lang` is left static here on purpose: calling headers() in the root layout
+ * would opt every route in the app out of static rendering. LanguageProvider
+ * corrects it on mount (document.documentElement.lang = …), and generateMetadata
+ * above already emits the right language for crawlers.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

@@ -2,6 +2,7 @@
 
 import { Fragment, useEffect, useMemo, useRef, useState, useCallback } from "react"
 import Link from "next/link"
+import { brandLang } from "@/util/brandLang"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward"
@@ -754,7 +755,7 @@ export default function HeroSection() {
                                             </span>
                                         )}
                                     </p>
-                                    <p className="mt-1.5 text-[8px] md:text-[9px] font-black uppercase tracking-[0.18em] text-white/45 group-hover:text-[#ee7c7e] transition-colors duration-300 truncate">
+                                    <p lang={brandLang(stat.label)} className="mt-1.5 text-[8px] md:text-[9px] font-black uppercase tracking-[0.18em] text-white/45 group-hover:text-[#ee7c7e] transition-colors duration-300 truncate">
                                         {stat.label}
                                     </p>
                                 </div>

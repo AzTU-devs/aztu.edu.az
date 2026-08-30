@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import {
     buildMetadata,
+    resolveRequestLang,
     breadcrumbJsonLd,
     stripHtml,
     SITE_URL,
@@ -31,7 +32,7 @@ export async function generateMetadata({
             descriptionAz: "Bu elan tapılmadı.",
             pathAz: `/announcement/${slug}`,
             noindex: true,
-        });
+        }, await resolveRequestLang());
     }
 
     const titleAz = az?.title ?? detail.title;
@@ -66,7 +67,7 @@ export async function generateMetadata({
             titleAz,
             "Azərbaycan Texniki Universiteti",
         ].filter(Boolean),
-    });
+    }, await resolveRequestLang());
 }
 
 export default async function AnnouncementDetailLayout({

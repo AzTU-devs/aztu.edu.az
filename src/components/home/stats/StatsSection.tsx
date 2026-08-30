@@ -13,6 +13,7 @@ import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
 import { getHomePage } from "@/services/homeService/homeService";
 import type { HomePage } from "@/types/home";
+import { brandLang } from "@/util/brandLang";
 
 interface Stat {
     icon: React.ElementType;
@@ -103,8 +104,8 @@ function StatCard({ stat, index, isInView }: { stat: Stat; index: number; isInVi
 
             {/* Labels */}
             <div className="relative z-10 text-center">
-                <p className="text-white text-sm font-black uppercase tracking-[0.1em] mb-1">{stat.label}</p>
-                <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest">{stat.sublabel}</p>
+                <p lang={brandLang(stat.label)} className="text-white text-sm font-black uppercase tracking-[0.1em] mb-1">{stat.label}</p>
+                <p lang={brandLang(stat.sublabel)} className="text-white/40 text-[10px] font-bold uppercase tracking-widest">{stat.sublabel}</p>
             </div>
 
             {/* Decorative bottom line */}
@@ -143,7 +144,13 @@ export default function StatsSection() {
             ? numberMetrics.map((metric, i) => ({
                   icon: STAT_META[i]?.icon ?? FALLBACK_ICON,
                   value: Number(String(metric.value).replace(/[^0-9.]/g, "")) || 0,
-                  suffix: metric.suffix,
+                  // The CMS leaves this unset for ranks that have no "+"; both a
+                  // real null and the literal string "null" have reached us, and
+                  // either one used to print beside the number.
+                  suffix:
+                      metric.suffix && String(metric.suffix).trim().toLowerCase() !== "null"
+                          ? metric.suffix
+                          : "",
                   label: metric.label,
                   sublabel: metric.sublabel ?? "",
               }))

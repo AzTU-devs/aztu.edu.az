@@ -551,7 +551,7 @@ export default function KitabxanaInformasiyaMerkeziPage() {
                   {p.aboutTitle}
                 </h2>
               </div>
-              <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-justify">
+              <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed ">
                 {p.aboutText.map((para, i) => (
                   <p key={i}>{para}</p>
                 ))}
@@ -691,7 +691,7 @@ export default function KitabxanaInformasiyaMerkeziPage() {
                 {p.infoServicesTitle}
               </h2>
             </div>
-            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-10 text-justify">
+            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-10 ">
               {p.infoServicesText}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -756,7 +756,7 @@ export default function KitabxanaInformasiyaMerkeziPage() {
               <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
               <h2 className="text-3xl font-black">{p.purposeTitle}</h2>
             </div>
-            <p className="text-white/80 text-lg leading-relaxed text-justify max-w-5xl">
+            <p className="text-white/80 text-lg leading-relaxed  max-w-5xl">
               {p.purpose}
             </p>
           </motion.div>
@@ -780,7 +780,7 @@ export default function KitabxanaInformasiyaMerkeziPage() {
               {p.reportIntro.map((para, i) => (
                 <p
                   key={i}
-                  className="text-gray-600 dark:text-gray-300 leading-relaxed text-justify"
+                  className="text-gray-600 dark:text-gray-300 leading-relaxed "
                 >
                   {para}
                 </p>
@@ -909,7 +909,7 @@ export default function KitabxanaInformasiyaMerkeziPage() {
                   {p.directorBio.split("\n\n").map((para, i) => (
                     <p
                       key={i}
-                      className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-justify"
+                      className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed "
                     >
                       {para}
                     </p>

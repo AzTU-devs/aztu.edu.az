@@ -71,7 +71,7 @@ export default function FacultyHaqqimizdaPage({ params }: Props) {
                 className="overflow-hidden"
               >
                 <div
-                  className="prose prose-sm md:prose-base max-w-none text-justify leading-relaxed text-slate-600 dark:text-slate-300 dark:prose-invert"
+                  className="prose prose-sm md:prose-base max-w-none  leading-relaxed text-slate-600 dark:text-slate-300 dark:prose-invert"
                   dangerouslySetInnerHTML={{ __html: htmlContent }}
                 />
               </motion.div>

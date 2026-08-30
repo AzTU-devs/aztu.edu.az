@@ -276,7 +276,7 @@ export default function AztuPoliklinikasi() {
                 <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">{p.aboutTitle}</h2>
               </div>
               {p.aboutParagraphs.map((para, i) => (
-                <p key={i} className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-justify">
+                <p key={i} className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed ">
                   {para}
                 </p>
               ))}

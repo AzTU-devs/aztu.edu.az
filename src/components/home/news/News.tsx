@@ -215,7 +215,7 @@ export default function News() {
                                         {featured.sdg_numbers && featured.sdg_numbers.length > 0 && (
                                             <SDGBadges numbers={featured.sdg_numbers} size={40} className="mb-6" />
                                         )}
-                                        <p className="text-gray-500 dark:text-white/60 text-xl leading-relaxed line-clamp-3 mb-10 text-justify font-medium">
+                                        <p className="text-gray-500 dark:text-white/60 text-xl leading-relaxed line-clamp-3 mb-10 font-medium">
                                             {stripHtml(featured.html_content, 240)}
                                         </p>
                                         <div className="flex items-center gap-4 text-[#1a2355] dark:text-[#ee7c7e] font-black uppercase tracking-[0.3em] text-[11px]">

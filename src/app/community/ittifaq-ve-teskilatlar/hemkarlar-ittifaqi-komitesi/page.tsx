@@ -247,7 +247,7 @@ export default function HemkarlarIttifaqiPage() {
                 <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
                 <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">{p.aboutTitle}</h2>
               </div>
-              <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-justify">
+              <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed ">
                 {p.aboutParagraphs.map((para, i) => <p key={i}>{para}</p>)}
               </div>
             </motion.div>
@@ -402,7 +402,7 @@ export default function HemkarlarIttifaqiPage() {
                 <h3 className="text-3xl font-black text-[#1a2355] dark:text-white mb-8">{p.chair.name}</h3>
                 <div className="space-y-6">
                   {p.chairBio.split("\n\n").map((para, i) => (
-                    <p key={i} className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-justify">{para}</p>
+                    <p key={i} className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed ">{para}</p>
                   ))}
                 </div>
               </section>

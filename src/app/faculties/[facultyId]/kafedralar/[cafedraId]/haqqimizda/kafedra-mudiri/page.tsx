@@ -194,7 +194,7 @@ export default function KafedraMudiriPage({ params }: Props) {
             title={currentLang === "az" ? "Kafedra müdiri haqqında" : "About the Head of Department"}
             className="mb-6"
           />
-          <div className="prose prose-sm md:prose-base max-w-none text-justify leading-relaxed text-slate-600 dark:text-slate-300 dark:prose-invert">
+          <div className="prose prose-sm md:prose-base max-w-none  leading-relaxed text-slate-600 dark:text-slate-300 dark:prose-invert">
             <SanitizedHtml html={head.bio} />
           </div>
         </section>

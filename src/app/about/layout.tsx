@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
-import { buildMetadata } from "@/util/seo";
+import { createMetadata } from "@/util/seo";
 
-export const metadata: Metadata = buildMetadata({
+export const generateMetadata = createMetadata({
     titleAz: "Haqqımızda | Azərbaycan Texniki Universiteti",
     titleEn: "About | Azerbaijan Technical University",
     descriptionAz:

@@ -418,6 +418,27 @@ export function getSectionByKey(key: string): NavSection | undefined {
     return NAV_SECTIONS.find((s) => s.key === key);
 }
 
+/**
+ * Every slug the given section can serve, from its top-level items and their
+ * children.
+ *
+ * The catch-all routes use this in `generateStaticParams` so that an unknown
+ * slug is rejected by the router with a real 404 status, instead of rendering an
+ * error screen inside a 200 response.
+ */
+export function getSectionSlugs(sectionKey: string): string[] {
+    const section = getSectionByKey(sectionKey);
+    if (!section) return [];
+    const slugs = new Set<string>();
+    for (const item of section.items) {
+        if (item.slug) slugs.add(item.slug);
+        for (const sub of item.subItems ?? []) {
+            if (sub.slug) slugs.add(sub.slug);
+        }
+    }
+    return [...slugs];
+}
+
 export function getItemBySlug(sectionKey: string, slug: string): NavItem | undefined {
     const section = getSectionByKey(sectionKey);
     if (!section) return undefined;

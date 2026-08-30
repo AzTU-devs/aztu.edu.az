@@ -55,14 +55,19 @@ body {
   min-height: 100vh;
 }
 
+/* Ragged-right, not justified.
+   Justification without hyphenation opens rivers of white space, and it is worst
+   in Azerbaijani, where the words are long — it was visibly breaking body copy,
+   staff cards and the homepage statistic labels. `hyphens: auto` lets the
+   browser break the longest words when a line really cannot be filled. */
 p {
-  text-justify: inter-word;
-  text-align: justify;
+  text-align: left;
+  hyphens: auto;
 }
 
 .prose p {
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
+  hyphens: auto;
 }
 
 /* Glassmorphism Containers - Primarily White/Light */
@@ -200,10 +205,10 @@ p {
 }
 
 /* ============================================================
-   OPT-OUT FROM THE GLOBAL JUSTIFIED BODY COPY.
-   `p { text-align: justify }` above is unlayered, so Tailwind's
-   `text-left` utility (which lives in a layer) cannot beat it.
-   Add `text-flow` to a container to get normal ragged-right text.
+   RAGGED-RIGHT OPT-IN.
+   Body copy is left-aligned by default (see the `p` rule above),
+   so this now only guarantees normal flow for containers that ask
+   for it explicitly.
    ============================================================ */
 .text-flow,
 .text-flow p,
