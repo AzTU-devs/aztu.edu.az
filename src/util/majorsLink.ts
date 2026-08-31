@@ -13,6 +13,11 @@ import { slugify } from "@/util/slugify";
  */
 const MAJORS_BASE = "https://majors.aztu.edu.az";
 
+/** Portal faculty index — where an unresolved faculty lands. */
+function majorsIndex(lang: string): string {
+    return `${MAJORS_BASE}/${lang === "en" ? "en" : "az"}/faculties`;
+}
+
 // First matching rule wins — keywords are matched against the slugified faculty
 // title/slug (Azerbaijani letters folded to latin), so both "İnformasiya…" and
 // "informasiya-texnologiyalari-…" resolve to the same code.
@@ -39,14 +44,20 @@ export function getMajorsCode(facultyIdentifier: string | null | undefined): str
     return rule ? rule.code : null;
 }
 
-/** Full external URL for a faculty's specializations, or null when unknown. */
+/**
+ * Full external URL for a faculty's specializations.
+ *
+ * Specializations live on the majors portal only — the main site does not carry
+ * them — so this never returns null. A faculty whose code cannot be resolved
+ * lands on the portal's faculty index rather than a dead internal route.
+ */
 export function getMajorsUrl(
     facultyIdentifier: string | null | undefined,
     lang: string = "az"
-): string | null {
-    const code = getMajorsCode(facultyIdentifier);
-    if (!code) return null;
+): string {
     const safeLang = lang === "en" ? "en" : "az";
+    const code = getMajorsCode(facultyIdentifier);
+    if (!code) return majorsIndex(safeLang);
     return `${MAJORS_BASE}/${safeLang}/faculties/${encodeURIComponent(code)}`;
 }
 
@@ -98,14 +109,14 @@ const CAFEDRA_MAJORS_LC: Record<string, { faculty: string; cafedra: string }> = 
 /**
  * External URL for a specific cafedra's specializations on the majors portal.
  * Falls back to the faculty-level majors page (department list) when the cafedra
- * isn't mapped, so the button still lands somewhere useful. Returns null only when
- * neither the cafedra nor the faculty can be resolved.
+ * isn't mapped, and to the portal's faculty index when the faculty is unknown too,
+ * so the link always lands somewhere useful.
  */
 export function getMajorsCafedraUrl(
     cafedraCode: string | null | undefined,
     facultyIdentifier: string | null | undefined,
     lang: string = "az"
-): string | null {
+): string {
     const safeLang = lang === "en" ? "en" : "az";
     const key = cafedraCode?.trim();
     const entry = key ? (CAFEDRA_MAJORS_MAP[key] ?? CAFEDRA_MAJORS_LC[key.toLowerCase()]) : undefined;

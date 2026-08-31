@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { CAFEDRA_PAGE_MAP } from "@/util/cafedraSlugs";
 import { LANG_HEADER } from "@/util/langHeader";
+import { getMajorsCafedraUrl, getMajorsUrl } from "@/util/majorsLink";
 
 const SUPPORTED_LANGS = ["az", "en"];
 const DEFAULT_LANG = "az";
@@ -369,6 +370,43 @@ function translateCafedraTail(tail: string[]): string[] {
   return tail.map((seg) => CAFEDRA_PAGE_MAP[seg] ?? seg);
 }
 
+const SPECIALIZATION_SLUGS = ["ixtisaslar", "specializations", "specialties"];
+const CAFEDRA_SLUGS = ["kafedralar", "departments"];
+
+/**
+ * Specializations are published on majors.aztu.edu.az, not on this site, so the
+ * faculty and cafedra "İxtisaslar" routes redirect straight out to the portal.
+ *
+ * This has to happen in middleware rather than in the page: `redirect()` to an
+ * external URL from a Server Component nested under a layout resolves only in the
+ * client router (it answers 200 with no Location header), which flashes the faculty
+ * shell and is invisible to crawlers. Here it is a real 308 before anything renders.
+ *
+ * Returns the portal URL, or null when the path is not a specializations route.
+ */
+function majorsRedirectFor(segments: string[], lang: string): string | null {
+    const facultyIndex = segments.findIndex(
+        (seg) => seg === "fakulteler" || seg === "faculties"
+    );
+    if (facultyIndex === -1) return null;
+
+    const facultySlug = segments[facultyIndex + 1];
+    if (!facultySlug) return null;
+
+    const tail = segments.slice(facultyIndex + 2);
+    if (tail.length === 1 && SPECIALIZATION_SLUGS.includes(tail[0])) {
+        return getMajorsUrl(facultySlug, lang);
+    }
+    if (
+        tail.length === 3 &&
+        CAFEDRA_SLUGS.includes(tail[0]) &&
+        SPECIALIZATION_SLUGS.includes(tail[2])
+    ) {
+        return getMajorsCafedraUrl(tail[1], facultySlug, lang);
+    }
+    return null;
+}
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -394,6 +432,17 @@ export function middleware(request: NextRequest) {
     const tail = segments.slice(2).join("/");
     const cleanPath = tail ? `/sdg/${tail}` : "/sdg";
     return NextResponse.redirect(new URL(cleanPath, request.url), 308);
+  }
+
+  // İxtisaslar → the external majors portal (see majorsRedirectFor).
+  {
+    const langPrefixed = SUPPORTED_LANGS.includes(firstSegment);
+    const lang = langPrefixed ? firstSegment : DEFAULT_LANG;
+    const majors = majorsRedirectFor(
+      langPrefixed ? segments.slice(1) : segments,
+      lang
+    );
+    if (majors) return NextResponse.redirect(majors, 308);
   }
 
   // Internal folder check

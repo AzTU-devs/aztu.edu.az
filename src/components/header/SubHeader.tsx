@@ -144,6 +144,7 @@ export default function SubHeader({ onOpenQuickMenu, onOpenSearch }: HeaderProps
                         </motion.button>
 
                         <motion.button
+                            data-quick-menu-trigger
                             onClick={onOpenQuickMenu}
                             whileHover={{ scale: 1.03, boxShadow: "0 6px 20px rgba(26,35,85,0.25)" }}
                             whileTap={{ scale: 0.97 }}

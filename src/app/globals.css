@@ -216,3 +216,34 @@ p {
   text-align: left;
   text-justify: auto;
 }
+
+/* Referenced by the quick menu, the responsive header and the news gallery.
+   Tailwind v4 ships no such utility, so without this the class was inert. */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Thin scrollbar for the dark navy overlays — `.custom-scrollbar` above uses a
+   near-black thumb that is invisible on #0b1330. */
+.quick-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+.quick-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.quick-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.quick-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
+.quick-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}

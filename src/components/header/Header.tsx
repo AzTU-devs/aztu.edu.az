@@ -225,6 +225,7 @@ export default function Header({ onOpenQuickMenu, onOpenSearch }: HeaderProps) {
             </button>
 
             <button
+              data-quick-menu-trigger
               onClick={onOpenQuickMenu}
               className="flex items-center gap-2 px-4 h-10 rounded-lg bg-white/10 hover:bg-white/25 transition-all duration-300 cursor-pointer ml-1"
             >

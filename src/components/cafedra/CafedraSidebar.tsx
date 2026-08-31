@@ -76,9 +76,9 @@ function buildNavItems(
     },
     {
       label: specsLabel,
-      href: majorsUrl ?? `${base}/${lang === "az" ? "ixtisaslar" : "specializations"}`,
+      href: majorsUrl,
       icon: SchoolOutlinedIcon,
-      external: !!majorsUrl,
+      external: true,
     },
     {
       label: researchLabel,

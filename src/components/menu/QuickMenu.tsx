@@ -1,17 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
-import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion, type Variants } from "framer-motion";
 import CloseIcon from "@mui/icons-material/Close";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import EmailIcon from '@mui/icons-material/Email';
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
-import { getQuickMenu, type QuickMenuData } from "@/services/menu/menuService";
+import TelegramIcon from "@mui/icons-material/Telegram";
+import XIcon from "@mui/icons-material/X";
+import PublicIcon from "@mui/icons-material/Public";
+import EmailIcon from "@mui/icons-material/Email";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import { getQuickMenu, type QuickMenuData, type QuickMenuItem } from "@/services/menu/menuService";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
 
@@ -20,239 +24,445 @@ type Props = {
     onClose: () => void;
 };
 
+/* Icons are the one thing that cannot come from the CMS — they are components.
+   An unmapped platform falls back to a neutral globe rather than to Facebook,
+   which would mislabel every unknown channel as one specific network. */
 const SOCIAL_ICONS: Record<string, React.ElementType> = {
     facebook: FacebookIcon,
     instagram: InstagramIcon,
     linkedin: LinkedInIcon,
     youtube: YouTubeIcon,
+    telegram: TelegramIcon,
+    x: XIcon,
+    twitter: XIcon,
 };
 
-const containerVariants: Variants = {
-    closed: { x: "100%" },
-    open: { 
-        x: 0,
-        transition: { 
-            duration: 0.6, 
-            ease: [0.23, 1, 0.32, 1],
-            staggerChildren: 0.05,
-            delayChildren: 0.1
-        }
-    }
+type Status = "idle" | "loading" | "ready" | "error";
+
+/** CMS strings are untrusted: the service casts raw JSON straight to the type. */
+const text = (value: unknown): string => (typeof value === "string" ? value.trim() : "");
+
+/**
+ * The CMS is a trust boundary: `next/link` renders whatever href it is handed,
+ * so an editor (or a compromised row) could otherwise ship `javascript:` into
+ * every visitor's menu. Allow only the schemes a menu link legitimately needs.
+ */
+const safeHref = (value: unknown): string | null => {
+    const url = text(value);
+    if (!url) return null;
+    // A single leading slash is an in-site path; two is protocol-relative and
+    // navigates off-site, so it has to clear the scheme check instead.
+    if (url.startsWith("/") && !url.startsWith("//")) return url;
+    return /^(https?:|mailto:|tel:)/i.test(url) ? url : null;
 };
 
-const itemVariants: Variants = {
-    closed: { opacity: 0, x: 20 },
-    open: { opacity: 1, x: 0 }
+/** A link is only renderable if it actually has somewhere safe to go. */
+const isRenderable = (item: QuickMenuItem | null | undefined) =>
+    !!item && !!text(item.label) && !!safeHref(item.url);
+
+const panelVariants: Variants = {
+    closed: { x: "100%", transition: { duration: 0.4, ease: [0.32, 0, 0.67, 0] } },
+    open: { x: 0, transition: { duration: 0.55, ease: [0.23, 1, 0.32, 1] } },
 };
 
 export default function QuickMenu({ isOpen, onClose }: Props) {
     const [menuData, setMenuData] = useState<QuickMenuData | null>(null);
-    const [activeSection, setActiveSection] = useState<string>("");
+    const [status, setStatus] = useState<Status>("idle");
+    const [attempt, setAttempt] = useState(0);
     const { lang } = useLanguage();
     const t = useTranslation();
     const qm = t.common.quickMenu;
+    const reduce = useReducedMotion();
 
+    const titleId = useId();
+    const closeRef = useRef<HTMLButtonElement>(null);
+    const restoreFocusRef = useRef<HTMLElement | null>(null);
+
+    /* ---------------------------------------------------------------- data */
     useEffect(() => {
-        if (isOpen) {
-            getQuickMenu(lang).then((data) => {
+        if (!isOpen) return;
+
+        let current = true;
+        setStatus("loading");
+        getQuickMenu(lang)
+            .then((data) => {
+                // Late resolves from a superseded language must not win.
+                if (!current) return;
                 if (data) {
                     setMenuData(data);
-                    if (data.right_sections?.length) {
-                        setActiveSection(data.right_sections[0].key);
-                    }
+                    setStatus("ready");
+                } else {
+                    setStatus("error");
                 }
+            })
+            .catch(() => {
+                if (current) setStatus("error");
             });
-        }
-    }, [isOpen, lang]);
 
+        return () => {
+            current = false;
+        };
+    }, [isOpen, lang, attempt]);
+
+    // A language switch invalidates the payload — clear it so the panel never
+    // renders AZ links under EN chrome while the refetch is in flight.
+    useEffect(() => {
+        setMenuData(null);
+    }, [lang]);
+
+    /* --------------------------------------------------- escape + scroll lock */
+    useEffect(() => {
+        if (!isOpen) return;
+
+        const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") onClose();
+        };
+        window.addEventListener("keydown", onKeyDown);
+
+        // Restore the previous value rather than blind-clearing it, matching
+        // RankingCertificates — another overlay may still want the lock.
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+
+        return () => {
+            window.removeEventListener("keydown", onKeyDown);
+            document.body.style.overflow = previousOverflow;
+        };
+    }, [isOpen, onClose]);
+
+    /* ------------------------------------------------------------- focus */
+    useEffect(() => {
+        if (!isOpen) return;
+
+        restoreFocusRef.current = document.activeElement as HTMLElement | null;
+        const timeoutId = setTimeout(() => closeRef.current?.focus(), 120);
+
+        return () => {
+            clearTimeout(timeoutId);
+            // The header swaps Header→SubHeader on scroll, so the element that
+            // opened the menu may no longer be in the document by the time it
+            // closes; fall back to whichever trigger is mounted now.
+            const previous = restoreFocusRef.current;
+            const target =
+                previous && document.contains(previous)
+                    ? previous
+                    : document.querySelector<HTMLElement>("[data-quick-menu-trigger]");
+            target?.focus();
+        };
+    }, [isOpen]);
+
+    /* Tab must not escape into the page behind the overlay. */
+    const onPanelKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
+        if (e.key !== "Tab") return;
+        const focusable = e.currentTarget.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+        }
+    }, []);
+
+    /* ---------------------------------------------------------------- view */
     /* Every link, title, contact detail and social URL is published through the
        CMS (/api/menu/quick) in both languages. Nothing is duplicated here — a
        static fallback would silently serve stale links the editors think they
        have already changed. Only the social ICONS stay in code, keyed by
        platform. */
-    const rightSections = menuData?.right_sections ?? [];
-    const leftItems = menuData?.left_items ?? [];
-    const contact = menuData?.contact;
-    const socialLinks = menuData?.social_links ?? [];
+    const leftItems = (menuData?.left_items ?? []).filter(isRenderable);
+    const sections = (menuData?.right_sections ?? []).filter((s) => !!text(s?.title));
+    const socialLinks = (menuData?.social_links ?? []).filter((s) => !!safeHref(s?.url));
+    const email = text(menuData?.contact?.email);
+    const phones = (menuData?.contact?.phones ?? []).map(text).filter(Boolean);
+    const heading = text(menuData?.title);
 
-    const currentActive = activeSection || (rightSections[0]?.key ?? "");
-    const activeData = rightSections.find((s) => s.key === currentActive) ?? rightSections[0];
+    const busy = status === "loading" && !menuData;
+    const failed = status === "error" && !menuData;
 
-    return (
+    if (typeof document === "undefined") return null;
+
+    return createPortal(
         <AnimatePresence>
             {isOpen && (
-                <div className="fixed inset-0 z-[1000] flex justify-end overflow-hidden">
-                    {/* Overlay */}
+                /* Rendered into <body>, not into the header's z-[999] wrapper —
+                   that wrapper is its own stacking context, which capped this
+                   overlay below SearchOverlay no matter how high its z-index. */
+                <div key="quick-menu" className="fixed inset-0 z-[9998]">
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute inset-0 bg-[#0b1330]/80 backdrop-blur-sm"
+                        transition={{ duration: 0.3 }}
+                        className="absolute inset-0 bg-[#060f24]/85 backdrop-blur-sm"
                         onClick={onClose}
                     />
-                    {/* MAIN CONTAINER */}
+
+                    {/* PANEL — rows: fixed masthead, then everything that scrolls.
+                        A grid rather than nested flex: two flex siblings, one
+                        content-sized and one `flex-1`, distribute shrinkage by
+                        scaled factor, which collapsed the content pane to 0px
+                        whenever the other outgrew the viewport. */}
                     <motion.div
-                        variants={containerVariants}
-                        initial="closed"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby={titleId}
+                        onKeyDown={onPanelKeyDown}
+                        variants={panelVariants}
+                        initial={reduce ? false : "closed"}
                         animate="open"
                         exit="closed"
-                        className="relative flex h-full w-full md:w-[85%] lg:w-[70%] xl:w-[60%] bg-[#0b1330] shadow-[-20px_0_80px_rgba(0,0,0,0.5)] border-l border-white/5 overflow-hidden flex-col lg:flex-row"
+                        className="absolute inset-y-0 right-0 grid w-full grid-rows-[auto_minmax(0,1fr)] border-l border-white/10 bg-[#0b1330] shadow-[-20px_0_80px_rgba(0,0,0,0.5)] sm:w-[93vw] sm:max-w-[38rem] lg:max-w-[64rem]"
                     >
-                        {/* DECORATIVE BACKGROUND */}
-                        <div className="absolute inset-0 pointer-events-none opacity-40">
-                            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(white 0.5px, transparent 0.5px)', backgroundSize: '32px 32px' }} />
-                            <div className="absolute top-0 right-0 w-[60%] h-[60%] bg-[#ee7c7e]/[0.05] blur-[120px] rounded-full" />
-                            <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-blue-500/[0.05] blur-[100px] rounded-full" />
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[200px] font-black text-white/[0.01] select-none uppercase tracking-tighter">AzTU</div>
+                        {/* Decoration is clipped by its own box so the panel itself
+                            never needs overflow-hidden — that clip is what sliced
+                            the close button in half. */}
+                        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden opacity-40">
+                            <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(white 0.5px, transparent 0.5px)", backgroundSize: "32px 32px" }} />
+                            <div className="absolute right-0 top-0 h-[60%] w-[60%] rounded-full bg-[#ee7c7e]/[0.05] blur-[120px]" />
+                            <div className="absolute bottom-0 left-0 h-[40%] w-[40%] rounded-full bg-blue-500/[0.05] blur-[100px]" />
                         </div>
 
-                        {/* CLOSE BUTTON */}
-                        <motion.button
-                            whileHover={{ scale: 1.1, rotate: 90 }}
-                            whileTap={{ scale: 0.9 }}
-                            onClick={onClose}
-                            className="absolute left-6 top-6 lg:left-[-30px] lg:top-1/2 lg:-translate-y-1/2 z-[100] w-12 h-12 lg:w-14 lg:h-14 bg-[#ee7c7e] text-white flex items-center justify-center rounded-2xl shadow-2xl shadow-[#ee7c7e]/40 cursor-pointer border border-white/20"
-                        >
-                            <CloseIcon sx={{ fontSize: 28 }} />
-                        </motion.button>
-
-                        {/* LEFT PANEL (Institutional Info) */}
-                        <div className="relative z-10 w-full lg:w-[35%] border-r border-white/5 flex flex-col p-8 md:p-12 overflow-y-auto no-scrollbar">
-                            <div className="mb-12">
-                                <span className="text-[#ee7c7e] text-[10px] font-black uppercase tracking-[0.5em] mb-4 block">{qm.navigation}</span>
-                                <h2 className="text-white font-black text-4xl tracking-tighter leading-none mb-2" dangerouslySetInnerHTML={{ __html: qm.title }} />
-                                <div className="w-12 h-1 bg-[#ee7c7e] rounded-full mt-6" />
+                        {/* MASTHEAD — the close control is an ordinary flex child
+                            here, at every breakpoint. No absolute positioning and
+                            no negative offset, so no ancestor can clip it. */}
+                        <header className="relative z-10 flex shrink-0 items-start gap-4 border-b border-white/10 px-5 py-5 sm:px-8 lg:px-10 lg:py-7">
+                            <div className="min-w-0 flex-1">
+                                <span className="mb-2 block text-[10px] font-black uppercase tracking-[0.4em] text-[#ee7c7e]">
+                                    {qm.navigation}
+                                </span>
+                                <h2
+                                    id={titleId}
+                                    className="text-2xl font-black leading-[1.05] tracking-tight text-white lg:text-3xl"
+                                >
+                                    {heading || qm.title.replace(/<br\s*\/?>/gi, " ")}
+                                </h2>
                             </div>
+                            <motion.button
+                                ref={closeRef}
+                                type="button"
+                                onClick={onClose}
+                                aria-label={qm.close}
+                                whileHover={reduce ? undefined : { rotate: 90, scale: 1.06 }}
+                                whileTap={reduce ? undefined : { scale: 0.92 }}
+                                /* Dark glyph on coral: white-on-#ee7c7e is 2.69:1,
+                                   below the 3:1 floor for a meaningful graphic. */
+                                className="grid h-11 w-11 shrink-0 cursor-pointer place-items-center rounded-2xl border border-white/20 bg-[#ee7c7e] text-[#0b1330] shadow-lg shadow-[#ee7c7e]/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1330] lg:h-12 lg:w-12"
+                            >
+                                <CloseIcon aria-hidden sx={{ fontSize: 24 }} />
+                            </motion.button>
+                        </header>
 
-                            <nav className="flex-1 space-y-3">
-                                {leftItems.map((item, i) => (
-                                    <motion.div key={i} variants={itemVariants}>
-                                        <Link
-                                            href={item.url}
-                                            onClick={onClose}
-                                            className="group flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/10 transition-all duration-300 shadow-lg"
-                                        >
-                                            <span className="text-white/70 font-bold text-sm uppercase tracking-widest group-hover:text-white transition-colors">{item.label}</span>
-                                            <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-300">
-                                                <ArrowOutwardIcon sx={{ fontSize: 16 }} />
-                                            </div>
-                                        </Link>
-                                    </motion.div>
-                                ))}
-                            </nav>
-
-                            <div className="mt-12 pt-8 border-t border-white/5 space-y-6">
-                                <div className="space-y-4">
-                                    <a href={`mailto:${contact?.email ?? "aztu@aztu.edu.az"}`} className="flex items-center gap-4 group">
-                                        <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-[#ee7c7e] group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-300">
-                                            <EmailIcon sx={{ fontSize: 18 }} />
-                                        </div>
-                                        <span className="text-sm font-bold text-white/40 group-hover:text-white transition-colors tracking-tight">{contact?.email ?? "aztu@aztu.edu.az"}</span>
-                                    </a>
-                                    {(contact?.phones ?? ["(+994 12) 539-13-05"]).map((phone, i) => (
-                                        <a key={i} href={`tel:${phone.replace(/\s|\(|\)|-/g, "")}`} className="flex items-center gap-4 group">
-                                            <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-[#ee7c7e] group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-300">
-                                                <LocalPhoneIcon sx={{ fontSize: 18 }} />
-                                            </div>
-                                            <span className="text-sm font-bold text-white/40 group-hover:text-white transition-colors tracking-tight">{phone}</span>
-                                        </a>
-                                    ))}
-                                </div>
-
-                                <div className="flex gap-3">
-                                    {socialLinks.map(({ platform, url }) => {
-                                        const Icon = SOCIAL_ICONS[platform.toLowerCase()] ?? FacebookIcon;
-                                        return (
-                                            <motion.a
-                                                key={platform}
-                                                href={url}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                whileHover={{ y: -3, scale: 1.1 }}
-                                                className="w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/5 text-white/40 hover:text-white hover:bg-[#ee7c7e] hover:border-[#ee7c7e] transition-all duration-300 shadow-xl"
+                        {/* BODY — one scroll region on small screens; two columns,
+                            each scrolling independently, from lg up. */}
+                        <div className="quick-scroll relative z-10 min-h-0 overflow-y-auto lg:grid lg:grid-cols-[19rem_minmax(0,1fr)] lg:overflow-hidden">
+                            {/* RAIL */}
+                            <aside className="quick-scroll border-b border-white/10 px-5 py-7 sm:px-8 lg:min-h-0 lg:overflow-y-auto lg:border-b-0 lg:border-r lg:px-8">
+                                {busy ? (
+                                    <div className="space-y-3" aria-live="polite" aria-busy>
+                                        <span className="sr-only">{t.common.loading}</span>
+                                        {[0, 1, 2, 3].map((i) => (
+                                            <div key={i} className="h-14 animate-pulse rounded-2xl bg-white/5" />
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <nav aria-label={qm.navigation} className="space-y-2.5">
+                                        {leftItems.map((item, i) => (
+                                            <Link
+                                                key={`${item.url}-${i}`}
+                                                href={safeHref(item.url) as string}
+                                                onClick={onClose}
+                                                className="group flex items-center justify-between gap-3 rounded-2xl border border-white/[0.07] bg-white/5 p-4 transition-colors duration-300 hover:border-white/15 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ee7c7e]"
                                             >
-                                                <Icon sx={{ fontSize: 20 }} />
-                                            </motion.a>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        </div>
+                                                {/* CMS text is never uppercased or tracked: Azerbaijani
+                                                    labels run 30–50% longer than the English ones and
+                                                    letter-spacing pushes them past the rail's width. */}
+                                                <span className="min-w-0 wrap-anywhere text-sm font-bold leading-snug text-white/80 transition-colors group-hover:text-white">
+                                                    {item.label}
+                                                </span>
+                                                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-white/5 text-white/70 transition-colors duration-300 group-hover:bg-[#ee7c7e] group-hover:text-[#0b1330]">
+                                                    <ArrowOutwardIcon aria-hidden sx={{ fontSize: 16 }} />
+                                                </span>
+                                            </Link>
+                                        ))}
+                                    </nav>
+                                )}
 
-                        {/* RIGHT PANEL (Categorized Items) */}
-                        <div className="relative z-10 flex-1 flex flex-col p-8 md:p-12 bg-black/20 overflow-y-auto no-scrollbar">
-                            {/* Section Tabs */}
-                            <div className="flex gap-2 p-1.5 rounded-[1.5rem] bg-white/5 border border-white/5 mb-12 self-start max-w-full overflow-x-auto no-scrollbar">
-                                {rightSections.map((section) => {
-                                    const isActive = currentActive === section.key;
-                                    return (
-                                        <button
-                                            key={section.key}
-                                            onClick={() => setActiveSection(section.key)}
-                                            className={`px-8 py-3 rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] transition-all duration-500 whitespace-nowrap cursor-pointer ${
-                                                isActive 
-                                                ? "bg-[#ee7c7e] text-white shadow-xl shadow-[#ee7c7e]/20" 
-                                                : "text-white/40 hover:text-white hover:bg-white/5"
-                                            }`}
-                                        >
-                                            {section.title}
-                                        </button>
-                                    );
-                                })}
-                            </div>
-
-                            {/* Active Content Grid */}
-                            <div className="flex-1">
-                                <AnimatePresence mode="wait">
-                                    <motion.div
-                                        key={currentActive}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -20 }}
-                                        transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
-                                    >
-                                        {activeData?.items.map((item, idx) => (
-                                            <motion.div
-                                                key={item.label}
-                                                initial={{ opacity: 0, scale: 0.95 }}
-                                                animate={{ opacity: 1, scale: 1 }}
-                                                transition={{ delay: idx * 0.05, duration: 0.4 }}
-                                            >
-                                                <Link
-                                                    href={item.url}
-                                                    onClick={onClose}
-                                                    className="group relative flex flex-col p-8 rounded-[1.75rem] bg-white/5 border border-white/5 hover:bg-white/10 transition-all duration-500 hover:shadow-2xl overflow-hidden min-h-[160px] justify-between"
-                                                >
-                                                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#ee7c7e]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:bg-[#ee7c7e]/10 transition-colors" />
-                                                    
-                                                    <div className="relative z-10 flex items-center justify-between">
-                                                        <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-[#ee7c7e] group-hover:scale-110 transition-transform">
-                                                            <ArrowOutwardIcon sx={{ fontSize: 24 }} />
+                                {(email || phones.length > 0 || socialLinks.length > 0) && (
+                                    <div className="mt-8 space-y-6 border-t border-white/10 pt-8">
+                                        {(email || phones.length > 0) && (
+                                            <div className="space-y-3">
+                                                <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/50">
+                                                    {qm.contact}
+                                                </h3>
+                                                {email && (
+                                                    <a href={`mailto:${email}`} className="group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ee7c7e]">
+                                                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-white/5 text-[#ee7c7e] transition-colors duration-300 group-hover:bg-[#ee7c7e] group-hover:text-[#0b1330]">
+                                                            <EmailIcon aria-hidden sx={{ fontSize: 17 }} />
+                                                        </span>
+                                                        <span className="min-w-0 wrap-anywhere text-[13px] font-bold text-white/70 transition-colors group-hover:text-white">
+                                                            {email}
+                                                        </span>
+                                                    </a>
+                                                )}
+                                                {phones.map((phone, i) => {
+                                                    // Only offer a tel: link when what is left after
+                                                    // stripping formatting is actually dialable — CMS
+                                                    // fields often hold "…-05 / 06" or an extension note.
+                                                    const dial = phone.replace(/[^\d+]/g, "");
+                                                    const body = (
+                                                        <>
+                                                            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-white/5 text-[#ee7c7e] transition-colors duration-300 group-hover:bg-[#ee7c7e] group-hover:text-[#0b1330]">
+                                                                <LocalPhoneIcon aria-hidden sx={{ fontSize: 17 }} />
+                                                            </span>
+                                                            <span className="min-w-0 wrap-anywhere text-[13px] font-bold text-white/70 transition-colors group-hover:text-white">
+                                                                {phone}
+                                                            </span>
+                                                        </>
+                                                    );
+                                                    return dial.length >= 7 ? (
+                                                        <a key={`${phone}-${i}`} href={`tel:${dial}`} className="group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ee7c7e]">
+                                                            {body}
+                                                        </a>
+                                                    ) : (
+                                                        <div key={`${phone}-${i}`} className="group flex items-center gap-3">
+                                                            {body}
                                                         </div>
-                                                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20 group-hover:text-[#ee7c7e] transition-colors">{qm.portal}</span>
+                                                    );
+                                                })}
+                                            </div>
+                                        )}
+
+                                        {socialLinks.length > 0 && (
+                                            <div className="space-y-3">
+                                                <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/50">
+                                                    {qm.follow}
+                                                </h3>
+                                                <div className="flex flex-wrap gap-2.5">
+                                                    {socialLinks.map(({ platform, url }, i) => {
+                                                        const key = text(platform).toLowerCase();
+                                                        const Icon = SOCIAL_ICONS[key] ?? PublicIcon;
+                                                        return (
+                                                            <a
+                                                                key={`${key}-${i}`}
+                                                                href={safeHref(url) as string}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                aria-label={`${platform || "link"} — ${qm.newTab}`}
+                                                                className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/[0.07] bg-white/5 text-white/70 transition-all duration-300 hover:border-[#ee7c7e] hover:bg-[#ee7c7e] hover:text-[#0b1330] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ee7c7e]"
+                                                            >
+                                                                <Icon aria-hidden sx={{ fontSize: 19 }} />
+                                                            </a>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </aside>
+
+                            {/* SECTIONS — every section is always on the page. The
+                                tab strip it replaces could hold an unbounded number
+                                of CMS sections in a single non-wrapping row, hid
+                                everything but one behind a click, and reset itself
+                                on each refetch. */}
+                            {/* Solid rather than `bg-black/20`, so the sticky group
+                                headers below can match it exactly — a translucent
+                                ground would show them as a lighter band. */}
+                            <div className="quick-scroll bg-[#090f26] px-5 py-7 sm:px-8 lg:min-h-0 lg:overflow-y-auto lg:px-10">
+                                {busy && (
+                                    <div className="grid grid-cols-[repeat(auto-fill,minmax(min(14rem,100%),1fr))] gap-3">
+                                        {[0, 1, 2, 3, 4, 5].map((i) => (
+                                            <div key={i} className="h-24 animate-pulse rounded-2xl bg-white/5" />
+                                        ))}
+                                    </div>
+                                )}
+
+                                {failed && (
+                                    <div className="rounded-2xl border border-white/10 bg-white/5 p-8 text-center" role="alert">
+                                        <p className="text-sm font-bold text-white/80">{qm.error}</p>
+                                        <button
+                                            type="button"
+                                            onClick={() => setAttempt((n) => n + 1)}
+                                            className="mt-4 cursor-pointer rounded-full bg-[#ee7c7e] px-5 py-2.5 text-[11px] font-black uppercase tracking-[0.2em] text-[#0b1330] transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                                        >
+                                            {qm.retry}
+                                        </button>
+                                    </div>
+                                )}
+
+                                {!busy && !failed && (
+                                    <div className="space-y-9">
+                                        {sections.map((section, si) => {
+                                            const items = (Array.isArray(section.items) ? section.items : []).filter(isRenderable);
+                                            return (
+                                                <section key={section.key || `s-${si}`} aria-label={section.title}>
+                                                    {/* Sticky so the group a link belongs to stays
+                                                        legible however far the list is scrolled. */}
+                                                    <div className="sticky top-0 z-10 -mx-5 mb-4 bg-[#090f26]/95 px-5 py-2 backdrop-blur sm:-mx-8 sm:px-8 lg:-mx-10 lg:px-10">
+                                                        <div className="flex items-baseline gap-3 border-b border-white/10 pb-2.5">
+                                                            <h3 className="min-w-0 flex-1 wrap-anywhere text-base font-black leading-tight tracking-tight text-white">
+                                                                {section.title}
+                                                            </h3>
+                                                            <span className="shrink-0 text-[11px] font-black tabular-nums text-white/50">
+                                                                {items.length}
+                                                            </span>
+                                                        </div>
                                                     </div>
 
-                                                    <h3 className="relative z-10 text-xl font-black text-white group-hover:text-[#ee7c7e] transition-colors leading-tight tracking-tight mt-6">
-                                                        {item.label}
-                                                    </h3>
-                                                    
-                                                    <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-[#ee7c7e] group-hover:w-full transition-all duration-700 ease-out origin-left" />
-                                                </Link>
-                                            </motion.div>
-                                        ))}
-                                    </motion.div>
-                                </AnimatePresence>
-                            </div>
+                                                    {items.length > 0 ? (
+                                                        /* Column count follows the panel's own width, not
+                                                           the viewport's — the grid sits inside a fixed
+                                                           track, so a viewport media query would disagree
+                                                           with the box it is laying out. */
+                                                        <ul className="grid grid-cols-[repeat(auto-fill,minmax(min(14rem,100%),1fr))] gap-3">
+                                                            {items.map((item, i) => (
+                                                                <li key={`${item.url}-${i}`}>
+                                                                    <Link
+                                                                        href={safeHref(item.url) as string}
+                                                                        onClick={onClose}
+                                                                        className="group flex h-full items-start justify-between gap-3 rounded-2xl border border-white/[0.07] bg-white/5 p-4 transition-colors duration-300 hover:border-[#ee7c7e]/40 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ee7c7e]"
+                                                                    >
+                                                                        <span className="min-w-0 wrap-anywhere text-sm font-bold leading-snug text-white/85 transition-colors group-hover:text-white">
+                                                                            {item.label}
+                                                                        </span>
+                                                                        <ArrowOutwardIcon
+                                                                            aria-hidden
+                                                                            sx={{ fontSize: 16 }}
+                                                                            className="mt-0.5 shrink-0 text-white/30 transition-colors group-hover:text-[#ee7c7e]"
+                                                                        />
+                                                                    </Link>
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    ) : (
+                                                        <p className="text-sm font-medium text-white/50">{t.common.menu.empty}</p>
+                                                    )}
+                                                </section>
+                                            );
+                                        })}
 
-                            {/* Bottom Brand Slogan */}
-                            <div className="mt-12 text-center opacity-10">
-                                <p className="text-[10px] font-black uppercase tracking-[0.8em] text-white">{qm.slogan}</p>
+                                        {sections.length === 0 && (
+                                            <p className="text-sm font-medium text-white/50">{t.common.menu.empty}</p>
+                                        )}
+                                    </div>
+                                )}
+
+                                <p className="mt-10 text-center text-[10px] font-black uppercase tracking-[0.4em] text-white/25">
+                                    {qm.slogan}
+                                </p>
                             </div>
                         </div>
                     </motion.div>
                 </div>
             )}
-        </AnimatePresence>
+        </AnimatePresence>,
+        document.body
     );
 }

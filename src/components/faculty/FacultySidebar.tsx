@@ -33,7 +33,6 @@ function buildNavItems(facultyId: string, lang: string): NavItem[] {
 
   const aboutSlug = lang === "az" ? "haqqimizda" : "about";
   const kafedraSlug = lang === "az" ? "kafedralar" : "departments";
-  const ixtisasSlug = lang === "az" ? "ixtisaslar" : "specializations";
 
   const deanSlug = lang === "az" ? "dekan" : "dean";
   const deputySlug = lang === "az" ? "dekan-muavinleri" : "deputy-deans";
@@ -60,9 +59,9 @@ function buildNavItems(facultyId: string, lang: string): NavItem[] {
     { label: lang === "az" ? "Kafedralar" : "Departments", href: `${base}/${kafedraSlug}`, icon: AccountTreeOutlinedIcon },
     {
       label: lang === "az" ? "İxtisaslar" : "Specializations",
-      href: majorsUrl ?? `${base}/${ixtisasSlug}`,
+      href: majorsUrl,
       icon: SchoolOutlinedIcon,
-      external: !!majorsUrl,
+      external: true,
     },
   ];
 }
