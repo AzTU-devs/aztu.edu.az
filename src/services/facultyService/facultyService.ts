@@ -105,13 +105,28 @@ function flattenFacultyData(data: any, lang: Lang): FacultyDetail {
 
     // Flatten Content Sections (laboratories, objectives, etc.)
     const sectionKeys = [
-        "laboratories", "research_works", "partner_companies", 
+        "laboratories", "research_works", "partner_companies",
         "objectives", "duties", "projects", "directions_of_action"
     ];
 
     sectionKeys.forEach(key => {
         if (Array.isArray(flattened[key])) {
             flattened[key] = flattened[key].map((item: any) => flattenObject(item, lang));
+        }
+    });
+
+    /* Personnel lists are bilingual too, and were the one group never flattened.
+       The endpoint takes `lang_code`, not the `lang` we send, so it always
+       answers with the two-language shape: `first_name`/`last_name`/`email` sit
+       at the top level but `duty`, `scientific_name` and `scientific_degree`
+       only exist under `az`/`en`. That is why deputy deans, council members and
+       staff rendered with a name but no position — and why searching staff by
+       duty matched nothing. */
+    const personnelKeys = ["deputy_deans", "scientific_council", "workers"];
+
+    personnelKeys.forEach(key => {
+        if (Array.isArray(flattened[key])) {
+            flattened[key] = flattened[key].map((person: any) => flattenObject(person, lang));
         }
     });
 
