@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import PersonCard from "@/components/shared/PersonCard";
 import { useLanguage } from "@/context/LanguageContext";
+import OfficeShell from "@/components/office/OfficeShell";
+import StaffCard from "@/components/faculty/StaffCard";
+import { SectionCard, NumberedList } from "@/components/department/ui";
+import { sortEducations } from "@/util/educationOrder";
 
 import ArticleIcon from "@mui/icons-material/Article";
 import PhoneIcon from "@mui/icons-material/Phone";
@@ -13,9 +15,13 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import StorageIcon from "@mui/icons-material/Storage";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
-import Breadcrumbs from "@/components/shared/Breadcrumbs";
-import { sortEducations } from "@/util/educationOrder";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import BarChartIcon from "@mui/icons-material/BarChart";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import GroupsIcon from "@mui/icons-material/Groups";
+import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -472,609 +478,438 @@ const DATA: Record<"az" | "en", PageData> = {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
+/** Inner block used inside the annual-report card, one per report chapter. */
+const PANEL =
+  "rounded-xl border border-slate-200 bg-slate-50/60 p-5 dark:border-white/10 dark:bg-white/5 md:p-6";
+
+const PANEL_HEADING =
+  "text-[11px] font-black uppercase tracking-[0.22em] text-[#1a2355] dark:text-white";
+
+const BAR_MAX_HEIGHT = 200;
+
 export default function KitabxanaInformasiyaMerkeziPage() {
   const { lang } = useLanguage();
   const p = DATA[lang];
 
   const maxVisitors = Math.max(...p.visitors.map((v) => v.count));
-  const BAR_MAX_HEIGHT = 200;
+
+  const sections = [
+    {
+      id: "about",
+      label: p.aboutTitle,
+      description: lang === "az" ? "Ümumi məlumat" : "Overview",
+      icon: InfoOutlinedIcon,
+    },
+    {
+      id: "purpose",
+      label: p.purposeTitle,
+      description: lang === "az" ? "Nəyə çalışırıq" : "What we aim for",
+      icon: FlagOutlinedIcon,
+    },
+    {
+      id: "technical",
+      label: p.technicalTitle,
+      description: lang === "az" ? "İş prosesləri" : "Work processes",
+      icon: SettingsOutlinedIcon,
+    },
+    {
+      id: "dls",
+      label: p.dlsTitle,
+      description: lang === "az" ? "Rəqəmsal xidmətlər" : "Digital services",
+      icon: StorageIcon,
+    },
+    {
+      id: "info-services",
+      label: p.infoServicesTitle,
+      description: lang === "az" ? "Oxucu xidmətləri" : "Reader services",
+      icon: MenuBookIcon,
+    },
+    {
+      id: "activities",
+      label: p.activitiesTitle,
+      description: lang === "az" ? "Nə edirik" : "What we do",
+      icon: CheckCircleOutlineIcon,
+    },
+    {
+      id: "report",
+      label: p.reportTitle,
+      description: lang === "az" ? "Statistika və hədəflər" : "Statistics & targets",
+      icon: BarChartIcon,
+    },
+    {
+      id: "director",
+      label: p.directorTitle,
+      description: lang === "az" ? "Bioqrafiya və təhsil" : "Biography & education",
+      icon: PersonOutlineIcon,
+    },
+    {
+      id: "staff",
+      label: p.staffTitle,
+      description: lang === "az" ? "Heyət və əlaqə" : "Team & contact",
+      icon: GroupsIcon,
+    },
+    {
+      id: "contact",
+      label: p.contactTitle,
+      description: lang === "az" ? "Ünvan və əlaqə" : "Address & contact",
+      icon: CallOutlinedIcon,
+    },
+  ];
+
+  const counter = (n: number) => (
+    <span className="rounded-lg border border-slate-200 px-2.5 py-1 text-[10px] font-black tabular-nums uppercase tracking-[0.2em] text-slate-400 dark:border-white/10 dark:text-slate-500">
+      {String(n).padStart(2, "0")}
+    </span>
+  );
+
+  const factTile = (
+    Icon: React.ElementType,
+    label: string,
+    value: string,
+    href?: string
+  ) => {
+    const body = (
+      <>
+        <span className="mb-1.5 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
+          <Icon sx={{ fontSize: 14 }} className="text-[#ee7c7e]" />
+          {label}
+        </span>
+        <span className="block break-words text-[15px] font-black leading-snug text-[#1a2355] dark:text-white">
+          {value}
+        </span>
+      </>
+    );
+    const shell =
+      "block rounded-xl border border-slate-200 bg-slate-50/60 px-4 py-4 transition-colors dark:border-white/10 dark:bg-white/5";
+    return href ? (
+      <a key={label} href={href} className={`${shell} hover:border-[#ee7c7e]/50`}>
+        {body}
+      </a>
+    ) : (
+      <div key={label} className={shell}>
+        {body}
+      </div>
+    );
+  };
 
   return (
-    <main className="min-h-screen selection:bg-[#ee7c7e]/30">
-      {/* ── HERO ───────────────────────────────────────────────────────────── */}
-      <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            <AboutHeroVideoBg />
-        </div>
-
-        <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-20">
-          {/* Breadcrumb */}
-          <Breadcrumbs
-              items={[
-                  { label: p.eyebrow, href: lang === "az" ? "/idareetme" : "/management" },
-                  { label: p.breadcrumbSection, href: lang === "az" ? "/idareetme/ofis-ve-merkezler" : "/management/ofis-ve-merkezler" },
-                  { label: p.title },
-              ]}
-          />
-
-          <div className="max-w-4xl">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
-                {p.eyebrow}
-              </span>
-              <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
-                {p.title}
-              </h1>
-              <p className="text-xl text-white/80 font-medium mb-10 max-w-2xl leading-relaxed italic">
-                &quot;{p.subtitle}&quot;
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── CONTENT ────────────────────────────────────────────────────────── */}
-      <div className="px-4 md:px-10 lg:px-20 py-24 bg-white dark:bg-[#0b1330] relative overflow-hidden">
-        <div className="relative z-10 max-w-[1600px] mx-auto space-y-32">
-
-          {/* ── Əsasnamə Button ─────────────────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex justify-start"
-          >
+    <OfficeShell
+      eyebrow={p.eyebrow}
+      title={p.title}
+      subtitle={p.subtitle}
+      sections={sections}
+      stat={{ value: String(p.staff.length), label: lang === "az" ? "əməkdaş" : "staff" }}
+    >
+      {/* ── About ─────────────────────────────────────────────────────────── */}
+      <section id="about" className="scroll-mt-28">
+        <SectionCard
+          icon={InfoOutlinedIcon}
+          eyebrow={lang === "az" ? "Ümumi məlumat" : "Overview"}
+          title={p.aboutTitle}
+          action={
             <Link
               href="#"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl border-2 border-[#ee7c7e] text-[#ee7c7e] font-black text-sm uppercase tracking-widest hover:bg-[#ee7c7e] hover:text-white transition-all duration-300 shadow-sm hover:shadow-[#ee7c7e]/30 hover:shadow-lg"
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-3.5 py-2 text-[11px] font-bold text-[#1a2355] transition-colors hover:border-[#ee7c7e] hover:text-[#ee7c7e] dark:border-white/10 dark:text-white"
             >
-              <ArticleIcon fontSize="small" />
+              <ArticleIcon sx={{ fontSize: 15 }} />
               {p.esasname}
             </Link>
-          </motion.div>
-
-          {/* ── 1. About + Director Card ─────────────────────────────────── */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-8"
-            >
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-                <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">
-                  {p.aboutTitle}
-                </h2>
-              </div>
-              <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed ">
-                {p.aboutText.map((para, i) => (
-                  <p key={i}>{para}</p>
-                ))}
-              </div>
-
-              {/* Departments chips */}
-              <div className="mt-10 flex flex-wrap gap-4">
-                {p.departments.map((dep, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-[#1a2355]/5 dark:bg-white/10 border border-[#1a2355]/30 dark:border-white/10"
-                  >
-                    <div className="w-2 h-2 rounded-full bg-[#ee7c7e]" />
-                    <span className="text-sm font-bold text-[#1a2355] dark:text-white">
-                      {dep}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Director card */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="lg:col-span-4 space-y-6"
-            >
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-2 h-6 bg-[#ee7c7e] rounded-full" />
-                <h3 className="text-xl font-black text-[#1a2355] dark:text-white">
-                  {p.directorTitle}
-                </h3>
-              </div>
-              <PersonCard
-                fullName={p.director.name}
-                academicDegree={p.director.degree}
-                title={p.directorTitle}
-                email={p.director.email}
-                size="lg"
-              />
-              <div className="bg-white dark:bg-white/5 rounded-3xl p-6 border border-gray-100 dark:border-white/10 shadow-sm space-y-4">
-                <div className="flex items-center gap-4 text-sm">
-                  <PhoneIcon className="text-[#ee7c7e]" fontSize="small" />
-                  <span className="text-gray-600 dark:text-gray-300 font-bold">
-                    {p.director.phone}
-                  </span>
-                </div>
-                <div className="flex items-center gap-4 text-sm">
-                  <BusinessIcon className="text-[#ee7c7e]" fontSize="small" />
-                  <span className="text-gray-600 dark:text-gray-300 font-bold">
-                    {p.director.office}
-                  </span>
-                </div>
-                <div className="flex items-center gap-4 text-sm">
-                  <AccessTimeIcon
-                    className="text-[#ee7c7e]"
-                    fontSize="small"
-                  />
-                  <span className="text-gray-600 dark:text-gray-300 font-bold">
-                    {p.director.hours}
-                  </span>
-                </div>
-              </div>
-            </motion.div>
+          }
+        >
+          <div className="text-flow space-y-5 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 md:text-base">
+            {p.aboutText.map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
           </div>
 
-          {/* ── 2. Technical Services ────────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-gray-50 dark:bg-white/5 rounded-[2rem] p-10 md:p-14 border border-gray-100 dark:border-white/10"
-          >
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">
-                {p.technicalTitle}
-              </h2>
-            </div>
-            <ol className="space-y-6">
-              {p.technicalProcesses.map((proc, i) => (
-                <li key={i} className="flex gap-5 items-start">
-                  <div className="w-9 h-9 rounded-xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e] font-black text-sm shrink-0 mt-0.5">
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-[15px] pt-1.5">
-                    {proc}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </motion.div>
-
-          {/* ── 3. DLS Services ─────────────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-[#1a2355] rounded-[2rem] p-10 md:p-14 text-white relative overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
-              <StorageIcon sx={{ fontSize: 200 }} />
-            </div>
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black">{p.dlsTitle}</h2>
-            </div>
-            <ul className="space-y-4">
-              {p.dlsServices.map((svc, i) => (
-                <li
-                  key={i}
-                  className="flex gap-4 items-start p-4 rounded-2xl bg-white/5 border border-white/10"
-                >
-                  <div className="w-6 h-6 rounded-full bg-[#ee7c7e]/20 flex items-center justify-center text-[#ee7c7e] font-black text-[11px] shrink-0 mt-0.5">
-                    {i + 1}
-                  </div>
-                  <p className="text-white/80 text-sm leading-relaxed">{svc}</p>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* ── 4. Information Services ──────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-white dark:bg-white/5 rounded-[2rem] p-10 md:p-14 border border-gray-100 dark:border-white/10 shadow-xl relative overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
-              <MenuBookIcon sx={{ fontSize: 200 }} />
-            </div>
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">
-                {p.infoServicesTitle}
-              </h2>
-            </div>
-            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-10 ">
-              {p.infoServicesText}
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {p.infoFunctions.map((fn, i) => (
-                <div
-                  key={i}
-                  className="flex gap-4 items-start p-5 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10"
-                >
-                  <CheckCircleOutlineIcon
-                    className="text-[#ee7c7e] shrink-0 mt-0.5"
-                    fontSize="small"
-                  />
-                  <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                    {fn}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* ── 5. Areas of Activity ─────────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">
-                {p.activitiesTitle}
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {p.activities.map((act, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.07 }}
-                  className="bg-white dark:bg-white/5 rounded-[1.5rem] p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/30 transition-all duration-300 group"
-                >
-                  <div className="w-12 h-12 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e] font-black text-lg mb-6 group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-300">
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed font-medium">
-                    {act}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* ── 6. Purpose ───────────────────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-[#1a2355] rounded-[2rem] p-10 md:p-16 text-white"
-          >
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black">{p.purposeTitle}</h2>
-            </div>
-            <p className="text-white/80 text-lg leading-relaxed  max-w-5xl">
-              {p.purpose}
-            </p>
-          </motion.div>
-
-          {/* ── 7. Annual Report ─────────────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="space-y-12"
-          >
-            <div className="flex items-center gap-4">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">
-                {p.reportTitle}
-              </h2>
-            </div>
-
-            {/* Intro paragraphs */}
-            <div className="bg-gray-50 dark:bg-white/5 rounded-[1.75rem] p-10 border border-gray-100 dark:border-white/10 space-y-5">
-              {p.reportIntro.map((para, i) => (
-                <p
-                  key={i}
-                  className="text-gray-600 dark:text-gray-300 leading-relaxed "
-                >
-                  {para}
-                </p>
-              ))}
-            </div>
-
-            {/* Visitor Chart */}
-            <div className="bg-white dark:bg-white/5 rounded-[1.75rem] p-10 md:p-14 border border-gray-100 dark:border-white/10 shadow-sm">
-              <h3 className="text-xl font-black text-[#1a2355] dark:text-white mb-12">
-                {p.visitorsTitle}
-              </h3>
-              <div
-                className="flex items-end gap-3 md:gap-6"
-                style={{ height: BAR_MAX_HEIGHT + 60 }}
+          <div className="mt-7 flex flex-wrap gap-3">
+            {p.departments.map((dep, i) => (
+              <span
+                key={i}
+                className="inline-flex items-center gap-2.5 rounded-xl border border-slate-200 bg-slate-50/60 px-4 py-2.5 dark:border-white/10 dark:bg-white/5"
               >
-                {p.visitors.map((v, i) => {
-                  const barHeight = Math.round(
-                    (v.count / maxVisitors) * BAR_MAX_HEIGHT
-                  );
-                  const isMax = v.count === maxVisitors;
-                  return (
-                    <div
-                      key={i}
-                      className="flex flex-col items-center gap-2 flex-1 min-w-0"
-                    >
-                      {/* Count label above bar */}
-                      <span
-                        className={`text-xs font-black ${
-                          isMax
-                            ? "text-[#ee7c7e]"
-                            : "text-gray-500 dark:text-gray-400"
-                        }`}
-                      >
-                        {v.count.toLocaleString()}
-                      </span>
-                      {/* Bar */}
-                      <div
-                        className={`w-full rounded-t-xl transition-all duration-700 ${
-                          isMax ? "bg-[#ee7c7e]" : "bg-[#1a2355] dark:bg-[#ee7c7e]/40"
-                        }`}
-                        style={{ height: barHeight }}
-                      />
-                      {/* Month label below */}
-                      <span className="text-[10px] md:text-xs font-bold text-gray-500 dark:text-gray-400 text-center leading-tight">
-                        {v.month}
-                      </span>
-                    </div>
-                  );
-                })}
+                <span className="h-1.5 w-1.5 rounded-full bg-[#ee7c7e]" />
+                <span className="text-[13px] font-black text-[#1a2355] dark:text-white">
+                  {dep}
+                </span>
+              </span>
+            ))}
+          </div>
+        </SectionCard>
+      </section>
+
+      {/* ── Purpose ───────────────────────────────────────────────────────── */}
+      <section id="purpose" className="scroll-mt-28">
+        <SectionCard
+          icon={FlagOutlinedIcon}
+          eyebrow={lang === "az" ? "Nəyə çalışırıq" : "What we aim for"}
+          title={p.purposeTitle}
+        >
+          <p className="text-flow text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 md:text-base">
+            {p.purpose}
+          </p>
+        </SectionCard>
+      </section>
+
+      {/* ── Technical Services Department ─────────────────────────────────── */}
+      <section id="technical" className="scroll-mt-28">
+        <SectionCard
+          icon={SettingsOutlinedIcon}
+          eyebrow={lang === "az" ? "İş prosesləri" : "Work processes"}
+          title={p.technicalTitle}
+          action={counter(p.technicalProcesses.length)}
+        >
+          <NumberedList items={p.technicalProcesses.map((proc) => proc)} />
+        </SectionCard>
+      </section>
+
+      {/* ── Digitalization & Library Systems ──────────────────────────────── */}
+      <section id="dls" className="scroll-mt-28">
+        <SectionCard
+          icon={StorageIcon}
+          eyebrow={lang === "az" ? "Rəqəmsal xidmətlər" : "Digital services"}
+          title={p.dlsTitle}
+          action={counter(p.dlsServices.length)}
+        >
+          <NumberedList items={p.dlsServices.map((svc) => svc)} />
+        </SectionCard>
+      </section>
+
+      {/* ── Information Services Department ───────────────────────────────── */}
+      <section id="info-services" className="scroll-mt-28">
+        <SectionCard
+          icon={MenuBookIcon}
+          eyebrow={lang === "az" ? "Oxucu xidmətləri" : "Reader services"}
+          title={p.infoServicesTitle}
+          action={counter(p.infoFunctions.length)}
+        >
+          <p className="text-flow mb-7 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 md:text-base">
+            {p.infoServicesText}
+          </p>
+          <NumberedList items={p.infoFunctions.map((fn) => fn)} />
+        </SectionCard>
+      </section>
+
+      {/* ── Areas of activity ─────────────────────────────────────────────── */}
+      <section id="activities" className="scroll-mt-28">
+        <SectionCard
+          icon={CheckCircleOutlineIcon}
+          eyebrow={lang === "az" ? "Nə edirik" : "What we do"}
+          title={p.activitiesTitle}
+          action={counter(p.activities.length)}
+        >
+          <NumberedList items={p.activities.map((act) => act)} />
+        </SectionCard>
+      </section>
+
+      {/* ── Annual report ─────────────────────────────────────────────────── */}
+      <section id="report" className="scroll-mt-28">
+        <SectionCard
+          icon={BarChartIcon}
+          eyebrow={lang === "az" ? "İllik hesabat" : "Annual report"}
+          title={p.reportTitle}
+        >
+          <div className="space-y-6">
+            <div className="text-flow space-y-5 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 md:text-base">
+              {p.reportIntro.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
+
+            {/* Monthly visitors */}
+            <div className={PANEL}>
+              <h3 className={`${PANEL_HEADING} mb-5`}>{p.visitorsTitle}</h3>
+              <div className="overflow-x-auto">
+                <div
+                  className="flex min-w-[420px] items-end gap-3 md:gap-6"
+                  style={{ height: BAR_MAX_HEIGHT + 60 }}
+                >
+                  {p.visitors.map((v, i) => {
+                    const barHeight = Math.round((v.count / maxVisitors) * BAR_MAX_HEIGHT);
+                    const isMax = v.count === maxVisitors;
+                    return (
+                      <div key={i} className="flex min-w-0 flex-1 flex-col items-center gap-2">
+                        <span
+                          className={`text-xs font-black tabular-nums ${
+                            isMax ? "text-[#ee7c7e]" : "text-slate-500 dark:text-slate-400"
+                          }`}
+                        >
+                          {v.count.toLocaleString()}
+                        </span>
+                        <div
+                          className={`w-full rounded-t-xl transition-all duration-700 ${
+                            isMax ? "bg-[#ee7c7e]" : "bg-[#1a2355] dark:bg-[#ee7c7e]/40"
+                          }`}
+                          style={{ height: barHeight }}
+                        />
+                        <span className="text-center text-[10px] font-bold leading-tight text-slate-500 dark:text-slate-400 md:text-xs">
+                          {v.month}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
 
-            {/* Academic Databases */}
-            <div className="bg-[#1a2355] rounded-[1.75rem] p-10 md:p-14 text-white">
-              <h3 className="text-xl font-black mb-8">{p.databasesTitle}</h3>
-              <ol className="space-y-4">
-                {p.databases.map((db, i) => (
-                  <li key={i} className="flex gap-4 items-start">
-                    <div className="w-7 h-7 rounded-lg bg-[#ee7c7e]/20 flex items-center justify-center text-[#ee7c7e] font-black text-xs shrink-0 mt-0.5">
-                      {i + 1}
-                    </div>
-                    <p className="text-white/80 text-sm leading-relaxed">{db}</p>
-                  </li>
-                ))}
-              </ol>
+            {/* Academic databases */}
+            <div className={PANEL}>
+              <div className="mb-5 flex items-center justify-between gap-4">
+                <h3 className={PANEL_HEADING}>{p.databasesTitle}</h3>
+                {counter(p.databases.length)}
+              </div>
+              <NumberedList items={p.databases.map((db) => db)} />
             </div>
 
-            {/* Email Queries */}
-            <div className="bg-[#ee7c7e]/10 border border-[#ee7c7e]/20 rounded-[1.5rem] p-10">
-              <h3 className="text-xl font-black text-[#1a2355] dark:text-white mb-4">
-                {p.emailQueriesTitle}
-              </h3>
-              <div className="flex items-center gap-6">
-                <div className="w-20 h-20 rounded-2xl bg-[#ee7c7e] flex items-center justify-center shrink-0">
-                  <span className="text-white font-black text-3xl">79</span>
-                </div>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            {/* Email queries */}
+            <div className={PANEL}>
+              <h3 className={`${PANEL_HEADING} mb-5`}>{p.emailQueriesTitle}</h3>
+              <div className="flex items-center gap-5">
+                <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-[#1a2355] text-2xl font-black tabular-nums text-white">
+                  79
+                </span>
+                <p className="text-[15px] leading-relaxed text-slate-600 dark:text-slate-300">
                   {p.emailQueriesText}
                 </p>
               </div>
             </div>
 
-            {/* Future Targets */}
-            <div className="bg-gray-50 dark:bg-white/5 rounded-[1.75rem] p-10 border border-gray-100 dark:border-white/10">
-              <h3 className="text-xl font-black text-[#1a2355] dark:text-white mb-8">
-                {p.targetsTitle}
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Future targets */}
+            <div className={PANEL}>
+              <div className="mb-5 flex items-center justify-between gap-4">
+                <h3 className={PANEL_HEADING}>{p.targetsTitle}</h3>
+                {counter(p.targets.length)}
+              </div>
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                 {p.targets.map((target, i) => (
                   <div
                     key={i}
-                    className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10"
+                    className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 dark:border-white/10 dark:bg-slate-900"
                   >
-                    <div className="w-8 h-8 rounded-xl bg-[#1a2355] dark:bg-[#ee7c7e]/20 flex items-center justify-center shrink-0">
-                      <div className="w-2 h-2 rounded-full bg-[#ee7c7e]" />
-                    </div>
-                    <p className="text-sm font-bold text-gray-700 dark:text-gray-200">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#1a2355]/[0.06] dark:bg-white/10">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#ee7c7e]" />
+                    </span>
+                    <p className="text-[13px] font-bold text-slate-600 dark:text-slate-300">
                       {target}
                     </p>
                   </div>
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
+        </SectionCard>
+      </section>
 
-          {/* ── 8. Director Bio ──────────────────────────────────────────── */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 border-t border-gray-100 dark:border-white/10 pt-16">
-            {/* Left — Bio + Education timeline */}
-            <motion.div
-              initial={{ opacity: 0, x: -24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-8 space-y-12"
-            >
-              <div>
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-                  <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">
-                    {p.director.name}
-                  </h2>
-                </div>
-                <h3 className="text-sm font-black uppercase tracking-widest text-[#ee7c7e] mb-6">
-                  {p.directorBioTitle}
-                </h3>
+      {/* ── Director ──────────────────────────────────────────────────────── */}
+      <section id="director" className="scroll-mt-28">
+        <SectionCard
+          icon={PersonOutlineIcon}
+          eyebrow={lang === "az" ? "Rəhbərlik" : "Leadership"}
+          title={p.directorTitle}
+        >
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            <div className="lg:col-span-2">
+              <h3 className={`${PANEL_HEADING} mb-5`}>{p.directorBioTitle}</h3>
+              <div className="text-flow space-y-5 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 md:text-base">
+                {p.directorBio.split("\n\n").map((para, i) => (
+                  <p key={i}>{para}</p>
+                ))}
+              </div>
+
+              <h3 className={`${PANEL_HEADING} mb-5 mt-8`}>{p.directorEducationTitle}</h3>
+              <div className="relative">
+                <div className="absolute bottom-1 left-[9px] top-1 w-px bg-slate-200 dark:bg-white/10" />
                 <div className="space-y-6">
-                  {p.directorBio.split("\n\n").map((para, i) => (
-                    <p
-                      key={i}
-                      className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed "
-                    >
-                      {para}
-                    </p>
+                  {sortEducations(p.directorEducation).map((edu, i) => (
+                    <div key={i} className="relative pl-9">
+                      <span className="absolute left-0 top-1 h-[19px] w-[19px] rounded-full border-4 border-white bg-[#ee7c7e] dark:border-slate-900" />
+                      <span className="mb-1 block text-[10px] font-black uppercase tracking-[0.22em] text-[#ee7c7e]">
+                        {edu.period}
+                      </span>
+                      <p className="text-[14px] font-bold leading-relaxed text-[#1a2355] dark:text-white">
+                        {edu.degree}
+                      </p>
+                    </div>
                   ))}
                 </div>
               </div>
+            </div>
 
-              {/* Education timeline */}
-              <div>
-                <h3 className="text-sm font-black uppercase tracking-widest text-[#ee7c7e] mb-8 flex items-center gap-3">
-                  <div className="w-2 h-4 bg-[#ee7c7e] rounded-full" />
-                  {p.directorEducationTitle}
-                </h3>
-                <div className="relative">
-                  {/* Vertical line */}
-                  <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-white/10" />
-                  <div className="space-y-8">
-                    {sortEducations(p.directorEducation).map((edu, i) => (
-                      <div key={i} className="relative pl-14">
-                        {/* Dot */}
-                        <div className="absolute left-[11px] top-1 w-5 h-5 rounded-full bg-[#ee7c7e] border-4 border-white dark:border-[#0b1330]" />
-                        <span className="text-xs font-black uppercase tracking-widest text-[#ee7c7e] block mb-1">
-                          {edu.period}
-                        </span>
-                        <p className="text-sm font-bold text-[#1a2355] dark:text-white leading-relaxed">
-                          {edu.degree}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Right — PersonCard + Contact */}
-            <motion.div
-              initial={{ opacity: 0, x: 24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-4 space-y-6"
-            >
-              <PersonCard
+            <div className="space-y-3">
+              <StaffCard
                 fullName={p.director.name}
-                academicDegree={p.director.degree}
-                title={p.directorTitle}
+                role={p.directorTitle}
+                degree={p.director.degree}
                 email={p.director.email}
-                size="lg"
+                phone={p.director.phone}
+                index={0}
               />
-              <div className="bg-white dark:bg-white/5 rounded-3xl p-6 border border-gray-100 dark:border-white/10 shadow-sm space-y-4">
-                <div className="flex items-center gap-4 text-sm">
-                  <PhoneIcon className="text-[#ee7c7e]" fontSize="small" />
-                  <span className="text-gray-600 dark:text-gray-300 font-bold">
-                    {p.director.phone}
-                  </span>
-                </div>
-                <div className="flex items-center gap-4 text-sm">
-                  <EmailIcon className="text-[#ee7c7e]" fontSize="small" />
-                  <span className="text-gray-600 dark:text-gray-300 font-bold break-all">
-                    {p.director.email}
-                  </span>
-                </div>
-                <div className="flex items-center gap-4 text-sm">
-                  <BusinessIcon className="text-[#ee7c7e]" fontSize="small" />
-                  <span className="text-gray-600 dark:text-gray-300 font-bold">
-                    {p.director.office}
-                  </span>
-                </div>
-                <div className="flex items-center gap-4 text-sm">
-                  <AccessTimeIcon
-                    className="text-[#ee7c7e]"
-                    fontSize="small"
-                  />
-                  <span className="text-gray-600 dark:text-gray-300 font-bold">
-                    {p.director.hours}
-                  </span>
-                </div>
-              </div>
-            </motion.div>
+              {factTile(
+                BusinessIcon,
+                lang === "az" ? "Ofis" : "Office",
+                p.director.office
+              )}
+              {factTile(
+                AccessTimeIcon,
+                lang === "az" ? "İş saatları" : "Working hours",
+                p.director.hours
+              )}
+            </div>
           </div>
+        </SectionCard>
+      </section>
 
-          {/* ── 9. Staff Grid ────────────────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">
-                {p.staffTitle}
-              </h2>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {p.staff.map((member, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
-                >
-                  <PersonCard
-                    fullName={member.name}
-                    academicDegree={member.degree}
-                    email={member.email}
-                  />
-                  <div className="mt-3 flex items-center gap-2 text-xs font-bold text-gray-400 pl-2">
-                    <PhoneIcon
-                      sx={{ fontSize: 13 }}
-                      className="text-[#ee7c7e]"
-                    />
-                    {member.phone}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+      {/* ── Staff ─────────────────────────────────────────────────────────── */}
+      <section id="staff" className="scroll-mt-28">
+        <SectionCard
+          icon={GroupsIcon}
+          eyebrow={lang === "az" ? "Heyət" : "Team"}
+          title={p.staffTitle}
+          action={counter(p.staff.length)}
+        >
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {p.staff.map((member, i) => (
+              <StaffCard
+                key={member.email || member.name}
+                fullName={member.name}
+                degree={member.degree}
+                email={member.email}
+                phone={member.phone}
+                index={i}
+              />
+            ))}
+          </div>
+        </SectionCard>
+      </section>
 
-          {/* ── 10. Contact ──────────────────────────────────────────────── */}
-          <motion.section
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <h2 className="text-3xl font-black text-[#1a2355] dark:text-white mb-12">
-              {p.contactTitle}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="flex flex-col items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e]">
-                  <BusinessIcon />
-                </div>
-                <p className="text-sm font-bold text-gray-600 dark:text-gray-300 text-center">
-                  {p.contact.building}
-                </p>
-              </div>
-              <div className="flex flex-col items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e]">
-                  <PhoneIcon />
-                </div>
-                <p className="text-sm font-bold text-gray-600 dark:text-gray-300">
-                  {p.contact.phone}
-                </p>
-              </div>
-              <div className="flex flex-col items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e]">
-                  <EmailIcon />
-                </div>
-                <p className="text-sm font-bold text-gray-600 dark:text-gray-300 break-all">
-                  {p.contact.email}
-                </p>
-              </div>
-              <div className="flex flex-col items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e]">
-                  <AccessTimeIcon />
-                </div>
-                <p className="text-sm font-bold text-gray-600 dark:text-gray-300">
-                  {p.contact.hours}
-                </p>
-              </div>
-            </div>
-          </motion.section>
-        </div>
-      </div>
-    </main>
+      {/* ── Contact ───────────────────────────────────────────────────────── */}
+      <section id="contact" className="scroll-mt-28">
+        <SectionCard
+          icon={CallOutlinedIcon}
+          eyebrow={lang === "az" ? "Bizə yazın" : "Get in touch"}
+          title={p.contactTitle}
+        >
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {factTile(
+              BusinessIcon,
+              lang === "az" ? "Ünvan" : "Address",
+              p.contact.building
+            )}
+            {factTile(PhoneIcon, lang === "az" ? "Telefon" : "Phone", p.contact.phone)}
+            {factTile(
+              EmailIcon,
+              lang === "az" ? "E-poçt" : "Email",
+              p.contact.email,
+              `mailto:${p.contact.email}`
+            )}
+            {factTile(
+              AccessTimeIcon,
+              lang === "az" ? "İş saatları" : "Working hours",
+              p.contact.hours
+            )}
+          </div>
+        </SectionCard>
+      </section>
+    </OfficeShell>
   );
 }
