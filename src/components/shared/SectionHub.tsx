@@ -50,13 +50,33 @@ export default function SectionHub({ sectionSlug, hubSlugs, fallbackTitle, paren
             .then((sections) => {
                 if (!alive) return;
                 const wanted = new Set(hubSlugs.map((s) => s.toLowerCase()));
-                const match = sections
-                    .flatMap((section) => section.items ?? [])
-                    .find((item) => {
-                        const slug = (item.slug ?? "").toLowerCase();
-                        const tail = (item.direct_url ?? "").split("/").filter(Boolean).pop() ?? "";
-                        return wanted.has(slug) || wanted.has(tail.toLowerCase());
+                const matches = (slug?: string | null, url?: string | null) => {
+                    const tail = (url ?? "").split("/").filter(Boolean).pop() ?? "";
+                    return wanted.has((slug ?? "").toLowerCase()) || wanted.has(tail.toLowerCase());
+                };
+
+                // A hub is usually a menu item, but a section root (Research) is a
+                // top-level menu section whose children are its items.
+                const section = sections.find((s) => matches(s.slug, s.direct_url));
+                if (section) {
+                    setHub({
+                        id: section.id,
+                        title: section.title,
+                        slug: section.slug,
+                        direct_url: section.direct_url,
+                        sub_items: (section.items ?? []).map((item) => ({
+                            id: item.id,
+                            title: item.title,
+                            slug: item.slug,
+                            direct_url: item.direct_url ?? `/${item.slug}`,
+                        })),
                     });
+                    return;
+                }
+
+                const match = sections
+                    .flatMap((s) => s.items ?? [])
+                    .find((item) => matches(item.slug, item.direct_url));
                 setHub(match ?? null);
             })
             .catch(() => {

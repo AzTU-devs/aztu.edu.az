@@ -146,7 +146,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         const azToEnResearch: Record<string, string> = {
             "tedqiqat-fealiyyeti": "research-activity",
             "tedqiqat-institutlari": "research-institutes",
-            "tedqiqat-prioritetleri": "tedqiqat-prioritetleri",
+            "tedqiqat-prioritetleri": "research-priorities",
             "coxsaheli-tedqiqat": "multidisciplinary-research",
             "tedqiqat-layiheleri": "research-projects",
             "eqli-mulkiyyet-ve-patentler": "intellectual-property-and-patents",
@@ -162,7 +162,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         const enToAzResearch: Record<string, string> = {
             "research-activity": "tedqiqat-fealiyyeti",
             "research-institutes": "tedqiqat-institutlari",
-            "tedqiqat-prioritetleri": "tedqiqat-prioritetleri",
+            "research-priorities": "tedqiqat-prioritetleri",
             "multidisciplinary-research": "coxsaheli-tedqiqat",
             "research-projects": "tedqiqat-layiheleri",
             "intellectual-property-and-patents": "eqli-mulkiyyet-ve-patentler",

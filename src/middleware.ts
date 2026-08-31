@@ -114,6 +114,10 @@ const SLUG_MAP: Record<string, string> = {
     "tedqiqat-institutlari": "research-institutes",
     "research-laboratories": "tedqiqat-laboratoriyalari",
     "tedqiqat-laboratoriyalari": "research-laboratories",
+    "research-priorities": "tedqiqat-prioritetleri",
+    "tedqiqat-prioritetleri": "research-priorities",
+    "multidisciplinary-research": "coxsaheli-tedqiqat",
+    "coxsaheli-tedqiqat": "multidisciplinary-research",
 
     // About sub-slugs
     "vision-mission": "vizyon-ve-missiya",
@@ -289,7 +293,8 @@ const EN_SLUGS = new Set([
     "research-activity", "performance-and-evaluation", "incentive-mechanism", "conferences-and-events", "publications-and-broadcasting",
     "open-access-policy", "scientific-journals", "machine-science", "energy-sustainability-risks-and-decision-making", "scientific-works",
     "internal-grant-programs", "seminars-and-trainings", "research-projects", "intellectual-property-and-patents",
-    "research-institutes", "research-laboratories", "vision-mission", "history-of-aztu",
+    "research-institutes", "research-laboratories", "research-priorities", "multidisciplinary-research",
+    "vision-mission", "history-of-aztu",
     "75th-anniversary-film", "leadership-and-management", "rector", "rectors-office", "vice-rector", "vice-rectors", "scientific-board",
     "vision-mission-goal",
     "partner-universities-and-related-institutes", "turkiye-azerbaijan-university", "iit", "ics", "baku-technical-colleges", "baku-state-colleges",
@@ -317,6 +322,27 @@ const EN_SLUGS = new Set([
     "international-students",
     "regulatory-documents", "policy-documents", "sustainability-documents",
     ]);
+
+/**
+ * Resolve any URL slug to the Azerbaijani form the route folders are named
+ * after.
+ *
+ * SLUG_MAP is bidirectional, so it cannot be applied blindly — looking up an
+ * Azerbaijani slug would translate it *into* English and break the rewrite.
+ * EN_SLUGS is the disambiguator: only an English slug is translated, and
+ * everything else (Azerbaijani slugs, and dynamic values such as department
+ * codes or news ids) passes through untouched.
+ *
+ * Rewrite branches use this rather than hand-written child maps. Those maps
+ * duplicated pairs SLUG_MAP already held, and a section whose author forgot to
+ * repeat them returned 404 in English only — which is how
+ * /en/research/conferences-and-events/seminars-and-trainings and
+ * /en/research/performance-and-evaluation/internal-grant-programs both broke.
+ */
+function toAzSlug(segment: string | undefined): string | undefined {
+    if (!segment) return segment;
+    return EN_SLUGS.has(segment) && SLUG_MAP[segment] ? SLUG_MAP[segment] : segment;
+}
 
 /**
  * Higher Education Institute (YTİ) section slugs → the route folder name.
@@ -442,53 +468,17 @@ export function middleware(request: NextRequest) {
 
     // Rewrite logic to actual file structure
     if (segments_rest[0] === "research" || segments_rest[0] === "tedqiqat") {
+        // Every folder under src/app/tedqiqat is named in Azerbaijani, so the
+        // section and its child are both normalised through SLUG_MAP. Anything
+        // deeper (an institute slug, a laboratory id, a year) is a dynamic
+        // value and is deliberately left alone.
         segments_rest[0] = "tedqiqat";
-        if (segments_rest[1] === "research-activity" || segments_rest[1] === "tedqiqat-fealiyyeti") segments_rest[1] = "tedqiqat-fealiyyeti";
-        if (segments_rest[1] === "performance-and-evaluation" || segments_rest[1] === "performans-ve-qiymetlendirme") {
-            segments_rest[1] = "performans-ve-qiymetlendirme";
-            // The child slug has to be translated too, or the en URL rewrites to
-            // a route that does not exist on disk.
-            const performanceMap: Record<string, string> = {
-                "incentive-mechanism": "heveslendirme-mexanizmi",
-                "internal-grant-programs": "daxili-qrant-proqramlari",
-            };
-            if (segments_rest[2] && performanceMap[segments_rest[2]]) {
-                segments_rest[2] = performanceMap[segments_rest[2]];
-            }
-        }
-        if (segments_rest[1] === "conferences-and-events" || segments_rest[1] === "konfranslar-ve-tedbirler") {
-            segments_rest[1] = "konfranslar-ve-tedbirler";
-            const conferencesMap: Record<string, string> = {
-                "seminars-and-trainings": "seminarlar-ve-telimler",
-            };
-            if (segments_rest[2] && conferencesMap[segments_rest[2]]) {
-                segments_rest[2] = conferencesMap[segments_rest[2]];
-            }
-        }
-        if (segments_rest[1] === "publications-and-broadcasting" || segments_rest[1] === "nesrler-ve-yayim") segments_rest[1] = "nesrler-ve-yayim";
-        
-        if (segments_rest[1] === "nesrler-ve-yayim" && (segments_rest[2] === "open-access-policy" || segments_rest[2] === "aciq-giris-siyaseti")) {
+        if (segments_rest[1]) segments_rest[1] = toAzSlug(segments_rest[1]) as string;
+        if (segments_rest[2]) segments_rest[2] = toAzSlug(segments_rest[2]) as string;
+
+        // Open access lives under publications and is also linked directly.
+        if (segments_rest[1] === "nesrler-ve-yayim" && segments_rest[2] === "aciq-giris-siyaseti") {
             segments_rest = ["tedqiqat", "nesrler-ve-yayim", "aciq-giris-siyaseti"];
-        } else if (segments_rest[1] === "scientific-journals" || segments_rest[1] === "elmi-jurnallar") {
-            // "elmi-jurnallar" is a direct child of research → the section is at
-            // index 1 and the journal slug at index 2. The az URL already equals
-            // the internal path, but the en URL must be translated here or it
-            // rewrites to a non-existent /tedqiqat/scientific-journals/… route.
-            segments_rest[1] = "elmi-jurnallar";
-            if (segments_rest[2] === "machine-science" || segments_rest[2] === "masin-elmi") segments_rest[2] = "masin-elmi";
-            if (segments_rest[2] === "energy-sustainability-risks-and-decision-making" || segments_rest[2] === "enerji-davamliligi-riskler-ve-qerarlarin-qebul-edilmesi") segments_rest[2] = "enerji-davamliligi-riskler-ve-qerarlarin-qebul-edilmesi";
-            if (segments_rest[2] === "scientific-works" || segments_rest[2] === "elmi-eserler") segments_rest[2] = "elmi-eserler";
-        } else if (segments_rest[1] === "tedqiqat-fealiyyeti" && segments_rest[2]) {
-            const researchActivityMap: Record<string, string> = {
-                "intellectual-property-and-patents": "eqli-mulkiyyet-ve-patentler",
-                "research-projects": "tedqiqat-layiheleri",
-                "research-institutes": "tedqiqat-institutlari",
-                "research-laboratories": "tedqiqat-laboratoriyalari",
-                "research-priorities": "tedqiqat-prioritetleri",
-                "multidisciplinary-research": "coxsaheli-tedqiqat",
-                "coxsaheli-tedqiqat": "coxsaheli-tedqiqat",
-            };
-            if (researchActivityMap[segments_rest[2]]) segments_rest[2] = researchActivityMap[segments_rest[2]];
         }
     } else if (segments_rest[0] === "about" || segments_rest[0] === "haqqimizda") {
         segments_rest[0] = "haqqimizda";
