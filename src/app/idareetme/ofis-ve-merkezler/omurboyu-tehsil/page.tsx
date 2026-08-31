@@ -1,18 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import PersonCard from "@/components/shared/PersonCard";
 import { useLanguage } from "@/context/LanguageContext";
+import OfficeShell from "@/components/office/OfficeShell";
+import StaffCard from "@/components/faculty/StaffCard";
+import { SectionCard, NumberedList } from "@/components/department/ui";
 
 import ArticleIcon from "@mui/icons-material/Article";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import BusinessIcon from "@mui/icons-material/Business";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import SchoolIcon from "@mui/icons-material/School";
-import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
-import Breadcrumbs from "@/components/shared/Breadcrumbs";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import GroupsIcon from "@mui/icons-material/Groups";
+import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
 
 // ─── Interfaces ───────────────────────────────────────────────────────────────
 
@@ -160,226 +162,162 @@ export default function OmurboyuTehsilPage() {
   const { lang } = useLanguage();
   const p = DATA[lang];
 
+  const sections = [
+    {
+      id: "about",
+      label: p.aboutTitle,
+      description: lang === "az" ? "Ümumi məlumat" : "Overview",
+      icon: InfoOutlinedIcon,
+    },
+    {
+      id: "objectives",
+      label: p.objectivesTitle,
+      description: lang === "az" ? "Nəyə çalışırıq" : "What we aim for",
+      icon: FlagOutlinedIcon,
+    },
+    {
+      id: "functions",
+      label: p.functionsTitle,
+      description: lang === "az" ? "Nə edirik" : "What we do",
+      icon: SettingsOutlinedIcon,
+    },
+    {
+      id: "staff",
+      label: p.staffTitle,
+      description: lang === "az" ? "Heyət və əlaqə" : "Team & contact",
+      icon: GroupsIcon,
+    },
+    {
+      id: "contact",
+      label: p.contactTitle,
+      description: lang === "az" ? "Ünvan və əlaqə" : "Address & contact",
+      icon: CallOutlinedIcon,
+    },
+  ];
+
+  const counter = (n: number) => (
+    <span className="rounded-lg border border-slate-200 px-2.5 py-1 text-[10px] font-black tabular-nums uppercase tracking-[0.2em] text-slate-400 dark:border-white/10 dark:text-slate-500">
+      {String(n).padStart(2, "0")}
+    </span>
+  );
+
   return (
-    <main className="min-h-screen selection:bg-[#ee7c7e]/30">
-      {/* ── HERO ─────────────────────────────────────────────────────────────── */}
-      <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            <AboutHeroVideoBg />
-        </div>
-
-        <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-20">
-          {/* Breadcrumb */}
-          <Breadcrumbs
-              items={[
-                  { label: p.eyebrow, href: lang === "az" ? "/idareetme" : "/management" },
-                  { label: p.breadcrumbSection, href: lang === "az" ? "/idareetme/ofis-ve-merkezler" : "/management/ofis-ve-merkezler" },
-                  { label: p.title },
-              ]}
-          />
-
-          <div className="max-w-4xl">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
-                {p.eyebrow}
-              </span>
-              <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
-                {p.title}
-              </h1>
-              <p className="text-xl text-white/80 font-medium mb-10 max-w-2xl leading-relaxed italic">
-                &quot;{p.subtitle}&quot;
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── CONTENT ──────────────────────────────────────────────────────────── */}
-      <div className="px-4 md:px-10 lg:px-20 py-24 bg-white dark:bg-[#0b1330] relative overflow-hidden">
-        <div className="relative z-10 max-w-[1600px] mx-auto space-y-32">
-
-          {/* ── Əsasnamə Button ───────────────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex justify-start"
-          >
+    <OfficeShell
+      eyebrow={p.eyebrow}
+      title={p.title}
+      subtitle={p.subtitle}
+      sections={sections}
+      stat={{ value: String(p.staff.length), label: lang === "az" ? "əməkdaş" : "staff" }}
+    >
+      <section id="about" className="scroll-mt-28">
+        <SectionCard
+          icon={InfoOutlinedIcon}
+          eyebrow={lang === "az" ? "Ümumi məlumat" : "Overview"}
+          title={p.aboutTitle}
+          action={
             <Link
               href="#"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl border-2 border-[#ee7c7e] text-[#ee7c7e] font-black text-sm uppercase tracking-widest hover:bg-[#ee7c7e] hover:text-white transition-all duration-300 shadow-sm hover:shadow-[#ee7c7e]/30 hover:shadow-lg"
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-3.5 py-2 text-[11px] font-bold text-[#1a2355] transition-colors hover:border-[#ee7c7e] hover:text-[#ee7c7e] dark:border-white/10 dark:text-white"
             >
-              <ArticleIcon fontSize="small" />
+              <ArticleIcon sx={{ fontSize: 15 }} />
               {p.regsBtn}
             </Link>
-          </motion.div>
+          }
+        >
+          <div className="text-flow space-y-5 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 md:text-base">
+            {p.aboutText.map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
+          </div>
+        </SectionCard>
+      </section>
 
-          {/* ── 1. About ──────────────────────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <section id="objectives" className="scroll-mt-28">
+          <SectionCard
+            icon={FlagOutlinedIcon}
+            eyebrow={lang === "az" ? "Nəyə çalışırıq" : "What we aim for"}
+            title={p.objectivesTitle}
+            action={counter(p.objectives.length)}
           >
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">
-                {p.aboutTitle}
-              </h2>
-            </div>
-            <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed ">
-              {p.aboutText.map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
-            </div>
-          </motion.div>
+            <NumberedList items={p.objectives.map((o) => o)} />
+          </SectionCard>
+        </section>
 
-          {/* ── 2. Objectives ─────────────────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+        <section id="functions" className="scroll-mt-28">
+          <SectionCard
+            icon={SettingsOutlinedIcon}
+            eyebrow={lang === "az" ? "Nə edirik" : "What we do"}
+            title={p.functionsTitle}
+            action={counter(p.functions.length)}
+            delay={0.06}
           >
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">
-                {p.objectivesTitle}
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {p.objectives.map((obj, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.07 }}
-                  className="bg-white dark:bg-white/5 rounded-[1.5rem] p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/30 transition-all duration-300 group"
-                >
-                  <div className="w-12 h-12 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e] font-black text-lg mb-6 group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-300">
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed font-medium">
-                    {obj}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* ── 3. Functions (dark card) ───────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-[#1a2355] rounded-[2rem] p-10 md:p-14 text-white relative overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
-              <SchoolIcon sx={{ fontSize: 200 }} />
-            </div>
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black">{p.functionsTitle}</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {p.functions.map((fn, i) => (
-                <div
-                  key={i}
-                  className="flex gap-4 items-start p-5 rounded-2xl bg-white/5 border border-white/10"
-                >
-                  <div className="w-7 h-7 rounded-lg bg-[#ee7c7e]/20 flex items-center justify-center text-[#ee7c7e] font-black text-xs shrink-0 mt-0.5">
-                    {i + 1}
-                  </div>
-                  <p className="text-white/80 text-sm leading-relaxed">{fn}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* ── 4. Staff ──────────────────────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">
-                {p.staffTitle}
-              </h2>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {p.staff.map((member, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
-                >
-                  <PersonCard
-                    fullName={member.name}
-                    title={member.role}
-                    email={member.email}
-                  />
-                  <div className="mt-3 flex items-center gap-2 text-xs font-bold text-gray-400 pl-2">
-                    <PhoneIcon sx={{ fontSize: 13 }} className="text-[#ee7c7e]" />
-                    {member.phone}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* ── 5. Contact ────────────────────────────────────────────────── */}
-          <motion.section
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <h2 className="text-3xl font-black text-[#1a2355] dark:text-white mb-12">
-              {p.contactTitle}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="flex flex-col items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e]">
-                  <EmailIcon />
-                </div>
-                <a
-                  href={`mailto:${p.contactEmail}`}
-                  className="text-sm font-bold text-gray-600 dark:text-gray-300 hover:text-[#ee7c7e] transition-colors break-all"
-                >
-                  {p.contactEmail}
-                </a>
-              </div>
-              <div className="flex flex-col items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e]">
-                  <PhoneIcon />
-                </div>
-                <a
-                  href={`tel:${p.contactPhone}`}
-                  className="text-sm font-bold text-gray-600 dark:text-gray-300 hover:text-[#ee7c7e] transition-colors"
-                >
-                  {p.contactPhone}
-                </a>
-              </div>
-              <div className="flex flex-col items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e]">
-                  <BusinessIcon />
-                </div>
-                <p className="text-sm font-bold text-gray-600 dark:text-gray-300 text-center">
-                  {p.contactAddress}
-                </p>
-              </div>
-            </div>
-          </motion.section>
-
-        </div>
+            <NumberedList items={p.functions.map((f) => f)} />
+          </SectionCard>
+        </section>
       </div>
-    </main>
+
+      <section id="staff" className="scroll-mt-28">
+        <SectionCard
+          icon={GroupsIcon}
+          eyebrow={lang === "az" ? "İnzibati heyət" : "Administrative team"}
+          title={p.staffTitle}
+          action={counter(p.staff.length)}
+        >
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {p.staff.map((member, i) => (
+              <StaffCard
+                key={member.email || member.name}
+                fullName={member.name}
+                role={member.role}
+                email={member.email}
+                phone={member.phone}
+                index={i}
+              />
+            ))}
+          </div>
+        </SectionCard>
+      </section>
+
+      <section id="contact" className="scroll-mt-28">
+        <SectionCard
+          icon={CallOutlinedIcon}
+          eyebrow={lang === "az" ? "Bizə yazın" : "Get in touch"}
+          title={p.contactTitle}
+        >
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+            {[
+              { icon: EmailIcon, label: lang === "az" ? "E-poçt" : "Email", value: p.contactEmail, href: `mailto:${p.contactEmail}` },
+              { icon: PhoneIcon, label: lang === "az" ? "Telefon" : "Phone", value: p.contactPhone, href: `tel:${p.contactPhone}` },
+              { icon: BusinessIcon, label: lang === "az" ? "Ünvan" : "Address", value: p.contactAddress },
+            ].map((row) => {
+              const Icon = row.icon;
+              const body = (
+                <>
+                  <span className="mb-1.5 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
+                    <Icon sx={{ fontSize: 14 }} className="text-[#ee7c7e]" />
+                    {row.label}
+                  </span>
+                  <span className="block text-[15px] font-black leading-snug text-[#1a2355] dark:text-white">
+                    {row.value}
+                  </span>
+                </>
+              );
+              const shell =
+                "block rounded-xl border border-slate-200 bg-slate-50/60 px-4 py-4 transition-colors dark:border-white/10 dark:bg-white/5";
+              return row.href ? (
+                <a key={row.label} href={row.href} className={`${shell} hover:border-[#ee7c7e]/50`}>
+                  {body}
+                </a>
+              ) : (
+                <div key={row.label} className={shell}>
+                  {body}
+                </div>
+              );
+            })}
+          </div>
+        </SectionCard>
+      </section>
+    </OfficeShell>
   );
 }
