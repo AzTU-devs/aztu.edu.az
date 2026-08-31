@@ -126,7 +126,7 @@ export default function QaCertificates({ id }: Props) {
             <Heading eyebrow={copy.eyebrow} title={copy.title} lede={copy.lede} />
 
             {groups.length === 0 ? (
-                <p className="rounded-2xl border border-slate-200 bg-slate-50/60 px-6 py-8 text-center text-sm font-medium text-slate-500 dark:border-white/10 dark:bg-white/5 dark:text-slate-400">
+                <p className="rounded-2xl border border-slate-200 bg-slate-50/60 px-6 py-8 text-center text-sm font-medium text-slate-500 dark:border-white/10 dark:bg-white/5">
                     {copy.empty}
                 </p>
             ) : (
@@ -150,14 +150,14 @@ export default function QaCertificates({ id }: Props) {
                                         />
                                     )}
                                     <div className="min-w-0 flex-1">
-                                        <h3 className="text-base font-black tracking-tight text-[#1a2355] dark:text-white md:text-lg">
+                                        <h3 className="text-base font-black tracking-tight text-[#1a2355] md:text-lg">
                                             {ranks ? copy.ranking : copy.accreditation}
                                         </h3>
-                                        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">
+                                        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">
                                             {meta?.name ?? issuer}
                                         </p>
                                     </div>
-                                    <span className="shrink-0 rounded-lg border border-slate-200 px-2.5 py-1 text-[11px] font-black tabular-nums text-slate-500 dark:border-white/10 dark:text-slate-400">
+                                    <span className="shrink-0 rounded-lg border border-slate-200 px-2.5 py-1 text-[11px] font-black tabular-nums text-slate-500 dark:border-white/10">
                                         {items.length} {copy.countLabel}
                                     </span>
                                 </div>
@@ -189,10 +189,10 @@ export default function QaCertificates({ id }: Props) {
                                                             alt={cert.title ?? ""}
                                                             loading="lazy"
                                                             decoding="async"
-                                                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                                                            className="h-full w-full object-contain p-1.5 transition-transform duration-500 group-hover:scale-[1.03]"
                                                         />
                                                     ) : (
-                                                        <span className="grid h-full w-full place-items-center text-slate-300 dark:text-slate-600">
+                                                        <span className="grid h-full w-full place-items-center text-slate-300">
                                                             <WorkspacePremiumIcon sx={{ fontSize: 34 }} />
                                                         </span>
                                                     )}
@@ -213,7 +213,7 @@ export default function QaCertificates({ id }: Props) {
                                                             {family}
                                                         </span>
                                                     )}
-                                                    <span className="wrap-anywhere text-[13px] font-bold leading-snug text-[#1a2355] dark:text-white">
+                                                    <span className="wrap-anywhere text-[13px] font-bold leading-snug text-[#1a2355]">
                                                         {cert.title}
                                                     </span>
                                                 </span>
@@ -305,10 +305,10 @@ function Heading({ eyebrow, title, lede }: { eyebrow: string; title: string; led
             <span className="mb-3 block text-[10px] font-black uppercase tracking-[0.32em] text-[#ee7c7e]">
                 {eyebrow}
             </span>
-            <h2 className="mb-3 text-2xl font-black tracking-tight text-[#1a2355] dark:text-white md:text-3xl">
+            <h2 className="mb-3 text-2xl font-black tracking-tight text-[#1a2355] md:text-3xl">
                 {title}
             </h2>
-            <p className="max-w-2xl text-[15px] leading-relaxed text-slate-600 dark:text-slate-300">
+            <p className="max-w-2xl text-[15px] leading-relaxed text-slate-600">
                 {lede}
             </p>
         </div>

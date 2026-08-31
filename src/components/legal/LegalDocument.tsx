@@ -40,7 +40,7 @@ export type LegalDoc = {
     disclaimer: string;
 };
 
-const PROSE = "text-[15px] leading-[1.75] text-slate-600 dark:text-slate-300 md:text-base";
+const PROSE = "text-[15px] leading-[1.75] text-slate-600 md:text-base";
 
 function BlockView({ block }: { block: Block }) {
     switch (block.kind) {
@@ -64,7 +64,7 @@ function BlockView({ block }: { block: Block }) {
                 <ol className={`space-y-2.5 ${PROSE}`}>
                     {block.items.map((item, i) => (
                         <li key={i} className="flex gap-3">
-                            <span className="mt-[0.15em] grid h-6 w-6 shrink-0 place-items-center rounded-lg bg-[#1a2355]/5 text-[11px] font-black tabular-nums text-[#1a2355] dark:bg-white/10 dark:text-white">
+                            <span className="mt-[0.15em] grid h-6 w-6 shrink-0 place-items-center rounded-lg bg-[#1a2355]/5 text-[11px] font-black tabular-nums text-[#1a2355]">
                                 {i + 1}
                             </span>
                             <span className="min-w-0">{item}</span>
@@ -85,7 +85,7 @@ function BlockView({ block }: { block: Block }) {
                                     <th
                                         key={i}
                                         scope="col"
-                                        className="border-b border-slate-200 px-4 py-3 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500 dark:border-white/10 dark:text-slate-400"
+                                        className="border-b border-slate-200 px-4 py-3 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500 dark:border-white/10"
                                     >
                                         {h}
                                     </th>
@@ -100,8 +100,8 @@ function BlockView({ block }: { block: Block }) {
                                             key={c}
                                             className={`border-b border-slate-100 px-4 py-3 text-[13.5px] leading-relaxed dark:border-white/5 ${
                                                 c === 0
-                                                    ? "font-bold text-[#1a2355] dark:text-white"
-                                                    : "text-slate-600 dark:text-slate-300"
+                                                    ? "font-bold text-[#1a2355]"
+                                                    : "text-slate-600"
                                             }`}
                                         >
                                             {cell}
@@ -127,10 +127,10 @@ function BlockView({ block }: { block: Block }) {
                     {block.rows.map((row) => {
                         const body = (
                             <>
-                                <span className="mb-1.5 block text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
+                                <span className="mb-1.5 block text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
                                     {row.label}
                                 </span>
-                                <span className="block text-[15px] font-bold leading-snug text-[#1a2355] dark:text-white">
+                                <span className="block text-[15px] font-bold leading-snug text-[#1a2355]">
                                     {row.value}
                                 </span>
                             </>
@@ -184,10 +184,10 @@ export default function LegalDocument({ doc }: { doc: LegalDoc }) {
                                                 href={`#${section.id}`}
                                                 className="group flex gap-3 rounded-xl px-3 py-2 transition-colors hover:bg-[#1a2355]/5 dark:hover:bg-white/5"
                                             >
-                                                <span className="text-[11px] font-black tabular-nums text-slate-400 dark:text-slate-500">
+                                                <span className="text-[11px] font-black tabular-nums text-slate-400">
                                                     {String(i + 1).padStart(2, "0")}
                                                 </span>
-                                                <span className="min-w-0 text-[13px] font-bold leading-snug text-slate-600 transition-colors group-hover:text-[#1a2355] dark:text-slate-300 dark:group-hover:text-white">
+                                                <span className="min-w-0 text-[13px] font-bold leading-snug text-slate-600 transition-colors group-hover:text-[#1a2355] dark:group-hover:text-white">
                                                     {section.title}
                                                 </span>
                                             </a>
@@ -225,7 +225,7 @@ export default function LegalDocument({ doc }: { doc: LegalDoc }) {
                                         transition={{ duration: 0.45, ease: [0.23, 1, 0.32, 1] }}
                                         className="scroll-mt-28"
                                     >
-                                        <h2 className="mb-5 flex gap-4 text-xl font-black leading-tight tracking-tight text-[#1a2355] dark:text-white md:text-2xl">
+                                        <h2 className="mb-5 flex gap-4 text-xl font-black leading-tight tracking-tight text-[#1a2355] md:text-2xl">
                                             <span className="mt-[0.3em] text-[13px] font-black tabular-nums text-[#ee7c7e]">
                                                 {String(index + 1).padStart(2, "0")}
                                             </span>
@@ -241,7 +241,7 @@ export default function LegalDocument({ doc }: { doc: LegalDoc }) {
                             </div>
 
                             <p
-                                className="mt-16 border-t border-slate-200 pt-8 text-[13px] leading-relaxed text-slate-500 dark:border-white/10 dark:text-slate-400"
+                                className="mt-16 border-t border-slate-200 pt-8 text-[13px] leading-relaxed text-slate-500 dark:border-white/10"
                                 lang={lang}
                             >
                                 {doc.disclaimer}

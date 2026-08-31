@@ -66,7 +66,7 @@ function Section({
           <span className="h-px w-8 bg-[#ee7c7e]/40" />
           {eyebrow}
         </span>
-        <h2 className="text-2xl font-black tracking-tight text-[#1a2355] dark:text-white md:text-3xl">
+        <h2 className="text-2xl font-black tracking-tight text-[#1a2355] md:text-3xl">
           {title}
         </h2>
       </div>
@@ -89,7 +89,7 @@ function Figure({
   return (
     <figure className="my-7 overflow-hidden rounded-2xl border border-slate-200 bg-white/70 dark:border-white/10 dark:bg-white/[0.03]">
       <div className="p-5 md:p-6">{children}</div>
-      <figcaption className="flex gap-3 border-t border-slate-100 px-5 py-3 text-[12px] leading-relaxed text-slate-500 dark:border-white/5 dark:text-slate-400">
+      <figcaption className="flex gap-3 border-t border-slate-100 px-5 py-3 text-[12px] leading-relaxed text-slate-500 dark:border-white/5">
         <span className="shrink-0 font-black tabular-nums text-[#ee7c7e]">{number}</span>
         <span className="min-w-0">{caption}</span>
       </figcaption>
@@ -98,7 +98,7 @@ function Figure({
 }
 
 const PROSE =
-  "text-flow space-y-4 whitespace-pre-line text-[15px] leading-[1.75] text-slate-600 dark:text-slate-300 md:text-base";
+  "text-flow space-y-4 whitespace-pre-line text-[15px] leading-[1.75] text-slate-600 md:text-base";
 
 export default function KtsPage() {
   const { lang } = useLanguage();
@@ -241,7 +241,7 @@ export default function KtsPage() {
                     className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white/70 px-5 py-3.5 transition-colors hover:border-[#ee7c7e]/40 dark:border-white/10 dark:bg-white/[0.03]"
                   >
                     <CheckCircleOutlineIcon sx={{ fontSize: 18 }} className="shrink-0 text-[#ee7c7e]" />
-                    <span className="min-w-0 text-[15px] font-bold text-[#1a2355] dark:text-white">
+                    <span className="min-w-0 text-[15px] font-bold text-[#1a2355]">
                       {item}
                     </span>
                   </div>
@@ -252,7 +252,7 @@ export default function KtsPage() {
               <Figure number="01" caption={copy.figImprovement}>
                 <ImprovementPlanFlow />
               </Figure>
-              <p className="text-[13px] italic leading-relaxed text-slate-500 dark:text-slate-400">
+              <p className="text-[13px] italic leading-relaxed text-slate-500">
                 {copy.mechanismsNote}
               </p>
             </Section>
