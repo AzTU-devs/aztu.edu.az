@@ -8,7 +8,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import AccountTreeOutlinedIcon from "@mui/icons-material/AccountTreeOutlined";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
-import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 import NorthEastIcon from "@mui/icons-material/NorthEast";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
@@ -35,7 +34,6 @@ function buildNavItems(facultyId: string, lang: string): NavItem[] {
   const aboutSlug = lang === "az" ? "haqqimizda" : "about";
   const kafedraSlug = lang === "az" ? "kafedralar" : "departments";
   const ixtisasSlug = lang === "az" ? "ixtisaslar" : "specializations";
-  const internationalSlug = lang === "az" ? "beynelxalq-elaqeler" : "international-relations";
 
   const deanSlug = lang === "az" ? "dekan" : "dean";
   const deputySlug = lang === "az" ? "dekan-muavinleri" : "deputy-deans";
@@ -66,7 +64,6 @@ function buildNavItems(facultyId: string, lang: string): NavItem[] {
       icon: SchoolOutlinedIcon,
       external: !!majorsUrl,
     },
-    { label: lang === "az" ? "Beynəlxalq əlaqələr" : "International Relations", href: `${base}/${internationalSlug}`, icon: PublicOutlinedIcon },
   ];
 }
 

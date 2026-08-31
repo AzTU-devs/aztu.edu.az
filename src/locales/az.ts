@@ -16,41 +16,6 @@ const az = {
       title: "SÜRƏTLİ<br/>GİRİŞ",
       slogan: "Mühəndislik gələcəyini qururuq",
       portal: "Portal",
-      sections: {
-        platform: {
-          title: "Platforma",
-          items: {
-            lms: "LMS",
-            internalGrants: "Daxili Qrant Müsabiqəsi",
-            planReport: "Plan-Hesabat İnformasiya Sistemi",
-          }
-        },
-        alumni: {
-          title: "Məzunlar",
-          items: {
-            portal: "Məzun Portalı",
-            honoraryDoctors: "Fəxri Doktorlar",
-            honoraryGraduates: "Fəxri Məzunlar",
-            heroes: "Qəhrəmanlarımız",
-          }
-        },
-        whyAztu: {
-          title: "Niyə AzTU?",
-          items: {
-            infrastructure: "İnfrastruktur",
-            startups: "Startaplar",
-            dualDegree: "İkili Diplom Proqramları",
-            scholarships: "Təqaüdlər",
-          }
-        }
-      },
-      leftItems: {
-        ranking: "Reytinq",
-        accreditation: "Akkreditasiya",
-        policies: "Siyasətlər",
-        reports: "Hesabatlar",
-        faq: "MTE (Məkanların Təsviri və Analizi)",
-      }
     },
     search: "Axtar",
     moreInSection: "Bu bölmədə daha çox",

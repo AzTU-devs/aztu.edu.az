@@ -16,41 +16,6 @@ const en = {
       title: "QUICK<br/>ACCESS",
       slogan: "Shaping the future of engineering",
       portal: "Portal",
-      sections: {
-        platform: {
-          title: "Platform",
-          items: {
-            lms: "LMS",
-            internalGrants: "Internal Grant Competition",
-            planReport: "Plan-Report Information System",
-          }
-        },
-        alumni: {
-          title: "Alumni",
-          items: {
-            portal: "Alumni Portal",
-            honoraryDoctors: "Honorary Doctors",
-            honoraryGraduates: "Honorary Graduates",
-            heroes: "Our Heroes",
-          }
-        },
-        whyAztu: {
-          title: "Why AzTU?",
-          items: {
-            infrastructure: "Infrastructure",
-            startups: "Startups",
-            dualDegree: "Dual Degree Programs",
-            scholarships: "Scholarships",
-          }
-        }
-      },
-      leftItems: {
-        ranking: "Rankings",
-        accreditation: "Accreditation",
-        policies: "Policies",
-        reports: "Reports",
-        faq: "FAQ",
-      }
     },
     search: "Search",
     moreInSection: "More in this section",
