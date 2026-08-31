@@ -13,6 +13,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight"
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium"
 import GroupsIcon from "@mui/icons-material/Groups"
 import { useTranslation } from "@/hooks/useTranslation"
+import { ISSUERS, ISSUER_ORDER } from "@/util/certificateIssuers"
 import { useLanguage } from "@/context/LanguageContext"
 import QsLogo from "@/../public/logos/qs-logo.svg"
 import TheLogo from "@/../public/logos/the-logo.svg"
@@ -70,17 +71,7 @@ type GroupKey = HeroCertificateFamily | "video" | "aqas"
 const issuerOf = (cert?: HeroCertificate | null): HeroCertificateIssuer =>
     cert?.issuer ?? "qs"
 
-/** The attesting body's own mark and the name it is known by. Brand names, so
- *  deliberately not translated. */
-const ISSUERS: Record<HeroCertificateIssuer, { logo: string; name: string }> = {
-    qs: { logo: "/certificate_issuers/qs.jpeg", name: "QS" },
-    aqas: { logo: "/certificate_issuers/aqas.webp", name: "AQAS" },
-    staregister: { logo: "/certificate_issuers/staregister.png", name: "STAR Register" },
-    greenmetric: { logo: "/logos/greenmetric-logo.svg", name: "UI GreenMetric" },
-}
 
-/* Strip order. An issuer missing from this list is appended rather than dropped. */
-const ISSUER_ORDER: HeroCertificateIssuer[] = ["qs", "aqas", "greenmetric", "staregister"]
 
 const pad = (n: number) => String(n).padStart(2, "0")
 
