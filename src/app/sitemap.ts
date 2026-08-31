@@ -55,8 +55,8 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
     { path: "/idareetme", priority: 0.5, changeFrequency: "yearly" },
     { path: "/administration", priority: 0.5, changeFrequency: "yearly" },
     { path: "/sustainability", priority: 0.6, changeFrequency: "monthly" },
-    { path: "/privacy-policy", priority: 0.3, changeFrequency: "yearly" },
-    { path: "/terms-conditions", priority: 0.3, changeFrequency: "yearly" },
+    { path: "/mexfilik-siyaseti", priority: 0.3, changeFrequency: "yearly" },
+    { path: "/sertler-ve-qaydalar", priority: 0.3, changeFrequency: "yearly" },
 ];
 
 interface NewsListLite {

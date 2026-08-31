@@ -24,8 +24,8 @@ const INTERNAL_FOLDERS = [
   "community",
   "icma",
   "elaqe",
-  "privacy-policy",
-  "terms-conditions",
+  "mexfilik-siyaseti",
+  "sertler-ve-qaydalar",
   "beynelmillesme",
   "beynelmilellesme",
   "about",
@@ -270,8 +270,8 @@ const SLUG_MAP: Record<string, string> = {
     // Other
     "privacy-policy": "mexfilik-siyaseti",
     "mexfilik-siyaseti": "privacy-policy",
-    "terms-and-conditions": "sertler-ve-qaydalar",
-    "sertler-ve-qaydalar": "terms-and-conditions",
+    "terms-conditions": "sertler-ve-qaydalar",
+    "sertler-ve-qaydalar": "terms-conditions",
     "rankings": "reytinqler",
     "reytinqler": "rankings",
 
@@ -516,6 +516,14 @@ export function middleware(request: NextRequest) {
     }
 
     // Rewrite logic to actual file structure
+
+    // The two legal pages live in Azerbaijani-named folders like the rest of the
+    // route tree, so the canonical /en slug has to be mapped onto the folder.
+    if (segments_rest.length === 1) {
+        if (segments_rest[0] === "privacy-policy") segments_rest = ["mexfilik-siyaseti"];
+        else if (segments_rest[0] === "terms-conditions") segments_rest = ["sertler-ve-qaydalar"];
+    }
+
     if (segments_rest[0] === "research" || segments_rest[0] === "tedqiqat") {
         // Every folder under src/app/tedqiqat is named in Azerbaijani, so the
         // section and its child are both normalised through SLUG_MAP. Anything

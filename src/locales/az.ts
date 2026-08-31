@@ -2420,6 +2420,10 @@ const az = {
   },
 
   footer: {
+    legal: {
+      privacy: "Məxfilik Siyasəti",
+      terms: "Şərtlər və Qaydalar",
+    },
     contactTitle: "Əlaqə",
     defaultAddress: "Ünvan: H.Cavid prospekti 25, Bakı, Azərbaycan, AZ 1073.",
     copyright: (year: number) => `© ${year} Azərbaycan Texniki Universiteti. Bütün hüquqlar qorunur.`,

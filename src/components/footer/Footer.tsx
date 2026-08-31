@@ -360,8 +360,21 @@ export default function Footer() {
                             </p>
                         </div>
                         <div className="flex items-center gap-10">
-                            <Link href="/privacy-policy" className="text-[10px] font-black text-white/20 hover:text-[#ee7c7e] uppercase tracking-widest transition-colors">Privacy Policy</Link>
-                            <Link href="/terms-and-conditions" className="text-[10px] font-black text-white/20 hover:text-[#ee7c7e] uppercase tracking-widest transition-colors">Terms of Service</Link>
+                            {/* Both were wrong: the labels were English in both
+                                languages, the hrefs carried no locale prefix, and
+                                /terms-and-conditions was not a route at all. */}
+                            <Link
+                                href={lang === "az" ? "/az/mexfilik-siyaseti" : "/en/privacy-policy"}
+                                className="text-[10px] font-black text-white/20 hover:text-[#ee7c7e] uppercase tracking-widest transition-colors"
+                            >
+                                {t.footer.legal.privacy}
+                            </Link>
+                            <Link
+                                href={lang === "az" ? "/az/sertler-ve-qaydalar" : "/en/terms-conditions"}
+                                className="text-[10px] font-black text-white/20 hover:text-[#ee7c7e] uppercase tracking-widest transition-colors"
+                            >
+                                {t.footer.legal.terms}
+                            </Link>
                         </div>
                     </div>
                 </div>

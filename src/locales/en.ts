@@ -2336,6 +2336,10 @@ const en = {
   },
 
   footer: {
+    legal: {
+      privacy: "Privacy Policy",
+      terms: "Terms & Conditions",
+    },
     contactTitle: "Contact",
     defaultAddress: "Address: 25 H. Javid Avenue, Baku, Azerbaijan, AZ 1073.",
     copyright: (year: number) => `© ${year} Azerbaijan Technical University. All rights reserved.`,
