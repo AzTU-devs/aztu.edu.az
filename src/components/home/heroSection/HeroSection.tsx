@@ -59,15 +59,28 @@ type Slide =
     | { kind: "video" }
     | { kind: "cert"; cert: HeroCertificate }
 
-/** Filmstrip group identity. QS certificates group by family exactly as before;
- *  AQAS is a single group of its own, because programme accreditations have no
- *  family. "video" is the fixed first group. */
+/** Family label lookup key, used by the readout and sheet alt text. The
+ *  filmstrip itself now groups by issuer rather than by family. */
 type GroupKey = HeroCertificateFamily | "video" | "aqas"
 
-/** Anything that is not literally "aqas" is QS — the same test the service
- *  applies, restated here so a hand-built HeroCertificate can't slip past. */
+/** The service normalises `issuer` on read, so the value is already one of the
+ *  known issuers; this only defends a hand-built object with none. It must NOT
+ *  collapse unknown values to "qs" the way it used to — that silently filed
+ *  every new issuer under QS. */
 const issuerOf = (cert?: HeroCertificate | null): HeroCertificateIssuer =>
-    cert?.issuer === "aqas" ? "aqas" : "qs"
+    cert?.issuer ?? "qs"
+
+/** The attesting body's own mark and the name it is known by. Brand names, so
+ *  deliberately not translated. */
+const ISSUERS: Record<HeroCertificateIssuer, { logo: string; name: string }> = {
+    qs: { logo: "/certificate_issuers/qs.jpeg", name: "QS" },
+    aqas: { logo: "/certificate_issuers/aqas.webp", name: "AQAS" },
+    staregister: { logo: "/certificate_issuers/staregister.png", name: "STAR Register" },
+    greenmetric: { logo: "/logos/greenmetric-logo.svg", name: "UI GreenMetric" },
+}
+
+/* Strip order. An issuer missing from this list is appended rather than dropped. */
+const ISSUER_ORDER: HeroCertificateIssuer[] = ["qs", "aqas", "greenmetric", "staregister"]
 
 const pad = (n: number) => String(n).padStart(2, "0")
 
@@ -394,36 +407,38 @@ export default function HeroSection() {
     const certLabel = (cert: HeroCertificate) =>
         issuerOf(cert) === "aqas" ? famLabel("aqas") : famLabel(cert.family)
 
-    /* Filmstrip groups, issuer-first: the video slot, then the QS families in
-     * display_order (run-length, exactly as before), then ONE AQAS group at the
-     * end. Reordering the strip does not touch slide indices — the buttons still
-     * call goTo(i) with the rotation's own index. */
-    const groups = useMemo(() => {
-        const video: number[] = []
-        const qs: { key: string; family: GroupKey; items: number[] }[] = []
-        const aqas: number[] = []
+    /* Filmstrip groups by ISSUER. It used to lay out all 19 certificate
+     * thumbnails at once, which ran far wider than the hero; now each issuer is
+     * one logo chip and only the active issuer's sheets appear beneath it.
+     * Regrouping does not touch slide indices — buttons still call goTo(i) with
+     * the rotation's own index. */
+    const videoSlot = useMemo(
+        () => slides.findIndex((slide) => slide.kind === "video"),
+        [slides]
+    )
 
+    const issuerGroups = useMemo(() => {
+        const byIssuer = new Map<HeroCertificateIssuer, number[]>()
         slides.forEach((slide, i) => {
-            if (slide.kind === "video") {
-                video.push(i)
-                return
-            }
-            if (issuerOf(slide.cert) === "aqas") {
-                aqas.push(i)
-                return
-            }
-            const family: GroupKey = slide.cert.family ?? "other"
-            const last = qs[qs.length - 1]
-            if (last && last.family === family) last.items.push(i)
-            else qs.push({ key: `qs-${family}-${i}`, family, items: [i] })
+            if (slide.kind !== "cert") return
+            const issuer = issuerOf(slide.cert)
+            const bucket = byIssuer.get(issuer)
+            if (bucket) bucket.push(i)
+            else byIssuer.set(issuer, [i])
         })
-
-        const out: { key: string; family: GroupKey; items: number[] }[] = []
-        if (video.length) out.push({ key: "video", family: "video", items: video })
-        out.push(...qs)
-        if (aqas.length) out.push({ key: "aqas", family: "aqas", items: aqas })
-        return out
+        const known = ISSUER_ORDER.filter((issuer) => byIssuer.has(issuer))
+        const extra = [...byIssuer.keys()].filter((issuer) => !ISSUER_ORDER.includes(issuer))
+        return [...known, ...extra].map((issuer) => ({
+            issuer,
+            items: byIssuer.get(issuer) ?? [],
+        }))
     }, [slides])
+
+    /* Which issuer is expanded is DERIVED from the active slide, not held in
+     * state, so the strip can never disagree with the rotation: reaching a
+     * certificate opens its issuer, and the video slide closes everything. */
+    const openIssuer: HeroCertificateIssuer | null = activeCert ? issuerOf(activeCert) : null
+    const openItems = issuerGroups.find((g) => g.issuer === openIssuer)?.items ?? []
 
     // At most THREE certificate <img> nodes: active, +1, +2. Advancing swaps
     // src on stable DOM nodes rather than mounting N of them.
@@ -560,7 +575,7 @@ export default function HeroSection() {
                             className={`hx-readout hx-in hx-iss-${issuer}`}
                         >
                             <div className="hx-chip hx-chip-iss">
-                                <span className="hx-issmark">{isAqas ? "AQAS" : "QS"}</span>
+                                <span className="hx-issmark">{ISSUERS[issuer]?.name ?? issuer}</span>
                                 <span>
                                     {isAqas
                                         ? t.hero.certificates.aqasAttested
@@ -911,104 +926,135 @@ export default function HeroSection() {
                         </div>
                     </div>
 
+                    {/* ISSUER CHIPS — one mark per attesting body, always visible. */}
                     <div
-                        className="hx-rail"
-                        ref={railRef}
+                        className="hx-issuers"
                         role="tablist"
                         aria-label={t.hero.certificates.railLabel}
                     >
-                        {groups.map((group) => (
-                            <div className="hx-group" key={group.key}>
-                                <span className="hx-group-label">{famLabel(group.family)}</span>
-                                <div className="hx-group-items">
-                                    {group.items.map((i) => {
-                                        const slide = slides[i]
-                                        const active = i === index
-                                        const thumb =
-                                            slide.kind === "cert"
-                                                ? getCertificateFileUrl(slide.cert.image)
-                                                : undefined
-                                        /* rank_label is interpolated, so a null
-                                         * from a missing translation row would
-                                         * read as the literal "… null" in the
-                                         * tooltip and to a screen reader. */
-                                        const label =
-                                            slide.kind === "video"
-                                                ? t.hero.certificates.videoSlide
-                                                : slide.cert.title ||
-                                                  (slide.cert.rank_label
-                                                      ? `${t.hero.certificates.slide} ${slide.cert.rank_label}`
-                                                      : `${t.hero.certificates.slide} ${certLabel(slide.cert)}`)
-                                        /* The image-less thumb paints an issuer
-                                         * band, so it has to know the issuer or
-                                         * an AQAS slot would show QS amber. */
-                                        const phAqas =
-                                            slide.kind === "cert" &&
-                                            !thumb &&
-                                            issuerOf(slide.cert) === "aqas"
-                                        return (
-                                            <button
-                                                key={i}
-                                                type="button"
-                                                role="tab"
-                                                ref={(el) => {
-                                                    slotRefs.current[i] = el
-                                                }}
-                                                onClick={() => goTo(i)}
-                                                aria-current={active}
-                                                aria-selected={active}
-                                                aria-label={`${pad(i)} — ${label}`}
-                                                title={label}
-                                                className={`hx-slot${slide.kind === "video" ? " hx-slot-video" : ""}${slide.kind === "cert" && !thumb ? " hx-slot-ph" : ""}${phAqas ? " hx-slot-ph-aqas" : ""}`}
-                                            >
-                                                {thumb && (
-                                                    <img
-                                                        src={thumb}
-                                                        alt=""
-                                                        width={SLOT_W}
-                                                        height={SLOT_H}
-                                                        loading="lazy"
-                                                        decoding="async"
-                                                    />
-                                                )}
-                                                {active && (
-                                                    <svg
-                                                        /* runId already changes on
-                                                         * every timer restart
-                                                         * (including cycleKey
-                                                         * bumps), so keying on it
-                                                         * keeps trace and timer
-                                                         * mounted together. */
-                                                        key={`ring-${index}-${runId}`}
-                                                        className={`hx-ring hx-run${paused ? " is-paused" : ""}`}
-                                                        viewBox={`0 0 ${RING_W} ${RING_H}`}
-                                                        preserveAspectRatio="none"
-                                                        aria-hidden="true"
-                                                        style={
-                                                            {
-                                                                "--len": RING_LEN,
-                                                                "--dur": `${AUTO_ADVANCE_INTERVAL}ms`,
-                                                            } as React.CSSProperties
-                                                        }
-                                                    >
-                                                        <rect
-                                                            x="0"
-                                                            y="0"
-                                                            width={RING_W}
-                                                            height={RING_H}
-                                                            vectorEffect="non-scaling-stroke"
-                                                            strokeDasharray={RING_LEN}
-                                                            strokeDashoffset={RING_LEN}
-                                                        />
-                                                    </svg>
-                                                )}
-                                            </button>
-                                        )
-                                    })}
-                                </div>
-                            </div>
-                        ))}
+                        {videoSlot >= 0 && (
+                            <button
+                                type="button"
+                                role="tab"
+                                ref={(el) => {
+                                    slotRefs.current[videoSlot] = el
+                                }}
+                                onClick={() => goTo(videoSlot)}
+                                aria-current={index === videoSlot}
+                                aria-selected={index === videoSlot}
+                                aria-label={t.hero.certificates.videoSlide}
+                                title={t.hero.certificates.videoSlide}
+                                className="hx-brand hx-brand-video"
+                            >
+                                <PlayArrowIcon sx={{ fontSize: 17 }} />
+                            </button>
+                        )}
+
+                        {issuerGroups.map((group) => {
+                            const meta = ISSUERS[group.issuer]
+                            const open = group.issuer === openIssuer
+                            return (
+                                <button
+                                    key={group.issuer}
+                                    type="button"
+                                    role="tab"
+                                    /* Jumping to the issuer's first sheet is what
+                                       opens it — the panel is derived from the
+                                       active slide, so there is no second source
+                                       of truth to fall out of sync. */
+                                    onClick={() => goTo(group.items[0])}
+                                    aria-selected={open}
+                                    aria-expanded={open}
+                                    aria-label={`${meta?.name ?? group.issuer} — ${group.items.length}`}
+                                    title={meta?.name ?? group.issuer}
+                                    className={`hx-brand${open ? " is-open" : ""}`}
+                                >
+                                    {meta?.logo ? (
+                                        <img src={meta.logo} alt="" loading="lazy" decoding="async" />
+                                    ) : (
+                                        <span className="hx-brand-fallback">
+                                            {(meta?.name ?? group.issuer).slice(0, 2).toUpperCase()}
+                                        </span>
+                                    )}
+                                    <span className="hx-brand-count">{group.items.length}</span>
+                                </button>
+                            )
+                        })}
                     </div>
+
+                    {/* EXPANDED SHEETS — only the open issuer's certificates. */}
+                    {openItems.length > 0 && (
+                        <div className="hx-rail" ref={railRef} key={openIssuer ?? "none"}>
+                            {openItems.map((i) => {
+                                const slide = slides[i]
+                                if (slide.kind !== "cert") return null
+                                const active = i === index
+                                const thumb = getCertificateFileUrl(slide.cert.image)
+                                /* rank_label is interpolated, so a null from a
+                                 * missing translation row would read as the
+                                 * literal "… null" to a screen reader. */
+                                const label =
+                                    slide.cert.title ||
+                                    (slide.cert.rank_label
+                                        ? `${t.hero.certificates.slide} ${slide.cert.rank_label}`
+                                        : `${t.hero.certificates.slide} ${certLabel(slide.cert)}`)
+                                /* The image-less thumb paints an issuer band, so
+                                 * it has to know the issuer or an AQAS slot would
+                                 * show QS amber. */
+                                const phAqas = !thumb && issuerOf(slide.cert) === "aqas"
+                                return (
+                                    <button
+                                        key={i}
+                                        type="button"
+                                        ref={(el) => {
+                                            slotRefs.current[i] = el
+                                        }}
+                                        onClick={() => goTo(i)}
+                                        aria-current={active}
+                                        aria-label={`${pad(i)} — ${label}`}
+                                        title={label}
+                                        className={`hx-slot${!thumb ? " hx-slot-ph" : ""}${phAqas ? " hx-slot-ph-aqas" : ""}`}
+                                    >
+                                        {thumb && (
+                                            <img
+                                                src={thumb}
+                                                alt=""
+                                                width={SLOT_W}
+                                                height={SLOT_H}
+                                                loading="lazy"
+                                                decoding="async"
+                                            />
+                                        )}
+                                        {active && (
+                                            <svg
+                                                key={`ring-${index}-${runId}`}
+                                                className={`hx-ring hx-run${paused ? " is-paused" : ""}`}
+                                                viewBox={`0 0 ${RING_W} ${RING_H}`}
+                                                preserveAspectRatio="none"
+                                                aria-hidden="true"
+                                                style={
+                                                    {
+                                                        "--len": RING_LEN,
+                                                        "--dur": `${AUTO_ADVANCE_INTERVAL}ms`,
+                                                    } as React.CSSProperties
+                                                }
+                                            >
+                                                <rect
+                                                    x="0"
+                                                    y="0"
+                                                    width={RING_W}
+                                                    height={RING_H}
+                                                    vectorEffect="non-scaling-stroke"
+                                                    strokeDasharray={RING_LEN}
+                                                    strokeDashoffset={RING_LEN}
+                                                />
+                                            </svg>
+                                        )}
+                                    </button>
+                                )
+                            })}
+                        </div>
+                    )}
                 </div>
             )}
 
@@ -1325,20 +1371,43 @@ const HERO_CSS = `
   transition:background-color .25s, border-color .25s; }
 .hx-icon-btn:hover{ background:rgba(255,255,255,.15); border-color:rgba(255,255,255,.3); }
 
-.hx-rail{ position:relative; display:flex; align-items:flex-end; gap:18px;
+.hx-rail{ position:relative; display:flex; align-items:flex-end; gap:9px;
+  min-height:66px; margin-top:11px;
   overflow-x:auto; overflow-y:hidden; padding:4px 2px 6px;
   scrollbar-width:thin; scrollbar-color:rgba(255,255,255,.2) transparent;
   scroll-behavior:smooth; }
 .hx-rail::-webkit-scrollbar{ height:3px; }
 .hx-rail::-webkit-scrollbar-thumb{ background:rgba(255,255,255,.2); border-radius:3px; }
 
-.hx-group{ display:flex; flex-direction:column; gap:7px; flex-shrink:0; }
-.hx-group-label{ padding-left:2px; white-space:nowrap;
-  font-family:var(--font-geist-mono),ui-monospace,monospace; font-size:.53rem;
-  letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.3); }
-/* Fixed height keeps every group label on one baseline while the active slot
-   scales up. Do not let this become content-derived. */
-.hx-group-items{ display:flex; gap:9px; height:66px; align-items:flex-end; }
+/* Issuer chips. The strip used to lay every certificate thumbnail side by side,
+   which ran wider than the hero itself once there were 19 of them; it now shows
+   one mark per attesting body and expands only the active one. */
+.hx-issuers{ display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  padding:2px 2px 0; }
+.hx-brand{ position:relative; display:inline-flex; align-items:center; gap:8px;
+  flex-shrink:0; cursor:pointer; padding:7px 12px 7px 9px; border-radius:11px;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14);
+  color:#fff; transition:background-color .25s, border-color .25s, transform .25s; }
+.hx-brand:hover{ background:rgba(255,255,255,.13); border-color:rgba(255,255,255,.32);
+  transform:translateY(-2px); }
+/* The open issuer is marked by the coral rule, not by colour alone. */
+.hx-brand.is-open{ background:rgba(238,124,126,.14); border-color:#ee7c7e; }
+.hx-brand.is-open::after{ content:""; position:absolute; left:11px; right:11px; bottom:-1px;
+  height:2px; border-radius:2px; background:#ee7c7e; }
+/* Issuer marks are supplied as opaque rasters on white, so they need a light
+   plate to sit on rather than being inverted into the dark hero. */
+.hx-brand img{ height:22px; width:auto; max-width:74px; object-fit:contain; display:block;
+  background:#fff; border-radius:4px; padding:2px 4px; }
+.hx-brand-fallback{ display:grid; place-items:center; height:22px; min-width:26px;
+  border-radius:4px; background:#fff; color:#12193a; padding:0 5px;
+  font-family:var(--font-geist-mono),ui-monospace,monospace; font-size:.6rem;
+  font-weight:700; letter-spacing:.06em; }
+.hx-brand-count{ font-family:var(--font-geist-mono),ui-monospace,monospace;
+  font-size:.62rem; letter-spacing:.1em; color:rgba(255,255,255,.55);
+  font-variant-numeric:tabular-nums; }
+.hx-brand.is-open .hx-brand-count{ color:#fff; }
+.hx-brand-video{ padding:7px 11px; }
+.hx-brand-video svg{ display:block; }
 
 .hx-slot{ position:relative; flex-shrink:0; cursor:pointer; padding:0;
   width:34px; aspect-ratio:1/1.414; border-radius:4px; overflow:hidden;
@@ -1393,8 +1462,10 @@ const HERO_CSS = `
   .hx-stats{ display:grid; grid-template-columns:1fr 1fr; }
 }
 @media (max-width:620px){
-  .hx-rail{ gap:13px; }
-  .hx-group-label{ font-size:.48rem; }
+  .hx-rail{ gap:7px; }
+  .hx-issuers{ gap:7px; }
+  .hx-brand{ padding:6px 10px 6px 8px; }
+  .hx-brand img{ height:18px; max-width:60px; }
   .hx-btn{ padding:11px 17px; letter-spacing:.16em; }
   .hx-lede{ font-size:.875rem; padding-left:13px; }
 }

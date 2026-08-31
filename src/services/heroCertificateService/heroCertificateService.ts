@@ -5,11 +5,13 @@ export type HeroCertificateFamily = "world" | "europe" | "subject" | "other";
 
 /**
  * Who attested the certificate.
- *  - "qs"   — QS, a ranking body: the row carries a rank_label and a family.
- *  - "aqas" — AQAS, a German programme-accreditation agency: per-programme,
- *             NO rank position and no family.
+ *  - "qs"          — QS, a ranking body: the row carries a rank_label and a family.
+ *  - "aqas"        — AQAS, a German programme-accreditation agency: per-programme,
+ *                    NO rank position and no family.
+ *  - "staregister"  — STAR Register listing.
+ *  - "greenmetric"  — UI GreenMetric world university sustainability ranking.
  */
-export type HeroCertificateIssuer = "qs" | "aqas";
+export type HeroCertificateIssuer = "qs" | "aqas" | "staregister" | "greenmetric";
 
 const FAMILIES: readonly string[] = ["world", "europe", "subject", "other"];
 
@@ -22,7 +24,19 @@ const FAMILIES: readonly string[] = ["world", "europe", "subject", "other"];
  * which is byte-for-byte the code path the site takes today.
  */
 export function normaliseIssuer(value: unknown): HeroCertificateIssuer {
-    return typeof value === "string" && value.trim().toLowerCase() === "aqas" ? "aqas" : "qs";
+    if (typeof value !== "string") return "qs";
+    const issuer = value.trim().toLowerCase();
+    // Only an EXPLICIT match is recognised. Missing, null, empty and unknown all
+    // still fall through to "qs", which is the byte-for-byte path the live site
+    // takes against the deployed backend that omits `issuer` entirely.
+    if (issuer === "aqas") return "aqas";
+    if (issuer === "staregister" || issuer === "star-register" || issuer === "star_register") {
+        return "staregister";
+    }
+    if (issuer === "greenmetric" || issuer === "green-metric" || issuer === "green_metric") {
+        return "greenmetric";
+    }
+    return "qs";
 }
 
 /** AQAS rows have no family; a pre-migration row always has one. Anything the
