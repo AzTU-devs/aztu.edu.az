@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
@@ -10,6 +11,7 @@ import PollIcon from "@mui/icons-material/Poll";
 import GroupsIcon from "@mui/icons-material/Groups";
 import RecordVoiceOverIcon from "@mui/icons-material/RecordVoiceOver";
 import GradingIcon from "@mui/icons-material/Grading";
+import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -18,15 +20,37 @@ export default function KtsSidebar() {
   const pathname = usePathname();
   const { lang } = useLanguage();
 
+  /* Certificates is a section of the QA page rather than a route of its own, so
+     its active state comes from the hash. `usePathname()` does not include the
+     hash, and a hash change fires no navigation, hence the listener. */
+  const [hash, setHash] = useState("");
+  useEffect(() => {
+    const read = () => setHash(window.location.hash);
+    read();
+    window.addEventListener("hashchange", read);
+    return () => window.removeEventListener("hashchange", read);
+  }, [pathname]);
+
   const basePath = `/${lang}/${lang === "az" ? "kts" : "qa"}`;
 
   const navItems = [
     {
-      href: basePath,
+      // Anchored so that clicking it from the certificates section clears the
+      // hash and moves the highlight back here.
+      href: `${basePath}#about`,
       icon: <InfoOutlinedIcon sx={{ fontSize: 18 }} />,
       labelAz: "Haqqında",
       labelEn: "About",
       slug: null,
+      hash: "#about",
+    },
+    {
+      href: `${basePath}#certificates`,
+      icon: <WorkspacePremiumIcon sx={{ fontSize: 18 }} />,
+      labelAz: "Sertifikatlar",
+      labelEn: "Certificates",
+      slug: null,
+      hash: "#certificates",
     },
     {
       href: `${basePath}/senedler`,
@@ -65,14 +89,20 @@ export default function KtsSidebar() {
     },
   ];
 
-  function isActive(item: { href: string; slug: string | null }) {
+  const onOverviewPage =
+    pathname === `/${lang}/kts` ||
+    pathname === `/${lang}/qa` ||
+    pathname.endsWith("/kts") ||
+    pathname.endsWith("/qa");
+
+  function isActive(item: { href: string; slug: string | null; hash?: string }) {
     if (item.slug === null) {
-      return (
-        pathname === `/${lang}/kts` ||
-        pathname === `/${lang}/qa` ||
-        pathname.endsWith("/kts") ||
-        pathname.endsWith("/qa")
-      );
+      // Both "Haqqımızda" and "Sertifikatlar" live on the overview page, so the
+      // hash decides between them — otherwise both would light up at once.
+      // "#about" also covers arriving with no hash at all.
+      if (item.hash === "#about") return onOverviewPage && hash !== "#certificates";
+      if (item.hash) return onOverviewPage && hash === item.hash;
+      return onOverviewPage && hash !== "#certificates";
     }
     return pathname.includes(`/${item.slug}`);
   }
