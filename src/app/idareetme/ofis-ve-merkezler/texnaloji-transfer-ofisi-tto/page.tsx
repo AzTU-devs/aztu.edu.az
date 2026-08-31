@@ -1,18 +1,31 @@
 "use client";
 
 import { motion } from "framer-motion";
-import PersonCard from "@/components/shared/PersonCard";
+
+import OfficeShell from "@/components/office/OfficeShell";
+import StaffCard from "@/components/faculty/StaffCard";
+import { SectionCard, NumberedList } from "@/components/department/ui";
 import { useLanguage } from "@/context/LanguageContext";
+import { sortEducations } from "@/util/educationOrder";
 
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import BusinessIcon from "@mui/icons-material/Business";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import ScienceIcon from "@mui/icons-material/Science";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
-import Breadcrumbs from "@/components/shared/Breadcrumbs";
-import { sortEducations } from "@/util/educationOrder";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import HandshakeOutlinedIcon from "@mui/icons-material/HandshakeOutlined";
+import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
+import HubOutlinedIcon from "@mui/icons-material/HubOutlined";
+import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
+import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
+import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
+import GroupsIcon from "@mui/icons-material/Groups";
+import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
+
+// ─── Interfaces ───────────────────────────────────────────────────────────────
 
 interface FunctionItem {
   title: string;
@@ -90,6 +103,8 @@ interface PageData {
     email: string;
   };
 }
+
+// ─── Data ─────────────────────────────────────────────────────────────────────
 
 const DATA: Record<"az" | "en", PageData> = {
   az: {
@@ -287,378 +302,397 @@ const DATA: Record<"az" | "en", PageData> = {
   },
 };
 
+// ─── Page ─────────────────────────────────────────────────────────────────────
+
 export default function TTOPage() {
   const { lang } = useLanguage();
   const p = DATA[lang];
 
-  return (
-    <main className="min-h-screen selection:bg-[#ee7c7e]/30">
-      {/* ── HERO ─────────────────────────────────────────────────────────────── */}
-      <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <AboutHeroVideoBg />
-        </div>
+  const sections = [
+    {
+      id: "about",
+      label: p.aboutTitle,
+      description: lang === "az" ? "Ümumi məlumat" : "Overview",
+      icon: InfoOutlinedIcon,
+    },
+    {
+      id: "objectives",
+      label: p.objectivesTitle,
+      description: lang === "az" ? "Nəyə çalışırıq" : "What we aim for",
+      icon: FlagOutlinedIcon,
+    },
+    {
+      id: "functions",
+      label: p.functionsTitle,
+      description: lang === "az" ? "Nə edirik" : "What we do",
+      icon: SettingsOutlinedIcon,
+    },
+    {
+      id: "partnerships",
+      label: p.partnershipTitle,
+      description: lang === "az" ? "Yerli tərəfdaşlar" : "Local partners",
+      icon: HandshakeOutlinedIcon,
+    },
+    {
+      id: "international",
+      label: p.internationalTitle,
+      description: lang === "az" ? "Xarici tərəfdaşlar" : "Global partners",
+      icon: PublicOutlinedIcon,
+    },
+    {
+      id: "innovation",
+      label: p.innovationTitle,
+      description: lang === "az" ? "Rezident şirkətlər" : "Resident companies",
+      icon: HubOutlinedIcon,
+    },
+    {
+      id: "leadership",
+      label: p.headTitle,
+      description: lang === "az" ? "Rəhbərlik" : "Leadership",
+      icon: BadgeOutlinedIcon,
+    },
+    {
+      id: "staff",
+      label: p.staffTitle,
+      description: lang === "az" ? "Heyət" : "Team",
+      icon: GroupsIcon,
+    },
+    {
+      id: "contact",
+      label: p.contactTitle,
+      description: lang === "az" ? "Ünvan və əlaqə" : "Address & contact",
+      icon: CallOutlinedIcon,
+    },
+  ];
 
-        <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-20">
-          <Breadcrumbs
-              items={[
-                  { label: p.eyebrow, href: lang === "az" ? "/idareetme" : "/management" },
-                  { label: p.breadcrumbSection, href: "/idareetme/ofis-ve-merkezler" },
-                  { label: p.title },
-              ]}
-          />
+  const counter = (n: number) => (
+    <span className="rounded-lg border border-slate-200 px-2.5 py-1 text-[10px] font-black tabular-nums uppercase tracking-[0.2em] text-slate-400 dark:border-white/10 dark:text-slate-500">
+      {String(n).padStart(2, "0")}
+    </span>
+  );
 
-          <div className="max-w-4xl">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
-                {p.eyebrow}
-              </span>
-              <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
-                {p.title}
-              </h1>
-              <p className="text-xl text-white/80 font-medium mb-10 max-w-2xl leading-relaxed italic">
-                &quot;{p.subtitle}&quot;
-              </p>
-            </motion.div>
-          </div>
-        </div>
+  const factTile = (
+    Icon: React.ElementType,
+    label: string,
+    value: string,
+    href?: string
+  ) => {
+    const body = (
+      <>
+        <span className="mb-1.5 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
+          <Icon sx={{ fontSize: 14 }} className="text-[#ee7c7e]" />
+          {label}
+        </span>
+        <span className="block text-[15px] font-black leading-snug text-[#1a2355] dark:text-white">
+          {value}
+        </span>
+      </>
+    );
+    const shell =
+      "block rounded-xl border border-slate-200 bg-slate-50/60 px-4 py-4 transition-colors dark:border-white/10 dark:bg-white/5";
+    return href ? (
+      <a key={label} href={href} className={`${shell} hover:border-[#ee7c7e]/50`}>
+        {body}
+      </a>
+    ) : (
+      <div key={label} className={shell}>
+        {body}
       </div>
+    );
+  };
 
-      {/* ── CONTENT ──────────────────────────────────────────────────────────── */}
-      <div className="px-4 md:px-10 lg:px-20 py-24 bg-white dark:bg-[#0b1330] relative overflow-hidden">
-        <div className="relative z-10 max-w-[1600px] mx-auto space-y-32">
+  return (
+    <OfficeShell
+      eyebrow={p.eyebrow}
+      title={p.title}
+      subtitle={p.subtitle}
+      sections={sections}
+      stat={{
+        value: String(p.staff.length + 1),
+        label: lang === "az" ? "əməkdaş" : "staff",
+      }}
+    >
+      {/* ── About ──────────────────────────────────────────────────────────── */}
+      <section id="about" className="scroll-mt-28">
+        <SectionCard
+          icon={InfoOutlinedIcon}
+          eyebrow={lang === "az" ? "Ümumi məlumat" : "Overview"}
+          title={p.aboutTitle}
+        >
+          <div className="text-flow space-y-5 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 md:text-base">
+            {p.aboutText.map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
+          </div>
+        </SectionCard>
+      </section>
 
-          {/* 1. About */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+      {/* ── Objectives ─────────────────────────────────────────────────────── */}
+      <section id="objectives" className="scroll-mt-28">
+        <SectionCard
+          icon={FlagOutlinedIcon}
+          eyebrow={lang === "az" ? "Nəyə çalışırıq" : "What we aim for"}
+          title={p.objectivesTitle}
+          action={counter(p.objectives.length)}
+        >
+          <NumberedList items={p.objectives.map((o) => o)} />
+        </SectionCard>
+      </section>
+
+      {/* ── Core functions ─────────────────────────────────────────────────── */}
+      <section id="functions" className="scroll-mt-28">
+        <SectionCard
+          icon={SettingsOutlinedIcon}
+          eyebrow={lang === "az" ? "Nə edirik" : "What we do"}
+          title={p.functionsTitle}
+          action={counter(p.functions.length)}
+        >
+          <NumberedList
+            items={p.functions.map((fn) => (
+              <div key={fn.title}>
+                <span className="block text-[15px] font-black leading-snug text-[#1a2355] dark:text-white">
+                  {fn.title}
+                </span>
+                <span className="mt-1 block text-[14px] font-medium leading-relaxed text-slate-600 dark:text-slate-300">
+                  {fn.desc}
+                </span>
+              </div>
+            ))}
+          />
+        </SectionCard>
+      </section>
+
+      {/* ── Partnership & ecosystem ────────────────────────────────────────── */}
+      <section id="partnerships" className="scroll-mt-28">
+        <SectionCard
+          icon={HandshakeOutlinedIcon}
+          eyebrow={lang === "az" ? "Ekosistem" : "Ecosystem"}
+          title={p.partnershipTitle}
+          action={counter(p.partnerships.length)}
+        >
+          <p className="mb-6 text-[15px] font-medium leading-relaxed text-slate-500 dark:text-slate-400">
+            {p.partnershipSubtitle}
+          </p>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {p.partnerships.map((item) => (
+              <div
+                key={item.category}
+                className="rounded-xl border border-slate-200 bg-slate-50/60 px-5 py-4 dark:border-white/10 dark:bg-white/5"
+              >
+                <p className="mb-2 text-[10px] font-black uppercase tracking-[0.22em] text-[#ee7c7e]">
+                  {item.category}
+                </p>
+                <p className="text-[14px] font-medium leading-relaxed text-slate-600 dark:text-slate-300">
+                  {item.partners}
+                </p>
+              </div>
+            ))}
+          </div>
+        </SectionCard>
+      </section>
+
+      {/* ── International collaborations ───────────────────────────────────── */}
+      <section id="international" className="scroll-mt-28">
+        <SectionCard
+          icon={PublicOutlinedIcon}
+          eyebrow={lang === "az" ? "Qlobal əlaqələr" : "Global reach"}
+          title={p.internationalTitle}
+          action={counter(p.international.length)}
+        >
+          <NumberedList
+            items={p.international.map((item) => (
+              <div key={item.region}>
+                <span className="block text-[15px] font-black leading-snug text-[#1a2355] dark:text-white">
+                  {item.region}
+                </span>
+                <span className="mt-1 block text-[14px] font-medium leading-relaxed text-slate-600 dark:text-slate-300">
+                  {item.desc}
+                </span>
+              </div>
+            ))}
+          />
+        </SectionCard>
+      </section>
+
+      {/* ── Innovation centre ──────────────────────────────────────────────── */}
+      <section id="innovation" className="scroll-mt-28">
+        <SectionCard
+          icon={HubOutlinedIcon}
+          eyebrow={lang === "az" ? "Kampusda" : "On campus"}
+          title={p.innovationTitle}
+          action={counter(p.innovationPartners.length)}
+        >
+          <p className="mb-6 text-[15px] font-medium leading-relaxed text-slate-500 dark:text-slate-400">
+            {p.innovationSubtitle}
+          </p>
+          <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-white/10">
+            <table className="w-full min-w-[520px] border-collapse text-left">
+              <thead className="bg-slate-50 dark:bg-white/5">
+                <tr>
+                  <th className="w-1/3 px-5 py-3.5 text-[10px] font-black uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
+                    {p.innovationPartnerHeader}
+                  </th>
+                  <th className="px-5 py-3.5 text-[10px] font-black uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
+                    {p.innovationAreaHeader}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {p.innovationPartners.map((row) => (
+                  <tr
+                    key={row.name}
+                    className="border-t border-slate-100 transition-colors hover:bg-slate-50/60 dark:border-white/10 dark:hover:bg-white/5"
+                  >
+                    <td className="px-5 py-4 align-top text-[14px] font-black text-[#1a2355] dark:text-white">
+                      {row.name}
+                    </td>
+                    <td className="px-5 py-4 align-top text-[14px] font-medium leading-relaxed text-slate-600 dark:text-slate-300">
+                      {row.area}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </SectionCard>
+      </section>
+
+      {/* ── Head of office: profile, biography, education ──────────────────── */}
+      <section id="leadership" className="scroll-mt-28">
+        <div className="space-y-6">
+          <SectionCard
+            icon={BadgeOutlinedIcon}
+            eyebrow={lang === "az" ? "Rəhbərlik" : "Leadership"}
+            title={p.headTitle}
           >
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">{p.aboutTitle}</h2>
+            <div className="mb-6">
+              <h3 className="text-xl font-black leading-tight tracking-tight text-[#1a2355] dark:text-white md:text-2xl">
+                {p.head.name}
+              </h3>
+              {p.head.degree && (
+                <p className="mt-1.5 text-[13px] font-semibold text-slate-500 dark:text-slate-400">
+                  {p.head.degree}
+                </p>
+              )}
+              <p className="mt-2 text-[11px] font-black uppercase tracking-[0.22em] text-[#ee7c7e]">
+                {p.head.role}
+              </p>
             </div>
-            <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed ">
-              {p.aboutText.map((para, i) => (
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {factTile(
+                PhoneIcon,
+                lang === "az" ? "Telefon" : "Phone",
+                p.head.phone,
+                `tel:${p.head.phone.replace(/\s+/g, "")}`
+              )}
+              {factTile(
+                EmailIcon,
+                lang === "az" ? "E-poçt" : "Email",
+                p.head.email,
+                `mailto:${p.head.email}`
+              )}
+              {factTile(BusinessIcon, lang === "az" ? "Otaq" : "Room", p.head.office)}
+              {factTile(
+                AccessTimeIcon,
+                lang === "az" ? "Qəbul saatları" : "Office hours",
+                p.head.hours
+              )}
+            </div>
+          </SectionCard>
+
+          <SectionCard
+            icon={ArticleOutlinedIcon}
+            eyebrow={lang === "az" ? "Peşəkar yol" : "Professional background"}
+            title={p.headBioTitle}
+            delay={0.06}
+          >
+            <div className="text-flow space-y-5 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 md:text-base">
+              {p.headBio.split("\n\n").map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
             </div>
-          </motion.div>
+          </SectionCard>
 
-          {/* 2. Objectives */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <SectionCard
+            icon={SchoolOutlinedIcon}
+            eyebrow={lang === "az" ? "Akademik yol" : "Academic journey"}
+            title={p.headEducationTitle}
+            action={counter(p.headEducation.length)}
+            delay={0.08}
           >
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">{p.objectivesTitle}</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {p.objectives.map((obj, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.07 }}
-                  className="bg-white dark:bg-white/5 rounded-[1.5rem] p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/30 transition-all duration-300 group"
-                >
-                  <div className="w-12 h-12 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e] font-black text-lg mb-6 group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-300">
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed font-medium">{obj}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* 3. Core Functions */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-[#1a2355] rounded-[2rem] p-10 md:p-14 text-white relative overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
-              <ScienceIcon sx={{ fontSize: 200 }} />
-            </div>
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black">{p.functionsTitle}</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {p.functions.map((fn, i) => (
-                <div
-                  key={i}
-                  className="flex gap-4 items-start p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-200"
-                >
-                  <div className="w-8 h-8 rounded-xl bg-[#ee7c7e]/20 flex items-center justify-center text-[#ee7c7e] font-black text-xs shrink-0 mt-0.5">
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <div>
-                    <p className="text-white font-black text-sm mb-1 leading-snug">{fn.title}</p>
-                    <p className="text-white/70 text-sm leading-relaxed">{fn.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* 4. Partnership & Ecosystem */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">{p.partnershipTitle}</h2>
-            </div>
-            <p className="text-gray-500 dark:text-gray-400 mb-10 ml-6 font-medium">{p.partnershipSubtitle}</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {p.partnerships.map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08 }}
-                  className="bg-white dark:bg-white/5 rounded-[1.5rem] p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/20 transition-all duration-300"
-                >
-                  <h3 className="text-[#ee7c7e] font-black text-sm uppercase tracking-widest mb-4">{item.category}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 font-medium leading-relaxed">{item.partners}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* 5. International Collaborations */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">{p.internationalTitle}</h2>
-            </div>
-            <div className="space-y-5">
-              {p.international.map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -16 }}
+            <ol className="relative">
+              <span className="absolute bottom-3 left-[7px] top-3 w-px bg-slate-200 dark:bg-white/10" />
+              {sortEducations(p.headEducation).map((edu, index) => (
+                <motion.li
+                  key={`${edu.period}-${index}`}
+                  initial={{ opacity: 0, x: -6 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="flex gap-6 items-start bg-white dark:bg-white/5 rounded-3xl p-8 border border-gray-100 dark:border-white/10 shadow-sm"
+                  transition={{ duration: 0.4, delay: Math.min(index * 0.06, 0.3) }}
+                  className="relative flex gap-5 pb-7 last:pb-0"
                 >
-                  <div className="w-10 h-10 rounded-2xl bg-[#1a2355] flex items-center justify-center shrink-0 mt-0.5 text-[#ee7c7e] font-black text-xs">
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <div>
-                    <h3 className="font-black text-[#1a2355] dark:text-white mb-2">{item.region}</h3>
-                    <p className="text-gray-600 dark:text-gray-300 font-medium leading-relaxed">{item.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* 6. Innovation Center Table */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">{p.innovationTitle}</h2>
-            </div>
-            <p className="text-gray-500 dark:text-gray-400 mb-10 ml-6 font-medium">{p.innovationSubtitle}</p>
-            <div className="overflow-hidden rounded-[1.5rem] border border-gray-100 dark:border-white/10 shadow-xl">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-[#1a2355] text-white">
-                    <th className="text-left px-8 py-5 font-black uppercase tracking-widest text-xs w-1/3">
-                      {p.innovationPartnerHeader}
-                    </th>
-                    <th className="text-left px-8 py-5 font-black uppercase tracking-widest text-xs">
-                      {p.innovationAreaHeader}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {p.innovationPartners.map((row, i) => (
-                    <tr
-                      key={i}
-                      className={`border-t border-gray-100 dark:border-white/10 transition-colors hover:bg-[#ee7c7e]/5 ${
-                        i % 2 === 0 ? "bg-white dark:bg-white/5" : "bg-gray-50/60 dark:bg-white/[0.02]"
-                      }`}
-                    >
-                      <td className="px-8 py-5 font-black text-[#1a2355] dark:text-white align-top">{row.name}</td>
-                      <td className="px-8 py-5 text-gray-600 dark:text-gray-300 font-medium leading-relaxed align-top">{row.area}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </motion.div>
-
-          {/* 7. Head of Office */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 border-t border-gray-100 dark:border-white/10 pt-16">
-            <motion.div
-              initial={{ opacity: 0, x: -24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-8 space-y-12"
-            >
-              <div>
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-                  <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">{p.head.name}</h2>
-                </div>
-                <p className="text-xs font-black uppercase tracking-widest text-[#ee7c7e] mb-2">{p.head.role}</p>
-                <h3 className="text-sm font-black uppercase tracking-widest text-gray-400 mb-6">{p.headBioTitle}</h3>
-                <div className="space-y-6">
-                  {p.headBio.split("\n\n").map((para, i) => (
-                    <p key={i} className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed ">
-                      {para}
+                  <span className="relative z-10 mt-1.5 h-[15px] w-[15px] shrink-0 rounded-full border-[3px] border-white bg-[#1a2355] ring-1 ring-slate-200 dark:border-slate-900 dark:ring-white/15" />
+                  <div className="min-w-0 flex-1">
+                    <span className="mb-1.5 inline-block rounded-md bg-[#ee7c7e]/10 px-2 py-0.5 text-[10px] font-black uppercase tracking-[0.2em] text-[#ee7c7e]">
+                      {edu.period}
+                    </span>
+                    <p className="text-[15px] font-black leading-snug text-[#1a2355] dark:text-white">
+                      {edu.degree}
                     </p>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-black uppercase tracking-widest text-[#ee7c7e] mb-8 flex items-center gap-3">
-                  <div className="w-2 h-4 bg-[#ee7c7e] rounded-full" />
-                  {p.headEducationTitle}
-                </h3>
-                <div className="relative">
-                  <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-white/10" />
-                  <div className="space-y-8">
-                    {sortEducations(p.headEducation).map((edu, i) => (
-                      <div key={i} className="relative pl-14">
-                        <div className="absolute left-[11px] top-1 w-5 h-5 rounded-full bg-[#ee7c7e] border-4 border-white dark:border-[#0b1330]" />
-                        <span className="text-xs font-black uppercase tracking-widest text-[#ee7c7e] block mb-1">
-                          {edu.period}
-                        </span>
-                        <p className="text-sm font-bold text-[#1a2355] dark:text-white leading-relaxed">
-                          {edu.degree}
-                        </p>
-                      </div>
-                    ))}
                   </div>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-4 space-y-6"
-            >
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-2 h-6 bg-[#ee7c7e] rounded-full" />
-                <h3 className="text-xl font-black text-[#1a2355] dark:text-white">{p.headTitle}</h3>
-              </div>
-              <PersonCard
-                fullName={p.head.name}
-                academicDegree={p.head.degree}
-                title={p.head.role}
-                email={p.head.email}
-                size="lg"
-              />
-              <div className="bg-white dark:bg-white/5 rounded-3xl p-6 border border-gray-100 dark:border-white/10 shadow-sm space-y-4">
-                <div className="flex items-center gap-4 text-sm">
-                  <PhoneIcon className="text-[#ee7c7e]" fontSize="small" />
-                  <span className="text-gray-600 dark:text-gray-300 font-bold">{p.head.phone}</span>
-                </div>
-                <div className="flex items-center gap-4 text-sm">
-                  <EmailIcon className="text-[#ee7c7e]" fontSize="small" />
-                  <span className="text-gray-600 dark:text-gray-300 font-bold break-all">{p.head.email}</span>
-                </div>
-                <div className="flex items-center gap-4 text-sm">
-                  <BusinessIcon className="text-[#ee7c7e]" fontSize="small" />
-                  <span className="text-gray-600 dark:text-gray-300 font-bold">{p.head.office}</span>
-                </div>
-                <div className="flex items-center gap-4 text-sm">
-                  <AccessTimeIcon className="text-[#ee7c7e]" fontSize="small" />
-                  <span className="text-gray-600 dark:text-gray-300 font-bold">{p.head.hours}</span>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* 8. Staff */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">{p.staffTitle}</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {p.staff.map((member, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="bg-white dark:bg-white/5 rounded-[1.5rem] p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/20 transition-all duration-300"
-                >
-                  <PersonCard
-                    fullName={member.name}
-                    academicDegree={member.degree}
-                    email={member.email}
-                  />
-                  <div className="mt-4 space-y-2">
-                    <p className="text-xs font-black text-[#ee7c7e] uppercase tracking-wider">{member.title}</p>
-                    <div className="flex items-center gap-2 text-xs font-bold text-gray-400">
-                      <PhoneIcon sx={{ fontSize: 13 }} className="text-[#ee7c7e]" />
-                      {member.phone}
-                    </div>
-                  </div>
-                </motion.div>
+                </motion.li>
               ))}
-            </div>
-          </motion.div>
-
-          {/* 9. Contact */}
-          <motion.section
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-2xl mx-auto text-center"
-          >
-            <h2 className="text-3xl font-black text-[#1a2355] dark:text-white mb-12">{p.contactTitle}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="flex flex-col items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e]">
-                  <LocationOnIcon />
-                </div>
-                <p className="text-sm font-bold text-gray-600 dark:text-gray-300 text-center">{p.contact.address}</p>
-              </div>
-              <div className="flex flex-col items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e]">
-                  <EmailIcon />
-                </div>
-                <p className="text-sm font-bold text-gray-600 dark:text-gray-300 break-all">{p.contact.email}</p>
-              </div>
-            </div>
-          </motion.section>
-
+            </ol>
+          </SectionCard>
         </div>
-      </div>
-    </main>
+      </section>
+
+      {/* ── Staff ──────────────────────────────────────────────────────────── */}
+      <section id="staff" className="scroll-mt-28">
+        <SectionCard
+          icon={GroupsIcon}
+          eyebrow={lang === "az" ? "İnzibati heyət" : "Administrative team"}
+          title={p.staffTitle}
+          action={counter(p.staff.length)}
+        >
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {p.staff.map((member, i) => (
+              <StaffCard
+                key={member.email || member.name}
+                fullName={member.name}
+                degree={member.degree}
+                role={member.title}
+                email={member.email}
+                phone={member.phone}
+                index={i}
+              />
+            ))}
+          </div>
+        </SectionCard>
+      </section>
+
+      {/* ── Contact ────────────────────────────────────────────────────────── */}
+      <section id="contact" className="scroll-mt-28">
+        <SectionCard
+          icon={CallOutlinedIcon}
+          eyebrow={lang === "az" ? "Bizə yazın" : "Get in touch"}
+          title={p.contactTitle}
+        >
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {factTile(
+              LocationOnIcon,
+              lang === "az" ? "Ünvan" : "Address",
+              p.contact.address
+            )}
+            {factTile(
+              EmailIcon,
+              lang === "az" ? "E-poçt" : "Email",
+              p.contact.email,
+              `mailto:${p.contact.email}`
+            )}
+          </div>
+        </SectionCard>
+      </section>
+    </OfficeShell>
   );
 }

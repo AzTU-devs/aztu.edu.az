@@ -1,17 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
-import PersonCard from "@/components/shared/PersonCard";
+
+import OfficeShell from "@/components/office/OfficeShell";
+import StaffCard from "@/components/faculty/StaffCard";
+import { SectionCard, NumberedList } from "@/components/department/ui";
 import { useLanguage } from "@/context/LanguageContext";
+import { sortEducations } from "@/util/educationOrder";
 
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import BusinessIcon from "@mui/icons-material/Business";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
-import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
-import Breadcrumbs from "@/components/shared/Breadcrumbs";
-import { sortEducations } from "@/util/educationOrder";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
+import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
+import GroupsIcon from "@mui/icons-material/Groups";
+import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
 
 // ─── Interfaces ───────────────────────────────────────────────────────────────
 
@@ -292,340 +300,256 @@ const DATA: Record<"az" | "en", PageData> = {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
+/** Labelled fact tile, same shape as the contact rows on the other office pages. */
+function InfoTile({
+  icon: Icon,
+  label,
+  value,
+  href,
+}: {
+  icon: React.ElementType;
+  label: string;
+  value: string;
+  href?: string;
+}) {
+  const body = (
+    <>
+      <span className="mb-1.5 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
+        <Icon sx={{ fontSize: 14 }} className="text-[#ee7c7e]" />
+        {label}
+      </span>
+      <span className="block break-words text-[15px] font-black leading-snug text-[#1a2355] dark:text-white">
+        {value}
+      </span>
+    </>
+  );
+
+  const shell =
+    "block rounded-xl border border-slate-200 bg-slate-50/60 px-4 py-4 transition-colors dark:border-white/10 dark:bg-white/5";
+
+  return href ? (
+    <a href={href} className={`${shell} hover:border-[#ee7c7e]/50`}>
+      {body}
+    </a>
+  ) : (
+    <div className={shell}>{body}</div>
+  );
+}
+
 export default function QatimPage() {
   const { lang } = useLanguage();
   const p = DATA[lang];
 
+  const t = {
+    overview: lang === "az" ? "Ümumi məlumat" : "Overview",
+    aims: lang === "az" ? "Nəyə çalışırıq" : "What we aim for",
+    doing: lang === "az" ? "Nə edirik" : "What we do",
+    profile: lang === "az" ? "Profil və əlaqə" : "Profile & contact",
+    background: lang === "az" ? "Peşəkar yol" : "Professional background",
+    academic: lang === "az" ? "Akademik yol" : "Academic journey",
+    team: lang === "az" ? "İnzibati heyət" : "Administrative team",
+    getInTouch: lang === "az" ? "Bizə yazın" : "Get in touch",
+    emailLabel: lang === "az" ? "E-poçt" : "Email",
+    roomLabel: lang === "az" ? "Otaq" : "Room",
+    hoursLabel: lang === "az" ? "Qəbul saatları" : "Office hours",
+    staffLabel: lang === "az" ? "əməkdaş" : "staff",
+  };
+
+  const sections = [
+    { id: "about", label: p.aboutTitle, description: t.overview, icon: InfoOutlinedIcon },
+    { id: "objectives", label: p.objectivesTitle, description: t.aims, icon: FlagOutlinedIcon },
+    { id: "functions", label: p.functionsTitle, description: t.doing, icon: SettingsOutlinedIcon },
+    { id: "head", label: p.headTitle, description: t.profile, icon: PersonOutlineIcon },
+    { id: "biography", label: p.headBioTitle, description: t.background, icon: ArticleOutlinedIcon },
+    { id: "education", label: p.headEducationTitle, description: t.academic, icon: SchoolOutlinedIcon },
+    { id: "staff", label: p.staffTitle, description: t.team, icon: GroupsIcon },
+    { id: "contact", label: p.contactTitle, description: t.getInTouch, icon: CallOutlinedIcon },
+  ];
+
+  const counter = (n: number) => (
+    <span className="rounded-lg border border-slate-200 px-2.5 py-1 text-[10px] font-black tabular-nums uppercase tracking-[0.2em] text-slate-400 dark:border-white/10 dark:text-slate-500">
+      {String(n).padStart(2, "0")}
+    </span>
+  );
+
   return (
-    <main className="min-h-screen selection:bg-[#ee7c7e]/30">
-      {/* ── HERO ───────────────────────────────────────────────────────────── */}
-      <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <AboutHeroVideoBg />
-        </div>
+    <OfficeShell
+      eyebrow={p.eyebrow}
+      title={p.title}
+      subtitle={p.subtitle}
+      sections={sections}
+      stat={{ value: String(p.staff.length), label: t.staffLabel }}
+    >
+      <section id="about" className="scroll-mt-28">
+        <SectionCard icon={InfoOutlinedIcon} eyebrow={t.overview} title={p.aboutTitle}>
+          <div className="text-flow space-y-5 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 md:text-base">
+            {p.aboutText.map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
+          </div>
+        </SectionCard>
+      </section>
 
-        <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-20">
-          {/* Breadcrumb */}
-          <Breadcrumbs
-              items={[
-                  { label: p.eyebrow, href: lang === "az" ? "/idareetme" : "/management" },
-                  { label: p.breadcrumbSection, href: lang === "az" ? "/idareetme/ofis-ve-merkezler" : "/management/ofis-ve-merkezler" },
-                  { label: p.title },
-              ]}
+      <section id="objectives" className="scroll-mt-28">
+        <SectionCard
+          icon={FlagOutlinedIcon}
+          eyebrow={t.aims}
+          title={p.objectivesTitle}
+          action={counter(p.objectives.length)}
+        >
+          <NumberedList items={p.objectives.map((o) => o)} />
+        </SectionCard>
+      </section>
+
+      <section id="functions" className="scroll-mt-28">
+        <SectionCard
+          icon={SettingsOutlinedIcon}
+          eyebrow={t.doing}
+          title={p.functionsTitle}
+          action={counter(p.functions.length)}
+          delay={0.06}
+        >
+          <NumberedList
+            items={p.functions.map((fn) => (
+              <div key={fn.title}>
+                <p className="text-[15px] font-black leading-snug text-[#1a2355] dark:text-white">
+                  {fn.title}
+                </p>
+                <p className="mt-1.5 text-[15px] font-medium leading-relaxed text-slate-600 dark:text-slate-300">
+                  {fn.desc}
+                </p>
+              </div>
+            ))}
           />
+        </SectionCard>
+      </section>
 
-          <div className="max-w-4xl">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
-                {p.eyebrow}
-              </span>
-              <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
-                {p.title}
-              </h1>
-              <p className="text-xl text-white/80 font-medium mb-10 max-w-2xl leading-relaxed italic">
-                &quot;{p.subtitle}&quot;
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── CONTENT ────────────────────────────────────────────────────────── */}
-      <div className="px-4 md:px-10 lg:px-20 py-24 bg-white dark:bg-[#0b1330] relative overflow-hidden">
-        <div className="relative z-10 max-w-[1600px] mx-auto space-y-32">
-
-          {/* ── 1. About ─────────────────────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">
-                {p.aboutTitle}
-              </h2>
-            </div>
-            <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed ">
-              {p.aboutText.map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* ── 2. Objectives ────────────────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">
-                {p.objectivesTitle}
-              </h2>
-            </div>
-            <div className="space-y-5">
-              {p.objectives.map((obj, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
-                  className="flex gap-5 md:gap-6 items-start bg-white dark:bg-white/5 rounded-3xl p-6 md:p-8 border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-[#ee7c7e]/30 transition-all duration-300 group"
-                >
-                  <div className="w-12 h-12 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e] font-black text-lg shrink-0 group-hover:bg-[#ee7c7e] group-hover:text-white transition-all duration-300">
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed font-medium">
-                    {obj}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* ── 3. Main Functions ────────────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-[#1a2355] rounded-[2rem] p-10 md:p-14 text-white relative overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
-              <AccountBalanceIcon sx={{ fontSize: 200 }} />
-            </div>
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black">{p.functionsTitle}</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {p.functions.map((fn, i) => (
-                <div
-                  key={i}
-                  className="flex gap-4 items-start p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-200"
-                >
-                  <div className="w-8 h-8 rounded-xl bg-[#ee7c7e]/20 flex items-center justify-center text-[#ee7c7e] font-black text-xs shrink-0 mt-0.5">
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <div>
-                    <p className="text-white font-black text-sm mb-1.5 leading-snug">
-                      {fn.title}
-                    </p>
-                    <p className="text-white/70 text-sm leading-relaxed">
-                      {fn.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* ── 4. Director Bio ──────────────────────────────────────────── */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 border-t border-gray-100 dark:border-white/10 pt-16">
-            {/* Left — Bio + Education timeline */}
-            <motion.div
-              initial={{ opacity: 0, x: -24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-8 space-y-12"
-            >
-              <div>
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-                  <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">
-                    {p.head.name}
-                  </h2>
-                </div>
-                <h3 className="text-sm font-black uppercase tracking-widest text-[#ee7c7e] mb-6">
-                  {p.headBioTitle}
-                </h3>
-                <div className="space-y-6">
-                  {p.headBio.split("\n\n").map((para, i) => (
-                    <p
-                      key={i}
-                      className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed "
-                    >
-                      {para}
-                    </p>
-                  ))}
-                </div>
-              </div>
-
-              {/* Education timeline */}
-              <div>
-                <h3 className="text-sm font-black uppercase tracking-widest text-[#ee7c7e] mb-8 flex items-center gap-3">
-                  <div className="w-2 h-4 bg-[#ee7c7e] rounded-full" />
-                  {p.headEducationTitle}
-                </h3>
-                <div className="relative">
-                  <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-white/10" />
-                  <div className="space-y-8">
-                    {sortEducations(p.headEducation).map((edu, i) => (
-                      <div key={i} className="relative pl-14">
-                        <div className="absolute left-[11px] top-1 w-5 h-5 rounded-full bg-[#ee7c7e] border-4 border-white dark:border-[#0b1330]" />
-                        <span className="text-xs font-black uppercase tracking-widest text-[#ee7c7e] block mb-1">
-                          {edu.period}
-                        </span>
-                        <p className="text-sm font-bold text-[#1a2355] dark:text-white leading-relaxed">
-                          {edu.degree}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Right — PersonCard + Contact */}
-            <motion.div
-              initial={{ opacity: 0, x: 24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-4 space-y-6"
-            >
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-2 h-6 bg-[#ee7c7e] rounded-full" />
-                <h3 className="text-xl font-black text-[#1a2355] dark:text-white">
-                  {p.headTitle}
-                </h3>
-              </div>
-              <PersonCard
-                fullName={p.head.name}
-                academicDegree={p.head.degree}
-                title={p.headTitle}
-                email={p.head.email}
-                phone={p.head.phone}
-                size="lg"
+      <section id="head" className="scroll-mt-28">
+        <SectionCard icon={PersonOutlineIcon} eyebrow={t.profile} title={p.headTitle}>
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-[minmax(0,240px)_1fr]">
+            <StaffCard
+              fullName={p.head.name}
+              degree={p.head.degree}
+              role={p.head.position}
+              email={p.head.email}
+              phone={p.head.phone}
+              index={0}
+            />
+            <div className="grid grid-cols-1 content-start gap-3 sm:grid-cols-2">
+              <InfoTile
+                icon={PhoneIcon}
+                label={p.contactLabels.phone}
+                value={p.head.phone}
+                href={`tel:${p.head.phone}`}
               />
-              <div className="bg-white dark:bg-white/5 rounded-3xl p-6 border border-gray-100 dark:border-white/10 shadow-sm space-y-4">
-                <div className="flex items-start gap-4 text-sm">
-                  <PhoneIcon className="text-[#ee7c7e] mt-0.5" fontSize="small" />
-                  <span className="text-gray-600 dark:text-gray-300 font-bold">
-                    {p.head.phone}
-                  </span>
-                </div>
-                <div className="flex items-start gap-4 text-sm">
-                  <EmailIcon className="text-[#ee7c7e] mt-0.5" fontSize="small" />
-                  <span className="text-gray-600 dark:text-gray-300 font-bold break-all">
-                    {p.head.email}
-                  </span>
-                </div>
-                <div className="flex items-start gap-4 text-sm">
-                  <BusinessIcon className="text-[#ee7c7e] mt-0.5" fontSize="small" />
-                  <span className="text-gray-600 dark:text-gray-300 font-bold">
-                    {p.head.office}
-                  </span>
-                </div>
-                <div className="flex items-start gap-4 text-sm">
-                  <AccessTimeIcon className="text-[#ee7c7e] mt-0.5" fontSize="small" />
-                  <span className="text-gray-600 dark:text-gray-300 font-bold">
-                    {p.head.hours}
-                  </span>
-                </div>
-              </div>
-            </motion.div>
+              <InfoTile
+                icon={EmailIcon}
+                label={t.emailLabel}
+                value={p.head.email}
+                href={`mailto:${p.head.email}`}
+              />
+              <InfoTile icon={BusinessIcon} label={t.roomLabel} value={p.head.office} />
+              <InfoTile icon={AccessTimeIcon} label={t.hoursLabel} value={p.head.hours} />
+            </div>
           </div>
+        </SectionCard>
+      </section>
 
-          {/* ── 5. Staff Grid ────────────────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">
-                {p.staffTitle}
-              </h2>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {p.staff.map((member, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
-                >
-                  <PersonCard
-                    fullName={member.name}
-                    academicDegree={member.degree}
-                    title={member.position}
-                    email={member.email}
-                  />
-                  <div className="mt-3 flex items-center gap-2 text-xs font-bold text-gray-400 pl-2">
-                    <PhoneIcon sx={{ fontSize: 13 }} className="text-[#ee7c7e]" />
-                    {member.phone}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+      <section id="biography" className="scroll-mt-28">
+        <SectionCard
+          icon={ArticleOutlinedIcon}
+          eyebrow={t.background}
+          title={p.headBioTitle}
+          delay={0.06}
+        >
+          <div className="text-flow space-y-5 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 md:text-base">
+            {p.headBio.split("\n\n").map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
+          </div>
+        </SectionCard>
+      </section>
 
-          {/* ── 6. Contact ───────────────────────────────────────────────── */}
-          <motion.section
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <h2 className="text-3xl font-black text-[#1a2355] dark:text-white mb-12">
-              {p.contactTitle}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="flex flex-col items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e]">
-                  <PhoneIcon />
+      <section id="education" className="scroll-mt-28">
+        <SectionCard
+          icon={SchoolOutlinedIcon}
+          eyebrow={t.academic}
+          title={p.headEducationTitle}
+          action={counter(p.headEducation.length)}
+        >
+          <ol className="relative">
+            <span className="absolute bottom-3 left-[7px] top-3 w-px bg-slate-200 dark:bg-white/10" />
+            {sortEducations(p.headEducation).map((edu, i) => (
+              <motion.li
+                key={`${edu.period}-${i}`}
+                initial={{ opacity: 0, x: -6 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: Math.min(i * 0.06, 0.3) }}
+                className="relative flex gap-5 pb-7 last:pb-0"
+              >
+                <span className="relative z-10 mt-1.5 h-[15px] w-[15px] shrink-0 rounded-full border-[3px] border-white bg-[#1a2355] ring-1 ring-slate-200 dark:border-slate-900 dark:ring-white/15" />
+                <div className="min-w-0 flex-1">
+                  <span className="mb-1.5 inline-block rounded-md bg-[#ee7c7e]/10 px-2 py-0.5 text-[10px] font-black tabular-nums uppercase tracking-[0.2em] text-[#ee7c7e]">
+                    {edu.period}
+                  </span>
+                  <h3 className="text-[15px] font-black leading-snug text-[#1a2355] dark:text-white">
+                    {edu.degree}
+                  </h3>
                 </div>
-                <span className="text-[10px] uppercase tracking-widest text-[#ee7c7e] font-black">
-                  {p.contactLabels.phone}
-                </span>
-                <a
-                  href={`tel:${p.contact.phone}`}
-                  className="text-sm font-bold text-gray-600 dark:text-gray-300 hover:text-[#ee7c7e] transition-colors"
-                >
-                  {p.contact.phone}
-                </a>
-              </div>
-              <div className="flex flex-col items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e]">
-                  <EmailIcon />
-                </div>
-                <span className="text-[10px] uppercase tracking-widest text-[#ee7c7e] font-black">
-                  {p.contactLabels.director}
-                </span>
-                <a
-                  href={`mailto:${p.contact.directorEmail}`}
-                  className="text-sm font-bold text-gray-600 dark:text-gray-300 hover:text-[#ee7c7e] transition-colors break-all"
-                >
-                  {p.contact.directorEmail}
-                </a>
-              </div>
-              <div className="flex flex-col items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center text-[#ee7c7e]">
-                  <EmailIcon />
-                </div>
-                <span className="text-[10px] uppercase tracking-widest text-[#ee7c7e] font-black">
-                  {p.contactLabels.center}
-                </span>
-                <a
-                  href={`mailto:${p.contact.centerEmail}`}
-                  className="text-sm font-bold text-gray-600 dark:text-gray-300 hover:text-[#ee7c7e] transition-colors break-all"
-                >
-                  {p.contact.centerEmail}
-                </a>
-              </div>
-            </div>
-          </motion.section>
+              </motion.li>
+            ))}
+          </ol>
+        </SectionCard>
+      </section>
 
-        </div>
-      </div>
-    </main>
+      <section id="staff" className="scroll-mt-28">
+        <SectionCard
+          icon={GroupsIcon}
+          eyebrow={t.team}
+          title={p.staffTitle}
+          action={counter(p.staff.length)}
+        >
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {p.staff.map((member, i) => (
+              <StaffCard
+                key={member.name}
+                fullName={member.name}
+                degree={member.degree}
+                role={member.position}
+                email={member.email}
+                phone={member.phone}
+                index={i}
+              />
+            ))}
+          </div>
+        </SectionCard>
+      </section>
+
+      <section id="contact" className="scroll-mt-28">
+        <SectionCard icon={CallOutlinedIcon} eyebrow={t.getInTouch} title={p.contactTitle}>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <InfoTile
+              icon={PhoneIcon}
+              label={p.contactLabels.phone}
+              value={p.contact.phone}
+              href={`tel:${p.contact.phone}`}
+            />
+            <InfoTile
+              icon={EmailIcon}
+              label={p.contactLabels.director}
+              value={p.contact.directorEmail}
+              href={`mailto:${p.contact.directorEmail}`}
+            />
+            <InfoTile
+              icon={EmailIcon}
+              label={p.contactLabels.center}
+              value={p.contact.centerEmail}
+              href={`mailto:${p.contact.centerEmail}`}
+            />
+          </div>
+        </SectionCard>
+      </section>
+    </OfficeShell>
   );
 }

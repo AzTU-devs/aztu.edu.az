@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
+import OfficeShell from "@/components/office/OfficeShell";
+import { SectionCard } from "@/components/department/ui";
+
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PeopleIcon from "@mui/icons-material/People";
 import ForestIcon from "@mui/icons-material/Forest";
@@ -11,8 +13,9 @@ import RestaurantIcon from "@mui/icons-material/Restaurant";
 import SportsIcon from "@mui/icons-material/Sports";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import ShowerIcon from "@mui/icons-material/Shower";
-import AboutHeroVideoBg from "@/components/about/AboutHeroVideoBg";
-import Breadcrumbs from "@/components/shared/Breadcrumbs";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import HomeWorkOutlinedIcon from "@mui/icons-material/HomeWorkOutlined";
+import PhotoLibraryOutlinedIcon from "@mui/icons-material/PhotoLibraryOutlined";
 
 const DATA = {
   az: {
@@ -93,182 +96,152 @@ const IMAGES = [
 ];
 
 const facilityIcons: Record<string, React.ReactNode> = {
-  restaurant: <RestaurantIcon className="text-[#ee7c7e]" sx={{ fontSize: 28 }} />,
-  sports: <SportsIcon className="text-[#ee7c7e]" sx={{ fontSize: 28 }} />,
-  hospital: <LocalHospitalIcon className="text-[#ee7c7e]" sx={{ fontSize: 28 }} />,
-  shower: <ShowerIcon className="text-[#ee7c7e]" sx={{ fontSize: 28 }} />,
-  beach: <BeachAccessIcon className="text-[#ee7c7e]" sx={{ fontSize: 28 }} />,
-  forest: <ForestIcon className="text-[#ee7c7e]" sx={{ fontSize: 28 }} />,
+  restaurant: <RestaurantIcon className="text-[#ee7c7e]" sx={{ fontSize: 24 }} />,
+  sports: <SportsIcon className="text-[#ee7c7e]" sx={{ fontSize: 24 }} />,
+  hospital: <LocalHospitalIcon className="text-[#ee7c7e]" sx={{ fontSize: 24 }} />,
+  shower: <ShowerIcon className="text-[#ee7c7e]" sx={{ fontSize: 24 }} />,
+  beach: <BeachAccessIcon className="text-[#ee7c7e]" sx={{ fontSize: 24 }} />,
+  forest: <ForestIcon className="text-[#ee7c7e]" sx={{ fontSize: 24 }} />,
 };
 
 const statIcons: Record<string, React.ReactNode> = {
-  location: <LocationOnIcon className="text-[#ee7c7e]" sx={{ fontSize: 32 }} />,
-  area: <ForestIcon className="text-[#ee7c7e]" sx={{ fontSize: 32 }} />,
-  people: <PeopleIcon className="text-[#ee7c7e]" sx={{ fontSize: 32 }} />,
-  year: <BeachAccessIcon className="text-[#ee7c7e]" sx={{ fontSize: 32 }} />,
+  location: <LocationOnIcon className="text-[#ee7c7e]" sx={{ fontSize: 22 }} />,
+  area: <ForestIcon className="text-[#ee7c7e]" sx={{ fontSize: 22 }} />,
+  people: <PeopleIcon className="text-[#ee7c7e]" sx={{ fontSize: 22 }} />,
+  year: <BeachAccessIcon className="text-[#ee7c7e]" sx={{ fontSize: 22 }} />,
 };
 
 export default function NabranPage() {
   const { lang } = useLanguage();
   const p = DATA[lang];
 
-  const managementHref = lang === "az" ? "/az/idareetme" : "/en/management";
+  const sections = [
+    {
+      id: "about",
+      label: p.statsTitle,
+      description: lang === "az" ? "Ümumi məlumat" : "Overview",
+      icon: InfoOutlinedIcon,
+    },
+    {
+      id: "facilities",
+      label: p.facilitiesTitle,
+      description: lang === "az" ? "Ərazidəki imkanlar" : "On-site facilities",
+      icon: HomeWorkOutlinedIcon,
+    },
+    {
+      id: "gallery",
+      label: p.galleryTitle,
+      description: lang === "az" ? "Mərkəzdən görüntülər" : "Views of the centre",
+      icon: PhotoLibraryOutlinedIcon,
+    },
+  ];
+
+  const counter = (n: number) => (
+    <span className="rounded-lg border border-slate-200 px-2.5 py-1 text-[10px] font-black tabular-nums uppercase tracking-[0.2em] text-slate-400 dark:border-white/10 dark:text-slate-500">
+      {String(n).padStart(2, "0")}
+    </span>
+  );
+
+  const heroStat = p.stats.find((s) => s.icon === "people") ?? p.stats[0];
 
   return (
-    <main className="min-h-screen selection:bg-[#ee7c7e]/30">
-
-      {/* HERO */}
-      <div className="relative min-h-[60vh] flex flex-col pt-44 lg:pt-48 overflow-hidden">
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            <AboutHeroVideoBg />
-        </div>
-
-        <div className="relative z-10 max-w-[1600px] mx-auto w-full px-4 md:px-10 lg:px-20 pb-20">
-          <Breadcrumbs
-              items={[
-                  { label: p.managementLabel, href: managementHref },
-                  { label: p.breadcrumbSection },
-                  { label: p.title },
-              ]}
-          />
-
-          <div className="max-w-4xl">
-            <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#ee7c7e] text-xs font-black uppercase tracking-[0.3em] mb-6">
-                {p.eyebrow}
-              </span>
-              <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
-                {p.title}
-              </h1>
-              <p className="text-xl text-white/80 font-medium max-w-2xl leading-relaxed italic">
-                &quot;{p.subtitle}&quot;
-              </p>
-            </motion.div>
+    <OfficeShell
+      eyebrow={p.eyebrow}
+      title={p.title}
+      subtitle={p.subtitle}
+      sections={sections}
+      stat={{ value: heroStat.value, label: heroStat.label }}
+    >
+      <section id="about" className="scroll-mt-28">
+        <SectionCard
+          icon={InfoOutlinedIcon}
+          eyebrow={lang === "az" ? "Ümumi məlumat" : "Overview"}
+          title={p.statsTitle}
+        >
+          <div className="mb-7 grid grid-cols-2 gap-3 lg:grid-cols-4">
+            {p.stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="flex flex-col items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50/60 px-4 py-5 text-center dark:border-white/10 dark:bg-white/5"
+              >
+                <span className="mb-1 flex h-11 w-11 items-center justify-center rounded-xl bg-[#ee7c7e]/10">
+                  {statIcons[stat.icon]}
+                </span>
+                <p className="text-2xl font-black tabular-nums tracking-tight text-[#1a2355] dark:text-white">
+                  {stat.value}
+                </p>
+                <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#ee7c7e]">
+                  {stat.label}
+                </p>
+                <p className="text-[11px] font-medium text-slate-400 dark:text-slate-500">
+                  {stat.sub}
+                </p>
+              </div>
+            ))}
           </div>
-        </div>
-      </div>
 
-      <div className="px-4 md:px-10 lg:px-20 py-24 bg-white dark:bg-[#0b1330] relative overflow-hidden">
-        <div className="relative z-10 max-w-[1600px] mx-auto space-y-32">
+          <div className="text-flow space-y-5 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 md:text-base">
+            {p.paragraphs.map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
+          </div>
+        </SectionCard>
+      </section>
 
-          {/* STATS */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="-mt-16"
-          >
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              {p.stats.map((stat, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08 }}
-                  className="bg-white dark:bg-[#0d1b3e] rounded-[1.5rem] p-6 border border-gray-100 dark:border-white/10 shadow-xl flex flex-col items-center text-center gap-3"
-                >
-                  <div className="w-14 h-14 rounded-2xl bg-[#ee7c7e]/10 flex items-center justify-center">
-                    {statIcons[stat.icon]}
-                  </div>
-                  <div>
-                    <p className="text-3xl font-black text-[#1a2355] dark:text-white">{stat.value}</p>
-                    <p className="text-xs font-black text-[#ee7c7e] uppercase tracking-widest mt-1">{stat.label}</p>
-                    <p className="text-xs text-gray-400 mt-0.5">{stat.sub}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* ABOUT */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-              <div className="lg:col-span-7 space-y-6">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-                  <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">{p.statsTitle}</h2>
-                </div>
-                {p.paragraphs.map((para, i) => (
-                  <p key={i} className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed ">
-                    {para}
-                  </p>
-                ))}
+      <section id="facilities" className="scroll-mt-28">
+        <SectionCard
+          icon={HomeWorkOutlinedIcon}
+          eyebrow={lang === "az" ? "Ərazidə" : "On site"}
+          title={p.facilitiesTitle}
+          action={counter(p.facilities.length)}
+        >
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            {p.facilities.map((f) => (
+              <div
+                key={f.label}
+                className="flex flex-col items-center gap-3 rounded-xl border border-slate-200 bg-slate-50/60 px-4 py-5 text-center transition-colors hover:border-[#ee7c7e]/50 dark:border-white/10 dark:bg-white/5"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#ee7c7e]/10">
+                  {facilityIcons[f.icon]}
+                </span>
+                <span className="text-[13px] font-black leading-snug text-[#1a2355] dark:text-white">
+                  {f.label}
+                </span>
               </div>
+            ))}
+          </div>
+        </SectionCard>
+      </section>
 
-              {/* Facilities */}
-              <div className="lg:col-span-5">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-1.5 h-8 bg-[#1a2355] dark:bg-white/40 rounded-full" />
-                  <h3 className="text-xl font-black text-[#1a2355] dark:text-white">{p.facilitiesTitle}</h3>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  {p.facilities.map((f, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.07 }}
-                      className="bg-gray-50 dark:bg-white/5 rounded-2xl p-5 border border-gray-100 dark:border-white/10 flex flex-col items-center text-center gap-3 hover:border-[#ee7c7e]/30 hover:shadow-md transition-all duration-300"
-                    >
-                      <div className="w-12 h-12 rounded-xl bg-[#ee7c7e]/10 flex items-center justify-center">
-                        {facilityIcons[f.icon]}
-                      </div>
-                      <span className="text-sm font-bold text-[#1a2355] dark:text-white leading-snug">{f.label}</span>
-                    </motion.div>
-                  ))}
-                </div>
+      <section id="gallery" className="scroll-mt-28">
+        <SectionCard
+          icon={PhotoLibraryOutlinedIcon}
+          eyebrow={lang === "az" ? "Mərkəzdən görüntülər" : "Views of the centre"}
+          title={p.galleryTitle}
+          action={counter(IMAGES.length)}
+        >
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {IMAGES.map((src, i) => (
+              <div
+                key={src}
+                className={`group relative overflow-hidden rounded-2xl border border-slate-200 shadow-sm dark:border-white/10 ${
+                  i === 0 ? "aspect-[16/9] sm:col-span-2 lg:col-span-2" : "aspect-square"
+                }`}
+              >
+                <Image
+                  src={src}
+                  alt={`${p.title} - ${i + 1}`}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  unoptimized
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </div>
-            </div>
-          </motion.div>
-
-          {/* GALLERY */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-1.5 h-10 bg-[#ee7c7e] rounded-full" />
-              <h2 className="text-3xl font-black text-[#1a2355] dark:text-white">{p.galleryTitle}</h2>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {IMAGES.map((src, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.97 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.07 }}
-                  className={`relative overflow-hidden rounded-[1.5rem] shadow-lg group ${
-                    i === 0 ? "sm:col-span-2 lg:col-span-2 aspect-[16/9]" : "aspect-square"
-                  }`}
-                >
-                  <Image
-                    src={src}
-                    alt={`${p.title} - ${i + 1}`}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                    unoptimized
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-        </div>
-      </div>
-    </main>
+            ))}
+          </div>
+        </SectionCard>
+      </section>
+    </OfficeShell>
   );
 }
