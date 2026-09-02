@@ -48,7 +48,6 @@ export default function HeiStaffPage() {
                         role={member.pos}
                         degree={hasDegree(member.degree) ? member.degree : undefined}
                         email={member.email}
-                        phone={member.phone}
                         index={index}
                     />
                 ))}

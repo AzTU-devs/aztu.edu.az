@@ -419,9 +419,9 @@ const en = {
         staffTitle: "Staff Members",
         staffDescription: "Information about the Graduate School staff:",
         staff: [
-          { name: "Hajar Aliyeva", pos: "Doctoral Program Manager", degree: "-", email: "hecer.aliyeva@aztu.edu.az", phone: "+994 050 584 20 73" },
-          { name: "Kamran Abilov", pos: "Master’s Program Manager", degree: "-", email: "kamran.ebilov@aztu.edu.az", phone: "+994 077 761 59 22" },
-          { name: "Aynur Huseynova", pos: "Student Affairs Manager", degree: "-", email: "aynur.huseynova@aztu.edu.az", phone: "+994 055 449 96 06" }
+          { name: "Hajar Aliyeva", pos: "Doctoral Program Manager", degree: "-", email: "hecer.aliyeva@aztu.edu.az", phone: "" },
+          { name: "Kamran Abilov", pos: "Master’s Program Manager", degree: "-", email: "kamran.ebilov@aztu.edu.az", phone: "" },
+          { name: "Aynur Huseynova", pos: "Student Affairs Manager", degree: "-", email: "aynur.huseynova@aztu.edu.az", phone: "" }
         ],
         contactInfo: {
           title: "Contact",
@@ -843,8 +843,8 @@ const en = {
         subtitle: "The administrative staff of the Rectorate.",
         breadcrumb: "Rectorate",
         staff: [
-          { name: "Nijat Ahmadov", email: "nijat.ahmadov@aztu.edu.az", phone: "+994 12 538 32 80", title: "Assistant to the Rector", image: "/media/prod/rectors_office/nicat_ahmedov.jpeg" },
-          { name: "Mehriban Aliyeva", email: "mehriban.aliyeva@aztu.edu.az", phone: "+994 12 537 01 12", title: "Rector’s Secretary", image: "/media/prod/rectors_office/mehriban_aliyeva.jpeg" }
+          { name: "Nijat Ahmadov", email: "nijat.ahmadov@aztu.edu.az", phone: "", title: "Assistant to the Rector", image: "/media/prod/rectors_office/nicat_ahmedov.jpeg" },
+          { name: "Mehriban Aliyeva", email: "mehriban.aliyeva@aztu.edu.az", phone: "", title: "Rector’s Secretary", image: "/media/prod/rectors_office/mehriban_aliyeva.jpeg" }
         ]
       },
 

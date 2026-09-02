@@ -125,7 +125,6 @@ export default function DepartmentStaffPage({ params }: Props) {
                             role={w.duty}
                             photoUrl={getImageUrl(w.profile_image)}
                             email={w.email}
-                            phone={w.phone}
                             index={index}
                         />
                     ))}

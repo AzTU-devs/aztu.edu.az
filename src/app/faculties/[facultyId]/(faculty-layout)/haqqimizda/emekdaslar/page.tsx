@@ -124,7 +124,6 @@ export default function EmekdaslarPage({ params }: Props) {
                                         degree={w.scientific_degree}
                                         photoUrl={getImageUrl(w.profile_image)}
                                         email={w.email}
-                                        phone={w.phone}
                                         index={index}
                                     />
                                 );

@@ -130,18 +130,18 @@ const DATA: Record<"az" | "en", PageData> = {
       name: "Rəsulova Ülviyyə Zakir qızı",
       degree: "",
       email: "ulviyye.resulova@aztu.edu.az",
-      phone: "+994 50 261 38 16",
+      phone: "+994 12 525 24 06",
       office: "I korpus, 309-cu otaq",
       hours: "Həftənin tək günləri 14:00–17:00",
     },
     staffTitle: "Əməkdaşlar",
     staff: [
-      { name: "Şahmarova Günel Şahvələd", degree: "", email: "gunel.shahmarova@aztu.edu.az", phone: "+994 51 682 84 08" },
-      { name: "Əliyev Malik Etibar", degree: "", email: "malik.eliyev@aztu.edu.az", phone: "+994 55 560 12 08" },
-      { name: "Abdullayeva Tuti Tehran", degree: "", email: "tuti.abdullayeva@aztu.edu.az", phone: "+994 55 251 01 15" },
-      { name: "Sadıxzadə Bayaz Səbuhi", degree: "", email: "bayaz.sadikhzade@aztu.edu.az", phone: "+994 50 670 55 99" },
-      { name: "Hüseynzadə Qərib Zahid", degree: "", email: "garib.huseynzadeh@aztu.edu.az", phone: "+994 50 988 91 68" },
-      { name: "Yusubova Aynur Eldar", degree: "", email: "aynur.yusubova@aztu.edu.az", phone: "+994 55 607 66 27" },
+      { name: "Şahmarova Günel Şahvələd", degree: "", email: "gunel.shahmarova@aztu.edu.az", phone: "" },
+      { name: "Əliyev Malik Etibar", degree: "", email: "malik.eliyev@aztu.edu.az", phone: "" },
+      { name: "Abdullayeva Tuti Tehran", degree: "", email: "tuti.abdullayeva@aztu.edu.az", phone: "" },
+      { name: "Sadıxzadə Bayaz Səbuhi", degree: "", email: "bayaz.sadikhzade@aztu.edu.az", phone: "" },
+      { name: "Hüseynzadə Qərib Zahid", degree: "", email: "garib.huseynzadeh@aztu.edu.az", phone: "" },
+      { name: "Yusubova Aynur Eldar", degree: "", email: "aynur.yusubova@aztu.edu.az", phone: "" },
     ],
     contactTitle: "Əlaqə",
     contact: {
@@ -201,18 +201,18 @@ const DATA: Record<"az" | "en", PageData> = {
       name: "Ulviyya Rasulova Zakir gizi",
       degree: "",
       email: "ulviyye.resulova@aztu.edu.az",
-      phone: "+994 50 261 38 16",
+      phone: "+994 12 525 24 06",
       office: "Building I, Room 309",
       hours: "Odd days of the week, 14:00–17:00",
     },
     staffTitle: "Staff",
     staff: [
-      { name: "Gunel Shahmarova Shahvalad", degree: "", email: "gunel.shahmarova@aztu.edu.az", phone: "+994 51 682 84 08" },
-      { name: "Malik Aliyev Etibar", degree: "", email: "malik.eliyev@aztu.edu.az", phone: "+994 55 560 12 08" },
-      { name: "Tuti Abdullayeva Tehran", degree: "", email: "tuti.abdullayeva@aztu.edu.az", phone: "+994 55 251 01 15" },
-      { name: "Bayaz Sadikhzade Sabuhi", degree: "", email: "bayaz.sadikhzade@aztu.edu.az", phone: "+994 50 670 55 99" },
-      { name: "Garib Huseynzade Zahid", degree: "", email: "garib.huseynzadeh@aztu.edu.az", phone: "+994 50 988 91 68" },
-      { name: "Aynur Yusubova Eldar", degree: "", email: "aynur.yusubova@aztu.edu.az", phone: "+994 55 607 66 27" },
+      { name: "Gunel Shahmarova Shahvalad", degree: "", email: "gunel.shahmarova@aztu.edu.az", phone: "" },
+      { name: "Malik Aliyev Etibar", degree: "", email: "malik.eliyev@aztu.edu.az", phone: "" },
+      { name: "Tuti Abdullayeva Tehran", degree: "", email: "tuti.abdullayeva@aztu.edu.az", phone: "" },
+      { name: "Bayaz Sadikhzade Sabuhi", degree: "", email: "bayaz.sadikhzade@aztu.edu.az", phone: "" },
+      { name: "Garib Huseynzade Zahid", degree: "", email: "garib.huseynzadeh@aztu.edu.az", phone: "" },
+      { name: "Aynur Yusubova Eldar", degree: "", email: "aynur.yusubova@aztu.edu.az", phone: "" },
     ],
     contactTitle: "Contact",
     contact: {
@@ -489,7 +489,6 @@ export default function KaryeraMerkeziPage() {
                 fullName={member.name}
                 degree={member.degree}
                 email={member.email}
-                phone={member.phone}
                 index={i}
               />
             ))}

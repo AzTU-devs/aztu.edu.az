@@ -86,13 +86,13 @@ const DATA: Record<"az" | "en", PageData> = {
         name: "Əliyeva Şərəfxanım Vaqif qızı",
         role: "f.ü.f.d., müəllim · Şöbə müdiri vəzifəsini müvəqqəti icra edən · Təkrar Ali təhsil üzrə Proqram meneceri",
         email: "sharafxanim@aztu.edu.az",
-        phone: "+994 70 478 09 93",
+        phone: "",
       },
       {
         name: "Rüstəmzadə Fərhad Aqil oğlu",
         role: "Sertifikasiya üzrə menecer",
         email: "ferhad.rustamzadeh@aztu.edu.az",
-        phone: "+994 55 377 49 96",
+        phone: "",
       },
     ],
     contactTitle: "Əlaqə",
@@ -139,13 +139,13 @@ const DATA: Record<"az" | "en", PageData> = {
         name: "Sharafkhanim Vagif Aliyeva",
         role: "PhD in Philology, Lecturer · Acting Head of Department · Program Manager for Second Higher Education",
         email: "sharafxanim@aztu.edu.az",
-        phone: "+994 70 478 09 93",
+        phone: "",
       },
       {
         name: "Farhad Agil Rustamzadeh",
         role: "Certification Manager",
         email: "ferhad.rustamzadeh@aztu.edu.az",
-        phone: "+994 55 377 49 96",
+        phone: "",
       },
     ],
     contactTitle: "Contact",
@@ -271,7 +271,6 @@ export default function OmurboyuTehsilPage() {
                 fullName={member.name}
                 role={member.role}
                 email={member.email}
-                phone={member.phone}
                 index={i}
               />
             ))}

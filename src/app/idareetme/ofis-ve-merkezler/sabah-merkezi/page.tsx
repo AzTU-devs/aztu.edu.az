@@ -153,7 +153,7 @@ const DATA: Record<"az" | "en", PageData> = {
       degree: "",
       position: "SABAH proqramları koordinatoru",
       email: "ayciller.aslanova@aztu.edu.az",
-      phone: "1502 (İP-Tel.)",
+      phone: "+994 12 525 24 06",
       office: "I korpus, Otaq 306-3",
     },
     staffTitle: "Əməkdaşlar",
@@ -162,7 +162,7 @@ const DATA: Record<"az" | "en", PageData> = {
         name: "Dostuyeva Rüfanə Araz qızı",
         degree: "",
         email: "rufane.dostuyeva@aztu.edu.az",
-        phone: "(050) 762-97-12",
+        phone: "",
         position: "Tutor",
       },
     ],
@@ -247,7 +247,7 @@ const DATA: Record<"az" | "en", PageData> = {
       degree: "",
       position: "SABAH Programs Coordinator",
       email: "ayciller.aslanova@aztu.edu.az",
-      phone: "1502 (IP-Tel.)",
+      phone: "+994 12 525 24 06",
       office: "Building I, Room 306-3",
     },
     staffTitle: "Staff",
@@ -256,7 +256,7 @@ const DATA: Record<"az" | "en", PageData> = {
         name: "Dostuyeva Rufane Araz gizi",
         degree: "",
         email: "rufane.dostuyeva@aztu.edu.az",
-        phone: "(050) 762-97-12",
+        phone: "",
         position: "Tutor",
       },
     ],
@@ -521,7 +521,6 @@ export default function SabahMerkeziPage() {
                 role={member.position}
                 degree={member.degree || undefined}
                 email={member.email}
-                phone={member.phone}
                 index={i}
               />
             ))}

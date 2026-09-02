@@ -178,7 +178,6 @@ export default function AdminDepartmentPage() {
                     academicDegree={worker.academic_degree}
                     photoUrl={worker.photo_url}
                     email={worker.email}
-                    phone={worker.phone}
                     size="md"
                   />
                 ))}

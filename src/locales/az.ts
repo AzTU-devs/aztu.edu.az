@@ -422,9 +422,9 @@ const az = {
         staffTitle: "Əməkdaşlar",
         staffDescription: "YTİ-də fəaliyyət göstərən əməkdaşlar haqqında məlumat:",
         staff: [
-          { name: "Həcər Tahir qızı Əliyeva", pos: "Doktorantura proqram meneceri", degree: "-", email: "hecer.aliyeva@aztu.edu.az", phone: "+994 050 584 20 73" },
-          { name: "Kamran Əli oğlu Əbilov", pos: "Magistr proqram meneceri", degree: "-", email: "kamran.ebilov@aztu.edu.az", phone: "+994 077 761 59 22" },
-          { name: "Aynur Şəmməd qızı Hüseynova", pos: "Tələbələrlə iş üzrə menecer", degree: "-", email: "aynur.huseynova@aztu.edu.az", phone: "+994 055 449 96 06" }
+          { name: "Həcər Tahir qızı Əliyeva", pos: "Doktorantura proqram meneceri", degree: "-", email: "hecer.aliyeva@aztu.edu.az", phone: "" },
+          { name: "Kamran Əli oğlu Əbilov", pos: "Magistr proqram meneceri", degree: "-", email: "kamran.ebilov@aztu.edu.az", phone: "" },
+          { name: "Aynur Şəmməd qızı Hüseynova", pos: "Tələbələrlə iş üzrə menecer", degree: "-", email: "aynur.huseynova@aztu.edu.az", phone: "" }
         ],
         contactInfo: {
           title: "Əlaqə",
@@ -883,14 +883,14 @@ const az = {
           {
             name: "Nicat Əhmədov",
             email: "nijat.ahmadov@aztu.edu.az",
-            phone: "+994 12 538 32 80",
+            phone: "",
             title: "Rektorun köməkçisi",
             image: "/media/prod/rectors_office/nicat_ahmedov.jpeg"
           },
           {
             name: "Mehriban Əliyeva",
             email: "mehriban.aliyeva@aztu.edu.az",
-            phone: "+994 12 537 01 12",
+            phone: "",
             title: "Rektorun referenti",
             image: "/media/prod/rectors_office/mehriban_aliyeva.jpeg"
           }

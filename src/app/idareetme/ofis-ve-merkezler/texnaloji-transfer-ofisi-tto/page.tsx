@@ -176,7 +176,7 @@ const DATA: Record<"az" | "en", PageData> = {
       degree: "",
       role: "Texnoloji Transfer Ofisinin rəhbəri",
       email: "murat.ataman@aztu.edu.az",
-      phone: "+994 55 646 41 00",
+      phone: "+994 12 525 24 06",
       office: "II korpus, 315-ci otaq",
       hours: "II, III və IV günlər, saat 10:00–13:00",
     },
@@ -186,14 +186,14 @@ const DATA: Record<"az" | "en", PageData> = {
         name: "Əsgərov Sahib Azər oğlu",
         degree: "Ph.D. (davam edir)",
         email: "s.a.asgerov@aztu.edu.az",
-        phone: "+994 77 520 33 22",
+        phone: "",
         title: "TTO-nun marketinq və satış üzrə mütəxəssisi",
       },
       {
         name: "Şirzadov Fərhad Məhəmməd oğlu",
         degree: "Ph.D.",
         email: "farhad.shirzadov@aztu.edu.az",
-        phone: "+994 55 902 94 46",
+        phone: "",
         title: "Texnoloji innovasiyalar üzrə mütəxəssis",
       },
     ],
@@ -273,7 +273,7 @@ const DATA: Record<"az" | "en", PageData> = {
       degree: "",
       role: "Head of the Technology Transfer Office",
       email: "murat.ataman@aztu.edu.az",
-      phone: "+994 55 646 41 00",
+      phone: "+994 12 525 24 06",
       office: "Building II, Room 315",
       hours: "Tuesdays, Wednesdays & Thursdays, 10:00–13:00",
     },
@@ -283,14 +283,14 @@ const DATA: Record<"az" | "en", PageData> = {
         name: "Sahib Asgerov Azar",
         degree: "PhD (in progress)",
         email: "s.a.asgerov@aztu.edu.az",
-        phone: "+994 77 520 33 22",
+        phone: "",
         title: "TTO Marketing and Sales Specialist",
       },
       {
         name: "Farhad Shirzadov Mahammad",
         degree: "PhD",
         email: "farhad.shirzadov@aztu.edu.az",
-        phone: "+994 55 902 94 46",
+        phone: "",
         title: "Technology Innovation Specialist",
       },
     ],
@@ -663,7 +663,6 @@ export default function TTOPage() {
                 degree={member.degree}
                 role={member.title}
                 email={member.email}
-                phone={member.phone}
                 index={i}
               />
             ))}

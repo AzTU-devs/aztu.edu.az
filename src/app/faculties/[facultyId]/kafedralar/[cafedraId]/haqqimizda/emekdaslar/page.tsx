@@ -127,7 +127,6 @@ export default function CafedraEmekdaslarPage({ params }: Props) {
                     degree={p.scientific_degree || undefined}
                     photoUrl={getImageUrl(p.profile_image)}
                     email={p.email || undefined}
-                    phone={p.phone || undefined}
                     index={index}
                   />
                 );

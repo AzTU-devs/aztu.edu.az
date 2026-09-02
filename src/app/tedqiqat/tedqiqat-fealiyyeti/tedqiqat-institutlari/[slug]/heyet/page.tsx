@@ -80,7 +80,6 @@ export default function ResearchInstituteStaffPage({ params }: Props) {
                       title={w.title}
                       photoUrl={getImageUrl(w.image_url)}
                       email={w.email}
-                      phone={w.phone}
                       size="sm"
                     />
                   </motion.div>

@@ -81,7 +81,7 @@ export const ADMIN_DEPARTMENTS: AdminDepartment[] = [
         photo_url:
           "https://ui-avatars.com/api/?name=Ali+Nasirov&background=263238&color=fff&size=200&bold=true",
         email: "a.nasirov@aztu.edu.az",
-        phone: "+994 50-312-44-21",
+        phone: "",
         bio: "Elmi tədqiqat idarəsinin baş mütəxəssisi. Elmi nəşrlər və indeksləmə sistemləri üzrə koordinasiya işlərini aparır.",
         education: [
           { year: "2010", degree: "Bakalavr", institution: "AzTU" },
@@ -96,7 +96,7 @@ export const ADMIN_DEPARTMENTS: AdminDepartment[] = [
         photo_url:
           "https://ui-avatars.com/api/?name=Lala+Mammadova&background=880e4f&color=fff&size=200&bold=true",
         email: "l.mammadova@aztu.edu.az",
-        phone: "+994 51-422-18-93",
+        phone: "",
         bio: "Beynəlxalq reytinq sistemləri ilə əlaqədar məlumatların toplanması və hesabatların hazırlanması üzrə mütəxəssisdir.",
       },
       {
@@ -107,7 +107,7 @@ export const ADMIN_DEPARTMENTS: AdminDepartment[] = [
         photo_url:
           "https://ui-avatars.com/api/?name=Elmar+Huseynov&background=00695c&color=fff&size=200&bold=true",
         email: "e.huseynov@aztu.edu.az",
-        phone: "+994 55-613-72-04",
+        phone: "",
         bio: "Patent tədqiqatı və intellektual mülkiyyət hüquqlarının qorunması üzrə mütəxəssisdir.",
       },
       {
@@ -118,7 +118,7 @@ export const ADMIN_DEPARTMENTS: AdminDepartment[] = [
         photo_url:
           "https://ui-avatars.com/api/?name=Aytan+Quliyeva&background=1565c0&color=fff&size=200&bold=true",
         email: "a.quliyeva.etri@aztu.edu.az",
-        phone: "+994 50-899-44-12",
+        phone: "",
         bio: "İdarənin sənəd dövriyyəsi və arxiv işlərini aparır.",
       },
     ],
@@ -186,7 +186,7 @@ export const ADMIN_DEPARTMENTS: AdminDepartment[] = [
         photo_url:
           "https://ui-avatars.com/api/?name=Kamran+Babayev&background=0277bd&color=fff&size=200&bold=true",
         email: "k.babayev@aztu.edu.az",
-        phone: "+994 50-741-29-83",
+        phone: "",
         bio: "Beynəlxalq əməkdaşlıq müqavilələrinin hazırlanması və icrasına nəzarət edir. Xarici universitetlərlə əlaqə məsələlərini koordinasiya edir.",
         education: [
           { year: "2008", degree: "Bakalavr", institution: "AzTU" },
@@ -201,7 +201,7 @@ export const ADMIN_DEPARTMENTS: AdminDepartment[] = [
         photo_url:
           "https://ui-avatars.com/api/?name=Nigar+Rzayeva&background=4a148c&color=fff&size=200&bold=true",
         email: "n.rzayeva@aztu.edu.az",
-        phone: "+994 51-508-37-64",
+        phone: "",
         bio: "Tələbə və müəllim mübadilə proqramlarının (Erasmus+, DAAD) inzibati dəstəyini təmin edir.",
       },
       {
@@ -212,7 +212,7 @@ export const ADMIN_DEPARTMENTS: AdminDepartment[] = [
         photo_url:
           "https://ui-avatars.com/api/?name=Farid+Samadov&background=1b5e20&color=fff&size=200&bold=true",
         email: "f.samadov@aztu.edu.az",
-        phone: "+994 55-229-41-07",
+        phone: "",
         bio: "Beynəlxalq konfranslar, seminarlar və vebinarların təşkili üzrə mütəxəssisdir.",
       },
       {
@@ -223,7 +223,7 @@ export const ADMIN_DEPARTMENTS: AdminDepartment[] = [
         photo_url:
           "https://ui-avatars.com/api/?name=Xadica+Cafarova&background=bf360c&color=fff&size=200&bold=true",
         email: "x.cafarova@aztu.edu.az",
-        phone: "+994 50-314-88-56",
+        phone: "",
         bio: "İdarənin sənəd dövriyyəsi, yazışmaları və arxiv işlərini aparır.",
       },
     ],
@@ -292,7 +292,7 @@ export const ADMIN_DEPARTMENTS: AdminDepartment[] = [
         photo_url:
           "https://ui-avatars.com/api/?name=Sevinc+Aliyeva&background=37474f&color=fff&size=200&bold=true",
         email: "s.aliyeva.hq@aztu.edu.az",
-        phone: "+994 50-521-33-78",
+        phone: "",
         bio: "Müqavilələrin hüquqi ekspertizası, şikayətlərə baxılması və daxili normativ sənədlərin hazırlanması üzrə mütəxəssisdir.",
       },
       {
@@ -303,7 +303,7 @@ export const ADMIN_DEPARTMENTS: AdminDepartment[] = [
         photo_url:
           "https://ui-avatars.com/api/?name=Nijat+Karimov&background=c62828&color=fff&size=200&bold=true",
         email: "n.karimov.ktb@aztu.edu.az",
-        phone: "+994 51-703-28-41",
+        phone: "",
         bio: "Universitetin rəsmi yazışmalarını, giriş-çıxış sənədlərini və iclas protokollarını idarə edir.",
       },
       {
@@ -314,7 +314,7 @@ export const ADMIN_DEPARTMENTS: AdminDepartment[] = [
         photo_url:
           "https://ui-avatars.com/api/?name=Zahra+Abbasova&background=006064&color=fff&size=200&bold=true",
         email: "z.abbasova.ktb@aztu.edu.az",
-        phone: "+994 55-418-90-22",
+        phone: "",
         bio: "Daxili normativ aktlar, əmr və sərəncamların qeydiyyatını aparır.",
       },
     ],

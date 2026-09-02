@@ -156,7 +156,7 @@ const DATA: Record<"az" | "en", PageData> = {
       degree: "Texnika elmləri doktoru, professor, məsləhətçi-professor",
       position: "Qərbi Azərbaycan Texnoloji İrsi Mərkəzinin rəhbəri",
       email: "naiman.rasulov@aztu.edu.az",
-      phone: "+994 50 359 54 97",
+      phone: "+994 12 525 24 06",
       office: "III bina, 207-ci otaq",
       hours: "İş günləri 12:00–15:00",
     },
@@ -168,14 +168,14 @@ const DATA: Record<"az" | "en", PageData> = {
         position:
           "Tələbələrlə iş üzrə menecer · Yüksək Təhsil İnstitutunun Türk Mühəndislik və Menecment Məktəbinin xarici proqram meneceri",
         email: "",
-        phone: "+994 55 449 96 06",
+        phone: "",
       },
       {
         name: "Almədətli Roza Sultan qızı",
         degree: "",
         position: "Tələbə · Mütəxəssis",
         email: "",
-        phone: "+994 77 308 77 03",
+        phone: "",
       },
     ],
     contactTitle: "Əlaqə",
@@ -262,7 +262,7 @@ const DATA: Record<"az" | "en", PageData> = {
       position:
         "Director, Center for the Technological Heritage of Western Azerbaijan",
       email: "naiman.rasulov@aztu.edu.az",
-      phone: "+994 50 359 54 97",
+      phone: "+994 12 525 24 06",
       office: "Building III, Room 207",
       hours: "Working days 12:00–15:00",
     },
@@ -274,14 +274,14 @@ const DATA: Record<"az" | "en", PageData> = {
         position:
           "Student Affairs Manager · International Program Manager, Turkish Engineering and Management School, Institute of Higher Education",
         email: "",
-        phone: "+994 55 449 96 06",
+        phone: "",
       },
       {
         name: "Roza Sultan Almadatli",
         degree: "",
         position: "Student · Specialist",
         email: "",
-        phone: "+994 77 308 77 03",
+        phone: "",
       },
     ],
     contactTitle: "Contact",
@@ -518,7 +518,6 @@ export default function QatimPage() {
                 degree={member.degree}
                 role={member.position}
                 email={member.email}
-                phone={member.phone}
                 index={i}
               />
             ))}
